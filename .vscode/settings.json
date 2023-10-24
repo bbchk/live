@@ -26,5 +26,25 @@
     "back/package-lock.json": true,
     "back/.gitignore": true
   },
-  "explorerExclude.backup": {}
+  "explorerExclude.backup": {},
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#0e4c0c",
+    "activityBar.background": "#0e4c0c",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#5a5ee5",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#0e4c0c",
+    "statusBar.background": "#062005",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#0e4c0c",
+    "statusBarItem.remoteBackground": "#062005",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#062005",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#06200599",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#062005"
 }
