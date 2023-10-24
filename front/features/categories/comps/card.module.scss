@@ -1,0 +1,43 @@
+@use "@/styles/variables" as *;
+
+$radius: 0.7rem;
+
+.cat_card {
+  border-radius: $radius;
+  background-color: $color-medium-spring-bud;
+
+  padding: 0.5rem 1rem 1rem;
+  width: 17rem;
+  height: 20rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+
+  .naming {
+    text-align: center;
+    background-color: white;
+    font-size: 2rem;
+    padding: 0.5rem;
+    margin: auto;
+    line-height: 100%;
+    width: 95%;
+  }
+
+  img {
+    border-radius: $radius;
+    object-fit: cover;
+    width: 100%;
+    height: 80%;
+    object-position: center;
+    box-shadow: 0 0 0 0.5rem white;
+  }
+
+  transition: transform 0.3s, box-shadow 0.2s 0.1s;
+  &:hover {
+    transform: scale(1.1, 1.1);
+    z-index: 99;
+    box-shadow: 0 0 6px 1px $color-medium-spring-bud;
+    border: 0.5px solid $color-medium-spring-bud;
+  }
+}

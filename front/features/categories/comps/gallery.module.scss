@@ -1,0 +1,23 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+$underline_thickess: 0.3rem;
+
+.gallery_container {
+  font-family: $font-family-balsamiq-sans;
+
+  h2 {
+    margin-left: 5%;
+    font-size: 2.5rem;
+    a {
+      @include link(
+        $color: $color-bangladesh-green,
+        $hoverColor: $color-banana-yellow
+      );
+    }
+  }
+
+  .gallery {
+    margin: 1rem auto;
+  }
+}
