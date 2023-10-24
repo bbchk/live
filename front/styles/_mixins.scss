@@ -1,0 +1,22 @@
+@use "@/styles/variables" as *;
+
+@mixin link($color, $hoverColor) {
+  text-decoration: none;
+  color: $color;
+
+  background: linear-gradient(
+      to right,
+      $color-medium-spring-bud,
+      $color-medium-spring-bud
+    ),
+    linear-gradient(to right, $color-banana-yellow, $color-chinese-white);
+  background-size: 100% 3px, 0 3px;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms, color 200ms;
+  text-decoration: none;
+  &:hover {
+    background-size: 0 2px, 100% 3px;
+    color: $hoverColor;
+  }
+}
