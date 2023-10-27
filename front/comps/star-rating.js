@@ -23,7 +23,7 @@ const StarRating = ({ score, fontSize, named, gap }) => {
   //   fontSize = fontSize?.replace(/[^0-9.]/g, "");
   //   gap = gap?.replace(/[^0-9.]/g, "");
 
-  //   const stars = [];
+  //   const stars =
   //   ["Bad", "Not Bad", "Ok", "Good", "Wonderful"].forEach((scoreName, index) => {
   //     stars.push(
   //       <div className="icon-link d-flex flex-column" key={index}>
