@@ -11,7 +11,6 @@ const ProfilePopover = ({ toggleSignInModal, toggleSignUpModal }) => {
 
   const handleSignOut = async (e) => {
     signOut();
-    window.location.reload();
   };
 
   const handleSignIn = async (e) => {
@@ -22,6 +21,10 @@ const ProfilePopover = ({ toggleSignInModal, toggleSignUpModal }) => {
   const handleSignUp = async (e) => {
     document.body.click();
     toggleSignUpModal();
+  };
+
+  const closePopover = () => {
+    document.body.click();
   };
 
   const unsignedPopover = (
@@ -52,9 +55,12 @@ const ProfilePopover = ({ toggleSignInModal, toggleSignUpModal }) => {
         <div className={`${s.signed_popover}`}>
           <ul>
             <li>
-              <Link href="/profile/personal_data" className="icon-link">
+              <Link
+                onClick={closePopover}
+                href="/profile/personal_data"
+                className="icon-link"
+              >
                 <p>
-                  {" "}
                   <i className="bi bi-person-lines-fill"></i>
                   Особисті дані
                 </p>
@@ -62,7 +68,11 @@ const ProfilePopover = ({ toggleSignInModal, toggleSignUpModal }) => {
             </li>
             {/* <hr /> */}
             <li>
-              <Link href="/profile/wish_list" className="icon-link">
+              <Link
+                onClick={closePopover}
+                href="/profile/wish_list"
+                className="icon-link"
+              >
                 <p>
                   {" "}
                   <i className="bi bi-heart-fill"></i>
@@ -72,7 +82,11 @@ const ProfilePopover = ({ toggleSignInModal, toggleSignUpModal }) => {
             </li>
             {/* <hr /> */}
             <li>
-              <Link href="/profile/orders_list" className="icon-link">
+              <Link
+                onClick={closePopover}
+                href="/profile/orders_list"
+                className="icon-link"
+              >
                 <p>
                   {" "}
                   <i className="bi bi-list-check"></i>Мої замовлення
