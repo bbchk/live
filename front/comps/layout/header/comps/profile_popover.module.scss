@@ -1,6 +1,6 @@
-@use "@/styles/variables" as *;
-@use "@/styles/mixins" as *;
-@import "@/node_modules/rfs/sass.sass";
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+@import "root/node_modules/rfs/sass.sass";
 
 .profile_popover {
   border: 0.5px solid $color-bangladesh-green;

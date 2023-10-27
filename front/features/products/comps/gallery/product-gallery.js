@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useAddLikedProduct } from "@/hooks/useAddLikedProduct.js";
+import { useAddLikedProduct } from "root/hooks/useAddLikedProduct.js";
 
-import { useAuthContext } from "@/hooks/useAuthContext";
+import { useAuthContext } from "root/hooks/useAuthContext";
 import ProductCard from "./product-card";
 
 const ProductGallery = () => {

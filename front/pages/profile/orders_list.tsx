@@ -1,5 +1,5 @@
-import TabLayout from "@/features/profile/comps/tab-layout";
-import Order from "@/features/profile/comps/orders_list/order";
+import TabLayout from "root/features/profile/comps/tab-layout";
+import Order from "root/features/profile/comps/orders_list/order";
 
 const OrdersList = () => {
   return (

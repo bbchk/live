@@ -1,4 +1,4 @@
-import TabLayout from "@/features/profile/comps/tab-layout";
+import TabLayout from "root/features/profile/comps/tab-layout";
 
 const WishList = () => {
   return (

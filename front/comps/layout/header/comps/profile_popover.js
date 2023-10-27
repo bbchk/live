@@ -1,5 +1,5 @@
-import { useAuthContext } from "@/hooks/useAuthContext";
-import { useSignOut } from "@/hooks/useSingOut";
+import { useAuthContext } from "root/hooks/useAuthContext";
+import { useSignOut } from "root/hooks/useSingOut";
 import Link from "next/link";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";

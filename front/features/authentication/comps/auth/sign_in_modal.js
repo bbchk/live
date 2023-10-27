@@ -1,4 +1,4 @@
-import { useSignIn } from "@/hooks/useSignIn";
+import { useSignIn } from "root/hooks/useSignIn";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 

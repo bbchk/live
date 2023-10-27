@@ -1,5 +1,5 @@
-@use "@/styles/variables" as *;
-@import "@/node_modules/rfs/sass.sass";
+@use "./styles/variables" as *;
+@import "root/node_modules/rfs/sass.sass";
 
 .footer_container {
   background-color: $color-dark-slate-gray;

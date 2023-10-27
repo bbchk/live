@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-import CheckBox from "@/comps/checkbox";
+import CheckBox from "root/comps/checkbox";
 
 const FilterChecks = ({ filterBy, isOpen, options }) => {
   const id = useId();

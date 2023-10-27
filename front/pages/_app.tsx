@@ -1,13 +1,13 @@
-import "@/styles/globals.scss";
+import "root/styles/globals.scss";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-import Header from "@/comps/layout/header/header";
-import Footer from "@/comps/layout/footer/footer";
+import Header from "root/comps/layout/header/header";
+import Footer from "root/comps/layout/footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { AuthContextProvider } from "@/context/authContext";
+import { AuthContextProvider } from "root/context/authContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

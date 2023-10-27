@@ -1,4 +1,4 @@
-import StarRating from "@/comps/star-rating";
+import StarRating from "root/comps/star-rating";
 
 import s from "./product-card.module.scss";
 

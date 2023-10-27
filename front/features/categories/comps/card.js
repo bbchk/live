@@ -7,7 +7,7 @@ const Card = ({ naming, image }) => {
     <div
       role="button"
       onClick={() => {
-        router.push(`/`);
+        router.push("/");
       }}
       className={`${s.cat_card} `}
     >

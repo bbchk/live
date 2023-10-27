@@ -1,4 +1,4 @@
-import CategoriesGallery from "@/features/categories/comps/gallery";
+import CategoriesGallery from "root/features/categories/comps/gallery";
 
 const Home = () => {
   const categories = [

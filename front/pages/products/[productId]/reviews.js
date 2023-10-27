@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 
-import Navigation from "@/features/products/comps/mutual/navigation";
-import ReviewsList from "@/features/products/comps/mutual/reviews-list";
+import Navigation from "root/features/products/comps/mutual/navigation";
+import ReviewsList from "root/features/products/comps/mutual/reviews-list";
 
 const Reviews = () => {
   const router = useRouter();

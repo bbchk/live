@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAuthContext } from "@/hooks/useAuthContext";
+import { useAuthContext } from "root/hooks/useAuthContext";
 import s from "./data.module.scss";
 
 const Data = () => {
