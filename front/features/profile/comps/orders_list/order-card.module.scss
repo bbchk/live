@@ -1,7 +1,7 @@
 @use "./styles/variables" as *;
 
 .order_card {
-  border: 1px solid $color-medium-spring-bud;
+  border: 1px solid $color-medbud;
   border-radius: 0.4rem;
   padding: 1rem;
   height: 20rem;
@@ -36,7 +36,7 @@
       align-items: center;
 
       .amount {
-        background-color: $color-medium-spring-bud;
+        background-color: $color-medbud;
         border-radius: 3rem;
         font-size: 2rem;
         padding: 1rem;

@@ -15,7 +15,7 @@ $fs-lg: 2rem;
     flex-direction: column;
     gap: 1rem;
     .all_reviews_btn {
-      border: 1px solid $color-medium-spring-bud;
+      border: 1px solid $color-medbud;
       width: fit-content;
     }
   }
@@ -36,7 +36,7 @@ $fs-lg: 2rem;
       }
       display: flex;
       flex-direction: column;
-      background-color: $color-medium-spring-bud;
+      background-color: $color-medbud;
       // width: fit-content;
       .wave {
         width: 8rem;

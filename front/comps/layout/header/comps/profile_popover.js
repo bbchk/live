@@ -31,15 +31,12 @@ const ProfilePopover = ({ toggleSignInModal, toggleSignUpModal }) => {
     <Popover id="popover-basic" className={`${s.profile_popover}`}>
       <Popover.Body>
         <div className={`${s.unsigned_popover}`}>
-          <button
-            className={`icon-link btn bg-success ${s.sign_in_button}`}
-            onClick={handleSignIn}
-          >
-            Увійти
+          <button className={`btn ${s.sign_in_button}`} onClick={handleSignIn}>
+            <p>Увійти</p>
           </button>
 
           <p>
-            Not registered yet?{" "}
+            Not registered yet?
             <Link href="/" onClick={handleSignUp} className="icon-link">
               Зареєструватись
             </Link>
@@ -60,10 +57,7 @@ const ProfilePopover = ({ toggleSignInModal, toggleSignUpModal }) => {
                 href="/profile/personal_data"
                 className="icon-link"
               >
-                <p>
-                  <i className="bi bi-person-lines-fill"></i>
-                  Особисті дані
-                </p>
+                <p>Особисті дані</p>
               </Link>
             </li>
             {/* <hr /> */}
@@ -73,11 +67,7 @@ const ProfilePopover = ({ toggleSignInModal, toggleSignUpModal }) => {
                 href="/profile/wish_list"
                 className="icon-link"
               >
-                <p>
-                  {" "}
-                  <i className="bi bi-heart-fill"></i>
-                  Список бажань
-                </p>
+                <p>Список бажань</p>
               </Link>
             </li>
             {/* <hr /> */}
@@ -87,10 +77,7 @@ const ProfilePopover = ({ toggleSignInModal, toggleSignUpModal }) => {
                 href="/profile/orders_list"
                 className="icon-link"
               >
-                <p>
-                  {" "}
-                  <i className="bi bi-list-check"></i>Мої замовлення
-                </p>
+                <p>Мої замовлення</p>
               </Link>
             </li>
             {/* <hr /> */}

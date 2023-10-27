@@ -3,13 +3,11 @@
 @import "root/node_modules/rfs/sass.sass";
 
 .profile_popover {
-  border: 0.5px solid $color-bangladesh-green;
-  font-family: $font-family-balsamiq-sans;
-  background-color: white;
+  box-shadow: 0 0 5px 3px lightgrey;
+  --bs-popover-border-color: transparent !important;
 
-  .unsigned_popover,
-  .signed_popover {
-  }
+  font-family: $font-family-balsamiq-sans !important;
+  background-color: white;
 
   .unsigned_popover {
     display: flex;
@@ -17,35 +15,54 @@
     align-items: center;
     gap: 0.5rem;
 
+    p {
+      margin-bottom: 0;
+    }
+
     .sign_in_button {
       width: 100%;
-      display: flex;
-      justify-content: center;
-
-      color: $color-milk;
 
       @include font-size(1.5rem);
+      background-color: $color-bangreen;
+      color: $color-milk;
+
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      &:hover {
+        background-color: $color-dureen;
+      }
+      &:active {
+        color: $color-milk;
+      }
     }
   }
 
   .signed_popover {
+    @include padding(0.5rem);
+    @include font-size(1.5rem);
+
     p {
-      @include font-size(1.4rem);
-      @include margin-top(0.5rem);
-      @include link(black, $color-bangladesh-green);
+      color: $color-daslgrey;
+
+      @include link(
+        $color-medbud,
+        $color-nyanza,
+        $color-bangreen,
+        $color-medbud
+      );
+
       &:hover {
         transform: scale(1.05);
+        color: $color-bangreen;
       }
+    }
 
-      i {
-        margin-right: 0.5rem;
-        width: fit-content;
-        height: fit-content;
-      }
+    ul {
+      margin-bottom: 0 !important;
+      padding-left: 0 !important;
     }
   }
 }
 
 .profile_icon {
-  color: $color-bangladesh-green;
+  color: $color-bangreen;
 }

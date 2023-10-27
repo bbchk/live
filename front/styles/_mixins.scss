@@ -1,22 +1,22 @@
 @use "./styles/variables" as *;
 
-@mixin link($color, $hoverColor) {
-  text-decoration: none;
-  color: $color;
+@mixin link(
+  $colorFrom1: white,
+  $colorTo1: white,
+  $colorFrom2: black,
+  $colorTo2: black
+) {
+  background: linear-gradient(to right, $colorFrom1, $colorTo1),
+    linear-gradient(to right, $colorFrom2, $colorTo2);
 
-  background: linear-gradient(
-      to right,
-      $color-medium-spring-bud,
-      $color-medium-spring-bud
-    ),
-    linear-gradient(to right, $color-banana-yellow, $color-chinese-white);
   background-size: 100% 3px, 0 3px;
   background-position: 100% 100%, 0 100%;
   background-repeat: no-repeat;
-  transition: background-size 400ms, color 200ms;
+
   text-decoration: none;
+
+  transition: background-size 400ms, color 200ms;
   &:hover {
     background-size: 0 2px, 100% 3px;
-    color: $hoverColor;
   }
 }

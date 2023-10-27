@@ -4,7 +4,7 @@ $radius: 0.7rem;
 
 .cat_card {
   border-radius: $radius;
-  background-color: $color-medium-spring-bud;
+  background-color: $color-medbud;
 
   padding: 0.5rem 1rem 1rem;
   width: 17rem;
@@ -37,7 +37,7 @@ $radius: 0.7rem;
   &:hover {
     transform: scale(1.1, 1.1);
     z-index: 99;
-    box-shadow: 0 0 6px 1px $color-medium-spring-bud;
-    border: 0.5px solid $color-medium-spring-bud;
+    box-shadow: 0 0 6px 1px $color-medbud;
+    border: 0.5px solid $color-medbud;
   }
 }

@@ -7,7 +7,7 @@ $small_radius: 0.3rem;
   transition: transform 0.3s, box-shadow 0.2s 0.1s;
   border-radius: $radius;
   text-align: center;
-  border: 0.3rem solid $color-medium-spring-bud;
+  border: 0.3rem solid $color-medbud;
 
   position: relative;
   padding: 0.4rem;
@@ -24,7 +24,7 @@ $small_radius: 0.3rem;
     height: 1.3rem;
     position: absolute;
     border-radius: $radius 0 0 $radius;
-    background-color: $color-medium-spring-bud-transparent;
+    background-color: $color-medbud-transparent;
     top: 1.5rem;
     right: 0;
 
@@ -35,10 +35,10 @@ $small_radius: 0.3rem;
       left: 0.4rem;
       color: $color-milk;
       &.isLiked {
-        color: $color-deeep-carmine-pink;
+        color: $color-decapink;
       }
       &:hover {
-        color: $color-spanish-pink;
+        color: $color-spink;
       }
     }
   }
@@ -87,7 +87,7 @@ $small_radius: 0.3rem;
 
       &:hover {
         transition: opacity 0.5s, background-color 0.2s;
-        background-color: $color-banana-yellow;
+        background-color: $color-banayellow;
         color: white;
         .price {
           transition: color 0.2s;
@@ -134,11 +134,11 @@ $small_radius: 0.3rem;
   &:hover {
     transform: scale(1.1, 1.1);
     z-index: 99;
-    box-shadow: 0 0 6px 1px $color-medium-spring-bud;
+    box-shadow: 0 0 6px 1px $color-medbud;
 
     .info {
       .buy_area {
-        background-color: $color-medium-spring-bud;
+        background-color: $color-medbud;
 
         .buy_button {
           opacity: 1;

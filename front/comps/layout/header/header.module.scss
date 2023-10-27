@@ -1,9 +1,9 @@
 @use "./styles/variables" as *;
 
 .navbar_container {
-  background-color: $color-medium-spring-bud;
+  background-color: $color-medbud;
   border-radius: 0 0 0.5rem 0.5rem;
-  box-shadow: 0 0 0.5rem 0.1rem $color-medium-spring-bud;
+  box-shadow: 0 0 0.5rem 0.1rem $color-medbud;
 
   font-family: $font-family-balsamiq-sans;
 
@@ -24,7 +24,7 @@
     .navbar_toggler {
       padding: 0;
       border: 0;
-      color: $color-bangladesh-green;
+      color: $color-bangreen;
     }
   }
 }

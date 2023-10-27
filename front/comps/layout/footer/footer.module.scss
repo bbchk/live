@@ -1,8 +1,8 @@
-@use "./styles/variables" as *;
+@use "root/styles/variables" as *;
 @import "root/node_modules/rfs/sass.sass";
 
 .footer_container {
-  background-color: $color-dark-slate-gray;
+  background-color: $color-daslgrey;
   color: $color-milk;
   font-family: $font-family-balsamiq-sans;
 
