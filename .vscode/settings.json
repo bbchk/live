@@ -25,7 +25,9 @@
     "back/node_modules": true,
     "back/package-lock.json": true,
     "back/.gitignore": true,
-    "front/jest.config.js": true
+    "front/jest.config.js": true,
+    "front/setupTests.js": true,
+    "front/.env.local": true
   },
   "explorerExclude.backup": {},
   "workbench.colorCustomizations": {

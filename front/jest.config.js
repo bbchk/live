@@ -1,5 +1,9 @@
 module.exports = {
-  // Add your Jest configuration options here
-  // Example: You can specify where your test files are located.
-  testMatch: ["**/*.test.js"],
+  testEnvironment: "jsdom",
+  transform: {
+    ".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform",
+    "\\.js$": ["babel-jest", { presets: ["next/babel"] }],
+  },
+  testMatch: ["**/*.test.[jt]s?(x)"],
+  setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
 };
