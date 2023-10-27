@@ -1,5 +1,6 @@
 @use "./styles/mixins" as *;
 @use "./styles/variables" as *;
+@import "root/node_modules/rfs/sass.sass";
 
 $underline_thickess: 0.3rem;
 
@@ -8,9 +9,18 @@ $underline_thickess: 0.3rem;
 
   h2 {
     margin-left: 5%;
-    font-size: 2.5rem;
+
+    @include font-size(2.5rem);
+
     a {
-      @include link;
+      color: $color-daslgrey;
+
+      @include link(
+        $color-medbud,
+        $color-nyanza,
+        $color-bangreen,
+        $color-medbud
+      );
     }
   }
 
