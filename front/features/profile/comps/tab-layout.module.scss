@@ -1,0 +1,18 @@
+@use "@/styles/variables.scss" as *;
+
+.profile_frame {
+  display: flex;
+  margin: 3rem 0;
+  .sections {
+    background-color: $color-bangladesh-green;
+    padding: 7rem 3rem;
+    font-size: 1.5rem;
+    white-space: nowrap;
+
+    // margin: 7rem 0;
+    height: 100%;
+    .exit {
+      text-align: center;
+    }
+  }
+}

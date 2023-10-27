@@ -1,0 +1,30 @@
+@use "@/styles/variables" as *;
+
+.navbar_container {
+  background-color: $color-medium-spring-bud;
+  border-radius: 0 0 0.5rem 0.5rem;
+  box-shadow: 0 0 0.5rem 0.1rem $color-medium-spring-bud;
+
+  font-family: $font-family-balsamiq-sans;
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center !important;
+
+  .navbar {
+    width: 65%;
+
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+
+    position: relative;
+    right: 2vw;
+
+    .navbar_toggler {
+      padding: 0;
+      border: 0;
+      color: $color-bangladesh-green;
+    }
+  }
+}

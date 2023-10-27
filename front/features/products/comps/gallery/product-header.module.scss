@@ -1,0 +1,15 @@
+@use "@/styles/variables" as *;
+
+.product_header {
+  .body {
+    display: flex;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs {
+    margin-bottom: 0.3rem;
+    //to do faded-text style
+  }
+}

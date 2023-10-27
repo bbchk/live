@@ -1,0 +1,21 @@
+@use "@/styles/variables" as *;
+
+$padding-lg: 2rem;
+$padding-md: 1rem;
+
+$fs-md: 1.2rem;
+$fs-lg: 2rem;
+
+.description_container {
+  padding: $padding-lg;
+
+  .title {
+    font-size: $fs-lg;
+  }
+
+  .description {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    overflow-wrap: break-word;
+  }
+}

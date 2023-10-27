@@ -1,0 +1,12 @@
+.star_rating {
+  display: flex;
+  justify-content: center;
+
+  .star {
+    color: #d3d3d3;
+
+    &.checked {
+      color: orange;
+    }
+  }
+}

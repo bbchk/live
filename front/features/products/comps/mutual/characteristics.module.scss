@@ -1,0 +1,25 @@
+@use "@/styles/variables" as *;
+
+$padding-lg: 2rem;
+$padding-md: 1rem;
+
+$fs-md: 1.2rem;
+$fs-lg: 2rem;
+
+.characteristics_container {
+  margin-top: 1rem;
+  padding: $padding-md;
+  display: flex;
+  flex-direction: column;
+
+  .characteristic {
+    font-size: $fs-md;
+    display: flex;
+    justify-content: space-between;
+    .splitter {
+      border-bottom: 1px solid $color-medium-spring-bud;
+      flex-grow: 1;
+      margin: 0 0.5rem;
+    }
+  }
+}

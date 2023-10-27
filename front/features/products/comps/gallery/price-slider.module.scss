@@ -1,0 +1,25 @@
+@use "@/styles/variables" as *;
+
+.price_slider {
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .body {
+    .slider {
+      color: $color-medium-spring-bud;
+      height: 0.3rem;
+
+      & .MuiSlider-thumb {
+        &:hover {
+          box-shadow: 0 0 0 8px rgba(32, 178, 170, 0.16);
+        }
+
+        & .Mui-active {
+          box-shadow: 0 0 0 14px rgba(32, 178, 170, 0.16);
+        }
+      }
+    }
+  }
+}

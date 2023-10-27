@@ -1,0 +1,30 @@
+@use "@/styles/variables" as *;
+
+$radius: 0.7rem;
+$border_thickness: 2px;
+$border: 2px solid $color-medium-spring-bud;
+$padding: 1rem;
+
+.product_filter {
+  //   max-width: fit-content;
+  height: fit-content;
+  width: 20rem;
+
+  border: 1px solid $color-medium-spring-bud;
+  border-radius: $radius;
+  .price_slider {
+    padding: $padding;
+  }
+  .filter_checks {
+    margin-top: 1rem;
+    .check {
+      padding-left: $padding;
+    }
+  }
+  .splitter {
+    opacity: 0.6;
+    border: 0;
+    height: $border_thickness;
+    background-color: $color-medium-spring-bud;
+  }
+}

@@ -1,0 +1,65 @@
+@use "@/styles/variables" as *;
+@import "@/node_modules/rfs/sass.sass";
+
+.footer_container {
+  background-color: $color-dark-slate-gray;
+  color: $color-milk;
+  font-family: $font-family-balsamiq-sans;
+
+  @include margin-top(5rem);
+
+  @include padding(3rem);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .footer {
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+    gap: 1rem 0;
+
+    .about_us,
+    .work_hours,
+    .location,
+    .contacts {
+      h6 {
+        font-weight: bold;
+        text-transform: uppercase;
+        @include font-size(1.5rem);
+        @include margin-bottom(1rem);
+
+        span {
+          @include margin-left(1rem);
+        }
+      }
+
+      p {
+        @include font-size(1.5rem);
+        @include margin-left(1rem);
+      }
+    }
+
+    .about_us {
+    }
+
+    .work_hours {
+      line-height: 2rem;
+    }
+    .contacts {
+      line-height: 2rem;
+    }
+
+    .location {
+      display: flex;
+      flex-direction: column;
+
+      .map {
+        align-self: center;
+        width: 80%;
+        height: 50%;
+      }
+    }
+  }
+}

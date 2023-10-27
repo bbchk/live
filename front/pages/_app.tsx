@@ -3,8 +3,11 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
+import Header from "@/comps/layout/header/header";
+import Footer from "@/comps/layout/footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { AuthContextProvider } from "@/context/authContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -16,11 +19,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title> Зелений світ - Магазин добрив і зоотоварів</title>
       </Head>
-      {/* <AuthContextProvider> */}
-      {/* {!excludedPaths.includes(router.pathname) && <Navbar />} */}
-      <Component {...pageProps} />
-      {/* {!excludedPaths.includes(router.pathname) && <Footer />} */}
-      {/* </AuthContextProvider> */}
+      <AuthContextProvider>
+        {!excludedPaths.includes(router.pathname) && <Header />}
+        <Component {...pageProps} />
+        {!excludedPaths.includes(router.pathname) && <Footer />}
+      </AuthContextProvider>
     </>
   );
 }

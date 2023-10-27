@@ -1,0 +1,38 @@
+@use "@/styles/variables" as *;
+
+$radius: 0.7rem;
+
+.search_bar_container {
+  width: 100%;
+  display: flex;
+
+  .search_field {
+    border-radius: $radius 0 0 $radius;
+    border: none;
+    font-size: 1.5rem;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      color: lightgrey;
+      font-size: 1.5rem;
+    }
+  }
+
+  .search_button {
+    border-radius: 0 $radius $radius 0;
+    border: none;
+    background-color: white;
+    color: $color-bangladesh-green;
+
+    &:hover {
+      background-color: red;
+    }
+    &:active {
+      background-color: white !important;
+    }
+  }
+}

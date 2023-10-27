@@ -1,0 +1,47 @@
+@use "@/styles/variables" as *;
+
+$padding-lg: 2rem;
+$padding-md: 1rem;
+
+$fs-md: 1.2rem;
+$fs-lg: 2rem;
+
+.reviews {
+  padding: $padding-lg;
+  width: 50%;
+
+  .reviews_list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .all_reviews_btn {
+      border: 1px solid $color-medium-spring-bud;
+      width: fit-content;
+    }
+  }
+
+  .header {
+    padding-bottom: $padding-md;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      font-size: $fs-lg;
+    }
+
+    .write_rev_btn {
+      p {
+        font-size: 1rem;
+      }
+      display: flex;
+      flex-direction: column;
+      background-color: $color-medium-spring-bud;
+      // width: fit-content;
+      .wave {
+        width: 8rem;
+        height: fit-content;
+      }
+    }
+  }
+}
