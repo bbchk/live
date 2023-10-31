@@ -1,38 +1,16 @@
 @use "./styles/variables" as *;
+@import "root/node_modules/rfs/sass.sass";
 
-$radius: 0.7rem;
-
-.search_bar_container {
+.search_bar {
   width: 100%;
-  display: flex;
-
   .search_field {
-    border-radius: $radius 0 0 $radius;
-    border: none;
-    font-size: 1.5rem;
+    border: 0;
+    border-radius: 1rem;
 
-    &:focus {
-      outline: none;
-      box-shadow: none;
-    }
+    @include font-size(1.5rem);
 
     &::placeholder {
-      color: lightgrey;
-      font-size: 1.5rem;
-    }
-  }
-
-  .search_button {
-    border-radius: 0 $radius $radius 0;
-    border: none;
-    background-color: white;
-    color: $color-bangreen;
-
-    &:hover {
-      background-color: red;
-    }
-    &:active {
-      background-color: white !important;
+      color: $color-indep-muted;
     }
   }
 }

@@ -2,29 +2,31 @@
 @use "./styles/variables" as *;
 @import "root/node_modules/rfs/sass.sass";
 
-$underline_thickess: 0.3rem;
-
 .gallery_container {
-  font-family: $font-family-balsamiq-sans;
+  .heading {
+    h2 {
+      width: 20%;
+      a {
+        @include margin-left(20%);
 
-  h2 {
-    margin-left: 5%;
+        // font-weight: bold;
+        font-family: $font-family-balsamiq-sans;
+        @include font-size(2.5rem);
+        color: $color-daslgrey;
+        @include link(
+          $color-medbud,
+          $color-nyanza,
+          $color-bangreen,
+          $color-medbud
+        );
+      }
+    }
 
-    @include font-size(2.5rem);
-
-    a {
-      color: $color-daslgrey;
-
-      @include link(
-        $color-medbud,
-        $color-nyanza,
-        $color-bangreen,
-        $color-medbud
-      );
+    &:hover a {
     }
   }
 
-  .gallery {
-    margin: 1rem auto;
+  .decor_line {
+    @include decor_line($color-nyanza);
   }
 }

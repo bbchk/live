@@ -1,4 +1,5 @@
 @use "root/styles/variables" as *;
+@use "root/styles/mixins" as *;
 @import "root/node_modules/rfs/sass.sass";
 
 .footer_container {
@@ -6,20 +7,7 @@
   color: $color-milk;
   font-family: $font-family-balsamiq-sans;
 
-  @include margin-top(5rem);
-
-  @include padding(3rem);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   .footer {
-    display: flex;
-    // align-items: center;
-    justify-content: center;
-    gap: 1rem 0;
-
     .about_us,
     .work_hours,
     .location,
@@ -61,5 +49,20 @@
         height: 50%;
       }
     }
+
+    .about_us,
+    .work_hours,
+    .contacts,
+    .location {
+      @include padding(3rem);
+
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    }
   }
+}
+
+.decor_line {
+  @include margin-top(5rem);
+  @include decor_line($color-indep);
+  // box-shadow: inset 0 0 1rem $color-indep;
 }

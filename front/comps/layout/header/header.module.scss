@@ -1,30 +1,38 @@
 @use "./styles/variables" as *;
+@import "root/node_modules/rfs/sass.sass";
 
 .navbar_container {
   background-color: $color-medbud;
-  border-radius: 0 0 0.5rem 0.5rem;
-  box-shadow: 0 0 0.5rem 0.1rem $color-medbud;
-
   font-family: $font-family-balsamiq-sans;
-
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center !important;
-
   .navbar {
-    width: 65%;
-
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     gap: 1vw;
-
-    position: relative;
-    right: 2vw;
-
-    .navbar_toggler {
-      padding: 0;
-      border: 0;
-      color: $color-bangreen;
-    }
+    width: 100%;
+    @include padding(0 4rem);
   }
+}
+
+.navbar_toggler {
+  padding: 0;
+  border: 0;
+  color: $color-bangreen;
+}
+
+.underline {
+  height: 1rem;
+  background-color: $color-nyanza;
+}
+
+.search_bar {
+  flex: 0 1 50% !important;
+}
+
+.profile_popover_dfjs {
+  flex: 1 1 25% !important;
+}
+
+.logo_container {
+  flex: 1 1 25% !important;
 }

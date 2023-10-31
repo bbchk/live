@@ -95,16 +95,19 @@ const ProfilePopover = ({ toggleSignInModal, toggleSignUpModal }) => {
   );
 
   return (
-    <OverlayTrigger
-      trigger="click"
-      placement="bottom"
-      overlay={user ? signedPopover : unsignedPopover}
-      rootClose
-    >
-      <div role="button">
-        <i className={`bi bi-person-circle fs-1 ${s.profile_icon}`}></i>
-      </div>
-    </OverlayTrigger>
+    //change className
+    <div className={`${s.foo}`}>
+      <OverlayTrigger
+        trigger="click"
+        placement="bottom"
+        overlay={user ? signedPopover : unsignedPopover}
+        rootClose
+      >
+        <div role="button">
+          <i className={`bi bi-person-circle fs-1 ${s.profile_icon}`}></i>
+        </div>
+      </OverlayTrigger>
+    </div>
   );
 };
 
