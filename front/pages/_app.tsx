@@ -8,6 +8,7 @@ import Footer from "root/comps/layout/footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { AuthContextProvider } from "root/context/authContext";
+import { CategoryContextProvider } from "root/context/categoryContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -19,11 +20,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title> Зелений світ - Магазин добрив і зоотоварів</title>
       </Head>
-      <AuthContextProvider>
-        {!excludedPaths.includes(router.pathname) && <Header />}
-        <Component {...pageProps} />
-        {!excludedPaths.includes(router.pathname) && <Footer />}
-      </AuthContextProvider>
+      <CategoryContextProvider>
+        <AuthContextProvider>
+          {!excludedPaths.includes(router.pathname) && <Header />}
+          <Component {...pageProps} />
+          {!excludedPaths.includes(router.pathname) && <Footer />}
+        </AuthContextProvider>
+      </CategoryContextProvider>
     </>
   );
 }

@@ -27,7 +27,8 @@
     "back/.gitignore": true,
     "front/jest.config.js": true,
     "front/setupTests.js": true,
-    "front/.env.local": true
+    "front/.env.local": true,
+    "back/.env": true
   },
   "explorerExclude.backup": {},
   "workbench.colorCustomizations": {

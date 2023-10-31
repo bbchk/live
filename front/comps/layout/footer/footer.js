@@ -12,6 +12,7 @@ const Footer = () => (
         <div className={`col-sm-12 col-md-6 col-xl-4   ${s.about_us}`}>
           <AboutUs />
         </div>
+
         <div className={`col-sm-12 col-md-6 col-xl-3 ${s.work_hours}`}>
           <WorkHours />
         </div>
