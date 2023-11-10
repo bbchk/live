@@ -22,7 +22,6 @@ export const ProductContextProvider = ({ children }) => {
     products: null,
   });
 
-  //todo move context state initialization to app.tsx
   useEffect(() => {
     //todo try/catch
     const fetchProducts = async () => {

@@ -22,7 +22,6 @@ export const CategoryContextProvider = ({ children }) => {
     categories: null,
   });
 
-  //todo move context state initialization to app.tsx
   useEffect(() => {
     //todo try/catch
     const fetchCategories = async () => {
