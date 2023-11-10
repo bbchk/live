@@ -1,7 +1,7 @@
-import ProductGallery from "root/features/products/comps/gallery/product-gallery";
-import ProductHeader from "root/features/products/comps/gallery/product-header";
-import ProductFilter from "root/features/products/comps/gallery/products-filter";
-import SortGroup from "root/features/products/comps/gallery/sort-group";
+import ProductGallery from "root/features/products/listing/comps/gallery/gallery";
+import ProductHeader from "root/features/products/listing/comps/product-header";
+import ProductFilter from "root/features/products/listing/comps/filter/filter";
+import SortGroup from "root/features/products/listing/comps/filter/sort-group";
 
 const Products = () => {
   return (

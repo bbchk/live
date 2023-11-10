@@ -1,8 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
 import Card from "./card";
 import s from "./gallery.module.scss";
+import { useCategoryContext } from "root/hooks/useCategoryContext";
 
-const Gallery = ({ categories }) => {
+const Gallery = () => {
+  const { categories } = useCategoryContext();
+
   return (
     <div id="categories" className={`${s.gallery_container}`}>
       {/* <div className={`${s.decor_line} mb-5`}></div> */}

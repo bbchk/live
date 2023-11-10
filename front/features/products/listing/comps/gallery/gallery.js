@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useAddLikedProduct } from "root/hooks/useAddLikedProduct.js";
 
 import { useAuthContext } from "root/hooks/useAuthContext";
-import ProductCard from "./product-card";
-import { useProductContext } from "../../../../hooks/useProductContext";
+import ProductCard from "./card";
+import { useProductContext } from "../../../../../hooks/useProductContext";
 
 const ProductGallery = () => {
   const { products, dispatch } = useProductContext();

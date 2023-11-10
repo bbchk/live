@@ -1,5 +1,5 @@
 import PriceSlider from "./price-slider";
-import FilterChecks from "./products-filter-checks";
+import FilterChecks from "./checks";
 import s from "./products-filter.module.scss";
 
 const ProductFilter = () => {
