@@ -1,0 +1,27 @@
+[
+  {
+    "brand": "Пан-Кот",
+    "name": "\"З індичкою в соусі\"",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "isAvailable": true,
+    "weight": "100гр",
+    "starRating": 0,
+    "packing": "паучі",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Пан-Кот",
+    "name": "Рагу птиця овочі ",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+    "price": "10",
+    "isAvailable": true,
+    "weight": "100гр",
+    "starRating": 0,
+    "packing": "паучі",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  }
+]

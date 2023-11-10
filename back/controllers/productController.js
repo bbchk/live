@@ -1,13 +1,27 @@
-const Product = require("../models/product");
-const mongoose = require("mongoose");
+import Product from "../models/product.js";
+import mongoose from "mongoose";
 
-const getProducts = async (req, res) => {
+const getProductById = async (id) => {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return { status: 404, error: "No such product" };
+  }
+
+  const product = await Product.findById(id);
+
+  if (!product) {
+    return { status: 400, error: "No such product" };
+  }
+
+  return { status: 200, product };
+};
+
+export const getProducts = async (req, res) => {
   const products = await Product.find({}).sort({ createdAt: -1 });
 
   res.status(200).json(products);
 };
 
-const getProduct = async (req, res) => {
+export const getProduct = async (req, res) => {
   const { id } = req.params;
   const result = await getProductById(id);
 
@@ -18,7 +32,7 @@ const getProduct = async (req, res) => {
   res.status(200).json(result.product);
 };
 
-const createProduct = async (req, res) => {
+export const createProduct = async (req, res) => {
   const {
     brand,
     name,
@@ -55,7 +69,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-const createProducts = async (req, res) => {
+export const createProducts = async (req, res) => {
   const products = req.body;
 
   try {
@@ -66,7 +80,7 @@ const createProducts = async (req, res) => {
   }
 };
 
-const updateProduct = async (req, res) => {
+export const updateProduct = async (req, res) => {
   const { id } = req.params;
   const result = await getProductById(id);
 
@@ -78,7 +92,7 @@ const updateProduct = async (req, res) => {
   res.status(200).json(result.product);
 };
 
-const deleteAllProducts = async (req, res) => {
+export const deleteAllProducts = async (req, res) => {
   try {
     await Product.deleteMany();
     res.status(200).json({ message: "All products deleted successfully" });
@@ -89,7 +103,7 @@ const deleteAllProducts = async (req, res) => {
   }
 };
 
-const deleteProduct = async (req, res) => {
+export const deleteProduct = async (req, res) => {
   const { id } = req.params;
   const result = await getProductById(id);
 
@@ -100,28 +114,4 @@ const deleteProduct = async (req, res) => {
   await Product.deleteOne({ _id: id });
 
   res.status(200).json(result.product);
-};
-
-const getProductById = async (id) => {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return { status: 404, error: "No such product" };
-  }
-
-  const product = await Product.findById(id);
-
-  if (!product) {
-    return { status: 400, error: "No such product" };
-  }
-
-  return { status: 200, product };
-};
-
-module.exports = {
-  createProduct,
-  createProducts,
-  getProduct,
-  getProducts,
-  deleteProduct,
-  deleteAllProducts,
-  updateProduct,
 };

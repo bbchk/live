@@ -1,0 +1,56 @@
+[
+  {
+    "brand": "НК Еліт",
+    "name": "Мексиканська суміш",
+
+    "category": [
+      "Дача, сад, город",
+      "Рослини і догляд за ними",
+      "Насіння",
+      "Насіння квітів"
+    ],
+
+    "price": "10",
+    "weight": "0,1гр",
+    "starRating": 0,
+    "isAvailable": true,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "НК Еліт",
+    "name": "Болеро помпонна суміш",
+    "category": [
+      "Дача, сад, город",
+      "Рослини і догляд за ними",
+      "Насіння",
+      "Насіння квітів"
+    ],
+
+    "price": "10",
+    "weight": "0,3гр",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "НК Еліт ",
+    "name": "Турецька махрова суміш ",
+    "category": [
+      "Дача, сад, город",
+      "Рослини і догляд за ними",
+      "Насіння",
+      "Насіння квітів"
+    ],
+    "price": "10",
+    "weight": "0,2гр",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  }
+]

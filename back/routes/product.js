@@ -1,7 +1,7 @@
-const express = require("express");
-const router = express.Router();
+import express from "express";
+import { requireAuth, isAdmin } from "../middleware/auth.js";
 
-const {
+import {
   createProduct,
   createProducts,
   getProduct,
@@ -9,19 +9,19 @@ const {
   updateProduct,
   deleteProduct,
   deleteAllProducts,
-} = require("../controllers/productController");
+} from "../controllers/productController.js";
 
-const { requireAuth, isAdmin } = require("../middleware/auth");
+const router = express.Router();
 
 router.get("/", getProducts);
 router.get("/:id", getProduct);
 
 router.use(requireAuth);
 router.use(isAdmin);
-router.post("/createProduct", createProduct);
-router.post("/createProducts", createProducts);
+router.post("/", createProduct);
+router.post("/many", createProducts);
 router.patch("/:id", updateProduct);
 router.delete("/deleteAllProducts", deleteAllProducts);
 router.delete("/:id", deleteProduct);
 
-module.exports = router;
+export { router as productsRoutes };

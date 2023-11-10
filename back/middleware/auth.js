@@ -1,7 +1,7 @@
-const jwt = require("jsonwebtoken");
-const User = require("../models/user");
+import jwt from "jsonwebtoken";
+import User from "../models/user.js";
 
-const requireAuth = async (req, res, next) => {
+export const requireAuth = async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
@@ -25,7 +25,7 @@ const requireAuth = async (req, res, next) => {
   }
 };
 
-const isAdmin = async (req, res, next) => {
+export const isAdmin = async (req, res, next) => {
   const user = await User.findById(req.user._id);
   if (user.isAdmin) {
     next();
@@ -35,5 +35,3 @@ const isAdmin = async (req, res, next) => {
       .json({ error: "Access denied. Admin rights are not confirmed" });
   }
 };
-
-module.exports = { requireAuth, isAdmin };

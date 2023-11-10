@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-
-const Schema = mongoose.Schema;
+import { Schema, model } from "mongoose";
 
 const productSchema = new Schema(
   {
@@ -10,6 +8,11 @@ const productSchema = new Schema(
     },
     name: {
       type: String,
+      required: true,
+    },
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: "category",
       required: true,
     },
     size: {
@@ -52,4 +55,4 @@ const productSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Product", productSchema);
+export default model("Product", productSchema);

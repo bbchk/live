@@ -1,11 +1,7 @@
-const { parseCookies } = require("nookies");
-const User = require("../models/user");
-const Product = require("../models/product");
-const jwt = require("jsonwebtoken");
+import User from "../models/user.js";
+import genAuthToken from "../utils/genAuthToken.js";
 
-const genAuthToken = require("../utils/genAuthToken");
-
-const signIn = async (req, res) => {
+export const signIn = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -24,7 +20,7 @@ const signIn = async (req, res) => {
   }
 };
 
-const signUp = async (req, res) => {
+export const signUp = async (req, res) => {
   const { firstName, secondName, email, password } = req.body;
 
   try {
@@ -41,7 +37,7 @@ const signUp = async (req, res) => {
     res.status(400).json({ error: e.message });
   }
 };
-const addLikedProduct = async (req, res) => {
+export const addLikedProduct = async (req, res) => {
   const { productId } = req.body;
   const userId = req.user._id;
 
@@ -59,7 +55,7 @@ const addLikedProduct = async (req, res) => {
   }
 };
 
-const destroy = async (req, res) => {
+export const destroy = async (req, res) => {
   // const { id } = req.params;
   // const result = await getProductById(id);
   // if (result.error) {
@@ -71,7 +67,7 @@ const destroy = async (req, res) => {
 };
 
 //todo delete this method after development
-const deleteAllUsers = async (req, res) => {
+export const deleteAllUsers = async (req, res) => {
   try {
     await User.deleteMany();
     res.status(200).json("All users is successfully deleted");
@@ -79,5 +75,3 @@ const deleteAllUsers = async (req, res) => {
     res.status(400).json({ error: e.message });
   }
 };
-
-module.exports = { signIn, signUp, destroy, deleteAllUsers, addLikedProduct };

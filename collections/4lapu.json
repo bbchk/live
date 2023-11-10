@@ -1,0 +1,404 @@
+[
+  {
+    "brand": "Клуб 4 лапи Преміум ",
+    "name": "сухий корм для дорослих котів з телятиною",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+    "price": "10",
+    "weight": "0.3кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4 лапи Преміум",
+    "name": "повнораціонний консервований корм для собак \"Курка в желе\" ",
+    "category": ["Зоотовари", "Товари для собак", "Корми для собак"],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4 лапи Преміум",
+    "name": "повнораціонний консервований корм для собак малих порід \"Ягня в соусі\" ",
+    "category": ["Зоотовари", "Товари для собак", "Корми для собак"],
+
+    "price": "10",
+    "weight": "0.1кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4 лапи Преміум",
+    "name": "повнораціонний консервований корм для цуценят \"Індичка в соусі\"",
+    "category": ["Зоотовари", "Товари для собак", "Корми для собак"],
+    "price": "10",
+    "weight": "0.1 кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4 лапи Преміум",
+    "name": "повнораціонний консервований корм для цуценят \"Куркою в в желе\" 0.1 кг",
+    "category": ["Зоотовари", "Товари для собак", "Корми для собак"],
+    "price": "10",
+    "weight": "0.1 кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4 лапи Преміум",
+    "name": "сухий корм для дорослих котів з куркою 0.3 кг",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+    "price": "10",
+    "weight": "0.3 кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4 лапи Преміум",
+    "name": "сухий корм для собак малих порід 0.4 кг",
+    "category": ["Зоотовари", "Товари для собак", "Корми для собак"],
+    "price": "10",
+    "weight": "0.4кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4 лапи Преміум",
+    "name": "сухий корм для стерилізованих котів 0.3 кг",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+    "price": "10",
+    "weight": "0.3кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4 лапи Преміум",
+    "name": "сухий корм для цуценят всіх порід",
+    "category": ["Зоотовари", "Товари для собак", "Корми для собак"],
+    "price": "10",
+    "weight": "0.4кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для дорослих котів \"Курка в соусі\"",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+    "price": "10",
+    "weight": "0.1кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для дорослих котів \"З качкою в соусі\"",
+    "price": "10",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "weight": "0.1кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для дорослих котів 0.1кг З макрелю в делікато",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.1кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для дорослих котів 0.1кг Індичка в желе",
+
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+    "price": "10",
+    "weight": "0.1кг",
+
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для дорослих котів 0.1кг Кролик в желе",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.1кг",
+
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для дорослих котів 0.1кг Лосось в желе",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.1кг",
+
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для дорослих котів 0.1кг Телятина в соусі",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.1кг",
+
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для дорослих котів 0.1кг Ягнятина в соусі",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.1кг",
+
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для дорослих котів 0.1кг Яловичина в желе",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.1кг",
+
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для дорослих котів 0.8кг для стерилізованих котів",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.8кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для дорослих котів 0.8кг З тріскою в желе",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+    "price": "10",
+    "weight": "0.8кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для кошенят \"З індичкою в желе\" ",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.8кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "повнораціонний консервований корм для кошенят 0.8кг З куркою в соусі",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.8кг",
+
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "сухий корм для дорослих котів 4в1 0,9кг",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.9кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "сухий корм для дорослих котів 4в1 14кг",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "14кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "сухий корм для дорослих котів з ефектом виведення шерсті 0.3кг",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.3кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "сухий корм для дорослих котів з лососем 0.3 кг",
+
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+    "price": "10",
+    "weight": "0.3кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "сухий корм для кошенят з куркою 0.3 кг",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "0.3кг",
+
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "сухий корм корм для котів з кроликом 14 кг",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "14кг",
+
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "сухий корм корм для котів з куркою 14 кг",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "14кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "сухий корм корм для котів мікс смаків",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "??? 14кг",
+
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "Клуб 4лапи Преміум",
+    "name": "сухий корм курка для кошенят 5 кг",
+    "category": ["Зоотовари", "Товари для котів", "Корми для котів"],
+
+    "price": "10",
+    "weight": "5кг",
+    "isAvailable": true,
+    "starRating": 0,
+    "packing": "cardboard box",
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  }
+]

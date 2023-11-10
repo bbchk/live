@@ -1,0 +1,519 @@
+[
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник шкіряний WAUDOG Glamour з QR паспортом блакитний",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник шкіряний WAUDOG Glamour з QR паспортом чорний",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Повідець для собак з нейлону регульований WAUDOG Nylon Мілітарі",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Повідець з відновленої бавовни WAUDOG світовідбиваючий блакитний",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Повідець з відновленої бавовни WAUDOG світовідбиваючий салатовий",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Повідець нейлоновий WAUDOG Nylon регульований Етно зелений",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Повідець нейлоновий WAUDOG Nylon регульований Рік та Морті",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+
+  {
+    "brand": "WAUDOG",
+    "name": "Повідець нейлоновий WAUDOG Nylon регульований Супермен",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Повідці для тварин"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Повідець нейлоновий WAUDOG Nylon регульований Темний рицар",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Повідці для тварин"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Повідець нейлоновий WAUDOG Nylon регульований Чудо жінка",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Повідці для тварин"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Повідець-шнур нейлоновий WAUDOG Nylon амортизуючий",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Повідці для тварин"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Повідець-шнур нейлоновий WAUDOG Nylon амортизуючий",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Повідці для тварин"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник шкіряний WAUDOG Glamour з QR паспортом з стразами квіти",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "size": "18-21см",
+    "color": "рожевий",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник шкіряний WAUDOG Glamour з QR паспортом з стразами квіти",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "size": "18-21см",
+    "color": "блакитний",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник шкіряний WAUDOG Glamour з QR паспортом з стразами квіти",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "size": "18-21см",
+    "color": "салатовий",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник шкіряний WAUDOG Glamour з QR паспортом з стразами квіти",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "size": "19-25см",
+    "color": "помаранчевий",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник шкіряний WAUDOG Glamour з QR паспортом з стразами квіти",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "size": "21-29см",
+    "color": "ментоловий",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник шкіряний WAUDOG Glamour з QR паспортом",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "color": "чорний",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+
+  {
+    "brand": "WAUDOG",
+    "name": "Шлея для собак анатомічна WAUDOG Nylon Авокадо",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Шлейки для тварин"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Шлея для собак анатомічна WAUDOG Nylon Етно синій",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Шлейки для тварин"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Шлея для собак анатомічна WAUDOG Nylon Супермен",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Шлейки для тварин"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Шлея для собак анатомічна WAUDOG Nylon Чудо-жінка",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Шлейки для тварин"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Шлея для собак анатомічна Н-образна WAUDOG Nylon Рік та морті",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Шлейки для тварин"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Шлея для собак безпечна WAUDOG Nylon фіолетова",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Шлейки для тварин"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник для котів та дрібних порід собак нейлоновий WAUDOG Nylon з QR-паспортом Мілітарі",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник для собак нейлоновий WAUDOG Nylon з QR-паспортом Мілітарі",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник для собак нейлоновий WAUDOG Nylon з QR-паспортом Мілітарі",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник з відновленої бавовни WAUDOG пластикова пряжка блакитний",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник з відновленої бавовни WAUDOG пластикова пряжка салатовий",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник нейлоновий WAUDOG Nylon Рік та Морті",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник нейлоновий WAUDOG Nylon світлонак, блакитний",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник нейлоновий WAUDOG Nylon світлонак. Фіолетовий",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник нейлоновий WAUDOG Nylon Супермен",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник нейлоновий WAUDOG Nylon Темний рицар",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник нейлоновий WAUDOG Nylon Чудо жінка",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  },
+  {
+    "brand": "WAUDOG",
+    "name": "Нашийник шкіряний WAUDOG Classic салатовий",
+    "category": [
+      "Зоотовари",
+      "Амуніція, аксесуари та одяг для тварин",
+      "Нашийники"
+    ],
+    "price": "10",
+    "isAvailable": true,
+    "starRating": 0,
+    "description": "just u know",
+    "imageUrl": "https://www.mbassett.com/hubfs/Blog%20Images%20New/prod%20marketing.jpg"
+  }
+]

@@ -1,4 +1,5 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
+
 const genAuthToken = (user) => {
   const secretKey = process.env.JWT_SECRET;
   const token = jwt.sign(
@@ -14,4 +15,4 @@ const genAuthToken = (user) => {
   return token;
 };
 
-module.exports = genAuthToken;
+export default genAuthToken;

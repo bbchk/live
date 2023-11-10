@@ -1,14 +1,14 @@
-const express = require("express");
-const router = express.Router();
-
-const {
+import express from "express";
+import { requireAuth, isAdmin } from "../middleware/auth.js";
+import {
   signIn,
   signUp,
   destroy,
   deleteAllUsers,
   addLikedProduct,
-} = require("../controllers/userController");
-const { requireAuth, isAdmin } = require("../middleware/auth");
+} from "../controllers/userController.js";
+
+const router = express.Router();
 
 router.post("/signIn", signIn);
 router.post("/signUp", signUp);
@@ -20,4 +20,4 @@ router.use(isAdmin);
 router.delete("/destroy", destroy);
 router.delete("/deleteAllUsers", deleteAllUsers);
 
-module.exports = router;
+export { router as userRoutes };

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import { setCookie } from "nookies";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const useSignIn = () => {
   const [error, setError] = useState(null);
