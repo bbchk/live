@@ -19,7 +19,7 @@ const Gallery = ({ categories }) => {
             const key = uuidv4();
             return (
               <div key={key} className="col d-flex justify-content-center">
-                <Card naming={category.name} image={category.imageUrl} />
+                <Card naming={category.name} image={category.image} />
               </div>
             );
           })}

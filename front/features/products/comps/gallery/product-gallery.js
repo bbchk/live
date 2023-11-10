@@ -3,9 +3,10 @@ import { useAddLikedProduct } from "root/hooks/useAddLikedProduct.js";
 
 import { useAuthContext } from "root/hooks/useAuthContext";
 import ProductCard from "./product-card";
+import { useProductContext } from "../../../../hooks/useProductContext";
 
 const ProductGallery = () => {
-  const [products, setProducts] = useState(null);
+  const { products, dispatch } = useProductContext();
   const { user } = useAuthContext();
   const [likedProducts, setLikedProducts] = useState([]);
   const { likeProduct, error } = useAddLikedProduct();
@@ -26,17 +27,8 @@ const ProductGallery = () => {
     }
   }, [user]);
 
-  //todo substitude with productContext!
   useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetch("http://localhost:4000/products");
-      const json = await response.json();
-
-      if (response.ok) {
-        setProducts(json);
-      }
-    };
-    fetchProducts();
+    console.log(products);
   }, []);
 
   return (

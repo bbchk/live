@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 export const ProductContext = createContext();
 
@@ -10,7 +10,7 @@ export const productReducer = (state, action) => {
       };
     case "CREATE_PRODUCT":
       return {
-        product: [action.payload, ...state.product],
+        products: [action.payload, ...state.product],
       };
     default:
       return state;
@@ -21,6 +21,20 @@ export const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, {
     products: null,
   });
+
+  //todo move context state initialization to app.tsx
+  useEffect(() => {
+    //todo try/catch
+    const fetchProducts = async () => {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/`);
+      const json = await res.json();
+
+      if (res.ok) {
+        dispatch({ type: "SET_PRODUCTS", payload: json });
+      }
+    };
+    fetchProducts();
+  }, []);
 
   return (
     <ProductContext.Provider value={{ ...state, dispatch }}>
