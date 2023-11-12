@@ -1,17 +1,41 @@
 import CheckBox from "root/comps/checkbox";
 import { Accordion } from "react-bootstrap";
 import { useId } from "react";
+import { useProductContext } from "../../../../../hooks/useProductContext";
 
-const FilterChecks = ({ filterName, idx, options }) => {
+const FilterChecks = ({ filter, idx }) => {
+  const context = useProductContext();
+  const { allProducts, currentProducts } = context.products || {};
+  const { dispatch } = context;
+
+  const check = (option, isChecked) => {
+    if (isChecked) {
+      //todo plus filter
+      dispatch({
+        type: "SET_PRODUCTS",
+        payload: { currentProducts: [] },
+      });
+    } else {
+      //todo minus filter
+      // currentProducts.fiter
+    }
+  };
+
   return (
     <Accordion.Item eventKey={idx}>
-      <Accordion.Header>{filterName}</Accordion.Header>
+      <Accordion.Header>{filter.name}</Accordion.Header>
       <Accordion.Body>
-        {Array.from(options).map((option) => {
+        {Array.from(filter.options).map((option) => {
           const id = useId();
           return (
             <div key={id}>
-              <CheckBox id={id} label={option} checked={false} />
+              <CheckBox
+                id={id}
+                prop={filter.prop}
+                label={option}
+                checked={false}
+                check={check}
+              />
             </div>
           );
         })}

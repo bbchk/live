@@ -4,44 +4,52 @@ import { Accordion } from "react-bootstrap";
 import PriceSlider from "./price-slider";
 import FilterChecks from "./checks";
 import s from "./products-filter.module.scss";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useProductContext } from "../../../../../hooks/useProductContext";
 
-const ProductFilter = ({ products }) => {
+const ProductFilter = () => {
+  const context = useProductContext();
+  const { allProducts, currentProducts } = context.products || {};
+  const { dispatch } = context;
+
   const maxPrice = useRef(0);
   const minPrice = useRef(0);
   const filters = useRef([]);
   const [isLoading, setIsLoading] = useState(true); // Add this line
 
   useEffect(() => {
+    if (!currentProducts) {
+      return;
+    }
+
     if (filters.current.length == 0) {
-      const prices = products.map((p) => Number(p.price));
+      const prices = currentProducts.map((p) => Number(p.price));
       minPrice.current = prices.reduce((a, b) => Math.min(a, b), Infinity);
       maxPrice.current = prices.reduce((a, b) => Math.max(a, b), -Infinity);
 
-      const properties = [
-        { filterName: "Brands", prop: "brand" },
-        { filterName: "Weights", prop: "weight" },
-        { filterName: "Packigns", prop: "packing" },
-        { filterName: "Sizes", prop: "size" },
-        { filterName: "Colors", prop: "color" },
+      const filterObjects = [
+        { name: "Brands", prop: "brand" },
+        { name: "Weights", prop: "weight" },
+        { name: "Packigns", prop: "packing" },
+        { name: "Sizes", prop: "size" },
+        { name: "Colors", prop: "color" },
       ];
 
-      properties.forEach(({ filterName, prop }) => {
-        const filter = createFilter(filterName, prop);
+      filterObjects.forEach(({ name, prop }) => {
+        const filter = createFilter(name, prop);
         if (filter) {
           filters.current.push(filter);
         }
       });
 
-      console.log(filters);
       setIsLoading(false);
     }
-  }, []);
+  }, [currentProducts]);
 
   const createFilter = (name, property) => {
     let filter = null;
     const options = new Set(
-      products
+      currentProducts
         .filter((product) => product[property])
         .map((product) => product[property])
     );
@@ -50,6 +58,7 @@ const ProductFilter = ({ products }) => {
       filter = {};
       filter.name = name;
       filter.options = options;
+      filter.prop = property;
     }
 
     return filter;
@@ -67,10 +76,10 @@ const ProductFilter = ({ products }) => {
           </div>
           <hr className={`${s.splitter}`} />
           <Accordion defaultActiveKey={[0, 1, 2, 3, 4]} alwaysOpen flush>
-            {filters.current.map(({ name, options }, idx) => {
+            {filters.current.map((filter, idx) => {
               return (
                 <div key={uuidv4()} className={`${s.filter_checks}`}>
-                  <FilterChecks filterName={name} idx={idx} options={options} />
+                  <FilterChecks filter={filter} idx={idx} />
                 </div>
               );
             })}
