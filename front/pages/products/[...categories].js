@@ -44,18 +44,20 @@ const Products = () => {
   return (
     <div className="mt-5 ">
       <div className="mx-5">
-        <ProductHeader category={currectCategory} />
-        <div className="mt-5">
-          <SortGroup />
-        </div>
+        {/* <ProductHeader category={currectCategory} /> */}
+        <div className="mt-5">{/* <SortGroup /> */}</div>
       </div>
+
       <hr className="mt-2 mb-4 splitter " />
-      <div className="d-flex ms-3 me-5">
-        <div className="me-3">
-          <ProductFilter />
+
+      {products && (
+        <div className="d-flex ms-3 me-5">
+          <div className="me-3">
+            <ProductFilter products={products} />
+          </div>
+          <ProductGallery products={products} />
         </div>
-        {products && <ProductGallery products={products} />}
-      </div>
+      )}
     </div>
   );
 };

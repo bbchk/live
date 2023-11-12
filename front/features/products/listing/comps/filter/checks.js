@@ -1,37 +1,18 @@
-import { useId } from "react";
-
+import { v4 as uuidv4 } from "uuid";
 import CheckBox from "root/comps/checkbox";
+import { Accordion } from "react-bootstrap";
 
-const FilterChecks = ({ filterBy, isOpen, options }) => {
-  const id = useId();
-
-  //todo make try catch for this in parent element
-  if (!Array.isArray(options)) {
-    throw new Error("Prop 'options' must be an array");
-  }
+const FilterChecks = ({ filterName, idx, options }) => {
+  console.log(idx);
   return (
-    <div>
-      <p className="mb-3">
-        <a
-          className="mb-3"
-          data-bs-toggle="collapse"
-          href={"#" + id}
-          role="button"
-          aria-expanded="false"
-          aria-controls="collapseExample"
-        >
-          <i className="bi bi-caret-down-fill"></i>
-          {filterBy}
-        </a>
-      </p>
-      <div className={`collapse ${isOpen ? "show" : ""}`} id={id}>
-        <div className=" border-0">
-          {options.map((brand, index) => (
-            <CheckBox key={index} label={brand} />
-          ))}
-        </div>
-      </div>
-    </div>
+    <Accordion.Item eventKey={idx}>
+      <Accordion.Header>{filterName}</Accordion.Header>
+      <Accordion.Body>
+        {Array.from(options).map((brand, index) => (
+          <CheckBox key={index} label={brand} />
+        ))}
+      </Accordion.Body>
+    </Accordion.Item>
   );
 };
 

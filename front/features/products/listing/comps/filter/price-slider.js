@@ -2,10 +2,10 @@ import Slider from "@mui/material/Slider";
 import React, { useState } from "react";
 import s from "./price-slider.module.scss";
 
-const PriceSlider = () => {
-  const [value, setValue] = useState([0, 3500]);
+const PriceSlider = ({ minPrice, maxPrice }) => {
+  const [value, setValue] = useState([minPrice, maxPrice]);
 
-  const minDistance = 300; // Define your minimum distance here
+  const minDistance = 50; // Define your minimum distance here
 
   const handleChange = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
@@ -14,7 +14,8 @@ const PriceSlider = () => {
 
     if (newValue[1] - newValue[0] < minDistance) {
       if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], 3500 - minDistance);
+        const clamped = Math.min(newValue[0], maxPrice - minDistance);
+
         setValue([clamped, clamped + minDistance]);
       } else {
         const clamped = Math.max(newValue[1], minDistance);
@@ -51,9 +52,9 @@ const PriceSlider = () => {
       <div className={`${s.body}`}>
         <Slider
           range="true"
-          min={0}
-          max={3500}
-          step={50}
+          min={minPrice}
+          max={maxPrice}
+          step={10}
           value={value}
           onChange={handleChange}
           className={s.slider}

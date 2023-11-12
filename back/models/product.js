@@ -15,6 +15,18 @@ const productSchema = new Schema(
       ref: "category",
       required: true,
     },
+    price: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    imageUrl: {
+      type: String,
+      required: true,
+    },
     size: {
       type: String,
       required: false,
@@ -25,31 +37,21 @@ const productSchema = new Schema(
     },
     color: {
       type: [String],
-      required: true,
+      required: false,
+      default: undefined,
     },
-    price: {
-      type: String,
-      required: true,
-    },
+
     isAvailable: {
       type: Boolean,
       required: true,
     },
     starRating: {
       type: Number,
-      required: true,
+      required: false,
     },
     packing: {
       type: String,
       required: false,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-    imageUrl: {
-      type: String,
-      required: true,
     },
   },
   { timestamps: true }
