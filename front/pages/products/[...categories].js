@@ -11,8 +11,11 @@ const Products = () => {
   const router = useRouter();
   const { categories: path = [] } = router.query;
   const { categories } = useCategoryContext();
-  const { products: allProducts } = useProductContext();
-  const [products, setProducts] = useState();
+
+  const context = useProductContext();
+  const { allProducts, currentProducts } = context.products || {};
+  const { dispatch } = context;
+
   const [currectCategory, setCurrentCategory] = useState();
 
   //displaying products from appropriate category
@@ -32,11 +35,17 @@ const Products = () => {
     if (!currCategory) {
       router.push("/404");
     } else {
-      const productFromCategory = allProducts.filter((p) => {
+      const productsFromCategory = allProducts.filter((p) => {
         const regex = new RegExp(`${pathStr}.*`, "g");
         return p.category.path.match(regex);
       });
-      setProducts(productFromCategory);
+      dispatch({
+        type: "SET_PRODUCTS",
+        payload: {
+          allProducts: allProducts,
+          currentProducts: productsFromCategory,
+        },
+      });
       setCurrentCategory(currCategory);
     }
   }, [path, categories, allProducts]);
@@ -50,12 +59,12 @@ const Products = () => {
 
       <hr className="mt-2 mb-4 splitter " />
 
-      {products && (
+      {allProducts && (
         <div className="d-flex ms-3 me-5">
           <div className="me-3">
-            <ProductFilter products={products} />
+            <ProductFilter products={allProducts} />
           </div>
-          <ProductGallery products={products} />
+          <ProductGallery products={allProducts} />
         </div>
       )}
     </div>
