@@ -16,14 +16,17 @@ const getProductById = async (id) => {
 };
 
 export const getProducts = async (req, res) => {
-  const products = await Product.find({}).sort({ createdAt: -1 });
+  const products = await Product.find({})
+    .sort({ createdAt: -1 })
+    .populate("category")
+    .exec();
 
   res.status(200).json(products);
 };
 
 export const getProduct = async (req, res) => {
   const { id } = req.params;
-  const result = await getProductById(id);
+  const result = await getProductById(id).populate("category").exec();
 
   if (result.error) {
     return res.status(result.status).json({ error: result.error });

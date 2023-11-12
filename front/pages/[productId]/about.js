@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 
-import Description from "root/features/products/comps/about/description";
-import ProductCard from "root/features/products/comps/about/product-card";
+import Description from "../../features/products/landing/comps/description";
+import ProductCard from "../../features/products/listing/comps/gallery/card";
+import Navigation from "../../features/products/landing/comps/navigation";
 
-import Navigation from "root/features/products/comps/mutual/navigation";
-import Characteristics from "root/features/products/comps/mutual/characteristics";
-import ReviewsList from "root/features/products/comps/mutual/reviews-list";
+import Characteristics from "../../features/products/landing/comps/characteristics";
+import ReviewsList from "../../features/products/landing/comps/reviews-list";
 
 const Product = () => {
   const router = useRouter();

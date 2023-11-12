@@ -3,7 +3,6 @@ import { useState } from "react";
 // import ReviewCard from "root/comps/review-card";
 import s from "./reviews-list.module.scss";
 import WriteReviewModal from "./write-review-modal";
-
 const ReviewsList = () => {
   const [showWriteReviewModal, setShowWriteReviewModal] = useState(false);
 

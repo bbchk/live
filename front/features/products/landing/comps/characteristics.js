@@ -1,11 +1,13 @@
 import s from "./characteristics.module.scss";
 
-const Characteristics = ({ characteristics = {
-  Value1: "fdj",
-  Value2: "fdjsfh",
-  Value3: "fdjsfh",
-  Value4: "fdjsfh",
-}}) => {
+const Characteristics = ({
+  characteristics = {
+    Value1: "fdj",
+    Value2: "fdjsfh",
+    Value3: "fdjsfh",
+    Value4: "fdjsfh",
+  },
+}) => {
   return (
     <>
       <div className={`${s.characteristics_container}`}>

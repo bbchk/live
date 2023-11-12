@@ -3,15 +3,7 @@ import StarRating from "root/comps/star-rating";
 import s from "./product-card.module.scss";
 
 const ProductCard = ({
-  _id,
-  name,
-  brand,
-  price,
-  isAvailable,
-  starRating,
-  packing,
-  description,
-  imageUrl,
+  product: { _id, name, imageUrl, price },
   like,
   isLiked,
 }) => {

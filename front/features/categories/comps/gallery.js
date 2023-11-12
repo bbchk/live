@@ -6,10 +6,6 @@ import { useCategoryContext } from "root/hooks/useCategoryContext";
 const Gallery = () => {
   const { categories } = useCategoryContext();
 
-  // const filteredCategories = categories.filter(
-  //   (category) => category.path === null
-  // );
-
   return (
     <div id="categories" className={`${s.gallery_container}`}>
       {/* <div className={`${s.decor_line} mb-5`}></div> */}
@@ -23,12 +19,12 @@ const Gallery = () => {
       >
         {categories &&
           categories
-            .filter((category) => category.path === null)
+            .filter((category) => category.path.split(",").length == 1)
             .map((category) => {
               const key = uuidv4();
               return (
                 <div key={key} className="col d-flex justify-content-center">
-                  <Card naming={category.name} image={category.image} />
+                  <Card category={category} />
                 </div>
               );
             })}

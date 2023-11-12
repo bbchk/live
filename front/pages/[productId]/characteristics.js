@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 
-import Navigation from "root/features/products/comps/mutual/navigation";
-import Characteristics from "root/features/products/comps/mutual/characteristics";
+import Navigation from "../../features/products/landing/comps/navigation";
+import Characteristics from "../../features/products/landing/comps/characteristics";
 
 const Product = () => {
   const router = useRouter();

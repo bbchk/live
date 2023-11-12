@@ -24,7 +24,7 @@ const Header = () => {
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
-            aria-expanddd="false"
+            aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <i className="bi bi-search fs-4"></i>

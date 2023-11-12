@@ -2,10 +2,10 @@ import express from "express";
 import { requireAuth, isAdmin } from "../middleware/auth.js";
 
 import {
-  createProduct,
-  createProducts,
   getProduct,
   getProducts,
+  createProduct,
+  createProducts,
   updateProduct,
   deleteProduct,
   deleteAllProducts,
