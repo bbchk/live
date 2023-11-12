@@ -8,6 +8,10 @@ import { useCategoryContext } from "../../hooks/useCategoryContext";
 import { useProductContext } from "../../hooks/useProductContext";
 
 const Products = () => {
+  const context = useProductContext();
+  const { allProducts, currentProducts } = context.products || {};
+  const { dispatch } = context;
+
   return (
     <div className="mt-5 ">
       <div className="mx-5">
@@ -21,7 +25,9 @@ const Products = () => {
       <div className="d-flex ms-3 me-5">
         <div className="me-3">
           {/* <ProductFilter products={currentProducts} /> */}
-          <ProductFilter />
+          {currentProducts && (
+            <ProductFilter currentProducts={currentProducts} />
+          )}
         </div>
         {/* <ProductGallery products={currentProducts} /> */}
         <ProductGallery />

@@ -1,12 +1,11 @@
 import CheckBox from "root/comps/checkbox";
 import { Accordion } from "react-bootstrap";
-import { useId } from "react";
+import { useEffect, useId, useRef } from "react";
 import { useProductContext } from "../../../../../hooks/useProductContext";
 
 const FilterChecks = ({ filter, idx }) => {
-  const context = useProductContext();
-  const { allProducts, currentProducts } = context.products || {};
-  const { dispatch } = context;
+  const isFirstRender = useRef(true);
+  const { dispatch } = useProductContext();
 
   const check = (option, isChecked) => {
     if (isChecked) {
@@ -21,26 +20,31 @@ const FilterChecks = ({ filter, idx }) => {
     }
   };
 
+  useEffect(() => {
+    isFirstRender.current = false;
+  }, []);
+
   return (
-    <Accordion.Item eventKey={idx}>
-      <Accordion.Header>{filter.name}</Accordion.Header>
-      <Accordion.Body>
-        {Array.from(filter.options).map((option) => {
-          const id = useId();
-          return (
-            <div key={id}>
-              <CheckBox
-                id={id}
-                prop={filter.prop}
-                label={option}
-                checked={false}
-                check={check}
-              />
-            </div>
-          );
-        })}
-      </Accordion.Body>
-    </Accordion.Item>
+    <>
+      <Accordion.Item eventKey={idx}>
+        <Accordion.Header>{filter.name}</Accordion.Header>
+        <Accordion.Body>
+          {Array.from(filter.options).map((option) => {
+            const id = useId();
+            return (
+              <div key={id}>
+                <CheckBox
+                  id={id}
+                  prop={filter.prop}
+                  label={option}
+                  check={check}
+                />
+              </div>
+            );
+          })}
+        </Accordion.Body>
+      </Accordion.Item>
+    </>
   );
 };
 

@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
-const CheckBox = ({ id, prop, label, checked, check }) => {
-  const [isChecked, setIsChecked] = useState(checked);
-  const saved = useRef(isChecked);
+const CheckBox = ({ id, prop, label, check }) => {
+  const [isChecked, setIsChecked] = useState(false);
 
   const isFirstRender = useRef(true);
 

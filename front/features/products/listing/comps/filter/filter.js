@@ -5,12 +5,9 @@ import PriceSlider from "./price-slider";
 import FilterChecks from "./checks";
 import s from "./products-filter.module.scss";
 import { useEffect, useRef, useState } from "react";
-import { useProductContext } from "../../../../../hooks/useProductContext";
 
-const ProductFilter = () => {
-  const context = useProductContext();
-  const { allProducts, currentProducts } = context.products || {};
-  const { dispatch } = context;
+const ProductFilter = ({ currentProducts }) => {
+  const isFirstRender = useRef(true);
 
   const maxPrice = useRef(0);
   const minPrice = useRef(0);
@@ -18,10 +15,13 @@ const ProductFilter = () => {
   const [isLoading, setIsLoading] = useState(true); // Add this line
 
   useEffect(() => {
-    if (!currentProducts) {
+    if (!currentProducts || !isFirstRender.current) {
       return;
     }
 
+    isFirstRender.current = false;
+
+    //todo delete this if
     if (filters.current.length == 0) {
       const prices = currentProducts.map((p) => Number(p.price));
       minPrice.current = prices.reduce((a, b) => Math.min(a, b), Infinity);
