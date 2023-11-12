@@ -1,13 +1,11 @@
-import { useId } from "react";
-
-const CheckBox = ({ label }) => {
+const CheckBox = ({ id, label }) => {
   return (
     <div className="form-check">
       <input
         className="form-check-input"
         type="checkbox"
         value=""
-        id={useId()}
+        id={id}
         role="button"
       />
       <label className="form-check-label" htmlFor="flexCheckDefault">
