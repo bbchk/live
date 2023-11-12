@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 const CheckBox = ({ label }) => {
   return (
     <div className="form-check">
@@ -5,7 +7,8 @@ const CheckBox = ({ label }) => {
         className="form-check-input"
         type="checkbox"
         value=""
-        id="flexCheckDefault"
+        id={useId()}
+        role="button"
       />
       <label className="form-check-label" htmlFor="flexCheckDefault">
         {label}
