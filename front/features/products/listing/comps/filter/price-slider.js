@@ -1,14 +1,20 @@
 import Slider from "@mui/material/Slider";
 import React, { useState } from "react";
 import s from "./price-slider.module.scss";
+import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
 
 const PriceSlider = ({ minPrice, maxPrice }) => {
   const [value, setValue] = useState([minPrice, maxPrice]);
+  const { dispatch } = useActiveFiltersContext();
 
   const minDistance = 50; // Define your minimum distance here
 
   function handleConfirm(event, newValue) {
     console.log(value);
+    dispatch({
+      type: "SET_MIN_MAX_PRICE",
+      payload: value,
+    });
   }
 
   const handleChange = (event, newValue, activeThumb) => {

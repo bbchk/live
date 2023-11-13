@@ -55,28 +55,25 @@ const Products = () => {
   return (
     <>
       {!isLoading && (
-        <div className="mt-5 ">
-          <div className="mx-5">
-            <ProductHeader category={activeCategory} />
-            <div className="mt-5">
-              <SortGroup />
+        <ActiveFiltersContextProvider>
+          <div className="mt-5 ">
+            <div className="mx-5">
+              <ProductHeader category={activeCategory} />
+              <div className="mt-5">
+                <SortGroup />
+              </div>
             </div>
-          </div>
 
-          <hr className="mt-2 mb-4 splitter " />
+            <hr className="mt-2 mb-4 splitter " />
 
-          <div className="d-flex ms-3 me-5">
-            <ActiveFiltersContextProvider>
+            <div className="d-flex ms-3 me-5">
               <div className="me-3">
-                <ProductFilter
-                  products={productsref.current}
-                  set={setProducts}
-                />
+                <ProductFilter products={productsref.current} />
               </div>
               {products && <ProductGallery products={products} />}
-            </ActiveFiltersContextProvider>
+            </div>
           </div>
-        </div>
+        </ActiveFiltersContextProvider>
       )}
     </>
   );

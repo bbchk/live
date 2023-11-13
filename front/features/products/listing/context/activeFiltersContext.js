@@ -29,6 +29,16 @@ export const activeFiltersReducer = (state, action) => {
           [prop]: state.activeFilters[prop].filter((item) => item !== option),
         },
       };
+    case "SET_MIN_MAX_PRICE":
+      return {
+        ...state,
+        minMaxPrice: action.payload,
+      };
+    case "SET_SORT_BY":
+      return {
+        ...state,
+        sortBy: action.payload,
+      };
     default:
       return state;
   }
@@ -36,6 +46,8 @@ export const activeFiltersReducer = (state, action) => {
 
 export const ActiveFiltersContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(activeFiltersReducer, {
+    minMaxPrice: [-Infinity, Infinity],
+    sortBy: null,
     activeFilters: { brand: [], packing: [], color: [], size: [], weight: [] },
   });
 

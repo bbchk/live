@@ -1,15 +1,47 @@
-import { useDeferredValue, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import ProductCard from "./card";
 import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
 
 const ProductGallery = ({ products }) => {
-  const { activeFilters } = useActiveFiltersContext();
+  const { minMaxPrice, sortBy, activeFilters } = useActiveFiltersContext();
   const [activeProducts, setActiveProducts] = useState(products);
+  const productsFilteredByChecks = useRef([]);
+
+  //filter sort group
+  useEffect(() => {
+    console.log(sortBy);
+    if (sortBy != null) {
+      const sortedProducts = [...activeProducts].sort((a, b) => {
+        if (sortBy === "price_asc") {
+          return a.price - b.price;
+        } else if (sortBy === "price_dsc") {
+          return b.price - a.price;
+        }
+      });
+      setActiveProducts(sortedProducts);
+    }
+  }, [sortBy]);
+
+  //filter price
+  useEffect(() => {
+    console.log(minMaxPrice);
+    const [minPrice, maxPrice] = minMaxPrice;
+    if (minPrice != -Infinity || maxPrice != Infinity) {
+      const filteredProducts = productsFilteredByChecks.current.filter(
+        (product) => {
+          return product.price >= minPrice && product.price <= maxPrice;
+        }
+      );
+      setActiveProducts(filteredProducts);
+    }
+  }, [minMaxPrice]);
 
   //todo measure perfomance
   //todo refactor
+  //filter checks
   useEffect(() => {
+    console.log("exed");
     if (activeFilters && activeProducts) {
       let filteredProducts = products;
 
@@ -27,6 +59,7 @@ const ProductGallery = ({ products }) => {
       });
 
       setActiveProducts(filteredProducts);
+      productsFilteredByChecks.current = filteredProducts;
     }
   }, [activeFilters]);
 
