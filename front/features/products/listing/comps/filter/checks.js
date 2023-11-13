@@ -1,40 +1,20 @@
-import CheckBox from "root/comps/checkbox";
+import { v4 as uuidv4 } from "uuid";
+import CheckBox from "./checkbox";
 import { Accordion } from "react-bootstrap";
 import { useEffect, useId, useRef } from "react";
-import { useProductContext } from "../../../../../hooks/useProductContext";
+import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
 
-const FilterChecks = ({ filter, idx }) => {
-  const isFirstRender = useRef(true);
-  const { dispatch } = useProductContext();
-
-  const check = (option, isChecked) => {
-    if (isChecked) {
-      //todo plus filter
-    } else {
-      //todo minus filter
-      // currentProducts.fiter
-    }
-  };
-
-  useEffect(() => {
-    isFirstRender.current = false;
-  }, []);
-
+const FilterChecks = ({ filter: { name, options, prop }, idx }) => {
   return (
     <>
       <Accordion.Item eventKey={idx}>
-        <Accordion.Header>{filter.name}</Accordion.Header>
+        <Accordion.Header>{name}</Accordion.Header>
         <Accordion.Body>
-          {Array.from(filter.options).map((option) => {
-            const id = useId();
+          {Array.from(options).map((option) => {
+            const key = uuidv4();
             return (
-              <div key={id}>
-                <CheckBox
-                  id={id}
-                  prop={filter.prop}
-                  label={option}
-                  check={check}
-                />
+              <div key={key}>
+                <CheckBox id={key} prop={prop} label={option} checked={false} />
               </div>
             );
           })}

@@ -3,11 +3,11 @@ import { useCategoryContext } from "../../../../hooks/useCategoryContext";
 import { useProductContext } from "../../../../hooks/useProductContext";
 
 export const useGetActiveProducts = () => {
+  const router = useRouter();
   const getProducts = (allProducts, categories, path) => {
     console.log(categories);
     console.log(allProducts);
 
-    console.log("get");
     const activeCategory = getActiveCategory(path, categories);
 
     //validating path

@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import { useDeferredValue, useEffect, useRef, useState } from "react";
 import { useAddLikedProduct } from "root/hooks/useAddLikedProduct.js";
 
 import { useAuthContext } from "root/hooks/useAuthContext";
 import ProductCard from "./card";
+import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
 
 const ProductGallery = ({ products }) => {
   const { user } = useAuthContext();
   const [likedProducts, setLikedProducts] = useState([]);
   const { likeProduct, error } = useAddLikedProduct();
+
+  const { activeFilters, dispatch } = useActiveFiltersContext();
+  const [activeProducts, setActiveProducts] = useState(products);
 
   const like = async (_id) => {
     await likeProduct(_id).then(() => {
@@ -20,6 +24,23 @@ const ProductGallery = ({ products }) => {
   };
 
   useEffect(() => {
+    if (activeFilters && activeProducts) {
+      let filteredProducts = [];
+
+      activeFilters.forEach((filter) => {
+        filteredProducts.push(...products.filter(filter.f));
+      });
+
+      // if (filteredProducts.size == 0) {
+      //   filteredProducts.add(...products);
+      //   //todo
+      // }
+
+      setActiveProducts(filteredProducts);
+    }
+  }, [activeFilters]);
+
+  useEffect(() => {
     if (user && likedProducts.length === 0) {
       setLikedProducts(user.likedProducts);
     }
@@ -27,8 +48,8 @@ const ProductGallery = ({ products }) => {
 
   return (
     <div className="container row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 gx-3 gy-4">
-      {products &&
-        products.map((product) => {
+      {activeFilters &&
+        activeProducts.map((product) => {
           return (
             <div key={product._id} className="col">
               <ProductCard

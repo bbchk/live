@@ -15,7 +15,7 @@ const Gallery = () => {
         </h2>
       </div>
       <div
-        className={` container row row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 mt-1 mx-auto g-5`}
+        className={` container row row-cols-sm-12 row-cols-lg-3 row-cols-xxl-4 mt-1 mx-auto g-5`}
       >
         {categories &&
           categories

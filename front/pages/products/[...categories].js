@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { useGetActiveProducts } from "../../features/products/listing/hooks/useGetActiveProducts";
 import { useCategoryContext } from "../../hooks/useCategoryContext";
 import { useProductContext } from "../../hooks/useProductContext";
-
+import { ActiveFiltersContextProvider } from "../../features/products/listing/context/activeFiltersContext";
 const Products = () => {
   const router = useRouter();
   const { categories: path = [] } = router.query;
@@ -48,10 +48,15 @@ const Products = () => {
           <hr className="mt-2 mb-4 splitter " />
 
           <div className="d-flex ms-3 me-5">
-            <div className="me-3">
-              <ProductFilter products={productsref.current} set={setProducts} />
-            </div>
-            {products && <ProductGallery products={products} />}
+            <ActiveFiltersContextProvider>
+              <div className="me-3">
+                <ProductFilter
+                  products={productsref.current}
+                  set={setProducts}
+                />
+              </div>
+              {products && <ProductGallery products={products} />}
+            </ActiveFiltersContextProvider>
           </div>
         </div>
       )}
