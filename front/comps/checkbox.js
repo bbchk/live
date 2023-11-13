@@ -3,14 +3,14 @@ import { useEffect, useRef, useState } from "react";
 const CheckBox = ({ id, prop, label, check }) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const isFirstRender = useRef(true);
+  // const isFirstRender = useRef(true);
 
-  useEffect(() => {
-    if (!isFirstRender.current) {
-      check(label, isChecked);
-    }
-    isFirstRender.current = false;
-  }, [isChecked]);
+  // useEffect(() => {
+  //   if (!isFirstRender.current) {
+  //     check(label, isChecked);
+  //   }
+  //   isFirstRender.current = false;
+  // }, [isChecked]);
 
   return (
     <div className="form-check">

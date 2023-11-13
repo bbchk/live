@@ -5,12 +5,8 @@ export const ProductContext = createContext();
 export const productReducer = (state, action) => {
   switch (action.type) {
     case "SET_PRODUCTS":
-      const allProducts =
-        action.payload?.allProducts || state.products?.allProducts;
-      const currentProducts =
-        action.payload?.currentProducts || state.products?.currentProducts;
       return {
-        products: { allProducts, currentProducts },
+        products: action.payload,
       };
     // //todo products state has diffrent structure now
     // case "CREATE_PRODUCT":
@@ -33,10 +29,8 @@ export const ProductContextProvider = ({ children }) => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/`);
       const json = await res.json();
 
-      const products = { allProducts: json };
-
       if (res.ok) {
-        dispatch({ type: "SET_PRODUCTS", payload: products });
+        dispatch({ type: "SET_PRODUCTS", payload: json });
       }
     };
     fetchProducts();

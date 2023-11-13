@@ -10,10 +10,6 @@ const FilterChecks = ({ filter, idx }) => {
   const check = (option, isChecked) => {
     if (isChecked) {
       //todo plus filter
-      dispatch({
-        type: "SET_PRODUCTS",
-        payload: { currentProducts: [] },
-      });
     } else {
       //todo minus filter
       // currentProducts.fiter
