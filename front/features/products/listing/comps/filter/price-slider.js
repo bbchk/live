@@ -7,6 +7,10 @@ const PriceSlider = ({ minPrice, maxPrice }) => {
 
   const minDistance = 50; // Define your minimum distance here
 
+  function handleConfirm(event, newValue) {
+    console.log(value);
+  }
+
   const handleChange = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
       return;
@@ -47,7 +51,9 @@ const PriceSlider = ({ minPrice, maxPrice }) => {
           onChange={handleInputChange(1)}
           className={`form-control ${s.input} ${s.right}`}
         />
-        <button className="btn btn-outline-success">Ok</button>
+        <button onClick={handleConfirm} className="btn btn-outline-success">
+          Ok
+        </button>
       </div>
       <div className={`${s.body}`}>
         <Slider

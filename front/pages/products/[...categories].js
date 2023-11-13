@@ -5,42 +5,62 @@ import SortGroup from "root/features/products/listing/comps/filter/sort-group";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
-import { useGetActiveProducts } from "../../features/products/listing/hooks/useGetActiveProducts";
+import { useGetActiveProducts } from "../../hooks/useGetActiveProducts";
 import { useCategoryContext } from "../../hooks/useCategoryContext";
 import { useProductContext } from "../../hooks/useProductContext";
+import { useGetActiveCategory } from "../../hooks/useGetActiveCategory";
 import { ActiveFiltersContextProvider } from "../../features/products/listing/context/activeFiltersContext";
 
 const Products = () => {
   const router = useRouter();
   const { categories: path = [] } = router.query;
   const { getProducts } = useGetActiveProducts();
-
   const { categories } = useCategoryContext();
+
   const { products: allProducts, dispatch } = useProductContext();
 
   const [products, setProducts] = useState(null);
   const productsref = useRef();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState(null);
+  const { getActiveCategory } = useGetActiveCategory();
 
+  //setting active category
   useEffect(() => {
-    if (categories && allProducts) {
-      const activeProducts = getProducts(allProducts, categories, path);
+    if (categories) {
+      const category = getActiveCategory(path, categories);
+
+      //checks if category was found
+      if (category == null) {
+        router.push("/404");
+      }
+
+      setActiveCategory(category);
+    }
+  }, [categories]);
+
+  //setting active products
+  useEffect(() => {
+    if (activeCategory != null && allProducts != null) {
+      const activeProducts = getProducts(allProducts, activeCategory);
 
       setProducts(activeProducts);
 
       productsref.current = activeProducts;
       setIsLoading(false);
     }
-  }, [path, categories, allProducts]);
+  }, [activeCategory, allProducts]);
 
   return (
     <>
       {!isLoading && (
         <div className="mt-5 ">
           <div className="mx-5">
-            {/* <ProductHeader category={currectCategory} /> */}
-            <div className="mt-5">{/* <SortGroup /> */}</div>
+            <ProductHeader category={activeCategory} />
+            <div className="mt-5">
+              <SortGroup />
+            </div>
           </div>
 
           <hr className="mt-2 mb-4 splitter " />
