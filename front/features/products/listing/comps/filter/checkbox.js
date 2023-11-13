@@ -1,43 +1,37 @@
-import { useEffect, useRef, useState } from "react";
+import { useDeferredValue, useEffect, useRef, useState } from "react";
 import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
 
 const CheckBox = ({ id, prop, label, checked }) => {
   const [isChecked, setIsChecked] = useState(checked);
 
-  const isFirstRender = useRef(true);
   const { activeFilters, dispatch } = useActiveFiltersContext();
 
-  useEffect(() => {
-    console.log("effect");
-    if (!isFirstRender.current) {
-      if (isChecked) {
-        //todo plus filter
-        dispatch({
-          type: "ADD_FILTER",
-          payload: {
-            option: label,
-            prop: prop,
-            f: (product) => {
-              if (product[prop] == label) {
-                return product;
-              }
-            },
-          },
-        });
-      } else {
-        //  //todo minus filter
-        dispatch({
-          type: "REMOVE_FILTER",
-          payload: {
-            option: label,
-            prop: prop,
-          },
-        });
-      }
-    }
+  function handleChange() {
+    const newCheckedState = !isChecked;
+    setIsChecked(newCheckedState);
 
-    isFirstRender.current = false;
-  }, [isChecked]);
+    if (newCheckedState) {
+      dispatch({
+        type: "ADD_FILTER",
+        payload: {
+          option: label,
+          prop: prop,
+        },
+      });
+    } else {
+      dispatch({
+        type: "REMOVE_FILTER",
+        payload: {
+          option: label,
+          prop: prop,
+        },
+      });
+    }
+  }
+
+  useEffect(() => {
+    console.log(activeFilters);
+  }, [activeFilters]);
 
   return (
     <div className="form-check">
@@ -45,7 +39,7 @@ const CheckBox = ({ id, prop, label, checked }) => {
         className="form-check-input"
         type="checkbox"
         checked={isChecked}
-        onChange={() => setIsChecked(!isChecked)}
+        onChange={handleChange}
         id={id}
         role="button"
       />

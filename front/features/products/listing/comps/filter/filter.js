@@ -5,7 +5,6 @@ import PriceSlider from "./price-slider";
 import FilterChecks from "./checks";
 import s from "./products-filter.module.scss";
 import { useEffect, useRef, useState } from "react";
-import { useProductContext } from "../../../../../hooks/useProductContext";
 import { useGetFilters } from "../../hooks/useGetFilters";
 
 const ProductFilter = ({ products, set }) => {

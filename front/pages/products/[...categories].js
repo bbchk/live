@@ -9,13 +9,13 @@ import { useGetActiveProducts } from "../../features/products/listing/hooks/useG
 import { useCategoryContext } from "../../hooks/useCategoryContext";
 import { useProductContext } from "../../hooks/useProductContext";
 import { ActiveFiltersContextProvider } from "../../features/products/listing/context/activeFiltersContext";
+
 const Products = () => {
   const router = useRouter();
   const { categories: path = [] } = router.query;
   const { getProducts } = useGetActiveProducts();
 
   const { categories } = useCategoryContext();
-
   const { products: allProducts, dispatch } = useProductContext();
 
   const [products, setProducts] = useState(null);
@@ -25,14 +25,12 @@ const Products = () => {
 
   useEffect(() => {
     if (categories && allProducts) {
-      console.log(path);
       const activeProducts = getProducts(allProducts, categories, path);
+
       setProducts(activeProducts);
+
       productsref.current = activeProducts;
       setIsLoading(false);
-      // console.log(activeProducts);
-      // console.log(productsref.current);
-      // console.log(products);
     }
   }, [path, categories, allProducts]);
 

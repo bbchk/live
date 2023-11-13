@@ -1,8 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import CheckBox from "./checkbox";
 import { Accordion } from "react-bootstrap";
-import { useEffect, useId, useRef } from "react";
-import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
 
 const FilterChecks = ({ filter: { name, options, prop }, idx }) => {
   return (

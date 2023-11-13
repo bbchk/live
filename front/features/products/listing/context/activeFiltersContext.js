@@ -3,25 +3,31 @@ import { createContext, useReducer } from "react";
 export const ActiveFiltersContext = createContext();
 
 export const activeFiltersReducer = (state, action) => {
+  const prop = action.payload.prop;
+  const option = action.payload.option;
   switch (action.type) {
     case "SET_ACTIVE_FILTERS":
       return {
         activeFilters: action.payload,
       };
     case "ADD_FILTER":
-      return {
-        activeFilters: [action.payload, ...state.activeFilters],
-      };
+      if (!state.activeFilters[prop].includes(option)) {
+        return {
+          ...state,
+          activeFilters: {
+            ...state.activeFilters,
+            [prop]: [...state.activeFilters[prop], option],
+          },
+        };
+      }
+      return state;
     case "REMOVE_FILTER":
       return {
-        activeFilters: state.activeFilters.filter((f) => {
-          if (
-            f.prop !== action.payload.prop ||
-            f.option !== action.payload.option
-          ) {
-            return f;
-          }
-        }),
+        ...state,
+        activeFilters: {
+          ...state.activeFilters,
+          [prop]: state.activeFilters[prop].filter((item) => item !== option),
+        },
       };
     default:
       return state;
@@ -30,7 +36,7 @@ export const activeFiltersReducer = (state, action) => {
 
 export const ActiveFiltersContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(activeFiltersReducer, {
-    activeFilters: [],
+    activeFilters: { brand: [], packing: [], color: [], size: [], weight: [] },
   });
 
   return (
