@@ -10,6 +10,7 @@ import { useCategoryContext } from "../../hooks/useCategoryContext";
 import { useProductContext } from "../../hooks/useProductContext";
 import { useGetActiveCategory } from "../../hooks/useGetActiveCategory";
 import { ActiveFiltersContextProvider } from "../../features/products/listing/context/activeFiltersContext";
+import SubcategoriesGallery from "../../features/products/listing/comps/subcategories/gallery";
 
 const Products = () => {
   const router = useRouter();
@@ -59,6 +60,10 @@ const Products = () => {
           <div className="mt-5 ">
             <div className="mx-5">
               <ProductHeader category={activeCategory} />
+              <SubcategoriesGallery
+                category={activeCategory}
+                categories={categories}
+              />
               <div className="mt-5">
                 <SortGroup />
               </div>
