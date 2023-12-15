@@ -5,7 +5,6 @@ const SortGroup = () => {
   const { dispatch } = useActiveFiltersContext();
 
   const handleChange = (event) => {
-    console.log(`Selected option: ${event.target.id}`);
     dispatch({ type: "SET_SORT_BY", payload: event.target.id });
   };
 

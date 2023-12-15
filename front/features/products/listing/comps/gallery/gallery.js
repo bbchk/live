@@ -10,7 +10,6 @@ const ProductGallery = ({ products }) => {
 
   //filter sort group
   useEffect(() => {
-    console.log(sortBy);
     if (sortBy != null) {
       const sortedProducts = [...activeProducts].sort((a, b) => {
         if (sortBy === "price_asc") {
@@ -25,7 +24,6 @@ const ProductGallery = ({ products }) => {
 
   //filter price
   useEffect(() => {
-    console.log(minMaxPrice);
     const [minPrice, maxPrice] = minMaxPrice;
     if (minPrice != -Infinity || maxPrice != Infinity) {
       const filteredProducts = productsFilteredByChecks.current.filter(
@@ -41,7 +39,6 @@ const ProductGallery = ({ products }) => {
   //todo refactor
   //filter checks
   useEffect(() => {
-    console.log("exed");
     if (activeFilters && activeProducts) {
       let filteredProducts = products;
 
