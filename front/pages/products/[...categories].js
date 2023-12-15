@@ -30,8 +30,10 @@ const Products = () => {
   //setting active category
   useEffect(() => {
     if (categories) {
-      console.log(path);
+      setIsLoading(true);
       const category = getActiveCategory(path, categories);
+
+      console.log(path);
 
       //checks if category was found
       if (category == null) {
@@ -46,12 +48,12 @@ const Products = () => {
   useEffect(() => {
     if (activeCategory != null && allProducts != null) {
       const activeProducts = getProducts(allProducts, activeCategory);
+
       console.log(activeProducts);
 
       setProducts(activeProducts);
 
       productsref.current = activeProducts;
-      setIsLoading(true);
       setIsLoading(false);
     }
   }, [activeCategory, allProducts]);
@@ -76,7 +78,9 @@ const Products = () => {
 
             <div className="d-flex ms-3 me-5">
               <div className="me-3">
-                <ProductFilter products={productsref.current} />
+                {productsref.current && (
+                  <ProductFilter products={productsref.current} />
+                )}
               </div>
               {products && <ProductGallery products={products} />}
             </div>
