@@ -1,26 +1,13 @@
-import { useRouter } from "next/router";
 import s from "./card.module.scss";
-import { useEffect } from "react";
+import Link from "next/link";
 
 const Card = ({ category }) => {
-  const router = useRouter();
-
   return (
-    <div
-      role="button"
-      onClick={() => {
-        router.push(`/products/${category.path}`);
-      }}
-      className={`${s.cat_card} `}
-    >
+    <Link href={`/products/${category.path}`} className={`${s.cat_card} `}>
       <p className={`${s.naming} `}>{category.name}</p>
       <img className="card-img-bottom" src={category.image} alt="category" />
-    </div>
+    </Link>
   );
 };
-
-function pathFormat(str) {
-  return str;
-}
 
 export default Card;

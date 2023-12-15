@@ -30,6 +30,7 @@ const Products = () => {
   //setting active category
   useEffect(() => {
     if (categories) {
+      console.log(path);
       const category = getActiveCategory(path, categories);
 
       //checks if category was found
@@ -39,16 +40,18 @@ const Products = () => {
 
       setActiveCategory(category);
     }
-  }, [categories]);
+  }, [categories, path]);
 
   //setting active products
   useEffect(() => {
     if (activeCategory != null && allProducts != null) {
       const activeProducts = getProducts(allProducts, activeCategory);
+      console.log(activeProducts);
 
       setProducts(activeProducts);
 
       productsref.current = activeProducts;
+      setIsLoading(true);
       setIsLoading(false);
     }
   }, [activeCategory, allProducts]);

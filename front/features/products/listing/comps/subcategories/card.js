@@ -1,28 +1,13 @@
 import s from "./card.module.scss";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 const SubcategoryCard = ({ category }) => {
-  //todo use Image from next/image
-  const router = useRouter();
   const { name, image } = category;
 
-  const parsePath = (path) => {
-    const parsedPath = path.replaceAll(",", "/");
-    console.log(parsedPath);
-    return parsedPath;
-  };
-
   return (
-    <div
-      role="button"
+    <Link
       className={`${s.card}`}
-      onClick={() => {
-        router.push({
-          pathname: `/products/${parsePath(category.path)}`,
-          // pathname: `/`,
-        });
-      }}
+      href={`/products/${category.path.replaceAll(",", "/")}`}
     >
       <img
         src={image}
@@ -32,7 +17,7 @@ const SubcategoryCard = ({ category }) => {
         className={`${s.image}`}
       ></img>
       <p className={`${s.name}`}> {name}</p>
-    </div>
+    </Link>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
+import { useRouter } from "next/router";
 import ProductCard from "./card";
 import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
 
@@ -59,6 +59,8 @@ const ProductGallery = ({ products }) => {
       productsFilteredByChecks.current = filteredProducts;
     }
   }, [activeFilters]);
+
+  const router = useRouter();
 
   return (
     <div className="container row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 gx-3 gy-4">

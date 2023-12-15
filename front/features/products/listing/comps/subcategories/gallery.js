@@ -21,9 +21,13 @@ const SubcategoriesGallery = ({ category, categories }) => {
   return (
     <>
       {subcategories && (
-        <div className={`${s.subcategories_gallery}`} key={uuidv4()}>
+        <div className={`${s.subcategories_gallery}`}>
           {subcategories.map((cat) => {
-            return <SubcategoryCard category={cat}></SubcategoryCard>;
+            return (
+              <div key={uuidv4()}>
+                <SubcategoryCard category={cat}></SubcategoryCard>
+              </div>
+            );
           })}
         </div>
       )}
