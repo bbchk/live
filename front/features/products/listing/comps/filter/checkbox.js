@@ -29,10 +29,6 @@ const CheckBox = ({ id, prop, label, checked }) => {
     }
   }
 
-  useEffect(() => {
-    console.log(activeFilters);
-  }, [activeFilters]);
-
   return (
     <div className="form-check">
       <input

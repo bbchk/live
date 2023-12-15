@@ -28,7 +28,7 @@ const ProductCard = ({
         ></Image>
       </div>
       <div className={`${s.info}`}>
-        <p className={`${s.article}`}>`Код: {article}`</p>
+        <p className={`${s.article}`}>Код: {article}</p>
         <div className={`${s.header}`}>
           <p className={`${s.name}`}>{name}</p>
           <StarRating score={4} fontSize={"1.4rem"} />

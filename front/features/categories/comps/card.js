@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
 import s from "./card.module.scss";
+import { useEffect } from "react";
 
 const Card = ({ category }) => {
   const router = useRouter();
+
   return (
     <div
       role="button"

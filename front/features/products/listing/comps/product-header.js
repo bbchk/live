@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import s from "./product-header.module.scss";
 import Link from "next/link";
+import { v4 as uuidv4 } from "uuid";
 
 const ProductHeader = ({ category }) => {
   return (
@@ -10,7 +11,7 @@ const ProductHeader = ({ category }) => {
           <ol className="breadcrumb">
             <li className={`breadcrumb-item `}>
               <Link href="/">
-                <i class="bi bi-house-fill"></i>
+                <i className="bi bi-house-fill"></i>
               </Link>
             </li>
             {category.path.split(",").map((pathElement, index, array) => {
@@ -19,6 +20,7 @@ const ProductHeader = ({ category }) => {
                   className={`breadcrumb-item ${
                     index === array.length - 1 ? "active" : ""
                   }`}
+                  key={uuidv4()}
                 >
                   <Link href={`/products/${pathElement}`}>{pathElement}</Link>
                 </li>
