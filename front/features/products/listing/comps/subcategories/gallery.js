@@ -8,6 +8,7 @@ const SubcategoriesGallery = ({ category, categories }) => {
 
   useEffect(() => {
     const pathString = category.path;
+    //looking for subcategories of current category
     const regex = new RegExp(`${pathString}.*`, "g");
     const subcategories = categories.filter((c) => {
       return c.path.match(regex) && c.path !== pathString;
