@@ -1,4 +1,5 @@
 @use "./styles/variables" as *;
+@use "./styles/mixins" as *;
 @import "root/node_modules/rfs/sass.sass";
 
 .card {
@@ -29,4 +30,6 @@
     font-family: $font-family-balsamiq-sans;
     @include font-size(1.2em);
   }
+
+  @include on_hover_card;
 }

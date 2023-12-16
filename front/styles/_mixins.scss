@@ -25,3 +25,13 @@
   height: 1rem;
   background-color: $bg-color;
 }
+
+@mixin on_hover_card() {
+  transition: transform 0.3s, box-shadow 0.2s 0.1s;
+  &:hover {
+    transform: scale(1.1, 1.1);
+    z-index: 99;
+    box-shadow: 0 0 6px 1px $color-medbud;
+    border: 0.5px solid $color-medbud;
+  }
+}

@@ -1,4 +1,5 @@
 @use "./styles/variables.scss" as *;
+@use "./styles/mixins" as *;
 @import "root/node_modules/rfs/sass.sass";
 
 $radius: 0.7rem;
@@ -37,11 +38,5 @@ $radius: 0.7rem;
     box-shadow: 0 0 0 0.5rem white;
   }
 
-  transition: transform 0.3s, box-shadow 0.2s 0.1s;
-  &:hover {
-    transform: scale(1.1, 1.1);
-    z-index: 99;
-    box-shadow: 0 0 6px 1px $color-medbud;
-    border: 0.5px solid $color-medbud;
-  }
+  @include on_hover_card;
 }
