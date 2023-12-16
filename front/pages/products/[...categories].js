@@ -62,7 +62,7 @@ const Products = () => {
     <>
       {!isLoading && (
         <ActiveFiltersContextProvider>
-          <div className="mt-5 ">
+          <div className="mt-3 ">
             <div className="mx-5">
               <ProductHeader category={activeCategory} />
               <SubcategoriesGallery

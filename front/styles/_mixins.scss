@@ -35,3 +35,7 @@
     border: 0.5px solid $color-medbud;
   }
 }
+
+@mixin text_muted() {
+  color: $color-indep-muted !important;
+}

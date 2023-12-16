@@ -5,6 +5,11 @@ body {
     text-decoration: none;
   }
 
+  .link {
+    text-decoration: none;
+    color: inherit;
+  }
+
   button {
     &:focus {
       border: none;
