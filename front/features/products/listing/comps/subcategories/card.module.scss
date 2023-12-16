@@ -2,6 +2,8 @@
 @use "./styles/mixins" as *;
 @import "root/node_modules/rfs/sass.sass";
 
+//todo if image background is white, there is no border between text element and image, correct this
+
 .card {
   overflow: hidden;
   display: flex;

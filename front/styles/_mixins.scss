@@ -39,3 +39,12 @@
 @mixin text_muted() {
   color: $color-indep-muted !important;
 }
+
+@mixin brand_text() {
+  font-family: $font-family-balsamiq-sans;
+}
+
+@mixin text_daslgrey() {
+  @include brand_text;
+  color: $color-daslgrey;
+}

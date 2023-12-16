@@ -25,6 +25,8 @@ $radius: 0.7rem;
     line-height: 100%;
     //todo naming should not change it's font-size on hover, it's iritating
     @include font-size(2em);
+    @include text_daslgrey;
+
     background-color: white;
     font-weight: bold;
   }
