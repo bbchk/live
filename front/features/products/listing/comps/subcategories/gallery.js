@@ -21,10 +21,13 @@ const SubcategoriesGallery = ({ category, categories }) => {
   return (
     <>
       {subcategories && (
-        <div className={`${s.subcategories_gallery}`}>
+        <div className={`${s.subcategories_gallery}  container row  mx-auto `}>
           {subcategories.map((cat) => {
             return (
-              <div key={uuidv4()}>
+              <div
+                key={uuidv4()}
+                className={`col col-12 col-sm-6 col-md-4 col-lg-3 ${s.col_xl_1_5}`}
+              >
                 <SubcategoryCard category={cat}></SubcategoryCard>
               </div>
             );

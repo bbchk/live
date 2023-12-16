@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const excludedPaths = ["/404", "/pay"];
 
   return (
-    <>
+    <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title> Зелений світ - Магазин добрив і зоотоварів</title>
@@ -35,6 +35,6 @@ export default function App({ Component, pageProps }: AppProps) {
           </AuthContextProvider>
         </CategoryContextProvider>
       </ProductContextProvider>
-    </>
+    </div>
   );
 }

@@ -4,5 +4,12 @@
 .subcategories_gallery {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  //   gap: 1rem;
+
+  @media (min-width: 1400px) {
+    .col_xl_1_5 {
+      flex: 0 0 11%;
+      max-width: 11%;
+    }
+  }
 }

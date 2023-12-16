@@ -24,6 +24,10 @@ body {
   background-color: $color-milk;
 }
 
+html {
+  overscroll-behavior: none;
+}
+
 html,
 body,
 div,
