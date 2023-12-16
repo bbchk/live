@@ -2,7 +2,8 @@
 @use "./styles/mixins" as *;
 @import "root/node_modules/rfs/sass.sass";
 
-//todo if image background is white, there is no border between text element and image, correct this
+//todo if image background is white, there is no border between text element and image and as well there is no border on top of card, correct this
+//todo padding on name
 
 .card {
   overflow: hidden;

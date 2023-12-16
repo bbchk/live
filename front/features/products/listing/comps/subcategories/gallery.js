@@ -21,7 +21,9 @@ const SubcategoriesGallery = ({ category, categories }) => {
   return (
     <>
       {subcategories && (
-        <div className={`${s.subcategories_gallery}  container row  mx-auto `}>
+        <div
+          className={`${s.subcategories_gallery}  container row  mx-auto gy-5`}
+        >
           {subcategories.map((cat) => {
             return (
               <div
