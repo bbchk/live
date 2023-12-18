@@ -15,4 +15,3 @@ const PersonalData = () => {
 export default PersonalData;
 
 export { default as getServerSideProps } from "../../utils/auth";
-1;
