@@ -4,7 +4,8 @@ import Gallery from "root/features/profile/comps/wish_list/gallery";
 const WishList = () => {
   return (
     <TabLayout>
-      <Gallery></Gallery>
+      {/* <Gallery></Gallery> */}
+      <h1>UNDER DEVELOPMENT</h1>
     </TabLayout>
   );
 };
