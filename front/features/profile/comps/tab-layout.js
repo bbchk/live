@@ -38,6 +38,7 @@ const TabMenu = ({ handleSignOut }) => {
         text="My orders"
         icon={<i className="bi bi-list-check"></i>}
       />
+      <div className="w-20"></div>
       <Tab
         onClick={handleSignOut}
         href="/"
@@ -51,7 +52,7 @@ const TabMenu = ({ handleSignOut }) => {
 const Tab = ({ text, icon, href }) => {
   return (
     <Link className={`${s.tab}`} href={href}>
-      <div className={s.foo}>
+      <div className={s.fill}>
         {icon}
         <p>{text}</p>
       </div>

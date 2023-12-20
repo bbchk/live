@@ -20,6 +20,12 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const excludedPaths = ["/404", "/pay"];
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      require("bootstrap/dist/js/bootstrap");
+    }
+  }, []);
+
   return (
     <div>
       <Head>

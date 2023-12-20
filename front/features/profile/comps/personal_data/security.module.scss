@@ -1,8 +1,5 @@
-.security {
-  .header {
-    margin-bottom: 1.2rem;
-  }
-  input {
-    width: 50%;
-  }
-}
+@use "root/styles/variables" as *;
+@use "root/styles/mixins" as *;
+@import "root/node_modules/rfs/sass.sass";
+
+@include accordion_item;

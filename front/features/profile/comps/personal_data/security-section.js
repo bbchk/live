@@ -1,71 +1,84 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { useAuthContext } from "root/hooks/useAuthContext";
 import s from "./security.module.scss";
+import { Accordion, Form, Button } from "react-bootstrap";
+import { InputField } from "./data-section";
 
-const Security = () => {
-  const [password, setPassword] = useState("");
+const Data = () => {
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newPasswordAgain, setNewPasswordAgain] = useState("");
+
+  useEffect(() => {
+    // setOldPassword(user.oldPassword);
+    // setNewPassword(user.newPassword);
+    // setNewPasswordAgain(user.email);
+    setNewPassword;
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <div className={`card card-body ${s.security}`}>
-      <a
-        className={`icon-link fs-4 ${s.header}`}
-        data-bs-toggle="collapse"
-        href="#collapseExample1"
-        role="button"
-        aria-expanded="false"
-        aria-controls="collapseExample1"
-      >
-        <i className="bi bi-lock-fill"></i>
-        <h3>Безпека</h3>
-      </a>
-      <div className={`collapse show ${s.body}`} id="collapseExample1">
-        <div className="form-floating mb-4">
-          <input
-            type="password"
-            id="oldPassword"
-            className="form-control"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <label className={`form-label ${s.label}`} htmlFor="oldPassword">
-            Старий пароль
-          </label>
-        </div>
-        <div className="form-floating mb-4">
-          <input
-            type="password"
-            id="newPassword"
-            className="form-control"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <label className={`form-label ${s.label}`} htmlFor="newPassword">
-            Новий пароль
-          </label>
-        </div>
-        <div className="form-floating mb-4">
-          <input
-            type="password"
-            id="confirmNewPassword"
-            className="form-control"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <label
-            className={`form-label ${s.label}`}
-            htmlFor="confirmNewPassword"
+    <>
+      <div className={`accordion-item ${s.accordion_item}`}>
+        <h2 className={`accordion-header ${s.accordion_header}`}>
+          <button
+            className={`accordion-button ${s.accordion_button}`}
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target={`#securityTab`}
+            aria-expanded="true"
+            aria-controls="collapseOne"
           >
-            Новий пароль ще раз
-          </label>
+            <i className="bi bi-lock-fill"></i>
+            <h3>Security</h3>
+          </button>
+        </h2>
+        <div id={"securityTab"} className="accordion-collapse collapse show">
+          <div className={`accordion-body ${s.accordion_body}`}>
+            <form onSubmit={handleSubmit}>
+              <InputField
+                type="password"
+                label="Old password:"
+                value={oldPassword}
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                }}
+              />
+              <InputField
+                type="password"
+                label="New Password:"
+                value={newPassword}
+                onChange={(e) => {
+                  setNewPassword(e.target.value);
+                }}
+                setNewPassword
+              />
+              <InputField
+                type="password"
+                label="New Password Again:"
+                value={newPasswordAgain}
+                onChange={(e) => {
+                  setNewPasswordAgain(e.target.value);
+                }}
+              />
+              <div className=" ms-4 mt-2">
+                <button
+                  type="submit"
+                  className={`btn ${s.btn}`}
+                  onClick={() => setIsBeingModified(false)}
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Security;
+export default Data;
