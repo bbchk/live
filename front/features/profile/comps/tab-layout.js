@@ -8,7 +8,8 @@ const TabLayout = ({ children }) => {
   const { signOut } = useSignOut();
 
   const handleSignOut = (e) => {
-    window.location.reload(true);
+    // window.location.reload(true);
+    console.log("sign out");
     signOut();
   };
 
@@ -49,9 +50,9 @@ const TabMenu = ({ handleSignOut }) => {
   );
 };
 
-const Tab = ({ text, icon, href }) => {
+const Tab = ({ text, icon, href, onClick }) => {
   return (
-    <Link className={`${s.tab}`} href={href}>
+    <Link className={`${s.tab}`} href={href} onClick={onClick}>
       <div className={s.fill}>
         {icon}
         <p>{text}</p>
