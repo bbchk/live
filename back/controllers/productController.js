@@ -15,6 +15,21 @@ const getProductById = async (id) => {
   return { status: 200, product };
 };
 
+//? this is unefficient approach
+export const getProductsByIds = async (req, res) => {
+  const productIds = req.body;
+  console.log(productIds);
+
+  try {
+    const products = await Product.find({
+      _id: { $in: productIds },
+    });
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
 export const getProducts = async (req, res) => {
   const products = await Product.find({})
     .sort({ createdAt: -1 })
