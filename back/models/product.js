@@ -2,11 +2,19 @@ import { Schema, model } from "mongoose";
 
 const productSchema = new Schema(
   {
+    code: {
+      type: String,
+      required: true,
+    },
     brand: {
       type: String,
       required: true,
     },
     name: {
+      type: String,
+      required: true,
+    },
+    barcode: {
       type: String,
       required: true,
     },
@@ -41,8 +49,8 @@ const productSchema = new Schema(
       default: undefined,
     },
 
-    isAvailable: {
-      type: Boolean,
+    left: {
+      type: Number,
       required: true,
     },
     starRating: {

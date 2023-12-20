@@ -5,7 +5,7 @@ const SubcategoryCard = ({ category }) => {
   const { name, image } = category;
 
   return (
-    <Link href={`/products/${category.path.replaceAll(",", "/")}`}>
+    <Link href={`/products/${category.path.replaceAll(",", "-")}`}>
       <div className={`${s.card}`}>
         <img
           src={image}

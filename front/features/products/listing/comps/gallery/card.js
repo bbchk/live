@@ -1,14 +1,22 @@
 import StarRating from "root/comps/star-rating";
-
+import Link from "next/link";
 import s from "./product-card.module.scss";
+import { useRouter } from "next/router";
+import slugify from "root/utils/slugify";
 
 const ProductCard = ({
-  product: { _id, name, imageUrl, price },
+  product: { _id, name, imageUrl, price, category },
   like,
   isLiked,
 }) => {
   return (
-    <div className={`${s.product_card} `} role="button" tabIndex="0">
+    <Link
+      className={`${s.product_card} `}
+      role="button"
+      tabIndex="0"
+      href={`/products/${category.path.replaceAll(",", "-")}/${_id}/about`}
+      onClick={() => console.log(name)}
+    >
       <div
         className={`${s.like_button}`}
         role="button"
@@ -38,7 +46,7 @@ const ProductCard = ({
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

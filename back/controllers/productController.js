@@ -59,11 +59,13 @@ export const createProduct = async (req, res) => {
     weight,
     color,
     price,
-    isAvailable,
+    left,
     starRating,
     packing,
     description,
     imageUrl,
+    code,
+    barcode,
   } = req.body;
 
   try {
@@ -75,11 +77,13 @@ export const createProduct = async (req, res) => {
       weight,
       color,
       price,
-      isAvailable,
+      left,
       starRating,
       packing,
       description,
       imageUrl,
+      code,
+      barcode,
     });
     res.status(200).json(product);
   } catch (err) {
