@@ -1,30 +1,49 @@
 import { useRouter } from "next/router";
 
-import Description from "../../../../features/products/landing/comps/description";
-// import ProductCard from "../../features/products/landing/comps/gallery/card";
-import Navigation from "../../../../features/products/landing/comps/navigation";
+import Description from "root/features/products/landing/comps/description";
+import ProductCard from "root/features/products/landing/comps/product-card";
+import Navigation from "root/features/products/landing/comps/navigation";
 
-import Characteristics from "../../../../features/products/landing/comps/characteristics";
-import ReviewsList from "../../../../features/products/landing/comps/reviews-list";
+import Characteristics from "root/features/products/landing/comps/characteristics";
+import ReviewsList from "root/features/products/landing/comps/reviews-list";
+import { useProductContext } from "root/hooks/useProductContext";
+import { useEffect, useState } from "react";
 
 const Product = () => {
   const router = useRouter();
-  console.log(router.query.productId);
+
+  //todo search in active Products collection, not in all the products
+  const { products: allProducts } = useProductContext();
+  const [activeProduct, setActiveProduct] = useState();
+
+  useEffect(() => {
+    if (allProducts) {
+      const productId = router.query.productId;
+      const activeProduct = allProducts.find(
+        (product) => product._id === productId
+      );
+      setActiveProduct(activeProduct);
+    }
+    console.log(activeProduct);
+  }, [allProducts]);
+
   return (
     <>
       <div className="mt-5">
         <Navigation activePage={"about"} productId={router.query.productId} />
       </div>
-      <div>
-        {/* <ProductCard /> */}
-        <div className="d-flex">
-          <div className="w-50">
-            <Description />
-            <Characteristics />
+      {activeProduct && (
+        <div>
+          <ProductCard product={activeProduct} />
+          <div className="d-flex">
+            <div className="w-50">
+              <Description product={activeProduct} />
+              <Characteristics product={activeProduct} />
+            </div>
+            {/* <ReviewsList /> */}
           </div>
-          <ReviewsList />
         </div>
-      </div>
+      )}
     </>
   );
 };
