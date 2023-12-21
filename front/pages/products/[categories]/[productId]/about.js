@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 
+import Breadcrumbs from "root/features/products/landing/comps/breadcrumbs";
 import Description from "root/features/products/landing/comps/description";
 import ProductCard from "root/features/products/landing/comps/product-card";
 import Navigation from "root/features/products/landing/comps/navigation";
@@ -30,21 +31,29 @@ const Product = () => {
 
   return (
     <>
-      {/* <Decor /> */}
-      <div className="mt-5">
-        <Navigation activePage={"about"} productId={router.query.productId} />
-      </div>
       {activeProduct && (
-        <div>
-          <ProductCard product={activeProduct} />
-          <div className="d-flex">
-            <div className="w-50">
-              <Description product={activeProduct} />
-              <Characteristics product={activeProduct} />
-            </div>
-            {/* <ReviewsList /> */}
+        <>
+          {/* <Decor /> */}
+
+          <div className="">
+            <Breadcrumbs category={activeProduct.category} />
+            <Navigation
+              activePage={"about"}
+              productId={router.query.productId}
+            />
           </div>
-        </div>
+
+          <div>
+            <ProductCard product={activeProduct} />
+            <div className="d-flex">
+              <div className="w-50">
+                <Description product={activeProduct} />
+                <Characteristics product={activeProduct} />
+              </div>
+              {/* <ReviewsList /> */}
+            </div>
+          </div>
+        </>
       )}
     </>
   );

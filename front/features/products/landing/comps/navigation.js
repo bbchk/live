@@ -6,8 +6,8 @@ const Navigation = ({ activePage, productId }) => {
 
   return (
     <>
-      <ul className="nav nav-underline">
-        <li className="nav-item">
+      <ul className="nav nav-underline ">
+        <li className="nav-item ms-5 ">
           <Link
             className={`nav-link ${activePage === "about" ? "active" : ""}`}
             aria-current="page"
