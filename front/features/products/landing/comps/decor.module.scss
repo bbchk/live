@@ -1,0 +1,15 @@
+.decor {
+  position: absolute;
+  left: 0;
+
+  width: 1679px;
+  height: 679px;
+  //   transform: rotate(90deg);
+  flex-shrink: 0;
+
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #c8e59b 0%,
+    rgba(252, 255, 247, 0) 100%
+  );
+}

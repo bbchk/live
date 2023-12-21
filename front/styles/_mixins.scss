@@ -125,3 +125,8 @@
     }
   }
 }
+
+@mixin splitter() {
+  background-color: $color-alabaster;
+  height: 1rem;
+}

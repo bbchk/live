@@ -1,13 +1,21 @@
 import s from "./description.module.scss";
 
-const Description = ({
-  description = "Liqui Moly Kompressorenoil — сучасне мастило, що легко тече, спеціально створене для всесезонного застосування e повітрянихпневмоінструмента",
-}) => {
+const Description = ({ product }) => {
+  // Split the description into paragraphs at each '\n'
+  const paragraphs = product.description.split("\n");
+  console.log(paragraphs);
+
   return (
-    <div className={`${s.description_container}`}>
-      <h1 className={`${s.title}`}>Опис:</h1>
-      <hr className="splitter" />
-      <p className={`${s.description}`}>{description}</p>
+    <div id="description" className={`${s.description}`}>
+      <h1 className={`${s.title}`}>
+        <a href="#description">Description:</a>
+      </h1>
+      <div className={`${s.splitter}`}></div>
+      {paragraphs.map((paragraph, index) => (
+        <p key={index} className={`${s.text}`}>
+          {paragraph}
+        </p>
+      ))}
     </div>
   );
 };

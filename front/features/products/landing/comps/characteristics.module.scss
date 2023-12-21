@@ -1,0 +1,19 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.characteristics {
+  @include text_daslgrey;
+  padding: 2em;
+
+  .title {
+    width: fit-content;
+    @include link($color-medbud, $color-nyanza, $color-bangreen, $color-medbud);
+    cursor: pointer;
+  }
+
+  .item {
+    // margin-top: 1em;
+    font-size: 1.3em;
+    overflow-wrap: break-word;
+  }
+}

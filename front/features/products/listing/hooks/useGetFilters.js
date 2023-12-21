@@ -4,7 +4,7 @@ export const useGetFilters = (products) => {
     const filters = [
       { name: "Brands", prop: "brand" },
       { name: "Weights", prop: "weight" },
-      { name: "Packigns", prop: "packing" },
+      { name: "Packings", prop: "packing" },
       { name: "Sizes", prop: "size" },
       { name: "Colors", prop: "color" },
     ];

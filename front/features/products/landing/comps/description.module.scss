@@ -1,21 +1,24 @@
 @use "./styles/variables" as *;
+@use "./styles/mixins" as *;
 
-$padding-lg: 2rem;
-$padding-md: 1rem;
-
-$fs-md: 1.2rem;
-$fs-lg: 2rem;
-
-.description_container {
-  padding: $padding-lg;
+.description {
+  padding: 2em;
+  // font-size: 2em;
+  @include text_daslgrey;
 
   .title {
-    font-size: $fs-lg;
+    width: fit-content;
+    @include link($color-medbud, $color-nyanza, $color-bangreen, $color-medbud);
+    cursor: pointer;
   }
 
-  .description {
-    margin-top: 1rem;
-    font-size: 1.3rem;
+  .splitter {
+    // @include splitter;
+  }
+
+  .text {
+    margin-top: 1em;
+    font-size: 1.3em;
     overflow-wrap: break-word;
   }
 }

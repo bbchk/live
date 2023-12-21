@@ -6,6 +6,7 @@ import Navigation from "root/features/products/landing/comps/navigation";
 
 import Characteristics from "root/features/products/landing/comps/characteristics";
 import ReviewsList from "root/features/products/landing/comps/reviews-list";
+import Decor from "root/features/products/landing/comps/decor";
 import { useProductContext } from "root/hooks/useProductContext";
 import { useEffect, useState } from "react";
 
@@ -29,6 +30,7 @@ const Product = () => {
 
   return (
     <>
+      {/* <Decor /> */}
       <div className="mt-5">
         <Navigation activePage={"about"} productId={router.query.productId} />
       </div>
