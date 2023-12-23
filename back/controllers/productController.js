@@ -55,17 +55,14 @@ export const createProduct = async (req, res) => {
     brand,
     name,
     category,
-    size,
-    weight,
-    color,
+    characteristics,
     price,
     left,
     starRating,
-    packing,
     description,
     imageUrl,
-    code,
-    barcode,
+    // code,
+    // barcode,
   } = req.body;
 
   try {
@@ -73,17 +70,15 @@ export const createProduct = async (req, res) => {
       brand,
       name,
       category,
-      size,
-      weight,
-      color,
       price,
       left,
+      characteristics,
       starRating,
-      packing,
       description,
       imageUrl,
-      code,
-      barcode,
+      //? todo
+      // code,
+      // barcode,
     });
     res.status(200).json(product);
   } catch (err) {

@@ -2,19 +2,11 @@ import { Schema, model } from "mongoose";
 
 const productSchema = new Schema(
   {
-    code: {
-      type: String,
-      required: true,
-    },
     brand: {
       type: String,
       required: true,
     },
     name: {
-      type: String,
-      required: true,
-    },
-    barcode: {
       type: String,
       required: true,
     },
@@ -24,8 +16,13 @@ const productSchema = new Schema(
       required: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
+    },
+    characteristics: {
+      type: Map,
+      of: String,
+      required: false,
     },
     description: {
       type: String,
@@ -35,30 +32,17 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
-    size: {
-      type: String,
-      required: false,
-    },
-    weight: {
-      type: String,
-      required: false,
-    },
     color: {
       type: [String],
       required: false,
       default: undefined,
     },
-
     left: {
       type: Number,
       required: true,
     },
     starRating: {
       type: Number,
-      required: false,
-    },
-    packing: {
-      type: String,
       required: false,
     },
   },
