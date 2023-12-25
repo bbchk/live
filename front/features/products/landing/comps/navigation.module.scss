@@ -1,0 +1,10 @@
+@use "./styles/mixins" as *;
+@use "./styles/variables" as *;
+
+.navigation {
+  .link_container {
+    .link {
+      @include text_daslgrey;
+    }
+  }
+}

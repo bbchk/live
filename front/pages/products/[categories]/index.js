@@ -31,11 +31,7 @@ const Products = () => {
   useEffect(() => {
     if (categories) {
       setIsLoading(true);
-      console.log(path);
       const category = getActiveCategory(path, categories);
-      console.log(category);
-
-      console.log(path);
 
       //checks if category was found
       if (category == null) {

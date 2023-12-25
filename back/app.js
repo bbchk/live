@@ -6,6 +6,7 @@ import { userRoutes } from "./routes/user.js";
 
 const app = express();
 
+//todo set default limit
 app.use(express.json({ limit: "300mb" }));
 
 app.use(cors());

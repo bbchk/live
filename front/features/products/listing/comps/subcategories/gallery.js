@@ -8,10 +8,12 @@ import s from "./gallery.module.scss";
 const SubcategoriesGallery = ({ category, categories }) => {
   const [subcategories, setSubcategories] = useState([]);
 
+  //todo unefficient
   useEffect(() => {
     const pathString = category.path;
+    console.log(pathString);
     //looking for subcategories of current category
-    const regex = new RegExp(`${pathString}.*`, "g");
+    const regex = new RegExp(`^${pathString},[^,]+$`);
     const subcategories = categories.filter((c) => {
       return c.path.match(regex) && c.path !== pathString;
     });
