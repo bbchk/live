@@ -3,9 +3,7 @@ export const useGetFilters = (products) => {
     const res = [];
     const filters = [
       { name: "Brands", prop: "brand" },
-      { name: "Weights", prop: "weight" },
-      { name: "Packings", prop: "packing" },
-      { name: "Sizes", prop: "size" },
+      { name: "В наявності", prop: "left" },
       { name: "Colors", prop: "color" },
     ];
 

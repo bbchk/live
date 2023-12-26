@@ -11,6 +11,7 @@ import { useProductContext } from "root/hooks/useProductContext";
 import { useGetActiveCategory } from "/hooks/useGetActiveCategory";
 import { ActiveFiltersContextProvider } from "root/features/products/listing/context/activeFiltersContext";
 import SubcategoriesGallery from "root/features/products/listing/comps/subcategories/gallery";
+import { useSelector } from "react-redux";
 
 const Products = () => {
   const router = useRouter();
@@ -18,7 +19,7 @@ const Products = () => {
   const { getProducts } = useGetActiveProducts();
   const { categories } = useCategoryContext();
 
-  const { products: allProducts, dispatch } = useProductContext();
+  const { products: allProducts } = useSelector((state) => state.products);
 
   const [products, setProducts] = useState(null);
   const productsref = useRef();
@@ -46,11 +47,7 @@ const Products = () => {
   useEffect(() => {
     if (activeCategory != null && allProducts != null) {
       const activeProducts = getProducts(allProducts, activeCategory);
-
-      console.log(activeProducts);
-
       setProducts(activeProducts);
-
       productsref.current = activeProducts;
       setIsLoading(false);
     }

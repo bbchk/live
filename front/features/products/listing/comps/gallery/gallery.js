@@ -40,6 +40,7 @@ const ProductGallery = ({ products }) => {
   //filter checks
   useEffect(() => {
     if (activeFilters && activeProducts) {
+      console.log(activeFilters);
       let filteredProducts = products;
 
       Object.keys(activeFilters).forEach((prop) => {

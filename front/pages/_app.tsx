@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+import { SET_PRODUCTS } from "root/actions/setProduct";
 import "root/styles/globals.scss";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -9,11 +11,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { AuthContextProvider } from "root/context/authContext";
 import { CategoryContextProvider } from "root/context/categoryContext";
-import { ProductContextProvider } from "root/context/productContext";
-import { useProductContext } from "../hooks/useProductContext";
-import { useCategoryContext } from "../hooks/useCategoryContext";
+
 import { useEffect } from "react";
 import dotenv from "dotenv";
+import { Provider } from "react-redux";
+import store from "root/store";
+import { ProductContextProvider } from "root/context/productContext";
+
 dotenv.config();
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -32,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title> Зелений світ - Магазин добрив і зоотоварів</title>
       </Head>
-      <ProductContextProvider>
+      <Provider store={store}>
         <CategoryContextProvider>
           <AuthContextProvider>
             {!excludedPaths.includes(router.pathname) && <Header />}
@@ -40,7 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
             {!excludedPaths.includes(router.pathname) && <Footer />}
           </AuthContextProvider>
         </CategoryContextProvider>
-      </ProductContextProvider>
+      </Provider>
     </div>
   );
 }
