@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 import { useEffect, useState } from "react";
 import SubcategoryCard from "./card";
 
@@ -11,7 +9,6 @@ const SubcategoriesGallery = ({ category, categories }) => {
   //todo unefficient
   useEffect(() => {
     const pathString = category.path;
-    console.log(pathString);
     //looking for subcategories of current category
     const regex = new RegExp(`^${pathString},[^,]+$`);
     const subcategories = categories.filter((c) => {
@@ -26,13 +23,13 @@ const SubcategoriesGallery = ({ category, categories }) => {
         <div
           className={`${s.subcategories_gallery}  container row  mx-auto gy-5`}
         >
-          {subcategories.map((cat) => {
+          {subcategories.map((category) => {
             return (
               <div
-                key={uuidv4()}
+                key={category._id}
                 className={`col col-12 col-sm-6 col-md-4 col-lg-3 ${s.col_xl_1_5}`}
               >
-                <SubcategoryCard category={cat}></SubcategoryCard>
+                <SubcategoryCard category={category} />
               </div>
             );
           })}

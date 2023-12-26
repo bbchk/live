@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { SET_PRODUCTS } from "root/actions/setProduct";
+import { SET_PRODUCTS } from "root/actions/productsActions";
 import "root/styles/globals.scss";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -16,7 +16,6 @@ import { useEffect } from "react";
 import dotenv from "dotenv";
 import { Provider } from "react-redux";
 import store from "root/store";
-import { ProductContextProvider } from "root/context/productContext";
 
 dotenv.config();
 
@@ -37,13 +36,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <title> Зелений світ - Магазин добрив і зоотоварів</title>
       </Head>
       <Provider store={store}>
-        <CategoryContextProvider>
-          <AuthContextProvider>
-            {!excludedPaths.includes(router.pathname) && <Header />}
-            <Component {...pageProps} />
-            {!excludedPaths.includes(router.pathname) && <Footer />}
-          </AuthContextProvider>
-        </CategoryContextProvider>
+        <AuthContextProvider>
+          {!excludedPaths.includes(router.pathname) && <Header />}
+          <Component {...pageProps} />
+          {!excludedPaths.includes(router.pathname) && <Footer />}
+        </AuthContextProvider>
       </Provider>
     </div>
   );

@@ -6,8 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
 import { useGetActiveProducts } from "root/hooks/useGetActiveProducts";
-import { useCategoryContext } from "root/hooks/useCategoryContext";
-import { useProductContext } from "root/hooks/useProductContext";
 import { useGetActiveCategory } from "/hooks/useGetActiveCategory";
 import { ActiveFiltersContextProvider } from "root/features/products/listing/context/activeFiltersContext";
 import SubcategoriesGallery from "root/features/products/listing/comps/subcategories/gallery";
@@ -17,7 +15,8 @@ const Products = () => {
   const router = useRouter();
   const { categories: path = [] } = router.query;
   const { getProducts } = useGetActiveProducts();
-  const { categories } = useCategoryContext();
+  const { categories } = useSelector((state) => state.categories);
+  console.log(categories);
 
   const { products: allProducts } = useSelector((state) => state.products);
 
@@ -34,7 +33,6 @@ const Products = () => {
       setIsLoading(true);
       const category = getActiveCategory(path, categories);
 
-      //checks if category was found
       if (category == null) {
         router.push("/404");
       }

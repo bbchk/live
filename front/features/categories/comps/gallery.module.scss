@@ -2,8 +2,8 @@
 @use "./styles/variables" as *;
 @import "root/node_modules/rfs/sass.sass";
 
-.gallery_container {
-  .heading {
+.gallery {
+  .header {
     h2 {
       width: 20%;
       a {
