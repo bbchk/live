@@ -85,3 +85,19 @@ const Products = () => {
 };
 
 export default Products;
+// // pages/index.js
+// import { createServerStore } from "../store";
+// import { fetchProducts, fetchCategories } from "../actions";
+
+// export async function getServerSideProps() {
+//   const store = createServerStore();
+
+//   // Dispatch actions to fetch data
+//   await Promise.all([
+//     store.dispatch(fetchProducts()),
+//     store.dispatch(fetchCategories()),
+//   ]);
+
+//   // Pass initial Redux state as a prop
+//   return { props: { initialReduxState: store.getState() } };
+// }
