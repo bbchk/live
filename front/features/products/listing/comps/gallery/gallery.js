@@ -7,6 +7,7 @@ const ProductGallery = ({ products }) => {
   const { minMaxPrice, sortBy, activeFilters } = useActiveFiltersContext();
   const [activeProducts, setActiveProducts] = useState(products);
   const productsFilteredByChecks = useRef([]);
+  console.log(activeProducts);
 
   //filter sort group
   useEffect(() => {

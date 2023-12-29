@@ -1,8 +1,6 @@
 import StarRating from "root/comps/star-rating";
 import Link from "next/link";
 import s from "./product-card.module.scss";
-import { useRouter } from "next/router";
-import slugify from "root/utils/slugify";
 
 const ProductCard = ({
   product: { _id, name, imageUrl, price, category },

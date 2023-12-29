@@ -2,23 +2,20 @@ import "root/styles/globals.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
+axios.defaults.baseURL = "http://localhost:4000";
 
 import { useState, useEffect } from "react";
-
-// Set the base URL
-axios.defaults.baseURL = "http://localhost:4000";
 
 import Header from "root/comps/layout/header/header";
 import Footer from "root/comps/layout/footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { AuthContextProvider } from "root/context/authContext";
-
-import { useEffect } from "react";
 import dotenv from "dotenv";
 import { Provider } from "react-redux";
 import { store } from "root/store/store";
 import { useDispatch } from "react-redux";
+
 import { fetchProductsFromDB } from "root/store/productsSlice";
 import { fetchCategoriesFromDB } from "root/store/categoriesSlice";
 

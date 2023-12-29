@@ -8,14 +8,14 @@ import Navigation from "root/features/products/landing/comps/navigation";
 import Characteristics from "root/features/products/landing/comps/characteristics";
 import ReviewsList from "root/features/products/landing/comps/reviews-list";
 import Decor from "root/features/products/landing/comps/decor";
-import { useProductContext } from "root/hooks/useProductContext";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 const Product = () => {
   const router = useRouter();
 
   //todo search in active Products collection, not in all the products
-  const { products: allProducts } = useProductContext();
+  const { products: allProducts } = useSelector((state) => state.products);
   const [activeProduct, setActiveProduct] = useState();
 
   useEffect(() => {
