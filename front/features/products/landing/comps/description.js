@@ -1,9 +1,10 @@
 import s from "./description.module.scss";
+//? todo is using these libraries safe in sake of xss(cross-site-scripting)?
+import parse from "html-react-parser";
+import DOMPurify from "dompurify";
 
 const Description = ({ product }) => {
-  // Split the description into paragraphs at each '\n'
-  const paragraphs = product.description.split("\n");
-  console.log(paragraphs);
+  const des = DOMPurify.sanitize(product.description);
 
   return (
     <div id="description" className={`${s.description}`}>
@@ -11,11 +12,8 @@ const Description = ({ product }) => {
         <a href="#description">Description:</a>
       </h1>
       <div className={`${s.splitter}`}></div>
-      {paragraphs.map((paragraph, index) => (
-        <p key={index} className={`${s.text}`}>
-          {paragraph}
-        </p>
-      ))}
+
+      <div className={`${s.text}`}>{parse(des)}</div>
     </div>
   );
 };

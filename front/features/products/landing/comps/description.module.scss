@@ -6,6 +6,14 @@
   // font-size: 2em;
   @include text_daslgrey;
 
+  ul {
+    list-style-type: disc;
+  }
+
+  table {
+    font-size: 1rem;
+  }
+
   .title {
     width: fit-content;
     @include link($color-medbud, $color-nyanza, $color-bangreen, $color-medbud);

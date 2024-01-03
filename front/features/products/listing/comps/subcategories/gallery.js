@@ -1,9 +1,12 @@
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import SubcategoryCard from "./card";
 
 import s from "./gallery.module.scss";
 
-const SubcategoriesGallery = ({ category, categories }) => {
+const SubcategoriesGallery = ({ category }) => {
+  const { categories } = useSelector((state) => state.categories);
+
   const [subcategories, setSubcategories] = useState([]);
 
   //todo unefficient

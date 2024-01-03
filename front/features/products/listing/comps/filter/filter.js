@@ -5,25 +5,25 @@ import PriceSlider from "./price-slider";
 import FilterChecks from "./checks";
 import s from "./products-filter.module.scss";
 import { useEffect, useRef, useState } from "react";
-import { useGetFilters } from "../../hooks/useGetFilters";
+// import { useGetFilters } from "../../hooks/useGetFilters";
 
 const ProductFilter = ({ products, set }) => {
-  const [minMaxPrice, setMinMaxPrice] = useState([]);
-  const [filters, setFilters] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [minMaxPrice, setMinMaxPrice] = useState([]);
+  // const [filters, setFilters] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const { min, max, filters } = useGetFilters(products);
-    setMinMaxPrice([min, max]);
-    setFilters(filters);
-    setIsLoading(false);
+    // const { min, max, filters } = useGetFilters(products);
+    // setMinMaxPrice([min, max]);
+    // setFilters(filters);
+    // setIsLoading(false);
   }, []);
 
   return (
     <>
       {!isLoading && (
         <div className={`${s.product_filter}`}>
-          <div className={`${s.price_slider}`}>
+          {/* <div className={`${s.price_slider}`}>
             <PriceSlider minPrice={minMaxPrice[0]} maxPrice={minMaxPrice[1]} />
           </div>
           <hr className={`${s.splitter}`} />
@@ -35,7 +35,7 @@ const ProductFilter = ({ products, set }) => {
                 </div>
               );
             })}
-          </Accordion>
+          </Accordion> */}
         </div>
       )}
     </>

@@ -2,9 +2,9 @@ export const useGetFilters = (products) => {
   function getFilters() {
     const res = [];
     const filters = [
-      { name: "Brands", prop: "brand" },
+      { name: "Бренд", prop: "brand" },
       { name: "В наявності", prop: "left" },
-      { name: "Colors", prop: "color" },
+      { name: "Колір", prop: "color" },
     ];
 
     const createFilter = (name, property) => {
