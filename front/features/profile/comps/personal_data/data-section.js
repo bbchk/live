@@ -17,7 +17,6 @@ const Data = () => {
       setFirstName(user.firstName);
       setSecondName(user.secondName);
       setEmail(user.email);
-      console.log(user);
     }
   }, [user]);
 

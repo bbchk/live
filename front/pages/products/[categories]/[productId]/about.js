@@ -26,7 +26,6 @@ const Product = () => {
       );
       setActiveProduct(activeProduct);
     }
-    console.log(activeProduct);
   }, [allProducts]);
 
   return (

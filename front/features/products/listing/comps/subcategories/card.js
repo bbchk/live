@@ -2,10 +2,13 @@ import s from "./card.module.scss";
 import Link from "next/link";
 
 const SubcategoryCard = ({ category }) => {
-  const { name, image } = category;
+  const { name, image, _id } = category;
 
   return (
-    <Link href={`/products/${category.path.replaceAll(",", "-")}`}>
+    <Link
+      href={`/products/${category.path.replaceAll(",", "-")}`}
+      onClick={() => console.log(_id)}
+    >
       <div className={`${s.card}`}>
         <img
           src={image}
