@@ -25,7 +25,8 @@ const productSchema = new Schema(
       required: false,
     },
     description: {
-      type: String,
+      type: Map,
+      of: String,
       required: true,
     },
     imageUrl: {

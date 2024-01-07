@@ -36,8 +36,8 @@
   }
 }
 
-@mixin text_muted() {
-  color: $color-indep-muted !important;
+@mixin text_muted($color, $opacity) {
+  color: rgba($color, $opacity) !important;
 }
 
 @mixin brand_text() {

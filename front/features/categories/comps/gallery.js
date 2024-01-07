@@ -23,7 +23,7 @@ const Gallery = () => {
               return (
                 <div
                   key={category._id}
-                  className={`col ${s.col}  d-flex justify-content-center`}
+                  className={`col ${s.col} d-flex justify-content-center`}
                 >
                   <Card category={category} />
                 </div>

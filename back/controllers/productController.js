@@ -18,7 +18,6 @@ const getProductById = async (id) => {
 //? this is unefficient approach
 export const getProductsByIds = async (req, res) => {
   const productIds = req.body;
-  console.log(productIds);
 
   try {
     const products = await Product.find({
