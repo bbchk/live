@@ -37,7 +37,7 @@
 }
 
 @mixin text_muted($color, $opacity) {
-  color: rgba($color, $opacity) !important;
+  color: rgba($color, $opacity);
 }
 
 @mixin brand_text() {

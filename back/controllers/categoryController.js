@@ -7,10 +7,10 @@ export const getCategories = async (req, res) => {
 };
 
 export const createCategory = async (req, res) => {
-  const { name, path, image } = req.body;
+  const { name, path, image, order } = req.body;
 
   try {
-    const createdCategory = await category.create({ name, path, image });
+    const createdCategory = await category.create({ name, path, image, order });
     res.status(200).json(createdCategory);
   } catch (err) {
     res.status(400).json({ error: err.message });

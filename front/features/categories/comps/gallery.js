@@ -6,6 +6,13 @@ const Gallery = () => {
   const { categories } = useSelector((state) => state.categories);
 
   const isOneDepthCategory = (category) => category.path.split(",").length == 1;
+  // const byOrder = (category) => category.order.split(",").length == 1;
+
+  // console.log(
+  //   Array.from(categories)
+  //     .filter(isOneDepthCategory)
+  //     .sort((a, b) => a.order - b.order)
+  // );
 
   return (
     <>
@@ -19,16 +26,19 @@ const Gallery = () => {
           <div
             className={` container row row-cols-sm-12 row-cols-lg-3 row-cols-xxl-4 ${s.body} mt-1 mx-auto g-5`}
           >
-            {categories.filter(isOneDepthCategory).map((category) => {
-              return (
-                <div
-                  key={category._id}
-                  className={`col ${s.col} d-flex justify-content-center`}
-                >
-                  <Card category={category} />
-                </div>
-              );
-            })}
+            {Array.from(categories)
+              .filter(isOneDepthCategory)
+              .sort((a, b) => a.order - b.order)
+              .map((category) => {
+                return (
+                  <div
+                    key={category._id}
+                    className={`col ${s.col} d-flex justify-content-center`}
+                  >
+                    <Card category={category} />
+                  </div>
+                );
+              })}
           </div>
           <div className={`${s.decor_line} mt-5`}></div>
         </div>

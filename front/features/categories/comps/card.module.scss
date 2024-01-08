@@ -5,40 +5,60 @@
 $radius: 0.7rem;
 
 .cat_card {
-  border-radius: $radius;
-  background-color: $color-medbud;
-
-  padding: 0.5rem 1rem 1rem;
-  width: 17rem;
-  height: 20rem;
-
   display: flex;
   flex-direction: column;
   gap: 5%;
+  overflow: hidden;
 
-  .naming {
-    text-align: center;
-    width: 95%;
-    padding: 0.5rem;
-    margin: auto;
+  border-radius: $radius;
+  width: 17rem;
+  height: fit-content;
 
-    line-height: 100%;
-    //todo naming should not change it's font-size on hover, it's iritating
-    @include font-size(2em);
-    @include text_daslgrey;
+  box-shadow: 0 0 0 0.5em white, 0 0 0.3em 0.5em rgba($color-daslgrey, 0.3);
 
-    background-color: white;
-    font-weight: bold;
-  }
+  background-color: $color-white;
+
+  @include text_daslgrey;
 
   img {
-    border-radius: $radius;
     object-fit: cover;
     width: 100%;
-    height: 80%;
+    height: fit-content;
+    max-height: 9em;
     object-position: center;
-    box-shadow: 0 0 0 0.5rem white;
   }
 
-  @include on_hover_card;
+  .naming {
+    margin-top: 0.1em;
+    padding: 0.1em 0.5em;
+    line-height: 100%;
+
+    font-weight: bold;
+
+    background-color: $color-nyanza;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .subcat_list {
+    color: $color-palebud;
+    list-style-type: disc;
+
+    li {
+      &:hover {
+        color: $color-daslgrey;
+        a {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  transition: transform 0.3s, box-shadow 0.1s;
+  &:hover {
+    z-index: 99;
+    box-shadow: 0 0 0 0.5em white, 0 0 0.3em 0.5em rgba($color-daslgrey, 0.9);
+  }
 }
