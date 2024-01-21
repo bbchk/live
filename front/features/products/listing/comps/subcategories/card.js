@@ -1,3 +1,4 @@
+import Image from "next/image";
 import s from "./card.module.scss";
 import Link from "next/link";
 
@@ -10,13 +11,13 @@ const SubcategoryCard = ({ category }) => {
       onClick={() => console.log(_id)}
     >
       <div className={`${s.card}`}>
-        <img
+        <Image
           src={image}
           width={100}
           height={100}
           alt="subcategory image "
           className={`${s.image}`}
-        ></img>
+        ></Image>
         <p className={`${s.name}`}> {name}</p>
       </div>
     </Link>

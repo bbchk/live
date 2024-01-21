@@ -1,49 +1,34 @@
 import { useState } from "react";
 import s from "./header.module.scss";
-
 import SignInModal from "../../../features/authentication/comps/auth/sign_in_modal";
 import SignUpModal from "../../../features/authentication/comps/auth/sign_up_modal";
-import Logo from "./comps/logo";
-import ProfilePopover from "./comps/profile_popover";
+
+import SignInPopOver from "./comps/sign_in_popover";
 import SearchBar from "./comps/search-bar";
+import { useSelector } from "react-redux";
+import Link from "next/link";
+import { CustomTooltip } from "root/comps/tooltip";
 
 const Header = () => {
+  const { user } = useSelector((state) => state.user);
+
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
   return (
     <>
-      <nav className={`navbar navbar-expand-sm ${s.navbar_container}`}>
-        <div className={` ${s.navbar}`}>
-          <div className={`${s.logo_container}`}>
-            <Logo />
-          </div>
-          <button
-            className={`navbar-toggler ${s.navbar_toggler}`}
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i className="bi bi-search fs-4"></i>
-          </button>
-
-          <div className={`order-sm-2 ${s.profile_popover_dfjs}`}>
-            <ProfilePopover
-              toggleSignInModal={() => setShowSignInModal(!showSignInModal)}
-              toggleSignUpModal={() => setShowSignUpModal(!showSignUpModal)}
-            />
-          </div>
-
-          <div
-            className={`${s.search_bar} collapse navbar-collapse order-sm-1`}
-            id="navbarSupportedContent"
-          >
-            <SearchBar />
-          </div>
-        </div>
+      <nav className={`navbar navbar-expand-sm ${s.header}`}>
+        <Link className={`${s.logo} navbar-brand`} href="/">
+          Живий світ
+        </Link>
+        <SearchBar />
+        {!user && (
+          <SignInPopOver
+            toggleSignInModal={() => setShowSignInModal(!showSignInModal)}
+            toggleSignUpModal={() => setShowSignUpModal(!showSignUpModal)}
+          />
+        )}
+        {user && <IconButtonGroup />}
 
         <SignInModal
           isOpen={showSignInModal}
@@ -54,6 +39,7 @@ const Header = () => {
             setShowSignInModal(!showSignUpModal);
           }}
         />
+
         <SignUpModal
           isOpen={showSignUpModal}
           toggle={() => {
@@ -70,3 +56,38 @@ const Header = () => {
 };
 
 export default Header;
+
+const IconButton = ({ href, children, tooltipText }) => {
+  return (
+    <CustomTooltip tooltipText={tooltipText}>
+      <Link className={`btn ${s.icon_btn}`} href={href}>
+        {children}
+      </Link>
+    </CustomTooltip>
+  );
+};
+
+const IconButtonGroup = () => {
+  return (
+    <div className={`order-sm-2 ${s.icon_btn_group}`}>
+      <IconButton
+        href={"/profile/personal_data"}
+        tooltipText={"Персональний кабінет"}
+      >
+        <i className={`bi bi-person-circle `} />
+      </IconButton>
+      <IconButton
+        href={"/profile/orders_list"}
+        tooltipText={"Список замовлень"}
+      >
+        <i className="bi bi-list-ul " />
+      </IconButton>
+      <IconButton href={"/profile/wish_list"} tooltipText={"Список бажаного"}>
+        <i className="bi bi-heart-fill " />
+      </IconButton>
+      <IconButton href={"/profile/cart"} tooltipText={"Кошик покупок"}>
+        <i className="bi bi-cart3 " />
+      </IconButton>
+    </div>
+  );
+};

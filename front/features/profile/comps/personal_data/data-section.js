@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useAuthContext } from "root/hooks/useAuthContext";
 import s from "./data.module.scss";
 import { Accordion, Form, Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const Data = () => {
-  const { user } = useAuthContext();
+  const user = useSelector((state) => state.user);
 
   const [firstName, setFirstName] = useState("");
   const [secondName, setSecondName] = useState("");

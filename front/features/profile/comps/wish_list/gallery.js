@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import { useAuthContext } from "root/hooks/useAuthContext";
 import s from "./gallery.module.scss";
 import ProductCard from "root/features/products/listing/comps/gallery/card";
 
 const Data = () => {
-  const { user } = useAuthContext();
-
   //todo save likedProducts to localStorage
   const [likedProducts, setLikedProducts] = useState("");
 

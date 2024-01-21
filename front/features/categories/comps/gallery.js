@@ -8,19 +8,13 @@ const Gallery = () => {
   const isOneDepthCategory = (category) => category.path.split(",").length == 1;
   // const byOrder = (category) => category.order.split(",").length == 1;
 
-  // console.log(
-  //   Array.from(categories)
-  //     .filter(isOneDepthCategory)
-  //     .sort((a, b) => a.order - b.order)
-  // );
-
   return (
     <>
       {categories && (
         <div id="categories" className={`${s.gallery}`}>
           <div className={`${s.header}`}>
             <h2>
-              <a href="#categories">Categories</a>
+              <a href="#categories">Категорії</a>
             </h2>
           </div>
           <div

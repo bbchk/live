@@ -45,6 +45,7 @@ const Products = () => {
   useEffect(() => {
     if (activeCategory != null && allProducts != null) {
       const activeProducts = getActiveProducts(allProducts, activeCategory);
+
       setActiveProducts(activeProducts);
       setIsLoading(false);
     }

@@ -1,0 +1,39 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+@import "root/node_modules/rfs/sass.sass";
+
+.sign_in_popover {
+  box-shadow: 0 0 5px 3px lightgrey;
+  --bs-popover-border-color: transparent !important;
+
+  font-family: $font-family-balsamiq-sans !important;
+  background-color: white;
+
+  .unsigned_popover {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 0.5rem;
+
+    p {
+      white-space: nowrap;
+      margin-bottom: 0;
+    }
+
+    .sign_in_button {
+      width: 100%;
+
+      @include font-size(1.5rem);
+      background-color: $color-bangreen;
+      color: $color-milk;
+
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      &:hover {
+        background-color: $color-dureen;
+      }
+      &:active {
+        color: $color-milk;
+      }
+    }
+  }
+}

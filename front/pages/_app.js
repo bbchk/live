@@ -10,7 +10,6 @@ import Header from "root/comps/layout/header/header";
 import Footer from "root/comps/layout/footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { AuthContextProvider } from "root/context/authContext";
 import dotenv from "dotenv";
 import { Provider } from "react-redux";
 import { store } from "root/store/store";
@@ -28,6 +27,7 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     if (typeof window !== "undefined") {
       require("bootstrap/dist/js/bootstrap");
+      require("@popperjs/core");
     }
   }, []);
 
@@ -38,12 +38,10 @@ export default function App({ Component, pageProps }) {
         <title> Зелений світ - Магазин добрив і зоотоварів</title>
       </Head>
       <Provider store={store}>
-        <AuthContextProvider>
-          {!excludedPaths.includes(router.pathname) && <Header />}
-          <FetchData />
-          <Component {...pageProps} />
-          {!excludedPaths.includes(router.pathname) && <Footer />}
-        </AuthContextProvider>
+        {!excludedPaths.includes(router.pathname) && <Header />}
+        <FetchData />
+        <Component {...pageProps} />
+        {!excludedPaths.includes(router.pathname) && <Footer />}
       </Provider>
     </div>
   );

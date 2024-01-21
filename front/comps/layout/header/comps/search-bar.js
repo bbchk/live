@@ -1,4 +1,4 @@
-import s from "./search-bar.module.scss";
+import s from "../header.module.scss";
 
 const SearchBar = () => {
   return (
@@ -8,6 +8,7 @@ const SearchBar = () => {
         type="search"
         placeholder="Знайти..."
         aria-label="Search"
+        disabled
       />
       {/* <button className={`btn ${s.search_button}`} type="submit">
         <i className="bi bi-search fs-4"></i>

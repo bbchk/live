@@ -1,0 +1,7 @@
+@use "root/styles/variables" as *;
+@use "root/styles/mixins" as *;
+@import "root/node_modules/rfs/sass.sass";
+
+.info {
+  @include text_daslgrey;
+}

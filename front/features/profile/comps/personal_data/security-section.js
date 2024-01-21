@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useAuthContext } from "root/hooks/useAuthContext";
 import s from "./security.module.scss";
 import { Accordion, Form, Button } from "react-bootstrap";
 import { InputField } from "./data-section";

@@ -7,7 +7,6 @@ const ProductGallery = ({ products }) => {
   // const { minMaxPrice, sortBy, activeFilters } = useActiveFiltersContext();
   const [activeProducts, setActiveProducts] = useState(products);
   const productsFilteredByChecks = useRef([]);
-  console.log(activeProducts);
 
   // //filter sort group
   // useEffect(() => {
@@ -41,7 +40,6 @@ const ProductGallery = ({ products }) => {
   // //filter checks
   // useEffect(() => {
   //   if (activeFilters && activeProducts) {
-  //     console.log(activeFilters);
   //     let filteredProducts = products;
 
   //     Object.keys(activeFilters).forEach((prop) => {
@@ -66,16 +64,14 @@ const ProductGallery = ({ products }) => {
 
   return (
     <div className="container row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 gx-3 gy-4">
-      {
-        // activeFilters &&
+      {activeProducts &&
         activeProducts.map((product) => {
           return (
             <div key={product._id} className="col">
               <ProductCard product={product} like={() => {}} isLiked={false} />
             </div>
           );
-        })
-      }
+        })}
     </div>
   );
 };

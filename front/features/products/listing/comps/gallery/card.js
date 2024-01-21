@@ -3,7 +3,7 @@ import Link from "next/link";
 import s from "./product-card.module.scss";
 
 const ProductCard = ({
-  product: { _id, name, imageUrl, price, category },
+  product: { _id, name, imageUrl, price },
   like,
   isLiked,
 }) => {
@@ -12,8 +12,12 @@ const ProductCard = ({
       className={`${s.product_card} `}
       role="button"
       tabIndex="0"
-      href={`/products/${category.path.replaceAll(",", "-")}/${_id}/about`}
-      onClick={() => console.log(name)}
+      href={"/"}
+      // href={`/products/${activeCategory.path.replaceAll(
+      //   ",",
+      //   "-"
+      // )}/${_id}/about`}
+      // onClick={() => console.log(name)}
     >
       <div
         className={`${s.like_button}`}

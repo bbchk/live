@@ -19,13 +19,15 @@ const Card = ({ category }) => {
     setSubcategories(subcategories.slice(0, 5));
   }, []);
 
+  console.log(category);
+
   return (
     <>
       {subcategories && (
         <Link href={`/products/${category.path}`} className={`${s.cat_card}`}>
           <Image
             className={``}
-            src={category.image}
+            src={category.imagePath}
             alt="Category image"
             width={100}
             height={100}
@@ -38,7 +40,7 @@ const Card = ({ category }) => {
               return (
                 <li key={_id}>
                   <Link href={`/products/${path.replaceAll(",", "-")}`}>
-                    {index == 4 ? `${name} ...` : `${name}`}
+                    {index == 4 ? `${name}` : `${name}`}
                   </Link>
                 </li>
               );

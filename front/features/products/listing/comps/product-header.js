@@ -11,7 +11,7 @@ const ProductHeader = ({ category }) => {
           <ol className="breadcrumb">
             <li className={`breadcrumb-item `}>
               <Link className="link" href="/">
-                <p>Home</p>
+                <p>Головна</p>
               </Link>
             </li>
             {category.path.split(",").map((pathElement, index, array) => {
