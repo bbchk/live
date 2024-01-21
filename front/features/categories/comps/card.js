@@ -19,8 +19,6 @@ const Card = ({ category }) => {
     setSubcategories(subcategories.slice(0, 5));
   }, []);
 
-  console.log(category);
-
   return (
     <>
       {subcategories && (
@@ -36,15 +34,17 @@ const Card = ({ category }) => {
           <h2 className={`${s.naming} `}>{category.name}</h2>
 
           <ul className={`${s.subcat_list}`}>
-            {subcategories.map(({ _id, path, name }, index) => {
-              return (
-                <li key={_id}>
-                  <Link href={`/products/${path.replaceAll(",", "-")}`}>
-                    {index == 4 ? `${name}` : `${name}`}
-                  </Link>
-                </li>
-              );
-            })}
+            {subcategories
+              .sort((a, b) => a.order - b.order)
+              .map(({ _id, path, name }, index) => {
+                return (
+                  <li key={_id}>
+                    <Link href={`/products/${path.replaceAll(",", "-")}`}>
+                      {index == 4 ? `${name}` : `${name}`}
+                    </Link>
+                  </li>
+                );
+              })}
           </ul>
         </Link>
       )}

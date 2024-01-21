@@ -26,6 +26,17 @@
     }
   }
 
+  background: radial-gradient(
+      5% 50% at 0% 50%,
+      #c8e59b -50%,
+      rgba(252, 255, 247, 0) 100%
+    ),
+    radial-gradient(
+      5% 50% at 100% 50%,
+      #c8e59b -50%,
+      rgba(252, 255, 247, 0) 100%
+    );
+
   .decor_line {
     @include decor_line($color-nyanza);
   }
