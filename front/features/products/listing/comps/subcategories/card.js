@@ -8,14 +8,13 @@ const SubcategoryCard = ({ category }) => {
   return (
     <Link
       href={`/products/${category.path.replaceAll(",", "-")}`}
-      onClick={() => console.log(_id)}
       className={`${s.card}`}
     >
       <Image
         src={imagePath}
         width={100}
         height={100}
-        alt="subcategory image "
+        alt="subcategory image"
         className={`${s.image}`}
       />
       <p className={`${s.name}`}> {name}</p>
