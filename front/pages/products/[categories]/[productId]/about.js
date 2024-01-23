@@ -17,10 +17,14 @@ const Product = () => {
   //todo search in active Products collection, not in all the products
   const { products: allProducts } = useSelector((state) => state.products);
   const [activeProduct, setActiveProduct] = useState();
+  const [activeCategory, setActiveCategory] = useState();
 
   useEffect(() => {
     if (allProducts) {
       const productId = router.query.productId;
+      const category = router.query.categories;
+      console.log(category);
+      setActiveCategory(category);
       const activeProduct = allProducts.find(
         (product) => product._id === productId
       );
@@ -35,7 +39,7 @@ const Product = () => {
           {/* <Decor /> */}
 
           <div className="">
-            <Breadcrumbs category={activeProduct.category} />
+            <Breadcrumbs category={activeCategory} />
             <Navigation
               activePage={"about"}
               productId={router.query.productId}

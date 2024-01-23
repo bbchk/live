@@ -12,7 +12,7 @@ const Breadcrumbs = ({ category }) => {
               <p>Головна</p>
             </Link>
           </li>
-          {category.path.split(",").map((pathElement, index, array) => {
+          {/* {category.path.split(",").map((pathElement, index, array) => {
             return (
               <li
                 className={`breadcrumb-item ${
@@ -25,7 +25,7 @@ const Breadcrumbs = ({ category }) => {
                 </Link>
               </li>
             );
-          })}
+          })} */}
         </ol>
       </nav>
     </>

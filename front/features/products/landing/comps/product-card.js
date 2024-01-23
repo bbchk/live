@@ -11,7 +11,7 @@ const ProductCard = ({
     category,
     price,
     description,
-    imageUrl,
+    images,
     weight,
     left,
     starRating,
@@ -23,7 +23,7 @@ const ProductCard = ({
       <div className={`${s.product_banner}`}>
         <div className={`${s.frame}`}>
           <Image
-            src={"/logo.svg"}
+            src={images && images[0]}
             alt="Picture of the product"
             width={500}
             height={500}
@@ -33,6 +33,9 @@ const ProductCard = ({
         <div className={`${s.info}`}>
           <div className={`${s.header}`}>
             <p className={`${s.code}`}>Код: {code}</p>
+            {category.map((category) => {
+              return <p key={category._id}>{category.path}</p>;
+            })}
             <p className={`${s.name}`}>{name}</p>
             <div className={`${s.splitter}`}></div>
           </div>

@@ -39,6 +39,10 @@
     .icon_btn {
       font-size: 2rem;
       color: inherit;
+
+      &:hover {
+        @include icon_on_hover;
+      }
     }
   }
 

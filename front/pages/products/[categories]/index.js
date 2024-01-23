@@ -76,7 +76,12 @@ const Products = () => {
                 // <ProductFilter products={productsref.current} />
               )} */}
             </div>
-            {activeProducts && <ProductGallery products={activeProducts} />}
+            {activeProducts && (
+              <ProductGallery
+                products={activeProducts}
+                activeCategory={activeCategory}
+              />
+            )}
           </div>
         </div>
       )}

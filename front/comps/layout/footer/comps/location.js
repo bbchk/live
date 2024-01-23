@@ -4,7 +4,7 @@ const Location = () => {
   return (
     <div>
       <h6>
-        <i class="bi bi-pin-map-fill"></i>
+        <i className="bi bi-pin-map-fill"></i>
         <span>Мапа</span>
       </h6>
       <iframe

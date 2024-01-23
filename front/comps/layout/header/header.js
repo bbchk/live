@@ -74,7 +74,7 @@ const IconButtonGroup = () => {
         href={"/profile/personal_data"}
         tooltipText={"Персональний кабінет"}
       >
-        <i className={`bi bi-person-circle `} />
+        <i className={`bi bi-person-cirіcle `} />
       </IconButton>
       <IconButton
         href={"/profile/orders_list"}

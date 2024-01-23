@@ -141,3 +141,16 @@
   line-height: 100%;
   display: block;
 }
+
+@mixin truncate_lines_after($number_of_lines, $line_height: 1.2rem) {
+  display: -webkit-box;
+  -webkit-line-clamp: $number_of_lines; /* Number of lines to display before truncating */
+  -webkit-box-orient: vertical;
+  line-height: $line_height; /* adjust this as needed */
+  max-height: $line_height * $number_of_lines; /* height is line-height times the number of lines */
+  overflow: hidden;
+}
+
+@mixin icon_on_hover() {
+  background-color: rgba($color-daslgrey, 0.1);
+}

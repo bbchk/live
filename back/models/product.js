@@ -1,25 +1,26 @@
 import { Schema, model } from "mongoose";
 
+//todo make certain fields required false
 const productSchema = new Schema(
   {
     brand: {
       type: String,
-      required: true,
+      required: false,
     },
     name: {
       type: String,
-      required: true,
+      required: false,
     },
     category: [
       {
         type: Schema.Types.ObjectId,
         ref: "category",
-        required: true,
+        required: false,
       },
     ],
     price: {
       type: Number,
-      required: true,
+      required: false,
     },
     characteristics: {
       type: Map,
@@ -29,22 +30,22 @@ const productSchema = new Schema(
     description: {
       type: Map,
       of: String,
-      required: true,
+      required: false,
     },
     images: {
       type: [String],
-      required: true,
+      required: false,
     },
     left: {
       type: Number,
-      required: true,
+      required: false,
     },
     starRating: {
       type: Number,
       required: false,
     },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 export default model("Product", productSchema);

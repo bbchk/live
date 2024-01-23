@@ -1,55 +1,77 @@
-import StarRating from "root/comps/star-rating";
 import Link from "next/link";
-import s from "./product-card.module.scss";
+import s from "./card.module.scss";
+import Image from "next/image";
 
 const ProductCard = ({
-  product: { _id, name, imageUrl, price },
+  product: { _id, name, images, price },
+  activeCategory,
   like,
   isLiked,
 }) => {
+  const productUrl = `/products/${activeCategory.path.replaceAll(
+    ",",
+    "-"
+  )}/${_id}`;
+
   return (
-    <Link
-      className={`${s.product_card} `}
-      role="button"
-      tabIndex="0"
-      href={"/"}
-      // href={`/products/${activeCategory.path.replaceAll(
-      //   ",",
-      //   "-"
-      // )}/${_id}/about`}
-      // onClick={() => console.log(name)}
-    >
-      <div
-        className={`${s.like_button}`}
-        role="button"
+    <div className={`${s.product_card} `}>
+      <button
+        className={`${s.like_button} btn`}
+        // onClick={() => like(_id)}
         onClick={() => like(_id)}
       >
-        <i
-          className={`bi bi-heart-fill ${s.like_icon} ${
-            isLiked ? s.isLiked : ""
-          }`}
-        ></i>
-      </div>
+        {!isLiked && <i className="bi bi-heart" />}
+        {isLiked && <i className={`bi bi-heart-fill ${s.liked}`} />}
+      </button>
 
-      <div className={`${s.image_body}`}>
-        <img className={`${s.image}`} src={imageUrl} alt="category" />
-        <StarRating className={"medium"} />
-      </div>
+      <Link href={`${productUrl}/about`} className={`${s.image_link}`}>
+        <Image
+          className={`${s.image}`}
+          src={
+            //todo implement displaying many images on product
+            images && images[0]
+          }
+          alt="product image"
+          width={100}
+          height={100}
+          priority
+        />
+      </Link>
 
-      <div className={`${s.info}`}>
-        <h4 className={` ${s.name}  ${s.truncate_overflow}`}>{name}</h4>
+      <Link href={`${productUrl}/about`} className={`${s.name}`}>
+        {name}
+      </Link>
 
-        <div className={`${s.buy_area}`}>
-          <p className={`${s.price}`}>
-            {price} <span>₴</span>
-          </p>
-          <button className={` btn ${s.buy_button}`}>
-            <i className="bi bi-cart4"></i>
-          </button>
-        </div>
+      <Link href={`${productUrl}/reviews`} className={`${s.rating}`}>
+        <StarRating />
+        <p className={`${s.amount_reviews}`}>
+          <i className="bi bi-chat-left-text"></i>
+          <span>{10}</span>
+        </p>
+      </Link>
+
+      <div className={`${s.buy_info}`}>
+        <p className={`${s.price}`}>
+          {price} <span>₴</span>
+        </p>
+
+        <button
+          className={`${s.buy_button}`}
+          //  onClick={addProductToCart}
+        >
+          <i className="bi bi-cart4"></i>
+        </button>
       </div>
-    </Link>
+    </div>
   );
 };
 
 export default ProductCard;
+
+const StarRating = ({ ratingNumber }) => {
+  let starArray = [];
+  let star = <i className={`bi bi-star-fill  ${s.star}`} />;
+  starArray.push(...new Array(5).fill(star));
+
+  return <div className={`${s.stars}`}>{starArray}</div>;
+};

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import ProductCard from "./card";
 // import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
 
-const ProductGallery = ({ products }) => {
+const ProductGallery = ({ products, activeCategory }) => {
   // const { minMaxPrice, sortBy, activeFilters } = useActiveFiltersContext();
   const [activeProducts, setActiveProducts] = useState(products);
   const productsFilteredByChecks = useRef([]);
@@ -68,7 +68,12 @@ const ProductGallery = ({ products }) => {
         activeProducts.map((product) => {
           return (
             <div key={product._id} className="col">
-              <ProductCard product={product} like={() => {}} isLiked={false} />
+              <ProductCard
+                product={product}
+                activeCategory={activeCategory}
+                like={() => {}}
+                isLiked={false}
+              />
             </div>
           );
         })}
