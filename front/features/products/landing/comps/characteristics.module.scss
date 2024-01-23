@@ -2,12 +2,18 @@
 @use "./styles/mixins" as *;
 
 .characteristics {
-  @include text_daslgrey;
+  color: $color-daslgrey;
+  font-family: $font-family-balsamiq-sans;
   padding: 2em;
 
   .title {
     width: fit-content;
-    @include link($color-medbud, $color-nyanza, $color-bangreen, $color-medbud);
+    @include underline(
+      $color-medbud,
+      $color-nyanza,
+      $color-bangreen,
+      $color-medbud
+    );
     cursor: pointer;
   }
 

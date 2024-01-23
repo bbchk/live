@@ -4,7 +4,8 @@
 .navigation {
   .link_container {
     .link {
-      @include text_daslgrey;
+      color: $color-daslgrey;
+      font-family: $font-family-balsamiq-sans;
     }
   }
 }

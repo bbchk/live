@@ -4,7 +4,8 @@
 .description {
   padding: 2em;
   // font-size: 2em;
-  @include text_daslgrey;
+  color: $color-daslgrey;
+  font-family: $font-family-balsamiq-sans;
 
   ul {
     list-style-type: disc;
@@ -36,12 +37,12 @@
 
   .title {
     width: fit-content;
-    @include link($color-medbud, $color-nyanza, $color-bangreen, $color-medbud);
+    // @include link($color-medbud, $color-nyanza, $color-bangreen, $color-medbud);
     cursor: pointer;
   }
 
   .splitter {
-    // @include splitter;
+    // @include decor_line($color-alabaster);
   }
 
   .text {

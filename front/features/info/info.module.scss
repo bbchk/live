@@ -3,5 +3,6 @@
 @import "root/node_modules/rfs/sass.sass";
 
 .info {
-  @include text_daslgrey;
+  color: $color-daslgrey;
+  font-family: $font-family-balsamiq-sans;
 }

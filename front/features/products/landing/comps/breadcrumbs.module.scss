@@ -7,5 +7,6 @@
   //   background-position: 0 100%;
   //   background-repeat: no-repeat;
 
-  @include text_daslgrey;
+  color: $color-daslgrey;
+  font-family: $font-family-balsamiq-sans;
 }

@@ -18,7 +18,8 @@ $radius: 0.7rem;
 
   background-color: $color-white;
 
-  @include text_daslgrey;
+  color: $color-daslgrey;
+  font-family: $font-family-balsamiq-sans;
 
   img {
     object-fit: cover;

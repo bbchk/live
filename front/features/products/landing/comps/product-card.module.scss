@@ -11,7 +11,8 @@ $padding-lg: 3rem;
 $name-font-size: 2rem;
 
 .product_banner {
-  @include text_daslgrey;
+  color: $color-daslgrey;
+  font-family: $font-family-balsamiq-sans;
 
   display: flex;
   gap: 2rem;
@@ -62,14 +63,15 @@ $name-font-size: 2rem;
         right: $border-sm;
 
         width: 120%;
-        @include splitter;
+        @include decor_line($color-alabaster);
       }
       .name {
         padding: 1em 0 0 1em;
         font-weight: bold;
         font-size: $name-font-size;
 
-        @include text_daslgrey;
+        color: $color-daslgrey;
+        font-family: $font-family-balsamiq-sans;
       }
     }
 

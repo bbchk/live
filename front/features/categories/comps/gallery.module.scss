@@ -13,12 +13,6 @@
         font-family: $font-family-balsamiq-sans;
         @include font-size(2.5rem);
         color: $color-daslgrey;
-        @include link(
-          $color-medbud,
-          $color-nyanza,
-          $color-bangreen,
-          $color-medbud
-        );
       }
     }
 

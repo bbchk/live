@@ -53,7 +53,8 @@
 
       i,
       p {
-        @include text_daslgrey;
+        color: $color-daslgrey;
+        font-family: $font-family-balsamiq-sans;
       }
     }
 
