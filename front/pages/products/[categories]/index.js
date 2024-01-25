@@ -11,23 +11,19 @@ import { useGetActiveProducts } from "root/hooks/useGetActiveProducts";
 import { useGetActiveCategory } from "/hooks/useGetActiveCategory";
 import SubcategoriesGallery from "root/features/products/listing/comps/subcategories/gallery";
 import { useGetSubcategoriesOf } from "../../../hooks/useGetSubcategoriesOf";
+import { useFindCategoryBySlugPath } from "../../../hooks/useFindCategoryByPath";
 
 const Products = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [activeProducts, setActiveProducts] = useState(null);
 
-  const { getSubcategoriesOf } = useGetSubcategoriesOf();
-
-  const { lastActiveCategory: activeCategory } = useSelector(
-    (state) => state.categories
-  );
-
   const { products: allProducts } = useSelector((state) => state.products);
-  const { categories: allCategories } = useSelector(
-    (state) => state.categories
-  );
+  const { categories: allCategories, lastActiveCategory: activeCategory } =
+    useSelector((state) => state.categories);
 
+  const { getSubcategoriesOf } = useGetSubcategoriesOf();
   const { getActiveProducts } = useGetActiveProducts();
+
   //setting active products
   useEffect(() => {
     setIsLoading(true);
@@ -64,9 +60,7 @@ const Products = () => {
 
           <div className="d-flex ms-3 me-5">
             <div className="me-3">
-              {/* {productsref.current && (
-                // <ProductFilter products={productsref.current} />
-              )} */}
+              {/* <ProductFilter products={activeProducts} /> */}
             </div>
 
             <ProductGallery

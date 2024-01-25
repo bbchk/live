@@ -4,9 +4,9 @@ import Description from "root/features/products/landing/comps/description";
 import ProductCard from "root/features/products/landing/comps/product-card";
 import Navigation from "root/features/products/landing/comps/navigation";
 
-import Characteristics from "root/features/products/landing/comps/characteristics";
+import Characteristics from "root/features/products/landing/comps/characteristics/characteristics";
 import ReviewsList from "root/features/products/landing/comps/reviews-list";
-import Decor from "root/features/products/landing/comps/decor";
+
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { makeSlug } from "root/utils/slugify";
@@ -26,7 +26,7 @@ const About = () => {
     <>
       {activeCategory && activeProduct && (
         <>
-          {/* <Decor /> */}
+          {/* <DecorLine /> */}
           <div className="">
             <Breadcrumbs activeCategory={activeCategory} />
             <Navigation

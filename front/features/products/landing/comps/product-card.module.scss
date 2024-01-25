@@ -26,10 +26,12 @@ $name-font-size: 2rem;
     border-radius: 0 $radius $radius 0;
     border: 1rem solid $color-alabaster;
     border-left: none;
+    box-shadow: 0 0 0 2px $color-alabaster;
+    z-index: -32;
 
     .image {
       padding: 1em;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 

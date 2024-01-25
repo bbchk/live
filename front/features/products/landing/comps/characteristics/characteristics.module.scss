@@ -1,0 +1,37 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.characteristics {
+  color: $color-daslgrey;
+  font-family: $font-family-balsamiq-sans;
+
+  padding: 2rem;
+
+  .title {
+    cursor: pointer;
+    text-wrap: word;
+
+    margin-bottom: 3rem;
+  }
+
+  .item {
+    display: flex;
+
+    margin-top: 0.5rem;
+
+    line-height: 100%;
+    font-size: 1.3em;
+
+    .key_container {
+      display: flex;
+      width: 300px;
+
+      .underline {
+        border-bottom: 2px solid $color-medbud;
+
+        flex-grow: 1;
+        margin: 0 0.5rem;
+      }
+    }
+  }
+}

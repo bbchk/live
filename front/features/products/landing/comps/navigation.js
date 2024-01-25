@@ -16,7 +16,7 @@ const Navigation = ({ activePage, productSlug }) => {
             aria-current="page"
             href={`/products/${router.query.categories}/${productSlug}/about`}
           >
-            All about the product
+            Усе про товар
           </Link>
         </li>
         <li className={`nav-item ${s.link_container}`}>
@@ -26,19 +26,19 @@ const Navigation = ({ activePage, productSlug }) => {
             }`}
             href={`/products/${router.query.categories}/${productSlug}/characteristics`}
           >
-            Characteristics
+            Характеристики
           </Link>
         </li>
-        <li className={`nav-item ${s.link_container}`}>
+        {/* <li className={`nav-item ${s.link_container}`}>
           <Link
             className={`nav-link ${s.link} ${
               activePage === "reviews" ? "active" : ""
             }`}
             href={`/products/${router.query.categories}/${productSlug}/reviews`}
           >
-            Reviews
+            Відгуки
           </Link>
-        </li>
+        </li> */}
       </ul>
     </>
   );
