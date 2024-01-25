@@ -12,6 +12,7 @@ import { useGetActiveCategory } from "/hooks/useGetActiveCategory";
 import SubcategoriesGallery from "root/features/products/listing/comps/subcategories/gallery";
 import { useGetSubcategoriesOf } from "../../../hooks/useGetSubcategoriesOf";
 import { useFindCategoryBySlugPath } from "../../../hooks/useFindCategoryByPath";
+import axios from "axios";
 
 const Products = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +36,40 @@ const Products = () => {
       setIsLoading(false);
     }
   }, [activeCategory, allProducts]);
+
+  useEffect(() => {
+    function foo() {
+      if (activeProducts) {
+        console.log(activeProducts.length);
+        activeProducts.forEach(async (p) => {
+          let lengthidx = 0;
+          const category = p.category.reduce(
+            (a, b) => (a.length > b.length ? a : b),
+            {}
+          );
+
+          let newProduct = { ...p, category: [category._id] };
+          console.log(newProduct);
+
+          const token =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTRlMmE4ZGU4MmU5OTZjM2JhOGRjNTEiLCJmaXJzdE5hbWUiOiJhbm90aGVyIiwic2Vjb25kTmFtZSI6IkJ1Y2hvayIsImVtYWlsIjoiYm9kaWFuYnVjaG9rQGdtYWlsLmNvbSIsImlhdCI6MTY5OTYyMTYyOX0.3HiuXKQozAYbhdp2kmAy9_yGah47GjGIaHVWLOD638s";
+          const config = {
+            headers: { Authorization: `Bearer ${token}` },
+          };
+
+          // const res = await axios
+          //   .patch(`/products/${p._id}`, newProduct, config)
+          //   .then((response) => {
+          //     console.log(response.data);
+          //   })
+          //   .catch((error) => {
+          //     console.error(error);
+          //   });
+        });
+      }
+    }
+    foo();
+  }, [activeProducts]);
 
   return (
     <>

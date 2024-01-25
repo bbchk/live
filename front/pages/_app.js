@@ -35,12 +35,14 @@ export default function App({ Component, pageProps }) {
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title> Зелений світ - Магазин добрив і зоотоварів</title>
+        <title> Живий світ - Магазин зоотоварів і товарів для дому </title>
       </Head>
       <Provider store={store}>
-        {!excludedPaths.includes(router.pathname) && <Header />}
-        <FetchData />
-        <Component {...pageProps} />
+        <div className="min-vh-80 mb-3">
+          {!excludedPaths.includes(router.pathname) && <Header />}
+          <FetchData />
+          <Component {...pageProps} />
+        </div>
         {!excludedPaths.includes(router.pathname) && <Footer />}
       </Provider>
     </div>

@@ -14,8 +14,9 @@ export const useGetActiveProducts = () => {
     // });
 
     const activeProducts = allProducts.filter((p) => {
-      const activeCategory = p.category.find((cat) =>
-        cat.path.includes(pathString)
+      const activeCategory = p.category.find(
+        (cat) => cat.path.includes(pathString)
+        // (cat) => cat.path === "Для Собак"
       );
       if (activeCategory) {
         // p.activeCategory = activeCategory;
