@@ -15,8 +15,8 @@ import { Provider } from "react-redux";
 import { store } from "root/store/store";
 import { useDispatch } from "react-redux";
 
-import { fetchProductsFromDB } from "root/store/productsSlice";
-import { fetchCategoriesFromDB } from "root/store/categoriesSlice";
+import { getProductsInfo } from "root/store/productsSlice";
+import { getCategoriesInfo } from "root/store/categoriesSlice";
 
 dotenv.config();
 
@@ -55,8 +55,8 @@ function FetchData() {
 
   useEffect(() => {
     if (!fetched) {
-      dispatch(fetchProductsFromDB());
-      dispatch(fetchCategoriesFromDB());
+      dispatch(getProductsInfo());
+      dispatch(getCategoriesInfo());
       setFetched(true);
     }
   }, [dispatch, fetched]);

@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 
-import Breadcrumbs from "root/features/products/landing/comps/breadcrumbs";
 import Description from "root/features/products/landing/comps/description";
 import ProductCard from "root/features/products/landing/comps/product-card";
 import Navigation from "root/features/products/landing/comps/navigation";
@@ -10,39 +9,29 @@ import ReviewsList from "root/features/products/landing/comps/reviews-list";
 import Decor from "root/features/products/landing/comps/decor";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { makeSlug } from "root/utils/slugify";
+import Breadcrumbs from "root/comps/breadcrumbs";
 
-const Product = () => {
-  const router = useRouter();
-
+const About = () => {
   //todo search in active Products collection, not in all the products
-  const { products: allProducts } = useSelector((state) => state.products);
-  const [activeProduct, setActiveProduct] = useState();
-  const [activeCategory, setActiveCategory] = useState();
 
-  useEffect(() => {
-    if (allProducts) {
-      const productId = router.query.productId;
-      const category = router.query.categories;
-      console.log(category);
-      setActiveCategory(category);
-      const activeProduct = allProducts.find(
-        (product) => product._id === productId
-      );
-      setActiveProduct(activeProduct);
-    }
-  }, [allProducts]);
+  const { lastActiveProduct: activeProduct } = useSelector(
+    (state) => state.products
+  );
+  const { lastActiveCategory: activeCategory } = useSelector(
+    (state) => state.categories
+  );
 
   return (
     <>
-      {activeProduct && (
+      {activeCategory && activeProduct && (
         <>
           {/* <Decor /> */}
-
           <div className="">
-            <Breadcrumbs category={activeCategory} />
+            <Breadcrumbs activeCategory={activeCategory} />
             <Navigation
               activePage={"about"}
-              productId={router.query.productId}
+              productSlug={makeSlug(activeProduct.name)}
             />
           </div>
 
@@ -62,4 +51,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default About;

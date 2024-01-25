@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import s from "./navigation.module.scss";
 
-const Navigation = ({ activePage, productId }) => {
+const Navigation = ({ activePage, productSlug }) => {
   const router = useRouter();
 
   return (
@@ -14,7 +14,7 @@ const Navigation = ({ activePage, productId }) => {
               activePage === "about" ? "active" : ""
             }`}
             aria-current="page"
-            href={`/products/${router.query.categories}/${productId}/about`}
+            href={`/products/${router.query.categories}/${productSlug}/about`}
           >
             All about the product
           </Link>
@@ -24,7 +24,7 @@ const Navigation = ({ activePage, productId }) => {
             className={`nav-link ${s.link} ${
               activePage === "characteristics" ? "active" : ""
             }`}
-            href={`/products/${router.query.categories}/${productId}/characteristics`}
+            href={`/products/${router.query.categories}/${productSlug}/characteristics`}
           >
             Characteristics
           </Link>
@@ -34,7 +34,7 @@ const Navigation = ({ activePage, productId }) => {
             className={`nav-link ${s.link} ${
               activePage === "reviews" ? "active" : ""
             }`}
-            href={`/products/${router.query.categories}/${productId}/reviews`}
+            href={`/products/${router.query.categories}/${productSlug}/reviews`}
           >
             Reviews
           </Link>

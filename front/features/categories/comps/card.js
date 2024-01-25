@@ -1,8 +1,10 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import s from "./card.module.scss";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { setActiveCategory } from "root/store/categoriesSlice";
+import { makeSlug } from "root/utils/slugify";
 
 const Card = ({ category }) => {
   const [subcategories, setSubcategories] = useState(null);
@@ -19,19 +21,32 @@ const Card = ({ category }) => {
     setSubcategories(subcategories.slice(0, 5));
   }, []);
 
+  const dispatch = useDispatch();
+  function saveActiveCategory() {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("activeCategory", JSON.stringify(category));
+    }
+    dispatch(setActiveCategory(category));
+  }
+
   return (
     <>
       {subcategories && (
-        <Link href={`/products/${category.path}`} className={`${s.cat_card}`}>
-          <Image
-            className={``}
-            src={category.imagePath}
-            alt="Category image"
-            width={100}
-            height={100}
-            priority
-          />
-          <h2 className={`${s.naming} `}>{category.name}</h2>
+        <div className={`${s.cat_card}`}>
+          <Link
+            href={`/products/${makeSlug(category.path)}`}
+            onClick={saveActiveCategory}
+          >
+            <Image
+              className={``}
+              src={category.imagePath}
+              alt="Category image"
+              width={100}
+              height={100}
+              priority
+            />
+            <h2 className={`${s.naming} `}>{category.name}</h2>
+          </Link>
 
           <ul className={`${s.subcat_list}`}>
             {subcategories
@@ -39,14 +54,14 @@ const Card = ({ category }) => {
               .map(({ _id, path, name }, index) => {
                 return (
                   <li key={_id}>
-                    <Link href={`/products/${path.replaceAll(",", "-")}`}>
+                    <Link href={`/products/${makeSlug(path)}`}>
                       {index == 4 ? `${name}` : `${name}`}
                     </Link>
                   </li>
                 );
               })}
           </ul>
-        </Link>
+        </div>
       )}
     </>
   );

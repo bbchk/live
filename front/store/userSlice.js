@@ -8,7 +8,7 @@ export const userSlice = createSlice({
     signIn: (state, action) => {
       state.user = action.payload;
     },
-    singOut: (state) => {
+    signOut: (state) => {
       state.user = null;
     },
     //todo

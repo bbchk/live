@@ -4,22 +4,7 @@ import SubcategoryCard from "./card";
 
 import s from "./gallery.module.scss";
 
-const SubcategoriesGallery = ({ category }) => {
-  const { categories } = useSelector((state) => state.categories);
-
-  const [subcategories, setSubcategories] = useState([]);
-
-  //todo unefficient
-  useEffect(() => {
-    const pathString = category.path;
-    //looking for subcategories of current category
-    const regex = new RegExp(`^${pathString},[^,]+$`);
-    const subcategories = categories.filter((c) => {
-      return c.path.match(regex) && c.path !== pathString;
-    });
-    setSubcategories(subcategories);
-  }, []);
-
+const SubcategoriesGallery = ({ subcategories }) => {
   return (
     <>
       {subcategories && (
