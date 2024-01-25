@@ -40,7 +40,10 @@ const About = () => {
             <div className="d-flex">
               <div className="w-50">
                 <Description product={activeProduct} />
-                <Characteristics product={activeProduct} />
+                <Characteristics
+                  title={"Характеристики:"}
+                  product={activeProduct}
+                />
               </div>
               {/* <ReviewsList /> */}
             </div>

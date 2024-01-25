@@ -31,11 +31,11 @@ const Product = () => {
           </div>
           <DecorLine />
           <div className="container">
-            <h2 className="daslgrey balsico  mt-2">
-              <a href="#characteristics">{`Характеристики ${activeProduct.name}`}</a>
-            </h2>
             <div className="d-flex justify-content-between">
-              <Characteristics product={activeProduct} />
+              <Characteristics
+                title={`Характеристики ${activeProduct.name}`}
+                product={activeProduct}
+              />
               <div className="d-flex flex-column gap-2">
                 <SmallCard product={activeProduct} />
                 <SmallBuyArea product={activeProduct} />
