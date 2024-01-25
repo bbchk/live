@@ -8,10 +8,11 @@ const Navigation = ({ activePage, productSlug }) => {
   return (
     <>
       <ul className={`nav nav-underline mt-4 ${s.navigation}`}>
+        <div className={`${s.decor_line}`}></div>
         <li className={`nav-item ms-5 ${s.link_container}`}>
           <Link
             className={`nav-link ${s.link}  ${
-              activePage === "about" ? "active" : ""
+              activePage === "about" ? s.active : ""
             }`}
             aria-current="page"
             href={`/products/${router.query.categories}/${productSlug}/about`}
@@ -22,7 +23,7 @@ const Navigation = ({ activePage, productSlug }) => {
         <li className={`nav-item ${s.link_container}`}>
           <Link
             className={`nav-link ${s.link} ${
-              activePage === "characteristics" ? "active" : ""
+              activePage === "characteristics" ? s.active : ""
             }`}
             href={`/products/${router.query.categories}/${productSlug}/characteristics`}
           >

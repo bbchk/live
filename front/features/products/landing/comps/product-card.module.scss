@@ -24,9 +24,8 @@ $name-font-size: 2rem;
     flex: 1 1 45%;
 
     border-radius: 0 $radius $radius 0;
-    border: 1rem solid $color-alabaster;
+    // border: 1rem solid $color-alabaster;
     border-left: none;
-    box-shadow: 0 0 0 2px $color-alabaster;
     z-index: -32;
 
     .image {
