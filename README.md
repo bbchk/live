@@ -96,10 +96,10 @@ Design made in [Figma](figma.com/)<br>
 Here is [link](https://www.figma.com/file/Qb3fKAMJmdfCwmsXd3jcSD/Live-world?type=design&node-id=0%3A1&mode=design&t=qYGwGJ9NwCYA879K-1) to design file of the project 
 
 ## 🔷 How to start application locally?
-🔹 open 2 terminals in following paths: live/front and live/back
-🔹 write `npm i` in every terminal to install dependencies
-🔹 write `npm run dev` in every terminal to start front and back applications
-🔹 write localhost:3000 in browser to display web application locally (or on other port, if 3000 was busy)
+🔹 open 2 terminals in following paths: live/front and live/back<br>
+🔹 write `npm i` in every terminal to install dependencies<br>
+🔹 write `npm run dev` in every terminal to start front and back applications<br>
+🔹 write localhost:3000 in browser to display web application locally (or on other port, if 3000 was busy)<br>
 
 
 ## 🔷 Helpful links
