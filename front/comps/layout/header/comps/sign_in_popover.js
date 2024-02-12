@@ -59,7 +59,11 @@ const SignInPopOver = ({ toggleSignInModal, toggleSignUpModal }) => {
 
           <p>
             <span>Не зареєстровані? </span>
-            <Link href="/" onClick={handleSignUp} className="icon-link">
+            <Link
+              href="/"
+              onClick={handleSignUp}
+              className={`${s.sign_up} icon-link`}
+            >
               Зареєструватись
             </Link>
           </p>

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:4000";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Header from "root/comps/layout/header/header";
 import Footer from "root/comps/layout/footer/footer";
