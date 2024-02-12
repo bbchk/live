@@ -20,32 +20,34 @@ import s from "./star-rating.module.scss";
 // `;
 
 const StarRating = ({ score, fontSize, named, gap }) => {
-  //   fontSize = fontSize?.replace(/[^0-9.]/g, "");
-  //   gap = gap?.replace(/[^0-9.]/g, "");
+  fontSize = fontSize?.replace(/[^0-9.]/g, "");
+  gap = gap?.replace(/[^0-9.]/g, "");
 
-  //   const stars =
-  //   ["Bad", "Not Bad", "Ok", "Good", "Wonderful"].forEach((scoreName, index) => {
-  //     stars.push(
-  //       <div className="icon-link d-flex flex-column" key={index}>
-  //         <i
-  //           className={`bi bi-star-fill ${score > 0 ? s.checked : ""} ${s.star}`}
-  //         ></i>
-  //         <p>{scoreName}</p>
-  //       </div>
-  //     );
-  //     --score;
-  //   });
+  const stars = ["Bad", "Not Bad", "Ok", "Good", "Wonderful"].forEach(
+    (scoreName, index) => {
+      stars.push(
+        <div className="icon-link d-flex flex-column" key={index}>
+          <i
+            className={`bi bi-star-fill ${score > 0 ? s.checked : ""} ${
+              s.star
+            }`}
+          ></i>
+          <p>{scoreName}</p>
+        </div>
+      );
+      --score;
+    }
+  );
 
   return (
-    // <StyledStarRating
-    //   fontSize={fontSize}
-    //   gap={gap}
-    //   named={named}
-    //   className={`${s.star_rating}`}
-    // >
-    //   {stars}
-    // </StyledStarRating>
-    <></>
+    <StyledStarRating
+      fontSize={fontSize}
+      gap={gap}
+      named={named}
+      className={`${s.star_rating}`}
+    >
+      {stars}
+    </StyledStarRating>
   );
 };
 

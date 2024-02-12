@@ -1,0 +1,8 @@
+@use "root/styles/variables" as *;
+@use "root/styles/mixins" as *;
+@import "root/node_modules/rfs/sass.sass";
+
+.info {
+  color: $color-daslgrey;
+  font-family: $font-family-balsamiq-sans;
+}

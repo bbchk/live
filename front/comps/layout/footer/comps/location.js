@@ -2,10 +2,10 @@ import s from "../footer.module.scss";
 
 const Location = () => {
   return (
-    <>
+    <div>
       <h6>
-        <i className="bi bi-geo-alt-fill"></i>
-        <span>Де нас знайти?</span>
+        <i className="bi bi-pin-map-fill"></i>
+        <span>Мапа</span>
       </h6>
       <iframe
         className={`${s.map}`}
@@ -14,7 +14,7 @@ const Location = () => {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       ></iframe>
-    </>
+    </div>
   );
 };
 

@@ -1,3 +1,7 @@
+<p align="center">
+  <a href='https://github.com/bbuukk/gra'><img src="front/public/logo.svg" width="100" align="middle"></a>
+</p>
+
 <!--HOW TO WRITE COOL README FILE TUTORIAL https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/-->
 #  🛒 E-commerce website 'Live World🍀'
 ## 🔷 Overview

@@ -1,0 +1,65 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+@import "root/node_modules/rfs/sass.sass";
+
+//todo if image background is white, there is no border between text element and image and as well there is no border on top of card, correct this
+//todo padding on name
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-radius: 5px;
+  overflow: hidden;
+
+  height: 10em;
+  width: 8em;
+
+  box-shadow: 0 0 0 0.2em white, 0 0 0.3em 0.2em rgba($color-daslgrey, 0.4);
+  background-color: white;
+
+  color: $color-daslgrey;
+  font-weight: bold;
+  font-family: $font-family-balsamiq-sans;
+  @include font-size(1em);
+  text-align: center;
+
+  .image {
+    width: 100%;
+    flex: 1 1 70%;
+    // max-height: 0%;
+    object-fit: cover;
+  }
+
+  // .name {
+  //   flex: 0 1 30%;
+  //   @include truncate_lines_after(2);
+  // }
+  .name {
+    flex: 0 1 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    $line_height: 1.2rem;
+    $number_of_lines: 2;
+
+    line-height: $line_height; /* adjust this as needed */
+    max-height: $line_height * $number_of_lines; /* height is line-height times the number of lines */
+    transition: color 0.25s;
+  }
+
+  transition: transform 0.3s, box-shadow 0.25s;
+  &:hover {
+    transform: scale(1.1, 1.1);
+    z-index: 99;
+    box-shadow: 0 0 0 0.2em white, 0 0 0.3em 0.2em rgba($color-daslgrey, 1);
+
+    .name {
+      text-decoration: underline;
+    }
+  }
+}

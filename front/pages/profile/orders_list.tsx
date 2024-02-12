@@ -4,9 +4,7 @@ import Order from "root/features/profile/comps/orders_list/order";
 const OrdersList = () => {
   return (
     <TabLayout>
-      <Order />
-      <Order />
-      <Order />
+      <h1>UNDER DEVELOPMENT</h1>
     </TabLayout>
   );
 };

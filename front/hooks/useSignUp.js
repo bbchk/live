@@ -1,11 +1,12 @@
 import { setCookie } from "nookies";
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
+import { useDispatch } from "react-redux";
+import { signIn } from "root/store/userSlice";
 
 export const useSignUp = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const { dispatch } = useAuthContext();
+  const dispatch = useDispatch();
 
   const signUp = async (firstName, secondName, email, password) => {
     setIsLoading(true);
@@ -27,7 +28,7 @@ export const useSignUp = () => {
       setError(json.error);
     } else {
       localStorage.setItem("user", JSON.stringify(json));
-      dispatch({ type: "SIGN_IN", payload: json });
+      dispatch(signIn(json));
       setCookie(null, "auth-token", user.token, {
         path: "/",
         sameSite: "strict",

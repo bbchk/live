@@ -4,6 +4,7 @@ import { requireAuth, isAdmin } from "../middleware/auth.js";
 import {
   getProduct,
   getProducts,
+  getProductsByIds,
   createProduct,
   createProducts,
   updateProduct,
@@ -17,6 +18,7 @@ router.get("/", getProducts);
 router.get("/:id", getProduct);
 
 router.use(requireAuth);
+router.post("/getbyIds", getProductsByIds);
 router.use(isAdmin);
 router.post("/", createProduct);
 router.post("/many", createProducts);

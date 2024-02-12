@@ -18,6 +18,12 @@
       "root/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "setupTests.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "setupTests.js",
+    "pages/_app.js"
+  ],
   "exclude": ["node_modules"]
 }

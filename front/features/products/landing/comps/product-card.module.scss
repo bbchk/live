@@ -1,93 +1,129 @@
 @use "./styles/variables" as *;
+@use "./styles/mixins" as *;
 
-$radius: 0.7rem;
-$radius-sm: 0.3rem;
+$radius: 4rem;
+$radius-sm: 1em;
 $padding: 0.4rem;
+$border: 1rem;
+$border-sm: 0.5rem;
 
 $padding-lg: 3rem;
 $name-font-size: 2rem;
 
-.product_card {
-  display: flex;
-  justify-content: center;
-  padding: 0.8rem;
-  border: 1px solid $color-medbud;
-  // border-radius: $radius;
-  .figure {
-    width: 50%;
+.product_banner {
+  color: $color-daslgrey;
+  font-family: $font-family-balsamiq-sans;
 
-    border-radius: $radius;
-    background-color: $color-medbud;
-    padding: $padding;
+  display: flex;
+  gap: 2rem;
+
+  .frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 45%;
+
+    border-radius: 0 $radius $radius 0;
+    border: 1rem solid $color-alabaster;
+    border-left: none;
+
     .image {
-      background-color: white;
-      padding: $padding;
-      border-radius: inherit;
-      width: 40rem;
-      height: 40rem;
+      padding: 1em;
+      object-fit: cover;
     }
   }
+
   .info {
-    padding: $padding-lg;
     display: flex;
     flex-direction: column;
-    position: relative;
-    gap: 1rem;
+    flex: 2 1 60%;
 
-    .article {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
+    position: relative;
+
+    border-radius: $radius 0 0 2rem;
+    border: $border-sm solid $color-yelgreen;
+    border-right: none;
+
+    margin: 2em 0;
+
+    //todo play with it
+    // background-color: $color-ivory;
 
     .header {
-      .name {
-        margin-bottom: 1rem;
-        text-align: center;
-        font-size: $name-font-size;
+      position: relative;
+
+      .code {
+        position: absolute;
+        right: 0;
+        margin-right: 10%;
       }
-      margin-bottom: 2rem;
+
+      .splitter {
+        position: relative;
+        right: $border-sm;
+
+        width: 120%;
+        @include decor_line($color-alabaster);
+      }
+      .name {
+        padding: 1em 0 0 1em;
+        font-weight: bold;
+        font-size: $name-font-size;
+
+        color: $color-daslgrey;
+        font-family: $font-family-balsamiq-sans;
+      }
     }
 
-    .buy_area {
-      display: flex;
-      gap: 1rem;
-      border: 1px solid $color-medbud;
-      width: fit-content;
-      padding: $padding;
-      border-radius: $radius-sm;
+    .body {
+      margin-top: 1rem;
+      padding: 1em;
 
-      .price_area {
-        .price {
-          font-size: $name-font-size;
-          font-weight: bold;
-          span {
-            font-size: smaller;
+      .buy_area {
+        display: flex;
+
+        align-items: center;
+        gap: 1rem;
+
+        border-radius: 1rem;
+        border: 0.3rem solid $color-alabaster;
+        padding: 0 $padding;
+
+        width: fit-content;
+
+        font-size: 3em;
+
+        .price_area {
+          display: flex;
+          flex-direction: column;
+          gap: -10px;
+
+          .price {
+            font-size: inherit;
+            font-weight: bold;
+            span {
+              font-size: smaller;
+            }
+          }
+        }
+
+        .buy_button {
+          background-color: $color-yelgreen;
+          color: inherit;
+
+          font-size: 0.5em;
+          p {
+            margin-bottom: 0;
+            font-weight: bold;
+            font-size: inherit;
+          }
+
+          i {
+            font-size: inherit;
+            line-height: 100%;
           }
         }
       }
     }
-
-    .pay_info,
-    .garantee_info {
-      display: flex;
-      border: 1px solid $color-medbud;
-      border-radius: $radius-sm;
-      padding: $padding;
-      font-size: 1.1rem;
-
-      &:active {
-        i {
-          display: none;
-        }
-      }
-
-      i {
-        color: $color-medbud;
-        margin-right: 1rem;
-      }
-    }
-
-    // height: 100%;
   }
 }

@@ -1,26 +1,55 @@
-import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import s from "./card.module.scss";
-import { useEffect } from "react";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const Card = ({ category }) => {
-  const router = useRouter();
+  const [subcategories, setSubcategories] = useState(null);
+  const { categories } = useSelector((state) => state.categories);
+
+  //todo unefficient
+  useEffect(() => {
+    const pathString = category.path;
+    //looking for subcategories of current category
+    const regex = new RegExp(`^${pathString},[^,]+$`);
+    const subcategories = categories.filter((c) => {
+      return c.path.match(regex) && c.path !== pathString;
+    });
+    setSubcategories(subcategories.slice(0, 5));
+  }, []);
 
   return (
-    <div
-      role="button"
-      onClick={() => {
-        router.push(`/products/${category.path}`);
-      }}
-      className={`${s.cat_card} `}
-    >
-      <p className={`${s.naming} `}>{category.name}</p>
-      <img className="card-img-bottom" src={category.image} alt="category" />
-    </div>
+    <>
+      {subcategories && (
+        <Link href={`/products/${category.path}`} className={`${s.cat_card}`}>
+          <Image
+            className={``}
+            src={category.imagePath}
+            alt="Category image"
+            width={100}
+            height={100}
+            priority
+          />
+          <h2 className={`${s.naming} `}>{category.name}</h2>
+
+          <ul className={`${s.subcat_list}`}>
+            {subcategories
+              .sort((a, b) => a.order - b.order)
+              .map(({ _id, path, name }, index) => {
+                return (
+                  <li key={_id}>
+                    <Link href={`/products/${path.replaceAll(",", "-")}`}>
+                      {index == 4 ? `${name}` : `${name}`}
+                    </Link>
+                  </li>
+                );
+              })}
+          </ul>
+        </Link>
+      )}
+    </>
   );
 };
-
-function pathFormat(str) {
-  return str;
-}
 
 export default Card;

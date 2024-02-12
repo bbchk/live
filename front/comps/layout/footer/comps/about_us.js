@@ -3,12 +3,9 @@ const AboutUs = () => {
     <>
       <h6>
         <i className="bi bi-info-square-fill"></i>
-        <span>About us</span>
+        <span>Про нас</span>
       </h6>
-      <p>
-        Here you can use rows and columns to organize your footer content. Lorem
-        ipsum dolor sit amet, consectetur adipisicing elit.
-      </p>
+      <p>Магазин найкращих товарів для вашого дому, улюбленців та рослин </p>
     </>
   );
 };

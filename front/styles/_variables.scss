@@ -8,23 +8,34 @@ $font-family-caveat: "Caveat", sans-serif;
 $font-family-pacifico: "Pacifico", sans-serif;
 
 $color-daslgrey: #2f4858; // Dark Slate Gray
+$color-daslgrey-muted: rgba($color-daslgrey, 0.9);
+
 $color-indep: #485a73; // Independence
+
+$color-indep-muted: hsl(210, 20%, 75%); // Muted Independence
 $color-indep-muted: hsl(210, 20%, 75%); // Muted Independence
 
 $color-medbud: #c8e59b; // Medium Spring Bud
 $color-yelgreen: #bee97c; //Yellow Green
+$color-yelgreen-bright: #8bc72e; //Yellow Green Brighter tone
 $color-dureen: #5a9a5c; // Russian green = DUMP GREEN #HATE RUSSIA
+$color-dureen-muted: #628f64;
+
 $color-nyanza: #ecffdc; //Nyanza
 $color-palebud: #e5ffbb; // Pale Spring Bud
 $color-bangreen: #04724d; // Bangladesh Green
+$color-ocereen: #4bbc8e; // Ocean Green
 
+$color-anflash: #f3f0f6; // Anti-Flash White
 $color-chiwhite: #e2ebdd; // Chinese White
 $color-cocoream: #f8f0da; //Coconut cream
 $color-milk: #fcfff7; // Milk
 $color-alabaster: #edf6e9; // Alabaster
 $color-ivory: #fdfdf2; // Ivory
+$color-white: #ffffff; // White
 
 $color-banayellow: #ffe234; //Banana Yellow
 
 $color-spink: #ffbfbf; //Spanish Pink
 $color-decapink: #ff3131; // Deep Carmine Pink
+$color-suncycl: #f84147; // Sunburnt Cyclops

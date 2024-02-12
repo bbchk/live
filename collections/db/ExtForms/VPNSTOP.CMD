@@ -1,3 +1,0 @@
-rasdial "Kovbasa" /disconnect
-
-

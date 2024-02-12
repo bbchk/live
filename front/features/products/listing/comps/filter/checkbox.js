@@ -1,31 +1,31 @@
 import { useDeferredValue, useEffect, useRef, useState } from "react";
-import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
+// import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
 
 const CheckBox = ({ id, prop, label, checked }) => {
   const [isChecked, setIsChecked] = useState(checked);
 
-  const { activeFilters, dispatch } = useActiveFiltersContext();
+  // const { activeFilters, dispatch } = useActiveFiltersContext();
 
   function handleChange() {
     const newCheckedState = !isChecked;
     setIsChecked(newCheckedState);
 
     if (newCheckedState) {
-      dispatch({
-        type: "ADD_FILTER",
-        payload: {
-          option: label,
-          prop: prop,
-        },
-      });
+      // dispatch({
+      //   type: "ADD_FILTER",
+      //   payload: {
+      //     option: label,
+      //     prop: prop,
+      //   },
+      // });
     } else {
-      dispatch({
-        type: "REMOVE_FILTER",
-        payload: {
-          option: label,
-          prop: prop,
-        },
-      });
+      // dispatch({
+      //   type: "REMOVE_FILTER",
+      //   payload: {
+      //     option: label,
+      //     prop: prop,
+      //   },
+      // });
     }
   }
 

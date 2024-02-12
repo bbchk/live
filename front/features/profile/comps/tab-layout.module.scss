@@ -1,16 +1,63 @@
 @use "./styles/variables.scss" as *;
+@use "./styles/mixins" as *;
+@import "./node_modules/rfs/sass.sass";
 
-.profile_frame {
+.profile_tabs_layout {
   display: flex;
   margin: 3rem 0;
-  .sections {
-    background-color: $color-bangreen;
-    padding: 7rem 3rem;
+
+  .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding-right: 1em;
+
     font-size: 1.5rem;
     white-space: nowrap;
 
-    // margin: 7rem 0;
-    height: 100%;
+    .tab {
+      &:hover {
+        .fill {
+          width: 100%;
+        }
+      }
+
+      height: 2em;
+      border-radius: 0em 0.5em 0.5em 0em;
+      background-color: $color-alabaster;
+      padding: 0;
+
+      .fill {
+        transition: transform 0.3s, box-shadow 0.2s 0.1s,
+          width 0.4s cubic-bezier(1, -0.1, 0.2, 1);
+
+        display: flex;
+        align-items: center;
+        border-radius: 0em 0.5em 0.5em 0em;
+        height: 100%;
+        width: 20%;
+
+        background-color: $color-yelgreen;
+
+        i {
+          margin: 0.3em 0.3em 0 0.3em;
+          height: fit-content;
+        }
+      }
+
+      p {
+        z-index: 2;
+        margin-bottom: 0;
+        margin: 0 1em 0 1em;
+      }
+
+      i,
+      p {
+        color: $color-daslgrey;
+        font-family: $font-family-balsamiq-sans;
+      }
+    }
+
     .exit {
       text-align: center;
     }

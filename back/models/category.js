@@ -5,11 +5,15 @@ const categorySchema = new Schema({
     type: String,
     required: true,
   },
+  order: {
+    type: Number,
+    required: true,
+  },
   path: {
     type: String,
     required: true,
   },
-  image: {
+  imagePath: {
     type: String,
     required: true,
   },

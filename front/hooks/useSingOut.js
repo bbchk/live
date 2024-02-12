@@ -1,13 +1,16 @@
 import { useRouter } from "next/router";
 import { destroyCookie } from "nookies";
-import { useAuthContext } from "./useAuthContext";
+import { useDispatch } from "react-redux";
+import { signOut as sign_out } from "root/store/userSlice";
 
 export const useSignOut = () => {
-  const { dispatch } = useAuthContext();
+  const dispatch = useDispatch();
   const router = useRouter();
+
   const signOut = async () => {
     localStorage.removeItem("user");
-    dispatch({ type: "SIGN_OUT" });
+    dispatch(sign_out());
+
     await destroyCookie(null, "auth-token", {
       path: "/",
       sameSite: "strict",

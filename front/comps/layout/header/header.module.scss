@@ -1,38 +1,95 @@
 @use "./styles/variables" as *;
+@use "./styles/mixins" as *;
 @import "root/node_modules/rfs/sass.sass";
 
-.navbar_container {
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+
+  @include padding(0.4rem);
+
+  width: 100%;
+
   background-color: $color-medbud;
   font-family: $font-family-balsamiq-sans;
-  .navbar {
+
+  .logo {
+    display: flex;
+    justify-content: center;
+
+    color: $color-daslgrey !important;
+
+    font-family: $font-family-pacifico;
+    @include font-size(3rem);
+    font-weight: bold;
+
+    &:hover {
+      color: $color-daslgrey;
+      // todo
+    }
+  }
+
+  .icon_btn_group {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    gap: 1vw;
-    width: 100%;
-    @include padding(0 4rem);
-  }
-}
 
-.navbar_toggler {
-  padding: 0;
-  border: 0;
-  color: $color-bangreen;
+    color: $color-daslgrey;
+
+    .icon_btn {
+      font-size: 2rem;
+      color: inherit;
+
+      &:hover {
+        @include icon_on_hover;
+      }
+    }
+  }
+
+  .search_bar {
+    .search_field {
+      border: 0;
+      border-radius: 1rem;
+
+      @include font-size(1.5rem);
+
+      &::placeholder {
+        color: $color-indep-muted;
+      }
+    }
+  }
+
+  .overlay_trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .profile_icon {
+      color: $color-daslgrey;
+      @include icon;
+      cursor: pointer;
+    }
+  }
+
+  .search_bar {
+    flex: 0 1 50% !important;
+  }
+
+  .overlay_trigger {
+    flex: 0 0 10% !important;
+  }
+
+  .icon_btn_group {
+    flex: 1 1 25% !important;
+  }
+
+  .logo {
+    flex: 0 1 25% !important;
+  }
 }
 
 .underline {
   height: 1rem;
+  width: 100%;
   background-color: $color-nyanza;
-}
-
-.search_bar {
-  flex: 0 1 50% !important;
-}
-
-.profile_popover_dfjs {
-  flex: 1 1 25% !important;
-}
-
-.logo_container {
-  flex: 1 1 25% !important;
 }

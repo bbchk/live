@@ -1,11 +1,10 @@
-import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
 import s from "./sort-group.module.scss";
 
 const SortGroup = () => {
-  const { dispatch } = useActiveFiltersContext();
+  // const { dispatch } = useActiveFiltersContext();
 
   const handleChange = (event) => {
-    dispatch({ type: "SET_SORT_BY", payload: event.target.id });
+    // dispatch({ type: "SET_SORT_BY", payload: event.target.id });
   };
 
   return (

@@ -1,8 +1,65 @@
-.security {
-  .header {
-    margin-bottom: 1.2rem;
+@use "root/styles/variables" as *;
+@use "root/styles/mixins" as *;
+@import "root/node_modules/rfs/sass.sass";
+
+.accordion_item {
+  border-color: $color-alabaster;
+  border: 0;
+  overflow: hidden;
+  border-radius: 0.5em;
+
+  width: 90%;
+
+  font-family: $font-family-balsamiq-sans;
+
+  .accordion_body {
+    background-color: $color-yelgreen;
+
+    label {
+      color: $color-daslgrey !important;
+      // color: white !important;
+    }
+    label::after {
+      background-color: transparent !important;
+    }
+    input[disabled] {
+      background-color: $color-nyanza;
+      color: $color-daslgrey;
+      font-weight: bold;
+    }
+
+    input {
+      border: 0;
+      color: $color-daslgrey;
+    }
   }
-  input {
-    width: 50%;
+  .accordion_header {
+    background-color: $color-yelgreen;
+    border-bottom: 1px solid $color-nyanza;
+
+    h3 {
+      margin: 0;
+    }
+
+    .accordion_button {
+      gap: 0.5em;
+
+      i {
+        font-size: 1.5em;
+      }
+
+      padding: 0.3em 2em;
+      color: $color-indep;
+      background-color: $color-yelgreen;
+    }
+  }
+
+  .btn {
+    background-color: $color-milk;
+    border: 0;
+    transition: scale 0.5s;
+    &:hover {
+      box-shadow: 0 0 5px lightblue inset;
+    }
   }
 }

@@ -10,8 +10,8 @@ const ProductHeader = ({ category }) => {
         <nav className={`${s.breadcrumbs}`} aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className={`breadcrumb-item `}>
-              <Link href="/">
-                <i className="bi bi-house-fill"></i>
+              <Link className="link" href="/">
+                <p>Головна</p>
               </Link>
             </li>
             {category.path.split(",").map((pathElement, index, array) => {
@@ -22,7 +22,9 @@ const ProductHeader = ({ category }) => {
                   }`}
                   key={uuidv4()}
                 >
-                  <Link href={`/products/${pathElement}`}>{pathElement}</Link>
+                  <Link className="link" href={`/products/${pathElement}`}>
+                    {pathElement}
+                  </Link>
                 </li>
               );
             })}

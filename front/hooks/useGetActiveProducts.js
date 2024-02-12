@@ -1,13 +1,32 @@
 export const useGetActiveProducts = () => {
-  const getProducts = (allProducts, activeCategory) => {
+  const getActiveProducts = (allProducts, activeCategory) => {
     const pathString = activeCategory.path;
-    const regex = new RegExp(`${pathString}.*`, "g");
+    // console.log(pathString);
+
+    // const activeProducts = allProducts.map((p) => {
+    //   const activeCategory = p.category.find((cat) =>
+    //     cat.path.includes(pathString)
+    //   );
+    //   if (activeCategory) {
+    //     return { ...p, activeCategory };
+    //   }
+    //   // return p;
+    // });
+
     const activeProducts = allProducts.filter((p) => {
-      return p.category.path.match(regex);
+      const activeCategory = p.category.find((cat) =>
+        cat.path.includes(pathString)
+      );
+      if (activeCategory) {
+        // p.activeCategory = activeCategory;
+        return p;
+      }
     });
+
+    // console.log(activeProducts);
 
     return activeProducts;
   };
 
-  return { getProducts };
+  return { getActiveProducts };
 };

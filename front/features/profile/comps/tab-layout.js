@@ -8,44 +8,56 @@ const TabLayout = ({ children }) => {
   const { signOut } = useSignOut();
 
   const handleSignOut = (e) => {
-    window.location.reload(true);
+    // window.location.reload(true);
+    console.log("sign out");
     signOut();
   };
 
   return (
-    <div className={`${s.profile_frame}  `}>
-      <div className={`${s.sections} `}>
-        <nav className="nav flex-column ">
-          <Link
-            className="nav-link active icon-link"
-            aria-current="page"
-            href="/profile/personal_data"
-          >
-            <i className="bi bi-person-lines-fill"></i>
-            <p>Особисті дані</p>
-          </Link>
-          <Link className="nav-link icon-link" href="/profile/wish_list">
-            <i className="bi bi-heart-fill"></i>
-            <p>Список бажань</p>
-          </Link>
-          <Link className="nav-link icon-link" href="/profile/orders_list">
-            <i className="bi bi-list-check"></i>
-            <p>Мої замовлення</p>
-          </Link>
-          <div className="text-center mt-3">
-            <Link
-              onClick={handleSignOut}
-              className={`nav-link icon-link`}
-              href="/"
-            >
-              <p>Вийти</p>
-              <i className="bi bi-box-arrow-right "></i>
-            </Link>
-          </div>
-        </nav>
-      </div>
+    <div className={`${s.profile_tabs_layout}  `}>
+      <TabMenu handleSignOut={handleSignOut} />
       <div className="w-100 h-100">{children}</div>
     </div>
+  );
+};
+
+const TabMenu = ({ handleSignOut }) => {
+  return (
+    <nav className={`nav ${s.tabs}`}>
+      <Tab
+        href="/profile/personal_data"
+        text="Personal Data"
+        icon={<i className="bi bi-person-circle"></i>}
+      />
+      <Tab
+        href="/profile/wish_list"
+        text="Wish List"
+        icon={<i className="bi bi-heart-fill"></i>}
+      />
+      <Tab
+        href="/profile/orders_list"
+        text="My orders"
+        icon={<i className="bi bi-list-check"></i>}
+      />
+      <div className="w-20"></div>
+      <Tab
+        onClick={handleSignOut}
+        href="/"
+        text="Sign Out"
+        icon={<i className="bi bi-box-arrow-left"></i>}
+      />
+    </nav>
+  );
+};
+
+const Tab = ({ text, icon, href, onClick }) => {
+  return (
+    <Link className={`${s.tab}`} href={href} onClick={onClick}>
+      <div className={s.fill}>
+        {icon}
+        <p>{text}</p>
+      </div>
+    </Link>
   );
 };
 

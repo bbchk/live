@@ -1,14 +1,14 @@
 export const useGetActiveCategory = () => {
-  function getActiveCategory(path, categories) {
+  function getActiveCategory(allCategories, path) {
     let activeCategory = null;
 
-    const pathString = path.join(",");
-    categories.forEach((category) => {
+    console.log(path);
+    const pathString = path.split("-").join(",");
+    allCategories.forEach((category) => {
       if (category.path == pathString) {
         activeCategory = category;
       }
     });
-
     return activeCategory;
   }
 

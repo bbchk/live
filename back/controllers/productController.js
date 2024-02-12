@@ -15,6 +15,20 @@ const getProductById = async (id) => {
   return { status: 200, product };
 };
 
+//? this is unefficient approach
+export const getProductsByIds = async (req, res) => {
+  const productIds = req.body;
+
+  try {
+    const products = await Product.find({
+      _id: { $in: productIds },
+    });
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
 export const getProducts = async (req, res) => {
   const products = await Product.find({})
     .sort({ createdAt: -1 })
@@ -40,15 +54,14 @@ export const createProduct = async (req, res) => {
     brand,
     name,
     category,
-    size,
-    weight,
-    color,
+    characteristics,
     price,
-    isAvailable,
+    left,
     starRating,
-    packing,
     description,
     imageUrl,
+    // code,
+    // barcode,
   } = req.body;
 
   try {
@@ -56,15 +69,15 @@ export const createProduct = async (req, res) => {
       brand,
       name,
       category,
-      size,
-      weight,
-      color,
       price,
-      isAvailable,
+      left,
+      characteristics,
       starRating,
-      packing,
       description,
       imageUrl,
+      //? todo
+      // code,
+      // barcode,
     });
     res.status(200).json(product);
   } catch (err) {

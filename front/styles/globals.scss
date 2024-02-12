@@ -1,8 +1,18 @@
 @use "./variables" as *;
 
 body {
+  p {
+    margin-bottom: 0;
+  }
+
   a {
     text-decoration: none;
+    color: $color-daslgrey;
+  }
+
+  .link {
+    text-decoration: none;
+    color: inherit;
   }
 
   button {
@@ -21,7 +31,11 @@ body {
 
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background-color: $color-milk;
+  background-color: $color-milk !important;
+}
+
+html {
+  overscroll-behavior: none;
 }
 
 html,

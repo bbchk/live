@@ -1,0 +1,16 @@
+@use "./styles/variables" as *;
+@import "root/node_modules/rfs/sass.sass";
+
+.subcategories_gallery {
+  display: flex;
+  align-items: center;
+  //   gap: 1rem;
+
+  --bs-gutter-y: 1.5rem;
+  @media (min-width: 1400px) {
+    .col_xl_1_5 {
+      flex: 0 0 11%;
+      max-width: 11%;
+    }
+  }
+}

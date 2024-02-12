@@ -1,0 +1,11 @@
+@use "./styles/mixins" as *;
+@use "./styles/variables" as *;
+
+.navigation {
+  .link_container {
+    .link {
+      color: $color-daslgrey;
+      font-family: $font-family-balsamiq-sans;
+    }
+  }
+}
