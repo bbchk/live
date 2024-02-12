@@ -6,13 +6,13 @@ const SearchBar = () => {
       <input
         className={`form-control ${s.search_field}`}
         type="search"
-        placeholder="Знайти..."
+        placeholder="шукати..."
         aria-label="Search"
-        disabled
       />
-      {/* <button className={`btn ${s.search_button}`} type="submit">
-        <i className="bi bi-search fs-4"></i>
-      </button> */}
+      <button className={`btn ${s.search_button}`} type="submit">
+        <p>знайти</p>
+        <i class="bi bi-search-heart"></i>
+      </button>
     </form>
   );
 };

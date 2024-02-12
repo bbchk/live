@@ -2,10 +2,31 @@
 @use "./styles/variables" as *;
 
 .navigation {
+  position: relative;
+  .decor_line {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    z-index: -99;
+
+    border-bottom: 3px solid $color-alabaster;
+  }
   .link_container {
     .link {
       color: $color-daslgrey;
       font-family: $font-family-balsamiq-sans;
+
+      &:hover {
+        $color-on-hover: $color-bangreen;
+        border-bottom: 3px solid rgba($color-on-hover, 0.3);
+        color: rgba($color-on-hover, 1);
+      }
+    }
+
+    .active {
+      border-bottom: 3px solid $color-daslgrey;
+      font-weight: bold;
     }
   }
 }

@@ -23,7 +23,7 @@ export const useSignIn = () => {
       );
 
       const json = response.data;
-      localStorage.setItem("user", json);
+      localStorage.setItem("user", JSON.stringify(json));
       dispatch(sign_in(json));
       setCookie(null, "auth-token", json.token, {
         path: "/",

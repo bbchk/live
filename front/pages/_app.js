@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:4000";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Header from "root/comps/layout/header/header";
 import Footer from "root/comps/layout/footer/footer";
@@ -15,8 +15,8 @@ import { Provider } from "react-redux";
 import { store } from "root/store/store";
 import { useDispatch } from "react-redux";
 
-import { fetchProductsFromDB } from "root/store/productsSlice";
-import { fetchCategoriesFromDB } from "root/store/categoriesSlice";
+import { getProductsInfo } from "root/store/productsSlice";
+import { getCategoriesInfo } from "root/store/categoriesSlice";
 
 dotenv.config();
 
@@ -35,12 +35,14 @@ export default function App({ Component, pageProps }) {
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title> Зелений світ - Магазин добрив і зоотоварів</title>
+        <title> Живий світ - Магазин зоотоварів і товарів для дому </title>
       </Head>
       <Provider store={store}>
-        {!excludedPaths.includes(router.pathname) && <Header />}
-        <FetchData />
-        <Component {...pageProps} />
+        <div className="min-vh-80 mb-3">
+          {!excludedPaths.includes(router.pathname) && <Header />}
+          <FetchData />
+          <Component {...pageProps} />
+        </div>
         {!excludedPaths.includes(router.pathname) && <Footer />}
       </Provider>
     </div>
@@ -55,8 +57,8 @@ function FetchData() {
 
   useEffect(() => {
     if (!fetched) {
-      dispatch(fetchProductsFromDB());
-      dispatch(fetchCategoriesFromDB());
+      dispatch(getProductsInfo());
+      dispatch(getCategoriesInfo());
       setFetched(true);
     }
   }, [dispatch, fetched]);

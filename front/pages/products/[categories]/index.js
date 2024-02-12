@@ -10,39 +10,25 @@ import { useRouter } from "next/router";
 import { useGetActiveProducts } from "root/hooks/useGetActiveProducts";
 import { useGetActiveCategory } from "/hooks/useGetActiveCategory";
 import SubcategoriesGallery from "root/features/products/listing/comps/subcategories/gallery";
+import { useGetSubcategoriesOf } from "../../../hooks/useGetSubcategoriesOf";
+import { useFindCategoryBySlugPath } from "../../../hooks/useFindCategoryByPath";
+import axios from "axios";
 
 const Products = () => {
-  const router = useRouter();
-  const { categories: path } = router.query;
-
-  const { products: allProducts } = useSelector((state) => state.products);
-  const { categories: allCategories } = useSelector(
-    (state) => state.categories
-  );
-
   const [isLoading, setIsLoading] = useState(true);
   const [activeProducts, setActiveProducts] = useState(null);
-  const [activeCategory, setActiveCategory] = useState(null);
 
+  const { products: allProducts } = useSelector((state) => state.products);
+  const { categories: allCategories, lastActiveCategory: activeCategory } =
+    useSelector((state) => state.categories);
+
+  const { getSubcategoriesOf } = useGetSubcategoriesOf();
   const { getActiveProducts } = useGetActiveProducts();
-  const { getActiveCategory } = useGetActiveCategory();
-
-  //setting active category
-  useEffect(() => {
-    if (allCategories) {
-      setIsLoading(true);
-      const activeCategory = getActiveCategory(allCategories, path);
-
-      if (activeCategory == null) {
-        router.push("/404");
-      }
-
-      setActiveCategory(activeCategory);
-    }
-  }, [allCategories, path]);
 
   //setting active products
   useEffect(() => {
+    setIsLoading(true);
+
     if (activeCategory != null && allProducts != null) {
       const activeProducts = getActiveProducts(allProducts, activeCategory);
 
@@ -56,12 +42,15 @@ const Products = () => {
       {!isLoading && (
         <div className="mt-3 ">
           <div className="mx-5">
-            {activeCategory && (
-              <>
-                <ProductHeader category={activeCategory} />
-                <SubcategoriesGallery category={activeCategory} />
-              </>
-            )}
+            <>
+              <ProductHeader category={activeCategory} />
+              <SubcategoriesGallery
+                subcategories={getSubcategoriesOf(
+                  activeCategory,
+                  allCategories
+                )}
+              />
+            </>
 
             <div className="mt-5">
               <SortGroup />
@@ -72,16 +61,13 @@ const Products = () => {
 
           <div className="d-flex ms-3 me-5">
             <div className="me-3">
-              {/* {productsref.current && (
-                // <ProductFilter products={productsref.current} />
-              )} */}
+              {/* <ProductFilter products={activeProducts} /> */}
             </div>
-            {activeProducts && (
-              <ProductGallery
-                products={activeProducts}
-                activeCategory={activeCategory}
-              />
-            )}
+
+            <ProductGallery
+              products={activeProducts}
+              activeCategory={activeCategory}
+            />
           </div>
         </div>
       )}

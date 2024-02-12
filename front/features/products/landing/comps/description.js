@@ -10,10 +10,7 @@ const Description = ({ product }) => {
 
       <div className={`${s.text}`}>
         {Object.entries(product.description).map(([title, chapter], index) => {
-          title =
-            index == 0
-              ? `<h1><strong>${title}:</strong></h1>`
-              : `<br><h3><strong>${title}:</strong></h3>`;
+          title = index == 0 ? `<h1>${title}:</h1>` : `<br><h3>${title}:</h3>`;
           return (
             <div key={`${title}-${index}`}>
               {parse(`${title}${DOMPurify.sanitize(chapter)}`)}

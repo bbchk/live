@@ -15,6 +15,12 @@
     align-items: center;
     gap: 0.5rem;
 
+    .sign_up {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
     p {
       white-space: nowrap;
       margin-bottom: 0;
@@ -24,7 +30,7 @@
       width: 100%;
 
       @include font-size(1.5rem);
-      background-color: $color-bangreen;
+      background-color: $color-dureen;
       color: $color-milk;
 
       transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;

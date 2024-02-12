@@ -104,8 +104,13 @@ export const updateProduct = async (req, res) => {
     return res.status(result.status).json({ error: result.error });
   }
 
-  await Product.updateOne({ _id: id }, { ...req.body });
-  res.status(200).json(result.product);
+  const updatedProduct = await Product.findOneAndUpdate(
+    { _id: id },
+    { ...req.body },
+    { new: true }
+  );
+
+  res.status(200).json(updatedProduct);
 };
 
 export const deleteAllProducts = async (req, res) => {

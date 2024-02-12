@@ -1,6 +1,21 @@
 @use "./variables" as *;
+@use "./mixins" as *;
+
+.decor_line {
+  @include decor_line($color-nyanza);
+}
+
+.min-vh-80 {
+  min-height: 80vh;
+}
 
 body {
+  p,
+  h1,
+  h2 {
+    font-family: $font-family-balsamiq-sans;
+  }
+
   p {
     margin-bottom: 0;
   }
@@ -31,7 +46,7 @@ body {
 
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background-color: $color-milk !important;
+  // background-color: $color-milk !important;
 }
 
 html {

@@ -2,43 +2,44 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import s from "./navigation.module.scss";
 
-const Navigation = ({ activePage, productId }) => {
+const Navigation = ({ activePage, productSlug }) => {
   const router = useRouter();
 
   return (
     <>
       <ul className={`nav nav-underline mt-4 ${s.navigation}`}>
+        <div className={`${s.decor_line}`}></div>
         <li className={`nav-item ms-5 ${s.link_container}`}>
           <Link
             className={`nav-link ${s.link}  ${
-              activePage === "about" ? "active" : ""
+              activePage === "about" ? s.active : ""
             }`}
             aria-current="page"
-            href={`/products/${router.query.categories}/${productId}/about`}
+            href={`/products/${router.query.categories}/${productSlug}/about`}
           >
-            All about the product
+            Усе про товар
           </Link>
         </li>
         <li className={`nav-item ${s.link_container}`}>
           <Link
             className={`nav-link ${s.link} ${
-              activePage === "characteristics" ? "active" : ""
+              activePage === "characteristics" ? s.active : ""
             }`}
-            href={`/products/${router.query.categories}/${productId}/characteristics`}
+            href={`/products/${router.query.categories}/${productSlug}/characteristics`}
           >
-            Characteristics
+            Характеристики
           </Link>
         </li>
-        <li className={`nav-item ${s.link_container}`}>
+        {/* <li className={`nav-item ${s.link_container}`}>
           <Link
             className={`nav-link ${s.link} ${
               activePage === "reviews" ? "active" : ""
             }`}
-            href={`/products/${router.query.categories}/${productId}/reviews`}
+            href={`/products/${router.query.categories}/${productSlug}/reviews`}
           >
-            Reviews
+            Відгуки
           </Link>
-        </li>
+        </li> */}
       </ul>
     </>
   );

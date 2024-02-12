@@ -8,7 +8,6 @@ $border: 1rem;
 $border-sm: 0.5rem;
 
 $padding-lg: 3rem;
-$name-font-size: 2rem;
 
 .product_banner {
   color: $color-daslgrey;
@@ -23,13 +22,11 @@ $name-font-size: 2rem;
     align-items: center;
     flex: 1 1 45%;
 
-    border-radius: 0 $radius $radius 0;
-    border: 1rem solid $color-alabaster;
-    border-left: none;
+    z-index: -32;
 
     .image {
       padding: 1em;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 
@@ -41,69 +38,55 @@ $name-font-size: 2rem;
     position: relative;
 
     border-radius: $radius 0 0 2rem;
-    border: $border-sm solid $color-yelgreen;
-    border-right: none;
-
-    margin: 2em 0;
-
-    //todo play with it
-    // background-color: $color-ivory;
 
     .header {
-      position: relative;
+      padding: 1rem;
+      padding-bottom: 0;
 
-      .code {
-        position: absolute;
-        right: 0;
-        margin-right: 10%;
-      }
-
-      .splitter {
-        position: relative;
-        right: $border-sm;
-
-        width: 120%;
-        @include decor_line($color-alabaster);
-      }
       .name {
-        padding: 1em 0 0 1em;
-        font-weight: bold;
-        font-size: $name-font-size;
-
-        color: $color-daslgrey;
-        font-family: $font-family-balsamiq-sans;
+        font-size: 2rem;
+        color: black;
       }
     }
 
     .body {
-      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
       padding: 1em;
 
       .buy_area {
         display: flex;
-
         align-items: center;
         gap: 1rem;
 
-        border-radius: 1rem;
-        border: 0.3rem solid $color-alabaster;
-        padding: 0 $padding;
+        border-radius: 0.5rem;
+        border: 0.2rem solid $color-alabaster;
+        padding: 1rem;
 
         width: fit-content;
 
+        background-color: $color-milk;
         font-size: 3em;
 
-        .price_area {
+        .price {
           display: flex;
           flex-direction: column;
-          gap: -10px;
+          line-height: 1;
+          // margin: 1rem;
 
-          .price {
-            font-size: inherit;
-            font-weight: bold;
-            span {
-              font-size: smaller;
-            }
+          font-size: 2rem;
+          font-weight: bold;
+          color: $color-suncycl;
+          .currency {
+            font-weight: 100;
+            font-size: 1.5rem;
+          }
+          .left {
+            color: $color-daslgrey;
+            // margin-left: 0.5rem;
+            font-size: 1rem;
           }
         }
 
@@ -123,6 +106,12 @@ $name-font-size: 2rem;
             line-height: 100%;
           }
         }
+      }
+
+      .like_button,
+      .comment_button {
+        font-size: 2rem;
+        color: $color-yelgreen;
       }
     }
   }

@@ -1,35 +1,49 @@
+import { Accordion } from "react-bootstrap";
 import Link from "next/link";
 import s from "./card.module.scss";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveCategory } from "root/store/categoriesSlice";
+import { makeSlug } from "root/utils/slugify";
+import { setActiveProduct } from "root/store/productsSlice";
+import { useEffect, useId, useRef, useState } from "react";
+import axios from "axios";
 
-const ProductCard = ({
-  product: { _id, name, images, price },
-  activeCategory,
-  like,
-  isLiked,
-}) => {
-  const productUrl = `/products/${activeCategory.path.replaceAll(
-    ",",
-    "-"
-  )}/${_id}`;
+const ProductCard = ({ product, like, isLiked }) => {
+  const { lastActiveCategory } = useSelector((state) => state.categories);
+  const { categories: CATEGORIES } = useSelector((state) => state.categories);
+
+  const productUrl = `/products/${makeSlug(lastActiveCategory.path)}/${makeSlug(
+    product.name
+  )}`;
+
+  const dispatch = useDispatch();
+  function saveActiveProductInfo() {
+    localStorage.setItem("activeProduct", JSON.stringify(product));
+    dispatch(setActiveProduct(product));
+  }
 
   return (
     <div className={`${s.product_card} `}>
       <button
         className={`${s.like_button} btn`}
         // onClick={() => like(_id)}
-        onClick={() => like(_id)}
+        onClick={() => like(product._id)}
       >
         {!isLiked && <i className="bi bi-heart" />}
         {isLiked && <i className={`bi bi-heart-fill ${s.liked}`} />}
       </button>
 
-      <Link href={`${productUrl}/about`} className={`${s.image_link}`}>
+      <Link
+        href={`${productUrl}/about`}
+        className={`${s.image_link}`}
+        onClick={saveActiveProductInfo}
+      >
         <Image
           className={`${s.image}`}
           src={
             //todo implement displaying many images on product
-            images && images[0]
+            product.images && product.images[0]
           }
           alt="product image"
           width={100}
@@ -38,11 +52,19 @@ const ProductCard = ({
         />
       </Link>
 
-      <Link href={`${productUrl}/about`} className={`${s.name}`}>
-        {name}
+      <Link
+        href={`${productUrl}/about`}
+        className={`${s.name}`}
+        onClick={saveActiveProductInfo}
+      >
+        {product.name}
       </Link>
 
-      <Link href={`${productUrl}/reviews`} className={`${s.rating}`}>
+      <Link
+        href={`${productUrl}/reviews`}
+        className={`${s.rating}`}
+        onClick={saveActiveProductInfo}
+      >
         <StarRating />
         <p className={`${s.amount_reviews}`}>
           <i className="bi bi-chat-left-text"></i>
@@ -52,7 +74,7 @@ const ProductCard = ({
 
       <div className={`${s.buy_info}`}>
         <p className={`${s.price}`}>
-          {price} <span>₴</span>
+          {product.price} <span>₴</span>
         </p>
 
         <button

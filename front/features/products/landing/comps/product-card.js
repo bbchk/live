@@ -32,28 +32,31 @@ const ProductCard = ({
         </div>
         <div className={`${s.info}`}>
           <div className={`${s.header}`}>
-            <p className={`${s.code}`}>Код: {code}</p>
-            {category.map((category) => {
-              return <p key={category._id}>{category.path}</p>;
-            })}
             <p className={`${s.name}`}>{name}</p>
-            <div className={`${s.splitter}`}></div>
           </div>
 
           <div className={`${s.body}`}>
             <div className={`${s.buy_area}`}>
-              <div className={`${s.price_area}`}>
-                <p className={`${s.price}`}>
+              <p className={`${s.price}`}>
+                <span>
                   {price}
-                  <span> грн </span>
-                </p>
-              </div>
-
+                  <span className={`${s.currency}`}> грн </span>
+                </span>
+                <span className={`${s.left}`}>
+                  {left > 0 ? "Є в наявності" : "Немає в наявності"}{" "}
+                </span>
+              </p>
               <button className={` btn ${s.buy_button} icon-link `}>
                 <i className="bi bi-cart4"></i>
                 <p>Купити</p>
               </button>
             </div>
+            <button className={` btn ${s.like_button} icon-link `}>
+              <i class="bi bi-heart"></i>
+            </button>
+            <button className={` btn ${s.comment_button} icon-link `}>
+              <i class="bi bi-chat-left-text"></i>
+            </button>
           </div>
         </div>
       </div>
