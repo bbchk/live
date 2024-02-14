@@ -1,12 +1,20 @@
-import slugify from "slugify";
-// const slugify = require("slugify");
+import { transliterate, untransliterate } from "./transliterate";
 
-export function makeSlug(text) {
-  const slug = slugify(text, {
-    lower: true, // convert to lower case
-    strict: true, // strip special characters except replacement
-    locale: "uk", // Ukrainian locale
-  });
+export function slugify(text) {
+  return text
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w,-]+/g, "")
+    .replace(/,/g, "/");
+}
 
-  return slug;
+// Unslugify function
+export function unslugify(text) {
+  return text
+    .replace(/-/g, " ")
+    .replace(/\//g, ",")
+    .replace(/\w\S*/g, function (txt) {
+      // return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      return txt;
+    });
 }

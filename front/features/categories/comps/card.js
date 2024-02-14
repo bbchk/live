@@ -12,8 +12,8 @@ const Card = ({ category }) => {
 
   //todo unefficient
   useEffect(() => {
-    const pathString = category.path;
     //looking for subcategories of current category
+    const pathString = category.path;
     const regex = new RegExp(`^${pathString},[^,]+$`);
     const subcategories = categories.filter((c) => {
       return c.path.match(regex) && c.path !== pathString;
@@ -35,7 +35,11 @@ const Card = ({ category }) => {
         <div className={`${s.cat_card}`}>
           <Link
             href={`/products/${makeSlug(category.path)}`}
-            onClick={saveActiveCategory}
+            // onClick={saveActiveCategory}
+            onMouseDown={() => {
+              saveActiveCategory();
+              console.log("mouse down");
+            }}
           >
             <Image
               className={``}
