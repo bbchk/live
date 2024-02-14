@@ -52,10 +52,10 @@ const ProductCard = ({
               </button>
             </div>
             <button className={` btn ${s.like_button} icon-link `}>
-              <i class="bi bi-heart"></i>
+              <i className="bi bi-heart"></i>
             </button>
             <button className={` btn ${s.comment_button} icon-link `}>
-              <i class="bi bi-chat-left-text"></i>
+              <i className="bi bi-chat-left-text"></i>
             </button>
           </div>
         </div>

@@ -11,7 +11,7 @@ const SearchBar = () => {
       />
       <button className={`btn ${s.search_button}`} type="submit">
         <p>знайти</p>
-        <i class="bi bi-search-heart"></i>
+        <i className="bi bi-search-heart"></i>
       </button>
     </form>
   );
