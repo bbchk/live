@@ -3,8 +3,9 @@ import s from "./card.module.scss";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { setActiveCategory } from "root/store/categoriesSlice";
-import { makeSlug } from "root/utils/slugify";
+
+import { slugify } from "root/utils/slugify";
+import { transliterate } from "root/utils/transliterate";
 
 const Card = ({ category }) => {
   const [subcategories, setSubcategories] = useState(null);
@@ -21,25 +22,24 @@ const Card = ({ category }) => {
     setSubcategories(subcategories.slice(0, 5));
   }, []);
 
-  const dispatch = useDispatch();
   function saveActiveCategory() {
     if (typeof window !== "undefined") {
       localStorage.setItem("activeCategory", JSON.stringify(category));
     }
-    dispatch(setActiveCategory(category));
   }
+  const categoryPathSlug = `/products/${slugify(transliterate(category.path))}`;
 
   return (
     <>
       {subcategories && (
         <div className={`${s.cat_card}`}>
           <Link
-            href={`/products/${makeSlug(category.path)}`}
-            // onClick={saveActiveCategory}
-            onMouseDown={() => {
-              saveActiveCategory();
-              console.log("mouse down");
+            href={{
+              pathname: categoryPathSlug,
+              query: { category: JSON.stringify(category) },
             }}
+            as={categoryPathSlug}
+            onMouseDown={saveActiveCategory}
           >
             <Image
               className={``}
@@ -58,7 +58,7 @@ const Card = ({ category }) => {
               .map(({ _id, path, name }, index) => {
                 return (
                   <li key={_id}>
-                    <Link href={`/products/${makeSlug(path)}`}>
+                    <Link href={`/products/${slugify(transliterate(path))}`}>
                       {index == 4 ? `${name}` : `${name}`}
                     </Link>
                   </li>

@@ -1,15 +1,13 @@
-export const useGetActiveCategory = () => {
-  function getActiveCategory(allCategories, path) {
-    let activeCategory = null;
+import { unslugify } from "root/utils/slugify";
+import { untransliterate } from "root/utils/transliterate";
 
-    const pathString = path.split("-").join(",");
-    allCategories.forEach((category) => {
-      if (category.path == pathString) {
-        activeCategory = category;
-      }
-    });
-    return activeCategory;
-    1;
+export const useGetActiveCategory = () => {
+  function getActiveCategory(activeCategoryPath, allCategories) {
+    const pathString = untransliterate(unslugify(activeCategoryPath));
+
+    return allCategories.find(
+      (category) => category.path.toLowerCase() == pathString
+    );
   }
 
   return { getActiveCategory };

@@ -6,7 +6,6 @@ const Gallery = () => {
   const { categories } = useSelector((state) => state.categories);
 
   const isOneDepthCategory = (category) => category.path.split(",").length == 1;
-  // const byOrder = (category) => category.order.split(",").length == 1;
 
   return (
     <>

@@ -1,29 +1,29 @@
 import s from "./breadcrumbs.module.scss";
 import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
-import { makeSlug } from "root/utils/slugify";
+import { slugify } from "root/utils/slugify";
+import { transliterate } from "root/utils/transliterate";
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveCategory } from "root/store/categoriesSlice";
 import { useFindCategoryByPath } from "../hooks/useFindCategoryByPath";
 
-const Breadcrumbs = ({ activeCategory }) => {
-  const dispatch = useDispatch();
-
-  const categoryPathArray = activeCategory.path.split(",");
+const Breadcrumbs = ({ category }) => {
+  const categoryPathArray = category.path.split(",");
   const { categories: allCategories } = useSelector(
     (state) => state.categories
   );
 
   const { findCategoryByPath } = useFindCategoryByPath();
-  function saveActiveCategory(pathElementIdx) {
+
+  function getClickedCategory(pathElementIdx) {
     const path = categoryPathArray.slice(0, pathElementIdx + 1).join(",");
-    if (path != activeCategory.path) {
+    console.log(path);
+    if (path != category.path) {
       const category = findCategoryByPath(path, allCategories);
 
       if (typeof window !== "undefined") {
-        localStorage.setItem("activeCategory", JSON.stringify(category));
+        localStorage.setItem("category", JSON.stringify(category));
       }
-      dispatch(setActiveCategory(category));
+      return category;
     }
   }
 
@@ -37,9 +37,11 @@ const Breadcrumbs = ({ activeCategory }) => {
             </Link>
           </li>
           {categoryPathArray.map((pathElement, index, array) => {
-            const SlugPathElement = `/products/${makeSlug(
-              array.slice(0, index + 1).join("-")
+            const SlugPathElement = `/products/${slugify(
+              transliterate(array.slice(0, index + 1).join("-"))
             )}`;
+            console.log(SlugPathElement);
+
             return (
               <li
                 className={`breadcrumb-item ${
@@ -49,8 +51,13 @@ const Breadcrumbs = ({ activeCategory }) => {
               >
                 <Link
                   className="link"
-                  href={SlugPathElement}
-                  onClick={() => saveActiveCategory(index)}
+                  href={{
+                    pathname: SlugPathElement,
+                    query: {
+                      category: JSON.stringify(getClickedCategory(index)),
+                    },
+                  }}
+                  as={SlugPathElement}
                 >
                   {pathElement}
                 </Link>

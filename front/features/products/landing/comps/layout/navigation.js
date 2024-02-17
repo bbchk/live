@@ -2,8 +2,17 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import s from "./navigation.module.scss";
 
-const Navigation = ({ activePage, productSlug }) => {
+import { slugify } from "root/utils/slugify";
+import { transliterate } from "root/utils/transliterate";
+
+const Navigation = ({ activePage, category, product }) => {
   const router = useRouter();
+
+  const { categories: activeCategoryPath } = router.query;
+
+  const productUrl = `/products/${activeCategoryPath}/${slugify(
+    transliterate(product.name)
+  )}`;
 
   return (
     <>
@@ -15,7 +24,14 @@ const Navigation = ({ activePage, productSlug }) => {
               activePage === "about" ? s.active : ""
             }`}
             aria-current="page"
-            href={`/products/${router.query.categories}/${productSlug}/about`}
+            href={{
+              pathname: `${productUrl}/about`,
+              query: {
+                category: JSON.stringify(category),
+                product: JSON.stringify(product),
+              },
+            }}
+            as={`${productUrl}/about`}
           >
             Усе про товар
           </Link>
@@ -25,7 +41,14 @@ const Navigation = ({ activePage, productSlug }) => {
             className={`nav-link ${s.link} ${
               activePage === "characteristics" ? s.active : ""
             }`}
-            href={`/products/${router.query.categories}/${productSlug}/characteristics`}
+            href={{
+              pathname: `${productUrl}/characteristics`,
+              query: {
+                category: JSON.stringify(category),
+                product: JSON.stringify(product),
+              },
+            }}
+            as={`${productUrl}/characteristics`}
           >
             Характеристики
           </Link>
@@ -35,7 +58,7 @@ const Navigation = ({ activePage, productSlug }) => {
             className={`nav-link ${s.link} ${
               activePage === "reviews" ? "active" : ""
             }`}
-            href={`/products/${router.query.categories}/${productSlug}/reviews`}
+            href={`/products/${router.query.categories}/${productNameSlug}/reviews`}
           >
             Відгуки
           </Link>

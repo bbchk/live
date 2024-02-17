@@ -1,25 +1,32 @@
 import Image from "next/image";
 import s from "./card.module.scss";
 import Link from "next/link";
-import { makeSlug } from "root/utils/slugify";
+
 import { useDispatch } from "react-redux";
 import { setActiveCategory } from "root/store/categoriesSlice";
+
+import { slugify } from "root/utils/slugify";
+import { transliterate } from "root/utils/transliterate";
 
 const SubcategoryCard = ({ category }) => {
   const { name, imagePath, _id } = category;
 
-  const dispatch = useDispatch();
   function saveActiveCategory() {
     if (typeof window !== "undefined") {
       localStorage.setItem("activeCategory", JSON.stringify(category));
     }
-    dispatch(setActiveCategory(category));
   }
+
+  const categoryPathSlug = `/products/${slugify(transliterate(category.path))}`;
 
   return (
     <Link
-      href={`/products/${makeSlug(category.path.replaceAll(",", "-"))}`}
-      onClick={saveActiveCategory}
+      href={{
+        pathname: categoryPathSlug,
+        query: { category: JSON.stringify(category) },
+      }}
+      as={categoryPathSlug}
+      onMouseDown={saveActiveCategory}
       className={`${s.card}`}
     >
       <Image

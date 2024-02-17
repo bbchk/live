@@ -8,7 +8,7 @@ const ProductHeader = ({ category }) => {
   return (
     <>
       <div className={`${s.product_header}`}>
-        <Breadcrumbs activeCategory={category} />
+        <Breadcrumbs category={category} />
       </div>
     </>
   );

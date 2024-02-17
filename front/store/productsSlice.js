@@ -8,14 +8,7 @@ export const getProductsInfo = createAsyncThunk(
     try {
       const res = await axios.get(`/products/`);
 
-      let lastActiveProduct = null;
-      if (typeof window !== "undefined") {
-        lastActiveProduct = JSON.parse(localStorage.getItem("activeProduct"));
-      } else {
-        console.log("lastActiveProdcuts are not get");
-      }
-
-      return { products: res.data, lastActiveProduct: lastActiveProduct };
+      return { products: res.data };
     } catch (error) {
       throw new Error("Failed to fetch products");
     }
@@ -25,7 +18,6 @@ export const getProductsInfo = createAsyncThunk(
 const productsSlice = createSlice({
   name: "products",
   initialState: {
-    lastActiveProduct: null,
     products: null,
     status: "idle",
     error: null,
@@ -33,9 +25,6 @@ const productsSlice = createSlice({
   reducers: {
     set: (state, action) => {
       state.products = action.payload;
-    },
-    setActiveProduct: (state, action) => {
-      state.lastActiveProduct = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -46,7 +35,6 @@ const productsSlice = createSlice({
       .addCase(getProductsInfo.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.products = action.payload.products;
-        state.lastActiveProduct = action.payload.lastActiveProduct;
       })
       .addCase(getProductsInfo.rejected, (state, action) => {
         state.status = "failed";
@@ -55,6 +43,6 @@ const productsSlice = createSlice({
   },
 });
 
-export const { set, setActiveProduct } = productsSlice.actions;
+export const { set } = productsSlice.actions;
 
 export const productsReducer = productsSlice.reducer;

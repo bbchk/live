@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import ProductGallery from "root/features/products/listing/comps/gallery/gallery";
 import ProductHeader from "root/features/products/listing/comps/product-header";
@@ -11,19 +11,49 @@ import { useGetActiveProducts } from "root/hooks/useGetActiveProducts";
 import { useGetActiveCategory } from "/hooks/useGetActiveCategory";
 import SubcategoriesGallery from "root/features/products/listing/comps/subcategories/gallery";
 import { useGetSubcategoriesOf } from "../../../hooks/useGetSubcategoriesOf";
-import { useFindCategoryBySlugPath } from "../../../hooks/useFindCategoryByPath";
-import axios from "axios";
 
 const Products = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [activeProducts, setActiveProducts] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(null);
 
   const { products: allProducts } = useSelector((state) => state.products);
-  const { categories: allCategories, lastActiveCategory: activeCategory } =
-    useSelector((state) => state.categories);
+  const { categories: allCategories } = useSelector(
+    (state) => state.categories
+  );
 
   const { getSubcategoriesOf } = useGetSubcategoriesOf();
   const { getActiveProducts } = useGetActiveProducts();
+  const { getActiveCategory } = useGetActiveCategory();
+
+  const router = useRouter();
+  const { categories: activeCategoryPath } = router.query;
+  console.log(router.query);
+  // const category = JSON.parse(router.query.category);
+
+  //setting active category
+  useEffect(() => {
+    setIsLoading(true);
+
+    let category = router.query.category;
+
+    //if user directly navigate to page using url
+    if (category == null) {
+      if (activeCategoryPath && allCategories) {
+        category = getActiveCategory(activeCategoryPath, allCategories);
+
+        //if category was not found
+        if (category == null) {
+          router.push("/404");
+        }
+
+        setActiveCategory(category);
+      }
+    } else {
+      //if user using ui
+      setActiveCategory(JSON.parse(category));
+    }
+  }, [allCategories, activeCategoryPath]);
 
   //setting active products
   useEffect(() => {
@@ -33,6 +63,7 @@ const Products = () => {
       const activeProducts = getActiveProducts(allProducts, activeCategory);
 
       setActiveProducts(activeProducts);
+
       setIsLoading(false);
     }
   }, [activeCategory, allProducts]);
@@ -65,7 +96,7 @@ const Products = () => {
             </div>
 
             <ProductGallery
-              products={activeProducts}
+              activeProducts={activeProducts}
               activeCategory={activeCategory}
             />
           </div>

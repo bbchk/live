@@ -5,14 +5,14 @@ export function slugify(text) {
     .toLowerCase()
     .replace(/ /g, "-")
     .replace(/[^\w,-]+/g, "")
-    .replace(/,/g, "/");
+    .replace(/,/g, "--");
 }
 
 // Unslugify function
 export function unslugify(text) {
   return text
+    .replace(/--/g, ",")
     .replace(/-/g, " ")
-    .replace(/\//g, ",")
     .replace(/\w\S*/g, function (txt) {
       // return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       return txt;

@@ -7,14 +7,7 @@ export const getCategoriesInfo = createAsyncThunk(
     try {
       const res = await axios.get(`/categories/`);
 
-      let lastActiveCategory = null;
-      if (typeof window !== "undefined") {
-        lastActiveCategory = JSON.parse(localStorage.getItem("activeCategory"));
-      } else {
-        console.log("lastActiveProdcuts are not get");
-      }
-
-      return { categories: res.data, lastActiveCategory: lastActiveCategory };
+      return { categories: res.data };
     } catch (error) {
       throw new Error("Failed to fetch categories");
     }
@@ -24,7 +17,6 @@ export const getCategoriesInfo = createAsyncThunk(
 export const categoriesSlice = createSlice({
   name: "categories",
   initialState: {
-    lastActiveCategory: null,
     categories: null,
     status: "idle",
     error: null,
@@ -36,9 +28,6 @@ export const categoriesSlice = createSlice({
     create: (state, action) => {
       state.categories = [...state.categories, action.payload];
     },
-    setActiveCategory: (state, action) => {
-      state.lastActiveCategory = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -48,7 +37,6 @@ export const categoriesSlice = createSlice({
       .addCase(getCategoriesInfo.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.categories = action.payload.categories;
-        state.lastActiveCategory = action.payload.lastActiveCategory;
       })
       .addCase(getCategoriesInfo.rejected, (state, action) => {
         state.status = "failed";
@@ -57,6 +45,6 @@ export const categoriesSlice = createSlice({
   },
 });
 
-export const { set, create, setActiveCategory } = categoriesSlice.actions;
+export const { set, create } = categoriesSlice.actions;
 
 export const categoriesReducer = categoriesSlice.reducer;
