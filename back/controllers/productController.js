@@ -1,5 +1,8 @@
 import Product from "../models/product.js";
+import category from "../models/category.js";
 import mongoose from "mongoose";
+import { unslugify } from "@bbuukk/slugtrans/slugify";
+import { untransliterate } from "@bbuukk/slugtrans/transliterate";
 
 const getProductById = async (id) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -36,6 +39,57 @@ export const getProducts = async (req, res) => {
     .exec();
 
   res.status(200).json(products);
+};
+
+export const getProductsByCategoryPath = async (req, res) => {
+  let { categoryPath, pageId } = req.params;
+
+  const PRODUCTS_ON_PAGE = 50;
+
+  const categoryPathOriginal = untransliterate(unslugify(categoryPath));
+
+  const activeCategory = await category.findOne({
+    path: new RegExp(`^${categoryPathOriginal.toLowerCase()}$`, "i"),
+  });
+
+  if (activeCategory == null) {
+    return res
+      .status(404)
+      .json({ message: "Category with this path is not found" });
+  }
+
+  const categories = await category.find({
+    path: new RegExp(categoryPathOriginal, "i"),
+  });
+
+  const activeCategoryIds = categories.map((category) => category._id);
+
+  let query = Product.find({
+    category: { $in: activeCategoryIds },
+  })
+    .select("name price images") // specify the fields you need
+    .sort({ createdAt: -1 })
+    .populate("category");
+
+  if (pageId != 0) {
+    query = query.skip(PRODUCTS_ON_PAGE * (pageId - 1)).limit(PRODUCTS_ON_PAGE);
+  }
+
+  const products = await query.exec();
+
+  const activeCategoryLevel = activeCategory.path.split(",").length;
+
+  res.status(200).json({
+    category: activeCategory,
+    subcategories: categories.filter(
+      (c) =>
+        // all subcategories except activeCategory
+        c["name"] !== activeCategory["name"] &&
+        //only one level deeper subcategories
+        c.path.split(",").length == activeCategoryLevel + 1
+    ),
+    products,
+  });
 };
 
 export const getProduct = async (req, res) => {

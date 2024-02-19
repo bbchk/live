@@ -4,6 +4,7 @@ import { requireAuth, isAdmin } from "../middleware/auth.js";
 import {
   getProduct,
   getProducts,
+  getProductsByCategoryPath,
   getProductsByIds,
   createProduct,
   createProducts,
@@ -15,7 +16,8 @@ import {
 const router = express.Router();
 
 router.get("/", getProducts);
-router.get("/:id", getProduct);
+router.get("/:id(\\d+)", getProduct);
+router.get("/:categoryPath/page/:pageId", getProductsByCategoryPath);
 
 router.use(requireAuth);
 router.post("/getbyIds", getProductsByIds);

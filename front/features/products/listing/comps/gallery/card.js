@@ -3,8 +3,8 @@ import Link from "next/link";
 import s from "./card.module.scss";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { slugify } from "root/utils/slugify";
-import { transliterate } from "root/utils/transliterate";
+import { slugify } from "@bbuukk/slugtrans/slugify";
+import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import { setActiveProduct } from "root/store/productsSlice";
 import { useEffect, useId, useRef, useState } from "react";
 import axios from "axios";
@@ -13,8 +13,8 @@ import { useRouter } from "next/router";
 const ProductCard = ({ product, category, like, isLiked }) => {
   const router = useRouter();
 
-  const { categories: activeCategoryPath } = router.query;
-  const productUrl = `/products/${activeCategoryPath}/${slugify(
+  const { categories: activeCategoryPath, pageId } = router.query;
+  const productUrl = `/products/${activeCategoryPath}/page/${pageId}/${slugify(
     transliterate(product.name)
   )}`;
 
@@ -22,6 +22,7 @@ const ProductCard = ({ product, category, like, isLiked }) => {
     //todo make check for window
     // localStorage.setItem("activeProduct", JSON.stringify(product));
   }
+  console.log(product._id);
 
   return (
     <div className={`${s.product_card} `}>
@@ -37,11 +38,10 @@ const ProductCard = ({ product, category, like, isLiked }) => {
         href={{
           pathname: `${productUrl}/about`,
           query: {
-            category: JSON.stringify(category),
-            product: JSON.stringify(product),
+            productObjectId: product._id,
           },
         }}
-        as={`${productUrl}/about`}
+        // as={`${productUrl}/about`}
         className={`${s.image_link}`}
         onMouseDown={saveActiveProductInfo}
       >

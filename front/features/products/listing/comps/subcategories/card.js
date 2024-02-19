@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { setActiveCategory } from "root/store/categoriesSlice";
 
-import { slugify } from "root/utils/slugify";
-import { transliterate } from "root/utils/transliterate";
+import { slugify } from "@bbuukk/slugtrans/slugify";
+import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
 const SubcategoryCard = ({ category }) => {
   const { name, imagePath, _id } = category;
@@ -17,7 +17,9 @@ const SubcategoryCard = ({ category }) => {
     }
   }
 
-  const categoryPathSlug = `/products/${slugify(transliterate(category.path))}`;
+  const categoryPathSlug = `/products/${slugify(
+    transliterate(category.path)
+  )}/page/1`;
 
   return (
     <Link

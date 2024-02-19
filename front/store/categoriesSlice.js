@@ -18,6 +18,7 @@ export const categoriesSlice = createSlice({
   name: "categories",
   initialState: {
     categories: null,
+    categoriesPath: [],
     status: "idle",
     error: null,
   },
@@ -27,6 +28,12 @@ export const categoriesSlice = createSlice({
     },
     create: (state, action) => {
       state.categories = [...state.categories, action.payload];
+    },
+    setCategoriesPath: (state, action) => {
+      state.categoriesPath = action.payload;
+    },
+    addToCategoriesPath: (state, action) => {
+      state.categoriesPath = [...state.categoriesPath, action.payload];
     },
   },
   extraReducers: (builder) => {
@@ -45,6 +52,7 @@ export const categoriesSlice = createSlice({
   },
 });
 
-export const { set, create } = categoriesSlice.actions;
+export const { set, create, setCategoriesPath, addToCategoriesPath } =
+  categoriesSlice.actions;
 
 export const categoriesReducer = categoriesSlice.reducer;

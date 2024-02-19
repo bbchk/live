@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-import { slugify } from "root/utils/slugify";
-import { transliterate } from "root/utils/transliterate";
+import { slugify } from "@bbuukk/slugtrans/slugify";
+import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
 const Card = ({ category }) => {
   const [subcategories, setSubcategories] = useState(null);
@@ -27,7 +27,9 @@ const Card = ({ category }) => {
       localStorage.setItem("activeCategory", JSON.stringify(category));
     }
   }
-  const categoryPathSlug = `/products/${slugify(transliterate(category.path))}`;
+  const categoryPathSlug = `/products/${slugify(
+    transliterate(category.path)
+  )}/page/1`;
 
   return (
     <>
@@ -58,7 +60,9 @@ const Card = ({ category }) => {
               .map(({ _id, path, name }, index) => {
                 return (
                   <li key={_id}>
-                    <Link href={`/products/${slugify(transliterate(path))}`}>
+                    <Link
+                      href={`/products/${slugify(transliterate(path))}/page/1`}
+                    >
                       {index == 4 ? `${name}` : `${name}`}
                     </Link>
                   </li>

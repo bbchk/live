@@ -15,7 +15,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "root/*": ["./*"]
+      "root/*": ["./*"],
     }
   },
   "include": [

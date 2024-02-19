@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@bbuukk/slugtrans": "^1.0.4",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -21,6 +22,7 @@
     "mongoose": "^7.6.3",
     "nodemon": "^3.0.1",
     "nookies": "^2.5.2",
+    "punycode": "^2.3.1",
     "validator": "^13.11.0"
   }
 }

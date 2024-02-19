@@ -1,5 +1,5 @@
-import { unslugify } from "root/utils/slugify";
-import { untransliterate } from "root/utils/transliterate";
+import { unslugify } from "@bbuukk/slugtrans/slugify";
+import { untransliterate } from "@bbuukk/slugtrans/transliterate";
 
 export const useGetActiveCategory = () => {
   function getActiveCategory(activeCategoryPath, allCategories) {

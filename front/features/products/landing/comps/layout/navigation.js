@@ -2,15 +2,16 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import s from "./navigation.module.scss";
 
-import { slugify } from "root/utils/slugify";
-import { transliterate } from "root/utils/transliterate";
+import { slugify } from "@bbuukk/slugtrans/slugify";
+import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
 const Navigation = ({ activePage, category, product }) => {
   const router = useRouter();
+  console.log(product);
 
-  const { categories: activeCategoryPath } = router.query;
+  const { categories: activeCategoryPath, pageId } = router.query;
 
-  const productUrl = `/products/${activeCategoryPath}/${slugify(
+  const productUrl = `/products/${activeCategoryPath}/page/${pageId}/${slugify(
     transliterate(product.name)
   )}`;
 
@@ -27,11 +28,10 @@ const Navigation = ({ activePage, category, product }) => {
             href={{
               pathname: `${productUrl}/about`,
               query: {
-                category: JSON.stringify(category),
-                product: JSON.stringify(product),
+                productObjectId: product._id,
               },
             }}
-            as={`${productUrl}/about`}
+            // as={`${productUrl}/about`}
           >
             Усе про товар
           </Link>
@@ -44,11 +44,10 @@ const Navigation = ({ activePage, category, product }) => {
             href={{
               pathname: `${productUrl}/characteristics`,
               query: {
-                category: JSON.stringify(category),
-                product: JSON.stringify(product),
+                productObjectId: product._id,
               },
             }}
-            as={`${productUrl}/characteristics`}
+            // as={`${productUrl}/characteristics`}
           >
             Характеристики
           </Link>

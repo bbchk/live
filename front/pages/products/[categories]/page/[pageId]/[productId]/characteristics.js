@@ -1,25 +1,22 @@
-import Navigation from "../../../../features/products/landing/comps/layout/navigation";
-import Characteristics from "../../../../features/products/landing/comps/characteristics/characteristics";
-import SmallCard from "../../../../features/products/landing/comps/characteristics/small_card";
-import SmallBuyArea from "../../../../features/products/landing/comps/characteristics/small_buy_area";
+import Navigation from "../../../../../../features/products/landing/comps/layout/navigation";
+import Characteristics from "../../../../../../features/products/landing/comps/characteristics/characteristics";
+import SmallCard from "../../../../../../features/products/landing/comps/characteristics/small_card";
+import SmallBuyArea from "../../../../../../features/products/landing/comps/characteristics/small_buy_area";
 import { useSelector } from "react-redux";
-import { slugify } from "root/utils/slugify";
-import { transliterate } from "root/utils/transliterate";
-import DecorLine from "../../../../comps/decor_line";
+import { slugify } from "@bbuukk/slugtrans/slugify";
+import { transliterate } from "@bbuukk/slugtrans/transliterate";
+import DecorLine from "../../../../../../comps/decor_line";
 import Breadcrumbs from "root/comps/breadcrumbs";
 import { useRouter } from "next/router";
-import LandingProuductLayout from "../../../../features/products/landing/comps/layout/layout";
+import LandingProuductLayout from "../../../../../../features/products/landing/comps/layout/layout";
 
 const Product = () => {
   const router = useRouter();
 
-  let { category, product } = router.query;
-  category = JSON.parse(category);
-  product = JSON.parse(product);
-
   return (
     <>
-      {product && (
+      <h1>UNDER DEV</h1>
+      {/* {product && (
         <LandingProuductLayout
           category={category}
           product={product}
@@ -39,7 +36,7 @@ const Product = () => {
             </div>
           </div>
         </LandingProuductLayout>
-      )}
+      )} */}
     </>
   );
 };

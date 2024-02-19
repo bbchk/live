@@ -65,3 +65,13 @@ function FetchData() {
 
   return null;
 }
+
+export const getStaticProps = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+
+  return {
+    props: { data },
+  };
+};

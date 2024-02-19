@@ -1,31 +1,17 @@
 import s from "./breadcrumbs.module.scss";
 import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
-import { slugify } from "root/utils/slugify";
-import { transliterate } from "root/utils/transliterate";
+import { slugify } from "@bbuukk/slugtrans/slugify";
+import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import { useDispatch, useSelector } from "react-redux";
 import { useFindCategoryByPath } from "../hooks/useFindCategoryByPath";
 
 const Breadcrumbs = ({ category }) => {
-  const categoryPathArray = category.path.split(",");
   const { categories: allCategories } = useSelector(
     (state) => state.categories
   );
 
   const { findCategoryByPath } = useFindCategoryByPath();
-
-  function getClickedCategory(pathElementIdx) {
-    const path = categoryPathArray.slice(0, pathElementIdx + 1).join(",");
-    console.log(path);
-    if (path != category.path) {
-      const category = findCategoryByPath(path, allCategories);
-
-      if (typeof window !== "undefined") {
-        localStorage.setItem("category", JSON.stringify(category));
-      }
-      return category;
-    }
-  }
 
   return (
     <>
@@ -33,37 +19,46 @@ const Breadcrumbs = ({ category }) => {
         <ol className="breadcrumb">
           <li className={`breadcrumb-item ms-5`}>
             <Link className="link" href="/">
-              <p>Головна</p>
+              Головна
             </Link>
           </li>
-          {categoryPathArray.map((pathElement, index, array) => {
-            const SlugPathElement = `/products/${slugify(
-              transliterate(array.slice(0, index + 1).join("-"))
-            )}`;
-            console.log(SlugPathElement);
+          {allCategories &&
+            category.path.split(",").map((pathPart, index, pathParts) => {
+              const clickedCategoryIndex = index + 1;
 
-            return (
-              <li
-                className={`breadcrumb-item ${
-                  index === array.length - 1 ? "active" : ""
-                }`}
-                key={uuidv4()}
-              >
-                <Link
-                  className="link"
-                  href={{
-                    pathname: SlugPathElement,
-                    query: {
-                      category: JSON.stringify(getClickedCategory(index)),
-                    },
-                  }}
-                  as={SlugPathElement}
+              const clickedCategoryPath = pathParts
+                .slice(0, clickedCategoryIndex)
+                .join(",");
+
+              const categoryPathSlug = slugify(
+                transliterate(clickedCategoryPath)
+              );
+
+              const isActiveCategory = index === pathParts.length - 1;
+              return (
+                <li
+                  className={`breadcrumb-item ${
+                    isActiveCategory ? "active" : ""
+                  }`}
+                  key={pathPart}
                 >
-                  {pathElement}
-                </Link>
-              </li>
-            );
-          })}
+                  <Link
+                    className="link"
+                    href={{
+                      pathname: `/products/${categoryPathSlug}/page/1`,
+                      query: {
+                        category: JSON.stringify(
+                          findCategoryByPath(clickedCategoryPath, allCategories)
+                        ),
+                      },
+                    }}
+                    as={`/products/${categoryPathSlug}/page/1`}
+                  >
+                    {pathPart}
+                  </Link>
+                </li>
+              );
+            })}
         </ol>
       </nav>
     </>
