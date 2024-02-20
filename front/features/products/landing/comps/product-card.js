@@ -1,6 +1,7 @@
 import Image from "next/image";
 import StarRating from "root/comps/star-rating";
 import s from "./product-card.module.scss";
+import { useState } from "react";
 
 const ProductCard = ({
   product: {
@@ -18,17 +19,39 @@ const ProductCard = ({
     packing,
   },
 }) => {
+  const [selectedImage, setSelectedImage] = useState(images && images[0]);
+  const isSelected = (image) => selectedImage === image;
   return (
     <>
       <div className={`${s.product_banner}`}>
-        <div className={`${s.frame}`}>
+        <div className={`${s.frame2}`}>
           <Image
-            src={images && images[0]}
+            src={selectedImage}
             alt="Picture of the product"
             width={500}
             height={500}
             className={`${s.image}`}
-          ></Image>
+          />
+          <div className={`${s.thumbnails}`}>
+            {images &&
+              images.map((img, index) => (
+                <div
+                  key={index}
+                  className={`${
+                    isSelected(img) ? s.thumbnailSelected : s.thumbnail
+                  }`}
+                  onClick={() => setSelectedImage(img)}
+                >
+                  <Image
+                    src={img}
+                    className={`${s.thumbnail_image}`}
+                    alt={`Thumbnail ${index}`}
+                    width={100}
+                    height={100}
+                  />
+                </div>
+              ))}
+          </div>
         </div>
         <div className={`${s.info}`}>
           <div className={`${s.header}`}>
