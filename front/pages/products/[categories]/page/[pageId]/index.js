@@ -15,7 +15,7 @@ import SubcategoriesGallery from "root/features/products/listing/comps/subcatego
 
 import { addToCategoriesPath } from "root/store/categoriesSlice";
 
-const Listing = ({ data: { category, subcategories, products } }) => {
+const Listing = ({ data: { category, subcategories, products, numPages } }) => {
   const [isLoading, setIsLoading] = useState(false);
   // const [activeProducts, setActiveProducts] = useState(products);
   // const [activeCategory, setActiveCategory] = useState(category);
@@ -56,6 +56,20 @@ const Listing = ({ data: { category, subcategories, products } }) => {
 
 export default Listing;
 
+async function getNumOfPages(slugCategoryPath) {
+  const ALL_PAGES = 0;
+  const res = await axios.get(
+    `/products/${slugCategoryPath}/page/${ALL_PAGES}`
+  );
+  const { products } = res.data;
+
+  let numPages = Math.ceil(products.length / 50);
+  if (numPages == 0) {
+    numPages += 1;
+  }
+  return numPages;
+}
+
 export async function getStaticPaths() {
   const fetchedCategories = await axios.get("/categories");
   const categories = fetchedCategories.data;
@@ -63,21 +77,18 @@ export async function getStaticPaths() {
   const paths = [];
 
   for (const category of categories) {
-    const slugPath = slugify(transliterate(category.path));
+    const slugCategoryPath = slugify(transliterate(category.path));
 
-    const ALL_PAGES = 0;
-    const res = await axios.get(`/products/${slugPath}/page/${ALL_PAGES}`);
-    const { products } = res.data;
-
-    let numPages = Math.ceil(products.length / 50);
-    if (numPages == 0) {
-      numPages += 1;
-    }
+    const numPages = await getNumOfPages(slugCategoryPath);
 
     // Generate paths for each page
     for (let i = 1; i <= numPages; i++) {
       paths.push({
-        params: { categories: `${slugPath}`, pageId: `${i}` },
+        params: {
+          categories: `${slugCategoryPath}`,
+          pageId: `${i}`,
+          numPages: numPages,
+        },
       });
     }
   }
@@ -87,13 +98,15 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { params } = context;
-  const categoryPath = params.categories;
+  const slugCategoryPath = params.categories;
   const pageId = params.pageId;
 
-  const res = await axios.get(`/products/${categoryPath}/page/${pageId}`);
+  const numPages = await getNumOfPages(slugCategoryPath);
+
+  const res = await axios.get(`/products/${slugCategoryPath}/page/${pageId}`);
   const data = res.data;
 
   return {
-    props: { data },
+    props: { data: { ...data, numPages } },
   };
 }
