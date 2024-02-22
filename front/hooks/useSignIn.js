@@ -2,7 +2,7 @@ import { useState } from "react";
 import { setCookie } from "nookies";
 import dotenv from "dotenv";
 import { useDispatch } from "react-redux";
-import { signIn as sign_in } from "root/store/userSlice";
+import { signIn as sign_in } from "store/userSlice";
 import axios from "axios";
 dotenv.config();
 

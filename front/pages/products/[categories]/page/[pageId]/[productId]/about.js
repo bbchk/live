@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 
-import Description from "root/features/products/landing/comps/description";
-import ProductCard from "root/features/products/landing/comps/product-card";
+import Description from "features/products/landing/comps/description";
+import ProductCard from "features/products/landing/comps/product-card";
 
-import Characteristics from "root/features/products/landing/comps/characteristics/characteristics";
-import ReviewsList from "root/features/products/landing/comps/reviews-list";
+import Characteristics from "features/products/landing/comps/characteristics/characteristics";
+import ReviewsList from "features/products/landing/comps/reviews-list";
 
-import LandingProuductLayout from "root/features/products/landing/comps/layout/layout";
+import LandingProuductLayout from "features/products/landing/comps/layout/layout";
 import { useFindCategoryByPath } from "../../../../../../hooks/useFindCategoryByPath";
 import { useFindProductById } from "../../../../../../hooks/useFindProductById";
 import { useEffect, useState } from "react";

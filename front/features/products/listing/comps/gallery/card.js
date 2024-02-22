@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
-import { setActiveProduct } from "root/store/productsSlice";
+import { setActiveProduct } from "store/productsSlice";
 import { useEffect, useId, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";

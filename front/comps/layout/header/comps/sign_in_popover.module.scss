@@ -1,6 +1,6 @@
 @use "./styles/variables" as *;
 @use "./styles/mixins" as *;
-@import "root/node_modules/rfs/sass.sass";
+@import "node_modules/rfs/sass.sass";
 
 .sign_in_popover {
   box-shadow: 0 0 5px 3px lightgrey;

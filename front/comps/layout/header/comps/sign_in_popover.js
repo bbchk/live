@@ -1,5 +1,5 @@
-import { CustomTooltip } from "root/comps/tooltip";
-import { useSignOut } from "root/hooks/useSingOut";
+import { CustomTooltip } from "comps/tooltip";
+import { useSignOut } from "hooks/useSingOut";
 import Link from "next/link";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";

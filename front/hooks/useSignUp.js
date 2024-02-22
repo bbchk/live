@@ -1,7 +1,7 @@
 import { setCookie } from "nookies";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { signIn } from "root/store/userSlice";
+import { signIn } from "store/userSlice";
 
 export const useSignUp = () => {
   const [error, setError] = useState(null);

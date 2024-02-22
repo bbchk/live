@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import s from "./write-review-modal.module.scss";
 
-import StarRating from "root/comps/star-rating";
+import StarRating from "comps/star-rating";
 
 const WriteReviewModal = ({ isOpen, toggle }) => {
   const [comment, setComment] = useState("");

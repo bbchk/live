@@ -1,19 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
-import ProductGallery from "root/features/products/listing/comps/gallery/gallery";
-import ProductHeader from "root/features/products/listing/comps/product-header";
-import ProductFilter from "root/features/products/listing/comps/filter/filter";
-import SortGroup from "root/features/products/listing/comps/filter/sort-group";
+import ProductGallery from "features/products/listing/comps/gallery/gallery";
+import ProductHeader from "features/products/listing/comps/product-header";
+import ProductFilter from "features/products/listing/comps/filter/filter";
+import SortGroup from "features/products/listing/comps/filter/sort-group";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
-import SubcategoriesGallery from "root/features/products/listing/comps/subcategories/gallery";
+import SubcategoriesGallery from "features/products/listing/comps/subcategories/gallery";
 
-import { addToCategoriesPath } from "root/store/categoriesSlice";
+import { addToCategoriesPath } from "store/categoriesSlice";
 
 const Listing = ({ data: { category, subcategories, products, numPages } }) => {
   const [isLoading, setIsLoading] = useState(false);

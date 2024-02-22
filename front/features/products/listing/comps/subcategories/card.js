@@ -3,7 +3,7 @@ import s from "./card.module.scss";
 import Link from "next/link";
 
 import { useDispatch } from "react-redux";
-import { setActiveCategory } from "root/store/categoriesSlice";
+import { setActiveCategory } from "store/categoriesSlice";
 
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";

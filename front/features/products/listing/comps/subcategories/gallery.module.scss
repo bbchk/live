@@ -1,5 +1,5 @@
 @use "./styles/variables" as *;
-@import "root/node_modules/rfs/sass.sass";
+@import "node_modules/rfs/sass.sass";
 
 .subcategories_gallery {
   display: flex;

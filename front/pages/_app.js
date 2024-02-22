@@ -1,4 +1,4 @@
-import "root/styles/globals.scss";
+import "styles/globals.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -6,17 +6,17 @@ axios.defaults.baseURL = "http://localhost:4000";
 
 import React, { useState, useEffect } from "react";
 
-import Header from "root/comps/layout/header/header";
-import Footer from "root/comps/layout/footer/footer";
+import Header from "comps/layout/header/header";
+import Footer from "comps/layout/footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import dotenv from "dotenv";
 import { Provider } from "react-redux";
-import { store } from "root/store/store";
+import { store } from "store/store";
 import { useDispatch } from "react-redux";
 
-import { getProductsInfo } from "root/store/productsSlice";
-import { getCategoriesInfo } from "root/store/categoriesSlice";
+import { getProductsInfo } from "store/productsSlice";
+import { getCategoriesInfo } from "store/categoriesSlice";
 
 dotenv.config();
 

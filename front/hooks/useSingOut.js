@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { destroyCookie } from "nookies";
 import { useDispatch } from "react-redux";
-import { signOut as sign_out } from "root/store/userSlice";
+import { signOut as sign_out } from "store/userSlice";
 
 export const useSignOut = () => {
   const dispatch = useDispatch();

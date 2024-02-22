@@ -7,7 +7,7 @@ import SignInPopOver from "./comps/sign_in_popover";
 import SearchBar from "./comps/search-bar";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import { CustomTooltip } from "root/comps/tooltip";
+import { CustomTooltip } from "comps/tooltip";
 
 const Header = () => {
   const { user } = useSelector((state) => state.user);

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { useSignOut } from "root/hooks/useSingOut";
+import { useSignOut } from "hooks/useSingOut";
 
 import s from "./tab-layout.module.scss";
 

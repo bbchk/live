@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import s from "./gallery.module.scss";
-import ProductCard from "root/features/products/listing/comps/gallery/card";
+import ProductCard from "features/products/listing/comps/gallery/card";
 
 const Data = () => {
   //todo save likedProducts to localStorage

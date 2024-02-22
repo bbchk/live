@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import DecorLine from "../../../../../../comps/decor_line";
-import Breadcrumbs from "root/comps/breadcrumbs";
+import Breadcrumbs from "comps/breadcrumbs";
 import { useRouter } from "next/router";
 import LandingProuductLayout from "../../../../../../features/products/landing/comps/layout/layout";
 
