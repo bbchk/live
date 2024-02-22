@@ -106,7 +106,9 @@ export async function getStaticProps(context) {
   const res = await axios.get(`/products/${slugCategoryPath}/page/${pageId}`);
   const data = res.data;
 
+  //todo make it a minutes
+  const HALF_AN_HOUR_IN_SECONDS = 1800;
   return {
-    props: { data: { ...data, numPages } },
+    props: { data: { ...data, numPages }, revalidate: HALF_AN_HOUR_IN_SECONDS },
   };
 }

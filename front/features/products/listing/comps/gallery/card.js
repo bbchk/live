@@ -22,7 +22,6 @@ const ProductCard = ({ product, category, like, isLiked }) => {
     //todo make check for window
     // localStorage.setItem("activeProduct", JSON.stringify(product));
   }
-  console.log(product._id);
 
   return (
     <div className={`${s.product_card} `}>

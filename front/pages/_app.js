@@ -35,7 +35,13 @@ export default function App({ Component, pageProps }) {
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        //todo write pretty title
         <title> Живий світ - Магазин зоотоварів і товарів для дому </title>
+        //todo write pretty description
+        <meta
+          name="description"
+          content="Explore our wide range of products including books, electronics, and clothing."
+        />
       </Head>
       <Provider store={store}>
         <div className="min-vh-80 mb-3">
@@ -65,13 +71,3 @@ function FetchData() {
 
   return null;
 }
-
-export const getStaticProps = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
-  const data = await res.json();
-  console.log(data);
-
-  return {
-    props: { data },
-  };
-};

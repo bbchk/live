@@ -7,7 +7,6 @@ import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
 const Navigation = ({ activePage, category, product }) => {
   const router = useRouter();
-  console.log(product);
 
   const { categories: activeCategoryPath, pageId } = router.query;
 
