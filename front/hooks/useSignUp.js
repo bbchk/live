@@ -1,3 +1,4 @@
+import axios from "axios";
 import { setCookie } from "nookies";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -12,29 +13,25 @@ export const useSignUp = () => {
     setIsLoading(true);
     setError(false);
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/user/signUp`,
-      {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ firstName, secondName, email, password }),
-      }
-    );
+    try {
+      const response = await axios.post(`/user/signUp`, {
+        firstName,
+        secondName,
+        email,
+        password,
+      });
 
-    const json = await response.json();
-
-    if (!response.ok) {
-      setIsLoading(false);
-      setError(json.error);
-    } else {
-      localStorage.setItem("user", JSON.stringify(json));
-      dispatch(signIn(json));
-      setCookie(null, "auth-token", user.token, {
+      localStorage.setItem("user", JSON.stringify(response.data));
+      dispatch(signIn(response.data));
+      setCookie(null, "auth-token", response.data.token, {
         path: "/",
         sameSite: "strict",
         maxAge: 3 * 24 * 60 * 60, // expires in 3 days
       });
       setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      setError(error.response.data.error);
     }
   };
 

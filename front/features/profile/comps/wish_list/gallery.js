@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import s from "./gallery.module.scss";
 import ProductCard from "features/products/listing/comps/gallery/card";
+import axios from "axios";
 
 const Data = () => {
   //todo save likedProducts to localStorage
@@ -11,22 +12,21 @@ const Data = () => {
       const fetchLikedProducts = async () => {
         const token = user.token;
 
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/products/getByIds`,
-          {
-            method: "POST",
-            headers: {
-              "Content-type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(user.likedProducts),
-          }
-        );
+        try {
+          const res = await axios.post(
+            `/products/getByIds`,
+            user.likedProducts,
+            {
+              headers: {
+                "Content-type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
 
-        const json = await res.json();
-
-        if (res.ok) {
-          setLikedProducts(json);
+          setLikedProducts(res.data);
+        } catch (error) {
+          console.error(error);
         }
       };
       fetchLikedProducts();
