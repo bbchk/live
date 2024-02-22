@@ -22,6 +22,7 @@ const Card = ({ category }) => {
     setSubcategories(subcategories.slice(0, 5));
   }, []);
 
+  //todo check localStorage variables and delete unneccesary!
   function saveActiveCategory() {
     if (typeof window !== "undefined") {
       localStorage.setItem("activeCategory", JSON.stringify(category));

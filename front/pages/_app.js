@@ -10,15 +10,13 @@ import Header from "comps/layout/header/header";
 import Footer from "comps/layout/footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import dotenv from "dotenv";
+
 import { Provider } from "react-redux";
 import { store } from "store/store";
 import { useDispatch } from "react-redux";
 
 import { getProductsInfo } from "store/productsSlice";
 import { getCategoriesInfo } from "store/categoriesSlice";
-
-dotenv.config();
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
