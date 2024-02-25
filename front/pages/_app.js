@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:4000";
 
+import { SessionProvider } from "next-auth/react";
+
 import React, { useState, useEffect } from "react";
 
 import Header from "comps/layout/header/header";
@@ -33,22 +35,22 @@ export default function App({ Component, pageProps }) {
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        //todo write pretty title
         <title> Живий світ - Магазин зоотоварів і товарів для дому </title>
-        //todo write pretty description
         <meta
           name="description"
-          content="Explore our wide range of products including books, electronics, and clothing."
+          content="Живий Світ - Магазин найкращих товарів для вашого дому, домашніх улюбленців та рослин"
         />
       </Head>
-      <Provider store={store}>
-        <div className="min-vh-80 mb-3">
-          {!excludedPaths.includes(router.pathname) && <Header />}
-          <FetchData />
-          <Component {...pageProps} />
-        </div>
-        {!excludedPaths.includes(router.pathname) && <Footer />}
-      </Provider>
+      <SessionProvider session={pageProps.session}>
+        <Provider store={store}>
+          <div className="min-vh-80 mb-3">
+            {!excludedPaths.includes(router.pathname) && <Header />}
+            <FetchData />
+            <Component {...pageProps} />
+          </div>
+          {!excludedPaths.includes(router.pathname) && <Footer />}
+        </Provider>
+      </SessionProvider>
     </div>
   );
 }

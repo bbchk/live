@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { untransliterate } from "@bbuukk/slugtrans/transliterate";
 import { unslugify } from "@bbuukk/slugtrans/slugify";
+import Head from "next/head";
 
 const About = () => {
   const router = useRouter();
@@ -43,29 +44,44 @@ const About = () => {
 
       setProduct(findProductById(productObjectId, allProducts));
     }
+    console.log(product);
   }, [allCategories, allProducts]);
 
   return (
     <>
       {category && product && (
-        <LandingProuductLayout
-          category={category}
-          product={product}
-          activePage={"about"}
-        >
-          {/* <DecorLine /> */}
+        <>
+          <Head>
+            <title>{product.name} в інтернет-магазині Живий світ</title>
+            <meta
+              name="description"
+              content={`${product.name}\n\n${product.description[
+                "Опис"
+              ].substring(0, 110)}...`}
+            />
+          </Head>
+          <LandingProuductLayout
+            category={category}
+            product={product}
+            activePage={"about"}
+          >
+            {/* <DecorLine /> */}
 
-          <div>
-            <ProductCard product={product} />
-            <div className="d-flex">
-              <div className="w-50">
-                <Description product={product} />
-                <Characteristics title={"Характеристики:"} product={product} />
+            <div>
+              <ProductCard product={product} />
+              <div className="d-flex">
+                <div className="w-50">
+                  <Description product={product} />
+                  <Characteristics
+                    title={"Характеристики:"}
+                    product={product}
+                  />
+                </div>
+                {/* <ReviewsList /> */}
               </div>
-              {/* <ReviewsList /> */}
             </div>
-          </div>
-        </LandingProuductLayout>
+          </LandingProuductLayout>
+        </>
       )}
     </>
   );

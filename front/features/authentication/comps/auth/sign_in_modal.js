@@ -2,6 +2,8 @@ import { useSignIn } from "hooks/useSignIn";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 
+import Link from "next/link";
+
 const SignInForm = ({ toggleModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

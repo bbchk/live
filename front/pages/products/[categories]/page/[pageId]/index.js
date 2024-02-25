@@ -14,6 +14,7 @@ import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import SubcategoriesGallery from "features/products/listing/comps/subcategories/gallery";
 
 import { addToCategoriesPath } from "store/categoriesSlice";
+import Head from "next/head";
 
 const Listing = ({ data: { category, subcategories, products, numPages } }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +24,10 @@ const Listing = ({ data: { category, subcategories, products, numPages } }) => {
 
   return (
     <>
+      <Head>
+        <title> Живий світ | {category.path}</title>
+        <meta name="description" content={`Живий Світ | ${category.path}`} />
+      </Head>
       {!isLoading && (
         <div className="mt-3 ">
           <div className="mx-5">

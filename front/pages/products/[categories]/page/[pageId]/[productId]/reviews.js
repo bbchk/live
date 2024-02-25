@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Navigation from "../../../../features/products/landing/comps/navigation";
 import ReviewsList from "../../../../features/products/landing/comps/reviews-list";
 
+//todo add Head like in about page
 const Reviews = () => {
   const router = useRouter();
 

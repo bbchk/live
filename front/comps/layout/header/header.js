@@ -8,8 +8,10 @@ import SearchBar from "./comps/search-bar";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { CustomTooltip } from "comps/tooltip";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Header = () => {
+  // const { data: session } = useSession();
   const { user } = useSelector((state) => state.user);
 
   const [showSignInModal, setShowSignInModal] = useState(false);
@@ -21,6 +23,9 @@ const Header = () => {
         <Link className={`${s.logo} navbar-brand`} href="/">
           Живий світ
         </Link>
+        {/* <Link href="#" onClick={() => signIn()}>
+          nextauth
+        </Link> */}
         <SearchBar />
         {!user && (
           <SignInPopOver
