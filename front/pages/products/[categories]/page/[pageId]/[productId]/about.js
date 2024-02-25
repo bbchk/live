@@ -44,7 +44,6 @@ const About = () => {
 
       setProduct(findProductById(productObjectId, allProducts));
     }
-    console.log(product);
   }, [allCategories, allProducts]);
 
   return (

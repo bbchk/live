@@ -10,6 +10,7 @@ import Breadcrumbs from "comps/breadcrumbs";
 import { useRouter } from "next/router";
 import LandingProuductLayout from "../../../../../../features/products/landing/comps/layout/layout";
 
+//todo add Head like in about page
 const Product = () => {
   const router = useRouter();
 
