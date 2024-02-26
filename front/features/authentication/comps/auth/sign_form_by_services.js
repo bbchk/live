@@ -1,6 +1,8 @@
 import s from "./sign_form_by_services.module.scss";
 import modal_s from "./modal.module.scss";
 
+import { signIn } from "next-auth/react";
+
 const SignFormByServices = () => {
   const ServiceButton = ({ serviceName }) => {
     return (
