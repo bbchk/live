@@ -26,6 +26,19 @@
   background-color: $bg-color;
 }
 
+@mixin link() {
+  color: $color-bluedefrnc;
+  
+  &:hover {
+    color: $color-suncycl;
+  }
+  
+  &:visited {
+    color: $color-iris;
+  }
+  
+}
+
 @mixin text_muted($color, $opacity) {
   color: rgba($color, $opacity);
 }

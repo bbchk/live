@@ -9,6 +9,11 @@ module.exports = {
         hostname: "storage.googleapis.com",
         pathname: "/live_world/*.*",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "/a/*",
+      },
     ],
   },
 };
