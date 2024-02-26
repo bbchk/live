@@ -1,4 +1,5 @@
 import ProductCard from "./card";
+import ProductsPagination from "./pagination";
 
 const ProductGallery = ({
   activeProducts: products,
@@ -30,6 +31,7 @@ const ProductGallery = ({
           </div>
         );
       })}
+      <ProductsPagination />
     </div>
   );
 };

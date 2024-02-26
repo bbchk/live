@@ -1,22 +1,29 @@
 import { useState, useEffect } from "react";
+import Pagination from "react-bootstrap/Pagination";
 
-export default function Pagination({ data, children }) {
-  // Set state variables
+function ProductsPagination({ data, children }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-
-  // Calculate total number of pages
-  const pageCount = Math.ceil(data.length / itemsPerPage);
-
-  // Implement a function to handle page change
-  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
-
-  // Render your items here, slicing the data array based on the current page and items per page
+  // const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div>
-      {/* Render your items here */}
-      {/* Render your pagination component here, passing handlePageChange, currentPage, and pageCount as props */}
-    </div>
+    <Pagination>
+      <Pagination.First />
+      <Pagination.Prev />
+      <Pagination.Item>{1}</Pagination.Item>
+      <Pagination.Ellipsis />
+
+      <Pagination.Item>{10}</Pagination.Item>
+      <Pagination.Item>{11}</Pagination.Item>
+      <Pagination.Item active>{12}</Pagination.Item>
+      <Pagination.Item>{13}</Pagination.Item>
+      <Pagination.Item disabled>{14}</Pagination.Item>
+
+      <Pagination.Ellipsis />
+      <Pagination.Item>{20}</Pagination.Item>
+      <Pagination.Next />
+      <Pagination.Last />
+    </Pagination>
   );
 }
+
+export default ProductsPagination;

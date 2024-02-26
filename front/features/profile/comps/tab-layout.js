@@ -42,7 +42,7 @@ const TabMenu = ({ handleSignOut }) => {
       <div className="w-20"></div>
       <Tab
         onClick={handleSignOut}
-        href="/"
+        href="/api/auth/signout"
         text="Sign Out"
         icon={<i className="bi bi-box-arrow-left"></i>}
       />
