@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 function ProductsPagination({ numPages, activePageId }) {
   const router = useRouter();
   const { categories: categoryPath } = router.query;
-  console.log(activePageId);
 
   return (
     <Pagination

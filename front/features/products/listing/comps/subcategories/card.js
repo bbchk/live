@@ -23,10 +23,7 @@ const SubcategoryCard = ({ category }) => {
 
   return (
     <Link
-      href={{
-        pathname: categoryPathSlug,
-        query: { category: JSON.stringify(category) },
-      }}
+      href={categoryPathSlug}
       as={categoryPathSlug}
       onMouseDown={saveActiveCategory}
       className={`${s.card}`}

@@ -36,14 +36,7 @@ const Card = ({ category }) => {
     <>
       {subcategories && (
         <div className={`${s.cat_card}`}>
-          <Link
-            href={{
-              pathname: categoryPathSlug,
-              query: { category: JSON.stringify(category) },
-            }}
-            as={categoryPathSlug}
-            onMouseDown={saveActiveCategory}
-          >
+          <Link href={categoryPathSlug} onMouseDown={saveActiveCategory}>
             <Image
               className={``}
               src={category.imagePath}
