@@ -9,10 +9,14 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import { CustomTooltip } from "comps/tooltip";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
 
+//todo add shopping cart, when user is not auth
+//todo make it responsive
 const Header = () => {
   // const { data: session } = useSession();
-  const { user } = useSelector((state) => state.user);
+  // const { user } = useSelector((state) => state.user);
+  const { data: session } = useSession();
 
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
@@ -27,13 +31,15 @@ const Header = () => {
           nextauth
         </Link> */}
         <SearchBar />
-        {!user && (
-          <SignInPopOver
-            toggleSignInModal={() => setShowSignInModal(!showSignInModal)}
-            toggleSignUpModal={() => setShowSignUpModal(!showSignUpModal)}
-          />
+        {!session && (
+          <>
+            <SignInPopOver
+              toggleSignInModal={() => setShowSignInModal(!showSignInModal)}
+              toggleSignUpModal={() => setShowSignUpModal(!showSignUpModal)}
+            />
+          </>
         )}
-        {user && <IconButtonGroup />}
+        {session && <IconButtonGroup session={session} />}
 
         <SignInModal
           isOpen={showSignInModal}
@@ -41,7 +47,7 @@ const Header = () => {
             setShowSignInModal(!showSignInModal);
           }}
           toggleSignUpModal={() => {
-            setShowSignInModal(!showSignUpModal);
+            setShowSignUpModal(!showSignUpModal);
           }}
         />
 
@@ -50,7 +56,7 @@ const Header = () => {
           toggle={() => {
             setShowSignUpModal(!showSignUpModal);
           }}
-          toggleSingInModal={() => {
+          toggleSignInModal={() => {
             setShowSignInModal(!showSignInModal);
           }}
         />
@@ -72,26 +78,33 @@ const IconButton = ({ href, children, tooltipText }) => {
   );
 };
 
-const IconButtonGroup = () => {
+const IconButtonGroup = ({ session }) => {
+  console.log(session);
   return (
     <div className={`order-sm-2 ${s.icon_btn_group}`}>
       <IconButton
         href={"/profile/personal_data"}
         tooltipText={"Персональний кабінет"}
       >
-        <i className={`bi bi-person-circle `} />
+        <Image
+          className={`${s.profile_picture}`}
+          src={session.user.image}
+          width="50"
+          height="50"
+        ></Image>
+        {/* <i className={`bi bi-person-circle `} /> */}
       </IconButton>
       <IconButton
         href={"/profile/orders_list"}
         tooltipText={"Список замовлень"}
       >
-        <i className="bi bi-list-ul " />
+        <i className={`bi bi-list-ul ${s.icon}`} />
       </IconButton>
       <IconButton href={"/profile/wish_list"} tooltipText={"Список бажаного"}>
-        <i className="bi bi-heart-fill " />
+        <i className={`bi bi-heart-fill ${s.icon}`} />
       </IconButton>
       <IconButton href={"/profile/cart"} tooltipText={"Кошик покупок"}>
-        <i className="bi bi-cart3 " />
+        <i className={`bi bi-cart3 ${s.icon}`} />
       </IconButton>
     </div>
   );

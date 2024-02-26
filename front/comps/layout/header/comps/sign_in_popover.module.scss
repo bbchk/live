@@ -16,9 +16,10 @@
     gap: 0.5rem;
 
     .sign_up {
+      @include link;
       &:hover {
         text-decoration: underline;
-      }
+      } 
     }
 
     p {
