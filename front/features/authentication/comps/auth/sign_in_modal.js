@@ -6,7 +6,7 @@ import s from "./sign_in_modal.module.scss";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 
-const SignInFormByCredentials = ({ toggleModal }) => {
+const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signIn, isLoading, error } = useSignIn();
@@ -84,7 +84,7 @@ const SignInFormByCredentials = ({ toggleModal }) => {
         className={`text-center d-block ${s.sign_up_link}`}
         href="#"
         onClick={() => {
-          toggle();
+          toggleModal();
           toggleSignUpModal();
         }}
       >
@@ -149,7 +149,10 @@ const SignInModal = ({ isOpen, toggle, toggleSignUpModal }) => {
           </button>
         </Modal.Header>
         <Modal.Body className={`${s.modal_body}`}>
-          <SignInFormByCredentials toggleModal={toggle} />
+          <SignInFormByCredentials
+            toggleModal={toggle}
+            toggleSignUpModal={toggleSignUpModal}
+          />
 
           <div className={`${s.vertical_splitter}`}>
             <div className={`${s.line}`}></div>
