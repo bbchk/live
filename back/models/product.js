@@ -3,10 +3,6 @@ import { Schema, model } from "mongoose";
 //todo make certain fields required false
 const productSchema = new Schema(
   {
-    brand: {
-      type: String,
-      required: false,
-    },
     name: {
       type: String,
       required: false,
