@@ -58,9 +58,12 @@ export const getProductsByCategoryPath = async (req, res) => {
       .json({ message: "Category with this path is not found" });
   }
 
-  const categories = await category.find({
-    path: new RegExp(categoryPathOriginal, "i"),
-  });
+  const categories = await category
+    .find({
+      path: new RegExp(categoryPathOriginal, "i"),
+    })
+    .select("name order path imagePath")
+    .exec();
 
   const activeCategoryIds = categories.map((category) => category._id);
 

@@ -7,10 +7,15 @@ export const getCategories = async (req, res) => {
 };
 
 export const createCategory = async (req, res) => {
-  const { name, path, image, order } = req.body;
+  const { name, path, imagePath, order } = req.body;
 
   try {
-    const createdCategory = await category.create({ name, path, image, order });
+    const createdCategory = await category.create({
+      name,
+      order,
+      path,
+      imagePath,
+    });
     res.status(200).json(createdCategory);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -23,6 +28,22 @@ export const createCategories = async (req, res) => {
   try {
     const createdCategories = await category.insertMany(categories);
     res.status(200).json(createdCategories);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+export const updateCategory = async (req, res) => {
+  const { id } = req.params;
+  const { name, path, image, order } = req.body;
+
+  try {
+    const updatedCategory = await category.findByIdAndUpdate(
+      id,
+      { ...req.body },
+      { new: true }
+    );
+    res.status(200).json(updatedCategory);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
