@@ -45,7 +45,7 @@ const Listing = ({ data: { category, subcategories, products, numPages } }) => {
 
           <div className="d-flex ms-3 me-5">
             <div className="me-3">
-              {/* <ProductFilter products={activeProducts} /> */}
+              <ProductFilter products={[]} />
             </div>
 
             <ProductGallery
@@ -90,9 +90,9 @@ export async function getStaticPaths() {
     for (let i = 1; i <= numPages; i++) {
       paths.push({
         params: {
-          categories: `${slugCategoryPath}`,
+          categoryPath: `${slugCategoryPath}`,
           pageId: `${i}`,
-          numPages: numPages,
+          // numPages: numPages,
         },
       });
     }
@@ -103,7 +103,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { params } = context;
-  const slugCategoryPath = params.categories;
+  const slugCategoryPath = params.categoryPath;
   const pageId = params.pageId;
 
   const numPages = await getNumOfPages(slugCategoryPath);

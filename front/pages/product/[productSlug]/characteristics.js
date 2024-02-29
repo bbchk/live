@@ -1,14 +1,14 @@
-import Navigation from "../../../../../../features/products/landing/comps/layout/navigation";
-import Characteristics from "../../../../../../features/products/landing/comps/characteristics/characteristics";
-import SmallCard from "../../../../../../features/products/landing/comps/characteristics/small_card";
-import SmallBuyArea from "../../../../../../features/products/landing/comps/characteristics/small_buy_area";
+import Navigation from "../../../features/products/landing/comps/layout/navigation";
+import Characteristics from "../../../features/products/landing/comps/characteristics/characteristics";
+import SmallCard from "../../../features/products/landing/comps/characteristics/small_card";
+import SmallBuyArea from "../../../features/products/landing/comps/characteristics/small_buy_area";
 import { useSelector } from "react-redux";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
-import DecorLine from "../../../../../../comps/decor_line";
+import DecorLine from "../../../comps/decor_line";
 import Breadcrumbs from "comps/breadcrumbs";
 import { useRouter } from "next/router";
-import LandingProuductLayout from "../../../../../../features/products/landing/comps/layout/layout";
+import LandingProuductLayout from "../../../features/products/landing/comps/layout/layout";
 
 //todo add Head like in about page
 const Product = () => {
