@@ -9,6 +9,10 @@
   min-height: 80vh;
 }
 
+.horizontal_splitter {  
+  @include horizontal_splitter($color-daslgrey-half-opacity, 2px)
+}
+
 body {
   p,
   h1,
@@ -53,19 +57,10 @@ html {
   overscroll-behavior: none;
 }
 
-.products_pagination {
-  // background-color: magenta !important;
-}
-
-// .product_page_item {
-//   // padding: 0.5em !important;
-//   font-size: 1.5em !important;
-//   color: $color-daslgrey !important;
+// .filter_acc_item {
+//   background-color: magenta;
 // }
 
-// .product_page_item.active {
-//   display: none;
-// }
 
 .disabled {
   pointer-events: none;

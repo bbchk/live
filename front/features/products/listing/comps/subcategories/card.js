@@ -9,10 +9,11 @@ import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
 const SubcategoryCard = ({ category }) => {
-  const { name, imagePath, _id } = category;
+  const { name, imagePath } = category;
 
   function saveActiveCategory() {
-    if (typeof window !== "undefined") {
+    console.log(category);
+    if (typeof window !== "undefineid") {
       localStorage.setItem("activeCategory", JSON.stringify(category));
     }
   }

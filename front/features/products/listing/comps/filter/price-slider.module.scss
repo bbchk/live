@@ -1,6 +1,8 @@
 @use "./styles/variables" as *;
 
 .price_slider {
+  border: 0 !important;
+
   .header {
     display: flex;
     align-items: center;

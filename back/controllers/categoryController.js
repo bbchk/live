@@ -35,7 +35,6 @@ export const createCategories = async (req, res) => {
 
 export const updateCategory = async (req, res) => {
   const { id } = req.params;
-  const { name, path, image, order } = req.body;
 
   try {
     const updatedCategory = await category.findByIdAndUpdate(

@@ -2,7 +2,7 @@ import express from "express";
 import { requireAuth, isAdmin } from "../middleware/auth.js";
 
 import {
-  getProduct,
+  getProductById,
   getProducts,
   getProductsByCategoryPath,
   getProductsByIds,
@@ -11,13 +11,18 @@ import {
   updateProduct,
   deleteProduct,
   deleteAllProducts,
+  //todo delete
+  test,
 } from "../controllers/productController.js";
 
 const router = express.Router();
 
 router.get("/", getProducts);
-router.get("/:id(\\d+)", getProduct);
+router.get("/:id", getProductById);
 router.get("/:categoryPath/page/:pageId", getProductsByCategoryPath);
+
+//todo delete
+router.patch("/test", test);
 
 router.use(requireAuth);
 router.post("/getbyIds", getProductsByIds);

@@ -5,61 +5,38 @@ import s from "./navigation.module.scss";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
-const Navigation = ({ activePage, category, product }) => {
+const Navigation = ({ activeTab }) => {
+  const TabLink = ({ tabName, label }) => {
+    return (
+      <Link
+        className={`nav-link ${s.link}  ${
+          activeTab === tabName ? s.active : ""
+        }`}
+        aria-current="page"
+        href={productUrl(tabName)}
+      >
+        {label}
+      </Link>
+    );
+  };
+
   const router = useRouter();
-
-  const { categories: activeCategoryPath, pageId } = router.query;
-
-  const productUrl = `/products/${activeCategoryPath}/page/${pageId}/${slugify(
-    transliterate(product.name)
-  )}`;
+  const { productSlug, productId } = router.query;
+  const productUrl = (activeTab) =>
+    `/product/${productSlug}/${productId}/${activeTab}`;
 
   return (
     <>
       <ul className={`nav nav-underline mt-4 ${s.navigation}`}>
-        <div className={`${s.decor_line}`}></div>
+        <div className={`${s.decor_line}`} />
         <li className={`nav-item ms-5 ${s.link_container}`}>
-          <Link
-            className={`nav-link ${s.link}  ${
-              activePage === "about" ? s.active : ""
-            }`}
-            aria-current="page"
-            href={{
-              pathname: `${productUrl}/about`,
-              query: {
-                productObjectId: product._id,
-              },
-            }}
-            // as={`${productUrl}/about`}
-          >
-            Усе про товар
-          </Link>
+          <TabLink tabName={"about"} label={"Усе про товар"} />
         </li>
         <li className={`nav-item ${s.link_container}`}>
-          <Link
-            className={`nav-link ${s.link} ${
-              activePage === "characteristics" ? s.active : ""
-            }`}
-            href={{
-              pathname: `${productUrl}/characteristics`,
-              query: {
-                productObjectId: product._id,
-              },
-            }}
-            // as={`${productUrl}/characteristics`}
-          >
-            Характеристики
-          </Link>
+          <TabLink tabName={"characteristics"} label={"Характеристики"} />
         </li>
-        {/* <li className={`nav-item ${s.link_container}`}>
-          <Link
-            className={`nav-link ${s.link} ${
-              activePage === "reviews" ? "active" : ""
-            }`}
-            href={`/products/${router.query.categories}/${productNameSlug}/reviews`}
-          >
-            Відгуки
-          </Link>
+        {/* <li>
+          <TabLink tabName={"reviews"} label={"Відгуки"} />
         </li> */}
       </ul>
     </>

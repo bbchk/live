@@ -21,6 +21,14 @@
   // }
 }
 
+@mixin horizontal_splitter($color, $height){
+  width: 100%;  
+  background-color: $color;
+  height: $height;  
+  border: 0;
+}
+
+
 @mixin decor_line($bg-color) {
   height: 1rem;
   background-color: $bg-color;

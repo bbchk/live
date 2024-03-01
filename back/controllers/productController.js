@@ -4,18 +4,19 @@ import mongoose from "mongoose";
 import { unslugify } from "@bbuukk/slugtrans/slugify";
 import { untransliterate } from "@bbuukk/slugtrans/transliterate";
 
-const getProductById = async (id) => {
+export const getProductById = async (req, res) => {
+  const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return { status: 404, error: "No such product" };
+    return res.status(404).json({ error: "No such product" });
   }
 
-  const product = await Product.findById(id);
+  const product = await Product.findById(id).populate("category");
 
   if (!product) {
-    return { status: 400, error: "No such product" };
+    return res.status(400).json({ error: "No such product" });
   }
 
-  return { status: 200, product };
+  res.status(200).json(product);
 };
 
 //? this is unefficient approach
@@ -70,7 +71,7 @@ export const getProductsByCategoryPath = async (req, res) => {
   let query = Product.find({
     category: { $in: activeCategoryIds },
   })
-    .select("name price images") // specify the fields you need
+    .select("name price images characteristics") // specify the fields you need
     .sort({ createdAt: -1 })
     .populate("category");
 
@@ -93,17 +94,6 @@ export const getProductsByCategoryPath = async (req, res) => {
     ),
     products,
   });
-};
-
-export const getProduct = async (req, res) => {
-  const { id } = req.params;
-  const result = await getProductById(id).populate("category").exec();
-
-  if (result.error) {
-    return res.status(result.status).json({ error: result.error });
-  }
-
-  res.status(200).json(result.product);
 };
 
 export const createProduct = async (req, res) => {
@@ -169,6 +159,125 @@ export const updateProduct = async (req, res) => {
 
   res.status(200).json(updatedProduct);
 };
+
+//todo delete
+export const test = async (req, res) => {
+  const filters = {
+    Бренд: [
+      "Ройчер",
+      "Josera",
+      "Golden Cat",
+      "Pet Daily Cat",
+      "Carnie",
+      "Мяу!",
+      "Клуб 4 Лапи",
+      "Optimeal",
+      "Пан Кот",
+      "Trixie",
+      "Brit",
+      "Royal Canin",
+      "Gourmet",
+      "Purina One",
+      "Purina Felix",
+      "Purina Pro Plan",
+      "Purina Cat Chow",
+      "Purina Friskies",
+      "Kitekat",
+      "Whiskas",
+      "Dreamies",
+      "Nutra 5 Stars",
+      "Miss Kiss",
+      "Catessy",
+      "Без Бренду",
+    ],
+    Тип: ["Вологий корм", "Сухий корм"],
+    Вік: ["0-0.5", "0.5-2", "2.1-6", "6.1-10", "10.1-15", "15-Infinity"],
+    Вага: ["0-0.5", "0.5-2", "2.1-6", "6.1-10", "10.1-15", "15-Infinity"],
+    Порода: ["Довгошерсті", "Короткошерсті", "Усі породи"],
+    Клас: ["Преміум", "Суперпреміум", "Холістик"],
+    "Основні Інгредієнти": [
+      "Індичка",
+      "Злаки",
+      "Качка",
+      "Курка",
+      "Лосось",
+      "М'ясне асорті",
+      "Птах",
+      "Риба",
+      "Свинина",
+      "Телятина",
+    ],
+    Пакування: ["Консерви", "Мішок", "Паучі", "Коробка", "Пакетик"],
+  };
+
+  const parentCategoryPath = "Для Котів,Корм та Смаколики";
+  const categories = await category
+    .find({
+      path: new RegExp(parentCategoryPath, "i"),
+    })
+    .select("name order path imagePath")
+    .exec();
+
+  const activeCategoryIds = categories.map((category) => category._id);
+  // console.log("🚀 ~ activeCategoryIds:", activeCategoryIds);
+
+  for (const [key, value] of Object.entries(filters)) {
+    for (const option of value) {
+      const regex = new RegExp(option, "i"); // Case-insensitive regex
+
+      const products = await Product.find({
+        $and: [
+          { category: { $in: activeCategoryIds } },
+          { $or: [{ name: regex }, { "description.Опис": regex }] },
+        ],
+      });
+
+      for (let product of products) {
+        if (!product.characteristics.has(key)) {
+          product.characteristics.set(key, []);
+        }
+
+        if (!product.characteristics.get(key).includes(option)) {
+          product.characteristics.get(key).push(option);
+        }
+
+        product.markModified("characteristics");
+
+        try {
+          await product.save();
+          console.log(`Successfully updated product for key ${key}.`);
+        } catch (err) {
+          console.error(`Error updating product for key ${key}:`, err);
+        }
+      }
+    }
+  }
+
+  res.status(200).json({});
+};
+
+//todo delete
+// Product.find({})
+//     .then(async (products) => {
+//       // Iterate over each product
+//       for (let product of products) {
+//         // Iterate over each key-value pair in the characteristics map
+//         for (let [key, value] of product.characteristics.entries()) {
+//           // If the value is not already an array, update it to be an array containing the current value
+//           if (!Array.isArray(value)) {
+//             product.characteristics.set(key, [value]);
+//           }
+//         }
+
+//         // Mark the 'characteristics' field as modified and save the product
+//         product.markModified("characteristics");
+//         await product.save();
+//       }
+//     })
+//     .catch((err) => {
+//       console.error("Error updating products:", err);
+//     });
+//   res.status(200).json({});
 
 export const deleteAllProducts = async (req, res) => {
   try {

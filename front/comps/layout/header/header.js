@@ -79,7 +79,6 @@ const IconButton = ({ href, children, tooltipText }) => {
 };
 
 const IconButtonGroup = ({ session }) => {
-  console.log(session);
   return (
     <div className={`order-sm-2 ${s.icon_btn_group}`}>
       <IconButton

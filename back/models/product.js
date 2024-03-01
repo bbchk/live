@@ -20,7 +20,7 @@ const productSchema = new Schema(
     },
     characteristics: {
       type: Map,
-      of: String,
+      of: [String],
       required: false,
     },
     description: {

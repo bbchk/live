@@ -3,11 +3,12 @@ import Pagination from "react-bootstrap/Pagination";
 import s from "./pagination.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 //todo styles for disabled control buttons
 function ProductsPagination({ numPages, activePageId }) {
   const router = useRouter();
-  const { categories: categoryPath } = router.query;
+  const { categoryPath } = router.query;
 
   return (
     <Pagination
@@ -21,15 +22,14 @@ function ProductsPagination({ numPages, activePageId }) {
         }`}
       >
         <Pagination.First
-          disabled
-          href={`/products/${categoryPath}/page/${1}`}
+          href={`/products/${categoryPath}/page/1`}
           className={`${s.item}`}
         />
 
         <Pagination.Prev
           href={`/products/${categoryPath}/page/${Math.max(
             1,
-            activePageId - 1
+            Number(activePageId) - 1
           )}`}
           className={`${s.item}`}
         />
@@ -58,14 +58,14 @@ function ProductsPagination({ numPages, activePageId }) {
       >
         <Pagination.Next
           className={`${s.item}`}
-          href={`/products/${categoryPath}/page/${numPages}`}
+          href={`/products/${categoryPath}/page/${Math.max(
+            1,
+            Number(activePageId) + 1
+          )}`}
         />
         <Pagination.Last
           className={`${s.item}`}
-          href={`/products/${categoryPath}/page/${Math.min(
-            numPages,
-            activePageId + 1
-          )}`}
+          href={`/products/${categoryPath}/page/${numPages}`}
         />
       </div>
     </Pagination>

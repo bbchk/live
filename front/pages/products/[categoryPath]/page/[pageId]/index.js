@@ -3,7 +3,7 @@ import axios from "axios";
 
 import ProductGallery from "features/products/listing/comps/gallery/gallery";
 import ProductHeader from "features/products/listing/comps/product-header";
-import ProductFilter from "features/products/listing/comps/filter/filter";
+import FiltersAccordion from "features/products/listing/comps/filter/filters_accordion";
 import SortGroup from "features/products/listing/comps/filter/sort-group";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
@@ -15,8 +15,12 @@ import SubcategoriesGallery from "features/products/listing/comps/subcategories/
 
 import { addToCategoriesPath } from "store/categoriesSlice";
 import Head from "next/head";
+import ProductsPagination from "features/products/listing/comps/gallery/pagination";
 
 const Listing = ({ data: { category, subcategories, products, numPages } }) => {
+  const router = useRouter();
+  const { pageId } = router.query;
+
   const [isLoading, setIsLoading] = useState(false);
   // const [activeProducts, setActiveProducts] = useState(products);
   // const [activeCategory, setActiveCategory] = useState(category);
@@ -29,7 +33,7 @@ const Listing = ({ data: { category, subcategories, products, numPages } }) => {
         <meta name="description" content={`Живий Світ | ${category.path}`} />
       </Head>
       {!isLoading && (
-        <div className="mt-3 ">
+        <div className="mt-2 ">
           <div className="mx-5">
             <>
               <ProductHeader category={category} />
@@ -41,17 +45,18 @@ const Listing = ({ data: { category, subcategories, products, numPages } }) => {
             </div>
           </div>
 
-          <hr className="mt-2 mb-4 splitter " />
+          <hr className="mt-2 mb-4 horizontal_splitter " />
 
-          <div className="d-flex ms-3 me-5">
-            <div className="me-3">
-              <ProductFilter products={[]} />
+          <div className="d-flex me-5">
+            <FiltersAccordion products={products} category={category} />
+
+            <div>
+              <ProductGallery
+                activeProducts={products}
+                activeCategory={category}
+              />
+              <ProductsPagination numPages={numPages} activePageId={pageId} />
             </div>
-
-            <ProductGallery
-              activeProducts={products}
-              activeCategory={category}
-            />
           </div>
         </div>
       )}

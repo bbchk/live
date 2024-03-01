@@ -1,48 +1,28 @@
-export const useGetFilters = (products) => {
-  function getFilters() {
-    const res = [];
-    const filters = [
-      { name: "Бренд", prop: "brand" },
-      { name: "В наявності", prop: "left" },
-      { name: "Колір", prop: "color" },
-    ];
+export const useGetFilters = () => {
+  function getFilters(products, category) {
+    const filtersMap = new Map();
 
-    const createFilter = (name, property) => {
-      let filter = null;
-      const options = new Set(
-        products
-          .filter((product) => product[property])
-          .map((product) => product[property])
-      );
+    for (const pd of products) {
+      for (const [key, value] of Object.entries(pd.characteristics)) {
+        if (category.filters.includes(key)) {
+          if (!filtersMap.has(key)) {
+            filtersMap.set(key, new Set());
+          }
 
-      if (options.size > 0) {
-        filter = {};
-        filter.name = name;
-        filter.options = options;
-        filter.prop = property;
+          filtersMap.get(key).add(...value);
+        }
       }
+    }
 
-      return filter;
-    };
-
-    filters.forEach(({ name, prop }) => {
-      const filter = createFilter(name, prop);
-      if (filter) {
-        res.push(filter);
-      }
-    });
-    return res;
+    return filtersMap;
   }
 
-  function getMinMaxPrice() {
+  function getMinMaxPrice(products) {
     const prices = products.map((p) => Number(p.price));
     const min = prices.reduce((a, b) => Math.min(a, b), Infinity);
     const max = prices.reduce((a, b) => Math.max(a, b), -Infinity);
     return [min, max];
   }
 
-  const [min, max] = getMinMaxPrice();
-  const filters = getFilters();
-
-  return { min, max, filters };
+  return { getFilters, getMinMaxPrice };
 };

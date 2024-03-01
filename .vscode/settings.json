@@ -31,8 +31,9 @@
     "back/.env": true,
     "**/.env": true,
     "front/.env": true,
-    "front/*.*": true,
-    ".env": true
+    ".env": true,
+    "**/dump": true,
+    "dump": true
   },
   "explorerExclude.backup": {},
   "workbench.colorCustomizations": {

@@ -9,19 +9,18 @@ import { setActiveProduct } from "store/productsSlice";
 import { useEffect, useId, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+//todo it is temporary - delete
+import { v4 as uuidv4 } from "uuid";
+
+//todo make link dry
 
 const ProductCard = ({ product, category, like, isLiked }) => {
-  const router = useRouter();
+  const productUrl = (activeTab) =>
+    `/product/${slugify(transliterate(product.name))}/${
+      product._id
+    }/${activeTab}`;
 
-  const { categories: activeCategoryPath, pageId } = router.query;
-  const productUrl = `/products/${activeCategoryPath}/page/${pageId}/${slugify(
-    transliterate(product.name)
-  )}`;
-
-  function saveActiveProductInfo() {
-    //todo make check for window
-    // localStorage.setItem("activeProduct", JSON.stringify(product));
-  }
+  const saveActiveProductInfo = () => {};
 
   return (
     <div className={`${s.product_card} `}>
@@ -34,13 +33,7 @@ const ProductCard = ({ product, category, like, isLiked }) => {
       </button>
 
       <Link
-        href={{
-          pathname: `${productUrl}/about`,
-          query: {
-            productObjectId: product._id,
-          },
-        }}
-        // as={`${productUrl}/about`}
+        href={productUrl("about")}
         className={`${s.image_link}`}
         onMouseDown={saveActiveProductInfo}
       >
@@ -58,14 +51,7 @@ const ProductCard = ({ product, category, like, isLiked }) => {
       </Link>
 
       <Link
-        href={{
-          pathname: `${productUrl}/about`,
-          query: {
-            category: JSON.stringify(category),
-            product: JSON.stringify(product),
-          },
-        }}
-        as={`${productUrl}/about`}
+        href={productUrl("about")}
         className={`${s.name}`}
         onMouseDown={saveActiveProductInfo}
       >
@@ -73,18 +59,12 @@ const ProductCard = ({ product, category, like, isLiked }) => {
       </Link>
 
       <Link
-        href={{
-          pathname: `${productUrl}/reviews`,
-          query: {
-            category: JSON.stringify(category),
-            product: JSON.stringify(product),
-          },
-        }}
-        as={`${productUrl}/reviews`}
+        href={productUrl("characteristics")}
         className={`${s.rating}`}
         onMouseDown={saveActiveProductInfo}
       >
-        <StarRating />
+        {/* //todo get back starRating */}
+        {/* <StarRating /> */}
         <p className={`${s.amount_reviews}`}>
           <i className="bi bi-chat-left-text"></i>
           <span>{10}</span>
@@ -96,10 +76,7 @@ const ProductCard = ({ product, category, like, isLiked }) => {
           {product.price} <span>₴</span>
         </p>
 
-        <button
-          className={`${s.buy_button}`}
-          //  onMouseDown={addProductToCart}
-        >
+        <button className={`${s.buy_button}`}>
           <i className="bi bi-cart4"></i>
         </button>
       </div>

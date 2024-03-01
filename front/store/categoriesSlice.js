@@ -18,7 +18,10 @@ export const categoriesSlice = createSlice({
   name: "categories",
   initialState: {
     categories: null,
-    categoriesPath: [],
+    activeCategory: null,
+
+    categoriesPath: [], //todo what is this for?
+
     status: "idle",
     error: null,
   },

@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { setCookie } from "nookies";
-import dotenv from "dotenv";
 import { useDispatch } from "react-redux";
 import { signIn as sign_in } from "store/userSlice";
 import axios from "axios";
-dotenv.config();
 
 export const useSignIn = () => {
   const [error, setError] = useState(null);
