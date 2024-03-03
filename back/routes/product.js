@@ -13,12 +13,14 @@ import {
   deleteAllProducts,
   //todo delete
   test,
+  getProductsByCategoryPathTest,
 } from "../controllers/productController.js";
 
 const router = express.Router();
 
 router.get("/", getProducts);
 router.get("/:id", getProductById);
+router.get("/many/:categoryPath", getProductsByCategoryPathTest);
 router.get("/:categoryPath/page/:pageId", getProductsByCategoryPath);
 
 //todo delete

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:4000";
 
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, useSession } from "next-auth/react";
 
 import React, { useState, useEffect } from "react";
 
@@ -46,13 +46,30 @@ export default function App({ Component, pageProps }) {
           <div className="min-vh-80 mb-3">
             {!excludedPaths.includes(router.pathname) && <Header />}
             <FetchData />
-            <Component {...pageProps} />
+            {Component.auth ? (
+              <Auth>
+                <Component {...pageProps} />
+              </Auth>
+            ) : (
+              <Component {...pageProps} />
+            )}
           </div>
           {!excludedPaths.includes(router.pathname) && <Footer />}
         </Provider>
       </SessionProvider>
     </div>
   );
+}
+
+function Auth({ children }) {
+  // if `{ required: true }` is supplied, `status` can only be "loading" or "authenticated"
+  const { status } = useSession({ required: true });
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  return children;
 }
 
 //todo unefficient

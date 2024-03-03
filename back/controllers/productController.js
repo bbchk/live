@@ -1,8 +1,11 @@
 import Product from "../models/product.js";
 import category from "../models/category.js";
 import mongoose from "mongoose";
-import { unslugify } from "@bbuukk/slugtrans/slugify";
-import { untransliterate } from "@bbuukk/slugtrans/transliterate";
+import { slugify, unslugify } from "@bbuukk/slugtrans/slugify";
+import {
+  transliterate,
+  untransliterate,
+} from "@bbuukk/slugtrans/transliterate";
 
 export const getProductById = async (req, res) => {
   const { id } = req.params;
@@ -256,29 +259,6 @@ export const test = async (req, res) => {
   res.status(200).json({});
 };
 
-//todo delete
-// Product.find({})
-//     .then(async (products) => {
-//       // Iterate over each product
-//       for (let product of products) {
-//         // Iterate over each key-value pair in the characteristics map
-//         for (let [key, value] of product.characteristics.entries()) {
-//           // If the value is not already an array, update it to be an array containing the current value
-//           if (!Array.isArray(value)) {
-//             product.characteristics.set(key, [value]);
-//           }
-//         }
-
-//         // Mark the 'characteristics' field as modified and save the product
-//         product.markModified("characteristics");
-//         await product.save();
-//       }
-//     })
-//     .catch((err) => {
-//       console.error("Error updating products:", err);
-//     });
-//   res.status(200).json({});
-
 export const deleteAllProducts = async (req, res) => {
   try {
     await Product.deleteMany();
@@ -301,4 +281,83 @@ export const deleteProduct = async (req, res) => {
   await Product.deleteOne({ _id: id });
 
   res.status(200).json(result.product);
+};
+
+export const getProductsByCategoryPathTest = async (req, res) => {
+  let { categoryPath } = req.params;
+  let { pageId } = req.query;
+
+  const categoryPathOriginal = untransliterate(unslugify(categoryPath));
+  const activeCategory = await category.findOne({
+    path: new RegExp(`^${categoryPathOriginal.toLowerCase()}$`, "i"),
+  });
+
+  if (activeCategory == null) {
+    return res
+      .status(404)
+      .json({ message: "Category with this path is not found" });
+  }
+
+  activeCategory.filters.map((f) => {
+    const slugFilter = slugify(transliterate(f));
+    if (req.query[slugFilter]) {
+    }
+  });
+
+  const categories = await category
+    .find({
+      path: new RegExp(categoryPathOriginal, "i"),
+    })
+    .select("name order path imagePath")
+    .exec();
+
+  const activeCategoryIds = categories.map((category) => category._id);
+
+  const foo1 = await Product.find({
+    "characteristics.Тип": { $exists: true, $eq: ["Вазони"] },
+  });
+  ``;
+
+  console.log(foo1);
+
+  const foo = await Product.find({
+    $and: [
+      { category: { $in: activeCategoryIds } },
+      {
+        $or: [
+          { "characteristics.Об'єм": { $exists: true, $ne: [] } },
+          { "characteristics.Колір": { $exists: true, $ne: [] } },
+          { "characteristics.Тип": { $exists: true, $ne: [] } },
+        ],
+      },
+    ],
+  });
+
+  let query = Product.find({
+    category: { $in: activeCategoryIds },
+  })
+    .select("name price images characteristics") // specify the fields you need
+    .sort({ createdAt: -1 })
+    .populate("category");
+
+  if (pageId != 0) {
+    const PRODUCTS_ON_PAGE = 50;
+    query = query.skip(PRODUCTS_ON_PAGE * (pageId - 1)).limit(PRODUCTS_ON_PAGE);
+  }
+
+  const products = await query.exec();
+
+  const activeCategoryLevel = activeCategory.path.split(",").length;
+
+  res.status(200).json({
+    category: activeCategory,
+    subcategories: categories.filter(
+      (c) =>
+        // all subcategories except activeCategory
+        c["name"] !== activeCategory["name"] &&
+        //only one level deeper subcategories
+        c.path.split(",").length == activeCategoryLevel + 1
+    ),
+    products,
+  });
 };

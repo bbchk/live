@@ -23,19 +23,19 @@ const OrdersList = () => {
 export default OrdersList;
 
 //todo delete
-export async function getServerSideProps(context) {
-  const session = await getSession(context);
+// export async function getServerSideProps(context) {
+//   const session = await getSession(context);
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: `api/auth/signin?callbackUrl=${process.env.BASE_URL}/`,
-        permanent: false,
-      },
-    };
-  }
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: `api/auth/signin?callbackUrl=${process.env.BASE_URL}/`,
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: {},
-  };
-}
+//   return {
+//     props: {},
+//   };
+// }

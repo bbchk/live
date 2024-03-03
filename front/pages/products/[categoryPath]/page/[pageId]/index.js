@@ -40,12 +40,10 @@ const Listing = ({ data: { category, subcategories, products, numPages } }) => {
               <SubcategoriesGallery subcategories={subcategories} />
             </>
 
-            <div className="mt-5">
-              <SortGroup />
-            </div>
+            <div className="mt-5">{/* <SortGroup /> */}</div>
           </div>
 
-          <hr className="mt-2 mb-4 horizontal_splitter " />
+          {/* <hr className="mt-2 mb-4 horizontal_splitter " /> */}
 
           <div className="d-flex me-5">
             <FiltersAccordion products={products} category={category} />
