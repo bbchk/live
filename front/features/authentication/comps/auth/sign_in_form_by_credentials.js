@@ -55,10 +55,20 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
       <button
         type="submit"
         className={`btn btn-outline-success ${s.sign_in_button}`}
+        onClick={() => {
+          console.log(email);
+          console.log(password);
+          signIn("credentials", {
+            redirect: false,
+            email: email,
+            password: password,
+          });
+        }}
         disabled={isLoading}
       >
         Увійти
       </button>
+
       <Link
         className={`text-center d-block ${s.sign_up_link}`}
         href="#"

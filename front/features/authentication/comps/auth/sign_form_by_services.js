@@ -7,7 +7,7 @@ const SignFormByServices = () => {
   const ServiceButton = ({ serviceName }) => {
     return (
       <button
-        onClick={() => signIn({ serviceName })}
+        onClick={() => signIn(serviceName)}
         className={`btn btn-outline-success ${s.service_button}`}
       >
         <i className={`bi bi-${serviceName}`} />
@@ -26,8 +26,9 @@ const SignFormByServices = () => {
 
       <div className={`${s.button_group}`}>
         <ServiceButton serviceName={"google"} />
-        <ServiceButton serviceName={"facebook"} />
-        <ServiceButton serviceName={"apple"} />
+        <ServiceButton serviceName={"github"} />
+        {/* <ServiceButton serviceName={"facebook"} /> */}
+        {/* <ServiceButton serviceName={"apple"} /> */}
       </div>
     </div>
   );

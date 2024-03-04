@@ -7,6 +7,10 @@ const productSchema = new Schema(
       type: String,
       required: false,
     },
+    brand: {
+      type: String,
+      required: false,
+    },
     category: [
       {
         type: Schema.Types.ObjectId,

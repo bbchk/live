@@ -1,27 +1,18 @@
 import Link from "next/link";
 
-import { useSignOut } from "hooks/useSingOut";
-
 import s from "./tab-layout.module.scss";
+import { signOut } from "next-auth/react";
 
 const TabLayout = ({ children }) => {
-  const { signOut } = useSignOut();
-
-  const handleSignOut = (e) => {
-    // window.location.reload(true);
-    console.log("sign out");
-    signOut();
-  };
-
   return (
     <div className={`${s.profile_tabs_layout}  `}>
-      <TabMenu handleSignOut={handleSignOut} />
+      <TabMenu />
       <div className="w-100 h-100">{children}</div>
     </div>
   );
 };
 
-const TabMenu = ({ handleSignOut }) => {
+const TabMenu = () => {
   return (
     <nav className={`nav ${s.tabs}`}>
       <Tab
@@ -41,8 +32,10 @@ const TabMenu = ({ handleSignOut }) => {
       />
       <div className="w-20"></div>
       <Tab
-        onClick={handleSignOut}
-        href="/api/auth/signout"
+        onClick={() => {
+          signOut({ callbackUrl: "/" });
+        }}
+        href=""
         text="Sign Out"
         icon={<i className="bi bi-box-arrow-left"></i>}
       />

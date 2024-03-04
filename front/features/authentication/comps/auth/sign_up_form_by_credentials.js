@@ -86,6 +86,7 @@ const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
       >
         Зареєструватись
       </button>
+      {/* signIn('credentials', { redirect: false, password: 'password' }) */}
 
       <Link
         className={`text-center d-block ${s.sign_in_link}`}

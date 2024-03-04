@@ -9,16 +9,16 @@ import { useRouter } from "next/router";
 const PersonalData = () => {
   // console.log(session);
   const router = useRouter();
-  const { status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push(`/api/auth/signin?callbackUrl=/profile/personal_data`);
-    },
-  });
+  // const { status } = useSession({
+  //   required: true,
+  //   // onUnauthenticated() {
+  //   //   router.push(`/api/auth/signin?callbackUrl=/profile/personal_data`);
+  //   // },
+  // });
 
-  if (status === "loading") {
-    return "Loading or not authenticated...";
-  }
+  // if (status === "loading") {
+  //   return "Loading or not authenticated...";
+  // }
   return (
     <>
       <Head>
@@ -44,6 +44,8 @@ const PersonalData = () => {
 };
 
 export default PersonalData;
+
+// PersonalData.auth = true;
 
 // export async function getServerSideProps(context) {
 // ! should use getServerSession only for server side session fetching

@@ -50,13 +50,6 @@ export default function App({
             {!excludedPaths.includes(router.pathname) && <Header />}
             <FetchData />
             <Component {...pageProps} />
-            {/* {Component.auth ? (
-              <Auth>
-                <Component {...pageProps} />
-              </Auth>
-            ) : (
-              <Component {...pageProps} />
-            )} */}
           </div>
           {!excludedPaths.includes(router.pathname) && <Footer />}
         </Provider>
@@ -64,17 +57,6 @@ export default function App({
     </div>
   );
 }
-
-// function Auth({ children }) {
-//   // if `{ required: true }` is supplied, `status` can only be "loading" or "authenticated"
-//   const { status } = useSession({ required: true });
-
-//   if (status === "loading") {
-//     return <div>Loading...</div>;
-//   }
-
-//   return children;
-// }
 
 //todo unefficient
 //todo it loads all the products on the first render or rerender of this component
