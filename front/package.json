@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@bbuukk/slugtrans": "^1.0.4",
+    "@bbuukk/slugtrans": "^1.0.5",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.0",
@@ -36,6 +36,7 @@
     "redux-thunk": "^3.1.0",
     "rfs": "^10.0.0",
     "sass": "^1.69.5",
+    "sharp": "^0.33.2",
     "slugify": "^1.6.6",
     "transliteration": "^2.3.5",
     "uuid": "^9.0.1"

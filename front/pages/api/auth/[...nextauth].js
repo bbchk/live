@@ -1,6 +1,10 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
+import CredentialsProvider from "next-auth/providers/credentials";
+//todo implement facebook and apple
+// import FacebookProvider from "next-auth/providers/facebook";
+// import AppleProvider from "next-auth/providers/apple";
 
 export const authOptions = {
   providers: [
@@ -14,37 +18,75 @@ export const authOptions = {
         },
       },
     }),
+    // FacebookProvider({
+    //   clientId: process.env.FACEBOOK_CLIENT_ID,
+    //   clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    // }),
+    // AppleProvider({
+    //   clientId: process.env.APPLE_ID,
+    //   clientSecret: process.env.APPLE_SECRET
+    // }),
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
-    // CredentialsProvider({
-    //   id: "login",
-    //   async authorize(credentials) {
-    //     try {
-    //       const response = await axios.post(
-    //         "http://your-express-server.com/login",
-    //         {
-    //           username: credentials.username,
-    //           password: credentials.password,
-    //         }
-    //       );
+    CredentialsProvider({
+      name: "Credentials",
+      id: "login",
+      credentials: {
+        username: { label: "Ім'я", type: "text" },
+        username: { label: "Прізвище", type: "text" },
+        username: {
+          label: "Пошта",
+          type: "email",
+          placeholder: "placeuser@example.com",
+        },
+        password: { label: "Пароль", type: "password" },
+      },
+      async authorize(credentials) {
+        const response = await axios.post(`/user/signUp`, {
+          firstName,
+          secondName,
+          email,
+          password,
+        });
 
-    //       if (response.status === 200) {
-    //         return { status: "Authenticated" };
-    //       } else {
-    //         throw new Error("User not authenticated");
-    //       }
-    //     } catch (error) {
-    //       throw new Error("User not authenticated");
-    //     }
-    //   },
-    // }),
+        // const response = await axios.post(
+        //   `/user/signIn`,
+        //   { email, password },
+        //   { headers: { "Content-type": "application/json" } }
+        // );
+
+        const json = response.data;
+        localStorage.setItem("user", JSON.stringify(json));
+        dispatch(sign_in(json));
+        setCookie(null, "auth-token", json.token, {
+          path: "/",
+          sameSite: "strict",
+          maxAge: 3 * 24 * 60 * 60, // expires in 3 days
+        });
+        setIsLoading(false);
+        try {
+          const response = await axios.post("/login", {
+            username: credentials.username,
+            password: credentials.password,
+          });
+
+          if (response.status === 200) {
+            return { status: "Authenticated" };
+          } else {
+            throw new Error("User not authenticated");
+          }
+        } catch (error) {
+          throw new Error("User not authenticated");
+        }
+      },
+    }),
   ],
   callbacks: {
     async jwt({ token, user }) {
-      console.log(token);
-      console.log(user);
+      // console.log(token);
+      // console.log(user);
       if (user) {
         token.user = user;
       }
@@ -75,6 +117,12 @@ export const authOptions = {
     // }
   },
   secret: process.env.NEXTAUTH_SECRET,
+  theme: {
+    colorScheme: "auto", // "auto" | "dark" | "light"
+    brandColor: "#e5ffbb", // Hex color code
+    logo: "public/logo.svg", // Absolute URL to image
+    buttonText: "#6CB4EE", // Hex color code
+  },
 };
 
 export default NextAuth(authOptions);

@@ -20,7 +20,10 @@ import { useDispatch } from "react-redux";
 import { getProductsInfo } from "store/productsSlice";
 import { getCategoriesInfo } from "store/categoriesSlice";
 
-export default function App({ Component, pageProps }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   const router = useRouter();
   const excludedPaths = ["/404", "/pay"];
 
@@ -46,13 +49,14 @@ export default function App({ Component, pageProps }) {
           <div className="min-vh-80 mb-3">
             {!excludedPaths.includes(router.pathname) && <Header />}
             <FetchData />
-            {Component.auth ? (
+            <Component {...pageProps} />
+            {/* {Component.auth ? (
               <Auth>
                 <Component {...pageProps} />
               </Auth>
             ) : (
               <Component {...pageProps} />
-            )}
+            )} */}
           </div>
           {!excludedPaths.includes(router.pathname) && <Footer />}
         </Provider>
@@ -61,16 +65,16 @@ export default function App({ Component, pageProps }) {
   );
 }
 
-function Auth({ children }) {
-  // if `{ required: true }` is supplied, `status` can only be "loading" or "authenticated"
-  const { status } = useSession({ required: true });
+// function Auth({ children }) {
+//   // if `{ required: true }` is supplied, `status` can only be "loading" or "authenticated"
+//   const { status } = useSession({ required: true });
 
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
+//   if (status === "loading") {
+//     return <div>Loading...</div>;
+//   }
 
-  return children;
-}
+//   return children;
+// }
 
 //todo unefficient
 //todo it loads all the products on the first render or rerender of this component
