@@ -87,7 +87,8 @@ const IconButtonGroup = ({ session }) => {
       >
         <Image
           className={`${s.profile_picture}`}
-          src={session.user.image}
+          // src={session.user.image}
+          src={""}
           width="50"
           height="50"
         ></Image>
