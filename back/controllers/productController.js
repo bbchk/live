@@ -74,7 +74,7 @@ export const getProductsByCategoryPath = async (req, res) => {
   let query = Product.find({
     category: { $in: activeCategoryIds },
   })
-    .select("name price images characteristics") // specify the fields you need
+    .select("name brand price images characteristics") // specify the fields you need
     .sort({ createdAt: -1 })
     .populate("category");
 
