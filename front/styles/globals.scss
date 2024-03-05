@@ -50,3 +50,7 @@ body {
   color: rgba($color-daslgrey, 0.3) !important;
   pointer-events: none;
 }
+
+.min-vh-80 {
+  min-height: 80vh;
+}
