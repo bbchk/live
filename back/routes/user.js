@@ -3,8 +3,6 @@ import { requireAuth, isAdmin } from "../middleware/auth.js";
 import {
   signIn,
   signUp,
-  destroy,
-  deleteAllUsers,
   addLikedProduct,
 } from "../controllers/userController.js";
 
@@ -14,10 +12,6 @@ router.post("/signIn", signIn);
 router.post("/signUp", signUp);
 
 router.use(requireAuth);
-router.patch("/addLikedProduct", addLikedProduct);
-
-router.use(isAdmin);
-router.delete("/destroy", destroy);
-router.delete("/deleteAllUsers", deleteAllUsers);
+router.patch("/like/:userId", addLikedProduct);
 
 export { router as userRoutes };

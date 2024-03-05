@@ -10,21 +10,14 @@ import {
   createProducts,
   updateProduct,
   deleteProduct,
-  deleteAllProducts,
-  //todo delete
-  test,
-  getProductsByCategoryPathTest,
+  // deleteAllProducts,
 } from "../controllers/productController.js";
 
 const router = express.Router();
 
 router.get("/", getProducts);
 router.get("/:id", getProductById);
-router.get("/many/:categoryPath", getProductsByCategoryPathTest);
 router.get("/:categoryPath/page/:pageId", getProductsByCategoryPath);
-
-//todo delete
-router.patch("/test", test);
 
 router.use(requireAuth);
 router.post("/getbyIds", getProductsByIds);
@@ -32,7 +25,7 @@ router.use(isAdmin);
 router.post("/", createProduct);
 router.post("/many", createProducts);
 router.patch("/:id", updateProduct);
-router.delete("/deleteAllProducts", deleteAllProducts);
 router.delete("/:id", deleteProduct);
+// router.delete("/deleteAllProducts", deleteAllProducts);
 
 export { router as productsRoutes };

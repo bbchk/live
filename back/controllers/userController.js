@@ -42,9 +42,10 @@ export const signUp = async (req, res) => {
   }
 };
 
+//todo test and fix this
 export const addLikedProduct = async (req, res) => {
-  const { productId } = req.body;
-  const userId = req.user._id;
+  const { userId } = req.query;
+  const product = req.body;
 
   try {
     await User.updateOne(
@@ -57,26 +58,5 @@ export const addLikedProduct = async (req, res) => {
     res
       .status(500)
       .json({ error: "An error occurred while liking the product." });
-  }
-};
-
-export const destroy = async (req, res) => {
-  // const { id } = req.params;
-  // const result = await getProductById(id);
-  // if (result.error) {
-  //   return res.status(result.status).json({ error: result.error });
-  // }
-  // await Product.deleteOne({ _id: id });
-  // res.status(200).json(result.product);
-  res.json({ mssg: "destroy" });
-};
-
-//todo delete this method after development
-export const deleteAllUsers = async (req, res) => {
-  try {
-    await User.deleteMany();
-    res.status(200).json("All users is successfully deleted");
-  } catch (e) {
-    res.status(400).json({ error: e.message });
   }
 };
