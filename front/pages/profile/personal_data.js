@@ -5,20 +5,12 @@ import { getServerSession } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-// const PersonalData = ({ session }) => {
 const PersonalData = () => {
   // console.log(session);
   const router = useRouter();
-  // const { status } = useSession({
-  //   required: true,
-  //   // onUnauthenticated() {
-  //   //   router.push(`/api/auth/signin?callbackUrl=/profile/personal_data`);
-  //   // },
-  // });
+  const { data: session, status } = useSession();
+  console.log("🚀 ~ session:", session);
 
-  // if (status === "loading") {
-  //   return "Loading or not authenticated...";
-  // }
   return (
     <>
       <Head>
@@ -31,6 +23,7 @@ const PersonalData = () => {
 
       <TabLayout>
         <h1>UNDER DEVELOPMENT</h1>
+        {/* {session && Object.entries(session).map((s) => <p>{s}</p>)} */}
         {/* <div
           className="accordion d-flex flex-column gap-3"
           id="accordionExample"

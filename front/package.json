@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "^2.5.0",
     "@bbuukk/slugtrans": "^1.0.5",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -23,6 +24,7 @@
     "html-react-parser": "^5.0.11",
     "immer": "^10.0.3",
     "mdb-ui-kit": "^7.1.0",
+    "mongodb": "^6.4.0",
     "next": "^14.0.4",
     "next-auth": "^4.24.6",
     "next-redux-wrapper": "^8.1.0",

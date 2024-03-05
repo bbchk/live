@@ -7,7 +7,13 @@ const SignFormByServices = () => {
   const ServiceButton = ({ serviceName }) => {
     return (
       <button
-        onClick={() => signIn(serviceName)}
+        onClick={() => {
+          try {
+            signIn(serviceName, { redirect: false });
+          } catch (e) {
+            console.log(e);
+          }
+        }}
         className={`btn btn-outline-success ${s.service_button}`}
       >
         <i className={`bi bi-${serviceName}`} />

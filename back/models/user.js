@@ -6,20 +6,23 @@ const userSchema = new Schema(
   {
     firstName: {
       type: String,
-      required: true,
+      required: [true, "Ім'я є обов'язовим полем"],
     },
     secondName: {
       type: String,
-      required: true,
+      required: false,
     },
     email: {
       type: String,
-      required: true,
-      unique: true,
+      required: [true, "Пошта є обов'язовим полем"],
+      unique: [true, "Користувач з цієї поштою вже зареєстрований"],
     },
     password: {
       type: String,
-      required: true,
+      required: [true, "Пароль є обов'язовим полем"],
+    },
+    image: {
+      type: String,
     },
     isAdmin: {
       type: Boolean,

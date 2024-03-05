@@ -318,8 +318,6 @@ export const getProductsByCategoryPathTest = async (req, res) => {
   });
   ``;
 
-  console.log(foo1);
-
   const foo = await Product.find({
     $and: [
       { category: { $in: activeCategoryIds } },

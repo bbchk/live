@@ -1,22 +1,31 @@
-import { useSignIn } from "hooks/useSignIn";
 import { useState } from "react";
 import s from "./sign_in_form_by_credentials.module.scss";
 import modal_s from "./modal.module.scss";
 import Link from "next/link";
 import InputField from "comps/input_field";
 import PasswordInputField from "comps/password_input_field";
+import { signIn } from "next-auth/react";
 
 const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signIn, isLoading, error } = useSignIn();
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signIn(email, password);
-    if (!error) {
+    const res = await signIn("credentials", {
+      email: email,
+      password: password,
+      redirect: false,
+    });
+    //todo style display error message
+    // console.log(res);
+
+    if (res.ok) {
       toggleModal();
+    } else {
+      setError(res.error);
     }
   };
 
@@ -46,7 +55,7 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
       </div>
 
       <Link
-        className={`text-center d-block ${s.forgot_password_link}`}
+        className={`text-center d-block ${s.forgot_password_link} disabled`}
         href="#"
       >
         Забули пароль?
@@ -55,16 +64,6 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
       <button
         type="submit"
         className={`btn btn-outline-success ${s.sign_in_button}`}
-        onClick={() => {
-          console.log(email);
-          console.log(password);
-          signIn("credentials", {
-            redirect: false,
-            email: email,
-            password: password,
-          });
-        }}
-        disabled={isLoading}
       >
         Увійти
       </button>

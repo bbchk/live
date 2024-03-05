@@ -17,6 +17,7 @@ const Header = () => {
   // const { data: session } = useSession();
   // const { user } = useSelector((state) => state.user);
   const { data: session } = useSession();
+  console.log(session);
 
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
@@ -27,9 +28,6 @@ const Header = () => {
         <Link className={`${s.logo} navbar-brand`} href="/">
           Живий світ
         </Link>
-        {/* <Link href="#" onClick={() => signIn()}>
-          nextauth
-        </Link> */}
         <SearchBar />
         {!session && (
           <>
@@ -85,14 +83,16 @@ const IconButtonGroup = ({ session }) => {
         href={"/profile/personal_data"}
         tooltipText={"Персональний кабінет"}
       >
-        <Image
-          className={`${s.profile_picture}`}
-          // src={session.user.image}
-          src={""}
-          width="50"
-          height="50"
-        ></Image>
-        {/* <i className={`bi bi-person-circle `} /> */}
+        {session.user.image ? (
+          <Image
+            className={`${s.profile_picture}`}
+            src={session.user.image}
+            width="50"
+            height="50"
+          ></Image>
+        ) : (
+          <i className={`bi bi-person-circle ${s.icon} `} />
+        )}
       </IconButton>
       <IconButton
         href={"/profile/orders_list"}

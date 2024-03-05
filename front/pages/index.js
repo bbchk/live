@@ -6,12 +6,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 const Home = ({ flatCategoryMap }) => {
   //todo useEffect to set categoriesPath of user to []
-  const { data: session, status } = useSession();
-  if (session) {
-    console.log(session);
-  } else {
-    console.log("no");
-  }
 
   return (
     <>

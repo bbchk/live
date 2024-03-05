@@ -3,9 +3,13 @@ import genAuthToken from "../utils/genAuthToken.js";
 
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
+  console.log("🚀 ~ password:", password);
+  console.log("🚀 ~ email:", email);
 
   try {
     const user = await User.signIn(email, password);
+    console.log("🚀 ~ user:", user);
+
     const token = genAuthToken(user);
 
     res.status(200).json({
@@ -37,6 +41,7 @@ export const signUp = async (req, res) => {
     res.status(400).json({ error: e.message });
   }
 };
+
 export const addLikedProduct = async (req, res) => {
   const { productId } = req.body;
   const userId = req.user._id;

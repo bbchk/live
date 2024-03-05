@@ -2,114 +2,113 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+import axios from "axios";
 
-export const authOptions = {
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
-      authorization: {
-        params: {
-          scope:
-            "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid",
-        },
-      },
-    }),
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import clientPromise from "./lib/mongodb";
 
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
-    CredentialsProvider({
-      name: "Credentials",
-      id: "login",
-      type: "credentials",
-      credentials: {
-        // firstName: { label: "Ім'я", type: "text" },
-        // secondName: { label: "Прізвище", type: "text" },
-        email: {
-          label: "Пошта",
-          type: "email",
-          placeholder: "placeuser@example.com",
-        },
-        password: { label: "Пароль", type: "password" },
-      },
-      async authorize(credentials, req) {
-        console.log(req);
-        console.log(credentials);
-        try {
-          const response = await axios.post(
-            `/user/signIn`,
-            {
-              email: credentials.email,
-              password: credentials.password,
-            },
-            { headers: { "Content-type": "application/json" } }
-          );
-          const user = response.data;
-
-          if (response.status === 200) {
-            // return { status: "Authenticated" };
-            return user;
-          } else {
-            return null;
-          }
-        } catch (error) {
-          throw new Error("User not authenticated");
-        }
-      },
-    }),
-  ],
-  callbacks: {
-    // async signIn(user, account, profile) {
-    //   console.log(account.provider);
-    //   if (account.provider === "github") {
-    //     const githubUser = {
-    //       id: profile.id,
-    //       login: profile.login,
-    //       name: profile.name,
-    //       avatar: user.image,
-    //     };
-
-    //     user.accessToken = await getTokenFromYourAPIServer(
-    //       "github",
-    //       githubUser
-    //     );
-    //     return true;
-    //   }
-
-    //   return true;
-    // },
-    async signIn(user, account, profile) {
-      console.log(account);
-      console.log(user);
-      console.log(profile);
-
-      return true;
-    },
-    async jwt({ token, user }) {
-      if (user) {
-        token.accessToken = user.accessToken;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      session.accessToken = token.accessToken;
-
-      return session;
+// Providers
+const googleProvider = GoogleProvider({
+  clientId: process.env.GOOGLE_ID,
+  clientSecret: process.env.GOOGLE_SECRET,
+  authorization: {
+    params: {
+      scope:
+        "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid",
     },
   },
+  profile(profile) {
+    return {
+      id: profile.sub,
+      firstName: profile.given_name,
+      secondName: profile.family_name,
+      email: profile.email,
+      image: profile.picture,
+      likedProducts: [],
+    };
+  },
+});
+
+const githubProvider = GithubProvider({
+  clientId: process.env.GITHUB_ID,
+  clientSecret: process.env.GITHUB_SECRET,
+  profile(profile) {
+    return {
+      id: profile.id,
+      firstName: profile?.name,
+      secondName: "",
+      email: profile.email,
+      image: profile.avatar_url,
+      likedProducts: [],
+    };
+  },
+});
+
+const credentialsProvider = CredentialsProvider({
+  type: "credentials",
+  credentials: {},
+  async authorize(credentials, req) {
+    const { email, password } = credentials;
+
+    try {
+      const response = await axios.post(
+        `/user/signIn`,
+        {
+          email: email,
+          password: password,
+        },
+        { headers: { "Content-type": "application/json" } }
+      );
+      const user = response.data;
+
+      if (response.status === 200) {
+        return user;
+      } else {
+        throw new Error("User not authenticated");
+      }
+    } catch (error) {
+      throw new Error("User not authenticated");
+    }
+  },
+});
+
+// Callbacks
+const callbacks = {
+  async signIn({ user, account, profile }) {
+    return true;
+  },
+  async jwt({ token, user, account, profile }) {
+    if (account) {
+      token.access_token = account.access_token;
+      token.user = user;
+    }
+    return token;
+  },
+  async session({ session, token }) {
+    session.access_token = token.access_token;
+    session.user = token.user;
+    return session;
+  },
+};
+
+// Auth options
+const authOptions = {
+  providers: [googleProvider, githubProvider, credentialsProvider],
+  adapter: MongoDBAdapter(clientPromise),
+  session: {
+    strategy: "jwt",
+  },
+  callbacks,
   pages: {
     signIn: "/auth/signin",
-    // signOut: "/auth/signout",
-    // error: "/auth/error", // Error code passed in query string as ?error=
-    // verifyRequest: "/auth/verify-request", // (used for check email message)
-    // newUser: "/auth/new-user", // New users will be directed here on first sign in (leave the property out if not of interest)
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
 
-export default NextAuth(authOptions);
+export default NextAuth({
+  ...authOptions,
+  debug: process.env.NODE_ENV === "development" ? true : false,
+});
 
 //todo implement facebook and apple
 // import FacebookProvider from "next-auth/providers/facebook";
