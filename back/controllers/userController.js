@@ -18,12 +18,14 @@ export const signIn = async (req, res) => {
       email: email,
       token: token,
       likedProducts: user.likedProducts,
+      image: user.image,
     });
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
 };
 
+//todo test
 export const signUp = async (req, res) => {
   const { firstName, secondName, email, password } = req.body;
 
@@ -36,6 +38,7 @@ export const signUp = async (req, res) => {
       email: email,
       token: token,
       likedProducts: user.likedProducts,
+      image: user.image,
     });
   } catch (e) {
     res.status(400).json({ error: e.message });

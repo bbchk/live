@@ -76,11 +76,17 @@ userSchema.statics.signUp = async function (
 
   const hash = await bcrypt.hash(password, 10); // Use bcrypt.hash from bcryptjs
 
+  const min = 0;
+  const max = 4;
+  const randomImageIdx = Math.floor(Math.random() * (max - min + 1)) + min;
+  const defaultUserImage = `https://storage.googleapis.com/live_world/users/user${randomImageIdx}.jpg`;
+
   return await this.create({
     firstName: firstName,
     secondName: secondName,
     email: email,
     password: hash,
+    image: defaultUserImage,
   });
 };
 
