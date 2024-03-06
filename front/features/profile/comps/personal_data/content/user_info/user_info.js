@@ -6,9 +6,6 @@ import s from "./user_info.module.scss";
 import card_s from "./../card.module.scss";
 
 const UserInfo = () => {
-  const { data: session, status } = useSession();
-  const user = session?.user;
-
   return (
     <>
       <Card className={`${card_s.card}`}>
@@ -18,8 +15,8 @@ const UserInfo = () => {
         </Card.Header>
         <Card.Body className={`${card_s.body}`}>
           <section className={`${s.user_info}`}>
-            <ProfileImage user={user} />
-            <UserInfoForm user={user} />
+            <ProfileImage />
+            <UserInfoForm />
           </section>
         </Card.Body>
       </Card>

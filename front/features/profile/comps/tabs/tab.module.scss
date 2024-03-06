@@ -28,13 +28,17 @@
     gap: 10px;
     margin-bottom: 30px;
 
+
+    
+    
+    
     
     .image {
         object-fit: contain;
             
-        img,i  {
-            @include icon;
-            border-radius: 50px;
+        img  {
+    object-fit: contain; 
+            border-radius: 500px;
         }
     }
 

@@ -16,7 +16,6 @@
 
     //todo only use image, not icon
     img  {  
-      font-size: 175px;
       width: 100%  !important;
       height: auto !important;
       object-fit: contain;  
@@ -61,7 +60,6 @@
         text-align: center;
   
         font-size: 1.2rem;
-  
         
         border: 2px solid $color-yelgreen;
         color: $color-daslgrey;  
@@ -70,12 +68,12 @@
     .edit_btn {
       
     }
-      .save_button {
+      .save_btn {
 
         
       }
-      .cancel_button {
-
+      .cancel_btn {
+        border-color: $color-spink !important;        
       }
 
     }

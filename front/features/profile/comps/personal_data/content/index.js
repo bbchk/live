@@ -5,10 +5,11 @@ import { useSession } from "next-auth/react";
 
 const Content = () => {
   const { data: session } = useSession();
+
   return (
     <section className={`${s.personal}`}>
       <UserInfo />
-      {session && session.user.provider == "credentials" && <Security />}
+      {session && session.provider == "credentials" && <Security />}
     </section>
   );
 };

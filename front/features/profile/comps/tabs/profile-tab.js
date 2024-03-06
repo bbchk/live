@@ -13,7 +13,7 @@ const ProfileTab = () => {
     >
       <div className={`${s.image}`}>
         {user && user.image && (
-          <Image src={user.image} width={0} height={0} sizes="100vw" />
+          <Image src={user.image} width={50} height={50} sizes="100vw" />
         )}
       </div>
       <div className={`${s.credentials}`}>

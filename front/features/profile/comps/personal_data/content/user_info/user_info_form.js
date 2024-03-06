@@ -6,14 +6,26 @@ import InputField from "comps/input_field";
 import Image from "next/image";
 import ProfileImage from "./profile_image";
 
-const UserInfoForm = ({ user }) => {
-  const [userInfo, setUserInfo] = useState({
-    firstName: user?.firstName || "",
-    secondName: user?.secondName || "",
-    email: user?.email || "",
-  });
+const UserInfoForm = () => {
+  const { data: session, status } = useSession();
+  const user = session?.user;
 
   const [isBeingModified, setIsBeingModified] = useState(false);
+  const [hasBeenBeingModified, setHasBeenBeingModified] = useState(false);
+
+  const [userInfo, setUserInfo] = useState({
+    firstName: "",
+    secondName: "",
+    email: "",
+  });
+
+  useEffect(() => {
+    setUserInfo({
+      firstName: user?.firstName || "",
+      secondName: user?.secondName || "",
+      email: user?.email || "",
+    });
+  }, [session, isBeingModified]);
 
   const handleSubmit = async (e, value) => {
     e.preventDefault();
@@ -30,6 +42,7 @@ const UserInfoForm = ({ user }) => {
           value={userInfo.firstName}
           disabled={!isBeingModified}
           onChange={(e) => {
+            setHasBeenBeingModified(true);
             setUserInfo({ ...userInfo, firstName: e.target.value });
           }}
         />
@@ -40,6 +53,7 @@ const UserInfoForm = ({ user }) => {
           value={userInfo.secondName}
           disabled={!isBeingModified}
           onChange={(e) => {
+            setHasBeenBeingModified(true);
             setUserInfo({ ...userInfo, secondName: e.target.value });
           }}
         />
@@ -51,6 +65,7 @@ const UserInfoForm = ({ user }) => {
           value={userInfo.email}
           disabled={!isBeingModified}
           onChange={(e) => {
+            setHasBeenBeingModified(true);
             setUserInfo({ ...userInfo, email: e.target.value });
           }}
         />
@@ -68,13 +83,26 @@ const UserInfoForm = ({ user }) => {
         )}
         {isBeingModified && (
           <>
-            <button type="submit" className={`${s.save_btn}`}>
+            <button
+              data-toggle="tooltip"
+              title={hasBeenBeingModified ? "" : "Дані не були змінені"}
+              data-placement="bottom"
+              type="submit"
+              className={`${s.save_btn}`}
+              disabled={!hasBeenBeingModified}
+              onClick={() => {
+                setHasBeenBeingModified(false);
+              }}
+            >
               Зберегти
             </button>
             <button
               type="button"
               className={`${s.cancel_btn}`}
-              onClick={() => setIsBeingModified(false)}
+              onClick={() => {
+                setHasBeenBeingModified(false);
+                setIsBeingModified(false);
+              }}
             >
               Скасувати
             </button>
