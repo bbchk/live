@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
 import s from "./data.module.scss";
 import { Accordion, Form, Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
 
 const Data = () => {
-  const user = useSelector((state) => state.user);
+  const { data: session, status } = useSession();
+  const user = session?.user;
 
-  const [firstName, setFirstName] = useState("");
-  const [secondName, setSecondName] = useState("");
-  const [email, setEmail] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    firstName: "",
+    secondName: "",
+    email: "",
+  });
 
   const [isBeingModified, setIsBeingModified] = useState(false);
 
   useEffect(() => {
     if (user) {
-      setFirstName(user.firstName);
-      setSecondName(user.secondName);
-      setEmail(user.email);
+      setUserInfo({ ...userInfo, ...user });
     }
   }, [user]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, value) => {
     e.preventDefault();
   };
 
@@ -49,28 +50,28 @@ const Data = () => {
               <InputField
                 type="text"
                 label="First Name:"
-                value={firstName}
+                value={userInfo.firstName}
                 isBeingModified={isBeingModified}
                 onChange={(e) => {
-                  setFirstName(e.target.value);
+                  setUserInfo({ ...userInfo, firstName: e.target.value });
                 }}
               />
               <InputField
                 type="text"
                 label="Second Name:"
-                value={secondName}
+                value={userInfo.secondName}
                 isBeingModified={isBeingModified}
                 onChange={(e) => {
-                  setSecondName(e.target.value);
+                  setUserInfo({ ...userInfo, secondName: e.target.value });
                 }}
               />
               <InputField
                 type="email"
                 label="Email:"
-                value={email}
+                value={userInfo.email}
                 isBeingModified={isBeingModified}
                 onChange={(e) => {
-                  setEmail(e.target.value);
+                  setUserInfo({ ...userInfo, email: e.target.value });
                 }}
               />
               <div className=" ms-4 mt-2">

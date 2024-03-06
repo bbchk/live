@@ -4,12 +4,13 @@ import Head from "next/head";
 import { getServerSession } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-
+import Data from "features/profile/comps/personal_data/data-section";
+import Security from "features/profile/comps/personal_data/security-section";
 const PersonalData = () => {
   // console.log(session);
   const router = useRouter();
   const { data: session, status } = useSession();
-  console.log("🚀 ~ session:", session);
+  // console.log("🚀 ~ session:", session);
 
   return (
     <>
@@ -22,15 +23,14 @@ const PersonalData = () => {
       </Head>
 
       <TabLayout>
-        <h1>UNDER DEVELOPMENT</h1>
-        {/* {session && Object.entries(session).map((s) => <p>{s}</p>)} */}
-        {/* <div
+        {/* <h1>UNDER DEVELOPMENT</h1> */}
+        <div
           className="accordion d-flex flex-column gap-3"
           id="accordionExample"
         >
           <Data />
           <Security />
-        </div> */}
+        </div>
       </TabLayout>
     </>
   );
