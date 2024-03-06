@@ -7,6 +7,7 @@ const Security = () => {
   return (
     <Card className={`${card_s.card}`}>
       <Card.Header className={`${card_s.header}`}>
+        <i className="bi bi-lock-fill"></i>
         <h5>Безпека</h5>
       </Card.Header>
       <Card.Body className={`${card_s.body}`}>

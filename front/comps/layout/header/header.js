@@ -83,15 +83,13 @@ const IconButtonGroup = ({ session }) => {
         href={"/profile/personal_data"}
         tooltipText={"Персональний кабінет"}
       >
-        {session.user.image ? (
+        {session.user.image && (
           <Image
             className={`${s.profile_picture}`}
             src={session.user.image}
             width="50"
             height="50"
-          ></Image>
-        ) : (
-          <i className={`bi bi-person-circle ${s.icon} `} />
+          />
         )}
       </IconButton>
       <IconButton

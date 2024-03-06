@@ -80,11 +80,13 @@ const callbacks = {
   async jwt({ token, user, account, profile }) {
     if (account) {
       token.access_token = account.access_token;
+      token.provider = account.provider;
       token.user = user;
     }
     return token;
   },
   async session({ session, token }) {
+    session.provider = token.provider;
     session.access_token = token.access_token;
     session.user = token.user;
     return session;

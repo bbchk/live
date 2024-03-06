@@ -13,7 +13,10 @@
     margin-bottom: 30px;
     padding: 0 15px;
     
-    img,i  {  
+
+    //todo only use image, not icon
+    img  {  
+      font-size: 175px;
       width: 100%  !important;
       height: auto !important;
       object-fit: contain;  

@@ -12,10 +12,8 @@ const ProfileTab = () => {
       href={"/profiler/personal_data"}
     >
       <div className={`${s.image}`}>
-        {user && user.image ? (
-          <Image src={session.user.image} width="50" height="50" />
-        ) : (
-          <i className={`bi bi-person-circle`} />
+        {user && user.image && (
+          <Image src={user.image} width={0} height={0} sizes="100vw" />
         )}
       </div>
       <div className={`${s.credentials}`}>
