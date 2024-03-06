@@ -23,7 +23,7 @@ const FiltersAccordion = ({ products, category }) => {
   //todo
   // fetch products with query params
   return (
-    <div className={`${s.filters_container}`}>
+    <search className={`${s.filters_container}`}>
       {!isLoading && (
         <Accordion
           className={`${s.filter_accordion}`}
@@ -60,7 +60,7 @@ const FiltersAccordion = ({ products, category }) => {
           ))}
         </Accordion>
       )}
-    </div>
+    </search>
   );
 };
 

@@ -9,7 +9,7 @@ const Footer = () => (
     <div className={`${s.decor_line}`}></div>
     <footer className={`${s.footer_container}`}>
       <div className={`row  ${s.footer}`}>
-        <div className={`col-sm-12 col-md-6 col-xl-4   ${s.about_us}`}>
+        <div className={`col-sm-12 col-md-6 col-xl-4 ${s.about_us}`}>
           <AboutUs />
         </div>
 

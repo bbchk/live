@@ -1,17 +1,22 @@
+import s from "./work_hours.module.scss";
+
 const WorkHours = () => {
   return (
-    <>
-      <h6>
+    <section className={`${s.work_hours}`}>
+      <h2>
         <i className="bi bi-clock-fill"></i>
         <span>Коли працюємо?</span>
-      </h6>
-      <div>
-        <p>
-          ⚬ Пн-Сб: 8:00 - 18:00
-          <br />⚬ Нд: 9:00 - 17:00
-        </p>
-      </div>
-    </>
+      </h2>
+
+      <dl>
+        <dt>Понеділок - Неділя</dt>
+        <dd>
+          <time datetime="08:00">8:00</time>
+          {" - "}
+          <time datetime="18:00">18:00</time>
+        </dd>
+      </dl>
+    </section>
   );
 };
 

@@ -26,6 +26,7 @@ export const signIn = async (req, res) => {
 };
 
 //todo test
+//todo what if user sign in with service, but does not have picture and service does not provide one? research it
 export const signUp = async (req, res) => {
   const { firstName, secondName, email, password } = req.body;
 

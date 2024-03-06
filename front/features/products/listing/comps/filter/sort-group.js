@@ -8,7 +8,7 @@ const SortGroup = () => {
   };
 
   return (
-    <div className={`${s.filters}`}>
+    <search className={`${s.filters}`}>
       <p className="p-2">Сортування:</p>
       <div className={`${s.btn_group}`}>
         {/* <label className="btn">
@@ -35,7 +35,7 @@ const SortGroup = () => {
           Спочатку дорожчі
         </label>
       </div>
-    </div>
+    </search>
   );
 };
 
