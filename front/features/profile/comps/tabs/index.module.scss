@@ -1,0 +1,10 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+
+.tabs_section {
+    flex: 1 1 25%;    
+    padding: 15px;
+    border-right: 2px double $color-nyanza;
+}
+

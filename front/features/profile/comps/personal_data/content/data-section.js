@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import s from "./data.module.scss";
 import { Accordion, Form, Button } from "react-bootstrap";
 import { useSession } from "next-auth/react";
+import InputField from "comps/input_field";
 
 const Data = () => {
   const { data: session, status } = useSession();
@@ -49,27 +50,30 @@ const Data = () => {
             <form onSubmit={handleSubmit}>
               <InputField
                 type="text"
+                id="profileFirstNameInput"
                 label="First Name:"
                 value={userInfo.firstName}
-                isBeingModified={isBeingModified}
+                disabled={isBeingModified}
                 onChange={(e) => {
                   setUserInfo({ ...userInfo, firstName: e.target.value });
                 }}
               />
               <InputField
                 type="text"
+                id="profileSecondNameInput"
                 label="Second Name:"
                 value={userInfo.secondName}
-                isBeingModified={isBeingModified}
+                disabled={isBeingModified}
                 onChange={(e) => {
                   setUserInfo({ ...userInfo, secondName: e.target.value });
                 }}
               />
               <InputField
                 type="email"
+                id="profileEmailInput"
                 label="Email:"
                 value={userInfo.email}
-                isBeingModified={isBeingModified}
+                disabled={isBeingModified}
                 onChange={(e) => {
                   setUserInfo({ ...userInfo, email: e.target.value });
                 }}
@@ -111,31 +115,3 @@ const Data = () => {
 };
 
 export default Data;
-
-export const InputField = ({
-  type,
-  label,
-  value,
-  onChange,
-  placeholder,
-  text,
-  isBeingModified,
-}) => {
-  return (
-    <div className="form-floating mb-2">
-      {/* <div className="mb-2"> */}
-      <input
-        type={type}
-        id="form3Example1"
-        className="form-control"
-        value={value}
-        onChange={(e) => onChange(e)}
-        placeholder=""
-        disabled={!isBeingModified}
-      />
-      <label className={`form-label ${s.label}`} htmlFor="form3Example1">
-        {label}
-      </label>
-    </div>
-  );
-};

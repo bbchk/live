@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import s from "./security.module.scss";
 import { Accordion, Form, Button } from "react-bootstrap";
-import { InputField } from "./data-section";
+import InputField from "comps/input_field";
 
-const Data = () => {
+const Security = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordAgain, setNewPasswordAgain] = useState("");
@@ -80,4 +80,4 @@ const Data = () => {
   );
 };
 
-export default Data;
+export default Security;

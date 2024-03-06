@@ -1,0 +1,8 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@import "node_modules/rfs/sass.sass";
+
+.personal 
+{
+ flex: 1 1 75%;   
+}

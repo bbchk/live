@@ -8,6 +8,7 @@ const InputField = ({
   label,
   placeholder,
   error,
+  disabled,
 }) => {
   return (
     <div className="form-floating w-100">
@@ -18,6 +19,7 @@ const InputField = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        disabled={disabled}
       />
       <label className={`form-label ${s.label}`} htmlFor={id}>
         {label}

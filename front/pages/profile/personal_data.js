@@ -1,12 +1,9 @@
-import TabLayout from "features/profile/comps/tab-layout";
-import { Link } from "next/link"; // Import the Link component
 import Head from "next/head";
-import { getServerSession } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import Data from "features/profile/comps/personal_data/data-section";
-import Security from "features/profile/comps/personal_data/security-section";
-const PersonalData = () => {
+import PersonalData from "features/profile/comps/personal_data/index";
+
+const PersonalDataPage = () => {
   // console.log(session);
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -22,21 +19,15 @@ const PersonalData = () => {
         />
       </Head>
 
-      <TabLayout>
-        {/* <h1>UNDER DEVELOPMENT</h1> */}
-        <div
-          className="accordion d-flex flex-column gap-3"
-          id="accordionExample"
-        >
-          <Data />
-          <Security />
-        </div>
-      </TabLayout>
+      {/* <div className="accordion d-flex flex-column gap-3" id="accordionExample"> */}
+      {/* </div> */}
+
+      <PersonalData />
     </>
   );
 };
 
-export default PersonalData;
+export default PersonalDataPage;
 
 // PersonalData.auth = true;
 
