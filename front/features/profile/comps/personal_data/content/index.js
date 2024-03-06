@@ -1,11 +1,11 @@
-import Data from "./data-section";
-import Security from "./security-section";
+import UserInfo from "./user_info/user_info";
 import s from "./index.module.scss";
+import Security from "./security/security";
 
 const Content = () => {
   return (
     <section className={`${s.personal}`}>
-      <Data />
+      <UserInfo />
       <Security />
     </section>
   );

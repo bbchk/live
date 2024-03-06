@@ -26,10 +26,10 @@ const Tabs = () => {
         </Tab>
 
         <Tab
-          href="api/auth/signout"
-          // onClick={() => {
-          //   signOut({ callbackUrl: "/" });
-          // }}
+          href="#"
+          onClick={() => {
+            signOut({ callbackUrl: "/" });
+          }}
         >
           <i className="bi bi-box-arrow-left" />
           <p>Вийти</p>

@@ -46,7 +46,7 @@ export default function App({
       </Head>
       <SessionProvider session={pageProps.session}>
         <Provider store={store}>
-          <div className="min-vh-80 mb-3">
+          <div className="min-vh-80">
             {!excludedPaths.includes(router.pathname) && <Header />}
             <FetchData />
             <Component {...pageProps} />

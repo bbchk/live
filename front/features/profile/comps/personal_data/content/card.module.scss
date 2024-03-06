@@ -1,0 +1,24 @@
+
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@import "node_modules/rfs/sass.sass";
+
+
+.card {    
+    font-family: $font-family-balsamiq-sans;
+    color: $color-daslgrey;
+    border: 1px solid rgba($color-daslgrey, 0.1);
+
+    .header {
+        border-bottom: 1px solid rgba($color-daslgrey, 0.1);
+        color: rgba($color-daslgrey, 0.8);
+        background-color: $color-alabaster;
+        background-color: white;
+    }
+
+    .body 
+    {
+        padding: 15px;
+        padding-top: 25px;
+    }
+  }
