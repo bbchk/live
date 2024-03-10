@@ -1,4 +1,3 @@
-import TabLayout from "features/profile/comps/tab-layout";
 import Order from "features/profile/comps/orders_list/order";
 import Head from "next/head";
 import { getSession } from "next-auth/react";
