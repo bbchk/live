@@ -12,9 +12,7 @@ const OrdersList = () => {
         <meta name="description" content="Живий Світ | Мої замовлення" />
       </Head>
 
-      <TabLayout>
-        <h1>UNDER DEVELOPMENT</h1>
-      </TabLayout>
+      <h1>UNDER DEVELOPMENT</h1>
     </>
   );
 };
