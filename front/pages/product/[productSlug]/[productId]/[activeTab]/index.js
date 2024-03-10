@@ -17,6 +17,7 @@ import { setActiveIndi } from "store/productsSlice";
 import axios from "axios";
 import Navigation from "features/products/landing/comps/layout/navigation";
 import Breadcrumbs from "comps/breadcrumbs";
+import { stripHtmlTags } from "utils/stripHtmlTags";
 
 //todo fix we take first category available on product, but it can be not the category user was in
 const Landing = ({ product, activeTab }) => {
@@ -26,9 +27,8 @@ const Landing = ({ product, activeTab }) => {
         <title>{product.name} в інтернет-магазині Живий світ</title>
         <meta
           name="description"
-          content={`${product.name}\n\n${product.description["Опис"].substring(
-            0,
-            110
+          content={`${product.name}\n\n${stripHtmlTags(
+            product.description.substring(0, 110)
           )}...`}
         />
       </Head>

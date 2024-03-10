@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-//todo make certain fields required false
+//todo make certain fields required true
 const productSchema = new Schema(
   {
     name: {
@@ -28,8 +28,7 @@ const productSchema = new Schema(
       required: false,
     },
     description: {
-      type: Map,
-      of: String,
+      type: String,
       required: false,
     },
     images: {

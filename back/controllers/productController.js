@@ -39,6 +39,8 @@ export const getProductsByIds = async (req, res) => {
 export const getProducts = async (req, res) => {
   const products = await Product.find({})
     .sort({ createdAt: -1 })
+
+    .select("description name brand price images characteristics")
     .populate("category")
     .exec();
 
