@@ -1,19 +1,107 @@
-<p align="center">
-  <a href='https://github.com/bbuukk/gra'><img src="front/public/logo.svg" width="100" align="middle"></a>
-</p>
-
 <!--HOW TO WRITE COOL README FILE TUTORIAL https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/-->
-#  🛒 E-commerce website 'Live World🍀'
-## 🔷 Overview
-This is e-commerce platform, a one-stop shop for all your pet care and household needs
+<div align="center" style="display: flex; flex-direction: column;">
+  <a href='https://github.com/bbuukk/gra'><img src="front/public/logo.svg" width="100"></a>
+</div>
 
-🔸 Discover a Wide Range of Products: Browse through our extensive catalog of pet care and household items.<br>
-🔸 Efficient Search and Filter Options: Find exactly what you need using our search function or explore products by category. View detailed descriptions, prices, and more.<br>
-🔸 Hassle-Free Shopping Experience: Place orders effortlessly, choose your preferred delivery location, and select from various payment options.<br>
+<h1 align="center"> Live World </h1>
 
-🔹 This is MERN stack project enhanced with Next.js.<br>
-🔹 For a seamless and visually appealing user experience, I’ve leveraged the capabilities of Bootstrap, Material Design, Sass, and Styled Components libraries.<br>
-🔹 What’s more, every web page you see is a product of my own design, meticulously crafted using Figma.<br>
+<h2 align="center">E-commerce web application, a one-stop online store for all pet care and household needs</h2>
+
+<h2 >Overview</h2>
+
+<h2 >Features</h2>
+
+
+- /pay
+  - Options for delivery and paying
+  - Reviewing following order
+- /products
+  - List of products with ability to filter them by price, brand, date etc.
+  - User can add a product to wish list or shopping cart
+- /products/[productId]/about
+  - Write a reveiw on the product
+  - Read detailed description and characteristics of the product
+- /profile
+  - Personal cabinet with profile info, product wish list and past orders list
+- /
+  - Product categories gallery
+  - Discount offers carousel
+  - Shop reviews carousel 
+
+<br>
+
+- Other:
+  - Search on products by user input
+
+
+
+    What your application does,
+    Why you used the technologies you used,
+    Some of the challenges you faced and features you hope to implement in the future.
+
+<br>
+
+<h2 >Demo</h2>
+
+![Live World Welcome GIF](.github/images/live_world_welcome_demo.gif)
+
+<h2>Tech Stack</h2>
+
+<table align="center">
+  <tr>
+    <th>Backend</th>
+    <th colspan=2>Frontend</th>    
+    <th>Written in</th>
+  </tr>
+  <tr>
+    <td align="center"><a href='https://www.mongodb.com/'><img width="100%" src='https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white' align='middle'></a></td>
+    <td align="center"><a href='https://reactjs.org/'><img width="100%" src='https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB' align='middle'></a></td>
+    <td align="center"><a href='https://getbootstrap.com/'><img width="100%" src='https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white' align='middle'></a></td>
+    <td align="center"><a href='https://www.javascript.com/'><img width="100%" src='https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E' align='middle'></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href='https://expressjs.com/'><img width="100%" src='https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB' align='middle'></a></td>
+    <td align="center"><a href='https://nextjs.org/'><img width="100%" src='https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white' align='middle'></a></td>
+    <td align="center"><a href='https://mui.com/'><img width="100%" src='https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white' align='middle'></a></td>
+        <td align="center"><a href='https://www.typescriptlang.org/'><img width="100%" src='https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white' align='middle'></a></td>
+  </tr>
+  <tr>
+    <td ><a href='https://nodejs.org/'><img width="100%" src='https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white' align='middle'></a></td>
+    <td align="center"><a href='https://redux.js.org/'><img width="100%" src='https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white' align='middle'></a></td>
+    <td align="center"><a href='https://sass-lang.com/'><img width="100%" src='https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white' align='middle'></a></td>
+    <td></td>
+  </tr>
+</table>
+
+<br>
+<h2>Front-end design</h2>
+
+<table align="center">
+  <tr><th colspan=5><h3>Overview of design of main pages</h3>
+</th></tr>
+  <tr>
+    <th>Main page</th>
+    <th>Products listing page </th>
+    <th>Product main landing page</th>
+    <th>Product characteristics landing page</th>
+    <th>Product user reviews landing page</th>
+  </tr>
+  <tr>
+    <td align="left"><img src='https://drive.google.com/uc?export=view&id=1vQS8_tzszhvZEoajYZG1xkhfpVMnjIMG'></td>
+    <td><img src='https://drive.google.com/uc?export=view&id=1jU5C3KS_1HYN65hVgI4tPys9NmtPunzM'></td>
+    <td><img src='https://drive.google.com/uc?export=view&id=1ihprkU9GjmtWB8fO9u-x2jeUBm6qnthk'></td>
+    <td><img src='https://drive.google.com/uc?export=view&id=1LNlfi1CUuQAvPBE9axYnPBtaZx7Th-r9'></td>
+    <td><img src='https://drive.google.com/uc?export=view&id=1Um9TL0r18UKDxo2Nhk9jlIgTr_pnjZsi'></td>
+  </tr>
+</table>
+
+<div align="center">
+<h3><pre>~~~    Click on cat's paw below to open figma design project     ~~~</pre></h3>
+<a href='https://www.figma.com/file/Qb3fKAMJmdfCwmsXd3jcSD/Live-world?type=design&node-id=0%3A1&mode=design&t=qYGwGJ9NwCYA879K-1'><img width="10%" src='https://media0.giphy.com/media/Sv9lsehLQ6QLbObc6A/giphy.gif?cid=6c09b952yao356fh0sfkcasxya4l5vpfnpexzybik3ssmewz&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s'></a>
+<!--<h3><pre>~~~~~~~~~~~~~~~~           to open figma design project           ~~~~~~~~~~~~~~~~</pre></h3>-->
+</div>
+
+<!--<h2>Helpful Links</h2>-->
 
 <!--
     What was your motivation?
@@ -42,64 +130,3 @@ This is e-commerce platform, a one-stop shop for all your pet care and household
 
     Cute looking site, but with functionality of a real shop
 -->
-
-## 🔷 Functionality
-Functionality of the project by pages: 
-
-- /pay
-  - Options for delivery and paying
-  - Reviewing following order
-- /products
-  - List of products with ability to filter them by price, brand, date etc.
-  - User can add a product to wish list or shopping cart
-- /products/[productId]/about
-  - Write a reveiw on the product
-  - Read detailed description and characteristics of the product
-- /profile
-  - Personal cabinet with profile info, product wish list and past orders list
-- /
-  - Product categories gallery
-  - Discount offers carousel
-  - Shop reviews carousel 
-
-<br>
-
-- Other:
-  - Search on products by user input
-
-## 🔷 Tech Stack
-
-🔹 MERN:
-     🔸 [MongoDb](https://www.mongodb.com/)
-     🔸 [Express.js](https://expressjs.com/)
-     🔸 [React.js](https://react.dev/)
-     🔸 [Node.js](https://nodejs.org/en)
-
-🔹 [Next.js](https://nextjs.org/)
-
-
-🔹 Styling: 
-🔸 [Bootstrap](https://getbootstrap.com/)
-🔸 [Material UI](https://mui.com/)
-🔸 [SASS/SCSS](https://sass-lang.com/)
-🔸 [Styled Components](https://styled-components.com/)
-
-<!--
-why mern
-why bootstrap
-whhy mui
-why next js-->
-
-## 🔷 Design
-
-Design made in [Figma](figma.com/)<br>
-Here is [link](https://www.figma.com/file/Qb3fKAMJmdfCwmsXd3jcSD/Live-world?type=design&node-id=0%3A1&mode=design&t=qYGwGJ9NwCYA879K-1) to design file of the project 
-
-## 🔷 How to start application locally?
-🔹 open 2 terminals in following paths: live/front and live/back<br>
-🔹 write `npm i` in every terminal to install dependencies<br>
-🔹 write `npm run dev` in every terminal to start front and back applications<br>
-🔹 write localhost:3000 in browser to display web application locally (or on other port, if 3000 was busy)<br>
-
-
-## 🔷 Helpful links
