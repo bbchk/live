@@ -21,7 +21,19 @@ module.exports = {
       },
     ],
   },
-  //! todo delete this after testing
+  async redirects() {
+    if (process.env.MAINTENANCE_MODE === "true") {
+      console.log("Application is in maintenance mode");
+      return [
+        {
+          source: "/:path((?!maintenance.html).*)",
+          destination: "/maintenance.html",
+          permanent: false,
+        },
+      ];
+    }
+    return [];
+  },
   //! todo delete this after testing
   eslint: {
     // Warning: This allows production builds to successfully complete even if
