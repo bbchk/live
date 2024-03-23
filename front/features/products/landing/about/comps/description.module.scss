@@ -3,20 +3,53 @@
 
 .description {
   padding: 2em;
-  color: $color-daslgrey;
-  max-height: 200px; // Set the desired height
   overflow: hidden;
 
-  transition: max-height 0.3s ease-in-out; // Add a smooth transition effect
-  &.expanded {
-    max-height: 100%; // Expand to show all content
-  }
+  font-size: 1.3rem;
+
+  color: $color-daslgrey;
 
   .text {
     margin-top: 1em;
-    font-size: 1.3em;
     overflow-wrap: break-word;
+
+    position: relative;
+
+    &.fade_out {
+      overflow: hidden;
+      max-height: 300px; // Adjust as needed on smaller screens
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px; // Adjust as needed
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 1)
+        );
+      }
+    }
+
+    transition: max-height 0.3s ease-out; // Add a smooth transition effect
   }
+
+  button {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    margin-top: 0.5rem;
+
+    color: $color-bluedefrnc;
+  }
+
+  //styles for parsed html text in description
 
   ul {
     list-style-type: disc;
