@@ -6,57 +6,13 @@ $radius-sm: 1em;
 $padding: 0.4rem;
 $border: 1rem;
 $border-sm: 0.5rem;
-
 $padding-lg: 3rem;
 
 .product_banner {
   color: $color-daslgrey;
-  
 
   display: flex;
   gap: 2rem;
-
-  .frame {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1 1 45%;
-
-    z-index: -32;
-
-    .image {
-      padding: 1em;
-      object-fit: contain;
-    }
-  }
-
-  .frame2 {
-    .image {
-      padding: 1em;
-      object-fit: contain;
-    }
-    
-    .thumbnails {
-      display: flex;
-      overflow-x: auto;
-      padding: 0px 48px;
-    }
-
-    .thumbnail_image{
-      object-fit: contain;
-    }
-    
-    .thumbnail {
-      margin-right: 10px;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-    
-    .thumbnailSelected {
-      border: 2px solid #c8e59b;
-      margin-right: 10px;
-    }
-  }
 
   .info {
     display: flex;

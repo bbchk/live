@@ -4,12 +4,14 @@ import { stripHtmlTags } from "utils/stripHtmlTags";
 import axios from "axios";
 import { Suspense, lazy, use, useEffect } from "react";
 
-const About = lazy(() => import("features/products/landing/comps/about/index"));
-const Characteristics = lazy(() =>
-  import("features/products/landing/comps/characteristics/index")
+const LandingProductAboutPage = lazy(() =>
+  import("features/products/landing/about/landing_product_about")
 );
+// const Characteristics = lazy(() =>
+//   import("features/products/landing/comps/characteristics/index")
+// );
 
-import Navigation from "features/products/landing/comps/layout/navigation";
+import Navigation from "features/products/landing/mutual/layout/navigation";
 import Breadcrumbs from "comps/navigation/breadcrumbs";
 
 //todo make fallback page for suspense
@@ -36,10 +38,10 @@ const Landing = ({ product }) => {
       <Navigation activeTab={activeTab} />
 
       <Suspense fallback={<div>Loading...</div>}>
-        {activeTab == "about" && <About product={product} />}
-        {activeTab == "characteristics" && (
+        {activeTab == "about" && <LandingProductAboutPage product={product} />}
+        {/* {activeTab == "characteristics" && (
           <Characteristics product={product} />
-        )}
+        )} */}
         {/* {activeTab == "reviews" && <Reviews product={product} />} */}
       </Suspense>
     </>

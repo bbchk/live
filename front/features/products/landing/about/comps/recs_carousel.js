@@ -1,4 +1,4 @@
-import s from "features/products/landing/comps/about/recommendations/recs_carousel.module.scss";
+import s from "./recs_carousel.module.scss";
 import ListingProductCard from "features/products/listing/comps/gallery/card/listing_card";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";

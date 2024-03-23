@@ -1,4 +1,5 @@
 import s from "./description.module.scss";
+
 //? todo is using these libraries safe in sake of xss(cross-site-scripting)?
 import parse from "html-react-parser";
 

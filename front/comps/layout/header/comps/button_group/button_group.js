@@ -44,7 +44,7 @@ const ButtonGroup = () => {
               href={"/profile/wish_list"}
               tooltipText={"Список бажаного"}
             >
-              <i className={`bi bi-heart-fill`} />
+              <i className={`bi bi-heart`} />
             </IconButton>
           </>
         )}
