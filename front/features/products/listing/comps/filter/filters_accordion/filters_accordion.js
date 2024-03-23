@@ -3,6 +3,8 @@ import FilterChecks from "../filter_items/filter_item";
 import s from "./filters_accordion.module.scss";
 import Accordion from "comps/accordion/accordion";
 import AccordionItem from "comps/accordion/accordion_item";
+import { transliterate } from "@bbuukk/slugtrans/transliterate";
+import { slugify } from "@bbuukk/slugtrans/slugify";
 
 const FiltersAccordion = ({
   filters,
@@ -19,7 +21,7 @@ const FiltersAccordion = ({
           return (
             <AccordionItem
               key={filterLabel}
-              id={filterLabel}
+              id={slugify(transliterate(filterLabel))}
               label={filterLabel}
               show={true}
             >
