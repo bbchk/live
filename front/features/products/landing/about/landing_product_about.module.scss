@@ -7,19 +7,31 @@
   grid-template-rows: min-content 1fr;
   row-gap: 1rem;
 
+  grid-template-areas:
+    "product_figure product_main_info"
+    "description reviews"
+    "characteristics reviews"
+    "recs recs";
+
   .product_figure {
+    grid-area: product_figure;
   }
 
   .product_main_info {
+    grid-area: product_main_info;
   }
   .description {
+    grid-area: description;
   }
 
   .reviews {
+    grid-area: reviews;
   }
 
   .characteristics {
+    grid-area: characteristics;
   }
   .recs {
+    grid-area: recs;
   }
 }

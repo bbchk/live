@@ -42,8 +42,8 @@ const LandingProductAboutPage = ({ product }) => {
         <ProductMainInfo product={product} />
       </div>
 
-      <div className={`${s.description}`}>
-        <Description product={product} ref={ref} />
+      <div className={`${s.description}`} ref={ref}>
+        <Description product={product} />
       </div>
       <div className={`${s.characteristics}`}>
         <Characteristics title={"Характеристики:"} product={product} />
