@@ -7,16 +7,22 @@
   max-height: 200px; // Set the desired height
   overflow: hidden;
 
+  transition: max-height 0.3s ease-in-out; // Add a smooth transition effect
+  &.expanded {
+    max-height: 100%; // Expand to show all content
+  }
+
+  .text {
+    margin-top: 1em;
+    font-size: 1.3em;
+    overflow-wrap: break-word;
+  }
+
   ul {
     list-style-type: disc;
   }
   ol {
     list-style-type: decimal;
-  }
-
-  transition: max-height 0.3s ease-in-out; // Add a smooth transition effect
-  &.expanded {
-    max-height: 100%; // Expand to show all content
   }
 
   table {
@@ -38,21 +44,5 @@
     th {
       background-color: #f2f2f2;
     }
-  }
-
-  .title {
-    width: fit-content;
-    // @include link($color-medbud, $color-nyanza, $color-bangreen, $color-medbud);
-    cursor: pointer;
-  }
-
-  .splitter {
-    // @include decor_line($color-alabaster);
-  }
-
-  .text {
-    margin-top: 1em;
-    font-size: 1.3em;
-    overflow-wrap: break-word;
   }
 }
