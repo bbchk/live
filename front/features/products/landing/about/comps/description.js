@@ -7,6 +7,7 @@ import parse from "html-react-parser";
 const Description = ({ product }) => {
   const [expanded, setExpanded] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
+
   const textRef = useRef();
 
   const toggleExpanded = () => {

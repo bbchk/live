@@ -48,6 +48,8 @@
     margin-top: 0.5rem;
 
     color: $color-bluedefrnc;
+
+    transition: visibility 0.25s;
   }
 
   .text.expanded + button,
