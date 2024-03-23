@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import ProductGallery from "features/products/listing/comps/gallery/gallery";
-import ProductHeader from "features/products/listing/comps/product-header";
 
 import SortGroup from "features/products/listing/comps/filter/sort-group";
 import { useEffect, useRef, useState } from "react";
@@ -20,6 +19,7 @@ import { useGenFilterStr } from "hooks/genFilterStr";
 import { setFilters } from "store/filtersSlice";
 import { useGetFilterMapFromStr } from "hooks/useGetFilterMapFromStr";
 import ProductListingBody from "features/products/listing/product_listing_body";
+import ListingHeader from "../../../../features/products/listing/comps/listing_header";
 
 const Listing = ({
   data: {
@@ -79,12 +79,10 @@ const Listing = ({
         <meta name="description" content={`Живий Світ | ${category.path}`} />
       </Head>
       {/* {!isLoading && ( */}
-      <div className="mt-2 ">
+      <div>
         <div>
-          <>
-            <ProductHeader category={category} />
-            <SubcategoriesGallery subcategories={subcategories} />
-          </>
+          <ListingHeader category={category} />
+          <SubcategoriesGallery subcategories={subcategories} />
         </div>
         <ProductListingBody
           filtersMap={filtersMap}

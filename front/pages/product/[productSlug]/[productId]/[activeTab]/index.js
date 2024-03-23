@@ -4,6 +4,8 @@ import { stripHtmlTags } from "utils/stripHtmlTags";
 import axios from "axios";
 import { Suspense, lazy, use, useEffect } from "react";
 
+import LandingHeader from "features/products/landing/mutual/layout/landing_header";
+
 const LandingProductAboutPage = lazy(() =>
   import("features/products/landing/about/landing_product_about")
 );
@@ -32,10 +34,7 @@ const Landing = ({ product }) => {
         />
       </Head>
 
-      <div className="mx-5 pt-3">
-        <Breadcrumbs category={product.category[0]} />
-      </div>
-      <Navigation activeTab={activeTab} />
+      <LandingHeader category={product.category[0]} activeTab={activeTab} />
 
       <Suspense fallback={<div>Loading...</div>}>
         {activeTab == "about" && <LandingProductAboutPage product={product} />}

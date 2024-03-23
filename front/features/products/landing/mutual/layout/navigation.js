@@ -34,7 +34,7 @@ const Navigation = ({ activeTab }) => {
 
   return (
     <>
-      <ul className={`nav nav-underline mt-4 ${s.navigation}`}>
+      <ul className={`nav nav-underline ${s.navigation}`}>
         <div className={`${s.decor_line}`} />
         <li className={`nav-item ms-5 ${s.link_container}`}>
           <TabLink tabName={"about"} label={"Усе про товар"} />

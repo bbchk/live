@@ -1,6 +1,10 @@
 @use "./styles/variables" as *;
 @use "./styles/mixins" as *;
 
+.breadcrumbs ol {
+  margin: 0;
+}
+
 @media screen and (max-width: 768px) {
   .breadcrumbs ol li {
     &::before {
