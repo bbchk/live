@@ -6,7 +6,8 @@ const ProductGallery = ({
   activeCategory: category,
 }) => {
   return (
-    <section className={`${s.gallery}`}>
+    //todo make main work for accesability
+    <main className={`${s.gallery}`}>
       {products.map((product) => {
         return (
           <ListingProductCard
@@ -18,7 +19,7 @@ const ProductGallery = ({
           />
         );
       })}
-    </section>
+    </main>
   );
 };
 
