@@ -31,6 +31,7 @@ const ProductListingBody = ({
         <div className={`${s.sort_group}`}>
           <SortGroup />
         </div>
+        <div className={`${s.filters_decor_line}`}></div>
         <div className={`${s.filters}`}>
           <FiltersAccordion
             filters={filtersMap}

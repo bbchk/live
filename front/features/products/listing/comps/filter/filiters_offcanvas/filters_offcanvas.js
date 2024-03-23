@@ -15,11 +15,13 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, currentMinMaxPrice }) => {
       </OffcanvasHeader>
 
       <OffcanvasBody>
-        <FiltersAccordion
-          filters={filters}
-          minMaxPrice={minMaxPrice}
-          currentMinMaxPrice={currentMinMaxPrice}
-        />
+        <div className={`${s.offcanvas_filter_body}`}>
+          <FiltersAccordion
+            filters={filters}
+            minMaxPrice={minMaxPrice}
+            currentMinMaxPrice={currentMinMaxPrice}
+          />
+        </div>
       </OffcanvasBody>
     </Offcanvas>
   );

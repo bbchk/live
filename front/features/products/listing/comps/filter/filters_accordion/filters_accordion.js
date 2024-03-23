@@ -12,27 +12,25 @@ const FiltersAccordion = ({
   return (
     <search>
       <Accordion id={"filtersAccordion"}>
-        <div className={`${s.filter_accordion}`}>
-          <AccordionItem id={"priceSlicerAccItem"} label="Ціна" show={true}>
-            <PriceSlider minMax={minMax} currentMinMax={currentMinMax} />
-          </AccordionItem>
-          {filters.map(([filterLabel, options], idx) => {
-            return (
-              <AccordionItem
-                key={filterLabel}
-                id={filterLabel}
-                label={filterLabel}
-                show={true}
-              >
-                <FilterChecks
-                  filterLabel={filterLabel}
-                  options={options}
-                  idx={idx + 1}
-                />
-              </AccordionItem>
-            );
-          })}
-        </div>
+        <AccordionItem id={"priceSlicerAccItem"} label="Ціна" show={true}>
+          <PriceSlider minMax={minMax} currentMinMax={currentMinMax} />
+        </AccordionItem>
+        {filters.map(([filterLabel, options], idx) => {
+          return (
+            <AccordionItem
+              key={filterLabel}
+              id={filterLabel}
+              label={filterLabel}
+              show={true}
+            >
+              <FilterChecks
+                filterLabel={filterLabel}
+                options={options}
+                idx={idx + 1}
+              />
+            </AccordionItem>
+          );
+        })}
       </Accordion>
     </search>
   );

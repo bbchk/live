@@ -24,6 +24,13 @@
 
   .filters {
     grid-area: filter;
+
+    padding: 1rem;
+    padding-left: 2.5rem;
+
+    height: min-content;
+
+    box-shadow: 0 0 0 0.05rem $color-lightsilv;
   }
 
   .gallery {
