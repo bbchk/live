@@ -1,6 +1,9 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
+import { useDispatch } from "react-redux";
+import { toggleCartModal } from "store/modalSlice";
+
 import hs from "../../header.module.scss";
 
 import IconButton from "./icon_button";
@@ -9,6 +12,7 @@ import s from "./button_group.module.scss";
 
 //todo list of links with unordered list
 const ButtonGroup = () => {
+  const dispatch = useDispatch();
   const { data: session } = useSession();
 
   return (
@@ -48,7 +52,12 @@ const ButtonGroup = () => {
             </IconButton>
           </>
         )}
-        <IconButton href={"/profile/cart"} tooltipText={"Кошик покупок"}>
+
+        <IconButton
+          // href={"/profile/cart"}
+          tooltipText={"Кошик покупок"}
+          onClick={() => dispatch(toggleCartModal())}
+        >
           <i className={`bi bi-cart3`} />
         </IconButton>
       </ul>

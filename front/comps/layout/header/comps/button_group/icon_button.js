@@ -4,9 +4,9 @@ import { CustomTooltip } from "comps/accessibility/tooltip";
 
 import s from "./icon_button.module.scss";
 
-const IconButton = ({ href, children, tooltipText }) => {
+const IconButton = ({ href = "#", children, tooltipText, onClick }) => {
   return (
-    <li>
+    <li onClick={onClick}>
       <CustomTooltip tooltipText={tooltipText}>
         <Link className={`${s.icon_btn}`} href={href}>
           {children}
