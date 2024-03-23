@@ -6,6 +6,7 @@ import parse from "html-react-parser";
 
 const Description = ({ product }) => {
   const [expanded, setExpanded] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
   const textRef = useRef();
 
   const toggleExpanded = () => {
@@ -21,12 +22,18 @@ const Description = ({ product }) => {
     }
   }, [expanded]);
 
+  useEffect(() => {
+    setIsOverflowing(textRef.current.scrollHeight > 300);
+  }, [product.description]);
+
   return (
     <>
       <div id="description" className={`${s.description}`}>
         <div
           ref={textRef}
-          className={`${s.text} ${expanded ? s.expanded : s.fade_out}`}
+          className={`${s.text} ${
+            expanded ? s.expanded : isOverflowing ? s.fade_out : ""
+          }`}
         >
           {parse(product.description)}
         </div>

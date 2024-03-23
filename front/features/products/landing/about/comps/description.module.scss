@@ -34,11 +34,12 @@
       }
     }
 
-    transition: max-height 0.3s ease-out; // Add a smooth transition effect
+    transition: max-height 0.25s ease-out;
   }
 
   button {
-    display: flex;
+    display: none;
+
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
@@ -47,6 +48,11 @@
     margin-top: 0.5rem;
 
     color: $color-bluedefrnc;
+  }
+
+  .text.expanded + button,
+  .text.fade_out + button {
+    display: flex;
   }
 
   //styles for parsed html text in description
