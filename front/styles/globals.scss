@@ -99,3 +99,15 @@ input[disabled] {
 input {
   appearance: none;
 }
+
+.landing_header {
+  padding: 1rem 3rem 2rem 3rem;
+
+  @media screen and (width < 992px) {
+    padding: 1rem 1rem 0 3rem;
+  }
+
+  @media screen and (width < 768px) {
+    padding: 1rem 2rem 0 1rem;
+  }
+}
