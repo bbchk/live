@@ -31,7 +31,7 @@ const RecsCarousel = () => {
         className={`row flex-row flex-nowrap overflow-auto ${s.scroll_container}`}
       >
         {recs.map((product) => (
-          <div className={`${s.col}`}>
+          <div className={`${s.col}`} key={product._id}>
             <ListingProductCard product={product} />
           </div>
         ))}

@@ -29,7 +29,7 @@ const Description = ({ product }) => {
 
   return (
     <>
-      <div id="description" className={`${s.description}`}>
+      <div className={`${s.description}`}>
         <div
           ref={textRef}
           className={`${s.text} ${
@@ -42,12 +42,12 @@ const Description = ({ product }) => {
           {expanded ? (
             <>
               <p>Згонути</p>
-              <i class="bi bi-chevron-up" />
+              <i className="bi bi-chevron-up" />
             </>
           ) : (
             <>
               <p>Читати більше</p>
-              <i class="bi bi-chevron-down" />
+              <i className="bi bi-chevron-down" />
             </>
           )}
         </button>
