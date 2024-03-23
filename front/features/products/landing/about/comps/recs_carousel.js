@@ -19,7 +19,7 @@ const RecsCarousel = () => {
     return () => {
       if (recsWorker) {
         console.log("terminate");
-        // recsWorker.terminate();
+        recsWorker.terminate();
       }
     };
   }, []);

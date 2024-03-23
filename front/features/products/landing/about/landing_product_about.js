@@ -49,7 +49,7 @@ const LandingProductAboutPage = ({ product }) => {
         <Characteristics title={"Характеристики:"} product={product} />
       </div>
 
-      <div className={`${s.reviews} bg-dark w-100 h-100`}></div>
+      <div className={`${s.reviews}`}>{/* <ReviewList> */}</div>
 
       {isVisible && (
         <div className={`${s.recs}`}>

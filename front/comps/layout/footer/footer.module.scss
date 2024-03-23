@@ -45,5 +45,6 @@
 }
 
 .decor_line {
+  margin-top: 4rem;
   @include decor_line($color-indep);
 }

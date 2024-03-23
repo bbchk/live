@@ -41,7 +41,7 @@ const Description = ({ product }) => {
         <button onClick={toggleExpanded}>
           {expanded ? (
             <>
-              <p>Згонути</p>
+              <p>Згорнути</p>
               <i className="bi bi-chevron-up" />
             </>
           ) : (
