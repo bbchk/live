@@ -2,7 +2,7 @@
 @use "./styles/mixins" as *;
 
 .description {
-  padding: 2em;
+  padding: 2rem;
   overflow: hidden;
 
   font-size: 1.3rem;
@@ -10,7 +10,6 @@
   color: $color-daslgrey;
 
   .text {
-    margin-top: 1em;
     overflow-wrap: break-word;
 
     position: relative;

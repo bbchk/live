@@ -1,23 +1,10 @@
 @use "./styles/variables" as *;
 @use "./styles/mixins" as *;
 
-.frame {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1 1 45%;
-
-  z-index: -32;
-
+.landing_product_figure {
   .image {
-    padding: 1em;
-    object-fit: contain;
-  }
-}
-
-.frame2 {
-  .image {
-    padding: 1em;
+    width: 100%;
+    padding: 1rem;
     object-fit: contain;
   }
 

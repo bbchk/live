@@ -6,7 +6,7 @@ const ProductFigure = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(images && images[0]);
   const isSelected = (image) => selectedImage === image;
   return (
-    <section className={`${s.frame2}`}>
+    <section className={`${s.landing_product_figure}`}>
       <Image
         src={selectedImage}
         alt="Picture of the product"

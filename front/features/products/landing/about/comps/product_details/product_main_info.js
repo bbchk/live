@@ -22,7 +22,7 @@ const ProductMainInfo = ({
   const [selectedImage, setSelectedImage] = useState(images && images[0]);
   const isSelected = (image) => selectedImage === image;
   return (
-    <div className={`${s.product_banner}`}>
+    <main className={`${s.product_banner}`}>
       <div className={`${s.info}`}>
         <div className={`${s.header}`}>
           <p className={`${s.name}`}>{name}</p>
@@ -52,7 +52,7 @@ const ProductMainInfo = ({
           </button>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
