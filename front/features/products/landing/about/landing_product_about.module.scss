@@ -41,9 +41,12 @@
     padding: 2rem;
   }
 
+  .product_main_info {
+    margin-right: 4rem;
+  }
+
   @media screen and (width < 1200px) {
     grid-template-columns: 1fr 1fr;
-    // grid-template-rows: min-content 1fr;
     grid-template-areas:
       "product_figure product_main_info"
       "description description"
@@ -51,8 +54,14 @@
       "reviews reviews"
       "recs recs";
 
+    .characteristics,
+    .description {
+      width: 100vw;
+    }
+
     .description,
-    .characteristics .recs {
+    .characteristics,
+    .recs {
       padding: 1rem;
     }
   }
@@ -71,8 +80,6 @@
 
     .product_figure,
     .product_main_info,
-    .description,
-    .characteristics,
     .reviews,
     .recs {
       width: 100vw;
@@ -84,13 +91,4 @@
       padding: 0.5rem;
     }
   }
-
-  // @media screen and (width < 576px) {
-  //   grid-template-columns: 1fr 0fr 1fr;
-
-  //   column-gap: 2%;
-  //   .gallery {
-  //     margin: 0;
-  //   }
-  // }
 }

@@ -2,7 +2,7 @@ import Link from "next/link";
 import s from "./rating.module.scss";
 import lcs from "../listing_card.module.scss";
 import Image from "next/image";
-import StarRating from "./star_rating";
+import StarRating from "comps/rating/star_rating";
 
 //use rating from product
 const ProductRating = ({ product, productUrl }) => {

@@ -3,12 +3,15 @@ import s from "./description.module.scss";
 
 //? todo is using these libraries safe in sake of xss(cross-site-scripting)?
 import parse from "html-react-parser";
+import { useRouter } from "next/router";
 
 const Description = ({ product }) => {
   const [expanded, setExpanded] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
 
   const textRef = useRef();
+
+  const router = useRouter();
 
   const toggleExpanded = () => {
     if (!expanded) {
@@ -29,7 +32,7 @@ const Description = ({ product }) => {
 
   return (
     <>
-      <div className={`${s.description}`}>
+      <div id="landingProductDescription" className={`${s.description}`}>
         <div
           ref={textRef}
           className={`${s.text} ${
