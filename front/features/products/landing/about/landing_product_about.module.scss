@@ -28,16 +28,17 @@
     grid-area: characteristics;
   }
 
-  .description,
-  .characteristics {
-    padding: 2rem;
-  }
-
   .reviews {
     grid-area: reviews;
   }
   .recs {
     grid-area: recs;
+  }
+
+  .description,
+  .characteristics,
+  .recs {
+    padding: 2rem;
   }
 
   @media screen and (width < 1200px) {
@@ -51,7 +52,7 @@
       "recs recs";
 
     .description,
-    .characteristics {
+    .characteristics .recs {
       padding: 1rem;
     }
   }
@@ -78,7 +79,8 @@
     }
 
     .description,
-    .characteristics {
+    .characteristics,
+    .recs {
       padding: 0.5rem;
     }
   }
