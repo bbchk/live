@@ -4,12 +4,16 @@ import modal_s from "../modal.module.scss";
 import Link from "next/link";
 import InputField from "comps/input_fields/input_field";
 import PasswordInputField from "comps/input_fields/password_input_field";
-import { signIn } from "next-auth/react";
+import { signIn, useSession, getSession } from "next-auth/react";
+import { useSyncCarts } from "./hooks/useSyncCarts";
 
 const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+
+  const { data: session } = useSession();
+  const { syncCarts } = useSyncCarts();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,11 +23,16 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
       password: password,
       redirect: false,
     });
+
     //todo style display error message
     // console.log(res);
 
     if (res.ok) {
       toggleModal();
+
+      const session = await getSession();
+      const syncedCart = syncCarts(session.user);
+      //todo set syncedCart to session
     } else {
       setError(res.error);
     }

@@ -23,8 +23,8 @@ const InfoBody = ({ product }) => {
   const { addToCart } = useAddToCart();
 
   function handleBuy(product) {
-    console.log("🚀 ~ session:", session);
     addToCart(session?.user, product._id);
+
     return null;
   }
 

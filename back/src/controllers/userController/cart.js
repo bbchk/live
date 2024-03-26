@@ -39,9 +39,12 @@ export const addToCart = async (req, res) => {
 export const syncCart = async (req, res) => {
   const { userId } = req.params;
   const localStorageCart = req.body;
+  console.log("🚀 ~ localStorageCart:", localStorageCart);
 
   let user = await User.findById(userId);
+  console.log(user.cart);
 
+  //todo intersect carts
   if (user?.cart) {
     localStorageCart.forEach((item) => {
       let cartItem = user.cart.find(
@@ -59,9 +62,8 @@ export const syncCart = async (req, res) => {
 
   try {
     await user.save();
-    console.log("Cart updated successfully");
     res.status(200).json({
-      message: `Product ${productId} added to the cart successfully.`,
+      message: `Carts synced successfully.`,
     });
   } catch (err) {
     console.log(err);

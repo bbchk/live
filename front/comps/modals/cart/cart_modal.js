@@ -8,16 +8,29 @@ import { balsamiqSans } from "pages/_app";
 
 //todo input validation
 import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 const CartModal = () => {
-  //for getting orders items
   const dispatch = useDispatch();
-  const { data: session } = useSession();
-
   const { cartModalOpen } = useSelector((state) => state.modals);
 
-  // const handleBuy = async (e, value) => {
-  // };
+  const { data: session } = useSession();
+
+  const [cartItems, setCartItems] = useState([]);
+
+  //todo do it when session.cart changes, use useMemo
+  useEffect(() => {
+    // console.log("🚀 ~ session:", session);
+    if (session) {
+      setCartItems(session.user.cart);
+    } else {
+      const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
+      setCartItems(localStorageCart);
+    }
+    // console.log("🚀 ~ setCartItems:", cartItems);
+  }, [session]);
+
+  // const handleBuy = async (e, value) => {};
 
   return (
     <Modal
@@ -33,6 +46,15 @@ const CartModal = () => {
       </Modal.Header>
       <Modal.Body className={`${s.modal_body}`}>
         <h1>IN DEV</h1>
+        {cartItems &&
+          cartItems.map((item) => {
+            console.log(item);
+            return (
+              <div className="bg-dark">
+                <p>{item.productId}</p>
+              </div>
+            );
+          })}
       </Modal.Body>
     </Modal>
   );

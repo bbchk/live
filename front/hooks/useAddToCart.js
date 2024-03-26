@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const useAddToCart = () => {
   async function addToCart(user, productId) {
     try {
@@ -13,13 +15,14 @@ export const useAddToCart = () => {
           cartItem.quantity++;
         } else {
           cart.push({
-            product: productId,
+            productId: productId,
             quantity: 1,
           });
         }
       }
       localStorage.setItem("cart", JSON.stringify(cart));
 
+      console.log("🚀 ~ user:", user);
       if (user) {
         const response = await axios.post(
           `/user/cart/${user.id}/add/${productId}`
