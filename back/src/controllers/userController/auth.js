@@ -8,16 +8,17 @@ export const signIn = async (req, res) => {
 
   try {
     const user = await User.signIn(email, password);
-    console.log("🚀 ~ user:", user);
 
     const token = genAuthToken(user);
 
     res.status(200).json({
+      id: user._id,
       firstName: user.firstName,
       secondName: user.secondName,
       email: email,
       token: token,
       likedProducts: user.likedProducts,
+      cart: user.cart,
       image: user.image,
     });
   } catch (e) {

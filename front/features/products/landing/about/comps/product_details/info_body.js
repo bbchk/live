@@ -1,5 +1,6 @@
 import { useAddToCart } from "hooks/useAddToCart";
 import s from "./info_body.module.scss";
+import { useSession } from "next-auth/react";
 
 const InfoBody = ({ product }) => {
   const {
@@ -17,9 +18,13 @@ const InfoBody = ({ product }) => {
     code = "000000",
   } = product;
 
+  const { data: session } = useSession();
+
   const { addToCart } = useAddToCart();
+
   function handleBuy(product) {
-    addToCart(product);
+    console.log("🚀 ~ session:", session);
+    addToCart(session?.user, product._id);
     return null;
   }
 

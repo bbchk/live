@@ -1,14 +1,31 @@
 export const useAddToCart = () => {
-  async function addToCart(product) {
+  async function addToCart(user, productId) {
     try {
-      window.localStorage.setItem(key, JSON.stringify(product));
+      let cart = JSON.parse(localStorage.getItem("cart"));
 
-      const response = await axios.post(
-        `/user/cart/add`,
-        { product },
-        { headers: { "Content-type": "application/json" } }
-      );
-      const json = response.data;
+      if (cart == null) {
+        cart = [];
+        cart.push({ productId: productId, quantity: 1 });
+      } else {
+        let cartItem = cart.find((item) => item.productId == productId);
+
+        if (cartItem) {
+          cartItem.quantity++;
+        } else {
+          cart.push({
+            product: productId,
+            quantity: 1,
+          });
+        }
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      if (user) {
+        const response = await axios.post(
+          `/user/addToCart/${user.id}/${productId}`
+        );
+        const json = response.data;
+      }
     } catch (e) {
       console.log(e);
     }
