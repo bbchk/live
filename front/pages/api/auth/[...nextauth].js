@@ -77,6 +77,8 @@ const credentialsProvider = CredentialsProvider({
 // Callbacks
 const callbacks = {
   async signIn({ user, account, profile }) {
+    // const res = await fetch(`/api/cart/${user.id}`);
+    // const userCartInDB = await res.json();
     return true;
   },
   async jwt({ token, user, account, profile }) {

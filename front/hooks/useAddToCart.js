@@ -22,7 +22,7 @@ export const useAddToCart = () => {
 
       if (user) {
         const response = await axios.post(
-          `/user/addToCart/${user.id}/${productId}`
+          `/user/cart/${user.id}/add/${productId}`
         );
         const json = response.data;
       }
