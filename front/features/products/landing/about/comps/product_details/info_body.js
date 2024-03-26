@@ -19,26 +19,27 @@ const InfoBody = ({
   return (
     <div className={`${s.body}`}>
       <div className={`${s.buy_area}`}>
-        <p className={`${s.price}`}>
-          <span>
+        <div className={`${s.price}`}>
+          <p>
             {price}
-            <span className={`${s.currency}`}> грн </span>
-          </span>
-          <span className={`${s.left}`}>
+            <span className={`${s.currency}`}> ₴ </span>
+          </p>
+          <p className={`${s.left}`}>
             {left > 0 ? "Є в наявності" : "Немає в наявності"}{" "}
-          </span>
-        </p>
+          </p>
+        </div>
+
         <button className={` btn ${s.buy_button} icon-link `}>
           <i className="bi bi-cart4"></i>
           <p>Купити</p>
         </button>
+        <button className={` btn ${s.like_button} icon-link `}>
+          <i className="bi bi-heart"></i>
+        </button>
+        <button className={` btn ${s.comment_button} icon-link `}>
+          <i className="bi bi-chat-left-text"></i>
+        </button>
       </div>
-      <button className={` btn ${s.like_button} icon-link `}>
-        <i className="bi bi-heart"></i>
-      </button>
-      <button className={` btn ${s.comment_button} icon-link `}>
-        <i className="bi bi-chat-left-text"></i>
-      </button>
     </div>
   );
 };

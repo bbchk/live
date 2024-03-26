@@ -2,61 +2,49 @@
 @use "./styles/mixins" as *;
 
 .body {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-
   padding: 1rem;
 
   .buy_area {
     display: flex;
+
+    flex-flow: row wrap;
     align-items: center;
     gap: 1rem;
 
-    border-radius: 0.5rem;
-    border: 0.2rem solid $color-alabaster;
     padding: 1rem;
+    border-radius: 0.5rem;
 
-    width: fit-content;
+    width: 100%;
 
-    background-color: $color-milk;
-    font-size: 3em;
+    box-shadow: 0 0 0 0.05rem $color-lightsilv;
+
+    font-size: 3rem;
 
     .price {
       display: flex;
       flex-direction: column;
+
       line-height: 1;
-      // margin: 1rem;
 
       font-size: 2rem;
       font-weight: bold;
       color: $color-suncycl;
+
       .currency {
         font-weight: 100;
-        font-size: 1.5rem;
+        font-size: 0.5em;
       }
+
       .left {
         color: $color-daslgrey;
-        // margin-left: 0.5rem;
-        font-size: 1rem;
+        font-size: 0.5em;
       }
     }
 
     .buy_button {
       background-color: $color-yelgreen;
-      color: inherit;
 
-      font-size: 0.5em;
-      p {
-        margin-bottom: 0;
-        font-weight: bold;
-        font-size: inherit;
-      }
-
-      i {
-        font-size: inherit;
-        line-height: 100%;
-      }
+      font-size: 1.5rem;
     }
   }
 
