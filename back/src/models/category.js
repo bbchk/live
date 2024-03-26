@@ -17,11 +17,6 @@ const categorySchema = new Schema({
     type: String,
     required: true,
   },
-  // filters: {
-  //   type: Map,
-  //   of: [String],
-  //   required: false,
-  // },
   filters: {
     type: [String],
     required: false,

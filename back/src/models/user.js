@@ -28,7 +28,32 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    likedProducts: [String], // This is an array of strings. Change the type as needed.
+    likedProducts: [String],
+    //todo change to this
+    // likedProducts: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Pategory",
+    //     required: false,
+    //   },
+    // ],
+    cart: [
+      {
+        product: {
+          type: Schema.Types.ObjectId,
+          ref: "Product",
+          required: function () {
+            return this.quantity != null;
+          },
+        },
+        quantity: {
+          type: Number,
+          required: function () {
+            return this.product != null;
+          },
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
@@ -44,7 +69,7 @@ userSchema.statics.signIn = async function (email, password) {
     throw Error("Incorrect email");
   }
 
-  const match = await bcrypt.compare(password, user.password); // Use bcrypt.compare from bcryptjs
+  const match = await bcrypt.compare(password, user.password);
   if (!match) {
     throw Error("Incorrect password");
   }
@@ -74,7 +99,7 @@ userSchema.statics.signUp = async function (
     throw Error("Email already in use");
   }
 
-  const hash = await bcrypt.hash(password, 10); // Use bcrypt.hash from bcryptjs
+  const hash = await bcrypt.hash(password, 10);
 
   const min = 0;
   const max = 4;

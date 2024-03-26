@@ -25,12 +25,12 @@ const router = express.Router();
 router.get("/", getProducts);
 router.get("/product/:id", getProductById);
 router.get("/product/recommendations/:id", getRecommendations);
+
 router.get("/:slugCategoryPath/:filtersStr?", getProductsByCategoryAndFilters);
+router.post("/getbyIds", getProductsByIds);
 
 router.use(requireAuth);
 router.use(isAdmin);
-
-router.post("/getbyIds", getProductsByIds);
 
 router.post("/", createProduct);
 router.post("/many", createProducts);

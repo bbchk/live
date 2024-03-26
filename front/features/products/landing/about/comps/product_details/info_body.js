@@ -1,7 +1,8 @@
+import { useAddToCart } from "hooks/useAddToCart";
 import s from "./info_body.module.scss";
 
-const InfoBody = ({
-  product: {
+const InfoBody = ({ product }) => {
+  const {
     brand,
     name,
     category,
@@ -14,8 +15,14 @@ const InfoBody = ({
     starRating = 3.7,
     packing,
     code = "000000",
-  },
-}) => {
+  } = product;
+
+  const { addToCart } = useAddToCart();
+  function handleBuy(product) {
+    addToCart(product);
+    return null;
+  }
+
   return (
     <div className={`${s.body}`}>
       <div className={`${s.buy_area}`}>
@@ -29,7 +36,10 @@ const InfoBody = ({
           </p>
         </div>
 
-        <button className={` btn ${s.buy_button} icon-link `}>
+        <button
+          className={` btn ${s.buy_button} icon-link `}
+          onClick={() => handleBuy(product)}
+        >
           <i className="bi bi-cart4"></i>
           <p>Купити</p>
         </button>
