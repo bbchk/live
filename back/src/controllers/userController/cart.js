@@ -7,20 +7,20 @@ export const addToCart = async (req, res) => {
 
   if (user?.cart) {
     let cartItem = user.cart.find(
-      (item) => item.product.toString() === productId
+      (item) => item.productId.toString() === productId
     );
     if (cartItem) {
       cartItem.quantity++;
     } else {
       user.cart.push({
-        product: productId,
+        productId: productId,
         quantity: 1,
       });
     }
   } else {
     user.cart = [];
     user.cart.push({
-      product: productId,
+      productId: productId,
       quantity: 1,
     });
   }

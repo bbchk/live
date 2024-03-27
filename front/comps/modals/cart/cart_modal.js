@@ -15,19 +15,20 @@ const CartModal = () => {
   const { cartModalOpen } = useSelector((state) => state.modals);
 
   const { data: session } = useSession();
-
   const [cartItems, setCartItems] = useState([]);
 
   //todo do it when session.cart changes, use useMemo
   useEffect(() => {
     // console.log("🚀 ~ session:", session);
     if (session) {
+      console.log(session.user.cart);
       setCartItems(session.user.cart);
     } else {
       const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
       setCartItems(localStorageCart);
     }
-    // console.log("🚀 ~ setCartItems:", cartItems);
+
+    console.log("🚀 ~ setCartItems:", cartItems);
   }, [session]);
 
   // const handleBuy = async (e, value) => {};
@@ -48,10 +49,10 @@ const CartModal = () => {
         <h1>IN DEV</h1>
         {cartItems &&
           cartItems.map((item) => {
-            console.log(item);
             return (
               <div className="bg-dark">
                 <p>{item.productId}</p>
+                <p>{item.quantity}</p>
               </div>
             );
           })}

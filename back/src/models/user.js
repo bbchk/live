@@ -39,7 +39,7 @@ const userSchema = new Schema(
     // ],
     cart: [
       {
-        product: {
+        productId: {
           type: Schema.Types.ObjectId,
           ref: "Product",
           required: function () {

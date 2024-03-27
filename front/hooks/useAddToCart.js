@@ -1,7 +1,11 @@
 import axios from "axios";
+import { useSession } from "next-auth/react";
+import { use } from "react";
 
 export const useAddToCart = () => {
-  async function addToCart(user, productId) {
+  const { data: session, update } = useSession();
+
+  async function addToCart(productId) {
     try {
       let cart = JSON.parse(localStorage.getItem("cart"));
 
@@ -22,12 +26,21 @@ export const useAddToCart = () => {
       }
       localStorage.setItem("cart", JSON.stringify(cart));
 
-      console.log("🚀 ~ user:", user);
-      if (user) {
+      if (session) {
+        console.log(cart);
+        await update({
+          ...session,
+          user: {
+            ...session.user,
+            cart: cart,
+          },
+        });
+        console.log(session);
         const response = await axios.post(
-          `/user/cart/${user.id}/add/${productId}`
+          `/user/cart/${session.user.id}/add/${productId}`
         );
         const json = response.data;
+        console.log("🚀 ~ json:", json);
       }
     } catch (e) {
       console.log(e);

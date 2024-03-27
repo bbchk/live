@@ -18,12 +18,10 @@ const InfoBody = ({ product }) => {
     code = "000000",
   } = product;
 
-  const { data: session } = useSession();
-
   const { addToCart } = useAddToCart();
 
   function handleBuy(product) {
-    addToCart(session?.user, product._id);
+    addToCart(product._id);
 
     return null;
   }

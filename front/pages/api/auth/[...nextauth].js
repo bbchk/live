@@ -81,7 +81,13 @@ const callbacks = {
     // const userCartInDB = await res.json();
     return true;
   },
-  async jwt({ token, user, account, profile }) {
+  async jwt({ token, user, session, trigger, account, profile }) {
+    console.log(trigger);
+    if (trigger === "update") {
+      // token.access_token = account.access_token;
+      // token.provider = account.provider;
+      token.user = session.user;
+    }
     if (account) {
       token.access_token = account.access_token;
       token.provider = account.provider;
