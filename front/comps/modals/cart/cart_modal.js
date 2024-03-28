@@ -35,6 +35,7 @@ const CartModal = () => {
       show={cartModalOpen}
       onHide={() => dispatch(toggleCartModal())}
       centered
+      fullscreen="lg-down"
       size="xl"
       className={`${s.modal} ${balsamiqSans.className}`}
     >
@@ -42,7 +43,6 @@ const CartModal = () => {
         <h3>Кошик покупок</h3>
       </Modal.Header>
       <Modal.Body className={`${s.modal_body}`}>
-        <h1>IN DEV</h1>
         {cartItems &&
           cartItems.map((item) => {
             return (
