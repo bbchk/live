@@ -1,0 +1,36 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.cart_item {
+  padding: 1rem;
+  div:first-of-type {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 1rem;
+
+    position: relative;
+
+    img {
+      object-fit: contain;
+      max-width: 10%;
+    }
+
+    p {
+    }
+
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  div:last-of-type {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+  }
+}

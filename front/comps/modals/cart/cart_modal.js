@@ -10,14 +10,18 @@ import { balsamiqSans } from "pages/_app";
 import { useSession } from "next-auth/react";
 import { use, useEffect, useState } from "react";
 
+import CartItem from "./cart_item/cart_item";
+import { set } from "store/productsSlice";
+
 const CartModal = () => {
   const dispatch = useDispatch();
   const { cartModalOpen } = useSelector((state) => state.modals);
 
   const { data: session } = useSession();
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(null);
 
   //todo do it when session.cart changes, use useMemo
+
   useEffect(() => {
     if (session) {
       setCartItems(session.user.cart);
@@ -25,7 +29,6 @@ const CartModal = () => {
       const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
       setCartItems(localStorageCart);
     }
-    console.log(cartItems);
   }, [cartModalOpen]);
 
   // const handleBuy = async (e, value) => {};
@@ -45,12 +48,13 @@ const CartModal = () => {
       </Modal.Header>
       <Modal.Body className={`${s.modal_body}`}>
         {cartItems &&
-          cartItems.map((item) => {
+          cartItems.map(({ product, quantity }) => {
             return (
-              <div className="bg-dark" key={`${item.productId}CartItem`}>
-                <p>{item.name}</p>
-                <p>{item.quantity}</p>
-              </div>
+              <CartItem
+                key={product.id}
+                product={product}
+                quantity={quantity}
+              />
             );
           })}
       </Modal.Body>

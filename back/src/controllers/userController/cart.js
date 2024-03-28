@@ -8,20 +8,20 @@ export const addToCart = async (req, res) => {
 
   if (user?.cart) {
     let cartItem = user.cart.find(
-      (item) => item.productId.toString() === productId
+      (item) => item.product.toString() === productId
     );
     if (cartItem) {
       cartItem.quantity++;
     } else {
       user.cart.push({
-        productId: productId,
+        product: productId,
         quantity: 1,
       });
     }
   } else {
     user.cart = [];
     user.cart.push({
-      productId: productId,
+      product: productId,
       quantity: 1,
     });
   }
@@ -39,52 +39,38 @@ export const addToCart = async (req, res) => {
 
 export const syncCart = async (req, res) => {
   const { userId } = req.params;
-  const localStorageCart = req.body;
-  console.log("🚀 ~ localStorageCart:", localStorageCart);
-
-  let user = await User.findById(userId);
-  console.log(user.cart);
-
-  //todo intersect carts
-  if (user?.cart) {
-    localStorageCart.forEach((item) => {
-      let cartItem = user.cart.find(
-        (cartItem) => cartItem._id.toString() === item._id.toString()
-      );
-      if (cartItem) {
-        cartItem.quantity += Math.abs(cartItem.quantity - item.quantity);
-      } else {
-        user.cart.push({ productId: item._id, quantity: item.quantity });
-      }
-    });
-  } else {
-    user.cart = localStorageCart.map((item) => {
-      return { productId: item._id, quantity: item.quantity };
-    });
-  }
+  const localStorageCartOptimized = req.body;
 
   try {
+    let user = await User.findById(userId);
+
+    //todo intersect carts
+    if (user?.cart) {
+      localStorageCartOptimized.forEach((item) => {
+        let cartItem = user.cart.find(
+          (cartItem) => cartItem.product.toString() === item.product
+        );
+        if (cartItem) {
+          cartItem.quantity += Math.abs(cartItem.quantity - item.quantity);
+        } else {
+          user.cart.push({
+            product: item.product,
+            quantity: item.quantity,
+          });
+        }
+      });
+    } else {
+      user.cart = localStorageCartOptimized;
+    }
+
     await user.save();
 
-    const cartProductsIds = user.cart.map((item) => item.productId);
-    let cartProducts = await Product.find({
-      _id: { $in: cartProductsIds },
-    })
-      .select("name price images left")
-      .exec();
-
-    cartProducts = cartProducts.map((product) => {
-      let cartProduct = user.cart.find(
-        (item) => item.productId.toString() === product._id.toString()
-      );
-      return {
-        ...product._doc,
-        quantity: cartProduct.quantity,
-      };
+    user = await user.populate({
+      path: "cart.product",
+      select: "name price images left",
     });
-    console.log("🚀 ~ cartProducts:", cartProducts);
 
-    res.status(200).json(cartProducts);
+    res.status(200).json(user.cart);
   } catch (err) {
     console.log(err);
   }

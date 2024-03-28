@@ -3,8 +3,6 @@ import genAuthToken from "#src/utils/genAuthToken.js";
 
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
-  console.log("🚀 ~ password:", password);
-  console.log("🚀 ~ email:", email);
 
   try {
     const user = await User.signIn(email, password);
@@ -18,7 +16,6 @@ export const signIn = async (req, res) => {
       email: email,
       token: token,
       likedProducts: user.likedProducts,
-
       cart: user.cart,
       image: user.image,
     });

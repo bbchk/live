@@ -10,22 +10,18 @@ export const useAddToCart = () => {
     const cartItem = { _id, name, price, images, left };
 
     try {
-      let cart = JSON.parse(localStorage.getItem("cart"));
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let existingCartItem = cart.find(
+        (item) => item.product._id == cartItem._id
+      );
 
-      if (cart == null) {
-        cart = [];
-        cart.push({ ...cartItem, quantity: 1 });
+      if (existingCartItem) {
+        existingCartItem.quantity++;
       } else {
-        let cartItem = cart.find((item) => item._id == _id);
-
-        if (cartItem) {
-          cartItem.quantity++;
-        } else {
-          cart.push({
-            ...cartItem,
-            quantity: 1,
-          });
-        }
+        cart.push({
+          product: { ...cartItem },
+          quantity: 1,
+        });
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));

@@ -26,6 +26,7 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
     if (res.ok) {
       const session = await getSession();
       console.log("🚀 ~ session:", session);
+      //todo set synced cart to localStorage
       // localStorage.setItem("cart", JSON.stringify(cart));
       toggleModal();
     } else {
