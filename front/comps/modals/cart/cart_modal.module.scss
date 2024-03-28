@@ -5,20 +5,37 @@
 .modal {
   color: $color-daslgrey;
 
-  .button_group {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    gap: 20px;
+  footer {
+    margin-top: 5rem;
+    border-top: 0.05rem solid $color-lightsilv;
 
-    margin-top: 2rem;
+    .total_cost {
+      padding: 2rem;
 
-    list-style: none;
+      font-size: 3rem;
+      text-align: end;
 
-    font-size: 1.2rem;
+      // color: $color-daslgrey;
+      color: $color-dureen;
 
-    button {
-      @include save_button;
+      span:first-child {
+        color: $color-daslgrey;
+        margin-right: 1rem;
+      }
+    }
+
+    .controls {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      margin-top: 2rem;
+
+      font-size: 1.2rem;
+
+      button {
+        @include save_button;
+      }
     }
   }
 }

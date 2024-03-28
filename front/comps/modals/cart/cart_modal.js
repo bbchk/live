@@ -19,6 +19,7 @@ const CartModal = () => {
 
   const { data: session } = useSession();
   const [cartItems, setCartItems] = useState(null);
+  const [totalCost, setTotalCost] = useState(0);
 
   //todo do it when session.cart changes, use useMemo
 
@@ -28,6 +29,14 @@ const CartModal = () => {
     } else {
       const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
       setCartItems(localStorageCart);
+    }
+    //count total cost
+    if (cartItems) {
+      let totalCost = 0;
+      cartItems.forEach((item) => {
+        totalCost += item.product.price * item.quantity;
+      });
+      setTotalCost(totalCost);
     }
   }, [cartModalOpen]);
 
@@ -47,16 +56,43 @@ const CartModal = () => {
         <h3>Кошик покупок</h3>
       </Modal.Header>
       <Modal.Body className={`${s.modal_body}`}>
-        {cartItems &&
-          cartItems.map(({ product, quantity }) => {
-            return (
-              <CartItem
-                key={product.id}
-                product={product}
-                quantity={quantity}
-              />
-            );
-          })}
+        <section>
+          {cartItems &&
+            cartItems.map(({ product, quantity }) => {
+              return (
+                <CartItem
+                  key={product.id}
+                  product={product}
+                  quantity={quantity}
+                />
+              );
+            })}
+        </section>
+        <footer>
+          <p className={`${s.total_cost} price`}>
+            <span>{`Всього:`}</span>
+            {totalCost}
+            <span>₴</span>
+          </p>
+
+          <menu className={`${s.controls}`}>
+            <li>
+              <button onClick={() => dispatch(toggleCartModal())}>
+                Продовжити покупки
+              </button>
+            </li>
+
+            <li>
+              <button
+                onClick={() => {
+                  console.log("buy");
+                }}
+              >
+                Оформити замовлення
+              </button>
+            </li>
+          </menu>
+        </footer>
       </Modal.Body>
     </Modal>
   );

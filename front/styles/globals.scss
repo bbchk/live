@@ -55,9 +55,9 @@ html {
 }
 
 button[disabled] {
-  background-color: rgba($color-daslgrey, 0.1) !important;
-  border-color: rgba($color-daslgrey, 0.1) !important;
-  cursor: not-allowed !important;
+  background-color: rgba($color-daslgrey, 0.1);
+  border-color: rgba($color-daslgrey, 0.1);
+  cursor: not-allowed;
 }
 
 .modal-header {
@@ -109,5 +109,17 @@ input {
 
   @media screen and (width < 768px) {
     padding: 1rem 2rem 0 1rem;
+  }
+}
+
+.price {
+  line-height: 1;
+
+  font-weight: bold;
+  color: $color-suncycl;
+
+  span {
+    font-weight: 100;
+    font-size: 0.5em;
   }
 }

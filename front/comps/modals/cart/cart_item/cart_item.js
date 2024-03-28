@@ -1,6 +1,7 @@
 import Image from "next/image";
 import s from "./cart_item.module.scss";
 import { useState } from "react";
+import QuantityInput from "./quantity_input";
 
 //changin quantity should change the quantity in the cart
 //remove functionality
@@ -16,10 +17,7 @@ const CartItem = ({ product, quantity }) => {
           height={250}
           priority
         />
-        <div>
-          <p>{product.name}</p>
-          <p>{product.price * quantity}</p>
-        </div>
+        <p>{product.name}</p>
         <button
           onClick={() => {
             console.log("remove");
@@ -29,19 +27,13 @@ const CartItem = ({ product, quantity }) => {
         </button>
       </div>
       <div>
-        <div>
-          <button
-            disabled={quantity === 1}
-            // onClick={() => setQuantity(quantity - 1)}
-            onClick={() => {}}
-          >
-            -
-          </button>
-          <input type="text" value={quantity} readOnly />
-          {/* <button onClick={() => setQuantity(quantity + 1)}>+</button> */}
-          <button onClick={() => {}}>+</button>
+        <div className={` ${s.quantity_input}`}>
+          <QuantityInput quantity={quantity} />
         </div>
-        <p>{product.price * quantity}</p>
+        <p className={`price ${s.price}`}>
+          {product.price * quantity}
+          <span>₴</span>
+        </p>
       </div>
     </div>
   );

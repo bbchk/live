@@ -1,9 +1,16 @@
 @use "styles/variables" as *;
 @use "styles/mixins" as *;
+@use "styles/mixins/buttons" as *;
 
 .cart_item {
-  padding: 1rem;
-  div:first-of-type {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid $color-lightsilv;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  > div:first-child {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -14,6 +21,7 @@
     img {
       object-fit: contain;
       max-width: 10%;
+      height: 8rem;
     }
 
     p {
@@ -23,14 +31,29 @@
       position: absolute;
       right: 0;
       top: 0;
+
+      font-size: 1.2rem;
+      line-height: 1rem;
+
+      box-shadow: 0 0 0 0.05rem $color-lightsilv;
+      padding: 0.3rem;
+      border-radius: 10%;
     }
   }
 
-  div:last-of-type {
+  > div:nth-child(2) {
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
     align-items: center;
-    gap: 1rem;
+
+    .quantity_input {
+      justify-self: flex-end;
+      flex: 0 1 40%;
+    }
+    .price {
+      flex: 0 1 10%;
+      font-size: 2rem;
+    }
   }
 }
