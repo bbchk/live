@@ -78,6 +78,7 @@ const credentialsProvider = CredentialsProvider({
             }
           );
           const syncedCart = res.data;
+          console.log("🚀 ~ syncedCart:", syncedCart);
           user.cart = syncedCart;
         }
 

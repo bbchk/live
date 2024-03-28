@@ -1,4 +1,5 @@
 import User from "#src/models/user.js";
+import Product from "#src/models/product.js";
 
 export const addToCart = async (req, res) => {
   const { userId, productId } = req.params;
@@ -48,21 +49,42 @@ export const syncCart = async (req, res) => {
   if (user?.cart) {
     localStorageCart.forEach((item) => {
       let cartItem = user.cart.find(
-        (cartItem) => cartItem.productId.toString() === item.productId
+        (cartItem) => cartItem._id.toString() === item._id.toString()
       );
       if (cartItem) {
         cartItem.quantity += Math.abs(cartItem.quantity - item.quantity);
       } else {
-        user.cart.push(item);
+        user.cart.push({ productId: item._id, quantity: item.quantity });
       }
     });
   } else {
-    user.cart = localStorageCart;
+    user.cart = localStorageCart.map((item) => {
+      return { productId: item._id, quantity: item.quantity };
+    });
   }
 
   try {
     await user.save();
-    res.status(200).json(user.cart);
+
+    const cartProductsIds = user.cart.map((item) => item.productId);
+    let cartProducts = await Product.find({
+      _id: { $in: cartProductsIds },
+    })
+      .select("name price images left")
+      .exec();
+
+    cartProducts = cartProducts.map((product) => {
+      let cartProduct = user.cart.find(
+        (item) => item.productId.toString() === product._id.toString()
+      );
+      return {
+        ...product._doc,
+        quantity: cartProduct.quantity,
+      };
+    });
+    console.log("🚀 ~ cartProducts:", cartProducts);
+
+    res.status(200).json(cartProducts);
   } catch (err) {
     console.log(err);
   }

@@ -21,7 +21,7 @@ const InfoBody = ({ product }) => {
   const { addToCart } = useAddToCart();
 
   function handleBuy(product) {
-    addToCart(product._id);
+    addToCart(product);
 
     return null;
   }

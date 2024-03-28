@@ -25,6 +25,7 @@ const CartModal = () => {
       const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
       setCartItems(localStorageCart);
     }
+    console.log(cartItems);
   }, [cartModalOpen]);
 
   // const handleBuy = async (e, value) => {};
@@ -47,7 +48,7 @@ const CartModal = () => {
           cartItems.map((item) => {
             return (
               <div className="bg-dark" key={`${item.productId}CartItem`}>
-                <p>{item.productId}</p>
+                <p>{item.name}</p>
                 <p>{item.quantity}</p>
               </div>
             );

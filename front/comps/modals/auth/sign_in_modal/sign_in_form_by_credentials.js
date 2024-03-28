@@ -4,7 +4,7 @@ import modal_s from "../modal.module.scss";
 import Link from "next/link";
 import InputField from "comps/input_fields/input_field";
 import PasswordInputField from "comps/input_fields/password_input_field";
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 
 const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const [email, setEmail] = useState("");
@@ -24,6 +24,9 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
     //todo style display error message
 
     if (res.ok) {
+      const session = await getSession();
+      console.log("🚀 ~ session:", session);
+      // localStorage.setItem("cart", JSON.stringify(cart));
       toggleModal();
     } else {
       setError(res.error);

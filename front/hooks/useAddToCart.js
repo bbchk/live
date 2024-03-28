@@ -5,25 +5,29 @@ import { use } from "react";
 export const useAddToCart = () => {
   const { data: session, update } = useSession();
 
-  async function addToCart(productId) {
+  async function addToCart(product) {
+    const { _id, name, price, images, left } = product;
+    const cartItem = { _id, name, price, images, left };
+
     try {
       let cart = JSON.parse(localStorage.getItem("cart"));
 
       if (cart == null) {
         cart = [];
-        cart.push({ productId: productId, quantity: 1 });
+        cart.push({ ...cartItem, quantity: 1 });
       } else {
-        let cartItem = cart.find((item) => item.productId == productId);
+        let cartItem = cart.find((item) => item._id == _id);
 
         if (cartItem) {
           cartItem.quantity++;
         } else {
           cart.push({
-            productId: productId,
+            ...cartItem,
             quantity: 1,
           });
         }
       }
+
       localStorage.setItem("cart", JSON.stringify(cart));
 
       if (session) {
@@ -36,7 +40,7 @@ export const useAddToCart = () => {
         });
 
         const response = await axios.post(
-          `/user/cart/${session.user.id}/add/${productId}`
+          `/user/cart/${session.user.id}/add/${_id}`
         );
         const json = response.data;
         console.log("🚀 ~ json:", json);
