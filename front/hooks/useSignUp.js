@@ -9,7 +9,13 @@ export const useSignUp = () => {
   const [isLoading, setIsLoading] = useState(null);
   const dispatch = useDispatch();
 
-  const signUp = async (firstName, secondName, email, password) => {
+  const signUp = async (
+    firstName,
+    secondName,
+    email,
+    password,
+    localStorageCartJson
+  ) => {
     setIsLoading(true);
     setError(false);
 
@@ -19,6 +25,7 @@ export const useSignUp = () => {
         secondName,
         email,
         password,
+        localStorageCartJson,
       });
 
       localStorage.setItem("user", JSON.stringify(response.data));

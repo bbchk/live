@@ -17,7 +17,9 @@ const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signUp(firstName, secondName, email, password);
+    //todo put cart as well
+    const localStorageCartJson = JSON.parse(localStorage.getItem("cart"));
+    await signUp(firstName, secondName, email, password, localStorageCartJson);
     if (!error) {
       toggleModal();
     }

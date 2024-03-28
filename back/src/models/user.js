@@ -82,7 +82,8 @@ userSchema.statics.signUp = async function (
   firstName,
   secondName,
   email,
-  password
+  password,
+  localStorageCartJson
 ) {
   if (!email || !password) {
     throw Error("Email and password fields cannot be blank");
@@ -113,6 +114,7 @@ userSchema.statics.signUp = async function (
     email: email,
     password: hash,
     image: defaultUserImage,
+    cart: localStorageCartJson,
   });
 };
 

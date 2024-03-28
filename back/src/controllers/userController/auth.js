@@ -18,6 +18,7 @@ export const signIn = async (req, res) => {
       email: email,
       token: token,
       likedProducts: user.likedProducts,
+
       cart: user.cart,
       image: user.image,
     });
@@ -29,10 +30,17 @@ export const signIn = async (req, res) => {
 //todo test
 //todo what if user sign in with service, but does not have picture and service does not provide one? research it
 export const signUp = async (req, res) => {
-  const { firstName, secondName, email, password } = req.body;
+  const { firstName, secondName, email, password, localStorageCartJson } =
+    req.body;
 
   try {
-    const user = User.signUp(firstName, secondName, email, password);
+    const user = User.signUp(
+      firstName,
+      secondName,
+      email,
+      password,
+      localStorageCartJson
+    );
     const token = createToken(user._id);
     res.status(200).json({
       firstName: user.firstName,
