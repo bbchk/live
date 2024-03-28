@@ -51,7 +51,7 @@ export const syncCart = async (req, res) => {
         (cartItem) => cartItem.productId.toString() === item.productId
       );
       if (cartItem) {
-        cartItem.quantity += item.quantity;
+        cartItem.quantity += Math.abs(cartItem.quantity - item.quantity);
       } else {
         user.cart.push(item);
       }
@@ -62,9 +62,7 @@ export const syncCart = async (req, res) => {
 
   try {
     await user.save();
-    res.status(200).json({
-      message: `Carts synced successfully.`,
-    });
+    res.status(200).json(user.cart);
   } catch (err) {
     console.log(err);
   }

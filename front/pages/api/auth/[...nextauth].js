@@ -50,7 +50,7 @@ const credentialsProvider = CredentialsProvider({
   type: "credentials",
   credentials: {},
   async authorize(credentials, req) {
-    const { email, password } = credentials;
+    const { email, password, localStorageCartJson } = credentials;
 
     try {
       const response = await axios.post(
@@ -61,15 +61,33 @@ const credentialsProvider = CredentialsProvider({
         },
         { headers: { "Content-type": "application/json" } }
       );
-      const user = response.data;
+      let user = response.data;
 
       if (response.status === 200) {
+        const localStorageCart = JSON.parse(localStorageCartJson);
+
+        if (localStorageCart.length !== 0) {
+          const res = await axios.patch(
+            `/user/cart/${user.id}/sync`,
+            localStorageCart,
+            {
+              headers: {
+                "Content-type": "application/json",
+                Authorization: `Bearer ${user.token}`,
+              },
+            }
+          );
+          const syncedCart = res.data;
+          user.cart = syncedCart;
+        }
+
         return user;
       } else {
         throw new Error("User not authenticated");
       }
     } catch (error) {
-      throw new Error("User not authenticated");
+      console.log(error);
+      // throw new Error("User not authenticated");
     }
   },
 });
@@ -82,10 +100,7 @@ const callbacks = {
     return true;
   },
   async jwt({ token, user, session, trigger, account, profile }) {
-    console.log(trigger);
     if (trigger === "update") {
-      // token.access_token = account.access_token;
-      // token.provider = account.provider;
       token.user = session.user;
     }
     if (account) {

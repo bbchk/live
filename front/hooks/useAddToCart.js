@@ -27,7 +27,6 @@ export const useAddToCart = () => {
       localStorage.setItem("cart", JSON.stringify(cart));
 
       if (session) {
-        console.log(cart);
         await update({
           ...session,
           user: {
@@ -35,7 +34,7 @@ export const useAddToCart = () => {
             cart: cart,
           },
         });
-        console.log(session);
+
         const response = await axios.post(
           `/user/cart/${session.user.id}/add/${productId}`
         );
