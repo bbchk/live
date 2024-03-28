@@ -8,7 +8,7 @@ import { balsamiqSans } from "pages/_app";
 
 //todo input validation
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 const CartModal = () => {
   const dispatch = useDispatch();
@@ -19,16 +19,13 @@ const CartModal = () => {
 
   //todo do it when session.cart changes, use useMemo
   useEffect(() => {
-    console.log("🚀 ~ syncedCart:", session);
     if (session) {
       setCartItems(session.user.cart);
     } else {
       const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
       setCartItems(localStorageCart);
     }
-
-    // console.log("🚀 ~ setCartItems:", cartItems);
-  }, [session]);
+  }, [cartModalOpen]);
 
   // const handleBuy = async (e, value) => {};
 
