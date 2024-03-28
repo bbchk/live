@@ -1,6 +1,6 @@
-import { useAddToCart } from "hooks/useAddToCart";
 import s from "./info_body.module.scss";
 import { useSession } from "next-auth/react";
+import { useCart } from "hooks/useCart";
 
 const InfoBody = ({ product }) => {
   const {
@@ -18,12 +18,9 @@ const InfoBody = ({ product }) => {
     code = "000000",
   } = product;
 
-  const { addToCart } = useAddToCart();
-
+  const { add } = useCart();
   function handleBuy(product) {
-    addToCart(product);
-
-    return null;
+    add(product);
   }
 
   return (

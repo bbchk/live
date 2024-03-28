@@ -1,6 +1,13 @@
 import s from "./quantity_input.module.scss";
+import { useCart } from "hooks/useCart";
 
 const QuantityInput = ({ quantity }) => {
+  const { add } = useCart();
+
+  function handleBuy(product) {
+    add(product);
+  }
+
   return (
     <div className={`${s.quantity_input}`}>
       <button disabled={quantity === 1} onClick={() => {}}>

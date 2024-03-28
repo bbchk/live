@@ -21,26 +21,21 @@ const CartModal = () => {
   const [cartItems, setCartItems] = useState(null);
   const [totalCost, setTotalCost] = useState(0);
 
-  //todo do it when session.cart changes, use useMemo
-
   useEffect(() => {
-    if (session) {
-      setCartItems(session.user.cart);
-    } else {
-      const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
-      setCartItems(localStorageCart);
-    }
-    //count total cost
-    if (cartItems) {
-      let totalCost = 0;
-      cartItems.forEach((item) => {
-        totalCost += item.product.price * item.quantity;
-      });
-      setTotalCost(totalCost);
-    }
-  }, [cartModalOpen]);
+    let cartItems = session
+      ? session.user.cart
+      : JSON.parse(localStorage.getItem("cart")) || [];
 
-  // const handleBuy = async (e, value) => {};
+    setCartItems(cartItems);
+
+    let totalCost = cartItems.reduce(
+      (acc, item) => acc + item.product.price * item.quantity,
+      0
+    );
+    setTotalCost(totalCost);
+  }, [cartModalOpen, session?.user.cart]);
+
+  const handleBuy = async (e, value) => {};
 
   return (
     <Modal
@@ -83,13 +78,7 @@ const CartModal = () => {
             </li>
 
             <li>
-              <button
-                onClick={() => {
-                  console.log("buy");
-                }}
-              >
-                Оформити замовлення
-              </button>
+              <button onClick={handleBuy}>Оформити замовлення</button>
             </li>
           </menu>
         </footer>

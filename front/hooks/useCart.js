@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import { use } from "react";
 
-export const useAddToCart = () => {
+export const useCart = () => {
   const { data: session, update } = useSession();
 
-  async function addToCart(product) {
+  async function add(product) {
     const { _id, name, price, images, left } = product;
     const cartItem = { _id, name, price, images, left };
 
@@ -46,5 +45,5 @@ export const useAddToCart = () => {
     }
   }
 
-  return { addToCart };
+  return { add };
 };
