@@ -5,7 +5,8 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, getSession } from "next-auth/react";
+import { setCart } from "store/userSlice";
 
 import React, { useState, useEffect } from "react";
 
@@ -37,6 +38,7 @@ import { Caveat } from "next/font/google";
 import { Overpass } from "next/font/google";
 import { Pacifico } from "next/font/google";
 import { Space_Mono } from "next/font/google";
+import { useCart } from "hooks/useCart";
 
 const balsamiqSans = Balsamiq_Sans({ weight: "400", subsets: ["latin"] });
 const caveat = Caveat({ weight: "400", subsets: ["latin"] });
@@ -90,10 +92,19 @@ function FetchData() {
   const dispatch = useDispatch();
   const [fetched, setFetched] = useState(false);
 
+  const { get } = useCart();
+
   useEffect(() => {
     if (!fetched) {
       dispatch(getProductsInfo());
       dispatch(getCategoriesInfo());
+      async function getCart() {
+        const session = await getSession();
+
+        const cart = await get(session);
+        dispatch(setCart(cart));
+      }
+      getCart();
       setFetched(true);
     }
   }, [dispatch, fetched]);

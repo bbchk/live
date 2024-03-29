@@ -6,34 +6,31 @@ import { toggleCartModal } from "store/modalSlice";
 
 import { balsamiqSans } from "pages/_app";
 
-//todo input validation
-import { useSession } from "next-auth/react";
-import { use, useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import CartItem from "./cart_item/cart_item";
-import { set } from "store/productsSlice";
 
 const CartModal = () => {
   const dispatch = useDispatch();
   const { cartModalOpen } = useSelector((state) => state.modals);
+  const { user } = useSelector((state) => state.user);
 
-  const { data: session, status } = useSession();
-  const [cartItems, setCartItems] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
 
-  // useEffect(() => {
-  //   let cartItems = session
-  //     ? session.user.cart
-  //     : JSON.parse(localStorage.getItem("cart")) || [];
+  const cart = useMemo(() => user?.cart, [user?.cart]);
 
-  //   setCartItems(cartItems);
+  useEffect(() => {
+    if (cart) {
+      setCartItems(cart);
 
-  //   let totalCost = cartItems.reduce(
-  //     (acc, item) => acc + item.product.price * item.quantity,
-  //     0
-  //   );
-  //   setTotalCost(totalCost);
-  // }, [cartModalOpen, session?.user.cart]);
+      const totalCost = cart.reduce(
+        (acc, item) => acc + item.product.price * item.quantity,
+        0
+      );
+      setTotalCost(totalCost);
+    }
+  }, [cart]);
 
   const handleBuy = async (e, value) => {};
 

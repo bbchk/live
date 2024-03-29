@@ -4,9 +4,10 @@ import { requireAuth } from "../middleware/auth.js";
 import { signIn, signUp } from "#src/controllers/userController/auth.js";
 import { addLikedProduct } from "#src/controllers/userController/like.js";
 import {
-  addToCart,
+  addCartItem,
   syncCart,
-  fetchCart,
+  getCart,
+  deleteCartItem,
 } from "#src/controllers/userController/cart.js";
 
 const router = express.Router();
@@ -15,9 +16,12 @@ router.post("/signIn", signIn);
 router.post("/signUp", signUp);
 
 router.use(requireAuth);
-router.post("/cart/:userId/add/:productId", addToCart);
+
+router.get("/cart/:userId/fetch", getCart);
 router.patch("/cart/:userId/sync", syncCart);
-router.get("/cart/:userId/fetch", fetchCart);
+
+router.post("/cart/:userId/add/:productId", addCartItem);
+router.delete("/cart/:userId/delete/:productId", deleteCartItem);
 
 router.patch("/like/:userId", addLikedProduct);
 

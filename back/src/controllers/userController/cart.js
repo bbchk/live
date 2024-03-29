@@ -1,7 +1,7 @@
 import User from "#src/models/user.js";
 import Product from "#src/models/product.js";
 
-export const addToCart = async (req, res) => {
+export const addCartItem = async (req, res) => {
   const { userId, productId } = req.params;
 
   let user = await User.findById(userId);
@@ -34,6 +34,38 @@ export const addToCart = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+// Function to decrement the quantity of a cart item
+export const deleteCartItem = async (req, res) => {
+  const { userId, productId } = req.params;
+
+  try {
+    let user = await User.findById(userId);
+
+    if (user?.cart) {
+      let cartItem = user.cart.find(
+        (item) => item.product.toString() === productId
+      );
+
+      if (cartItem && cartItem.quantity > 1) {
+        cartItem.quantity--;
+      } else if (cartItem) {
+        user.cart = user.cart.filter(
+          (item) => item.product.toString() !== productId
+        );
+      }
+    }
+
+    await user.save();
+    console.log("Cart item quantity decremented successfully");
+    res.status(200).json({
+      message: `Quantity of product ${productId} decreased by one.`,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error updating product quantity" });
   }
 };
 
@@ -71,7 +103,7 @@ export const syncCart = async (req, res) => {
   }
 };
 
-export const fetchCart = async (req, res) => {
+export const getCart = async (req, res) => {
   const { userId } = req.params;
 
   try {

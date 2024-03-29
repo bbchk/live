@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useDispatch } from "react-redux";
-import { setCart } from "store/userSlice";
-
+import { addToCart, deleteCartItem } from "store/userSlice";
 export const useCart = () => {
-  const dispatch = useDispatch();
   const { data: session, update } = useSession();
+  const dispatch = useDispatch();
 
   async function add(product) {
     const { _id, name, price, images, left } = product;
@@ -21,84 +20,72 @@ export const useCart = () => {
         existingCartItem.quantity++;
       } else {
         cart.push({
-          product: { ...cartItem },
+          product: cartItem,
           quantity: 1,
         });
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
+      dispatch(
+        addToCart({
+          product: cartItem,
+          quantity: 1,
+        })
+      );
 
       if (session) {
-        await update({
-          ...session,
-          user: {
-            ...session.user,
-            cart: cart,
-          },
-        });
-
         const response = await axios.post(
           `/user/cart/${session.user.id}/add/${_id}`
         );
-        const json = response.data;
-        console.log("🚀 ~ json:", json);
       }
     } catch (e) {
       console.log(e);
     }
   }
 
-  // async function subtract(productId) {
-  //   try {
-  //     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  //     let cartItem = cart.find((item) => item.product._id === productId);
+  async function remove(productId) {
+    try {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cartItem = cart.find((item) => item.product._id === productId);
 
-  //     if (cartItem && cartItem.quantity > 1) {
-  //       cartItem.quantity--;
-  //     } else if (cartItem) {
-  //       cart = cart.filter((item) => item.product._id !== productId);
-  //     }
+      if (cartItem && cartItem.quantity > 1) {
+        cartItem.quantity--;
+      } else if (cartItem) {
+        cart = cart.filter((item) => item.product._id !== productId);
+      }
 
-  //     localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
+      dispatch(deleteCartItem(productId));
 
-  //     if (session) {
-  //       await update({
-  //         ...session,
-  //         user: {
-  //           ...session.user,
-  //           cart: cart,
-  //         },
-  //       });
+      if (session) {
+        await axios.delete(`/user/cart/${session.user.id}/delete/${productId}`);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
-  //       await axios.post(`/user/cart/${session.user.id}/decrease/${productId}`);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
+  async function removeAll(productId) {
+    try {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cartItem = cart.find((item) => item.product._id === productId);
 
-  // async function remove(productId) {
-  //   try {
-  //     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  //     cart = cart.filter((item) => item.product._id !== productId);
+      if (cartItem && cartItem.quantity > 1) {
+        cartItem.quantity--;
+      } else if (cartItem) {
+        cart = cart.filter((item) => item.product._id !== productId);
+      }
 
-  //     localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
+      dispatch(deleteCartItem(productId));
 
-  //     if (session) {
-  //       await update({
-  //         ...session,
-  //         user: {
-  //           ...session.user,
-  //           cart: cart,
-  //         },
-  //       });
-
-  //       await axios.post(`/user/cart/${session.user.id}/remove/${productId}`);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
+      if (session) {
+        await axios.delete(`/user/cart/${session.user.id}/delete/${productId}`);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   async function get(session) {
     try {
@@ -108,15 +95,19 @@ export const useCart = () => {
       let cart = [];
 
       //if local storage cart is not empty, sync it with user cart on sign in
-      if (lscart.length > 0 && session) {
-        const syncedCart = await syncAndFetch(session.user, lscart);
-        //todo set synced cart to localStorage
-        cart = syncedCart;
+      if (session) {
+        if (lscart.length > 0) {
+          const syncedCart = await syncAndFetch(session.user, lscart);
+          localStorage.setItem("cart", JSON.stringify(syncedCart));
+          cart = syncedCart;
+        } else {
+          cart = await fetchCart(session.user);
+        }
       } else {
-        cart = await fetchCart(session.user.cart);
+        cart = lscart;
       }
 
-      dispatch(setCart(cart));
+      return cart;
     } catch (e) {
       console.log(e);
     }
@@ -145,7 +136,7 @@ export const useCart = () => {
     }
   }
 
-  async function fetchCart() {
+  async function fetchCart(user) {
     try {
       const res = await axios.get(`/user/cart/${user.id}/fetch`, {
         headers: {
@@ -160,5 +151,5 @@ export const useCart = () => {
   }
 
   // return { add, subtract, remove, sync };
-  return { add, get };
+  return { add, remove, get };
 };

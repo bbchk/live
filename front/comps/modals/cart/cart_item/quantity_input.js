@@ -1,8 +1,8 @@
 import s from "./quantity_input.module.scss";
 import { useCart } from "hooks/useCart";
 
-const QuantityInput = ({ quantity }) => {
-  const { add } = useCart();
+const QuantityInput = ({ product, quantity }) => {
+  const { add, remove } = useCart();
 
   function handleBuy(product) {
     add(product);
@@ -10,13 +10,13 @@ const QuantityInput = ({ quantity }) => {
 
   return (
     <div className={`${s.quantity_input}`}>
-      <button disabled={quantity === 1} onClick={() => {}}>
+      <button disabled={quantity === 1} onClick={() => remove(product._id)}>
         <i class="bi bi-dash-lg" />
       </button>
 
       <input type="text" value={quantity} readOnly disabled />
 
-      <button onClick={() => {}}>
+      <button onClick={() => add(product)}>
         <i class="bi bi-plus-lg" />
       </button>
     </div>

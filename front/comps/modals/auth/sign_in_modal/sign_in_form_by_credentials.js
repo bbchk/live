@@ -6,12 +6,15 @@ import InputField from "comps/input_fields/input_field";
 import PasswordInputField from "comps/input_fields/password_input_field";
 import { signIn, getSession } from "next-auth/react";
 import { useCart } from "hooks/useCart";
+import { useDispatch } from "react-redux";
+import { setCart } from "store/userSlice";
 
 const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
+  const dispatch = useDispatch();
   const { get } = useCart();
 
   const handleSubmit = async (e) => {
@@ -27,7 +30,9 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
     //todo style display error message
     if (res.ok) {
       const session = await getSession();
-      await get(session);
+
+      const cart = await get(session);
+      dispatch(setCart(cart));
 
       toggleModal();
     } else {
