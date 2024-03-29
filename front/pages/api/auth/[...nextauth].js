@@ -64,26 +64,6 @@ const credentialsProvider = CredentialsProvider({
       let user = response.data;
 
       if (response.status === 200) {
-        const localStorageCart = JSON.parse(localStorageCartJson) || [];
-
-        const localStorageCartOptimized = localStorageCart.map((item) => {
-          return { product: item.product._id, quantity: item.quantity };
-        });
-
-        const res = await axios.patch(
-          `/user/cart/${user.id}/sync`,
-          localStorageCartOptimized,
-          {
-            headers: {
-              "Content-type": "application/json",
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        );
-        const syncedCart = res.data;
-
-        user.cart = syncedCart;
-
         return user;
       } else {
         throw new Error("User not authenticated");

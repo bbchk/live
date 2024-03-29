@@ -5,11 +5,14 @@ import Link from "next/link";
 import InputField from "comps/input_fields/input_field";
 import PasswordInputField from "comps/input_fields/password_input_field";
 import { signIn, getSession } from "next-auth/react";
+import { useCart } from "hooks/useCart";
 
 const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+
+  const { get } = useCart();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,12 +25,10 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
     });
 
     //todo style display error message
-
     if (res.ok) {
       const session = await getSession();
-      console.log("🚀 ~ session:", session);
-      //todo set synced cart to localStorage
-      // localStorage.setItem("cart", JSON.stringify(cart));
+      await get(session);
+
       toggleModal();
     } else {
       setError(res.error);

@@ -17,23 +17,23 @@ const CartModal = () => {
   const dispatch = useDispatch();
   const { cartModalOpen } = useSelector((state) => state.modals);
 
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [cartItems, setCartItems] = useState(null);
   const [totalCost, setTotalCost] = useState(0);
 
-  useEffect(() => {
-    let cartItems = session
-      ? session.user.cart
-      : JSON.parse(localStorage.getItem("cart")) || [];
+  // useEffect(() => {
+  //   let cartItems = session
+  //     ? session.user.cart
+  //     : JSON.parse(localStorage.getItem("cart")) || [];
 
-    setCartItems(cartItems);
+  //   setCartItems(cartItems);
 
-    let totalCost = cartItems.reduce(
-      (acc, item) => acc + item.product.price * item.quantity,
-      0
-    );
-    setTotalCost(totalCost);
-  }, [cartModalOpen, session?.user.cart]);
+  //   let totalCost = cartItems.reduce(
+  //     (acc, item) => acc + item.product.price * item.quantity,
+  //     0
+  //   );
+  //   setTotalCost(totalCost);
+  // }, [cartModalOpen, session?.user.cart]);
 
   const handleBuy = async (e, value) => {};
 

@@ -44,28 +44,38 @@ export const syncCart = async (req, res) => {
   try {
     let user = await User.findById(userId);
 
-    //todo intersect carts
-    if (user?.cart) {
-      localStorageCartOptimized.forEach((item) => {
-        let cartItem = user.cart.find(
-          (cartItem) => cartItem.product.toString() === item.product
-        );
-        if (cartItem) {
-          cartItem.quantity += Math.abs(cartItem.quantity - item.quantity);
-        } else {
-          user.cart.push({
-            product: item.product,
-            quantity: item.quantity,
-          });
-        }
-      });
-    } else {
-      user.cart = localStorageCartOptimized;
-    }
+    localStorageCartOptimized.forEach((item) => {
+      let cartItem = user?.cart.find(
+        (cartItem) => cartItem.product.toString() === item.product
+      );
+      if (cartItem) {
+        cartItem.quantity += Math.abs(cartItem.quantity - item.quantity);
+      } else {
+        user.cart.push({
+          product: item.product,
+          quantity: item.quantity,
+        });
+      }
+    });
 
     await user.save();
 
     user = await user.populate({
+      path: "cart.product",
+      select: "name price images left",
+    });
+
+    res.status(200).json(user.cart);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const fetchCart = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    let user = await User.findById(userId).populate({
       path: "cart.product",
       select: "name price images left",
     });

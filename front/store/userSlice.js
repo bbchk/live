@@ -15,9 +15,12 @@ export const userSlice = createSlice({
     // addLikedProduct: (state, action) => {
     //   state.user = [...state.user, action.payload];
     // },
+    setCart: (state, action) => {
+      state.user ??= { cart: action.payload };
+    },
   },
 });
 
-export const { signIn, signOut } = userSlice.actions;
+export const { signIn, signOut, setCart } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
