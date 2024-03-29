@@ -35,7 +35,13 @@ export const useCart = () => {
 
       if (session) {
         const response = await axios.post(
-          `/user/cart/${session.user.id}/add/${_id}`
+          `/user/cart/${session.user.id}/add/${_id}`,
+          undefined,
+          {
+            headers: {
+              Authorization: `Bearer ${session.user.token}`,
+            },
+          }
         );
       }
     } catch (e) {
@@ -58,7 +64,15 @@ export const useCart = () => {
       dispatch(deleteCartItem(productId));
 
       if (session) {
-        await axios.delete(`/user/cart/${session.user.id}/delete/${productId}`);
+        const response = await axios.delete(
+          `/user/cart/${session.user.id}/delete/${productId}`,
+          undefined,
+          {
+            headers: {
+              Authorization: `Bearer ${session.user.token}`,
+            },
+          }
+        );
       }
     } catch (e) {
       console.log(e);
@@ -80,7 +94,15 @@ export const useCart = () => {
       dispatch(deleteCartItem(productId));
 
       if (session) {
-        await axios.delete(`/user/cart/${session.user.id}/delete/${productId}`);
+        const response = await axios.delete(
+          `/user/cart/${session.user.id}/delete/${productId}`,
+          undefined,
+          {
+            headers: {
+              Authorization: `Bearer ${session.user.token}`,
+            },
+          }
+        );
       }
     } catch (e) {
       console.log(e);

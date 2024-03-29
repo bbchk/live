@@ -25,7 +25,7 @@ const CartItem = ({ product, quantity }) => {
             console.log("remove");
           }}
         >
-          <i class="bi bi-trash" />
+          <i className="bi bi-trash" />
         </button>
       </div>
       <div>

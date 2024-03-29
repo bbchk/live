@@ -11,13 +11,13 @@ const QuantityInput = ({ product, quantity }) => {
   return (
     <div className={`${s.quantity_input}`}>
       <button disabled={quantity === 1} onClick={() => remove(product._id)}>
-        <i class="bi bi-dash-lg" />
+        <i className="bi bi-dash-lg" />
       </button>
 
       <input type="text" value={quantity} readOnly disabled />
 
       <button onClick={() => add(product)}>
-        <i class="bi bi-plus-lg" />
+        <i className="bi bi-plus-lg" />
       </button>
     </div>
   );

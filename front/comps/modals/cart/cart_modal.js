@@ -20,6 +20,7 @@ const CartModal = () => {
 
   const cart = useMemo(() => user?.cart, [user?.cart]);
 
+  //todo set cart items and total cost to localStorage on signOut
   useEffect(() => {
     if (cart) {
       setCartItems(cart);
@@ -53,7 +54,7 @@ const CartModal = () => {
             cartItems.map(({ product, quantity }) => {
               return (
                 <CartItem
-                  key={product.id}
+                  key={product._id}
                   product={product}
                   quantity={quantity}
                 />
