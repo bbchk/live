@@ -21,6 +21,7 @@ const CartItem = ({ product, quantity }) => {
         />
         <p>{product.name}</p>
         <button
+          disabled
           onClick={() => {
             console.log("remove");
           }}
