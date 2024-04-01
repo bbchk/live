@@ -3,7 +3,7 @@
 @import "node_modules/rfs/sass.sass";
 
 .auth_popover {
-  box-shadow: 0 0 4px 3px rgba($color-daslgrey,0.2);
+  box-shadow: 0 0 4px 3px rgba($color-blue-dasl, 0.2);
   --bs-popover-border-color: transparent !important;
 
   background-color: white;
@@ -18,7 +18,7 @@
       @include link;
       &:hover {
         text-decoration: underline;
-      } 
+      }
     }
 
     p {
@@ -30,34 +30,32 @@
       width: 100%;
 
       @include font-size(1.5rem);
-      background-color: $color-dureen;
-      color: $color-milk;
+      background-color: $color-green-dur;
+      color: $color-wh-milk;
 
       transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
       &:hover {
-        background-color: $color-dureen;
+        background-color: $color-green-dur;
       }
       &:active {
-        color: $color-milk;
+        color: $color-wh-milk;
       }
     }
   }
 }
 
-
 .overlay_trigger {
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 
   .profile_icon {
-    color: $color-daslgrey;
+    color: $color-blue-dasl;
 
     cursor: pointer;
   }
 
-  @media only screen and (max-width: 600px) {  
-      display: none;
-} 
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
 }
-

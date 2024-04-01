@@ -2,7 +2,7 @@
 @use "./styles/mixins" as *;
 
 .characteristics {
-  color: $color-daslgrey;
+  color: $color-blue-dasl;
 
   .title {
     cursor: pointer;
@@ -25,7 +25,7 @@
       width: 300px;
 
       .underline {
-        border-bottom: 2px solid $color-medbud;
+        border-bottom: 2px solid $color-green-medbud;
 
         flex-grow: 1;
         margin: 0 0.5rem;

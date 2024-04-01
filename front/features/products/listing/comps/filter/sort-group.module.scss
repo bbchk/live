@@ -1,6 +1,6 @@
 @use "./styles/variables" as *;
 
-$border: 2px solid $color-medbud;
+$border: 2px solid $color-green-medbud;
 $radius: 0.5rem;
 
 .filters {
@@ -14,7 +14,7 @@ $radius: 0.5rem;
     display: flex;
     flex-flow: row nowrap;
 
-    border: 1px solid $color-medbud;
+    border: 1px solid $color-green-medbud;
     border-radius: $radius;
 
     label {
@@ -28,7 +28,7 @@ $radius: 0.5rem;
         border-radius: 0 $radius $radius 0;
       }
       &:first-child {
-        border-right: 1px solid $color-medbud;
+        border-right: 1px solid $color-green-medbud;
         border-radius: $radius 0 0 $radius;
       }
     }

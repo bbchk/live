@@ -6,13 +6,13 @@
   padding: 0.3rem;
   border-radius: 0.2rem;
 
-  color: $color-daslgrey;
+  color: $color-blue-dasl;
 
   i {
-    background-color: rgba($color-daslgrey, 0.1);
+    background-color: rgba($color-blue-dasl, 0.1);
     padding: 0.5rem;
     border-radius: 10%;
-    color: rgba($color-daslgrey, 1);
+    color: rgba($color-blue-dasl, 1);
   }
 
   a {
@@ -31,11 +31,11 @@
 
   //todo make transition
   &:hover {
-    background-color: $color-medbud;
+    background-color: $color-green-medbud;
 
     i {
-      // background-color: $color-medbud;
-      background-color: $color-dureen;
+      // background-color: $color-green-medbud;
+      background-color: $color-green-dur;
       color: white;
     }
   }

@@ -1,9 +1,8 @@
 @use "styles/variables" as *;
 @use "styles/mixins" as *;
-@use "styles/mixins/buttons" as *;
 
 .modal {
-  color: $color-daslgrey;
+  color: $color-blue-dasl;
 
   .button_group {
     display: flex;
@@ -14,11 +13,11 @@
     list-style: none;
 
     li:last-child button {
-      // @include button(white, $color-decapink);
-      @include button(white, $color-decapink);
+      // @include button(white, $color-red-decapink);
+      // @include button(white, $color-red-decapink);
     }
     li:first-child button {
-      @include button($color-daslgrey, $color-medbud);
+      // @include button($color-blue-dasl, $color-green-medbud);
     }
   }
 }

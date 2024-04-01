@@ -24,7 +24,7 @@ const SearchBar = () => {
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       />
-      <button className={`btn ${s.search_button}`} type="submit">
+      <button className={`btn button_submit ${s.search_button}`} type="submit">
         <p>знайти</p>
         <i className="bi bi-search-heart" />
       </button>

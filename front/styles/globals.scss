@@ -1,7 +1,9 @@
 @use "./variables" as *;
 @use "./mixins" as *;
+
 @import "./normalize.scss";
 @import "./reset.scss";
+@import "./comps/buttons.scss";
 
 html {
   body {
@@ -16,7 +18,7 @@ html {
 
     a {
       text-decoration: none;
-      color: $color-daslgrey;
+      color: $color-blue-dasl;
     }
 
     .link {
@@ -46,18 +48,12 @@ html {
 }
 
 .disabled {
-  color: rgba($color-daslgrey, 0.3) !important;
+  color: rgba($color-blue-dasl, 0.3) !important;
   pointer-events: none;
 }
 
 .min-vh-80 {
   min-height: 80vh;
-}
-
-button[disabled] {
-  background-color: rgba($color-daslgrey, 0.1);
-  border-color: rgba($color-daslgrey, 0.1);
-  cursor: not-allowed;
 }
 
 .modal-header {
@@ -83,7 +79,7 @@ button[disabled] {
 }
 
 input[disabled] {
-  background-color: rgba($color-daslgrey, 0.1);
+  background-color: rgba($color-blue-dasl, 0.1);
   font-weight: bold;
 }
 
@@ -116,7 +112,7 @@ input {
   line-height: 1;
 
   font-weight: bold;
-  color: $color-suncycl;
+  color: $color-red-suncycl;
 
   span {
     font-weight: 100;

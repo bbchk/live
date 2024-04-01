@@ -10,7 +10,7 @@
   font-size: 1.5em;
 
   .price {
-    color: $color-suncycl;
+    color: $color-red-suncycl;
     white-space: nowrap;
     span {
       font-size: 0.7em;
@@ -21,7 +21,7 @@
     border-radius: 5px;
     padding: 0.2rem 0.6rem;
 
-    color: $color-dureen;
+    color: $color-green-dur;
 
     &:hover {
       @include icon_on_hover;

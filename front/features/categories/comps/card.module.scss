@@ -14,12 +14,11 @@ $radius: 0.7rem;
   width: 17rem;
   height: fit-content;
 
-  box-shadow: 0 0 0 0.5em white, 0 0 0.3em 0.5em rgba($color-daslgrey, 0.3);
+  box-shadow: 0 0 0 0.5em white, 0 0 0.3em 0.5em rgba($color-blue-dasl, 0.3);
 
-  background-color: $color-white;
+  background-color: white;
 
-  color: $color-daslgrey;
-  
+  color: $color-blue-dasl;
 
   img {
     object-fit: cover;
@@ -36,7 +35,7 @@ $radius: 0.7rem;
 
     font-weight: bold;
 
-    background-color: $color-nyanza;
+    background-color: $color-green-nyanza;
 
     &:hover {
       text-decoration: underline;
@@ -44,12 +43,12 @@ $radius: 0.7rem;
   }
 
   .subcat_list {
-    color: $color-palebud;
+    color: $color-green-palebud;
     list-style-type: disc;
 
     li {
       &:hover {
-        color: $color-daslgrey;
+        color: $color-blue-dasl;
         a {
           text-decoration: underline;
         }
@@ -60,6 +59,6 @@ $radius: 0.7rem;
   transition: transform 0.3s, box-shadow 0.1s;
   &:hover {
     z-index: 99;
-    box-shadow: 0 0 0 0.5em white, 0 0 0.3em 0.5em rgba($color-daslgrey, 0.9);
+    box-shadow: 0 0 0 0.5em white, 0 0 0.3em 0.5em rgba($color-blue-dasl, 0.9);
   }
 }

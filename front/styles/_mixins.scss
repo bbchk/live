@@ -1,5 +1,4 @@
 @use "./styles/variables" as *;
-@use "mixins/buttons" as *;
 
 @mixin underline(
   $colorFrom1: white,
@@ -35,14 +34,14 @@
 }
 
 @mixin link() {
-  color: $color-bluedefrnc;
+  color: $color-blue-defrance;
 
   &:hover {
-    color: $color-suncycl;
+    color: $color-red-suncycl;
   }
 
   &:visited {
-    color: $color-iris;
+    color: $color-purp-iris;
   }
 }
 
@@ -66,7 +65,7 @@
 // }
 
 @mixin icon_on_hover() {
-  background-color: rgba($color-daslgrey, 0.1);
+  background-color: rgba($color-blue-dasl, 0.1);
 }
 
 @mixin truncate_lines_after($number_of_lines, $line_height: 1.2rem) {

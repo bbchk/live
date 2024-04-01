@@ -17,23 +17,23 @@
     z-index: -99;
 
     //change color
-    border-bottom: 0.05rem solid $color-lightsilv;
+    border-bottom: 0.05rem solid $color-wh-lightsilv;
   }
 
   //change colors
   .link_container {
     .link {
-      color: $color-daslgrey;
+      color: $color-blue-dasl;
 
       &:hover {
-        $color-on-hover: $color-bangreen;
+        $color-on-hover: $color-green-bangl;
         border-bottom: 0.1rem solid rgba($color-on-hover, 0.3);
         color: rgba($color-on-hover, 1);
       }
     }
 
     .active {
-      border-bottom: 0.1rem solid $color-daslgrey;
+      border-bottom: 0.1rem solid $color-blue-dasl;
       font-weight: bold;
     }
   }

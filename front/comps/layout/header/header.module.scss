@@ -13,7 +13,7 @@
   height: 5rem;
 
   font-size: 2rem;
-  background-color: $color-medbud;
+  background-color: $color-green-medbud;
 
   .offcanvas_toggler {
     flex: 0 3 7%;
@@ -43,7 +43,7 @@
     $icon-size: 2rem;
 
     i {
-      color: $color-daslgrey;
+      color: $color-blue-dasl;
       font-size: $icon-size;
     }
 
@@ -69,5 +69,5 @@
 .underline {
   height: 1rem;
   width: 100%;
-  background-color: $color-nyanza;
+  background-color: $color-green-nyanza;
 }

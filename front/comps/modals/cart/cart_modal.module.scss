@@ -1,25 +1,22 @@
 @use "styles/variables" as *;
 @use "styles/mixins" as *;
-@use "styles/mixins/buttons" as *;
 
 .modal {
-  color: $color-daslgrey;
+  color: $color-blue-dasl;
 
   footer {
+    padding: 2rem;
     margin-top: 5rem;
-    border-top: 0.05rem solid $color-lightsilv;
+    border-top: 0.05rem solid $color-wh-lightsilv;
 
     .total_cost {
-      padding: 2rem;
-
       font-size: 3rem;
       text-align: end;
 
-      // color: $color-daslgrey;
-      color: $color-dureen;
+      color: $color-green-dur;
 
       span:first-child {
-        color: $color-daslgrey;
+        color: $color-blue-dasl;
         margin-right: 1rem;
       }
     }
@@ -27,14 +24,13 @@
     .controls {
       display: flex;
       flex-flow: row nowrap;
-      align-items: center;
+      align-items: flex-end;
+      justify-content: space-between;
 
       margin-top: 2rem;
 
-      font-size: 1.2rem;
-
-      button {
-        @include save_button;
+      .order_btn {
+        font-size: 1.5rem;
       }
     }
   }

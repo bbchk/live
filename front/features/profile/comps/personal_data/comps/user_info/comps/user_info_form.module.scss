@@ -1,5 +1,4 @@
 @use "styles/variables" as *;
-@use "styles/mixins/buttons" as *;
 
 .user_info_form {
   padding: 15px;
@@ -13,7 +12,7 @@
       width: 45%;
     }
 
-    color: $color-daslgrey;
+    color: $color-blue-dasl;
 
     @media screen and (width < 768px) {
       flex-flow: column wrap;
@@ -31,15 +30,6 @@
 
     li {
       width: 45%;
-
-      button {
-        @include button($color-dureen, $color-milk);
-        border: 1px solid $color-dureen;
-      }
-      .save_btn {
-        background-color: $color-dureen;
-        color: $color-milk;
-      }
     }
 
     @media screen and (width < 768px) {

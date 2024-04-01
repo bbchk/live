@@ -4,5 +4,5 @@
 .decor_line {
   // color: transparent
   @include decor_line(transparent);
-  border: 4px 2px solid $color-alabaster;
+  border: 4px 2px solid $color-wh-alabaster;
 }

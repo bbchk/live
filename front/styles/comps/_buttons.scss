@@ -1,0 +1,62 @@
+@use "./styles/variables" as *;
+
+@mixin button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.3em 1em;
+  border-radius: 5px;
+
+  width: 100%;
+
+  font-size: 1.2rem;
+}
+
+button.button_primary {
+  @include button;
+
+  border: 1px solid $color-green-dur;
+
+  background-color: $color-wh-milk;
+  color: $color-green-dur;
+
+  font-size: 1.2rem;
+}
+
+button.button_submit {
+  @include button;
+
+  border: 2px solid $color-wh-milk;
+
+  background-color: $color-green-dur;
+  color: $color-wh-milk;
+
+  font-size: 1.2rem;
+}
+
+button.button_danger {
+  @include button;
+
+  background-color: $color-red-suncycl;
+  color: white;
+
+  font-size: 1.2rem;
+}
+
+button[disabled] {
+  background-color: rgba($color-blue-dasl, 0.1);
+  border-color: rgba($color-blue-dasl, 0.1);
+  cursor: not-allowed;
+}
+
+// button.secondary {
+//   @include button;
+
+//   border: 1px solid $color-green-dur;
+
+//   background-color: $color-wh-milk;
+//   color: $color-green-dur;
+
+//   font-size: 1.2rem;
+// }

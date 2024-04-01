@@ -37,7 +37,8 @@ const InfoBody = ({ product }) => {
         </div>
 
         <button
-          className={` btn ${s.buy_button} icon-link `}
+          // className={` btn ${s.buy_button} icon-link`}
+          className={` btn ${s.buy_button} icon-link`}
           onClick={() => handleBuy(product)}
         >
           <i className="bi bi-cart4"></i>

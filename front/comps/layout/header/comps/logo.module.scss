@@ -2,25 +2,24 @@
 @use "./styles/mixins" as *;
 
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
 
-    color: $color-daslgrey;
-    font-size: 3rem;
-    font-weight: bold;
-    white-space: nowrap;
+  color: $color-blue-dasl;
+  font-size: 3rem;
+  font-weight: bold;
+  white-space: nowrap;
 
-    &:hover {
-      color: $color-daslgrey;
-      // todo
-    }
-
-    @media only screen and (width < 1200px) {
-      p {
-        display: none;
-      }
-    }
-
+  &:hover {
+    color: $color-blue-dasl;
+    // todo
   }
+
+  @media only screen and (width < 1200px) {
+    p {
+      display: none;
+    }
+  }
+}

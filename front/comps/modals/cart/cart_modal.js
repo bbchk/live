@@ -70,13 +70,21 @@ const CartModal = () => {
 
           <menu className={`${s.controls}`}>
             <li>
-              <button onClick={() => dispatch(toggleCartModal())}>
+              <button
+                className="button_primary"
+                onClick={() => dispatch(toggleCartModal())}
+              >
                 Продовжити покупки
               </button>
             </li>
 
             <li>
-              <button onClick={handleBuy}>Оформити замовлення</button>
+              <button
+                className={`button_submit ${s.order_btn}`}
+                onClick={handleBuy}
+              >
+                Оформити замовлення
+              </button>
             </li>
           </menu>
         </footer>

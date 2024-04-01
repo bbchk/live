@@ -13,13 +13,13 @@
   top: 1.5rem;
   right: 0;
 
-  color: $color-yelgreen-bright;
+  color: $color-green-yellow-bright;
 
   &:hover {
     @include icon_on_hover;
   }
 
   &.liked {
-    color: $color-spink;
+    color: $color-red-spink;
   }
 }

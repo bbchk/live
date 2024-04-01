@@ -17,9 +17,9 @@
   text-align: center;
   font-weight: bold;
   font-size: 1rem;
-  color: $color-daslgrey;
+  color: $color-blue-dasl;
 
-  box-shadow: 0 0 0 0.2em white, 0 0 0.3em 0.2em rgba($color-daslgrey, 0.4);
+  box-shadow: 0 0 0 0.2em white, 0 0 0.3em 0.2em rgba($color-blue-dasl, 0.4);
   background-color: white;
 
   img {
@@ -49,7 +49,7 @@
   transition: box-shadow 0.25s;
   &:hover {
     z-index: 99;
-    box-shadow: 0 0 0 0.2em white, 0 0 0.3em 0.2em rgba($color-daslgrey, 1);
+    box-shadow: 0 0 0 0.2em white, 0 0 0.3em 0.2em rgba($color-blue-dasl, 1);
 
     p {
       text-decoration: underline;

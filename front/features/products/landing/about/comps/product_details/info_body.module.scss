@@ -16,7 +16,7 @@
 
     width: 100%;
 
-    box-shadow: 0 0 0 0.05rem $color-lightsilv;
+    box-shadow: 0 0 0 0.05rem $color-wh-lightsilv;
 
     font-size: 3rem;
 
@@ -28,7 +28,7 @@
 
       font-size: 2rem;
       font-weight: bold;
-      color: $color-suncycl;
+      color: $color-red-suncycl;
 
       .currency {
         font-weight: 100;
@@ -36,21 +36,23 @@
       }
 
       .left {
-        color: $color-daslgrey;
+        color: $color-blue-dasl;
         font-size: 0.5em;
       }
     }
 
     .buy_button {
-      background-color: $color-yelgreen;
+      width: fit-content;
 
       font-size: 1.5rem;
+
+      background-color: $color-green-yellow;
     }
   }
 
   .like_button,
   .comment_button {
     font-size: 2rem;
-    color: $color-yelgreen;
+    color: $color-green-yellow;
   }
 }

@@ -32,10 +32,13 @@ const DeleteAccountModal = () => {
       <Modal.Body className={`${s.modal_body}`}>
         <menu className={`${s.button_group}`}>
           <li>
-            <button onClick={toggleModal}>Скасувати</button>
+            <button className="button_primary" onClick={toggleModal}>
+              Скасувати
+            </button>
           </li>
           <li>
             <button
+              className="button_danger"
               onClick={(e) => {
                 toggleModal();
                 handleDelete(e);

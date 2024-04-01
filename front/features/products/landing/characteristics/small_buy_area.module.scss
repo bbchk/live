@@ -7,12 +7,12 @@
   align-items: center;
   padding: 1rem;
 
-  border: 1px solid $color-yelgreen;
+  border: 1px solid $color-green-yellow;
   border-radius: 0.5rem;
 
   .price {
     font-size: 2rem;
-    color: $color-suncycl;
+    color: $color-red-suncycl;
     span {
       font-size: 0.6em;
     }
@@ -21,7 +21,7 @@
   .buy_button {
     line-height: 100%;
     height: 100%;
-    background-color: $color-yelgreen-bright;
+    background-color: $color-green-yellow-bright;
     color: white;
     font-size: 1.5rem;
   }

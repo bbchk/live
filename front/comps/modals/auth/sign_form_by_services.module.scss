@@ -2,23 +2,22 @@
 @use "./styles/mixins" as *;
 @import "node_modules/rfs/sass.sass";
 
-.by_services {    
+.by_services {
+  .subheading {
+    color: rgba($color-blue-dasl, 0.7);
+  }
 
-    .subheading {
-        color: rgba($color-daslgrey, 0.7);
-    }
-            
-    .button_group{
-        display: flex ;
-        flex-direction: column;
-        gap: 1em;
+  .button_group {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 
-        .service_button {
-            display: flex;
-            gap: 10%;
-            
-            width: 100%;
-            // white-space: nowrap;
-        }
+    .service_button {
+      display: flex;
+      gap: 10%;
+
+      width: 100%;
+      // white-space: nowrap;
     }
+  }
 }

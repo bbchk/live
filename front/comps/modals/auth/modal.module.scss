@@ -4,7 +4,7 @@
 
 .modal {
   --bs-modal-width: 40em !important;
-  color: $color-daslgrey;
+  color: $color-blue-dasl;
 
   //todo do not use float here
   .modal_body {
@@ -33,7 +33,7 @@
       width: 0.1rem;
       height: 45%;
 
-      background-color: rgba($color-daslgrey, 0.3);
+      background-color: rgba($color-blue-dasl, 0.3);
     }
   }
 }

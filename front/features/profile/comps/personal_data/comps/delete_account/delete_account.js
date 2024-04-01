@@ -19,6 +19,7 @@ const DeleteAccount = () => {
           Будь ласка, будьте впевненими.
         </p>
         <button
+          className="button_danger"
           onClick={() => {
             //todo delete account
             dispatch(toggleDeleteAccountModal());

@@ -68,7 +68,10 @@ const PriceSlider = ({ minMax, currentMinMax }) => {
           onChange={handleInputChange(1)}
           className={`form-control ${s.input} ${s.right}`}
         />
-        <button onClick={handleConfirm} className="btn btn-outline-success">
+        <button
+          onClick={handleConfirm}
+          className={`button_primary ${s.ok_btn}`}
+        >
           Ok
         </button>
       </div>

@@ -77,7 +77,7 @@ const UserInfoForm = () => {
           <li>
             <button
               type="button"
-              className={`${s.edit_btn}`}
+              className={`button_primary`}
               onClick={() => setIsBeingModified(true)}
             >
               Редагувати
@@ -92,7 +92,7 @@ const UserInfoForm = () => {
                 title={hasBeenBeingModified ? "" : "Дані не були змінені"}
                 data-placement="bottom"
                 type="submit"
-                className={`${s.save_btn}`}
+                className={`button_primary`}
                 disabled={!hasBeenBeingModified}
                 onClick={() => {
                   setHasBeenBeingModified(false);
@@ -104,7 +104,7 @@ const UserInfoForm = () => {
             <li>
               <button
                 type="button"
-                className={`${s.cancel_btn}`}
+                className={`button_primary`}
                 onClick={() => {
                   setHasBeenBeingModified(false);
                   setIsBeingModified(false);
