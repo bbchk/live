@@ -75,6 +75,7 @@ export default function App({
         <Provider store={store}>
           <div className={`min-vh-80 ${balsamiqSans.className}`}>
             {!excludedPaths.includes(router.pathname) && <Header />}
+
             <FetchData />
             <Modals />
             <Component {...pageProps} />

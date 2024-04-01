@@ -72,10 +72,7 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
         Забули пароль?
       </Link>
 
-      <button
-        type="submit"
-        className={`btn btn-outline-success ${s.sign_in_button}`}
-      >
+      <button type="submit" className={`button_primary `}>
         Увійти
       </button>
 

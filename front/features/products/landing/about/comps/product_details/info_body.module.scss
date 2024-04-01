@@ -50,9 +50,13 @@
     }
   }
 
+  .like_button {
+    color: $color-yell-banana;
+  }
+
   .like_button,
   .comment_button {
     font-size: 2rem;
-    color: $color-green-yellow;
+    // color: $color-green-yellow;
   }
 }

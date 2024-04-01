@@ -2,6 +2,8 @@ import s from "./info_body.module.scss";
 import { useSession } from "next-auth/react";
 import { useCart } from "hooks/useCart";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const InfoBody = ({ product }) => {
   const {
     brand,
@@ -45,7 +47,7 @@ const InfoBody = ({ product }) => {
           <p>Купити</p>
         </button>
         <button className={` btn ${s.like_button} icon-link `}>
-          <i className="bi bi-heart"></i>
+          <FontAwesomeIcon icon="fa-regular fa-heart" />
         </button>
         <button className={` btn ${s.comment_button} icon-link `}>
           <i className="bi bi-chat-left-text"></i>

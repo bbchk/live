@@ -27,19 +27,7 @@
     }
 
     .sign_in_button {
-      width: 100%;
-
-      @include font-size(1.5rem);
-      background-color: $color-green-dur;
-      color: $color-wh-milk;
-
-      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-      &:hover {
-        background-color: $color-green-dur;
-      }
-      &:active {
-        color: $color-wh-milk;
-      }
+      font-size: 1.5rem;
     }
   }
 }

@@ -81,11 +81,7 @@ const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
         {` `}та <Link href="/terms-of-usage">угодою користувача</Link>
       </div>
 
-      <button
-        disabled={isLoading}
-        type="submit"
-        className="btn btn-outline-success"
-      >
+      <button disabled={isLoading} type="submit" className="button_primary ">
         Зареєструватись
       </button>
       {/* signIn('credentials', { redirect: false, password: 'password' }) */}

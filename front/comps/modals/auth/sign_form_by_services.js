@@ -14,7 +14,7 @@ const SignFormByServices = () => {
             console.log(e);
           }
         }}
-        className={`btn btn-outline-success ${s.service_button}`}
+        className={`btn button_primary ${s.service_button}`}
       >
         <i className={`bi bi-${serviceName}`} />
         {/*capitalize first letter of service*/}

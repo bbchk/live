@@ -12,12 +12,12 @@
     flex-direction: column;
     gap: 1em;
 
+    margin-top: 1rem;
+
     .service_button {
-      display: flex;
       gap: 10%;
 
-      width: 100%;
-      // white-space: nowrap;
+      display: flex;
     }
   }
 }
