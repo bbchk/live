@@ -28,6 +28,7 @@
 
 <br>
 <h2 >Demo</h2>
+<p>Loading...</p>
 
 ![Live World Welcome GIF](.github/images/live_world_welcome_demo.gif)
 
