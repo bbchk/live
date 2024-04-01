@@ -26,6 +26,7 @@ const SignInModal = () => {
         show={signInModalOpen}
         onHide={toggle}
         centered
+        fullscreen="md-down"
         className={`${modal_s.modal}`}
       >
         <Modal.Header closeButton={true} className="modal_header_title_center">

@@ -2,6 +2,7 @@ import s from "./sign_form_by_services.module.scss";
 import modal_s from "./modal.module.scss";
 
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 
 const SignFormByServices = () => {
   const ServiceButton = ({ serviceName }) => {
@@ -16,9 +17,12 @@ const SignFormByServices = () => {
         }}
         className={`btn button_primary ${s.service_button}`}
       >
-        <i className={`bi bi-${serviceName}`} />
-        {/*capitalize first letter of service*/}
-
+        <Image
+          src={`/assets/services/${serviceName}_icon.svg`}
+          width="20"
+          height="20"
+          alt="service"
+        />
         {serviceName.charAt(0).toUpperCase() + serviceName.slice(1)}
       </button>
     );

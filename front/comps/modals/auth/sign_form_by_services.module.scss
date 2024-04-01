@@ -15,9 +15,16 @@
     margin-top: 1rem;
 
     .service_button {
-      gap: 10%;
+      // gap: 10%;
+      justify-content: flex-start;
+      gap: 10px;
 
-      display: flex;
+      img {
+        margin-left: 20%;
+      }
+
+      color: black;
+      background-color: white;
     }
   }
 }
