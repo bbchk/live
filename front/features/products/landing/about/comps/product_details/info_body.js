@@ -3,6 +3,11 @@ import { useSession } from "next-auth/react";
 import { useCart } from "hooks/useCart";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+// import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+// import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 const InfoBody = ({ product }) => {
   const {
@@ -47,10 +52,26 @@ const InfoBody = ({ product }) => {
           <p>Купити</p>
         </button>
         <button className={` btn ${s.like_button} icon-link `}>
-          <FontAwesomeIcon icon="fa-regular fa-heart" />
+          <FontAwesomeIcon
+            icon={faHeart}
+            size="xs"
+            style={{ color: "#FFD43B" }}
+          />
         </button>
         <button className={` btn ${s.comment_button} icon-link `}>
-          <i className="bi bi-chat-left-text"></i>
+          <FontAwesomeIcon
+            icon={faThumbsUp}
+            size="xs"
+            // style={{ color: "#FFD43B" }}
+          />
+        </button>
+        <button className={` btn ${s.comment_button} icon-link `}>
+          <FontAwesomeIcon
+            icon={faThumbsDown}
+            flip="horizontal"
+            size="xs"
+            // style={{ color: "#FFD43B" }}
+          />
         </button>
       </div>
     </div>
