@@ -8,32 +8,55 @@
 
   //todo do not use float here
   .modal_body {
-    display: flex;
-
-    //change it to flex
     .left {
-      float: left;
-      width: 65%; /* Adjust as needed */
+      grid-area: left;
     }
 
     .right {
-      float: right;
-      width: 35%; /* Adjust as needed */
+      grid-area: right;
+    }
+
+    display: grid;
+    grid-template-columns: 2fr 4rem 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "left vertical_splitter right";
+
+    @media screen and (width < 662px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: min-content 4rem min-content;
+      grid-template-areas:
+        "right"
+        "vertical_splitter"
+        "left";
     }
   }
 
   .vertical_splitter {
-    float: left;
+    grid-area: vertical_splitter;
     display: flex;
-    flex-direction: column;
+    flex-flow: column nowrap;
     align-items: center;
     padding: 0 1em;
 
     .line {
+      display: inline-block;
       width: 0.1rem;
       height: 45%;
 
       background-color: rgba($color-blue-dasl, 0.3);
+    }
+
+    @media screen and (width < 662px) {
+      flex-flow: row nowrap;
+
+      p {
+        padding: 0 1em;
+      }
+
+      .line {
+        width: 50%;
+        height: 0.1rem;
+      }
     }
   }
 }

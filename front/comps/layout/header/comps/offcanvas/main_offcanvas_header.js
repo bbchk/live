@@ -11,7 +11,7 @@ const MainOffcanvasHeader = () => {
     <div className={` ${s.header}`}>
       <Link className={`${s.logo} ${pacifico.className}`} href="/">
         <Image
-          src={"/logo.svg"}
+          src={"/assets/logo.svg"}
           alt="Logo of the site"
           width={50}
           height={50}

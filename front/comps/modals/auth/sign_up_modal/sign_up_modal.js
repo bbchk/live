@@ -28,6 +28,7 @@ const SignUpModal = () => {
         id="changePasswordModal"
         show={signUpModalOpen}
         onHide={toggle}
+        fullscreen="md-down"
         centered
         className={`${modal_s.modal}`}
       >
