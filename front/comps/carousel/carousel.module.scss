@@ -1,0 +1,11 @@
+@use "./styles/variables" as *;
+
+.carousel {
+  button i {
+    padding: 1rem;
+    border-radius: 50%;
+
+    color: $color-blue-dasl;
+    background-color: rgba($color-blue-dasl, 0.1);
+  }
+}

@@ -12,20 +12,20 @@
     display: flex;
     overflow-x: auto;
     padding: 0px 48px;
-  }
 
-  .thumbnail_image {
-    object-fit: contain;
-  }
+    .thumbnail {
+      margin-right: 10px;
+      cursor: pointer;
+      border: 2px solid transparent;
 
-  .thumbnail {
-    margin-right: 10px;
-    cursor: pointer;
-    border: 2px solid transparent;
-  }
+      &.selected {
+        border: 2px solid #c8e59b;
+        margin-right: 10px;
+      }
 
-  .thumbnailSelected {
-    border: 2px solid #c8e59b;
-    margin-right: 10px;
+      .thumbnail_image {
+        object-fit: contain;
+      }
+    }
   }
 }
