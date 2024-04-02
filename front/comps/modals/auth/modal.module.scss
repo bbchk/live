@@ -8,26 +8,34 @@
 
   //todo do not use float here
   .modal_body {
+    display: flex;
+    flex-flow: row nowrap;
+
     .left {
-      grid-area: left;
+      flex: 1 1 65%;
     }
 
     .right {
-      grid-area: right;
+      flex: 1 1 35%;
     }
 
-    display: grid;
-    grid-template-columns: 2fr 4rem 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "left vertical_splitter right";
+    .vertical_splitter {
+      flex: 0 1 8%;
+    }
 
     @media screen and (width < 662px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: min-content 4rem min-content;
-      grid-template-areas:
-        "right"
-        "vertical_splitter"
-        "left";
+      flex-flow: column nowrap;
+
+      .right {
+        flex: 0 1 min-content;
+        order: 1;
+      }
+      .vertical_splitter {
+        order: 2;
+      }
+      .left {
+        order: 3;
+      }
     }
   }
 
