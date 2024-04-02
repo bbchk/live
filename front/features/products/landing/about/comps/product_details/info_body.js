@@ -30,41 +30,40 @@ const InfoBody = ({ product }) => {
   }
 
   return (
-    <div className={`${s.body}`}>
-      <div className={`${s.buy_area}`}>
-        <div className={`${s.price}`}>
-          <p>
-            {price}
-            <span className={`${s.currency}`}> ₴ </span>
-          </p>
-          <p className={`${s.left}`}>
-            {left > 0 ? "Є в наявності" : "Немає в наявності"}{" "}
-          </p>
-        </div>
-
-        <button
-          // className={` btn ${s.buy_button} icon-link`}
-          className={` btn ${s.buy_button} icon-link`}
-          onClick={() => handleBuy(product)}
-        >
-          <i className="bi bi-cart4"></i>
-          <p>Купити</p>
-        </button>
-        <button className={` btn ${s.like_button} icon-link `}>
-          <FontAwesomeIcon
-            icon={faHeart}
-            size="xs"
-            style={{ color: "#FFD43B" }}
-          />
-        </button>
-        <button className={` btn ${s.comment_button} icon-link `}>
-          <FontAwesomeIcon
-            icon={faMessage}
-            size="2xs"
-            style={{ color: "#6cb4ee" }}
-          />
-        </button>
+    <div className={`${s.buy_area}`}>
+      <div className={`${s.price}`}>
+        <p>
+          {price}
+          <span className={`${s.currency}`}> ₴ </span>
+        </p>
+        <p className={`${s.is_left}`}>
+          {left > 0 ? "Є в наявності" : "Немає в наявності"}{" "}
+        </p>
       </div>
+
+      <button
+        className={`button_primary ${s.buy_btn}`}
+        onClick={() => handleBuy(product)}
+      >
+        <p>Купити</p>
+        <i className="bi bi-cart4"></i>
+      </button>
+
+      <button className={` ${s.like_btn} icon_button_primary`}>
+        <FontAwesomeIcon
+          className="icon_button_on_hover"
+          icon={faHeart}
+          size="xs"
+        />
+      </button>
+
+      <button className={`${s.comment_btn} icon_button_primary`}>
+        <FontAwesomeIcon
+          className="icon_button_on_hover"
+          icon={faMessage}
+          size="2xs"
+        />
+      </button>
     </div>
   );
 };

@@ -60,9 +60,12 @@
     }
 
     .description,
-    .characteristics,
-    .recs {
+    .characteristics {
       padding: 1rem;
+    }
+
+    .recs {
+      padding: 0 1rem;
     }
 
     .product_main_info {
@@ -90,8 +93,7 @@
     }
 
     .description,
-    .characteristics,
-    .recs {
+    .characteristics {
       padding: 0.5rem;
     }
   }
