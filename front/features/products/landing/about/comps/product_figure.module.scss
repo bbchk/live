@@ -10,22 +10,36 @@
 
   .thumbnails {
     display: flex;
+    gap: 5px;
+
+    padding: 5px 0;
+    margin: 0 10%;
+
+    height: 5rem;
+
     overflow-x: auto;
-    padding: 0px 48px;
 
     .thumbnail {
-      margin-right: 10px;
-      cursor: pointer;
-      border: 2px solid transparent;
+      padding: 5px;
+
+      border-radius: 5px;
+
+      border: 1px solid transparent;
+
+      width: min-content;
 
       &.selected {
-        border: 2px solid #c8e59b;
-        margin-right: 10px;
+        border-color: $color-green-medbud;
       }
 
       .thumbnail_image {
         object-fit: contain;
+        height: 100%;
       }
+    }
+
+    @media screen and (width < 992px) {
+      margin: 0 5px;
     }
   }
 }
