@@ -9,6 +9,7 @@ import { balsamiqSans } from "pages/_app";
 import { useEffect, useMemo, useState } from "react";
 
 import CartItem from "./cart_item/cart_item";
+import Image from "next/image";
 
 const CartModal = () => {
   const dispatch = useDispatch();
@@ -49,9 +50,19 @@ const CartModal = () => {
         <h3>Кошик покупок</h3>
       </Modal.Header>
       <Modal.Body className={`${s.modal_body}`}>
-        <section>
-          {cartItems &&
-            cartItems.map(({ product, quantity }) => {
+        {cartItems.length === 0 ? (
+          <div className={`${s.empty_cart}`}>
+            <Image
+              src="/assets/empty_cart.svg"
+              alt="Empty cart"
+              width={200}
+              height={200}
+            />
+            <p>Кошик поки що порожній</p>
+          </div>
+        ) : (
+          <>
+            {cartItems.map(({ product, quantity }) => {
               return (
                 <CartItem
                   key={product._id}
@@ -60,34 +71,36 @@ const CartModal = () => {
                 />
               );
             })}
-        </section>
-        <footer>
-          <p className={`${s.total_cost} price`}>
-            <span>{`Всього:`}</span>
-            {totalCost}
-            <span>₴</span>
-          </p>
 
-          <menu className={`${s.controls}`}>
-            <li>
-              <button
-                className={`button_primary`}
-                onClick={() => dispatch(toggleCartModal())}
-              >
-                Продовжити покупки
-              </button>
-            </li>
+            <footer>
+              <p className={`${s.total_cost} price`}>
+                <span>{`Всього:`}</span>
+                {totalCost}
+                <span>₴</span>
+              </p>
 
-            <li>
-              <button
-                className={`button_submit ${s.order_btn}`}
-                onClick={handleBuy}
-              >
-                Оформити замовлення
-              </button>
-            </li>
-          </menu>
-        </footer>
+              <menu className={`${s.controls}`}>
+                <li>
+                  <button
+                    className={`button_primary`}
+                    onClick={() => dispatch(toggleCartModal())}
+                  >
+                    Продовжити покупки
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    className={`button_submit ${s.order_btn}`}
+                    onClick={handleBuy}
+                  >
+                    Оформити замовлення
+                  </button>
+                </li>
+              </menu>
+            </footer>
+          </>
+        )}
       </Modal.Body>
     </Modal>
   );
