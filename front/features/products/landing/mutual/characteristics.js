@@ -14,7 +14,13 @@ const Characteristics = ({ title, product }) => {
               <span className={`${s.char_key}`}>{key}: </span>
               <span className={`${s.underline}`}> </span>
             </div>
-            <span className={`${s.value}`}>{value.join(", ")}</span>
+            <p className={`${s.value}`}>
+              {value.map((v, idx) => (
+                <span>
+                  {v} <br />
+                </span>
+              ))}
+            </p>
           </div>
         ))}
       </div>
