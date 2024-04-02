@@ -19,11 +19,8 @@
 
     img {
       object-fit: contain;
-      max-width: 10%;
+      max-width: 15%;
       height: 8rem;
-    }
-
-    p {
     }
 
     button {
@@ -45,14 +42,52 @@
     flex-flow: row nowrap;
     justify-content: flex-end;
     align-items: center;
+    gap: 10%;
 
     .quantity_input {
-      justify-self: flex-end;
-      flex: 0 1 40%;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      flex: 0 1 80%;
     }
+
     .price {
       flex: 0 1 10%;
       font-size: 2rem;
+    }
+  }
+
+  @media screen and (width < 992px) {
+    padding: 1rem 0.5rem;
+    font-size: 0.9rem;
+
+    > div:first-child {
+      img {
+        max-width: 10rem;
+        // flex: 1 0 20%;
+      }
+
+      p {
+        flex: 1 1 80%;
+      }
+
+      button {
+        position: static;
+      }
+    }
+
+    > div:nth-child(2) {
+      justify-content: space-between;
+
+      padding-top: 1rem;
+
+      .quantity_input {
+        flex: 1 1 85%;
+      }
+
+      .price {
+        flex: 1 1 10%;
+      }
     }
   }
 }

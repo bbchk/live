@@ -3,6 +3,7 @@
 
 .modal {
   color: $color-blue-dasl;
+  overflow-x: hidden;
 
   footer {
     padding: 2rem;
@@ -31,6 +32,32 @@
 
       .order_btn {
         font-size: 1.5rem;
+      }
+    }
+
+    @media screen and (width < 662px) {
+      .total_cost {
+        text-align: center;
+      }
+
+      .controls {
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        margin-top: 2rem;
+
+        li {
+          width: 100%;
+        }
+
+        li:first-child {
+          order: 2;
+        }
+        li:last-child {
+          order: 1;
+        }
       }
     }
   }

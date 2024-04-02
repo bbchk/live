@@ -71,7 +71,7 @@ const CartModal = () => {
           <menu className={`${s.controls}`}>
             <li>
               <button
-                className="button_primary"
+                className={`button_primary`}
                 onClick={() => dispatch(toggleCartModal())}
               >
                 Продовжити покупки
