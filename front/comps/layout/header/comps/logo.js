@@ -16,6 +16,7 @@ const Logo = () => {
           alt="Logo of the site"
           width={50}
           height={50}
+          priority
         />
         <p>Живий світ</p>
       </Link>

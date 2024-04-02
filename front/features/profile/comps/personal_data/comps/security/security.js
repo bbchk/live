@@ -20,7 +20,9 @@ const Security = () => {
         </button>
         <button
           onClick={() => {
-            signOut({ callbackUrl: "/" });
+            signOut({ callbackUrl: "/" }).then(() => {
+              window.location.href = "/";
+            });
           }}
         >
           Вийти з акаунту

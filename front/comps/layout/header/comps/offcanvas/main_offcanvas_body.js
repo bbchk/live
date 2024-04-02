@@ -5,9 +5,12 @@ import NavItem from "./comps/nav_item";
 import NavLink from "./comps/nav_link";
 import UserItem from "./comps/user_item";
 import OffcanvasBody from "comps/offcanvas/offcanvas_body";
+import { useRouter } from "next/router";
 
 const MainOffcanvasBody = () => {
+  const router = useRouter();
   const { data: session } = useSession();
+
   return (
     <div className={`${s.body}`}>
       <UserItem />
@@ -49,8 +52,9 @@ const MainOffcanvasBody = () => {
           <NavItem
             href={"#"}
             onClick={() => {
-              // signOut({ callbackUrl: "/" });
-              signOut();
+              signOut({ callbackUrl: "/" }).then(() => {
+                window.location.href = "/";
+              });
             }}
             icon={"bi-box-arrow-left"}
             text={"Вихід з акаунту"}

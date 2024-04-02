@@ -28,7 +28,9 @@ const Tabs = () => {
         <Tab
           href="#"
           onClick={() => {
-            signOut({ callbackUrl: "/" });
+            signOut({ callbackUrl: "/" }).then(() => {
+              window.location.href = "/";
+            });
           }}
         >
           <i className="bi bi-box-arrow-left" />

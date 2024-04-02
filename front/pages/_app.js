@@ -33,19 +33,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductsInfo } from "store/productsSlice";
 import { getCategoriesInfo } from "store/categoriesSlice";
 
-import { Balsamiq_Sans } from "next/font/google";
-import { Caveat } from "next/font/google";
-import { Overpass } from "next/font/google";
-import { Pacifico } from "next/font/google";
-import { Space_Mono } from "next/font/google";
 import { useCart } from "hooks/useCart";
 
+import { Balsamiq_Sans } from "next/font/google";
+import { Pacifico } from "next/font/google";
 const balsamiqSans = Balsamiq_Sans({ weight: "400", subsets: ["latin"] });
-const caveat = Caveat({ weight: "400", subsets: ["latin"] });
-const overpass = Overpass({ weight: "900", subsets: ["latin"] });
 const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
-const spaceMono = Space_Mono({ weight: "400", subsets: ["latin"] });
-export { balsamiqSans, caveat, overpass, pacifico, spaceMono };
+export { balsamiqSans, pacifico };
 
 export default function App({
   Component,
@@ -64,7 +58,6 @@ export default function App({
   return (
     <div>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title> Живий світ - Магазин зоотоварів і товарів для дому </title>
         <meta
           name="description"
@@ -74,13 +67,12 @@ export default function App({
       <SessionProvider session={session}>
         <Provider store={store}>
           <div className={`min-vh-80 ${balsamiqSans.className}`}>
-            {!excludedPaths.includes(router.pathname) && <Header />}
-
+            <Header />
             <FetchData />
             <Modals />
             <Component {...pageProps} />
           </div>
-          {!excludedPaths.includes(router.pathname) && <Footer />}
+          <Footer />
         </Provider>
       </SessionProvider>
     </div>

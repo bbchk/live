@@ -1,0 +1,20 @@
+@use "./styles/variables" as *;
+
+.not_found {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+
+  height: 30rem;
+
+  color: $color-blue-argentinian;
+
+  h1 {
+    font-size: 10rem;
+  }
+
+  p {
+    font-size: 2rem;
+  }
+}

@@ -7,6 +7,8 @@ import axios from "axios";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "./lib/mongodb";
 
+//todo implement apple and facebook providers
+
 // Providers
 const googleProvider = GoogleProvider({
   clientId: process.env.GOOGLE_ID,
@@ -69,8 +71,7 @@ const credentialsProvider = CredentialsProvider({
         throw new Error("User not authenticated");
       }
     } catch (error) {
-      console.log(error);
-      // throw new Error("User not authenticated");
+      throw new Error("User not authenticated");
     }
   },
 });
@@ -78,11 +79,10 @@ const credentialsProvider = CredentialsProvider({
 // Callbacks
 const callbacks = {
   async signIn({ user, account, profile }) {
-    // const res = await fetch(`/api/cart/${user.id}`);
-    // const userCartInDB = await res.json();
     return true;
   },
   async jwt({ token, user, session, trigger, account, profile }) {
+    console.log("🚀 ~ trigger:", trigger);
     if (trigger === "update") {
       token.user = session.user;
     }
@@ -119,37 +119,3 @@ export default NextAuth({
   ...authOptions,
   debug: process.env.NODE_ENV === "development" ? true : false,
 });
-
-//todo implement facebook and apple
-// import FacebookProvider from "next-auth/providers/facebook";
-// import AppleProvider from "next-auth/providers/apple";
-
-// FacebookProvider({
-//   clientId: process.env.FACEBOOK_CLIENT_ID,
-//   clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-// }),
-// AppleProvider({
-//   clientId: process.env.APPLE_ID,
-//   clientSecret: process.env.APPLE_SECRET
-// }),
-
-//callback for user updating their information, so that session will be updated
-// jwt({ token, trigger, session }) {
-//   if (trigger === "update" && session?.name) {
-//     // todo Noote, that `session` can be any arbitrary object, remember to validate it!
-//     token.name = session.name;
-//   }
-//   return token;
-// },
-//  // Using the `...rest` parameter to be able to narrow down the type based on `trigger`
-//  async session({ session, trigger, newSession }) {
-//   // Note, that `rest.session` can be any arbitrary object, remember to validate it!
-//   if (trigger === "update" && newSession?.name) {
-//     // You can update the session in the database if it's not already updated.
-//     // await adapter.updateUser(session.user.id, { name: newSession.name })
-
-//     // Make sure the updated value is reflected on the client
-//     session.name = newSession.name
-//   }
-//   return session
-// }
