@@ -6,8 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 // import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 // import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
-import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import { faMessage } from "@fortawesome/free-regular-svg-icons";
 
 const InfoBody = ({ product }) => {
   const {
@@ -60,17 +59,9 @@ const InfoBody = ({ product }) => {
         </button>
         <button className={` btn ${s.comment_button} icon-link `}>
           <FontAwesomeIcon
-            icon={faThumbsUp}
-            size="xs"
-            // style={{ color: "#FFD43B" }}
-          />
-        </button>
-        <button className={` btn ${s.comment_button} icon-link `}>
-          <FontAwesomeIcon
-            icon={faThumbsDown}
-            flip="horizontal"
-            size="xs"
-            // style={{ color: "#FFD43B" }}
+            icon={faMessage}
+            size="2xs"
+            style={{ color: "#6cb4ee" }}
           />
         </button>
       </div>

@@ -3,7 +3,7 @@ import s from "./filters_offcanvas_toggler.module.scss";
 const FiltersOffcanvasToggler = ({ id }) => {
   return (
     <button
-      className={`${s.filters_offcanvas_toggler}`}
+      className={`${s.filters_offcanvas_toggler} button_primary`}
       type="button"
       data-bs-toggle="offcanvas"
       data-bs-target={`#${id}`}
