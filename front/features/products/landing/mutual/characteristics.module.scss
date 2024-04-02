@@ -22,14 +22,21 @@
 
     .key_container {
       display: flex;
+      align-items: flex-end;
+
       width: 300px;
 
       .underline {
-        border-bottom: 2px solid $color-green-medbud;
+        flex: 1 1 auto;
 
-        flex-grow: 1;
         margin: 0 0.5rem;
+        border-bottom: 1px solid $color-green-medbud;
       }
     }
+  }
+
+  .value {
+    display: inline-block;
+    width: 50%;
   }
 }

@@ -11,7 +11,7 @@ const Characteristics = ({ title, product }) => {
         {Object.entries(product.characteristics).map(([key, value], index) => (
           <div key={key} className={`${s.item}`}>
             <div className={`${s.key_container}`}>
-              <span className={`${s.key}`}>{key}: </span>
+              <span className={`${s.char_key}`}>{key}: </span>
               <span className={`${s.underline}`}> </span>
             </div>
             <span className={`${s.value}`}>{value.join(", ")}</span>
