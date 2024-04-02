@@ -49,7 +49,8 @@ const MainOffcanvasBody = () => {
           <NavItem
             href={"#"}
             onClick={() => {
-              signOut({ callbackUrl: "/" });
+              // signOut({ callbackUrl: "/" });
+              signOut();
             }}
             icon={"bi-box-arrow-left"}
             text={"Вихід з акаунту"}
