@@ -18,6 +18,7 @@
     height: 5rem;
 
     overflow-x: auto;
+    overflow-y: hidden;
 
     .thumbnail {
       padding: 5px;
@@ -25,8 +26,6 @@
       border-radius: 5px;
 
       border: 1px solid transparent;
-
-      width: min-content;
 
       &.selected {
         border-color: $color-green-medbud;
