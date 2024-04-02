@@ -4,8 +4,6 @@ import { useCart } from "hooks/useCart";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-// import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-// import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 import { faMessage } from "@fortawesome/free-regular-svg-icons";
 
 const InfoBody = ({ product }) => {
