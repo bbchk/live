@@ -16,6 +16,7 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
   const [activeOptions, setActiveOptions] = useState(filters[slugFilterLabel]);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (activeOptions != null) {
       if (activeOptions.length > 0) {

@@ -1,53 +1,20 @@
 @use "./styles/variables" as *;
 
-$border: 2px solid $color-green-medbud;
-$radius: 0.5rem;
-
 .filters {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   height: 100%;
 
-  .btn_group {
-    height: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-
-    border: 1px solid $color-green-medbud;
-    border-radius: $radius;
-
-    label {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      padding: 1rem;
-      border-radius: 0;
-
-      &:last-child {
-        border-radius: 0 $radius $radius 0;
-      }
-      &:first-child {
-        border-right: 1px solid $color-green-medbud;
-        border-radius: $radius 0 0 $radius;
-      }
-    }
-  }
-
   .select {
-    display: none;
     height: 100%;
-  }
+    max-width: fit-content;
 
-  @media screen and (max-width: 992px) {
-    .btn_group {
-      display: none;
-    }
-    .select {
-      display: block;
-    }
-  }
-  @media screen and (width < 420px) {
+    border-radius: 5px;
+    border: 0.09rem solid $color-wh-lightsilv;
+
+    line-height: 1;
+
+    cursor: pointer;
   }
 }

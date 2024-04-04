@@ -1,36 +1,45 @@
 import s from "./sort-group.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilter, deleteFilter } from "store/filtersSlice";
+import { transliterate } from "@bbuukk/slugtrans/transliterate";
+import { slugify } from "@bbuukk/slugtrans/slugify";
+import { useEffect, useState } from "react";
 
 //todo add funcitonality
 const SortGroup = () => {
-  const handleChange = (event) => {};
+  const dispatch = useDispatch();
+  const { filters } = useSelector((state) => state.filters);
 
-  const ascLabel = "Від дешевших до дорогих";
-  const dscLable = "Від дорогих до дешевих";
+  const slugFilterLabel = slugify(transliterate("сортування"));
+  const handleChange = (event) => {
+    const value = event.target.value;
+    const slugValue = slugify(transliterate(value));
+    dispatch(
+      setFilter({
+        filterName: slugFilterLabel,
+        filterValue: [slugValue],
+      })
+    );
+  };
+
   return (
     <search className={`${s.filters}`}>
-      <div className={`${s.btn_group}`}>
-        <label>
-          <input
-            type="radio"
-            name="sort_options"
-            id="price_asc"
-            onChange={handleChange}
-          />
-          {ascLabel}
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="sort_options"
-            id="price_dsc"
-            onChange={handleChange}
-          />{" "}
-          {dscLable}
-        </label>
-      </div>
       <select className={`form-select ${s.select}`} onChange={handleChange}>
-        <option value="price_asc">{ascLabel}</option>
-        <option value="price_dsc">{dscLable}</option>
+        {[
+          "За рейтингом",
+          "Від дешевших до дорогих",
+          "Від дорогих до дешевих",
+        ].map((option) => {
+          const isSelected = filters[slugFilterLabel]?.includes(
+            slugify(transliterate(option))
+          );
+
+          return (
+            <option selected={isSelected} value={option}>
+              {option}
+            </option>
+          );
+        })}
       </select>
     </search>
   );
