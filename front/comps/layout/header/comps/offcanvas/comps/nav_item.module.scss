@@ -8,20 +8,28 @@
 
   color: $color-blue-dasl;
 
-  i {
-    background-color: rgba($color-blue-dasl, 0.1);
+  i,
+  svg {
     padding: 0.5rem;
     border-radius: 10%;
+
+    $icon-size: 2.5rem;
+    font-size: $icon-size - 1rem;
+    width: $icon-size;
+    height: $icon-size;
+
+    background-color: rgba($color-blue-dasl, 0.1);
     color: rgba($color-blue-dasl, 1);
   }
 
   a {
-    padding: 0 0.5rem;
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
     gap: 5%;
+
+    padding: 0 0.5rem;
 
     p {
       font-size: 1.2rem;
@@ -33,7 +41,8 @@
   &:hover {
     background-color: $color-green-medbud;
 
-    i {
+    i,
+    svg {
       // background-color: $color-green-medbud;
       background-color: $color-green-dur;
       color: white;

@@ -6,6 +6,9 @@ import NavLink from "./comps/nav_link";
 import UserItem from "./comps/user_item";
 import OffcanvasBody from "comps/offcanvas/offcanvas_body";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
 
 const MainOffcanvasBody = () => {
   const router = useRouter();
@@ -17,27 +20,27 @@ const MainOffcanvasBody = () => {
       <ul className="navbar-nav justify-content-end flex-grow-1">
         {session ? (
           <>
-            <NavItem
-              href={"/"}
-              icon={"bi-book"}
-              text={"Усі категорії товарів"}
-            />
-            <NavItem
-              href={"/profile/wish_list"}
-              icon={"bi-heart"}
-              text={"Список бажань"}
-            />
-            <NavItem
-              href={"/profile/orders_list"}
-              icon={"bi-list-ul"}
-              text={"Мої замовлення"}
-            />
+            <NavItem href={"/"} text={"Усі категорії товарів"}>
+              <i className=" bi bi-book" />
+            </NavItem>
+
+            <NavItem href={"/profile/wish_list"} text={"Список бажань"}>
+              <FontAwesomeIcon icon={faHeart} />
+            </NavItem>
+
+            <NavItem href={"/profile/orders_list"} text={"Мої замовлення"}>
+              <i className=" bi bi-list-ul" />
+            </NavItem>
           </>
         ) : (
-          <NavItem href={"/"} icon={"bi-book"} text={"Усі категорії товарів"} />
+          <NavItem href={"/"} text={"Усі категорії товарів"}>
+            <i className=" bi bi-book" />
+          </NavItem>
         )}
 
-        <NavItem href={"#"} icon={"bi-cart3"} text={"Кошик покупок"} />
+        <NavItem href={"#"} text={"Кошик покупок"}>
+          <FontAwesomeIcon icon={faBasketShopping} />
+        </NavItem>
       </ul>
       <ul
         className={`navbar-nav justify-content-end flex-grow-1 ${s.link_section}`}

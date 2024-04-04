@@ -40,17 +40,12 @@
       margin: 0;
     }
 
-    $icon-size: 2rem;
-
-    i {
-      color: $color-blue-dasl;
-      font-size: $icon-size;
-    }
+    color: $color-blue-dasl;
 
     img {
       border-radius: 2rem;
-      height: $icon_size;
-      width: $icon_size;
+      height: 2rem;
+      width: 2rem;
 
       object-fit: cover;
     }
