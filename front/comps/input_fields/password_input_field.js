@@ -25,7 +25,7 @@ const PasswordInputField = ({
         placeholder={placeholder}
       />
       <button
-        className={`${s.eye_button} btn`}
+        className={`${s.eye_button}`}
         type="button"
         onClick={() => {
           setIsPasswordPlainText(!isPasswordPlainText);

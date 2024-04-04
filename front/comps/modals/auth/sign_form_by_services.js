@@ -15,7 +15,7 @@ const SignFormByServices = () => {
             console.log(e);
           }
         }}
-        className={`btn button_primary ${s.service_button}`}
+        className={`button_primary ${s.service_button}`}
       >
         <Image
           src={`/assets/services/${serviceName}_icon.svg`}

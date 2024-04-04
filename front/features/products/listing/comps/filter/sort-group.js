@@ -9,7 +9,7 @@ const SortGroup = () => {
   return (
     <search className={`${s.filters}`}>
       <div className={`${s.btn_group}`}>
-        <label className="btn">
+        <label>
           <input
             type="radio"
             name="sort_options"
@@ -18,7 +18,7 @@ const SortGroup = () => {
           />
           {ascLabel}
         </label>
-        <label className="btn">
+        <label>
           <input
             type="radio"
             name="sort_options"

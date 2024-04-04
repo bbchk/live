@@ -53,7 +53,7 @@ const AuthPopover = () => {
       <Popover.Body>
         <div className={`${s.unsigned_popover} ${balsamiqSans.className}`}>
           <button
-            className={`btn ${s.sign_in_button} button_submit`}
+            className={` ${s.sign_in_button} button_submit`}
             onClick={handleSignIn}
           >
             <p>Увійти</p>

@@ -26,12 +26,14 @@ button.button_primary {
 
   transition: color 0.25s, background-color 0.25s;
 
-  &:hover {
-    background-color: $color-green-dur;
-    color: $color-wh-milk;
+  //todo make special styles for focus
+  &:focus {
+    background-color: $color-wh-milk;
+    color: $color-green-dur;
+    border: 1px solid $color-green-dur;
   }
 
-  &:active {
+  &:hover {
     background-color: $color-green-dur;
     color: $color-wh-milk;
     border: 1px solid $color-green-dur;

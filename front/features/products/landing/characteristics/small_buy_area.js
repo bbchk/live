@@ -7,7 +7,7 @@ const SmallBuyArea = ({ product: { price } }) => {
         {price}
         <span> грн </span>
       </p>
-      <button className={` btn ${s.buy_button} icon-link `}>
+      <button className={` ${s.buy_button} icon-link `}>
         <p>Купити</p>
         <i className="bi bi-cart4"></i>
       </button>

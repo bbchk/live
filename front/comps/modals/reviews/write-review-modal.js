@@ -59,10 +59,10 @@ const WriteReviewModal = ({ isOpen, toggle }) => {
             </div>
 
             <div className={`${s.button_area}`}>
-              <button onClick={() => toggle()} className="btn">
+              <button onClick={() => toggle()}>
                 <p>Cancel</p>
               </button>
-              <button type="submit" className="btn">
+              <button type="submit">
                 <p>Post my review</p>
               </button>
             </div>
