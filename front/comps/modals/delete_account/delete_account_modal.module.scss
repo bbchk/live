@@ -12,12 +12,13 @@
 
     list-style: none;
 
-    li:last-child button {
-      // @include button(white, $color-red-decapink);
-      // @include button(white, $color-red-decapink);
-    }
-    li:first-child button {
-      // @include button($color-blue-dasl, $color-green-medbud);
+    @media screen and (max-width: 662px) {
+      li:first-child {
+        order: 2;
+      }
+      li:last-child {
+        order: 1;
+      }
     }
   }
 }
