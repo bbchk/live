@@ -76,8 +76,15 @@ button.button_danger {
 
 button[disabled] {
   background-color: rgba($color-blue-dasl, 0.1);
-  border-color: rgba($color-blue-dasl, 0.1);
+  border-color: $color-blue-dasl;
+  color: $color-blue-dasl;
   cursor: not-allowed;
+
+  &:hover {
+    background-color: rgba($color-blue-dasl, 0.1);
+    border-color: $color-blue-dasl;
+    color: $color-blue-dasl;
+  }
 }
 
 @mixin icon_button {
@@ -98,8 +105,8 @@ button.icon_button_primary {
 }
 
 .icon_button_on_hover {
+  transition: background-color 0.25s;
   &:hover {
     background-color: rgba($color-blue-dasl, 0.1);
-    // background-color: magenta;
   }
 }

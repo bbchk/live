@@ -25,13 +25,17 @@ const PasswordInputField = ({
         placeholder={placeholder}
       />
       <button
-        className={`${s.eye_button}`}
+        className={`${s.eye_button} `}
         type="button"
         onClick={() => {
           setIsPasswordPlainText(!isPasswordPlainText);
         }}
       >
-        <i className={`bi bi-eye-${isPasswordPlainText ? "" : "slash-"}fill`} />
+        <i
+          className={`bi bi-eye-${
+            isPasswordPlainText ? "" : "slash-"
+          }fill icon_button_on_hover`}
+        />
       </button>
     </div>
   );

@@ -96,6 +96,7 @@ const ChangePasswordModal = () => {
           <menu className={`${s.button_group}`}>
             <li>
               <button
+                className="button_primary"
                 type="button"
                 onClick={() => {
                   setHasBeenBeingModified(false);
@@ -107,6 +108,7 @@ const ChangePasswordModal = () => {
             </li>
             <li>
               <button
+                className="button_submit"
                 data-toggle="tooltip"
                 title={hasBeenBeingModified ? "" : "Дані не були змінені"}
                 data-placement="bottom"
