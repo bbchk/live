@@ -48,19 +48,11 @@ const InfoBody = ({ product }) => {
       </button>
 
       <button className={` ${s.like_btn} icon_button_primary`}>
-        <FontAwesomeIcon
-          className="icon_button_on_hover"
-          icon={faHeart}
-          size="xs"
-        />
+        <FontAwesomeIcon className="icon_button_on_hover" icon={faHeart} />
       </button>
 
       <button className={`${s.comment_btn} icon_button_primary`}>
-        <FontAwesomeIcon
-          className="icon_button_on_hover"
-          icon={faMessage}
-          size="2xs"
-        />
+        <FontAwesomeIcon className="icon_button_on_hover" icon={faMessage} />
       </button>
     </div>
   );
