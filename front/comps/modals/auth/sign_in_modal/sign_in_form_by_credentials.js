@@ -15,7 +15,7 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
-  const { get } = useCart();
+  const { getCart } = useCart();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
     if (res.ok) {
       const session = await getSession();
 
-      const cart = await get(session);
+      const cart = await getCart(session);
       dispatch(setCart(cart));
 
       toggleModal();

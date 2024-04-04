@@ -105,7 +105,7 @@ export const useCart = () => {
     // }
   }
 
-  async function get(session) {
+  async function getCart(session) {
     try {
       const localStorageCartJson = localStorage.getItem("cart");
       const lscart = JSON.parse(localStorageCartJson) || [];
@@ -169,5 +169,5 @@ export const useCart = () => {
   }
 
   // return { add, subtract, remove, sync };
-  return { add, remove, get };
+  return { add, remove, getCart };
 };

@@ -58,6 +58,7 @@ export default function App({
   return (
     <div>
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title> Живий світ - Магазин зоотоварів і товарів для дому </title>
         <meta
           name="description"
@@ -85,19 +86,20 @@ function FetchData() {
   const dispatch = useDispatch();
   const [fetched, setFetched] = useState(false);
 
-  const { get } = useCart();
+  const { getCart } = useCart();
 
   useEffect(() => {
     if (!fetched) {
       dispatch(getProductsInfo());
       dispatch(getCategoriesInfo());
-      async function getCart() {
+
+      async function getUserCart() {
         const session = await getSession();
 
-        const cart = await get(session);
+        const cart = await getCart(session);
         dispatch(setCart(cart));
       }
-      getCart();
+      getUserCart();
       setFetched(true);
     }
   }, [dispatch, fetched]);

@@ -2,7 +2,7 @@
 @use "./styles/mixins" as *;
 
 .auth_btn_group {
-  $icon-size: 1.7rem;
+  $icon-size: 2rem;
   svg {
     width: $icon-size;
     height: $icon-size;
