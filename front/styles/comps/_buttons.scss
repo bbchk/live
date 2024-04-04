@@ -23,17 +23,35 @@ button.button_primary {
   color: $color-green-dur;
 
   font-size: 1.2rem;
+
+  transition: color 0.25s, background-color 0.25s;
+
+  &:hover {
+    background-color: $color-green-dur;
+    color: $color-wh-milk;
+  }
+
+  &:active {
+    background-color: $color-green-dur;
+    color: $color-wh-milk;
+    border: 1px solid $color-green-dur;
+  }
 }
 
 button.button_submit {
   @include button;
 
-  border: 2px solid $color-wh-milk;
-
   background-color: $color-green-dur;
   color: $color-wh-milk;
 
   font-size: 1.2rem;
+
+  transition: color 0.25s, background-color 0.25s;
+
+  &:hover {
+    background-color: saturate($color-green-dur, 15%);
+    color: $color-wh-milk;
+  }
 }
 
 button.button_danger {
@@ -43,6 +61,15 @@ button.button_danger {
   color: white;
 
   font-size: 1.2rem;
+
+  border: 1px solid transparent;
+
+  transition: color 0.25s, background-color 0.25s;
+  &:hover {
+    border: 1px solid $color-red-suncycl;
+    background-color: white;
+    color: $color-red-suncycl;
+  }
 }
 
 button[disabled] {
@@ -50,17 +77,6 @@ button[disabled] {
   border-color: rgba($color-blue-dasl, 0.1);
   cursor: not-allowed;
 }
-
-// button.secondary {
-//   @include button;
-
-//   border: 1px solid $color-green-dur;
-
-//   background-color: $color-wh-milk;
-//   color: $color-green-dur;
-
-//   font-size: 1.2rem;
-// }
 
 @mixin icon_button {
   display: flex;
