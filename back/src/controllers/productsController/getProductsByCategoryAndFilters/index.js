@@ -106,9 +106,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
     /*Creating query for resulted products*/
     let query = Product.find({
       category: { $in: activeCategoriesIds },
-    })
-      .select("name price images characteristics")
-      .sort({ createdAt: -1 });
+    }).select("name price images characteristics");
 
     /*Applying filters to resulted products query*/
     for (let [filterName, filterValues] of filters) {
@@ -117,7 +115,19 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
       }
 
       if (filterName === "tsina") {
-        query = query.where("price").gte(filterValues[0]).lte(filterValues[1]);
+        query = query
+          .where("price")
+          .gte(filterValues[0])
+          .lte(filterValues[1])
+          .sort({ starRating: 1 });
+      } else if (filterName === "sortuvannya") {
+        if (filterValues[0] === "vid-deshevshykh-do-dorohykh") {
+          query = query.sort({ price: 1 });
+        } else if (filterValues[0] === "vid-dorohykh-do-deshevykh") {
+          query = query.sort({ price: -1 });
+        } else if (filterValues[0] === "za-reyutynhom") {
+          query = query.sort({ starRating: 1 });
+        }
       } else {
         const { originalFilterName, originalFilterValues } =
           getOriginalFilterNameAndValues(filterName, filterValues);
