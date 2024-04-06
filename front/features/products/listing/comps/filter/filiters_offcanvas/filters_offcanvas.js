@@ -7,10 +7,15 @@ import FiltersAccordion from "../filters_accordion/filters_accordion";
 import { useRouter } from "next/router";
 
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const FiltersOffcanvas = ({ id, filters, minMaxPrice, currentMinMaxPrice }) => {
   const router = useRouter();
   const { filters: activeFilters } = useSelector((state) => state.filters);
+
+  useEffect(() => {
+    console.log();
+  }, [activeFilters]);
 
   return (
     <Offcanvas id={id}>
@@ -23,17 +28,17 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, currentMinMaxPrice }) => {
 
       <OffcanvasBody>
         <div className={`${s.offcanvas_filter_body}`}>
-          {Object.keys(activeFilters).length != 0 && (
-            <button
-              className={`${s.cancel_all_btn} button_danger_secondary`}
-              onClick={() => {
-                const categoryPath = router.query.categoryPath;
-                router.push(`/products/${categoryPath}/page=1`);
-              }}
-            >
-              Скасувати усі фільтри
-            </button>
-          )}
+          {activeFilters &&
+            Object.keys(activeFilters).some((f) => f !== "page") && (
+              <button
+                className={`${s.cancel_all_btn} button_danger_secondary`}
+                onClick={() => {
+                  router.push(`/products/${router.query.categoryPath}/page=1`);
+                }}
+              >
+                Скасувати усі фільтри
+              </button>
+            )}
 
           <FiltersAccordion
             filters={filters}
