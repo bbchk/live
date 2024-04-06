@@ -13,9 +13,9 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, currentMinMaxPrice }) => {
   const router = useRouter();
   const { filters: activeFilters } = useSelector((state) => state.filters);
 
-  useEffect(() => {
-    console.log();
-  }, [activeFilters]);
+  // useEffect(() => {
+  //   console.log(activeFilters);
+  // }, [activeFilters]);
 
   return (
     <Offcanvas id={id}>
@@ -35,6 +35,8 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, currentMinMaxPrice }) => {
                 onClick={() => {
                   router.push(`/products/${router.query.categoryPath}/page=1`);
                 }}
+                data-bs-toggle="offcanvas"
+                data-bs-target={`#${id}`}
               >
                 Скасувати усі фільтри
               </button>

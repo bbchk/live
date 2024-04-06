@@ -16,17 +16,18 @@ const ProductListingBody = ({
   numPages,
   page,
 }) => {
+  const filtersOffcanvasId = "filtersOffcanvas";
   return (
     <>
       <FiltersOffcanvas
-        id="filtersOffcanvas"
+        id={filtersOffcanvasId}
         filters={filtersMap}
         minMaxPrice={minMaxPrice}
         currentMinMaxPrice={currentMinMaxPrice}
       />
       <div className={`${s.body}`}>
         <div className={`${s.filters_offcanvas_toggler}`}>
-          <FiltersOffcanvasToggler id="filtersOffcanvas" />
+          <FiltersOffcanvasToggler id={filtersOffcanvasId} />
         </div>
         <div className={`${s.sort_group}`}>
           <SortGroup />

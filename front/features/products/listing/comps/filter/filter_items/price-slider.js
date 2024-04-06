@@ -13,10 +13,6 @@ const PriceSlider = ({ minMax, currentMinMax }) => {
     currentMinMax[1],
   ]);
 
-  useEffect(() => {
-    setMinMaxPrice([minMax[0], minMax[1]]);
-  }, [categoryPath]);
-
   const minDistance = 50; // Define your minimum distance here
 
   const dispatch = useDispatch();
