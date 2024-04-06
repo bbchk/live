@@ -58,8 +58,13 @@ button.button_danger {
 
   border: 1px solid transparent;
 
-  &:hover {
+  &:active,
+  &:focus {
     border: 1px solid $color-red-suncycl;
+  }
+
+  &:hover {
+    border-color: $color-red-suncycl;
     background-color: white;
     color: $color-red-suncycl;
   }
@@ -71,6 +76,11 @@ button.button_danger_secondary {
   border: 1px solid $color-red-suncycl;
   background-color: white;
   color: $color-red-suncycl;
+
+  &:active,
+  &:focus {
+    border: 1px solid $color-red-suncycl;
+  }
 
   &:hover {
     background-color: $color-red-suncycl;
