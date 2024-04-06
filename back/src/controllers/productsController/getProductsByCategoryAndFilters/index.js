@@ -179,6 +179,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
       );
     }
     result.products = products;
+    result.productLength = products.length;
 
     res.status(200).json(result);
   } catch (err) {

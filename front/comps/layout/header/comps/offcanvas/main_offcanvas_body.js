@@ -8,7 +8,11 @@ import OffcanvasBody from "comps/offcanvas/offcanvas_body";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBasketShopping,
+  faListUl,
+  faLayerGroup,
+} from "@fortawesome/free-solid-svg-icons";
 
 const MainOffcanvasBody = () => {
   const router = useRouter();
@@ -21,7 +25,7 @@ const MainOffcanvasBody = () => {
         {session ? (
           <>
             <NavItem href={"/"} text={"Усі категорії товарів"}>
-              <i className=" bi bi-book" />
+              <FontAwesomeIcon icon={faLayerGroup} />
             </NavItem>
 
             <NavItem href={"/profile/wish_list"} text={"Список бажань"}>
@@ -29,12 +33,12 @@ const MainOffcanvasBody = () => {
             </NavItem>
 
             <NavItem href={"/profile/orders_list"} text={"Мої замовлення"}>
-              <i className=" bi bi-list-ul" />
+              <FontAwesomeIcon icon={faListUl} />
             </NavItem>
           </>
         ) : (
           <NavItem href={"/"} text={"Усі категорії товарів"}>
-            <i className=" bi bi-book" />
+            <FontAwesomeIcon icon={faLayerGroup} />
           </NavItem>
         )}
 

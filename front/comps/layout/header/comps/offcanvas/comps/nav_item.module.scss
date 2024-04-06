@@ -8,6 +8,13 @@
 
   color: $color-blue-dasl;
 
+  $icon-size: 2.5rem;
+
+  svg {
+    width: $icon-size;
+    height: $icon-size;
+  }
+
   i,
   svg {
     padding: 0.5rem;
@@ -20,6 +27,8 @@
 
     background-color: rgba($color-blue-dasl, 0.1);
     color: rgba($color-blue-dasl, 1);
+
+    transition: background-color 0.25s, color 0.25s;
   }
 
   a {
@@ -37,13 +46,12 @@
     }
   }
 
-  //todo make transition
+  transition: background-color 0.25s;
   &:hover {
     background-color: $color-green-medbud;
 
     i,
     svg {
-      // background-color: $color-green-medbud;
       background-color: $color-green-dur;
       color: white;
     }

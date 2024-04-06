@@ -12,6 +12,8 @@
   width: 100%;
 
   font-size: 1.2rem;
+
+  transition: color 0.25s, background-color 0.25s;
 }
 
 button.button_primary {
@@ -21,10 +23,6 @@ button.button_primary {
 
   background-color: $color-wh-milk;
   color: $color-green-dur;
-
-  font-size: 1.2rem;
-
-  transition: color 0.25s, background-color 0.25s;
 
   //todo make special styles for focus
   &:focus {
@@ -46,10 +44,6 @@ button.button_submit {
   background-color: $color-green-dur;
   color: $color-wh-milk;
 
-  font-size: 1.2rem;
-
-  transition: color 0.25s, background-color 0.25s;
-
   &:hover {
     background-color: saturate($color-green-dur, 15%);
     color: $color-wh-milk;
@@ -62,15 +56,25 @@ button.button_danger {
   background-color: $color-red-suncycl;
   color: white;
 
-  font-size: 1.2rem;
-
   border: 1px solid transparent;
 
-  transition: color 0.25s, background-color 0.25s;
   &:hover {
     border: 1px solid $color-red-suncycl;
     background-color: white;
     color: $color-red-suncycl;
+  }
+}
+
+button.button_danger_secondary {
+  @include button;
+
+  border: 1px solid $color-red-suncycl;
+  background-color: white;
+  color: $color-red-suncycl;
+
+  &:hover {
+    background-color: $color-red-suncycl;
+    color: white;
   }
 }
 

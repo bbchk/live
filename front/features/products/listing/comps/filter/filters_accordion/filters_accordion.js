@@ -10,11 +10,12 @@ const FiltersAccordion = ({
   filters,
   minMaxPrice: minMax,
   currentMinMaxPrice: currentMinMax,
+  show = true,
 }) => {
   return (
     <search>
       <Accordion id={"filtersAccordion"}>
-        <AccordionItem id={"priceSlicerAccItem"} label="Ціна" show={true}>
+        <AccordionItem id={"priceSlicerAccItem"} label="Ціна" show={show}>
           <PriceSlider minMax={minMax} currentMinMax={currentMinMax} />
         </AccordionItem>
         {filters.map(([filterLabel, options], idx) => {
@@ -23,7 +24,7 @@ const FiltersAccordion = ({
               key={filterLabel}
               id={slugify(transliterate(filterLabel))}
               label={filterLabel}
-              show={true}
+              show={show}
             >
               <FilterChecks
                 filterLabel={filterLabel}
