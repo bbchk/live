@@ -1,3 +1,4 @@
+import s from "./checkbox.module.scss";
 import { useEffect, useState } from "react";
 
 const CheckBox = ({ id, label, checked, handleChange }) => {
@@ -8,22 +9,19 @@ const CheckBox = ({ id, label, checked, handleChange }) => {
   }, [checked]);
 
   return (
-    <div className="form-check">
+    <label htmlFor={id} className={`form-check ${s.form_check}`}>
       <input
-        className="form-check-input"
+        className={`form-check-input ${isChecked ? s.active : ""}`}
         type="checkbox"
         checked={isChecked}
-        onChange={() => {
-          handleChange(!isChecked, label);
-          setIsChecked(!isChecked);
+        onChange={(e) => {
+          handleChange(e.target.checked, label);
+          setIsChecked(e.target.checked);
         }}
         id={id}
-        role="button"
       />
-      <label className="form-check-label" htmlFor={id}>
-        {label}
-      </label>
-    </div>
+      <span className="form-check-label">{label}</span>
+    </label>
   );
 };
 

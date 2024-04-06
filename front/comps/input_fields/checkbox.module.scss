@@ -1,0 +1,13 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.form_check {
+  cursor: pointer;
+
+  input {
+    &:checked {
+      border: 0;
+      background-color: $color-green-dur;
+    }
+  }
+}

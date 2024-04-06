@@ -52,13 +52,14 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
         );
 
         return (
-          <CheckBox
-            key={option}
-            id={option}
-            label={option}
-            checked={isChecked}
-            handleChange={handleChange}
-          />
+          <div key={option} className={`${s.checkbox}`}>
+            <CheckBox
+              id={option}
+              label={option}
+              checked={isChecked}
+              handleChange={handleChange}
+            />
+          </div>
         );
       })}
     </section>
