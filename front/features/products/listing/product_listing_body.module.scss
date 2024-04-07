@@ -3,14 +3,14 @@
 
 .body {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 3rem 1fr;
   row-gap: 1rem;
 
   grid-template-areas:
-    ". sort"
-    "filter gallery"
-    "filter gallery";
+    "selected selected selected sort"
+    "filter gallery gallery gallery"
+    "filter gallery gallery gallery";
 
   .filters_offcanvas_toggler {
     display: none;
@@ -20,6 +20,10 @@
   .sort_group {
     margin-right: 1rem;
     grid-area: sort;
+  }
+
+  .selected {
+    grid-area: selected;
   }
 
   .filters {
@@ -51,7 +55,8 @@
       margin-left: 1rem;
     }
 
-    .filters {
+    .filters,
+    .selected {
       display: none;
     }
 

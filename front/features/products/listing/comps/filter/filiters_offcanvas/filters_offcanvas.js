@@ -6,51 +6,91 @@ import FiltersAccordion from "../filters_accordion/filters_accordion";
 
 import { useRouter } from "next/router";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-const FiltersOffcanvas = ({ id, filters, minMaxPrice, currentMinMaxPrice }) => {
+const FiltersOffcanvas = ({
+  id,
+  filters,
+  minMaxPrice,
+  currentMinMaxPrice,
+  productsCount,
+}) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const { filters: activeFilters } = useSelector((state) => state.filters);
 
-  // useEffect(() => {
-  //   console.log(activeFilters);
-  // }, [activeFilters]);
+  const isActiveFilters = Object.keys(activeFilters).some((f) => f != "page");
+
+  //todo make it cancel_all_filters button rerender whole offcanvas for filters to refresh
+  //todo make filterItems in filtersAccordion unique
 
   return (
-    <Offcanvas id={id}>
-      <OffcanvasHeader id={`${id}Header`}>
-        <div className={`${s.offcanvas_filter_header}`}>
-          <i className="bi bi-funnel-fill" />
-          <h2>Фільтри</h2>
-        </div>
-      </OffcanvasHeader>
+    <div className={`${s.offcanvas}`}>
+      <Offcanvas id={id}>
+        <OffcanvasHeader id={`${id}Header`}>
+          <header>
+            <i className="bi bi-funnel-fill" />
+            <h2>Фільтри</h2>
+          </header>
+        </OffcanvasHeader>
 
-      <OffcanvasBody>
-        <div className={`${s.offcanvas_filter_body}`}>
-          {activeFilters &&
-            Object.keys(activeFilters).some((f) => f !== "page") && (
+        <OffcanvasBody>
+          <div className={`${s.offcanvas_filter_body}`}>
+            {activeFilters && isActiveFilters && (
               <button
                 className={`${s.cancel_all_btn} button_danger_secondary`}
                 onClick={() => {
+                  dispatch(deleteAllFilters());
                   router.push(`/products/${router.query.categoryPath}/page=1`);
                 }}
-                data-bs-toggle="offcanvas"
-                data-bs-target={`#${id}`}
               >
                 Скасувати усі фільтри
               </button>
             )}
 
-          <FiltersAccordion
-            filters={filters}
-            minMaxPrice={minMaxPrice}
-            currentMinMaxPrice={currentMinMaxPrice}
-            show={false}
-          />
-        </div>
-      </OffcanvasBody>
-    </Offcanvas>
+            <FiltersAccordion
+              id="filtersOffcanvasAccordion"
+              filters={filters}
+              minMaxPrice={minMaxPrice}
+              currentMinMaxPrice={currentMinMaxPrice}
+              show={false}
+            />
+          </div>
+        </OffcanvasBody>
+        <footer>
+          {activeFilters && isActiveFilters ? (
+            <>
+              <p>{`Знайдено ${productsCount} товарів`}</p>
+              <button
+                className="button_submit"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target={`#${id}`}
+                aria-controls={id}
+                onClick={() => {
+                  router.push(
+                    `/products/${router.query.categoryPath}/${router.query.filtersStr}`
+                  );
+                }}
+              >
+                Показати
+              </button>
+            </>
+          ) : (
+            <button
+              className="button_primary"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target={`#${id}`}
+              aria-controls={id}
+            >
+              Закрити
+            </button>
+          )}
+        </footer>
+      </Offcanvas>
+    </div>
   );
 };
 

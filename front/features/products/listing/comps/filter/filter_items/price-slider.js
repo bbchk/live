@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { setFilter } from "store/filtersSlice";
 import { useRouter } from "next/router";
 
+//todo inconsistent currentMinMax, it changes on page refresh, when set on some points lower
 const PriceSlider = ({ minMax, currentMinMax }) => {
   const router = useRouter();
   const { categoryPath } = router.query;

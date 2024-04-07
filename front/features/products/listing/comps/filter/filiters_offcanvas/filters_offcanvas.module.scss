@@ -1,25 +1,45 @@
 @use "./styles/variables" as *;
 @use "./styles/mixins" as *;
 
-.offcanvas_filter_header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+.offcanvas {
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 
-  padding: 1rem;
+    padding: 1rem;
 
-  color: $color-blue-dasl;
+    color: $color-blue-dasl;
 
-  i {
-    font-size: 1.3em;
-  }
-}
-
-.offcanvas_filter_body {
-  .cancel_all_btn {
-    margin-bottom: 1rem;
+    i {
+      font-size: 1.3em;
+    }
   }
 
-  padding: 1rem;
+  .offcanvas_filter_body {
+    padding: 1rem;
+
+    .cancel_all_btn {
+      margin-bottom: 1rem;
+    }
+  }
+
+  footer {
+    padding: 0 1rem;
+
+    border-top: 0.09rem solid $color-wh-lightsilv;
+
+    text-align: center;
+
+    p {
+      color: rgba($color-blue-dasl, 0.8);
+      margin: 1rem 0;
+    }
+
+    button {
+      margin: 1rem 0;
+      margin-bottom: 1.5rem;
+    }
+  }
 }

@@ -7,6 +7,7 @@ import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 
 const FiltersAccordion = ({
+  id,
   filters,
   minMaxPrice: minMax,
   currentMinMaxPrice: currentMinMax,
@@ -14,7 +15,7 @@ const FiltersAccordion = ({
 }) => {
   return (
     <search>
-      <Accordion id={"filtersAccordion"}>
+      <Accordion id={id}>
         <AccordionItem id={"priceSlicerAccItem"} label="Ціна" show={show}>
           <PriceSlider minMax={minMax} currentMinMax={currentMinMax} />
         </AccordionItem>

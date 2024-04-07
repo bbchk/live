@@ -11,12 +11,14 @@ const filtersSlice = createSlice({
     setFilters: (state, action) => {
       state.filters = action.payload;
     },
-    //for setting filterName to an array
     setFilter: (state, action) => {
       state.filters[action.payload.filterName] = action.payload.filterValue;
     },
     deleteFilter: (state, action) => {
       delete state.filters[action.payload.filterName];
+    },
+    deleteAllFilters: (state) => {
+      state.filters = {};
     },
     updateFilter: (state, action) => {
       if (state.filters[action.payload.filterName]) {
@@ -29,9 +31,9 @@ const filtersSlice = createSlice({
 export const {
   setFilters,
   setFilter,
-  //  addFilter,
   deleteFilter,
   updateFilter,
+  deleteAllFilters,
 } = filtersSlice.actions;
 
 export const filtersReducer = filtersSlice.reducer;

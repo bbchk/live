@@ -166,6 +166,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
       -Infinity
     );
     result.currentMinMaxPrice = [minCurrentPrice, maxCurrentPrice];
+    result.productsCount = allProducts.length;
 
     /*Filtering products by page*/
     let products = allProducts;
@@ -179,7 +180,6 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
       );
     }
     result.products = products;
-    result.productLength = products.length;
 
     res.status(200).json(result);
   } catch (err) {

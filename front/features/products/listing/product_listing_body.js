@@ -6,12 +6,14 @@ import FiltersOffcanvasToggler from "features/products/listing/comps/filter/fili
 
 import s from "./product_listing_body.module.scss";
 import FiltersOffcanvas from "./comps/filter/filiters_offcanvas/filters_offcanvas";
+import Selected from "./comps/filter/selected";
 
 const ProductListingBody = ({
   filtersMap,
   minMaxPrice,
   currentMinMaxPrice,
   products,
+  productsCount,
   category,
   numPages,
   page,
@@ -24,10 +26,14 @@ const ProductListingBody = ({
         filters={filtersMap}
         minMaxPrice={minMaxPrice}
         currentMinMaxPrice={currentMinMaxPrice}
+        productsCount={productsCount}
       />
       <div className={`${s.body}`}>
         <div className={`${s.filters_offcanvas_toggler}`}>
           <FiltersOffcanvasToggler id={filtersOffcanvasId} />
+        </div>
+        <div className={`${s.selected}`}>
+          <Selected productsCount={productsCount} />
         </div>
         <div className={`${s.sort_group}`}>
           <SortGroup />
@@ -35,6 +41,7 @@ const ProductListingBody = ({
         <div className={`${s.filters_decor_line}`}></div>
         <div className={`${s.filters}`}>
           <FiltersAccordion
+            id="filtersAccordion"
             filters={filtersMap}
             minMaxPrice={minMaxPrice}
             currentMinMaxPrice={currentMinMaxPrice}

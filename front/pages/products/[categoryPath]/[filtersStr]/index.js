@@ -26,6 +26,7 @@ const Listing = ({
     activeCategory: category,
     subcategories,
     products,
+    productsCount,
     numPages,
     filtersMap,
     minMaxPrice,
@@ -89,6 +90,7 @@ const Listing = ({
           minMaxPrice={minMaxPrice}
           currentMinMaxPrice={currentMinMaxPrice}
           products={products}
+          productsCount={productsCount}
           category={category}
           numPages={numPages}
           page={page}
