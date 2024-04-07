@@ -1,7 +1,7 @@
 import Slider from "@mui/material/Slider";
 import React, { useEffect, useState } from "react";
 import s from "./price-slider.module.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "store/filtersSlice";
 import { useRouter } from "next/router";
 import { startLoading } from "store/modalSlice.js";
@@ -19,9 +19,14 @@ const PriceSlider = ({ minMax, currentMinMax }) => {
 
   const minDistance = 50; // Define your minimum distance here
 
+  const { filters: activeFilters } = useSelector((state) => state.filters);
+  //? todo is it efficient and readable
+  //using it to reset minMaxPrice when all filters are deleted to max and min
   useEffect(() => {
-    setMinMaxPrice([currentMinMax[0], currentMinMax[1]]);
-  }, [currentMinMax]);
+    if (Object.keys(activeFilters).length === 0) {
+      setMinMaxPrice([minMax[0], minMax[1]]);
+    }
+  }, [activeFilters]);
 
   const dispatch = useDispatch();
   function handleConfirm(event, newValue) {
