@@ -6,8 +6,10 @@ import FiltersAccordion from "../filters_accordion/filters_accordion";
 
 import { useRouter } from "next/router";
 
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { deleteAllFilters } from "store/filtersSlice";
+import { startLoading } from "store/modalSlice.js";
 
 const FiltersOffcanvas = ({
   id,
@@ -22,6 +24,7 @@ const FiltersOffcanvas = ({
 
   const isActiveFilters = Object.keys(activeFilters).some((f) => f != "page");
 
+  //todo add loading overlay to offcanvas
   //todo make it cancel_all_filters button rerender whole offcanvas for filters to refresh
   //todo make filterItems in filtersAccordion unique
 
@@ -41,6 +44,7 @@ const FiltersOffcanvas = ({
               <button
                 className={`${s.cancel_all_btn} button_danger_secondary`}
                 onClick={() => {
+                  dispatch(startLoading());
                   dispatch(deleteAllFilters());
                   router.push(`/products/${router.query.categoryPath}/page=1`);
                 }}

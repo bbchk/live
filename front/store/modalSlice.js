@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const modalsSlice = createSlice({
   name: "modals",
   initialState: {
+    loading: false,
     signInModalOpen: false,
     signUpModalOpen: false,
     changePasswordModalOpen: false,
@@ -27,6 +28,12 @@ const modalsSlice = createSlice({
     toggleCartModal: (state) => {
       state.cartModalOpen = !state.cartModalOpen;
     },
+    startLoading: (state) => {
+      state.loading = true;
+    },
+    stopLoading: (state) => {
+      state.loading = false;
+    },
   },
 });
 
@@ -36,6 +43,8 @@ export const {
   toggleChangePasswordModal,
   toggleDeleteAccountModal,
   toggleCartModal,
+  startLoading,
+  stopLoading,
 } = modalsSlice.actions;
 
 export const modalsReducer = modalsSlice.reducer;

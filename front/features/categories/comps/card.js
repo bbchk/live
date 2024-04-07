@@ -7,14 +7,20 @@ import Image from "next/image";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
+import { startLoading } from "store/modalSlice.js";
+
 const Card = ({ category, subcategories }) => {
+  const dispatch = useDispatch();
   const categoryPathSlug = (path) => {
     return `/products/${slugify(transliterate(path))}/page=1`;
   };
 
   return (
     <div className={`${s.cat_card}`}>
-      <Link href={categoryPathSlug(category.path)}>
+      <Link
+        href={categoryPathSlug(category.path)}
+        onClick={() => dispatch(startLoading())}
+      >
         <Image
           className={``}
           src={category.imagePath}
@@ -32,7 +38,10 @@ const Card = ({ category, subcategories }) => {
           .map(({ _id, path, name }, index) => {
             return (
               <li key={_id}>
-                <Link href={categoryPathSlug(path)}>
+                <Link
+                  href={categoryPathSlug(path)}
+                  onClick={() => dispatch(startLoading())}
+                >
                   {index == 4 ? `${name}` : `${name}`}
                 </Link>
               </li>

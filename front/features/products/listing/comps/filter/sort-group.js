@@ -4,6 +4,7 @@ import { setFilter, deleteFilter } from "store/filtersSlice";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { useEffect, useState } from "react";
+import { startLoading } from "store/modalSlice.js";
 
 //todo add funcitonality
 const SortGroup = () => {
@@ -12,6 +13,7 @@ const SortGroup = () => {
 
   const slugFilterLabel = slugify(transliterate("сортування"));
   const handleChange = (event) => {
+    dispatch(startLoading());
     const value = event.target.value;
     const slugValue = slugify(transliterate(value));
     dispatch(

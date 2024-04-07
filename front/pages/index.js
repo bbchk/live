@@ -18,10 +18,8 @@ const Home = ({ flatCategoryMap }) => {
         />
       </Head>
 
-      <div className="mt-4">
-        <div className="my-5">
-          <CategoriesGallery flatCategoryMap={flatCategoryMap} />
-        </div>
+      <div className="my-5">
+        <CategoriesGallery flatCategoryMap={flatCategoryMap} />
       </div>
     </>
   );

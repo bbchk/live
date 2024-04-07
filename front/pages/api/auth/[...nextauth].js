@@ -82,7 +82,6 @@ const callbacks = {
     return true;
   },
   async jwt({ token, user, session, trigger, account, profile }) {
-    console.log("🚀 ~ trigger:", trigger);
     if (trigger === "update") {
       token.user = session.user;
     }

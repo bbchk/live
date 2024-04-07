@@ -3,12 +3,18 @@ import s from "./rating.module.scss";
 import lcs from "../listing_card.module.scss";
 import Image from "next/image";
 import StarRating from "comps/rating/star_rating";
+import { useDispatch } from "react-redux";
+import { startLoading } from "store/modalSlice";
 
 //use rating from product
 const ProductRating = ({ product, productUrl }) => {
   return (
     <section className={` ${lcs.rating}`}>
-      <Link className={`${s.rating}`} href={productUrl("characteristics")}>
+      <Link
+        className={`${s.rating}`}
+        href={productUrl("characteristics")}
+        onClick={() => dispatch(startLoading())}
+      >
         <StarRating rating={4.1} />
         <i className="bi bi-chat-left-text" />
         <p>{10}</p>

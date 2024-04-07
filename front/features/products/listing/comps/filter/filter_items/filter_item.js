@@ -9,6 +9,10 @@ import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { setFilter, deleteFilter } from "store/filtersSlice";
 
+import { startLoading } from "store/modalSlice";
+
+//todo fix TypeError: activeOptions is undefined bug when checkbox gets unchecked
+// sometimes activeOptions is undefined when checkbox gets unchecked, but not always, further more it does depend on value of checkbox
 const FilterChecks = ({ filterLabel, options, idx }) => {
   const { filters } = useSelector((state) => state.filters);
 

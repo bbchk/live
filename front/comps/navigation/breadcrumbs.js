@@ -2,9 +2,12 @@ import s from "./breadcrumbs.module.scss";
 import Link from "next/link";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { startLoading } from "store/modalSlice";
 
 const Breadcrumbs = ({ category }) => {
+  const dispatch = useDispatch();
   const { categories: allCategories } = useSelector(
     (state) => state.categories
   );
@@ -38,7 +41,10 @@ const Breadcrumbs = ({ category }) => {
                   }`}
                   key={pathPart}
                 >
-                  <Link href={`/products/${categoryPathSlug}/page=1`}>
+                  <Link
+                    href={`/products/${categoryPathSlug}/page=1`}
+                    onClick={() => dispatch(startLoading())}
+                  >
                     {pathPart}
                   </Link>
                 </li>

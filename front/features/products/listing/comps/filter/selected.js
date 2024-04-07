@@ -2,6 +2,7 @@ import s from "./selected.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteAllFilters } from "store/filtersSlice";
 import { useRouter } from "next/router";
+import { startLoading } from "store/modalSlice.js";
 
 const Selected = ({ productsCount }) => {
   const router = useRouter();
@@ -17,6 +18,7 @@ const Selected = ({ productsCount }) => {
           <button
             className={`${s.cancel_all_btn} button_danger_secondary`}
             onClick={() => {
+              dispatch(startLoading());
               dispatch(deleteAllFilters());
               router.push(`/products/${router.query.categoryPath}/page=1`);
             }}

@@ -1,7 +1,10 @@
 import s from "./checkbox.module.scss";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { startLoading } from "store/modalSlice";
 
 const CheckBox = ({ id, label, checked, handleChange }) => {
+  const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(checked);
 
   useEffect(() => {
@@ -15,6 +18,7 @@ const CheckBox = ({ id, label, checked, handleChange }) => {
         type="checkbox"
         checked={isChecked}
         onChange={(e) => {
+          dispatch(startLoading());
           handleChange(e.target.checked, label);
           setIsChecked(e.target.checked);
         }}

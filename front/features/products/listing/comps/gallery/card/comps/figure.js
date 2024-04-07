@@ -2,10 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./figure.module.scss";
 import lcs from "../listing_card.module.scss";
+import { useDispatch } from "react-redux";
+
+import { startLoading } from "store/modalSlice";
 
 const ProductFigure = ({ product, productUrl }) => {
+  const dispatch = useDispatch();
   return (
-    <Link className={`${lcs.figure}`} href={productUrl("about")}>
+    <Link
+      className={`${lcs.figure}`}
+      href={productUrl("about")}
+      onClick={() => dispatch(startLoading())}
+    >
       <figure className={`${s.figure} `}>
         <Image
           src={

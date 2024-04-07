@@ -37,6 +37,7 @@ import { useCart } from "hooks/useCart";
 
 import { Balsamiq_Sans } from "next/font/google";
 import { Pacifico } from "next/font/google";
+import { toggleLoading } from "#root/store/modalSlice.js";
 const balsamiqSans = Balsamiq_Sans({ weight: "400", subsets: ["latin"] });
 const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
 export { balsamiqSans, pacifico };
@@ -62,25 +63,38 @@ export default function App({
         <title> Живий світ - Магазин зоотоварів і товарів для дому </title>
         <meta
           name="description"
-          content="Живий Світ - Магазин н айкращих товарів для вашого дому, домашніх улюбленців та рослин"
+          content="Живий Світ - Магазин найкращих товарів для вашого дому, домашніх улюбленців та рослин"
         />
       </Head>
       <SessionProvider session={session}>
         <Provider store={store}>
-          <div className={`min-vh-80 ${balsamiqSans.className}`}>
-            <Header />
-            <FetchData />
-            <Modals />
+          <Header />
+          <Body>
             <Component {...pageProps} />
-          </div>
+          </Body>
           <Footer />
         </Provider>
       </SessionProvider>
     </div>
   );
 }
+const Body = ({ children }) => {
+  const { loading } = useSelector((state) => state.modals);
 
-//todo unefficient
+  return (
+    <div className={`min-vh-65 ${balsamiqSans.className}`}>
+      <div className={`loading_overlay ${loading ? "show" : ""} `}>
+        {/* <div className="loader" /> */}
+      </div>
+
+      <FetchData />
+      <Modals />
+      {children}
+    </div>
+  );
+};
+
+//? todo unefficient
 //todo it loads all the products on the first render or rerender of this component
 function FetchData() {
   const dispatch = useDispatch();

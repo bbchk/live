@@ -6,20 +6,24 @@ import {
   OffcanvasToggler,
 } from "./comps/offcanvas/main_offcanvas";
 import s from "./header.module.scss";
+import { useSelector } from "react-redux";
+import { balsamiqSans } from "pages/_app";
 
-//todo add shopping cart, when user is not auth
-//todo make it responsive
 const Header = () => {
+  const { loading } = useSelector((state) => state.modals);
+
   return (
     <header>
-      <nav className={`navbar ${s.header}`}>
+      <nav className={`navbar ${s.header} ${balsamiqSans.className}`}>
         <OffcanvasToggler id="mainOffcanvas" />
         <MainOffcanvas id="mainOffcanvas" />
         <Logo />
         <SearchBar />
         <ButtonGroup />
       </nav>
-      <div className={`${s.underline}`}></div>
+      <div className={`${s.underline}`}>
+        {loading && <div className={s.loader_line} />}
+      </div>
     </header>
   );
 };

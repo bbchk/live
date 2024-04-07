@@ -7,6 +7,8 @@
   align-items: center;
   flex-wrap: nowrap !important;
 
+  z-index: 5;
+
   gap: 2%;
 
   width: 100%;
@@ -60,9 +62,38 @@
     }
   }
 }
-
 .underline {
   height: 1rem;
   width: 100%;
   background-color: $color-green-nyanza;
+  position: relative;
+  z-index: 4;
+}
+
+.loader_line {
+  height: 1rem;
+  width: 65%;
+
+  position: absolute;
+  left: 0;
+
+  z-index: 4;
+
+  background: linear-gradient(
+    to right,
+    $color-green-nyanza,
+    rgba($color-green-dur, 0.7),
+    $color-green-nyanza
+  );
+
+  animation: loading-line 2.5s infinite;
+}
+
+@keyframes loading-line {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }

@@ -4,6 +4,7 @@ import s from "./price-slider.module.scss";
 import { useDispatch } from "react-redux";
 import { setFilter } from "store/filtersSlice";
 import { useRouter } from "next/router";
+import { startLoading } from "store/modalSlice.js";
 
 //todo inconsistent currentMinMax, it changes on page refresh, when set on some points lower
 const PriceSlider = ({ minMax, currentMinMax }) => {
@@ -14,10 +15,17 @@ const PriceSlider = ({ minMax, currentMinMax }) => {
     currentMinMax[1],
   ]);
 
+  const [initialMinMaxPrice, setInitialMinMaxPrice] = useState(currentMinMax);
+
   const minDistance = 50; // Define your minimum distance here
+
+  useEffect(() => {
+    setMinMaxPrice([currentMinMax[0], currentMinMax[1]]);
+  }, [currentMinMax]);
 
   const dispatch = useDispatch();
   function handleConfirm(event, newValue) {
+    setInitialMinMaxPrice(minMaxPrice);
     dispatch(
       setFilter({
         filterName: "tsina",
@@ -66,7 +74,16 @@ const PriceSlider = ({ minMax, currentMinMax }) => {
           className={`form-control ${s.input} ${s.right}`}
         />
         <button
-          onClick={handleConfirm}
+          onClick={() => {
+            if (
+              minMaxPrice[0] === initialMinMaxPrice[0] &&
+              minMaxPrice[1] === initialMinMaxPrice[1]
+            ) {
+              return;
+            }
+            dispatch(startLoading());
+            handleConfirm();
+          }}
           className={`button_primary ${s.ok_btn}`}
         >
           Ok

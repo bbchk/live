@@ -14,6 +14,8 @@ import { intersectMaps } from "./utils/intersect.js";
 //? product that we already have and filter them
 
 //can we just query all products and then filter them
+
+//? todo bug fix when we have multiple filters and we have to intersect them, intersection is not enough, we need to add active options to the list as well
 export const getProductsByCategoryAndFilters = async (req, res) => {
   let { slugCategoryPath, filtersStr } = req.params;
 

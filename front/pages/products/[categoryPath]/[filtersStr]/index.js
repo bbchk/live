@@ -4,7 +4,7 @@ import axios from "axios";
 import ProductGallery from "features/products/listing/comps/gallery/gallery";
 
 import SortGroup from "features/products/listing/comps/filter/sort-group";
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
 import { slugify } from "@bbuukk/slugtrans/slugify";
@@ -20,6 +20,7 @@ import { setFilters } from "store/filtersSlice";
 import { useGetFilterMapFromStr } from "hooks/useGetFilterMapFromStr";
 import ProductListingBody from "features/products/listing/product_listing_body";
 import ListingHeader from "../../../../features/products/listing/comps/listing_header";
+import { stopLoading } from "store/modalSlice.js";
 
 const Listing = ({
   data: {
@@ -39,9 +40,16 @@ const Listing = ({
   const dispatch = useDispatch();
   const { categoryPath, filtersStr } = router.query;
   const { filters } = useSelector((state) => state.filters);
+  const { loading } = useSelector((state) => state.modals);
 
   const { getFilterMapFromStr } = useGetFilterMapFromStr();
   const { genFiltersStr } = useGenFilterStr();
+
+  useEffect(() => {
+    if (loading) {
+      dispatch(stopLoading());
+    }
+  }, [router.query]);
 
   useEffect(() => {
     const filtersMap = getFilterMapFromStr(filtersStr);
