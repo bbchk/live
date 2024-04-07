@@ -13,7 +13,7 @@ const Header = () => {
   const { loading } = useSelector((state) => state.modals);
 
   return (
-    <header>
+    <header className={`${s.header_container}`}>
       <nav className={`navbar ${s.header} ${balsamiqSans.className}`}>
         <OffcanvasToggler id="mainOffcanvas" />
         <MainOffcanvas id="mainOffcanvas" />

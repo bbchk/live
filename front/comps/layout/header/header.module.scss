@@ -2,12 +2,16 @@
 @use "./styles/mixins" as *;
 @import "node_modules/rfs/sass.sass";
 
+.header_container {
+  position: sticky;
+  top: 0;
+  z-index: 101;
+}
+
 .header {
   display: flex;
   align-items: center;
   flex-wrap: nowrap !important;
-
-  z-index: 5;
 
   gap: 2%;
 
@@ -63,7 +67,7 @@
   }
 }
 .underline {
-  height: 1rem;
+  height: 0.3rem;
   width: 100%;
   background-color: $color-green-nyanza;
   position: relative;
@@ -71,7 +75,7 @@
 }
 
 .loader_line {
-  height: 1rem;
+  height: 0.3rem;
   width: 65%;
 
   position: absolute;
