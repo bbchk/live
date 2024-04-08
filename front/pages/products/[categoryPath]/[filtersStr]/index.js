@@ -14,7 +14,7 @@ import SubcategoriesGallery from "features/products/listing/comps/subcategories/
 
 import { addToCategoriesPath } from "store/categoriesSlice";
 import Head from "next/head";
-import ProductsPagination from "features/products/listing/comps/gallery/pagination";
+
 import { useGenFilterStr } from "hooks/genFilterStr";
 import { setFilters } from "store/filtersSlice";
 import { useGetFilterMapFromStr } from "hooks/useGetFilterMapFromStr";

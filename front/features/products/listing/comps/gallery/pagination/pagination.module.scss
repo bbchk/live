@@ -26,12 +26,13 @@
     gap: 0.5rem;
 
     &.disabled {
-      .item {
+      a {
         background-color: rgba($color-blue-dasl, 0.1);
-        box-shadow: 0 0 0 0.05rem $color-wh-lightsilv inset;
         opacity: 0.5;
         pointer-events: none;
-        cursor: none;
+        .item {
+          box-shadow: 0 0 0 0.05rem $color-wh-lightsilv inset;
+        }
       }
     }
   }

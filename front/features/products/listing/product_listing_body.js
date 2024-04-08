@@ -1,6 +1,6 @@
 import FiltersAccordion from "features/products/listing/comps/filter/filters_accordion/filters_accordion";
 import ProductGallery from "./comps/gallery/gallery";
-import ProductsPagination from "./comps/gallery/pagination";
+import ProductsPagination from "./comps/gallery/pagination/pagination";
 import SortGroup from "./comps/filter/sort-group";
 import FiltersOffcanvasToggler from "features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas_toggler";
 
@@ -19,6 +19,7 @@ const ProductListingBody = ({
   page,
 }) => {
   const filtersOffcanvasId = "filtersOffcanvas";
+
   return (
     <>
       <FiltersOffcanvas

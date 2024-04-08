@@ -14,38 +14,88 @@ import { startLoading } from "store/modalSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
+//todo if pageId > numPages give 404
+//todo if pageId == activePageId does do anythin
 function ProductsPagination({ numPages, activePageId }) {
-  // numPages = Number(100);
+  numPages = Number(100);
+
   const dispatch = useDispatch();
+
   const router = useRouter();
   const { categoryPath } = router.query;
   const getPath = (pageId) => `/products/${categoryPath}/page=${pageId}`;
 
-  //todo if pageId > numPages give 404
-  //todo if pageId == activePageId does do anything
-  const PaginationItem = ({ pageId, children }) => {
-    const isActive = pageId == activePageId;
+  const isActive = (pageId) => pageId == activePageId;
 
+  const PaginationItem = ({ pageId, onClick, children }) => {
     return (
       <Link
         href={getPath(pageId)}
         onClick={(event) => {
-          if (isActive) {
+          if (isActive(pageId) || pageId == undefined) {
             event.preventDefault();
           } else {
+            if (onClick) onClick();
             dispatch(startLoading());
           }
         }}
       >
-        <li className={`${s.item} ${isActive ? s.active : ""}`}>{children}</li>
+        <li className={`${s.item} ${isActive(pageId) ? s.active : ""}`}>
+          {children}
+        </li>
       </Link>
     );
   };
 
+  const [currentPage, setCurrentPage] = useState(activePageId);
+  const maxPageItems = 5;
+
+  let startPage = Math.max(1, currentPage - Math.floor(maxPageItems / 2));
+  let endPage = Math.min(numPages, startPage + maxPageItems - 1);
+
+  if (endPage - startPage + 1 < maxPageItems) {
+    startPage = Math.max(1, endPage - maxPageItems + 1);
+  }
+
+  const pageItems = [];
+  for (let i = startPage; i <= endPage; i++) {
+    pageItems.push(
+      <PaginationItem key={i} pageId={i}>
+        <p>{i}</p>
+      </PaginationItem>
+    );
+  }
+
+  if (startPage > 1) {
+    pageItems.unshift(
+      <PaginationItem
+        key={"left_elipsis"}
+        pageId={startPage - 1}
+        onClick={() => setCurrentPage(startPage - 1)}
+      >
+        ...
+      </PaginationItem>
+    );
+  }
+
+  if (endPage < numPages) {
+    pageItems.push(
+      <>
+        <PaginationItem
+          key={"right_elipsis"}
+          pageId={endPage + 1}
+          onClick={() => setCurrentPage(endPage + 1)}
+        >
+          ...
+        </PaginationItem>
+      </>
+    );
+  }
+
   return (
     <nav aria-label="Page navigation example">
       <ul className={`${s.pagination}`}>
-        <ul className={`${s.controls} ${activePageId == 1 ? s.disabled : ""}`}>
+        <ul className={`${s.controls} ${isActive(1) ? s.disabled : ""}`}>
           <PaginationItem pageId={1}>
             <FontAwesomeIcon icon={faAnglesLeft} />
           </PaginationItem>
@@ -54,20 +104,8 @@ function ProductsPagination({ numPages, activePageId }) {
           </PaginationItem>
         </ul>
 
-        <ul className={`${s.pages}`}>
-          {Array.from({ length: numPages }, (_, i) => i + 1).map((pageId) => {
-            return (
-              <PaginationItem key={pageId} pageId={pageId}>
-                <p>{pageId}</p>
-              </PaginationItem>
-            );
-          })}
-        </ul>
-        <ul
-          className={`${s.controls} ${
-            activePageId == numPages ? s.disabled : ""
-          }`}
-        >
+        <ul className={`${s.pages}`}>{pageItems}</ul>
+        <ul className={`${s.controls} ${isActive(numPages) ? s.disabled : ""}`}>
           <PaginationItem pageId={Math.max(1, Number(activePageId) + 1)}>
             <FontAwesomeIcon icon={faAngleRight} />
           </PaginationItem>
