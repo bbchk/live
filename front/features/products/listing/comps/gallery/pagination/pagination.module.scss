@@ -53,12 +53,17 @@
   }
 
   .item {
-    padding: 0.5rem 1rem;
+    $item-size: 3rem;
+    width: $item-size;
+    height: $item-size;
 
     border-radius: 5px;
 
     border: 0.5px solid $color-wh-lightsilv;
     box-shadow: 0 0 0 0 $color-green-dur inset;
+
+    line-height: $item-size;
+    text-align: center;
 
     transition: color 0.25s, box-shadow 0.25s;
     &:hover,
