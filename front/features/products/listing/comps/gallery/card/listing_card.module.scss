@@ -34,4 +34,11 @@
     margin-top: 0.4rem;
     flex: 0 1 5%;
   }
+
+  &:hover {
+    .figure {
+      text-decoration: underline;
+      color: saturate($color: $color-blue-dasl, $amount: 40%);
+    }
+  }
 }
