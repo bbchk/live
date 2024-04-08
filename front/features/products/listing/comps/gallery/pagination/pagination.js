@@ -16,7 +16,6 @@ import { useState } from "react";
 
 //todo refactoring
 function ProductsPagination({ numPages, activePageId }) {
-  // numPages = 100;
   const dispatch = useDispatch();
 
   const router = useRouter();
@@ -96,31 +95,39 @@ function ProductsPagination({ numPages, activePageId }) {
   }
 
   return (
-    <nav aria-label="pagination">
-      <ul className={`${s.pagination}`}>
-        <ul className={`${s.controls} ${isActive(1) ? s.disabled : ""}`}>
-          <PaginationItem pageId={1}>
-            <FontAwesomeIcon icon={faAnglesLeft} />
-          </PaginationItem>
-          <PaginationItem pageId={Math.max(1, Number(activePageId) - 1)}>
-            <FontAwesomeIcon icon={faAngleLeft} />
-          </PaginationItem>
-        </ul>
+    <>
+      {numPages > 1 && (
+        <nav aria-label="pagination">
+          <ul className={`${s.pagination}`}>
+            <ul className={`${s.controls} ${isActive(1) ? s.disabled : ""}`}>
+              <PaginationItem pageId={1}>
+                <FontAwesomeIcon icon={faAnglesLeft} />
+              </PaginationItem>
+              <PaginationItem pageId={Math.max(1, Number(activePageId) - 1)}>
+                <FontAwesomeIcon icon={faAngleLeft} />
+              </PaginationItem>
+            </ul>
 
-        <ul className={`${s.pages}`}>{pageItems}</ul>
-        <li className={`${s.pages}`}>
-          Сторінка {activePageId} з {numPages}
-        </li>
-        <ul className={`${s.controls} ${isActive(numPages) ? s.disabled : ""}`}>
-          <PaginationItem pageId={Math.max(1, Number(activePageId) + 1)}>
-            <FontAwesomeIcon icon={faAngleRight} />
-          </PaginationItem>
-          <PaginationItem pageId={numPages}>
-            <FontAwesomeIcon icon={faAnglesRight} />
-          </PaginationItem>
-        </ul>
-      </ul>
-    </nav>
+            <ul className={`${s.pages}`}>{pageItems}</ul>
+            <li className={`${s.pages}`}>
+              Сторінка {activePageId} з {numPages}
+            </li>
+            <ul
+              className={`${s.controls} ${
+                isActive(numPages) ? s.disabled : ""
+              }`}
+            >
+              <PaginationItem pageId={Math.max(1, Number(activePageId) + 1)}>
+                <FontAwesomeIcon icon={faAngleRight} />
+              </PaginationItem>
+              <PaginationItem pageId={numPages}>
+                <FontAwesomeIcon icon={faAnglesRight} />
+              </PaginationItem>
+            </ul>
+          </ul>
+        </nav>
+      )}
+    </>
   );
 }
 
