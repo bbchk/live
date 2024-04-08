@@ -16,6 +16,7 @@ import { useState } from "react";
 
 //todo refactoring
 function ProductsPagination({ numPages, activePageId }) {
+  // numPages = 100;
   const dispatch = useDispatch();
 
   const router = useRouter();
@@ -100,6 +101,9 @@ function ProductsPagination({ numPages, activePageId }) {
         </ul>
 
         <ul className={`${s.pages}`}>{pageItems}</ul>
+        <li className={`${s.pages}`}>
+          Сторінка {activePageId} з {numPages}
+        </li>
         <ul className={`${s.controls} ${isActive(numPages) ? s.disabled : ""}`}>
           <PaginationItem pageId={Math.max(1, Number(activePageId) + 1)}>
             <FontAwesomeIcon icon={faAngleRight} />
