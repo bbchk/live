@@ -28,15 +28,13 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    likedProducts: [String],
-    //todo change to this
-    // likedProducts: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "Pategory",
-    //     required: false,
-    //   },
-    // ],
+    likedProducts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+        required: false,
+      },
+    ],
     cart: [
       {
         product: {
