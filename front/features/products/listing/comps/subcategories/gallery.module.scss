@@ -12,6 +12,12 @@
 
   .col {
     height: 10rem;
+
+    border-right: 0.09rem solid $color-wh-lightsilv;
+
+    &:last-child {
+      border: 0;
+    }
   }
 
   @media screen and (width < 992px) {

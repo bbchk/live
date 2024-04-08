@@ -8,9 +8,7 @@ const SubcategoriesGallery = ({ subcategories }) => {
   return (
     <>
       {subcategories && (
-        // <div className={`${s.center_container}`}>
-
-        <div className={`${s.gallery} row g-3`}>
+        <nav className={`${s.gallery} row g-3`}>
           {subcategories
             .sort((a, b) => a.order - b.order)
             .map((category) => {
@@ -20,7 +18,7 @@ const SubcategoriesGallery = ({ subcategories }) => {
                 </li>
               );
             })}
-        </div>
+        </nav>
       )}
     </>
   );
