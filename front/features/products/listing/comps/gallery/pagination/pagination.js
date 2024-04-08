@@ -20,8 +20,15 @@ function ProductsPagination({ numPages, activePageId }) {
   const dispatch = useDispatch();
 
   const router = useRouter();
-  const { categoryPath } = router.query;
-  const getPath = (pageId) => `/products/${categoryPath}/page=${pageId}`;
+  const { categoryPath, filtersStr } = router.query;
+  const getPath = (pageId) => {
+    const filtersStrWithNewPageId = filtersStr.replace(
+      /page=\d+/,
+      `page=${pageId}`
+    );
+
+    return `/products/${categoryPath}/${filtersStrWithNewPageId}`;
+  };
 
   const isActive = (pageId) => pageId == activePageId;
 
