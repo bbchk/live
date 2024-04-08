@@ -37,7 +37,7 @@ const SortGroup = () => {
           );
 
           return (
-            <option selected={isSelected} value={option}>
+            <option key={option} selected={isSelected} value={option}>
               {option}
             </option>
           );

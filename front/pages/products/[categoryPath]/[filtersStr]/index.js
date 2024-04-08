@@ -52,6 +52,17 @@ const Listing = ({
   }, [router.query]);
 
   useEffect(() => {
+    const { filtersStr } = router.query;
+
+    const match = filtersStr.match(/page=(\d+)/);
+    const pageValue = match ? match[1] : null;
+
+    if (pageValue > numPages || pageValue < 1) {
+      router.push(`/404`);
+    }
+  }, [router.query]);
+
+  useEffect(() => {
     const filtersMap = getFilterMapFromStr(filtersStr);
     dispatch(setFilters(filtersMap));
 
@@ -114,19 +125,24 @@ export default Listing;
 export async function getServerSideProps(context) {
   const { categoryPath, filtersStr } = context.params;
 
-  //todo filterStr validation
-  const res = await axios.get(`/products/${categoryPath}/${filtersStr}`);
-  const data = res.data;
+  try {
+    //todo filterStr validation
+    const res = await axios.get(`/products/${categoryPath}/${filtersStr}`);
+    const data = res.data;
 
-  let page = 1;
-  const match = filtersStr.match(/page=(\d+)/);
-  if (match) {
-    page = filtersStr.match(/page=(\d+)/)[1];
+    let page = 1;
+    const match = filtersStr.match(/page=(\d+)/);
+    if (match) {
+      page = filtersStr.match(/page=(\d+)/)[1];
+    }
+
+    //todo make it a minutes for production
+    const HALF_AN_HOUR_IN_SECONDS = 1800;
+    return {
+      props: { data: { ...data, page }, revalidate: HALF_AN_HOUR_IN_SECONDS },
+    };
+  } catch (e) {
+    console.error("An error occurred while fetching product data: ", e);
+    return { notFound: true };
   }
-
-  //todo make it a minutes for production
-  const HALF_AN_HOUR_IN_SECONDS = 1800;
-  return {
-    props: { data: { ...data, page }, revalidate: HALF_AN_HOUR_IN_SECONDS },
-  };
 }

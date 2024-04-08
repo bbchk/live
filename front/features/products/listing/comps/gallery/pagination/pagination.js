@@ -14,11 +14,8 @@ import { startLoading } from "store/modalSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
-//todo if pageId > numPages give 404
-//todo if pageId == activePageId does do anythin
+//todo refactoring
 function ProductsPagination({ numPages, activePageId }) {
-  numPages = Number(100);
-
   const dispatch = useDispatch();
 
   const router = useRouter();
@@ -80,20 +77,18 @@ function ProductsPagination({ numPages, activePageId }) {
 
   if (endPage < numPages) {
     pageItems.push(
-      <>
-        <PaginationItem
-          key={"right_elipsis"}
-          pageId={endPage + 1}
-          onClick={() => setCurrentPage(endPage + 1)}
-        >
-          ...
-        </PaginationItem>
-      </>
+      <PaginationItem
+        key={"right_elipsis"}
+        pageId={endPage + 1}
+        onClick={() => setCurrentPage(endPage + 1)}
+      >
+        ...
+      </PaginationItem>
     );
   }
 
   return (
-    <nav aria-label="Page navigation example">
+    <nav aria-label="pagination">
       <ul className={`${s.pagination}`}>
         <ul className={`${s.controls} ${isActive(1) ? s.disabled : ""}`}>
           <PaginationItem pageId={1}>
