@@ -16,7 +16,7 @@ const Characteristics = ({ title, product }) => {
             </div>
             <p className={`${s.value}`}>
               {value.map((v, idx) => (
-                <span>
+                <span key={v}>
                   {v} <br />
                 </span>
               ))}

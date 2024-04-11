@@ -9,6 +9,7 @@ import ProductMainInfo from "./comps/product_details/product_main_info";
 import ProductFigure from "./comps/product_figure";
 import Description from "./comps/description";
 import Characteristics from "../mutual/characteristics";
+import Reviews from "./comps/reviews";
 
 const LandingProductAboutPage = ({ product }) => {
   const ref = useRef();
@@ -33,6 +34,22 @@ const LandingProductAboutPage = ({ product }) => {
     };
   }, []);
 
+  const reviews = [
+    {
+      id: 1,
+      starRating: 2.4,
+      cons: "Немає",
+      pros: "Відмінний телефон",
+      comment:
+        "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
+      date: "01.01.2021",
+      author: "Бучок Богдан",
+      likes: 5,
+      dislikes: 10,
+      subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
+    },
+  ];
+
   return (
     <article className={`${s.landing_product_about}`}>
       <div className={`${s.product_figure}`}>
@@ -49,7 +66,9 @@ const LandingProductAboutPage = ({ product }) => {
         <Characteristics title={"Характеристики:"} product={product} />
       </div>
 
-      <div className={`${s.reviews}`}>{/* <ReviewList> */}</div>
+      <div className={`${s.reviews}`}>
+        <Reviews reviews={reviews} />
+      </div>
 
       {isVisible && (
         <div className={`${s.recs}`}>

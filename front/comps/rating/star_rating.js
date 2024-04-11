@@ -1,8 +1,8 @@
-import { v4 as uuidv4 } from "uuid";
 import s from "./star_rating.module.scss";
+import { useId } from "react";
 
 const StarRating = ({ rating }) => {
-  const id = uuidv4(); // Generate a unique id for each StarRating component
+  const id = useId();
 
   return (
     <div className={`${s.stars}`}>
@@ -12,7 +12,7 @@ const StarRating = ({ rating }) => {
 
         return (
           <StarIcon key={index} id={`${id}-${index}`} starValue={starValue} />
-        ); // Append the index to the id
+        );
       })}
     </div>
   );

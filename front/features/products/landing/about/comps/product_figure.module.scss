@@ -4,7 +4,9 @@
 .landing_product_figure {
   .image {
     width: 100%;
+
     padding: 1rem;
+
     object-fit: contain;
   }
 
@@ -21,6 +23,13 @@
     overflow-y: hidden;
 
     .thumbnail {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      //todo make thumbnails smaller in width
+      // width: 5rem;
+
       padding: 5px;
 
       border-radius: 5px;
@@ -34,6 +43,7 @@
       .thumbnail_image {
         object-fit: contain;
         height: 100%;
+        width: min-content;
       }
     }
 

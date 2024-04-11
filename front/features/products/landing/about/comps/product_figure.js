@@ -27,7 +27,11 @@ const ProductFigure = ({ images }) => {
         {images &&
           images.map((img, index) => {
             return (
-              <CarouselItem activeIdx={selectedImageIdx} index={index}>
+              <CarouselItem
+                key={`carouselProductFigureItem-${index}`}
+                activeIdx={selectedImageIdx}
+                index={index}
+              >
                 <Image
                   src={images[index]}
                   alt="product"
@@ -55,7 +59,6 @@ const ProductFigure = ({ images }) => {
                 type="button"
                 data-bs-target={`#${carouselId}`}
                 data-bs-slide-to={index}
-                class="active"
                 aria-current={isSelected ? "true" : "false"}
                 aria-label={`Slide ${index}`}
               >

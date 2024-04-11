@@ -18,7 +18,7 @@ export const Carousel = ({ id, onPrev, onNext, children }) => {
             data-bs-target={`#${id}`}
             data-bs-slide="prev"
           >
-            <i class="bi bi-caret-left-fill" />
+            <i className="bi bi-caret-left-fill" />
           </button>
           <button
             onClick={onNext}
@@ -27,7 +27,7 @@ export const Carousel = ({ id, onPrev, onNext, children }) => {
             data-bs-target={`#${id}`}
             data-bs-slide="next"
           >
-            <i class="bi bi-caret-right-fill" />
+            <i className="bi bi-caret-right-fill" />
           </button>
         </>
       )}

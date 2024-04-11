@@ -15,7 +15,7 @@ const ProductRating = ({ product, productUrl }) => {
         href={productUrl("characteristics")}
         onClick={() => dispatch(startLoading())}
       >
-        <StarRating rating={4.1} />
+        <StarRating rating={2.5} />
         <i className="bi bi-chat-left-text" />
         <p>{10}</p>
       </Link>

@@ -1,0 +1,41 @@
+@use "./styles/variables" as *;
+
+.reviews {
+  .header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      flex: 1 0 50%;
+      color: $color-blue-dasl;
+      span {
+        margin-left: 0.5rem;
+        font-weight: bold;
+        opacity: 0.3;
+      }
+    }
+
+    .write_review_btn {
+      flex: 1 0 30%;
+
+      padding: 0.5rem;
+
+      height: fit-content;
+    }
+  }
+
+  @media screen and (max-width: 662px) {
+    header {
+      flex-flow: column nowrap;
+      align-items: flex-start;
+      gap: 1rem;
+
+      .write_review_btn {
+        flex: 0 1 30%;
+      }
+    }
+  }
+}
