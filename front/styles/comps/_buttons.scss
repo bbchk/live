@@ -75,6 +75,10 @@ button.button_danger {
     background-color: white;
     color: $color-red-suncycl;
   }
+
+  &:disabled:hover {
+    color: $color-red-suncycl;
+  }
 }
 
 button.button_danger_secondary {
@@ -96,15 +100,16 @@ button.button_danger_secondary {
 }
 
 button[disabled] {
-  background-color: rgba($color-blue-dasl, 0.1);
   border-color: $color-blue-dasl;
   color: $color-blue-dasl;
   cursor: not-allowed;
+  opacity: 0.6;
+
+  cursor: not-allowed;
 
   &:hover {
-    background-color: rgba($color-blue-dasl, 0.1);
     border-color: $color-blue-dasl;
-    color: $color-blue-dasl;
+    color: white;
   }
 }
 

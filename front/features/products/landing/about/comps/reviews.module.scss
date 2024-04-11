@@ -27,6 +27,28 @@
     }
   }
 
+  .body {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+  }
+
+  .footer {
+    margin-top: 1rem;
+    a {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      gap: 0.5rem;
+
+      color: $color-blue-defrance;
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+
   @media screen and (max-width: 662px) {
     header {
       flex-flow: column nowrap;

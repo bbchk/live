@@ -3,7 +3,7 @@
 .review_item {
   padding: 1rem;
 
-  box-shadow: 0 0 0 0.05rem $color-wh-lightsilv;
+  border: 0.09rem solid $color-wh-lightsilv;
 
   background-color: white;
 
@@ -32,6 +32,7 @@
     }
 
     span {
+      color: $color-blue-dasl;
       font-weight: bold;
     }
 
@@ -63,20 +64,14 @@
       justify-content: center;
       align-items: center;
       gap: 0.5rem;
-
-      cursor: pointer;
     }
 
-    .like_btn_group {
+    .controls {
       display: flex;
       flex-flow: row nowrap;
 
       align-items: center;
       gap: 0.5rem;
-
-      button {
-        cursor: pointer;
-      }
 
       .options_btn {
         margin-left: 1rem;

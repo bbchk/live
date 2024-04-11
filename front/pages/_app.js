@@ -15,6 +15,7 @@ import SignInModal from "comps/modals/auth/sign_in_modal/sign_in_modal";
 import SignUpModal from "comps/modals/auth/sign_up_modal/sign_up_modal";
 import DeleteAccountModal from "comps/modals/delete_account/delete_account_modal.js";
 import CartModal from "comps/modals/cart/cart_modal";
+import WriteReviewModal from "features/products/landing/mutual/modals/write_review_modal.js";
 
 import Header from "comps/layout/header/header";
 import Footer from "comps/layout/footer/footer";
@@ -129,6 +130,7 @@ function Modals() {
       <SignInModal />
       <SignUpModal />
       <CartModal />
+      <WriteReviewModal />
     </>
   );
 }

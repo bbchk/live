@@ -9,6 +9,7 @@ const modalsSlice = createSlice({
     changePasswordModalOpen: false,
     deleteAccountModalOpen: false,
     cartModalOpen: false,
+    writeReviewModal: false,
   },
   reducers: {
     toggleSignInModal: (state) => {
@@ -28,6 +29,9 @@ const modalsSlice = createSlice({
     toggleCartModal: (state) => {
       state.cartModalOpen = !state.cartModalOpen;
     },
+    toggleWriteReviewModal: (state) => {
+      state.writeReviewModal = !state.writeReviewModal;
+    },
     startLoading: (state) => {
       state.loading = true;
     },
@@ -43,6 +47,7 @@ export const {
   toggleChangePasswordModal,
   toggleDeleteAccountModal,
   toggleCartModal,
+  toggleWriteReviewModal,
   startLoading,
   stopLoading,
 } = modalsSlice.actions;
