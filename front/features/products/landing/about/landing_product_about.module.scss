@@ -9,8 +9,7 @@
 
   grid-template-areas:
     "product_figure product_main_info"
-    "description reviews"
-    "characteristics reviews"
+    "descriptionAndCharacteristics reviews"
     "recs recs";
 
   .product_figure {
@@ -24,20 +23,15 @@
     grid-area: reviews;
   }
 
-  .description {
-    grid-area: description;
-  }
-
-  .characteristics {
-    grid-area: characteristics;
+  .descriptionAndCharacteristics {
+    grid-area: descriptionAndCharacteristics;
   }
 
   .recs {
     grid-area: recs;
   }
 
-  .description,
-  .characteristics,
+  .descriptionAndCharacteristics,
   .recs,
   .reviews {
     padding: 2rem;
@@ -51,18 +45,15 @@
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "product_figure product_main_info"
-      "description description"
-      "characteristics characteristics"
+      "descriptionAndCharacteristics descriptionAndCharacteristics"
       "reviews reviews"
       "recs recs";
 
-    .characteristics,
-    .description {
+    .descriptionAndCharacteristics {
       width: 100vw;
     }
 
-    .description,
-    .characteristics,
+    .descriptionAndCharacteristics,
     .reviews {
       padding: 1rem;
     }
@@ -83,8 +74,7 @@
     grid-template-areas:
       "product_figure"
       "product_main_info"
-      "description"
-      "characteristics"
+      "descriptionAndCharacteristics"
       "reviews"
       "recs";
 
@@ -95,8 +85,7 @@
       width: 100vw;
     }
 
-    .description,
-    .characteristics,
+    .descriptionAndCharacteristics,
     .reviews {
       padding: 0.5rem;
     }

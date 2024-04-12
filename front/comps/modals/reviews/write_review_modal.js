@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { toggleWriteReviewModal } from "store/modalSlice";
 import { balsamiqSans } from "#root/pages/_app.js";
+import Link from "next/link";
 
 //todo input validation
 const WriteReviewModal = () => {
@@ -14,6 +15,11 @@ const WriteReviewModal = () => {
   const { writeReviewModal } = useSelector((state) => state.modals);
 
   const toggle = () => dispatch(toggleWriteReviewModal());
+
+  function handleSubmit() {
+    console.log("Submit");
+    toggle();
+  }
 
   return (
     <Modal
@@ -28,8 +34,24 @@ const WriteReviewModal = () => {
       <Modal.Header closeButton={true} className="modal_header_title_center">
         <h3>Написати відгук</h3>
       </Modal.Header>
-      <Modal.Body className={`${s.modal_body}`}>
+      <Modal.Body className={`${s.body}`}>
         <WriteReviewForm />
+        {/* <menu className={`${s.button_group}`}>
+        <li>
+          <button
+            className="button_primary"
+            type="button"
+            onClick={() => toggle()}
+          >
+            Скасувати
+          </button>
+        </li>
+        <li>
+          <button className="button_submit" onClick={() => handleSubmit()}>
+            Залишити відгук
+          </button>
+        </li>
+      </menu> */}
       </Modal.Body>
     </Modal>
   );

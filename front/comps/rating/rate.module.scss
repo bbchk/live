@@ -1,41 +1,80 @@
 @use "styles/variables" as *;
 
 .rate {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-evenly;
-  align-items: center;
-
   width: 100%;
+  $text-color: $color-blue-dasl;
+  color: $text-color;
 
-  padding: 1rem 0;
-
-  li button {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+  h3 {
+    font-size: 1.2rem;
   }
 
-  svg {
-    width: 2.5rem;
-    height: 2.5rem;
+  .stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
 
-    fill: lightgrey;
-    &.active {
+    width: 100%;
+
+    padding: 1rem 0;
+
+    li button {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      color: $text-color;
+    }
+
+    &.visible li button svg {
+      animation: gentleShake 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      animation-delay: 0.5s;
+    }
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+
+      fill: lightgrey;
+
+      &.active {
+        fill: $color-yell-brightsun;
+      }
+
+      transition: fill 0.25s, color 0.25s;
+    }
+
+    & > .star:hover svg,
+    & > .star:hover ~ .star svg {
       fill: $color-yell-brightsun;
     }
 
-    transition: fill 0.2s;
+    &:hover svg {
+      fill: lightgrey;
+    }
   }
+}
 
-  & > .star:hover svg,
-  & > .star:hover ~ .star svg {
+@keyframes gentleShake {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-2deg);
+  }
+  40% {
+    transform: rotate(2deg);
     fill: $color-yell-brightsun;
   }
-
-  &:hover svg {
-    fill: lightgrey;
+  60% {
+    transform: rotate(-1deg);
+  }
+  80% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }

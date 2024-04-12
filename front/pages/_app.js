@@ -8,14 +8,26 @@ axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 import { SessionProvider, getSession } from "next-auth/react";
 import { setCart } from "store/userSlice";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 
-import ChangePasswordModal from "comps/modals/change_password/change_password_modal";
-import SignInModal from "comps/modals/auth/sign_in_modal/sign_in_modal";
-import SignUpModal from "comps/modals/auth/sign_up_modal/sign_up_modal";
-import DeleteAccountModal from "comps/modals/delete_account/delete_account_modal.js";
-import CartModal from "comps/modals/cart/cart_modal";
-import WriteReviewModal from "comps/modals/reviews/write_review_modal";
+import { lazy } from "react";
+
+const ChangePasswordModal = lazy(() =>
+  import("comps/modals/change_password/change_password_modal")
+);
+const SignInModal = lazy(() =>
+  import("comps/modals/auth/sign_in_modal/sign_in_modal")
+);
+const SignUpModal = lazy(() =>
+  import("comps/modals/auth/sign_up_modal/sign_up_modal")
+);
+const DeleteAccountModal = lazy(() =>
+  import("comps/modals/delete_account/delete_account_modal.js")
+);
+const CartModal = lazy(() => import("comps/modals/cart/cart_modal"));
+const WriteReviewModal = lazy(() =>
+  import("comps/modals/reviews/write_review_modal")
+);
 
 import Header from "comps/layout/header/header";
 import Footer from "comps/layout/footer/footer";
@@ -125,12 +137,14 @@ function FetchData() {
 function Modals() {
   return (
     <>
-      <DeleteAccountModal />
-      <ChangePasswordModal />
-      <SignInModal />
-      <SignUpModal />
-      <CartModal />
-      <WriteReviewModal />
+      <Suspense fallback={<></>}>
+        <DeleteAccountModal />
+        <ChangePasswordModal />
+        <SignInModal />
+        <SignUpModal />
+        <CartModal />
+        <WriteReviewModal />
+      </Suspense>
     </>
   );
 }

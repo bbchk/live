@@ -1,18 +1,13 @@
-import Navigation from "features/products/landing/comps/layout/navigation";
-import Characteristics from "features/products/landing/comps/characteristics/characteristics";
-import SmallCard from "features/products/landing/comps/characteristics/small_card";
-import SmallBuyArea from "features/products/landing/comps/characteristics/small_buy_area";
-import { useSelector } from "react-redux";
-import { slugify } from "@bbuukk/slugtrans/slugify";
-import { transliterate } from "@bbuukk/slugtrans/transliterate";
+import Characteristics from "features/products/landing/mutual/characteristics";
+import SmallCard from "./small_card";
+import SmallBuyArea from "./small_buy_area";
+
 import DecorLine from "comps/decor/decor_line";
-import Breadcrumbs from "comps/navigation/breadcrumbs";
-import { useRouter } from "next/router";
 
 //todo add Head like in about page
 const ProductCharacteristics = ({ product }) => {
   return (
-    <>
+    <article>
       <DecorLine />
       <div className="container">
         <div className="d-flex justify-content-between">
@@ -26,7 +21,7 @@ const ProductCharacteristics = ({ product }) => {
           </div>
         </div>
       </div>
-    </>
+    </article>
   );
 };
 

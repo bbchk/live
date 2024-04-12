@@ -10,7 +10,7 @@ const UsageTerms = () => {
           content="Живий Світ - Угода користувача і умови використання сайту магазину"
         />
       </Head>
-      <div className="container mt-4"></div>
+      <h1>IN DEV</h1>
     </>
   );
 };

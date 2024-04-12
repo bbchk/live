@@ -1,29 +1,31 @@
-import { useEffect, useId, useState } from "react";
+import { use, useEffect, useId, useRef, useState } from "react";
 import s from "./rate.module.scss";
 import StarIcon from "./star_icon";
+import useObserver from "hooks/useObserver";
 
-const Rate = () => {
+const Rate = ({ selectedStars, setSelectedStars }) => {
   const ALL_STARS = 5;
   const STARS_TEXT = ["Чудово", "Добре", "Нормально", "Так собі", "Погано"];
 
   const id = useId();
-  const [selectedStars, setSelectedStars] = useState(5);
+
+  const ref = useRef();
+  const isVisible = useObserver(ref);
 
   useEffect(() => {
     const starValue = ALL_STARS - selectedStars;
-    console.log(starValue);
   }, [selectedStars]);
 
   return (
-    <>
-      <p className="text-align-start w-100">Оцініть товар</p>
-      <menu className={`${s.rate}`}>
+    <div className={`${s.rate}`}>
+      <h3>Оцініть товар</h3>
+      <menu className={`${s.stars} ${isVisible ? s.visible : ""}`} ref={ref}>
         {Array.from({ length: ALL_STARS }, (_, i) => i + 1).map(
           (star, index) => {
             return (
-              <li className={`${s.star}`}>
+              <li className={`${s.star}`} key={`${id}-${index}`}>
                 <button
-                  key={`${id}-${index}`}
+                  type="button"
                   onClick={() => {
                     console.log(index);
                     setSelectedStars(index);
@@ -37,7 +39,7 @@ const Rate = () => {
           }
         )}
       </menu>
-    </>
+    </div>
   );
 };
 export default Rate;

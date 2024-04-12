@@ -11,9 +11,12 @@ import { stopLoading } from "store/modalSlice.js";
 const LandingProductAboutPage = lazy(() =>
   import("features/products/landing/about/landing_product_about")
 );
-// const Characteristics = lazy(() =>
-//   import("features/products/landing/comps/characteristics/index")
-// );
+const Characteristics = lazy(() =>
+  import("features/products/landing/characteristics/index")
+);
+const LandingProductReviewsPage = lazy(() =>
+  import("features/products/landing/reviews/reviews_page")
+);
 
 //todo make fallback page for suspense
 //todo fix we take first category available on product, but it can be not the category user was in
@@ -24,10 +27,7 @@ const Landing = ({ product }) => {
 
   useEffect(() => {
     dispatch(stopLoading());
-    if (activeTab != "about" && activeTab != "characteristics") {
-      router.push(`/404`);
-    }
-  }, []);
+  }, [product]);
 
   return (
     <>
@@ -45,10 +45,16 @@ const Landing = ({ product }) => {
 
       <Suspense fallback={<div>Loading...</div>}>
         {activeTab == "about" && <LandingProductAboutPage product={product} />}
-        {/* {activeTab == "characteristics" && (
+        {activeTab == "characteristics" && (
           <Characteristics product={product} />
-        )} */}
-        {/* {activeTab == "reviews" && <Reviews product={product} />} */}
+        )}
+
+        {activeTab == "reviews" && (
+          <LandingProductReviewsPage
+            reviews={product.reviews || []}
+            product={product}
+          />
+        )}
       </Suspense>
     </>
   );
@@ -61,7 +67,7 @@ export async function getServerSideProps({ params }) {
 
   const res = await axios.get(`/products/product/${productId}`);
 
-  if (activeTab != "about" && activeTab != "characteristics") {
+  if (!["about", "characteristics", "reviews"].includes(activeTab)) {
     return {
       notFound: true,
     };

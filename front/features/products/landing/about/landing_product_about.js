@@ -10,84 +10,12 @@ import ProductFigure from "./comps/product_figure";
 import Description from "./comps/description";
 import Characteristics from "../mutual/characteristics";
 import Reviews from "./comps/reviews";
+import useObserver from "hooks/useObserver.js";
 
 const LandingProductAboutPage = ({ product }) => {
   const ref = useRef();
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsVisible(true);
-        observer.unobserve(ref.current);
-      }
-    });
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, []);
-
-  const reviews = [
-    {
-      id: 1,
-      starRating: 2.4,
-      cons: "Немає",
-      pros: "Відмінний телефон",
-      comment:
-        "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
-      date: "01.01.2021",
-      author: "Бучок Богдан",
-      likes: 5,
-      dislikes: 10,
-      subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
-    },
-    {
-      id: 2,
-      starRating: 2.4,
-      cons: "Немає",
-      pros: "Відмінний телефон",
-      comment:
-        "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
-      date: "01.01.2021",
-      author: "Бучок Богдан",
-      likes: 5,
-      dislikes: 10,
-      subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
-    },
-    {
-      id: 3,
-      starRating: 2.4,
-      cons: "Немає",
-      pros: "Відмінний телефон",
-      comment:
-        "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
-      date: "01.01.2021",
-      author: "Бучок Богдан",
-      likes: 5,
-      dislikes: 10,
-      subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
-    },
-    {
-      id: 4,
-      starRating: 2.4,
-      cons: "Немає",
-      pros: "Відмінний телефон",
-      comment:
-        "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
-      date: "01.01.2021",
-      author: "Бучок Богдан",
-      likes: 5,
-      dislikes: 10,
-      subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
-    },
-  ];
+  const isVisible = useObserver(ref); // use the custom hook
+  // const reviews = [];
 
   return (
     <article className={`${s.landing_product_about}`}>
@@ -98,10 +26,10 @@ const LandingProductAboutPage = ({ product }) => {
         <ProductMainInfo product={product} />
       </div>
 
-      <div className={`${s.description}`} ref={ref}>
-        <Description product={product} />
-      </div>
-      <div className={`${s.characteristics}`}>
+      <div className={`${s.descriptionAndCharacteristics}`} ref={ref}>
+        <div className="mb-5">
+          <Description product={product} />
+        </div>
         <Characteristics title={"Характеристики:"} product={product} />
       </div>
 
@@ -119,3 +47,58 @@ const LandingProductAboutPage = ({ product }) => {
 };
 
 export default LandingProductAboutPage;
+
+const reviews = [
+  {
+    id: 1,
+    starRating: 2.4,
+    cons: "Немає",
+    pros: "Відмінний телефон",
+    comment:
+      "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
+    date: "01.01.2021",
+    author: "Бучок Богдан",
+    likes: 5,
+    dislikes: 10,
+    subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
+  },
+  // {
+  //   id: 2,
+  //   starRating: 2.4,
+  //   cons: "Немає",
+  //   pros: "Відмінний телефон",
+  //   comment:
+  //     "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
+  //   date: "01.01.2021",
+  //   author: "Бучок Богдан",
+  //   likes: 5,
+  //   dislikes: 10,
+  //   subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
+  // },
+  // {
+  //   id: 3,
+  //   starRating: 2.4,
+  //   cons: "Немає",
+  //   pros: "Відмінний телефон",
+  //   comment:
+  //     "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
+  //   date: "01.01.2021",
+  //   author: "Бучок Богдан",
+  //   likes: 5,
+  //   dislikes: 10,
+  //   subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
+  // },
+  // {
+  //   id: 4,
+  //   starRating: 2.4,
+  //   cons: "Немає",
+  //   pros: "Відмінний телефон",
+  //   comment:
+  //     "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
+  //   date: "01.01.2021",
+  //   author: "Бучок Богдан",
+  //   likes: 5,
+  //   dislikes: 10,
+  //   subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
+  // },
+];
