@@ -16,11 +16,6 @@ const WriteReviewModal = () => {
 
   const toggle = () => dispatch(toggleWriteReviewModal());
 
-  function handleSubmit() {
-    console.log("Submit");
-    toggle();
-  }
-
   return (
     <Modal
       id="WriteReviewModal"

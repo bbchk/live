@@ -3,7 +3,7 @@ import s from "./rate.module.scss";
 import StarIcon from "./star_icon";
 import useObserver from "hooks/useObserver";
 
-const Rate = ({ selectedStars, setSelectedStars }) => {
+const Rate = ({ selectedStars, onChange }) => {
   const ALL_STARS = 5;
   const STARS_TEXT = ["Чудово", "Добре", "Нормально", "Так собі", "Погано"];
 
@@ -28,7 +28,7 @@ const Rate = ({ selectedStars, setSelectedStars }) => {
                   type="button"
                   onClick={() => {
                     console.log(index);
-                    setSelectedStars(index);
+                    onChange(index);
                   }}
                 >
                   <StarSvg isActive={index + 1 > selectedStars} />

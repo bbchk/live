@@ -5,12 +5,12 @@ import Link from "next/link";
 const WriteReviewFormFooter = () => {
   return (
     <footer className={s.footer}>
-      <button className="button_submit" onClick={() => handleSubmit()}>
+      <button type="submit" className="button_submit">
         Залишити відгук
       </button>
       <p>
-        Щоб ваш відгук або коментар пройшов модерацію і був опублікований,
-        ознайомтеся, будь ласка, з
+        Щоб ваш відгук пройшов модерацію і був опублікований, ознайомтеся, будь
+        ласка, з{" "}
         <Link className="link_primary" href="/review-write-rules">
           нашими правилами
         </Link>

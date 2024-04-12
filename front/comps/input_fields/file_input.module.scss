@@ -1,0 +1,22 @@
+@use "./styles/variables" as *;
+
+.file_input_label {
+  padding: 0.5rem;
+
+  height: fit-content;
+  max-width: fit-content;
+
+  border: 0.09rem solid $color-wh-lightsilv;
+  border-radius: 10px;
+
+  background-color: rgba($color-blue-dasl, 0.07);
+  color: saturate($color-blue-defrance, 0.07);
+
+  cursor: pointer;
+
+  transition: background-color 0.25s, color 0.25s;
+  &:hover {
+    background-color: rgba($color-blue-dasl, 0.1);
+    color: saturate($color-blue-defrance, 50%);
+  }
+}
