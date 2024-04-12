@@ -55,6 +55,12 @@
       fill: lightgrey;
     }
   }
+
+  @media screen and (max-width: 662px) {
+    .star {
+      font-size: 0.8rem;
+    }
+  }
 }
 
 @keyframes gentleShake {
