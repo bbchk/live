@@ -13,7 +13,8 @@ import { toggleWriteReviewModal } from "store/modalSlice";
 import WriteReviewForm from "../../mutual/write_review_form";
 import { useRouter } from "next/router";
 
-const Reviews = ({ reviews }) => {
+const Reviews = ({ product }) => {
+  const { reviews } = product;
   const MAX_REVIEWS_ON_ABOUT_PAGE = 3;
   const dispatch = useDispatch();
 
@@ -56,7 +57,7 @@ const Reviews = ({ reviews }) => {
         {amountOfReviews === 0 && (
           <>
             <div className={`${s.write_review_embedded}`}>
-              <WriteReviewForm></WriteReviewForm>
+              <WriteReviewForm />
             </div>
           </>
         )}

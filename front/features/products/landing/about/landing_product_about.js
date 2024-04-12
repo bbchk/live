@@ -34,7 +34,7 @@ const LandingProductAboutPage = ({ product }) => {
       </div>
 
       <div className={`${s.reviews}`}>
-        <Reviews reviews={reviews} />
+        <Reviews product={product} />
       </div>
 
       {isVisible && (
@@ -47,58 +47,3 @@ const LandingProductAboutPage = ({ product }) => {
 };
 
 export default LandingProductAboutPage;
-
-const reviews = [
-  {
-    id: 1,
-    starRating: 2.4,
-    cons: "Немає",
-    pros: "Відмінний телефон",
-    comment:
-      "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
-    date: "01.01.2021",
-    author: "Бучок Богдан",
-    likes: 5,
-    dislikes: 10,
-    subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
-  },
-  // {
-  //   id: 2,
-  //   starRating: 2.4,
-  //   cons: "Немає",
-  //   pros: "Відмінний телефон",
-  //   comment:
-  //     "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
-  //   date: "01.01.2021",
-  //   author: "Бучок Богдан",
-  //   likes: 5,
-  //   dislikes: 10,
-  //   subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
-  // },
-  // {
-  //   id: 3,
-  //   starRating: 2.4,
-  //   cons: "Немає",
-  //   pros: "Відмінний телефон",
-  //   comment:
-  //     "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
-  //   date: "01.01.2021",
-  //   author: "Бучок Богдан",
-  //   likes: 5,
-  //   dislikes: 10,
-  //   subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
-  // },
-  // {
-  //   id: 4,
-  //   starRating: 2.4,
-  //   cons: "Немає",
-  //   pros: "Відмінний телефон",
-  //   comment:
-  //     "0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?",
-  //   date: "01.01.2021",
-  //   author: "Бучок Богдан",
-  //   likes: 5,
-  //   dislikes: 10,
-  //   subreviews: ["Blah blah blah", "Blah blah blah", "Blah blah blah"],
-  // },
-];
