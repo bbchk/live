@@ -73,10 +73,10 @@ export default function App({
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title> Живий світ - Магазин зоотоварів і товарів для дому </title>
+        <title> Живий світ: Магазин зоотоварів і товарів для дому </title>
         <meta
           name="description"
-          content="Живий Світ - Магазин найкращих товарів для вашого дому, домашніх улюбленців та рослин"
+          content="Живий Світ: Магазин найкращих товарів для вашого дому, домашніх улюбленців та рослин"
         />
       </Head>
       <SessionProvider session={session}>
@@ -91,6 +91,7 @@ export default function App({
     </div>
   );
 }
+
 const Body = ({ children }) => {
   const { loading } = useSelector((state) => state.modals);
 
