@@ -5,6 +5,7 @@ import { useCart } from "hooks/useCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faMessage } from "@fortawesome/free-regular-svg-icons";
+import { useRouter } from "next/router";
 
 const InfoBody = ({ product }) => {
   const {
@@ -21,6 +22,8 @@ const InfoBody = ({ product }) => {
     packing,
     code = "000000",
   } = product;
+
+  const router = useRouter();
 
   const { add } = useCart();
   function handleBuy(product) {
@@ -47,11 +50,18 @@ const InfoBody = ({ product }) => {
         <i className="bi bi-cart4"></i>
       </button>
 
-      <button className={` ${s.like_btn} icon_button_primary`}>
+      <button className={`${s.like_btn} icon_button_primary`}>
         <FontAwesomeIcon className="icon_button_on_hover" icon={faHeart} />
       </button>
 
-      <button className={`${s.comment_btn} icon_button_primary`}>
+      <button
+        className={`${s.comment_btn} icon_button_primary`}
+        onClick={() => {
+          // router.push(router.asPath + "#write_review_button", undefined, {
+          //   shallow: true,
+          // });
+        }}
+      >
         <FontAwesomeIcon className="icon_button_on_hover" icon={faMessage} />
       </button>
     </div>

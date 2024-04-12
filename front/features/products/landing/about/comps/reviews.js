@@ -19,10 +19,17 @@ const Reviews = ({ product }) => {
   const dispatch = useDispatch();
 
   const router = useRouter();
-  const productPathNoActiveTab = router.asPath
-    .split("/")
-    .slice(0, -1)
-    .join("/");
+  const handleNavigation = (e) => {
+    const productPathNoActiveTab = router.asPath
+      .split("/")
+      .slice(0, -1)
+      .join("/");
+
+    e.preventDefault();
+    router.push(productPathNoActiveTab + "/reviews", undefined, {
+      shallow: true,
+    });
+  };
 
   const amountOfReviews = reviews.length;
 
@@ -67,7 +74,7 @@ const Reviews = ({ product }) => {
       </div>
       <footer className={`${s.footer}`}>
         {amountOfReviews > 0 && (
-          <Link href={productPathNoActiveTab + "/reviews"}>
+          <Link href="#" onClick={handleNavigation}>
             <p>Подивитись усі відгуки на товар</p>
             <FontAwesomeIcon icon={faArrowRight} />
           </Link>

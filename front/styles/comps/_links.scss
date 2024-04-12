@@ -11,3 +11,9 @@ a.link_primary {
 
   color: $color-blue-defrance;
 }
+
+a.link_secondary {
+  @include link;
+
+  color: darken($color: $color-blue-defrance, $amount: 20%);
+}
