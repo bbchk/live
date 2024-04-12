@@ -111,30 +111,4 @@
       }
     }
   }
-
-  .button_group {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-
-    width: 100%;
-
-    margin-top: 1rem;
-
-    li {
-      width: 40%;
-    }
-  }
-
-  .get_know_rules_appeal {
-    width: 60ch;
-
-    opacity: 0.7;
-
-    text-align: center;
-
-    span {
-      color: $color-blue-dasl;
-    }
-  }
 }

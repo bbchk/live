@@ -1,0 +1,16 @@
+@use "./styles/variables" as *;
+
+.footer {
+  p {
+    margin-top: 0.5rem;
+    width: 60ch;
+
+    opacity: 0.7;
+
+    text-align: center;
+
+    span {
+      color: $color-blue-dasl;
+    }
+  }
+}

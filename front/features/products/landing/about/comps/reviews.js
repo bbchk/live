@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 
 import { toggleWriteReviewModal } from "store/modalSlice";
-import WriteReviewForm from "../../mutual/write_review_form";
+import WriteReviewForm from "../../mutual/write_review_form/write_review_form";
 import { useRouter } from "next/router";
 
 const Reviews = ({ product }) => {

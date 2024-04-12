@@ -9,6 +9,7 @@ import { faRotateRight, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { balsamiqSans } from "#root/pages/_app.js";
 import Link from "next/link";
+import WriteReviewFormFooter from "./comps/write_review_form_footer";
 
 const WriteReviewForm = () => {
   const [review, setReview] = useState({ pros: "", cons: "", comment: "" });
@@ -144,18 +145,7 @@ const WriteReviewForm = () => {
           </div>
         )}
       </div>
-      <button className="button_submit" onClick={() => handleSubmit()}>
-        Залишити відгук
-      </button>
-      <p className={`${s.get_know_rules_appeal}`}>
-        <span>
-          Щоб ваш відгук або коментар пройшов модерацію і був опублікований,
-          ознайомтеся, будь ласка, з{" "}
-        </span>
-        <Link className="link_primary" href="/review-write-rules">
-          нашими правилами
-        </Link>
-      </p>
+      <WriteReviewFormFooter />
     </form>
   );
 };

@@ -1,7 +1,7 @@
 import { Modal } from "react-bootstrap";
 import s from "./write_review_modal.module.scss";
 
-import WriteReviewForm from "../../../features/products/landing/mutual/write_review_form";
+import WriteReviewForm from "../../../features/products/landing/mutual/write_review_form/write_review_form";
 
 import { useDispatch, useSelector } from "react-redux";
 
