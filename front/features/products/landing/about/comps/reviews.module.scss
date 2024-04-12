@@ -46,6 +46,11 @@
         width: 1rem;
         height: 1rem;
       }
+
+      &:hover {
+        text-decoration: underline;
+        color: saturate($color: $color-blue-defrance, $amount: 80%);
+      }
     }
   }
 
