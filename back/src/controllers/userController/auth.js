@@ -1,14 +1,11 @@
-import User from "#src/models/user.js";
-import genAuthToken from "#src/utils/genAuthToken.js";
+import user from "#src/models/user.js";
+import * as authService from "#src/services/user.service/auth.service.js";
 
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
-
   try {
-    const user = await User.signIn(email, password);
-
-    const token = genAuthToken(user);
-
+    const { user, token } = await authService.signIn(email, password);
+    console.log("🚀 ~ user:", user);
     res.status(200).json({
       id: user._id,
       firstName: user.firstName,
@@ -24,28 +21,13 @@ export const signIn = async (req, res) => {
   }
 };
 
-//todo test
-//todo what if user sign in with service, but does not have picture and service does not provide one? research it
 export const signUp = async (req, res) => {
-  const { firstName, secondName, email, password, localStorageCartJson } =
-    req.body;
-
+  const user = { ...req.body };
   try {
-    const user = User.signUp(
-      firstName,
-      secondName,
-      email,
-      password,
-      localStorageCartJson
-    );
-    const token = createToken(user._id);
+    const newUser = await authService.signUp(user);
+
     res.status(200).json({
-      firstName: user.firstName,
-      secondName: user.secondName,
-      email: email,
-      token: token,
-      likedProducts: user.likedProducts,
-      image: user.image,
+      ...newUser,
     });
   } catch (e) {
     res.status(400).json({ error: e.message });

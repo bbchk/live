@@ -1,15 +1,11 @@
-import User from "#src/models/user.js";
+import * as userService from "#src/services/user.service/like.service.js";
 
-//todo test and fix this
 export const addLikedProduct = async (req, res) => {
   const { userId } = req.query;
   const product = req.body;
 
   try {
-    await User.updateOne(
-      { _id: userId },
-      { $push: { likedProducts: productId } }
-    );
+    await userService.addLikedProduct(userId, product);
     res.status(200).json({ message: "Product liked successfully." });
   } catch (err) {
     console.error(`error: ${err}`);

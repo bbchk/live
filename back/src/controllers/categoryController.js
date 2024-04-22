@@ -1,21 +1,13 @@
-import category from "../models/category.js";
+import * as categoryService from "#src/services/category.service.js";
 
 export const getCategories = async (req, res) => {
-  const categories = await category.find({}).sort({ createdAt: -1 });
-
+  const categories = await categoryService.getCategories();
   res.status(200).json(categories);
 };
 
 export const createCategory = async (req, res) => {
-  const { name, path, imagePath, order } = req.body;
-
   try {
-    const createdCategory = await category.create({
-      name,
-      order,
-      path,
-      imagePath,
-    });
+    const createdCategory = await categoryService.createCategory(req.body);
     res.status(200).json(createdCategory);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -23,10 +15,8 @@ export const createCategory = async (req, res) => {
 };
 
 export const createCategories = async (req, res) => {
-  const categories = req.body;
-
   try {
-    const createdCategories = await category.insertMany(categories);
+    const createdCategories = await categoryService.createCategories(req.body);
     res.status(200).json(createdCategories);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -34,13 +24,10 @@ export const createCategories = async (req, res) => {
 };
 
 export const updateCategory = async (req, res) => {
-  const { id } = req.params;
-
   try {
-    const updatedCategory = await category.findByIdAndUpdate(
-      id,
-      { ...req.body },
-      { new: true }
+    const updatedCategory = await categoryService.updateCategory(
+      req.params.id,
+      req.body
     );
     res.status(200).json(updatedCategory);
   } catch (err) {

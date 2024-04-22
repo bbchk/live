@@ -62,7 +62,6 @@ userSchema.statics.signIn = async function (email, password) {
   }
 
   const user = await this.findOne({ email });
-  console.log("🚀 ~ user:", user);
 
   if (!user) {
     throw Error("Incorrect email");
@@ -76,13 +75,9 @@ userSchema.statics.signIn = async function (email, password) {
   return user;
 };
 
-userSchema.statics.signUp = async function (
-  firstName,
-  secondName,
-  email,
-  password,
-  localStorageCartJson
-) {
+userSchema.statics.signUp = async function (user) {
+  const { firstName, secondName, email, password, localStorageCartJson } = user;
+
   if (!email || !password) {
     throw Error("Email and password fields cannot be blank");
   }
@@ -90,6 +85,7 @@ userSchema.statics.signUp = async function (
   if (!validator.isEmail(email)) {
     throw Error("Email is not valid");
   }
+
   if (!validator.isStrongPassword(password)) {
     throw Error("Password is not strong enough");
   }
@@ -106,7 +102,7 @@ userSchema.statics.signUp = async function (
   const randomImageIdx = Math.floor(Math.random() * (max - min + 1)) + min;
   const defaultUserImage = `https://storage.googleapis.com/live_world/users/user${randomImageIdx}.jpg`;
 
-  return await this.create({
+  const newUser = await this.create({
     firstName: firstName,
     secondName: secondName,
     email: email,
@@ -114,6 +110,14 @@ userSchema.statics.signUp = async function (
     image: defaultUserImage,
     cart: localStorageCartJson,
   });
+
+  {
+    let newUserDoc = newUser._doc;
+    let { firstName, secondName, email, image, likedProducts, cart, _id } =
+      newUserDoc;
+
+    return { firstName, secondName, email, image, likedProducts, cart, _id };
+  }
 };
 
 export default model("User", userSchema);

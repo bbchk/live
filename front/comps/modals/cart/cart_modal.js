@@ -23,15 +23,14 @@ const CartModal = () => {
 
   //todo set cart items and total cost to localStorage on signOut
   useEffect(() => {
-    if (cart) {
-      setCartItems(cart);
-
-      const totalCost = cart.reduce(
-        (acc, item) => acc + item.product.price * item.quantity,
-        0
-      );
-      setTotalCost(totalCost);
-    }
+    // if (cart) {
+    //   setCartItems(cart);
+    //   const totalCost = cart.reduce(
+    //     (acc, item) => acc + item.product.price * item.quantity,
+    //     0
+    //   );
+    //   setTotalCost(totalCost);
+    // }
   }, [cart]);
 
   const handleBuy = async (e, value) => {};
