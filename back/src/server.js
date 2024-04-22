@@ -19,13 +19,11 @@ process.on("SIGTERM", cleanup);
 process.on("SIGTSTP", cleanup);
 
 function cleanup() {
-  if (process.env.MODE == "development") {
-    server.close(function (err) {
-      if (err) {
-        console.error(err);
-        process.exit(1);
-      }
-      process.exit(0);
-    });
-  }
+  server.close(function (err) {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    process.exit(0);
+  });
 }
