@@ -9,6 +9,10 @@ import {
 import { getFilterMapFromStr, getFiltersMap } from "./utils/getFilters.js";
 import { getOriginalFilterNameAndValues } from "./utils/getOrinialFilter.js";
 import { intersectMaps } from "./utils/intersect.js";
+import {
+  getSubcategories,
+  getCategoryByPath,
+} from "#src/services/category/get.category_service.js";
 
 //? if categoryPath is not changed from previous time, we can just use
 //? product that we already have and filter them
@@ -21,19 +25,18 @@ export async function getProductsByCategoryAndFilters(
 ) {
   const result = {};
 
-  const categoryPath = untransliterate(unslugify(slugCategoryPath));
-
-  const { activeCategory, allSubcategories } =
-    await getActiveCategoryAndAllSubcategories(categoryPath);
+  const path = untransliterate(unslugify(slugCategoryPath));
+  const activeCategory = await getCategoryByPath(path);
+  const subcategories = await getSubcategories(activeCategory);
 
   result.activeCategory = activeCategory;
-  result.subcategories = allSubcategories.filter(
+  result.subcategories = subcategories.filter(
     (category) =>
       category.name !== activeCategory.name &&
       isOneLevelDeeper(category, activeCategory)
   );
 
-  const activeCategoriesIds = allSubcategories.map((c) => c._id);
+  const activeCategoriesIds = subcategories.map((c) => c._id);
 
   const allFilterMaps = [];
 

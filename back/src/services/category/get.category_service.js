@@ -4,17 +4,17 @@ export const getCategories = async () => {
   return await category.find({}).sort({ createdAt: -1 });
 };
 
+export const getCategoryByPath = async (path) => {
+  return await category.findOne({
+    path: new RegExp(`^${path.toLowerCase()}$`, "i"),
+  });
+};
+
 export const getSubcategories = async (
-  parentCategorySlugPath,
+  parentCategory,
   requiredNestingLevel
 ) => {
   //todo validate requiredNestingLevel value
-
-  const parentCategoryPath = untransliterate(unslugify(parentCategorySlugPath));
-
-  const parentCategory = await category.findOne({
-    path: new RegExp(`^${parentCategoryPath.toLowerCase()}$`, "i"),
-  });
 
   if (parentCategory == null) {
     throw new Error("Parent category with such path is not found");
@@ -22,23 +22,26 @@ export const getSubcategories = async (
 
   const allSubcategories = await category
     .find({
-      path: new RegExp(parentCategoryPath, "i"),
+      path: new RegExp(parentCategory.path, "i"),
     })
     .select("name order path imagePath")
     .exec();
 
-  const parentCatNestLevel = activeCategory.path.split(",").length;
+  const parentCatNestLevel = parentCategory.path.split(",").length;
 
-  function isAtRequiredNestingLevel(c) {
-    const nestLevel = c.path.split(",").length;
-    return nestLevel === parentCatNestLevel + requiredNestingLevel;
+  if (requiredNestingLevel) {
+    function isAtRequiredNestingLevel(c) {
+      const nestLevel = c.path.split(",").length;
+      return nestLevel === parentCatNestLevel + requiredNestingLevel;
+    }
+
+    const subcategoriesExactLevelDeep = allSubcategories.filter(
+      (category) =>
+        category.name !== parentCategory.name &&
+        isAtRequiredNestingLevel(category)
+    );
+    return subcategoriesExactLevelDeep;
   }
 
-  const subcategoriesExactLevelDeep = allSubcategories.filter(
-    (category) =>
-      category.name !== parentCategory.name &&
-      isAtRequiredNestingLevel(category)
-  );
-
-  return subcategoriesExactLevelDeep;
+  return allSubcategories;
 };
