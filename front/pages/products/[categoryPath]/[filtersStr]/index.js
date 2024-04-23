@@ -107,7 +107,7 @@ const Listing = ({
         <ProductListingBody
           filtersMap={filtersMap}
           minMaxPrice={minMaxPrice}
-          currentMinMaxPrice={currentMinMaxPrice}
+          currentMinMaxPrice={[0, 100]}
           products={products}
           productsCount={productsCount}
           category={category}

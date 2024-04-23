@@ -11,6 +11,7 @@ import {
   getCategoryBySlugPath,
 } from "#src/services/category/get.category_service.js";
 import { getFiltersS } from "./get_filters.product_service.js";
+import { get } from "mongoose";
 
 //? if categoryPath is not changed from previous time, we can just use
 //? product that we already have and filter them
@@ -28,7 +29,6 @@ export async function getProductsByCategoryAndFilters(
   const activeCategoriesIds = subcategories.map((c) => c._id);
 
   let filters = getMapFromFilterStr(filtersStr);
-  // result.filtersMap = await getFiltersS(slugCategoryPath, filtersStr);
 
   /*Creating query for resulted products*/
   let query = Product.find({
@@ -36,68 +36,51 @@ export async function getProductsByCategoryAndFilters(
   }).select("name price images characteristics");
 
   /*Applying filters to resulted products query*/
-  for (let [filterName, filterValues] of filters) {
-    if (filterName === "page") {
-      continue;
-    }
+  // console.log(filters);
 
-    if (filterName === "tsina") {
-      query = query
-        .where("price")
-        .gte(filterValues[0])
-        .lte(filterValues[1])
-        .sort({ starRating: 1 });
-    } else if (filterName === "sortuvannya") {
-      if (filterValues[0] === "vid-deshevshykh-do-dorohykh") {
-        query = query.sort({ price: 1 });
-      } else if (filterValues[0] === "vid-dorohykh-do-deshevykh") {
-        query = query.sort({ price: -1 });
-      } else if (filterValues[0] === "za-reyutynhom") {
-        query = query.sort({ starRating: 1 });
+  filters.forEach((options, key) => {
+    if (!key === "page") {
+      if (key === "tsina") {
+        query = query
+          .where("price")
+          .gte(options[0])
+          .lte(options[1])
+          .sort({ starRating: 1 });
+      } else if (key === "sortuvannya") {
+        switch (options[0]) {
+          case "vid-deshevshykh-do-dorohykh":
+            query = query.sort({ price: 1 });
+            break;
+          case "vid-dorohykh-do-deshevykh":
+            query = query.sort({ price: -1 });
+            break;
+          case "za-reyutynhom":
+            query = query.sort({ starRating: 1 });
+            break;
+        }
+      } else {
+        const { key: unslugifiedKey, options: unslugifiedOptions } =
+          unslugifyFilter({
+            key,
+            options,
+          });
+
+        query = query.where(`characteristics.${unslugifiedKey}`, {
+          $in: unslugifiedOptions.map((o) => new RegExp(`^${o}$`, "i")),
+        });
       }
-    } else {
-      const { originalFilterName, originalFilterValues } = unslugifyFilter({
-        filterName,
-        filterValues,
-      });
-      query = query.where(`characteristics.${originalFilterName}`, {
-        $in: originalFilterValues.map((value) => new RegExp(`^${value}$`, "i")),
-      });
     }
-  }
+  });
 
   const allProducts = await query.exec();
-  /*Counting number of pages for all filtered products*/
-  result.numPages = Math.max(1, Math.ceil(allProducts.length / 50));
 
-  /*Counting max and min price of all category and filtered products*/
-  let allCategoryProducts = await Product.find({
-    category: { $in: activeCategoriesIds },
-  })
-    .select("name price")
-    .sort({ createdAt: -1 })
-    .exec();
-
-  const categoryPrices = allCategoryProducts.map((p) => Number(p.price));
-  const minPrice = categoryPrices.reduce((a, b) => Math.min(a, b), Infinity);
-  const maxPrice = categoryPrices.reduce((a, b) => Math.max(a, b), -Infinity);
-  result.minMaxPrice = [minPrice, maxPrice];
-
-  const currentPrices = allProducts.map((p) => Number(p.price));
-  const minCurrentPrice = currentPrices.reduce(
-    (a, b) => Math.min(a, b),
-    Infinity
-  );
-  const maxCurrentPrice = currentPrices.reduce(
-    (a, b) => Math.max(a, b),
-    -Infinity
-  );
-  result.currentMinMaxPrice = [minCurrentPrice, maxCurrentPrice];
   result.productsCount = allProducts.length;
+  result.numPages = getNumberOfPages(allProducts);
+  result.minMaxPrice = getMinMaxPrice(allProducts);
 
   /*Filtering products by page*/
   let products = allProducts;
-  const filterValues = filters.get("page");
+  const filterValues = filters.g1et("page");
   if (filterValues) {
     const pageId = filterValues[0];
     const PRODUCTS_ON_PAGE = 50;
@@ -109,4 +92,27 @@ export async function getProductsByCategoryAndFilters(
   result.products = products;
 
   return result;
+}
+
+function getNumberOfPages(products) {
+  const PRODUCTS_ON_PAGE = 50;
+  return Math.max(1, Math.ceil(products.length / PRODUCTS_ON_PAGE));
+}
+
+function getMinMaxPrice(products) {
+  // const currentPrices = allProducts.map((p) => Number(p.price));
+  // const minCurrentPrice = currentPrices.reduce(
+  //   (a, b) => Math.min(a, b),
+  //   Infinity
+  // );
+  // const maxCurrentPrice = currentPrices.reduce(
+  //   (a, b) => Math.max(a, b),
+  //   -Infinity
+  // );
+  // result.currentMinMaxPrice = [minCurrentPrice, maxCurrentPrice];
+
+  const prices = products.map((p) => Number(p.price));
+  const minPrice = prices.reduce((a, b) => Math.min(a, b), Infinity);
+  const maxPrice = prices.reduce((a, b) => Math.max(a, b), -Infinity);
+  return [minPrice, maxPrice];
 }

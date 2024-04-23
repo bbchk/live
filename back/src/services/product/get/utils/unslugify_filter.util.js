@@ -1,14 +1,13 @@
 import { untransliterate } from "@bbuukk/slugtrans/transliterate";
 import { unslugify } from "@bbuukk/slugtrans/slugify";
 
-export function unslugifyFilter({ filterName, filterValues }) {
-  let originalFilterName = untransliterate(unslugify(filterName));
-  originalFilterName =
-    originalFilterName.charAt(0).toUpperCase() + originalFilterName.slice(1);
+export function unslugifyFilter({ slugKey, slugOptions }) {
+  let key = untransliterate(unslugify(slugKey));
+  key = key.charAt(0).toUpperCase() + key.slice(1);
 
-  const originalFilterValues = filterValues.map((value) => {
+  const options = slugOptions.map((value) => {
     return untransliterate(unslugify(value));
   });
 
-  return { originalFilterName, originalFilterValues };
+  return { key, options };
 }

@@ -11,6 +11,8 @@ import {
 } from "./utils/filters_map.util.js";
 import { unslugifyFilter } from "./utils/unslugify_filter.util.js";
 
+//todo refactor
+
 export const getFiltersS = async (slugCategoryPath, filtersStr) => {
   const activeCategory = await getCategoryBySlugPath(slugCategoryPath);
   const subcategories = await getSubcategories(activeCategory);
@@ -26,7 +28,7 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
         continue;
       }
 
-      const { originalFilterName, originalFilterValues } = unslugifyFilter({
+      const { key, options } = unslugifyFilter({
         filterName,
         filterValues,
       });
@@ -44,12 +46,12 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
           .lte(filterValues[1])
           .exec();
       } else {
-        const regexFilterValues = originalFilterValues.map(
+        const regexFilterValues = options.map(
           (value) => new RegExp(`^${value}$`, "i")
         );
 
         filteredCharacteristics = await characteristicsQuery
-          .where(`characteristics.${originalFilterName}`, {
+          .where(`characteristics.${key}`, {
             $in: regexFilterValues,
           })
           .exec();
@@ -59,13 +61,13 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
 
       if (filterName !== "tsina") {
         const allFilterValues = await Product.distinct(
-          `characteristics.${originalFilterName}`,
+          `characteristics.${key}`,
           {
             category: { $in: activeCategoriesIds },
           }
         );
 
-        filterMap.set(originalFilterName, allFilterValues);
+        filterMap.set(key, allFilterValues);
       }
 
       allFilterMaps.push(filterMap);
