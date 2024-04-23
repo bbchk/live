@@ -28,7 +28,7 @@ export async function getProductsByCategoryAndFilters(
   const activeCategoriesIds = subcategories.map((c) => c._id);
 
   let filters = getMapFromFilterStr(filtersStr);
-  result.filtersMap = await getFiltersS(slugCategoryPath, filtersStr);
+  // result.filtersMap = await getFiltersS(slugCategoryPath, filtersStr);
 
   /*Creating query for resulted products*/
   let query = Product.find({

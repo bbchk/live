@@ -145,11 +145,22 @@ export async function getServerSideProps(context) {
     );
     const directSubcategories = directSubcategoriesRes.data;
 
+    const filtersRes = await axios.get(
+      `/products/filters/${categoryPath}/${filtersStr}`
+    );
+    const filtersMap = filtersRes.data;
+
     //todo make it a minutes for production
     const HALF_AN_HOUR = 1800;
     return {
       props: {
-        data: { activeCategory, directSubcategories, ...products, page },
+        data: {
+          activeCategory,
+          directSubcategories,
+          filtersMap,
+          ...products,
+          page,
+        },
         revalidate: HALF_AN_HOUR,
       },
     };
