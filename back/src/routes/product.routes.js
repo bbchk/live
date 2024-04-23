@@ -7,7 +7,7 @@ import {
   getProductsByIds,
 } from "#src/controllers/product.controller/get.product_controller.js.js";
 
-import { getProductsByCategoryAndFilters } from "#src/controllers/product.controller/getProductsByCategoryAndFilters/index.js";
+import { getProductsByCategoryAndFilters } from "#src/controllers/product.controller/get_by_category&filters.product_controller.js";
 
 import {
   createProduct,
