@@ -1,6 +1,4 @@
 import Product from "#src/models/product.model.js";
-import { unslugify } from "@bbuukk/slugtrans/slugify";
-import { untransliterate } from "@bbuukk/slugtrans/transliterate";
 
 import { getFilterMapFromStr, getFiltersMap } from "./utils/getFilters.js";
 import { getOriginalFilterNameAndValues } from "./utils/getOrinialFilter.js";
@@ -9,6 +7,7 @@ import {
   getSubcategories,
   getCategoryBySlugPath,
 } from "#src/services/category/get.category_service.js";
+import { getAllFilterMaps } from "./utils/getAllFilterMaps.js";
 
 //? if categoryPath is not changed from previous time, we can just use
 //? product that we already have and filter them
@@ -22,70 +21,20 @@ export async function getProductsByCategoryAndFilters(
   const result = {};
 
   //todo validate slugCategoryPath & filtersStr
+  //todo add page filter to filtersStr if it is not present
 
   const activeCategory = await getCategoryBySlugPath(slugCategoryPath);
   const subcategories = await getSubcategories(activeCategory);
-
   const activeCategoriesIds = subcategories.map((c) => c._id);
 
-  const allFilterMaps = [];
-
-  /*Creating filters based on filters that user applied */
   let filters = getFilterMapFromStr(filtersStr);
-  console.log("🚀 ~ filters:", filters);
 
-  for (let [filterName, filterValues] of filters) {
-    if (filterName === "page") {
-      continue;
-    }
-
-    const { originalFilterName, originalFilterValues } =
-      getOriginalFilterNameAndValues(filterName, filterValues);
-
-    let characteristicsQuery = Product.find({
-      category: { $in: activeCategoriesIds },
-    }).select("characteristics");
-
-    let filteredCharacterstics = [];
-    if (filterName === "tsina") {
-      filteredCharacterstics = await characteristicsQuery
-        .where("price")
-        .gte(filterValues[0])
-        .lte(filterValues[1])
-        .exec();
-    } else {
-      filteredCharacterstics = await characteristicsQuery
-        .where(`characteristics.${originalFilterName}`, {
-          $in: originalFilterValues.map(
-            (value) => new RegExp(`^${value}$`, "i")
-          ),
-        })
-        .exec();
-    }
-
-    /*
-        FilterMap parsed from characteristics of products that are filtered by current filter item
-        */
-    const filterMap = getFiltersMap(filteredCharacterstics, activeCategory);
-
-    if (filterName != "tsina") {
-      let allFilterValues = await Product.distinct(
-        `characteristics.${originalFilterName}`,
-        {
-          category: { $in: activeCategoriesIds },
-        }
-      );
-
-      filterMap.set(originalFilterName, allFilterValues);
-    }
-
-    allFilterMaps.push(filterMap);
-  }
-
-  let intersectedFilterMap = intersectMaps(...allFilterMaps);
-
-  /*Getting default category filters if product were not filtered by user*/
-  if (intersectedFilterMap.size == 0) {
+  let filtersMap = [];
+  const ONLY_PAGE_FILTER = 1;
+  if (filters.size > ONLY_PAGE_FILTER) {
+    let allFilterMaps = await getAllFilterMaps(filters);
+    filtersMap = intersectMaps(...allFilterMaps);
+  } else {
     let allCategoryProducts = await Product.find({
       category: { $in: activeCategoriesIds },
     })
@@ -93,9 +42,9 @@ export async function getProductsByCategoryAndFilters(
       .sort({ createdAt: -1 })
       .exec();
 
-    intersectedFilterMap = getFiltersMap(allCategoryProducts, activeCategory);
+    filtersMap = getFiltersMap(allCategoryProducts, activeCategory);
   }
-  result.filtersMap = Array.from(intersectedFilterMap.entries());
+  result.filtersMap = Array.from(filtersMap.entries());
 
   /*Creating query for resulted products*/
   let query = Product.find({

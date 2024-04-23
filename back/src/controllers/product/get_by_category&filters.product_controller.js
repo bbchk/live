@@ -9,14 +9,14 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
     return res.status(400).json({ error: e.message });
   }
 
-  try {
-    const result = await productService.getProductsByCategoryAndFilters(
-      slugCategoryPath,
-      filtersStr
-    );
+  // try {
+  const result = await productService.getProductsByCategoryAndFilters(
+    slugCategoryPath,
+    filtersStr
+  );
 
-    return res.status(200).json(result);
-  } catch (err) {
-    return res.status(500).json({ error: err.message });
-  }
+  return res.status(200).json(result);
+  // } catch (err) {
+  //   return res.status(500).json({ error: err.message });
+  // }
 };

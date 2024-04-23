@@ -21,6 +21,7 @@ export function getFiltersMap(products, activeCategory) {
 
 export function getFilterMapFromStr(filtersStr) {
   let filters = null;
+
   if (filtersStr) {
     filters = new Map();
     filtersStr.split(";").forEach((fs) => {
