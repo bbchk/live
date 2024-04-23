@@ -5,18 +5,18 @@ import {
   getProducts,
   getProductById,
   getProductsByIds,
-} from "#src/controllers/productsController/get.product_controller.js.js";
+} from "#src/controllers/product.controller/get.product_controller.js.js";
 
-import { getProductsByCategoryAndFilters } from "#src/controllers/productsController/getProductsByCategoryAndFilters/index.js";
+import { getProductsByCategoryAndFilters } from "#src/controllers/product.controller/getProductsByCategoryAndFilters/index.js";
 
 import {
   createProduct,
   createProducts,
-} from "#src/controllers/productsController/create.product_controller.js";
+} from "#src/controllers/product.controller/create.product_controller.js";
 
-import { updateProduct } from "#src/controllers/productsController/update.product_controller.js";
+import { updateProduct } from "#src/controllers/product.controller/update.product_controller.js";
 
-import { deleteProduct } from "#src/controllers/productsController/delete.product_controller.js";
+import { deleteProduct } from "#src/controllers/product.controller/delete.product_controller.js";
 
 const router = express.Router();
 
