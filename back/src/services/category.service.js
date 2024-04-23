@@ -1,4 +1,4 @@
-import category from "#src/models/category.js";
+import category from "#src/models/category.model.js";
 
 export const getCategories = async () => {
   return await category.find({}).sort({ createdAt: -1 });

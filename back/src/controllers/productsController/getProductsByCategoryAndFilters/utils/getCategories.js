@@ -1,4 +1,4 @@
-import category from "#src/models/category.js";
+import category from "#src/models/category.model.js";
 
 export async function getActiveCategoryAndAllSubcategories(categoryPath) {
   const activeCategory = await category.findOne({

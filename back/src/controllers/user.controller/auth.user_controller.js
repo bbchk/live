@@ -1,4 +1,4 @@
-import user from "#src/models/user.js";
+import user from "#src/models/user.model.js";
 import * as authService from "#src/services/user.service/auth.service.js";
 
 export const signIn = async (req, res) => {

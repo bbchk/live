@@ -1,4 +1,4 @@
-import Product from "#src/models/product.js";
+import Product from "#src/models/product.model.js";
 
 export const updateProduct = async (id, productData) => {
   const product = await Product.findById(id);

@@ -1,4 +1,4 @@
-import Product from "#src/models/product.js";
+import Product from "#src/models/product.model.js";
 import { unslugify } from "@bbuukk/slugtrans/slugify";
 import { untransliterate } from "@bbuukk/slugtrans/transliterate";
 

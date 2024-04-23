@@ -1,4 +1,4 @@
-import User from "#src/models/user.js";
+import User from "#src/models/user.model.js";
 
 export const addCartItem = async (userId, productId) => {
   let user = await User.findById(userId);
