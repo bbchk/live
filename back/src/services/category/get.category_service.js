@@ -6,9 +6,9 @@ export const getCategories = async () => {
 
 export const getSubcategories = async (
   parentCategorySlugPath,
-  nestingLevel
+  requiredNestingLevel
 ) => {
-  //todo validate nestingLevel value
+  //todo validate requiredNestingLevel value
 
   const parentCategoryPath = untransliterate(unslugify(parentCategorySlugPath));
 
@@ -29,14 +29,15 @@ export const getSubcategories = async (
 
   const parentCatNestLevel = activeCategory.path.split(",").length;
 
-  function deepLevelFilter(category) {
-    const catNestingLevel = category.path.split(",").length;
-    return catNestingLevel === parentCatNestLevel + nestingLevel;
+  function isAtRequiredNestingLevel(c) {
+    const nestLevel = c.path.split(",").length;
+    return nestLevel === parentCatNestLevel + requiredNestingLevel;
   }
 
   const subcategoriesExactLevelDeep = allSubcategories.filter(
     (category) =>
-      category.name !== parentCategory.name && deepLevelFilter(category)
+      category.name !== parentCategory.name &&
+      isAtRequiredNestingLevel(category)
   );
 
   return subcategoriesExactLevelDeep;
