@@ -1,6 +1,6 @@
 <!--HOW TO WRITE COOL README FILE TUTORIAL https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/-->
 <div align="center" style="display: flex; flex-direction: column;">
-  <a href='https://github.com/bbuukk/gra'><img src="front/public/logo.svg" width="100"></a>
+  <a href='https://github.com/bbuukk/gra'><img src=".github/images/logo.svg" width="100"></a>
 </div>
 
 <h1 align="center">
