@@ -21,22 +21,19 @@ export async function getProductsByCategoryAndFilters(
 ) {
   const result = {};
 
+  //todo validate slugCategoryPath & filtersStr
+
   const activeCategory = await getCategoryBySlugPath(slugCategoryPath);
   const subcategories = await getSubcategories(activeCategory);
-
-  // result.activeCategory = activeCategory;
-  // result.subcategories = subcategories.filter(
-  //   (category) =>
-  //     category.name !== activeCategory.name &&
-  //     isOneLevelDeeper(category, activeCategory)
-  // );
 
   const activeCategoriesIds = subcategories.map((c) => c._id);
 
   const allFilterMaps = [];
 
-  /*Creating filters based on filters that applied user */
+  /*Creating filters based on filters that user applied */
   let filters = getFilterMapFromStr(filtersStr);
+  console.log("🚀 ~ filters:", filters);
+
   for (let [filterName, filterValues] of filters) {
     if (filterName === "page") {
       continue;

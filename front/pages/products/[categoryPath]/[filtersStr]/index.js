@@ -126,9 +126,10 @@ export async function getServerSideProps(context) {
   const { categoryPath, filtersStr } = context.params;
 
   try {
-    //todo filterStr validation
-    const res = await axios.get(`/products/${categoryPath}/${filtersStr}`);
-    const data = res.data;
+    const productsRes = await axios.get(
+      `/products/${categoryPath}/${filtersStr}`
+    );
+    const products = productsRes.data;
 
     let page = 1;
     const match = filtersStr.match(/page=(\d+)/);
@@ -136,20 +137,20 @@ export async function getServerSideProps(context) {
       page = filtersStr.match(/page=(\d+)/)[1];
     }
 
-    const resActiveCategory = await axios.get(`/categories/${categoryPath}`);
-    const activeCategory = resActiveCategory.data;
+    const activeCategoryRes = await axios.get(`/categories/${categoryPath}`);
+    const activeCategory = activeCategoryRes.data;
 
-    const resDirectSubcategories = await axios.get(
+    const directSubcategoriesRes = await axios.get(
       `/categories/subcategories/${categoryPath}`
     );
-    const directSubcategories = resDirectSubcategories.data;
+    const directSubcategories = directSubcategoriesRes.data;
 
     //todo make it a minutes for production
-    const HALF_AN_HOUR_IN_SECONDS = 1800;
+    const HALF_AN_HOUR = 1800;
     return {
       props: {
-        data: { activeCategory, directSubcategories, ...data, page },
-        revalidate: HALF_AN_HOUR_IN_SECONDS,
+        data: { activeCategory, directSubcategories, ...products, page },
+        revalidate: HALF_AN_HOUR,
       },
     };
   } catch (e) {

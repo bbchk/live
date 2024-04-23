@@ -2,9 +2,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 
 export const requireAuth = async (req, res, next) => {
-  console.log(req.headers);
   const { authorization } = req.headers;
-  console.log("🚀 ~ authorization:", authorization);
 
   if (!authorization) {
     return res
@@ -13,12 +11,11 @@ export const requireAuth = async (req, res, next) => {
   }
 
   const token = authorization.split(" ")[1];
-  console.log("🚀 ~ token:", token);
 
   try {
     const secretKey = process.env.JWT_SECRET;
     const { _id } = jwt.verify(token, secretKey);
-    console.log("🚀 ~ _id:", _id);
+
     req.user = await User.findOne({ _id }).select("_id");
     next();
   } catch (error) {
