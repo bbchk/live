@@ -1,13 +1,16 @@
 import Product from "#src/models/product.model.js";
 
-import { getFilterMapFromStr, getFiltersMap } from "./utils/getFilters.js";
-import { getOriginalFilterNameAndValues } from "./utils/getOrinialFilter.js";
-import { intersectMaps } from "./utils/intersect.js";
+import {
+  getMapFromFilterStr,
+  getFiltersMap,
+} from "./utils/filters_map.util.js";
+import { unslugifyFilter } from "./utils/unslugify_filter.util.js";
+
 import {
   getSubcategories,
   getCategoryBySlugPath,
 } from "#src/services/category/get.category_service.js";
-import { getAllFilterMaps } from "./utils/getAllFilterMaps.js";
+import { getFiltersS } from "./get_filters.product_service.js";
 
 //? if categoryPath is not changed from previous time, we can just use
 //? product that we already have and filter them
@@ -24,24 +27,8 @@ export async function getProductsByCategoryAndFilters(
   const subcategories = await getSubcategories(activeCategory);
   const activeCategoriesIds = subcategories.map((c) => c._id);
 
-  let filters = getFilterMapFromStr(filtersStr);
-
-  let filtersMap = [];
-  const ONLY_PAGE_FILTER = 1;
-  if (filters.size > ONLY_PAGE_FILTER) {
-    let allFilterMaps = await getAllFilterMaps(filters);
-    filtersMap = intersectMaps(...allFilterMaps);
-  } else {
-    let allCategoryProducts = await Product.find({
-      category: { $in: activeCategoriesIds },
-    })
-      .select("characteristics")
-      .sort({ createdAt: -1 })
-      .exec();
-
-    filtersMap = getFiltersMap(allCategoryProducts, activeCategory);
-  }
-  result.filtersMap = Array.from(filtersMap.entries());
+  let filters = getMapFromFilterStr(filtersStr);
+  result.filtersMap = await getFiltersS(slugCategoryPath, filtersStr);
 
   /*Creating query for resulted products*/
   let query = Product.find({
@@ -69,8 +56,10 @@ export async function getProductsByCategoryAndFilters(
         query = query.sort({ starRating: 1 });
       }
     } else {
-      const { originalFilterName, originalFilterValues } =
-        getOriginalFilterNameAndValues(filterName, filterValues);
+      const { originalFilterName, originalFilterValues } = unslugifyFilter({
+        filterName,
+        filterValues,
+      });
       query = query.where(`characteristics.${originalFilterName}`, {
         $in: originalFilterValues.map((value) => new RegExp(`^${value}$`, "i")),
       });

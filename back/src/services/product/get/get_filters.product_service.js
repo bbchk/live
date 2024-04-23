@@ -1,7 +1,15 @@
 import Product from "#src/models/product.model.js";
+import {
+  getCategoryBySlugPath,
+  getSubcategories,
+} from "../../category/get.category_service.js";
 
-import { getFilterMapFromStr, getFiltersMap } from "./getFilters.js";
-import { getOriginalFilterNameAndValues } from "./getOrinialFilter.js";
+import {
+  getMapFromFilterStr,
+  getFiltersMap,
+  intersectMaps,
+} from "./utils/filters_map.util.js";
+import { unslugifyFilter } from "./utils/unslugify_filter.util.js";
 
 export async function getAllFilterMaps(filters) {
   const allFilterMaps = [];
@@ -11,8 +19,10 @@ export async function getAllFilterMaps(filters) {
       continue;
     }
 
-    const { originalFilterName, originalFilterValues } =
-      getOriginalFilterNameAndValues(filterName, filterValues);
+    const { originalFilterName, originalFilterValues } = unslugifyFilter({
+      filterName,
+      filterValues,
+    });
 
     let characteristicsQuery = Product.find({
       category: { $in: activeCategoriesIds },
@@ -55,3 +65,30 @@ export async function getAllFilterMaps(filters) {
   }
   return allFilterMaps;
 }
+
+export const getFiltersS = async (slugCategoryPath, filtersStr) => {
+  const activeCategory = await getCategoryBySlugPath(slugCategoryPath);
+  const subcategories = await getSubcategories(activeCategory);
+  const activeCategoriesIds = subcategories.map((c) => c._id);
+
+  let filters = getMapFromFilterStr(filtersStr);
+
+  let filtersMap = [];
+  const ONLY_PAGE_FILTER = 1;
+  if (filters.size > ONLY_PAGE_FILTER) {
+    let allFilterMaps = await getAllFilterMaps(filters);
+    filtersMap = intersectMaps(...allFilterMaps);
+  } else {
+    let allCategoryProducts = await Product.find({
+      category: { $in: activeCategoriesIds },
+    })
+      .select("characteristics")
+      .sort({ createdAt: -1 })
+      .exec();
+
+    filtersMap = getFiltersMap(allCategoryProducts, activeCategory);
+  }
+  filtersMap = Array.from(filtersMap.entries());
+
+  return filtersMap;
+};

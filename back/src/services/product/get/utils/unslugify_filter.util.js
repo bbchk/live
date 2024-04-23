@@ -1,10 +1,7 @@
-import {
-  transliterate,
-  untransliterate,
-} from "@bbuukk/slugtrans/transliterate";
-import { slugify, unslugify } from "@bbuukk/slugtrans/slugify";
+import { untransliterate } from "@bbuukk/slugtrans/transliterate";
+import { unslugify } from "@bbuukk/slugtrans/slugify";
 
-export function getOriginalFilterNameAndValues(filterName, filterValues) {
+export function unslugifyFilter({ filterName, filterValues }) {
   let originalFilterName = untransliterate(unslugify(filterName));
   originalFilterName =
     originalFilterName.charAt(0).toUpperCase() + originalFilterName.slice(1);

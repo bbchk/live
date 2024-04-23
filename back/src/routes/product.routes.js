@@ -6,6 +6,7 @@ import {
   getProductById,
   getProductsByIds,
   getProductsByCategoryAndFilters,
+  getFilters,
 } from "#src/controllers/product/get.product_controller.js.js";
 
 import {
@@ -23,6 +24,8 @@ router.get("/", getProducts);
 router.get("/product/:id", getProductById);
 
 router.get("/:slugCategoryPath/:filtersStr?", getProductsByCategoryAndFilters);
+router.get("/filters/:slugCategoryPath/:filtersStr?", getFilters);
+
 router.post("/getbyIds", getProductsByIds);
 
 router.use(requireAuth);
