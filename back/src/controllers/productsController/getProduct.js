@@ -1,41 +1,33 @@
-import Product from "#src/models/product.js";
-import { mongoose } from "mongoose";
+import * as productService from "#src/services/product.service/get.product_service.js";
 
 export const getProductById = async (req, res) => {
   const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No such product" });
+  const result = await productService.getProductById(id);
+
+  if (result.error) {
+    return res.status(result.status).json({ error: result.error });
   }
 
-  const product = await Product.findById(id).populate("category");
-
-  if (!product) {
-    return res.status(400).json({ error: "No such product" });
-  }
-
-  res.status(200).json(product);
+  res.status(200).json(result.product);
 };
 
 export const getProductsByIds = async (req, res) => {
   const productIds = req.body;
+  const result = await productService.getProductsByIds(productIds);
 
-  try {
-    const products = await Product.find({
-      _id: { $in: productIds },
-    });
-    res.status(200).json(products);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+  if (result.error) {
+    return res.status(400).json({ error: result.error });
   }
+
+  res.status(200).json(result.products);
 };
 
 export const getProducts = async (req, res) => {
-  const products = await Product.find({})
-    .sort({ createdAt: -1 })
+  const result = await productService.getProducts();
 
-    .select("description name brand price images characteristics")
-    .populate("category")
-    .exec();
+  if (result.error) {
+    return res.status(400).json({ error: result.error });
+  }
 
-  return res.status(200).json(products);
+  res.status(200).json(result.products);
 };
