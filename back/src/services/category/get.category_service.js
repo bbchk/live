@@ -1,10 +1,14 @@
 import category from "#src/models/category.model.js";
 
+import { unslugify } from "@bbuukk/slugtrans/slugify";
+import { untransliterate } from "@bbuukk/slugtrans/transliterate";
+
 export const getCategories = async () => {
   return await category.find({}).sort({ createdAt: -1 });
 };
 
-export const getCategoryByPath = async (path) => {
+export const getCategoryBySlugPath = async (slugCategoryPath) => {
+  const path = untransliterate(unslugify(slugCategoryPath));
   return await category.findOne({
     path: new RegExp(`^${path.toLowerCase()}$`, "i"),
   });

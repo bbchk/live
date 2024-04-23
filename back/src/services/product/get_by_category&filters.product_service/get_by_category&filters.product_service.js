@@ -2,16 +2,12 @@ import Product from "#src/models/product.model.js";
 import { unslugify } from "@bbuukk/slugtrans/slugify";
 import { untransliterate } from "@bbuukk/slugtrans/transliterate";
 
-import {
-  getActiveCategoryAndAllSubcategories,
-  isOneLevelDeeper,
-} from "./utils/getCategories.js";
 import { getFilterMapFromStr, getFiltersMap } from "./utils/getFilters.js";
 import { getOriginalFilterNameAndValues } from "./utils/getOrinialFilter.js";
 import { intersectMaps } from "./utils/intersect.js";
 import {
   getSubcategories,
-  getCategoryByPath,
+  getCategoryBySlugPath,
 } from "#src/services/category/get.category_service.js";
 
 //? if categoryPath is not changed from previous time, we can just use
@@ -25,16 +21,15 @@ export async function getProductsByCategoryAndFilters(
 ) {
   const result = {};
 
-  const path = untransliterate(unslugify(slugCategoryPath));
-  const activeCategory = await getCategoryByPath(path);
+  const activeCategory = await getCategoryBySlugPath(slugCategoryPath);
   const subcategories = await getSubcategories(activeCategory);
 
-  result.activeCategory = activeCategory;
-  result.subcategories = subcategories.filter(
-    (category) =>
-      category.name !== activeCategory.name &&
-      isOneLevelDeeper(category, activeCategory)
-  );
+  // result.activeCategory = activeCategory;
+  // result.subcategories = subcategories.filter(
+  //   (category) =>
+  //     category.name !== activeCategory.name &&
+  //     isOneLevelDeeper(category, activeCategory)
+  // );
 
   const activeCategoriesIds = subcategories.map((c) => c._id);
 
