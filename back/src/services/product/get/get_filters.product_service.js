@@ -11,7 +11,7 @@ import {
 } from "./utils/filters_map.util.js";
 import { unslugifyFilter } from "./utils/unslugify_filter.util.js";
 
-//todo refactor
+//todo refactor, use switch
 
 export const getFiltersS = async (slugCategoryPath, filtersStr) => {
   const activeCategory = await getCategoryBySlugPath(slugCategoryPath);

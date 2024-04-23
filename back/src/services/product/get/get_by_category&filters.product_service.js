@@ -13,17 +13,18 @@ import {
 import { getFiltersS } from "./get_filters.product_service.js";
 import { get } from "mongoose";
 
+//todo
 //? if categoryPath is not changed from previous time, we can just use
 //? product that we already have and filter them
 //? todo bug fix when we have multiple filters and we have to intersect them, intersection is not enough, we need to add active options to the list as well
 //? can we just query all products and then filter them
 
-const PRODUCTS_BY_PAGE = 50;
-
 export async function getProductsByCategoryAndFilters(
   slugCategoryPath,
   filtersStr
 ) {
+  const PRODUCTS_BY_PAGE = 50;
+
   const result = {};
 
   const activeCategory = await getCategoryBySlugPath(slugCategoryPath);
@@ -70,31 +71,28 @@ export async function getProductsByCategoryAndFilters(
     }
   });
 
-  let allProducts = await query.exec();
-  result.minMaxPrice = getMinMaxPrice(allProducts);
+  result.products = await query.exec();
+  result.minMaxPrice = getMinMaxPrice(result.products);
 
   const minMaxPrice = filters.get("tsina");
   if (minMaxPrice) {
-    allProducts = allProducts.filter(
+    result.products = result.products.filter(
       (p) => p.price >= minMaxPrice[0] && p.price <= minMaxPrice[1]
     );
   }
 
-  result.productsCount = allProducts.length;
-  result.numPages = getNumberOfPages(allProducts);
+  result.productsCount = result.products.length;
+  result.numPages = getNumberOfPages(result.products);
 
   /*Filtering products by page*/
-  let products = allProducts;
-  const filterValues = filters.get("page");
-  if (filterValues) {
-    const pageId = filterValues[0];
-
-    products = products.slice(
+  const pageValue = filters.get("page");
+  if (pageValue) {
+    const pageId = pageValue[0];
+    result.products = result.products.slice(
       PRODUCTS_BY_PAGE * (pageId - 1),
       PRODUCTS_BY_PAGE * pageId
     );
   }
-  result.products = products;
 
   function getNumberOfPages(products) {
     return Math.max(1, Math.ceil(products.length / PRODUCTS_BY_PAGE));
