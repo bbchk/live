@@ -4,9 +4,11 @@ import { requireAuth, isAdmin } from "../middleware/auth.js";
 import {
   createCategories,
   createCategory,
-  getCategories,
-  updateCategory,
-} from "../controllers/categoryController.js";
+} from "#src/controllers/category/create.category_controller.js";
+
+import { updateCategory } from "#src/controllers/category/update.category_controller.js";
+
+import { getCategories } from "#src/controllers/category/get.category_controller.js";
 
 const router = express.Router();
 
