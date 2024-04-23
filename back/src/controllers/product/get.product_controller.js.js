@@ -1,4 +1,4 @@
-import * as productService from "#src/services/product.service/get.product_service.js";
+import * as productService from "#src/services/product/get.product_service.js";
 
 export const getProductById = async (req, res) => {
   const { id } = req.params;

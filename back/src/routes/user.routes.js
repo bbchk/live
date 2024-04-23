@@ -1,17 +1,14 @@
 import express from "express";
 import { requireAuth } from "../middleware/auth.js";
 
-import {
-  signIn,
-  signUp,
-} from "#src/controllers/user.controller/auth.user_controller.js";
-import { addLikedProduct } from "#src/controllers/user.controller/like.user_controller.js";
+import { signIn, signUp } from "#src/controllers/user/auth.user_controller.js";
+import { addLikedProduct } from "#src/controllers/user/like.user_controller.js";
 import {
   addCartItem,
   syncCart,
   getCart,
   deleteCartItem,
-} from "#src/controllers/user.controller/cart.user_controller.js";
+} from "#src/controllers/user/cart.user_controller.js";
 
 const router = express.Router();
 

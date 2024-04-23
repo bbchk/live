@@ -1,4 +1,4 @@
-import * as userService from "#src/services/user.service/like.service.js";
+import * as userService from "#src/services/user/like.service.js";
 
 export const addLikedProduct = async (req, res) => {
   const { userId } = req.query;

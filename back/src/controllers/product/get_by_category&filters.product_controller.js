@@ -1,4 +1,4 @@
-import * as productService from "#src/services/product.service/get_by_category&filters.product_service/get_by_category&filters.product_service.js";
+import * as productService from "#src/services/product/get_by_category&filters.product_service/get_by_category&filters.product_service.js";
 
 export const getProductsByCategoryAndFilters = async (req, res) => {
   let { slugCategoryPath, filtersStr } = req.params;

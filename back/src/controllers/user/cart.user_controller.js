@@ -1,4 +1,4 @@
-import * as cartService from "#src/services/user.service/cart.service.js";
+import * as cartService from "#src/services/user/cart.service.js";
 
 export const addCartItem = async (req, res) => {
   const { userId, productId } = req.params;

@@ -1,4 +1,4 @@
-import * as productService from "#src/services/product.service/delete.product_service.js";
+import * as productService from "#src/services/product/delete.product_service.js";
 
 export const deleteProduct = async (req, res) => {
   const { id } = req.params;
