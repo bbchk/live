@@ -24,7 +24,7 @@ export const useSignIn = () => {
       localStorage.setItem("user", JSON.stringify(json));
       dispatch(sign_in(json));
       setCookie(null, "auth-token", json.token, {
-        path: "/",
+        path: "/",1
         sameSite: "strict",
         maxAge: 3 * 24 * 60 * 60, // expires in 3 days
       });
