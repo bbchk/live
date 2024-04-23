@@ -18,6 +18,8 @@ import { get } from "mongoose";
 //? todo bug fix when we have multiple filters and we have to intersect them, intersection is not enough, we need to add active options to the list as well
 //? can we just query all products and then filter them
 
+const PRODUCTS_BY_PAGE = 50;
+
 export async function getProductsByCategoryAndFilters(
   slugCategoryPath,
   filtersStr
@@ -36,18 +38,13 @@ export async function getProductsByCategoryAndFilters(
   }).select("name price images characteristics");
 
   /*Applying filters to resulted products query*/
-  // console.log(filters);
-
-  filters.forEach((options, key) => {
-    if (!key === "page") {
-      if (key === "tsina") {
-        query = query
-          .where("price")
-          .gte(options[0])
-          .lte(options[1])
-          .sort({ starRating: 1 });
-      } else if (key === "sortuvannya") {
-        switch (options[0]) {
+  filters.forEach((slugOptions, slugKey) => {
+    switch (slugKey) {
+      case "page":
+      case "tsina":
+        break;
+      case "sortuvannya":
+        switch (slugOptions[0]) {
           case "vid-deshevshykh-do-dorohykh":
             query = query.sort({ price: 1 });
             break;
@@ -58,61 +55,57 @@ export async function getProductsByCategoryAndFilters(
             query = query.sort({ starRating: 1 });
             break;
         }
-      } else {
+        break;
+      default:
         const { key: unslugifiedKey, options: unslugifiedOptions } =
           unslugifyFilter({
-            key,
-            options,
+            slugKey,
+            slugOptions,
           });
 
         query = query.where(`characteristics.${unslugifiedKey}`, {
           $in: unslugifiedOptions.map((o) => new RegExp(`^${o}$`, "i")),
         });
-      }
+        break;
     }
   });
 
-  const allProducts = await query.exec();
+  let allProducts = await query.exec();
+  result.minMaxPrice = getMinMaxPrice(allProducts);
+
+  const minMaxPrice = filters.get("tsina");
+  if (minMaxPrice) {
+    allProducts = allProducts.filter(
+      (p) => p.price >= minMaxPrice[0] && p.price <= minMaxPrice[1]
+    );
+  }
 
   result.productsCount = allProducts.length;
   result.numPages = getNumberOfPages(allProducts);
-  result.minMaxPrice = getMinMaxPrice(allProducts);
 
   /*Filtering products by page*/
   let products = allProducts;
-  const filterValues = filters.g1et("page");
+  const filterValues = filters.get("page");
   if (filterValues) {
     const pageId = filterValues[0];
-    const PRODUCTS_ON_PAGE = 50;
+
     products = products.slice(
-      PRODUCTS_ON_PAGE * (pageId - 1),
-      PRODUCTS_ON_PAGE * pageId
+      PRODUCTS_BY_PAGE * (pageId - 1),
+      PRODUCTS_BY_PAGE * pageId
     );
   }
   result.products = products;
 
+  function getNumberOfPages(products) {
+    return Math.max(1, Math.ceil(products.length / PRODUCTS_BY_PAGE));
+  }
+
+  function getMinMaxPrice(products) {
+    const prices = products.map((p) => Number(p.price));
+    const minPrice = prices.reduce((a, b) => Math.min(a, b), Infinity);
+    const maxPrice = prices.reduce((a, b) => Math.max(a, b), -Infinity);
+    return [minPrice, maxPrice];
+  }
+
   return result;
-}
-
-function getNumberOfPages(products) {
-  const PRODUCTS_ON_PAGE = 50;
-  return Math.max(1, Math.ceil(products.length / PRODUCTS_ON_PAGE));
-}
-
-function getMinMaxPrice(products) {
-  // const currentPrices = allProducts.map((p) => Number(p.price));
-  // const minCurrentPrice = currentPrices.reduce(
-  //   (a, b) => Math.min(a, b),
-  //   Infinity
-  // );
-  // const maxCurrentPrice = currentPrices.reduce(
-  //   (a, b) => Math.max(a, b),
-  //   -Infinity
-  // );
-  // result.currentMinMaxPrice = [minCurrentPrice, maxCurrentPrice];
-
-  const prices = products.map((p) => Number(p.price));
-  const minPrice = prices.reduce((a, b) => Math.min(a, b), Infinity);
-  const maxPrice = prices.reduce((a, b) => Math.max(a, b), -Infinity);
-  return [minPrice, maxPrice];
 }

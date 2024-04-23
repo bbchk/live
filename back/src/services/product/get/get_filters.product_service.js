@@ -23,14 +23,14 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
   async function getAllFilterMaps(filters) {
     const allFilterMaps = [];
 
-    for (let [filterName, filterValues] of filters) {
-      if (filterName === "page") {
+    for (let [slugKey, slugOptions] of filters) {
+      if (slugKey === "page") {
         continue;
       }
 
       const { key, options } = unslugifyFilter({
-        filterName,
-        filterValues,
+        slugKey,
+        slugOptions,
       });
 
       let characteristicsQuery = Product.find({
@@ -39,11 +39,11 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
 
       let filteredCharacteristics = [];
 
-      if (filterName === "tsina") {
+      if (slugKey === "tsina") {
         filteredCharacteristics = await characteristicsQuery
           .where("price")
-          .gte(filterValues[0])
-          .lte(filterValues[1])
+          .gte(slugOptions[0])
+          .lte(slugOptions[1])
           .exec();
       } else {
         const regexFilterValues = options.map(
@@ -59,7 +59,7 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
 
       const filterMap = getFiltersMap(filteredCharacteristics, activeCategory);
 
-      if (filterName !== "tsina") {
+      if (slugKey !== "tsina") {
         const allFilterValues = await Product.distinct(
           `characteristics.${key}`,
           {
@@ -72,6 +72,7 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
 
       allFilterMaps.push(filterMap);
     }
+
     return allFilterMaps;
   }
 

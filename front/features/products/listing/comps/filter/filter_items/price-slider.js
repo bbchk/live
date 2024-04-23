@@ -7,30 +7,33 @@ import { useRouter } from "next/router";
 import { startLoading } from "store/modalSlice.js";
 
 //todo inconsistent currentMinMax, it changes on page refresh, when set on some points lower
-const PriceSlider = ({ minMax, currentMinMax }) => {
-  const router = useRouter();
-  const { categoryPath } = router.query;
+const PriceSlider = ({ minMax }) => {
+  const MIN_DISTANCE = 50;
+
+  const { filtersStr } = useRouter().query;
+
+  const dispatch = useDispatch();
+
+  const priceRegex = /tsina=(\d+(,\d+)*)/;
+  const match = filtersStr.match(priceRegex);
+  const currentMinMax = match
+    ? match[1].split(",").map((n) => Number(n))
+    : minMax;
+
   const [minMaxPrice, setMinMaxPrice] = useState([
     currentMinMax[0],
     currentMinMax[1],
   ]);
 
-  const [initialMinMaxPrice, setInitialMinMaxPrice] = useState(currentMinMax);
-
-  const minDistance = 50; // Define your minimum distance here
-
   const { filters: activeFilters } = useSelector((state) => state.filters);
-  //? todo is it efficient and readable
-  //using it to reset minMaxPrice when all filters are deleted to max and min
+
   useEffect(() => {
     if (Object.keys(activeFilters).length === 0) {
       setMinMaxPrice([minMax[0], minMax[1]]);
     }
   }, [activeFilters]);
 
-  const dispatch = useDispatch();
   function handleConfirm(event, newValue) {
-    setInitialMinMaxPrice(minMaxPrice);
     dispatch(
       setFilter({
         filterName: "tsina",
@@ -43,14 +46,14 @@ const PriceSlider = ({ minMax, currentMinMax }) => {
     if (!Array.isArray(newValue)) {
       return;
     }
-    if (newValue[1] - newValue[0] < minDistance) {
+    if (newValue[1] - newValue[0] < MIN_DISTANCE) {
       if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], minMax[1] - minDistance);
+        const clamped = Math.min(newValue[0], minMax[1] - MIN_DISTANCE);
 
-        setMinMaxPrice([clamped, clamped + minDistance]);
+        setMinMaxPrice([clamped, clamped + MIN_DISTANCE]);
       } else {
-        const clamped = Math.max(newValue[1], minDistance);
-        setMinMaxPrice([clamped - minDistance, clamped]);
+        const clamped = Math.max(newValue[1], MIN_DISTANCE);
+        setMinMaxPrice([clamped - MIN_DISTANCE, clamped]);
       }
     } else {
       setMinMaxPrice(newValue);
@@ -81,8 +84,8 @@ const PriceSlider = ({ minMax, currentMinMax }) => {
         <button
           onClick={() => {
             if (
-              minMaxPrice[0] === initialMinMaxPrice[0] &&
-              minMaxPrice[1] === initialMinMaxPrice[1]
+              minMaxPrice[0] === currentMinMax[0] &&
+              minMaxPrice[1] === currentMinMax[1]
             ) {
               return;
             }

@@ -11,7 +11,7 @@ import Selected from "./comps/filter/selected";
 const ProductListingBody = ({
   filtersMap,
   minMaxPrice,
-  currentMinMaxPrice,
+
   products,
   productsCount,
   category,
@@ -26,7 +26,6 @@ const ProductListingBody = ({
         id={filtersOffcanvasId}
         filters={filtersMap}
         minMaxPrice={minMaxPrice}
-        currentMinMaxPrice={currentMinMaxPrice}
         productsCount={productsCount}
       />
       <div className={`${s.body}`}>
@@ -45,7 +44,6 @@ const ProductListingBody = ({
             id="filtersAccordion"
             filters={filtersMap}
             minMaxPrice={minMaxPrice}
-            currentMinMaxPrice={currentMinMaxPrice}
           />
         </div>
 

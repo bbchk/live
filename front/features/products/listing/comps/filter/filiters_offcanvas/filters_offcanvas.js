@@ -11,13 +11,7 @@ import { useEffect, useState } from "react";
 import { deleteAllFilters } from "store/filtersSlice";
 import { startLoading } from "store/modalSlice.js";
 
-const FiltersOffcanvas = ({
-  id,
-  filters,
-  minMaxPrice,
-  currentMinMaxPrice,
-  productsCount,
-}) => {
+const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { filters: activeFilters } = useSelector((state) => state.filters);
@@ -57,7 +51,6 @@ const FiltersOffcanvas = ({
               id="filtersOffcanvasAccordion"
               filters={filters}
               minMaxPrice={minMaxPrice}
-              currentMinMaxPrice={currentMinMaxPrice}
               show={false}
             />
           </div>
