@@ -20,9 +20,6 @@ export async function getProductsByCategoryAndFilters(
 ) {
   const result = {};
 
-  //todo validate slugCategoryPath & filtersStr
-  //todo add page filter to filtersStr if it is not present
-
   const activeCategory = await getCategoryBySlugPath(slugCategoryPath);
   const subcategories = await getSubcategories(activeCategory);
   const activeCategoriesIds = subcategories.map((c) => c._id);
