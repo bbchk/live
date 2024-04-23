@@ -25,7 +25,7 @@ import { stopLoading } from "store/modalSlice.js";
 const Listing = ({
   data: {
     activeCategory: category,
-    subcategories,
+    directSubcategories: subcategories,
     products,
     productsCount,
     numPages,
@@ -136,10 +136,21 @@ export async function getServerSideProps(context) {
       page = filtersStr.match(/page=(\d+)/)[1];
     }
 
+    const resActiveCategory = await axios.get(`/categories/${categoryPath}`);
+    const activeCategory = resActiveCategory.data;
+
+    const resDirectSubcategories = await axios.get(
+      `/categories/subcategories/${categoryPath}`
+    );
+    const directSubcategories = resDirectSubcategories.data;
+
     //todo make it a minutes for production
     const HALF_AN_HOUR_IN_SECONDS = 1800;
     return {
-      props: { data: { ...data, page }, revalidate: HALF_AN_HOUR_IN_SECONDS },
+      props: {
+        data: { activeCategory, directSubcategories, ...data, page },
+        revalidate: HALF_AN_HOUR_IN_SECONDS,
+      },
     };
   } catch (e) {
     console.error("An error occurred while fetching product data: ", e);
