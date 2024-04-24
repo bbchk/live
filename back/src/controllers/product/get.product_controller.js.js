@@ -36,7 +36,7 @@ export const getProducts = async (req, res) => {
   //   return res.status(500).json({ error: "AN ERROR :> BEACH" });
   // }
 
-  // return res.status(500).json({ error: "AN ERROR :> BEACH" });
+  return res.status(500).json({ error: "AN ERROR :> BEACH" });
 
   if (result.error) {
     return res.status(400).json({ error: result.error });

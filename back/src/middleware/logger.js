@@ -1,24 +1,27 @@
 import dotenv from "dotenv";
 dotenv.config();
-import express from "express";
-import { transports, format } from "winston";
-const {
-  combine,
-  timestamp,
-  printf,
-  colorize,
-  align,
-  json,
-  prettyPrint,
-  simple,
-  metadata,
-} = format;
+
+import winston from "winston";
+const { transports } = winston;
+
 import expressWinston from "express-winston";
 import MongoDB from "winston-mongodb";
+import mongoose from "mongoose";
 
 // printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`)
 
-export const logger = expressWinston.logger({
+// const db = mongoose.connection.useDb("test");
+// const options = {
+//   useUnifiedTopology: true, // MongoDB connection options
+//   collection: "logs.errors", // Set collection name for storing logs
+//   capped: false, // Set to true if using a capped collection
+//   expireAfterSeconds: 2592000, // TTL (time-to-live) in seconds for log documents
+//   leaveConnectionOpen: false, // Close the MongoDB connection after logging
+//   storeHost: false, // Disable storing hostname in log documents
+//   metaKey: "additionalInfo", // Specify a key to store additional metadata
+// };
+
+export const infoLogger = expressWinston.logger({
   transports: [
     new transports.Console(),
     // new transports.MongoDB({
@@ -34,18 +37,26 @@ export const logger = expressWinston.logger({
     //   options: { useUnifiedTopology: true },
     // }),
   ],
-  format: combine(
-    colorize({ all: true }),
-    json(),
-    prettyPrint(),
-    timestamp({
+  format: winston.format.combine(
+    winston.format.colorize({ all: true }),
+    winston.format.json(),
+    winston.format.prettyPrint(),
+    winston.format.timestamp({
       format: "YYYY-MM-DD hh:mm:ss.SSS A",
     }),
-    metadata(),
-    align()
+    winston.format.metadata(),
+    winston.format.align()
   ),
-
   meta: true,
-  msg: "HTTP {{req.method}} {{req.url}}",
   expressFormat: true,
+  colorize: true,
+});
+
+export const errorLogger = expressWinston.errorLogger({
+  transports: [new winston.transports.Console()],
+  format: winston.format.combine(
+    // winston.format.errors({ stack: true }),
+    winston.format.colorize(),
+    winston.format.json()
+  ),
 });
