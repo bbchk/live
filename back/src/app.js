@@ -20,7 +20,7 @@ app.use("/categories", categoryRoutes);
 app.use("/products", productsRoutes);
 app.use("/user", userRoutes);
 
-// app.use(errorLoggerMiddleware);
+app.use(loggingMiddleware.errorLogger);
 
 mainLogger.info("App started");
 

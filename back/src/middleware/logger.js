@@ -24,21 +24,20 @@ import mongoose from "mongoose";
 export const infoLogger = expressWinston.logger({
   transports: [
     new transports.Console(),
-    // new transports.MongoDB({
-    //   level: "warn",
-    //   db: process.env.MONGO_URI,
-    //   collection: "logs.warnings",
-    //   options: { useUnifiedTopology: true },
-    // }),
-    // new transports.MongoDB({
-    //   level: "error",
-    //   db: process.env.MONGO_URI,
-    //   collection: "logs.errors",
-    //   options: { useUnifiedTopology: true },
-    // }),
+    new transports.MongoDB({
+      level: "warn",
+      db: process.env.MONGO_URI,
+      collection: "logs.warnings",
+      options: { useUnifiedTopology: true },
+    }),
+    new transports.MongoDB({
+      level: "error",
+      db: process.env.MONGO_URI,
+      collection: "logs.errors",
+      options: { useUnifiedTopology: true },
+    }),
   ],
   format: winston.format.combine(
-    winston.format.colorize({ all: true }),
     winston.format.json(),
     winston.format.prettyPrint(),
     winston.format.timestamp({
@@ -49,14 +48,13 @@ export const infoLogger = expressWinston.logger({
   ),
   meta: true,
   expressFormat: true,
-  colorize: true,
+  statusLevels: true,
 });
 
 export const errorLogger = expressWinston.errorLogger({
   transports: [new winston.transports.Console()],
   format: winston.format.combine(
     // winston.format.errors({ stack: true }),
-    winston.format.colorize(),
     winston.format.json()
   ),
 });
