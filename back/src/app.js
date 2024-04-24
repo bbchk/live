@@ -20,7 +20,21 @@ app.use("/categories", categoryRoutes);
 app.use("/products", productsRoutes);
 app.use("/user", userRoutes);
 
+app.get("/simulateError", (req, res) => {
+  try {
+    throw new Error("AN ERROR :> BEACH");
+  } catch (e) {
+    next(error);
+  }
+  //   return res.status(500).json({ error: "AN ERROR :> BEACH" });
+});
+
 app.use(loggingMiddleware.errorLogger);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  res.status(500).send("Something broke!");
+});
 
 mainLogger.info("App started");
 
