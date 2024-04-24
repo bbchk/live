@@ -9,17 +9,6 @@ import MongoDB from "winston-mongodb";
 
 import { mainLogger as ml } from "#src/utils/loggers.js";
 
-// const db = mongoose.connection.useDb("test");
-// const options = {
-//   useUnifiedTopology: true, // MongoDB connection options
-//   collection: "logs.errors", // Set collection name for storing logs
-//   capped: false, // Set to true if using a capped collection
-//   expireAfterSeconds: 2592000, // TTL (time-to-live) in seconds for log documents
-//   leaveConnectionOpen: false, // Close the MongoDB connection after logging
-//   storeHost: false, // Disable storing hostname in log documents
-//   metaKey: "additionalInfo", // Specify a key to store additional metadata
-// };
-
 expressWinston.requestWhitelist.push("body");
 
 export const infoLogger = expressWinston.logger({

@@ -1,25 +1,38 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-// import MongoDB from "winston-mongodb";
-// import mongoose from "mongoose";
-
 import winston from "winston";
 const { transports } = winston;
 import MongoDB from "winston-mongodb";
 
+const THIRTY_DAYS = 2592000;
+const MAX_DOCS_NUMBER = 1000;
+const COLLECTION_SIZE_BYTES = 1000;
+
+const optionsDB = {
+  options: {
+    useUnifiedTopology: true,
+  },
+  db: process.env.MONGO_URI,
+  collection: "logs.errors", // Set collection name for storing logs
+  capped: true, //Collection has a fixed size and acts like a circular buffer
+  cappedSize: COLLECTION_SIZE_BYTES,
+  cappedMax: MAX_DOCS_NUMBER,
+  storeHost: false, // Disable storing hostname in log documents
+  leaveConnectionOpen: false,
+  expireAfterSeconds: THIRTY_DAYS, // TTL (time-to-live) in seconds for documents
+};
+
 const mainLoggerTransports = [
   new transports.MongoDB({
     level: "warn",
-    db: process.env.MONGO_URI,
     collection: "logs.warnings",
-    options: { useUnifiedTopology: true },
+    ...optionsDB,
   }),
   new transports.MongoDB({
     level: "error",
-    db: process.env.MONGO_URI,
     collection: "logs.errors",
-    options: { useUnifiedTopology: true },
+    ...optionsDB,
   }),
 ];
 
