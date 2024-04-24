@@ -11,7 +11,8 @@ const COLLECTION_SIZE_BYTES = 1000;
 
 const optionsDB = {
   options: {
-    useUnifiedTopology: true,
+    useUnifiedTopology: true, // Use the new topology engine
+    useNewUrlParser: true, // Use the new connection string parser
   },
   db: process.env.MONGO_URI,
   collection: "logs.errors", // Set collection name for storing logs
