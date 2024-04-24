@@ -55,6 +55,9 @@ export const errorLogger = expressWinston.errorLogger({
   transports: [new winston.transports.Console()],
   format: winston.format.combine(
     winston.format.errors({ stack: true }),
-    winston.format.json()
+    winston.format.json(),
+    winston.format.printf(
+      (info) => `[${info.timestamp}] ${info.level}: ${info.message}`
+    )
   ),
 });
