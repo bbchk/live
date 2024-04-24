@@ -7,7 +7,7 @@ import { userRoutes } from "./routes/user.routes.js";
 
 import * as loggingMiddleware from "#src/middleware/logger.js";
 
-import { mainLogger } from "#src/utils/loggers.js"; // Adjust the path as needed
+import { mainLogger as ml } from "#src/utils/loggers.js"; // Adjust the path as needed
 
 const app = express();
 
@@ -20,22 +20,21 @@ app.use("/categories", categoryRoutes);
 app.use("/products", productsRoutes);
 app.use("/user", userRoutes);
 
-app.get("/simulateError", (req, res) => {
+app.get("/simulateError", (req, res, next) => {
   try {
     throw new Error("AN ERROR :> BEACH");
   } catch (e) {
-    next(error);
+    next(e);
   }
-  //   return res.status(500).json({ error: "AN ERROR :> BEACH" });
 });
 
 app.use(loggingMiddleware.errorLogger);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
+  ml.error(err.stack);
+
   res.status(500).send("Something broke!");
 });
-
-mainLogger.info("App started");
 
 export default app;

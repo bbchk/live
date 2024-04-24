@@ -2,13 +2,12 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import winston from "winston";
-const { transports } = winston;
-
 import expressWinston from "express-winston";
+const { transports } = winston;
 import MongoDB from "winston-mongodb";
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 
-// printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`)
+import { mainLogger as ml } from "#src/utils/loggers.js";
 
 // const db = mongoose.connection.useDb("test");
 // const options = {
@@ -21,43 +20,34 @@ import mongoose from "mongoose";
 //   metaKey: "additionalInfo", // Specify a key to store additional metadata
 // };
 
+expressWinston.requestWhitelist.push("body");
+
 export const infoLogger = expressWinston.logger({
-  transports: [
-    new transports.Console(),
-    new transports.MongoDB({
-      level: "warn",
-      db: process.env.MONGO_URI,
-      collection: "logs.warnings",
-      options: { useUnifiedTopology: true },
-    }),
-    new transports.MongoDB({
-      level: "error",
-      db: process.env.MONGO_URI,
-      collection: "logs.errors",
-      options: { useUnifiedTopology: true },
-    }),
-  ],
-  format: winston.format.combine(
-    winston.format.json(),
-    winston.format.prettyPrint(),
-    winston.format.timestamp({
-      format: "YYYY-MM-DD hh:mm:ss.SSS A",
-    }),
-    winston.format.metadata(),
-    winston.format.align()
-  ),
-  meta: true,
+  winstonInstance: ml,
   expressFormat: true,
   statusLevels: true,
 });
 
+const errorLoggerTransports = [];
+
+if (process.env.NODE_ENV !== "production") {
+  errorLoggerTransports.push(
+    new transports.Console(),
+    new transports.File({ filename: "errors.log" })
+  );
+}
+
 export const errorLogger = expressWinston.errorLogger({
-  transports: [new winston.transports.Console()],
+  transports: errorLoggerTransports,
   format: winston.format.combine(
-    winston.format.errors({ stack: true }),
     winston.format.json(),
+    winston.format.errors({ stack: true }),
+    winston.format.timestamp(),
+    winston.format.prettyPrint(),
     winston.format.printf(
-      (info) => `[${info.timestamp}] ${info.level}: ${info.message}`
+      (info) => `[${info.timestamp}] ${info.level}: ${info.meta.message}`
     )
   ),
+  expressFormat: true,
+  statusLevels: true,
 });
