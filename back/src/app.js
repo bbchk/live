@@ -20,14 +20,6 @@ app.use("/categories", categoryRoutes);
 app.use("/products", productsRoutes);
 app.use("/user", userRoutes);
 
-app.get("/simulateError", (req, res, next) => {
-  try {
-    throw new Error("AN ERROR :> BEACH");
-  } catch (e) {
-    next(e);
-  }
-});
-
 app.use(loggingMiddleware.errorLogger);
 
 // Error handling middleware
