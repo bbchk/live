@@ -17,13 +17,10 @@ export const infoLogger = expressWinston.logger({
   statusLevels: true,
 });
 
-const errorLoggerTransports = [];
+const errorLoggerTransports = [new transports.Console()];
 
 if (process.env.NODE_ENV !== "production") {
-  errorLoggerTransports.push(
-    new transports.Console(),
-    new transports.File({ filename: "errors.log" })
-  );
+  errorLoggerTransports.push(new transports.File({ filename: "errors.log" }));
 }
 
 export const errorLogger = expressWinston.errorLogger({
