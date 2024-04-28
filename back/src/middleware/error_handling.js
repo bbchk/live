@@ -18,7 +18,8 @@ export const errorHandlingMiddleware = (error, req, res, next) => {
           e = new _Error(`Invalid value for ${error.path}: ${error.path}`, 400);
           break;
         case "ValidationError":
-          //todo
+          const errors = Object.values(error.errors).map((el) => el.message);
+          e = new _Error(`Invalid input data. ${errors.join(". ")}`, 400);
           break;
       }
 
