@@ -1,6 +1,7 @@
 import _Error from "#src/utils/error.js";
 import { mainLogger as ml } from "#src/utils/loggers.js"; // Adjust the path as needed
 
+const DUPLICATE_FIELD_ERROR = 11000;
 export const errorHandlingMiddleware = (error, req, res, next) => {
   ml.error(error.stack);
 
@@ -24,7 +25,7 @@ export const errorHandlingMiddleware = (error, req, res, next) => {
       }
 
       switch (e.code) {
-        case 11000:
+        case DUPLICATE_FIELD_ERROR:
           e = new _Error(
             `Duplicate field value: ${Object.keys(error.keyValue)}: ${
               Object.values(error.keyValue)[0]
