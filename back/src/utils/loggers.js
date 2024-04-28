@@ -14,7 +14,7 @@ const optionsDB = {
     useUnifiedTopology: true, // Use the new topology engine
     useNewUrlParser: true, // Use the new connection string parser
   },
-  db: process.env.MONGO_URI,
+  db: process.env.MONGODB_URI,
   collection: "logs.errors", // Set collection name for storing logs
   capped: true, //Collection has a fixed size and acts like a circular buffer
   cappedSize: COLLECTION_SIZE_BYTES,
@@ -42,7 +42,19 @@ if (process.env.NODE_ENV === "production") {
 }
 
 if (process.env.NODE_ENV !== "production") {
-  mainLoggerTransports.push(new transports.Console());
+  mainLoggerTransports.push(
+    new transports.Console({
+      format: winston.format.combine(
+        winston.format.colorize({ all: true }),
+        winston.format.timestamp({
+          format: "YYYY-MM-DD hh:mm:ss.SSS A",
+        }),
+        winston.format.printf((info) => {
+          return `${info.timestamp} | ${info.level}: ${info.message}`;
+        })
+      ),
+    })
+  );
 }
 
 winston.loggers.add("mainLogger", {
