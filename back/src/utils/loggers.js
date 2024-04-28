@@ -45,12 +45,9 @@ if (process.env.NODE_ENV !== "production") {
   mainLoggerTransports.push(
     new transports.Console({
       format: winston.format.combine(
-        winston.format.colorize({ all: true }),
-        winston.format.timestamp({
-          format: "YYYY-MM-DD hh:mm:ss.SSS A",
-        }),
+        winston.format.colorize(),
         winston.format.printf((info) => {
-          return `${info.timestamp} | ${info.level}: ${info.message}`;
+          return `${info.level}:${info.message}`;
         })
       ),
     })
