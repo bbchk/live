@@ -10,15 +10,28 @@ export const errorHandlingMiddleware = (error, req, res, next) => {
   };
 
   if (process.env.NODE_ENV === "production") {
-    let e = { ...error };
+    let e = { ...error, name: error.name };
 
-    switch (error.name) {
-      case "CastError":
-        e = new _Error(`Invalid value for ${error.path}: ${error.path}`, 400);
-        break;
-      case "ValidationError":
-        //todo
-        break;
+    if (!e.isOperational) {
+      switch (e.name) {
+        case "CastError":
+          e = new _Error(`Invalid value for ${error.path}: ${error.path}`, 400);
+          break;
+        case "ValidationError":
+          //todo
+          break;
+      }
+
+      switch (e.code) {
+        case 11000:
+          e = new _Error(
+            `Duplicate field value: ${Object.keys(error.keyValue)}: ${
+              Object.values(error.keyValue)[0]
+            }`,
+            400
+          );
+          break;
+      }
     }
 
     const GENERIC_ERROR_MESSAGE =
