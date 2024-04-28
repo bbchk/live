@@ -4,16 +4,16 @@ const categorySchema = new Schema({
   name: {
     type: String,
     required: [true, "Ім'я є обов'язовим полем"],
+    unique: [true, "Категорія з таким ім'ям вже існує"],
   },
   order: {
     type: Number,
     required: [true, "Порядок є обов'язовим полем"],
-    required: true,
   },
   path: {
     type: String,
     required: [true, "Шлях є обов'язовим полем"],
-    required: true,
+    unique: [true, "Категорія з таким шляхом вже існує"],
   },
   imagePath: {
     type: String,
