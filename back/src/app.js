@@ -23,11 +23,28 @@ app.use("/user", userRoutes);
 
 app.use(loggingMiddleware.errorLogger);
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  ml.error(err.stack);
+app.get("/err", (req, res) => {
+  throw new Error("This is an error!");
+});
 
-  res.status(500).send("Something broke!");
+app.all("*", (req, res, next) => {
+  const err = new Error(`${req.originalUrl} not found!`);
+  err.status = "fail";
+  err.statusCode = 404;
+  next(err);
+});
+
+// Error handling middleware
+app.use((error, req, res, next) => {
+  ml.error(error.stack);
+
+  error.statusCode = error.statusCode || 500;
+  error.status = error.status || "error";
+
+  res.status(error.statusCode).json({
+    status: error.status,
+    message: error.message,
+  });
 });
 
 export default app;
