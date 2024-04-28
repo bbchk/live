@@ -15,6 +15,7 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: [true, "Пошта є обов'язовим полем"],
+      lowercase: true,
       unique: [true, "Користувач з цієї поштою вже зареєстрований"],
     },
     password: {

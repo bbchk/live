@@ -34,8 +34,9 @@ mongoose
   .then(() => {
     ml.info(`Connected to MongoDB Successfully`);
   })
-  .catch((err) => {
+  .catch(async (err) => {
+    //? why is it important to explicitly do: await mongoose.connection.close();
     ml.error(err.message);
     //todo try to connect again after timeout
-    cleanup(server, ERROR_EXIT_CODE);
+    await cleanup(server, ERROR_EXIT_CODE);
   });
