@@ -21,7 +21,10 @@ export const requireAuth = asyncErrorHandler(async (req, res, next) => {
     next(new _Error("Invalid token. Please log in again", 401));
   }
 
+  const userById = await User.findById(id);
+  console.log("🚀 ~ userById:", userById);
   const user = await User.findOne({ id }).select("_id");
+  console.log("🚀 ~ user:", user);
   if (!user) next(new _Error("User with such token is not found", 401));
 
   req.user = user;

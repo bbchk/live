@@ -47,8 +47,12 @@
       "/node_modules/"
     ],
     "testPathIgnorePatterns": [
-      "<rootDir>/src/__tests__/utils/"
+      "<rootDir>/src/__tests__/utils/",
+      "<rootDir>/src/__tests__/setup/",
+      "<rootDir>/src/__tests__/in_memory_db/"
     ],
+    "globalSetup": "<rootDir>/src/__tests__/setup/setup.js",
+    "globalTeardown": "<rootDir>/src/__tests__/setup/teardown.js",
     "moduleNameMapper": {
       "^@src/(.*)$": "<rootDir>/src/$1"
     },
