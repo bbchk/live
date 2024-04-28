@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 import { asyncErrorHandler } from "#src/utils/async_error_handler.js";
 import _Error from "#src/utils/error.js";
+import { mainLogger as ml } from "#src/utils/loggers.js";
 
 export const requireAuth = asyncErrorHandler(async (req, res, next) => {
   const { authorization } = req.headers;
@@ -12,10 +13,18 @@ export const requireAuth = asyncErrorHandler(async (req, res, next) => {
   const token = authorization.split(" ")[1];
 
   const secretKey = process.env.JWT_SECRET;
-  const { _id } = jwt.verify(token, secretKey);
+  let id;
+  try {
+    const { _id } = jwt.verify(token, secretKey);
+    id = _id;
+  } catch (err) {
+    next(new _Error("Invalid token. Please log in again", 401));
+  }
 
-  req.user = await User.findOne({ _id }).select("_id");
+  const user = await User.findOne({ id }).select("_id");
+  if (!user) next(new _Error("User with such token is not found", 401));
 
+  req.user = user;
   next();
 });
 

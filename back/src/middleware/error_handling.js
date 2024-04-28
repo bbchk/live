@@ -22,6 +22,9 @@ export const errorHandlingMiddleware = (error, req, res, next) => {
           const errors = Object.values(error.errors).map((el) => el.message);
           e = new _Error(`Invalid input data. ${errors.join(". ")}`, 400);
           break;
+        case "JsonWebTokenError":
+          e = new _Error("Invalid token. Please log in again", 401);
+          break;
       }
 
       switch (e.code) {
