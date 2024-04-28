@@ -3,14 +3,11 @@ import { asyncErrorHandler } from "#src/utils/async_error_handler.js";
 
 export const addCartItem = asyncErrorHandler(async (req, res, next) => {
   const { userId, productId } = req.params;
-  try {
-    await cartService.addCartItem(userId, productId);
-    res.status(200).json({
-      message: `Product ${productId} added to the cart successfully.`,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+
+  await cartService.addCartItem(userId, productId);
+  res.status(200).json({
+    message: `Product ${productId} added to the cart successfully.`,
+  });
 });
 
 export const deleteCartItem = asyncErrorHandler(async (req, res, next) => {

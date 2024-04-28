@@ -1,6 +1,5 @@
 import * as categoryService from "#src/services/category/create.category_service.js";
 import { asyncErrorHandler } from "#src/utils/async_error_handler.js";
-import _Error from "#src/utils/error.js";
 
 export const createCategory = asyncErrorHandler(async (req, res, next) => {
   const createdCategory = await categoryService.createCategory(req.body);

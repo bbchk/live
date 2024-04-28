@@ -23,7 +23,6 @@ module.exports = {
   },
   async redirects() {
     if (process.env.MAINTENANCE_MODE === "true") {
-      console.log("Application is in maintenance mode");
       return [
         {
           source: "/:path((?!maintenance.html).*)",

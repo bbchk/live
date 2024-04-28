@@ -1,10 +1,12 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
+import { asyncErrorHandler } from "#src/utils/async_error_handler.js";
 
-export const requireAuth = async (req, res, next) => {
+export const requireAuth = asyncErrorHandler(async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
+    //make it throw an error
     return res
       .status(400)
       .json({ error: "Access denied. Authorization token required" });
@@ -19,12 +21,10 @@ export const requireAuth = async (req, res, next) => {
     req.user = await User.findOne({ _id }).select("_id");
     next();
   } catch (error) {
-    console.log(error);
-    res
-      .status(401)
-      .json({ error: "Access denied. Request is not authorized " });
+    //make it throw an error
+    next(error);
   }
-};
+});
 
 export const isAdmin = async (req, res, next) => {
   const user = await User.findById(req.user._id);

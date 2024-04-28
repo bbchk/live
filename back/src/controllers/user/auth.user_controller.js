@@ -6,7 +6,7 @@ export const signIn = asyncErrorHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
   const { user, token } = await authService.signIn(email, password);
-  console.log("🚀 ~ user:", user);
+
   res.status(200).json({
     id: user._id,
     firstName: user.firstName,

@@ -25,7 +25,6 @@ export async function populateWithTestData() {
   const categories = readJsonFile("src/__tests__/test_data/categories.json");
   const products = readJsonFile("src/__tests__/test_data/products.json");
   const users = readJsonFile("src/__tests__/test_data/users.json");
-  console.log("🚀 ~ users:", users)
 
   await category.insertMany(categories);
   await Product.insertMany(products);
