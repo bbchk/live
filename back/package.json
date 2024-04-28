@@ -46,6 +46,9 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/"
     ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/src/__tests__/utils/"
+    ],
     "moduleNameMapper": {
       "^@src/(.*)$": "<rootDir>/src/$1"
     },
