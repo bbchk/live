@@ -16,7 +16,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use(loggingMiddleware.infoLogger);
+if (process.env.NODE_ENV !== "test") {
+  app.use(loggingMiddleware.infoLogger);
+}
 
 app.use("/categories", categoryRoutes);
 app.use("/products", productsRoutes);
@@ -27,7 +29,9 @@ app.all("*", (req, res, next) => {
   next(err);
 });
 
-app.use(loggingMiddleware.errorLogger);
+if (process.env.NODE_ENV !== "test") {
+  app.use(loggingMiddleware.errorLogger);
+}
 
 app.use(errorHandlingMiddleware);
 

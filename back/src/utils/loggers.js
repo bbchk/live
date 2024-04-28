@@ -24,18 +24,22 @@ const optionsDB = {
   expireAfterSeconds: THIRTY_DAYS, // TTL (time-to-live) in seconds for documents
 };
 
-const mainLoggerTransports = [
-  new transports.MongoDB({
-    level: "warn",
-    collection: "logs.warnings",
-    ...optionsDB,
-  }),
-  new transports.MongoDB({
-    level: "error",
-    collection: "logs.errors",
-    ...optionsDB,
-  }),
-];
+const mainLoggerTransports = [];
+
+if (process.env.NODE_ENV === "production") {
+  mainLoggerTransports.push(
+    new transports.MongoDB({
+      level: "warn",
+      collection: "logs.warnings",
+      ...optionsDB,
+    }),
+    new transports.MongoDB({
+      level: "error",
+      collection: "logs.errors",
+      ...optionsDB,
+    })
+  );
+}
 
 if (process.env.NODE_ENV !== "production") {
   mainLoggerTransports.push(new transports.Console());

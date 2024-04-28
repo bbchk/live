@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 
 import category from "#src/models/category.model.js";
 import Product from "#src/models/product.model.js";
+import User from "#src/models/user.model.js";
 
 import { MongoMemoryServer } from "mongodb-memory-server";
 
@@ -23,9 +24,12 @@ export async function connect() {
 export async function populateWithTestData() {
   const categories = readJsonFile("src/__tests__/test_data/categories.json");
   const products = readJsonFile("src/__tests__/test_data/products.json");
+  const users = readJsonFile("src/__tests__/test_data/users.json");
+  console.log("🚀 ~ users:", users)
 
   await category.insertMany(categories);
   await Product.insertMany(products);
+  await User.insertMany(users);
 }
 
 export async function clearDatabase() {
