@@ -13,6 +13,7 @@ afterAll(async () => await inMemoryDB.disconnect());
 describe("GET /categories", () => {
   it("should get all the categories", async () => {
     const { statusCode, body, type } = await supertest(app).get("/categories");
+
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
     expect(body).toBeInstanceOf(Array);

@@ -3,5 +3,6 @@ import { asyncErrorHandler } from "#src/utils/async_error_handler.js";
 
 export const createCategory = asyncErrorHandler(async (req, res, next) => {
   const createdCategory = await categoryService.createCategory(req.body);
+  console.log("🚀 ~ createdCategory:", createdCategory);
   res.status(200).json(createdCategory);
 });
