@@ -7,8 +7,9 @@ import { categoryRoutes } from "./routes/category.routes.js";
 import { userRoutes } from "./routes/user.routes.js";
 
 import * as loggingMiddleware from "#src/middleware/logger.js";
+import { errorHandlingMiddleware } from "./middleware/error_handling.js";
 
-import { mainLogger as ml } from "#src/utils/loggers.js"; // Adjust the path as needed
+import _Error from "./utils/error.js";
 
 const app = express();
 
@@ -21,30 +22,13 @@ app.use("/categories", categoryRoutes);
 app.use("/products", productsRoutes);
 app.use("/user", userRoutes);
 
-app.use(loggingMiddleware.errorLogger);
-
-app.get("/err", (req, res) => {
-  throw new Error("This is an error!");
-});
-
 app.all("*", (req, res, next) => {
-  const err = new Error(`${req.originalUrl} not found!`);
-  err.status = "fail";
-  err.statusCode = 404;
+  const err = new _Error(`Can't find ${req.originalUrl} on the server!`, 404);
   next(err);
 });
 
-// Error handling middleware
-app.use((error, req, res, next) => {
-  ml.error(error.stack);
+app.use(loggingMiddleware.errorLogger);
 
-  error.statusCode = error.statusCode || 500;
-  error.status = error.status || "error";
-
-  res.status(error.statusCode).json({
-    status: error.status,
-    message: error.message,
-  });
-});
+app.use(errorHandlingMiddleware);
 
 export default app;
