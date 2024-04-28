@@ -11,8 +11,3 @@ export const createCategory = asyncErrorHandler(async (req, res) => {
   const createdCategory = await categoryService.createCategory(req.body);
   res.status(200).json(createdCategory);
 });
-
-export const createCategories = asyncErrorHandler(async (req, res) => {
-  const createdCategories = await categoryService.createCategories(req.body);
-  res.status(200).json(createdCategories);
-});

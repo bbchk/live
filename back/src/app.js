@@ -16,7 +16,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-if (process.env.NODE_ENV !== "test") {
+if (process.env.NODE_ENV === "production") {
   app.use(loggingMiddleware.infoLogger);
 }
 
@@ -29,7 +29,7 @@ app.all("*", (req, res, next) => {
   next(err);
 });
 
-if (process.env.NODE_ENV !== "test") {
+if (process.env.NODE_ENV === "production") {
   app.use(loggingMiddleware.errorLogger);
 }
 

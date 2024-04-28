@@ -4,17 +4,24 @@ dotenv.config();
 import supertest from "supertest";
 import app from "@src/app.js";
 
-// import * as inMemoryDB from "#src/__tests__/utils/in_memory_db.js";
-// import genAuthToken from "#src/utils/gen_auth_token.js";
+import * as inMemoryDB from "#src/__tests__/utils/in_memory_db.js";
+import genAuthToken from "#src/utils/gen_auth_token.js";
 
-// beforeAll(async () => {
-//   await inMemoryDB.connect();
-//   await inMemoryDB.clearDatabase();
-//   await inMemoryDB.populateWithTestData();
-// });
-// afterAll(async () => await inMemoryDB.disconnect());
+beforeAll(async () => {
+  await inMemoryDB.connect();
+  await inMemoryDB.clearDatabase();
+  await inMemoryDB.populateWithTestData();
+});
+afterAll(async () => await inMemoryDB.disconnect());
 
-describe.skip("POST /categories", () => {
+describe("POST /categories", () => {
+  const admin = {
+    _id: "654e2a8de82e996c3ba8dc51",
+    firstName: "first",
+    secondName: "second",
+    email: "example@gmail.com",
+  };
+
   it("should create new category", async () => {
     const categoryToCreate = {
       name: "TODO",
@@ -25,14 +32,12 @@ describe.skip("POST /categories", () => {
       filters: [],
     };
 
-    const token = genAuthToken("admin");
+    const token = genAuthToken(admin);
 
     const { statusCode, body, type } = await supertest(app)
       .post("/categories")
-      .set("Authorization", `Bearer ${process.env.ADMIN_USER_TOKEN}`)
+      .set("Authorization", `Bearer ${token}`)
       .send(categoryToCreate);
-
-    console.log(body);
 
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");

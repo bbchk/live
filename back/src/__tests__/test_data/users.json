@@ -1,9 +1,9 @@
 [
   {
     "_id": "654e2a8de82e996c3ba8dc51",
-    "firstName": "another",
-    "secondName": "Buchok",
-    "email": "bodianbuchok@gmail.com",
+    "firstName": "first",
+    "secondName": "second",
+    "email": "example@gmail.com",
     "password": "$2a$10$WYpuY3.zH.Q6H5V/QnZ2BeodjzD5QFsAy136vK.ieUF8PZEWZ0Ri2",
     "isAdmin": true,
     "likedProducts": [],
