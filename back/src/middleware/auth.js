@@ -6,7 +6,7 @@ export const requireAuth = asyncErrorHandler(async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
-    //make it throw an error
+    //todo make it throw an error
     return res
       .status(400)
       .json({ error: "Access denied. Authorization token required" });
@@ -31,6 +31,7 @@ export const isAdmin = async (req, res, next) => {
   if (user.isAdmin) {
     next();
   } else {
+    //todo make it throw an error
     res
       .status(403)
       .json({ error: "Access denied. Admin rights are not confirmed" });

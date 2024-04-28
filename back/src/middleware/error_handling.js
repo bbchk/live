@@ -1,6 +1,7 @@
 import { mainLogger as ml } from "#src/utils/loggers.js"; // Adjust the path as needed
 
 export const errorHandlingMiddleware = (error, req, res, next) => {
+  console.log("🚀 ~ error:", error);
   ml.error(error.stack);
 
   error.statusCode = error.statusCode || 500;
