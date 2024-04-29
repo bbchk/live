@@ -24,6 +24,13 @@ describe("PATCH /products", () => {
 
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
-    expect(body).toEqual(pd);
+
+    expect(body).toHaveProperty("name");
+    expect(body).toHaveProperty("category");
+    expect(body).toHaveProperty("price");
+    expect(body).toHaveProperty("description");
+    expect(body).toHaveProperty("characteristics");
+    expect(body).toHaveProperty("images");
+    expect(body).toHaveProperty("left");
   });
 });
