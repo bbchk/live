@@ -11,27 +11,21 @@ const PriceSlider = ({ minMax }) => {
   const MIN_DISTANCE = 50;
 
   const { filtersStr } = useRouter().query;
-
   const dispatch = useDispatch();
 
-  //getting current minMax from filtersStr if it exists
-  const priceRegex = /tsina=(\d+(,\d+)*)/;
-  const match = filtersStr.match(priceRegex);
-  const currentMinMax = match
-    ? match[1].split(",").map((n) => Number(n))
-    : minMax;
-
-  const [minMaxPrice, setMinMaxPrice] = useState([
-    currentMinMax[0],
-    currentMinMax[1],
-  ]);
+  const [minMaxPrice, setMinMaxPrice] = useState([minMax[0], minMax[1]]);
 
   const { filters: activeFilters } = useSelector((state) => state.filters);
 
-  //resetting price slider when all filters are removed
   useEffect(() => {
+    //resetting price slider when all filters are removed
     if (Object.keys(activeFilters).length === 0) {
       setMinMaxPrice([minMax[0], minMax[1]]);
+    } else {
+      const isPriceFilterApplied = Object.keys(activeFilters).includes("tsina");
+      if (isPriceFilterApplied) {
+        setMinMaxPrice(activeFilters.tsina);
+      }
     }
   }, [activeFilters]);
 

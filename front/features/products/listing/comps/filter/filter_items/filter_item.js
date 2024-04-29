@@ -17,11 +17,18 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
   const { filters } = useSelector((state) => state.filters);
 
   const slugFilterLabel = slugify(transliterate(filterLabel));
-  const [activeOptions, setActiveOptions] = useState(filters[slugFilterLabel]);
+  const [activeOptions, setActiveOptions] = useState([]);
+
+  useEffect(() => {
+    setActiveOptions(filters[slugFilterLabel]);
+  }, [filters]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(filters);
+    console.log("🚀 ~ activeOptions:", activeOptions);
+
     if (activeOptions != null) {
       if (activeOptions.length > 0) {
         dispatch(
@@ -34,6 +41,10 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
   }, [activeOptions]);
 
   function handleChange(isChecked, option) {
+    console.log("🚀 ~ option:", option);
+    console.log("🚀 ~ isChecked:", isChecked);
+    console.log("🚀 ~ activeOptions:", activeOptions);
+
     const slugOption = slugify(transliterate(option));
     if (isChecked) {
       if (activeOptions != null) {
@@ -46,6 +57,7 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
         activeOptions.filter((activeOption) => activeOption !== slugOption)
       );
     }
+    console.log("🚀 ~ activeOptions:", activeOptions);
   }
 
   return (
