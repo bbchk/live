@@ -1,49 +1,54 @@
 import supertest from "supertest";
 import app from "@src/app.js";
+import jwt from "jsonwebtoken"; // Import jsonwebtoken library
 
-// import * as inMemoryDB from "#src/__tests__/utils/in_memory_db.js";
+import { setupDB, teardownDB } from "#src/__tests__/in_memory_db/db_utils.js";
+import { adminToken } from "#src/__tests__/utils/admin_token.js";
 
-// beforeAll(async () => {
-//   await inMemoryDB.connect();
-//   await inMemoryDB.clearDatabase();
-//   await inMemoryDB.populateWithTestData();
-// });
-// afterAll(async () => await inMemoryDB.disconnect());
+beforeAll(async function () {
+  await setupDB();
+});
+afterAll(async function () {
+  await teardownDB();
+});
 
-describe.skip("GET /categories", () => {
-  it("should get all the categories", async () => {
-    const { statusCode, body, type } = await supertest(app).get("/categories");
+describe("AUTH /user", () => {
+  it("should successfully sign in a user with valid credentials", async () => {
+    const user = {
+      email: "example@gmail.com",
+      password: "flco7G90cy#BK8HpAJQ5t5JHLWu9q&8JCe",
+    };
+
+    const { statusCode, body, type } = await supertest(app)
+      .post("/user/signIn")
+      .send(user);
+
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
-    expect(body).toBeInstanceOf(Array);
+
+    const secretKey = process.env.TEST_JWT_SECRET;
+    const verifiedToken = jwt.verify(body.token, secretKey);
+
+    expect(verifiedToken).toBeTruthy();
   });
 
-  it("should get category with path specified in params", async () => {
-    const categoryPath = "dlya-kotiv";
-    const { statusCode, body, type } = await supertest(app).get(
-      `/categories/${categoryPath}`
-    );
+  it("should successfully sign up a user with valid credentials", async () => {
+    const newUser = {
+      firstName: "first",
+      email: "example2@gmail.com",
+      password: "flco7G90cy#BK8HpAJQ5t5JHLWu9q&8JCe",
+    };
+
+    const { statusCode, body, type } = await supertest(app)
+      .post("/user/signUp")
+      .send(newUser);
 
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
 
-    // const categoryExample = {
-    //   _id: "65ad3ec1864774208de09924",
-    //   name: "Іграшки",
-    //   order: 3,
-    //   path: "Для Птахів,Іграшки",
-    //   imagePath:
-    //     "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv---іgrashki.jpg",
-    //   __v: 0,
-    //   "filters ": [
-    //     "Бренд",
-    //     "Матеріал",
-    //     "Тип",
-    //     "Країна-виробник товару",
-    //     "Новий - б/в",
-    //   ],
-    // };
+    const secretKey = process.env.TEST_JWT_SECRET;
+    const verifiedToken = jwt.verify(body.token, secretKey);
 
-    // expect(body).toMatchObject({});
+    expect(verifiedToken).toBeTruthy();
   });
 });

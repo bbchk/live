@@ -12,7 +12,10 @@ export const requireAuth = asyncErrorHandler(async (req, res, next) => {
 
   const token = authorization.split(" ")[1];
 
-  const secretKey = process.env.JWT_SECRET;
+  const secretKey =
+    process.env.NODE_ENV === "test"
+      ? process.env.TEST_JWT_SECRET
+      : process.env.JWT_SECRET;
   let id;
   try {
     const { _id } = jwt.verify(token, secretKey);
