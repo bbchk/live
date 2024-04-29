@@ -17,12 +17,14 @@ afterAll(async function () {
 describe("POST /categories", () => {
   it("should create new category", async () => {
     const testCategory = {
+      _id: "662f4cfbc6d68f43b03f1cde",
       name: "TODO",
       order: 1,
       path: "TODO",
       imagePath:
         "https://storage.googleapis.com/live_world/categories/todo.jpg",
       filters: [],
+      __v: 0,
     };
 
     const { statusCode, body, type } = await supertest(app)
@@ -32,5 +34,6 @@ describe("POST /categories", () => {
 
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
+    expect(body).toEqual(testCategory);
   });
 });
