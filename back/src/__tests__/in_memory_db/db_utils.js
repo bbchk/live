@@ -11,13 +11,23 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 
 let mongoServer;
 
-export async function connect() {
+export async function setupDB() {
+  await connect();
+  await clearDatabase();
+  await populateWithTestData();
+}
+
+export async function teardownDB() {
+  await disconnect();
+}
+
+async function connect() {
   mongoServer = await MongoMemoryServer.create();
   const mongoUri = mongoServer.getUri("test");
   await mongoose.connect(mongoUri);
 }
 
-export async function populateWithTestData() {
+async function populateWithTestData() {
   let categories = readJsonFile(
     "src/__tests__/in_memory_db/data/categories.json"
   );
@@ -30,11 +40,11 @@ export async function populateWithTestData() {
   await User.insertMany(users);
 }
 
-export async function clearDatabase() {
+async function clearDatabase() {
   await mongoose.connection.db.dropDatabase();
 }
 
-export async function disconnect() {
+async function disconnect() {
   await mongoose.disconnect();
   await mongoServer.stop();
 }

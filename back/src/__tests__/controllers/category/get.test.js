@@ -1,14 +1,15 @@
 import supertest from "supertest";
 import app from "@src/app.js";
 
-import * as inMemoryDB from "#src/__tests__/in_memory_db/db_utils.js";
+import { setupDB, teardownDB } from "#src/__tests__/in_memory_db/db_utils.js";
+import { adminToken } from "#src/__tests__/utils/admin_token.js";
 
-beforeAll(async () => {
-  await inMemoryDB.connect();
-  await inMemoryDB.clearDatabase();
-  await inMemoryDB.populateWithTestData();
+beforeAll(async function () {
+  await setupDB();
 });
-afterAll(async () => await inMemoryDB.disconnect());
+afterAll(async function () {
+  await teardownDB();
+});
 
 describe("GET /categories", () => {
   it("should get all the categories", async () => {
@@ -26,6 +27,9 @@ describe("GET /categories", () => {
       `/categories/${categoryPath}`
     );
 
+    expect(statusCode).toBe(200);
+    expect(type).toBe("application/json");
+
     const expectedCategory = {
       _id: "65ad3ec1864774208de09914",
       name: "Посуд",
@@ -38,9 +42,6 @@ describe("GET /categories", () => {
     };
 
     expect(body).toEqual(expectedCategory);
-
-    expect(statusCode).toBe(200);
-    expect(type).toBe("application/json");
   });
 
   it("should get subcategories of category with specified path in params", async () => {
