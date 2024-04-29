@@ -136,7 +136,7 @@ export async function getServerSideProps(context) {
   }
 
   const activeCategoryRes = await axios.get(
-    `/categories/by-path/${categoryPath}`
+    `/categories/category/by-path/${categoryPath}`
   );
   const activeCategory = activeCategoryRes.data;
 
