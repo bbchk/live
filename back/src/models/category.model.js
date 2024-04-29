@@ -4,7 +4,6 @@ const categorySchema = new Schema({
   name: {
     type: String,
     required: [true, "Ім'я є обов'язовим полем"],
-    unique: [true, "Категорія з таким ім'ям вже існує"],
   },
   order: {
     type: Number,

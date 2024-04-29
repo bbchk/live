@@ -43,4 +43,36 @@ describe("GET /categories", () => {
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
   });
+
+  it.skip("should get subcategories of category with specified path in params", async () => {
+    const categoryPath = "dlya-kotiv";
+    const { statusCode, body, type } = await supertest(app).get(
+      `/categories/subcategories/${categoryPath}`
+    );
+
+    expect(statusCode).toBe(200);
+    expect(type).toBe("application/json");
+    expect(body.length).toBeGreaterThan(0);
+    expect(body).toBeInstanceOf(Array);
+  });
 });
+
+// export const getDirectSubcategoriesByPath = asyncErrorHandler(
+//   async (req, res, next) => {
+//     const { path: slugPath } = req.params;
+
+//     const parentCategory = await categoryService.getCategoryBySlugPath(
+//       slugPath
+//     );
+
+//     if (!parentCategory)
+//       return next(new _Error(`Category with path ${slugPath} not found.`, 404));
+
+//     const ONE_LEVEL_NESTED_DEEP = 1;
+//     const categories = await categoryService.getSubcategories(
+//       parentCategory,
+//       ONE_LEVEL_NESTED_DEEP
+//     );
+//     res.status(200).json(categories);
+//   }
+// );
