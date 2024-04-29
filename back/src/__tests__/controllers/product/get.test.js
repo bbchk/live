@@ -79,4 +79,19 @@ describe("GET /products", () => {
     expect(products).toBeInstanceOf(Array);
     expect(productsCount).toBe(products.length);
   });
+
+  it("should successfully get resulting filters map by slugified category path and with filterStr", async () => {
+    const randCategory = randomCategory();
+
+    const filtersStr = "page=1;tsina=1,100";
+    const categoryPath = slugify(transliterate(randCategory.path));
+
+    const { statusCode, body, type } = await supertest(app).get(
+      `/products/filters/${categoryPath}/${filtersStr}`
+    );
+
+    expect(statusCode).toBe(200);
+    expect(type).toBe("application/json");
+    expect(body).toBeInstanceOf(Array);
+  });
 });
