@@ -125,7 +125,7 @@ export async function getServerSideProps(context) {
 
   // try {
   const productsRes = await axios.get(
-    `/products/${categoryPath}/${filtersStr}`
+    `/products/by-category-path/${categoryPath}/filtered-by/${filtersStr}`
   );
   const products = productsRes.data;
 
@@ -135,11 +135,13 @@ export async function getServerSideProps(context) {
     page = filtersStr.match(/page=(\d+)/)[1];
   }
 
-  const activeCategoryRes = await axios.get(`/categories/${categoryPath}`);
+  const activeCategoryRes = await axios.get(
+    `/categories/by-path/${categoryPath}`
+  );
   const activeCategory = activeCategoryRes.data;
 
   const directSubcategoriesRes = await axios.get(
-    `/categories/subcategories/${categoryPath}`
+    `/categories/subcategories/by-parent-category-path/${categoryPath}`
   );
   const directSubcategories = directSubcategoriesRes.data;
 

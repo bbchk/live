@@ -79,7 +79,7 @@ export default Landing;
 export async function getServerSideProps({ params }) {
   const { productId, activeTab } = params;
 
-  const res = await axios.get(`/products/product/${productId}`);
+  const res = await axios.get(`/products/product/by-id/${productId}`);
 
   if (!["about", "characteristics", "reviews"].includes(activeTab)) {
     return {
