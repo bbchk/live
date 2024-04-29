@@ -8,7 +8,7 @@ import { startLoading } from "store/modalSlice.js";
 
 //todo inconsistent currentMinMax, it changes on page refresh, when set on some points lower
 const PriceSlider = ({ minMax }) => {
-  const MIN_DISTANCE = 50;
+  const MIN_DISTANCE = 10;
 
   const { filtersStr } = useRouter().query;
   const dispatch = useDispatch();
@@ -26,12 +26,13 @@ const PriceSlider = ({ minMax }) => {
       const isPriceFilterApplied = Object.keys(activeFilters).includes("tsina");
       if (isPriceFilterApplied) {
         setMinMaxPrice(activeFilters.tsina);
+      } else {
+        setMinMaxPrice([minMax[0], minMax[1]]);
       }
     }
   }, [activeFilters]);
 
   useEffect(() => {
-    console.log(minMaxPrice);
     if (minMaxPrice[1] > minMax[1] || minMaxPrice[0] < minMax[0]) {
       setSubmitDisabled(true);
     } else {
