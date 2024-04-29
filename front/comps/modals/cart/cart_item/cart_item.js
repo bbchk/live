@@ -23,7 +23,7 @@ const CartItem = ({ product, quantity }) => {
         <button
           disabled
           onClick={() => {
-            console.log("remove");
+            // console.log("remove");
           }}
         >
           <i className="bi bi-trash" />

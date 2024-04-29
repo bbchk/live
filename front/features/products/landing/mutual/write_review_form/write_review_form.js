@@ -40,7 +40,7 @@ const WriteReviewForm = () => {
     // console.log(starValue);
     // console.log(selectedImages);
 
-    console.log("Review submitted");
+    // console.log("Review submitted");
   };
 
   return (

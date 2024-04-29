@@ -13,7 +13,6 @@ const DeleteAccountModal = () => {
   const handleDelete = async (e) => {
     e.preventDefault();
     //todo implement delete account logic
-    console.log("account deleted");
   };
 
   const toggleModal = () => dispatch(toggleDeleteAccountModal());

@@ -1,10 +1,11 @@
 import Slider from "@mui/material/Slider";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import s from "./price-slider.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "store/filtersSlice";
 import { useRouter } from "next/router";
 import { startLoading } from "store/modalSlice.js";
+import { minify } from "next/dist/build/swc";
 
 //todo inconsistent currentMinMax, it changes on page refresh, when set on some points lower
 const PriceSlider = ({ minMax }) => {
@@ -14,6 +15,7 @@ const PriceSlider = ({ minMax }) => {
   const dispatch = useDispatch();
 
   const [minMaxPrice, setMinMaxPrice] = useState([minMax[0], minMax[1]]);
+  const [submitDisabled, setSubmitDisabled] = useState(false);
 
   const { filters: activeFilters } = useSelector((state) => state.filters);
 
@@ -29,13 +31,21 @@ const PriceSlider = ({ minMax }) => {
     }
   }, [activeFilters]);
 
+  // useEffect(() => {
+  //   if (minMaxPrice[1] > minMax[1] || minMaxPrice[0] < minMax[0]) {
+  //     setSubmitDisabled(true);
+  //   } else {
+  //     setSubmitDisabled(false);
+  //   }
+  // }, [minMaxPrice]);
+
   function handleConfirm(event, newValue) {
-    if (
-      minMaxPrice[0] === currentMinMax[0] &&
-      minMaxPrice[1] === currentMinMax[1]
-    ) {
-      return;
+    if (activeFilters?.tsina) {
+      if (minMaxPrice.toString() === activeFilters.tsina.toString()) {
+        return;
+      }
     }
+
     dispatch(startLoading());
     dispatch(
       setFilter({
@@ -87,6 +97,7 @@ const PriceSlider = ({ minMax }) => {
         <button
           onClick={handleConfirm}
           className={`button_primary ${s.ok_btn}`}
+          disabled={submitDisabled}
         >
           Ok
         </button>

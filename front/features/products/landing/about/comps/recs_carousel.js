@@ -18,7 +18,7 @@ const RecsCarousel = () => {
 
     return () => {
       if (recsWorker) {
-        console.log("terminate");
+        // console.log("terminate");
         recsWorker.terminate();
       }
     };

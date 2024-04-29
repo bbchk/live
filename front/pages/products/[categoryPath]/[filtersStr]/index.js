@@ -77,11 +77,7 @@ const Listing = ({
     if (Object.keys(filters).length != 0 && newFiltersStr != filtersStr) {
       const filtersStrPageDefault = newFiltersStr.replace(/page=\d+/, "page=1");
 
-      router
-        .push(`/products/${categoryPath}/${filtersStrPageDefault}`)
-        .catch((error) =>
-          console.error("An error occurred during route transition: ", error)
-        );
+      router.push(`/products/${categoryPath}/${filtersStrPageDefault}`);
     }
   }, [filters]);
 
@@ -165,7 +161,7 @@ export async function getServerSideProps(context) {
       },
     };
   } catch (e) {
-    console.error("An error occurred while fetching product data: ", e);
+    // console.error("An error occurred while fetching product data: ", e);
     return { notFound: true };
   }
 }

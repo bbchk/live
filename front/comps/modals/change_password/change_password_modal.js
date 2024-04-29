@@ -39,7 +39,6 @@ const ChangePasswordModal = () => {
 
   const handleSubmit = async (e, value) => {
     e.preventDefault();
-    console.log(passwordInfo);
   };
 
   return (

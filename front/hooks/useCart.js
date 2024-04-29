@@ -45,7 +45,7 @@ export const useCart = () => {
         );
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 
@@ -74,7 +74,7 @@ export const useCart = () => {
         );
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 
@@ -127,7 +127,7 @@ export const useCart = () => {
 
       return cart;
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 
@@ -150,7 +150,7 @@ export const useCart = () => {
 
       return res.data;
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 
@@ -164,7 +164,7 @@ export const useCart = () => {
 
       return res.data;
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 

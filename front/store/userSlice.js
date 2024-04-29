@@ -19,7 +19,6 @@ export const userSlice = createSlice({
       state.user ??= { cart: action.payload };
     },
     addToCart: (state, action) => {
-      console.log(action.payload);
       if (state.user && Array.isArray(state.user.cart)) {
         const existingItemIndex = state.user.cart.findIndex(
           (item) => item.product._id === action.payload.product._id

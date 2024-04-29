@@ -27,7 +27,6 @@ const Rate = ({ selectedStars, onChange }) => {
                 <button
                   type="button"
                   onClick={() => {
-                    console.log(index);
                     onChange(index);
                   }}
                 >

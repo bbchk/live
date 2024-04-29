@@ -12,7 +12,7 @@ const SignFormByServices = () => {
           try {
             signIn(serviceName, { redirect: false });
           } catch (e) {
-            console.log(e);
+            // console.log(e);
           }
         }}
         className={`button_primary ${s.service_button}`}
