@@ -5,14 +5,7 @@
     "order": 3,
     "path": "Для Птахів,Іграшки",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv---іgrashki.jpg",
-    "__v": 0,
-    "filters ": [
-      "Бренд",
-      "Матеріал",
-      "Тип",
-      "Країна-виробник товару",
-      "Новий - б/в"
-    ]
+    "filters": ["Бренд", "Тип", "Сезон", "Розмір тварини", "Колір"]
   },
   {
     "_id": "65ad3ec1864774208de098f8",
@@ -20,7 +13,6 @@
     "order": 4,
     "path": "Для Собак,Одяг та Аксесуари",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---odyag_ta_aksesuari.jpg",
-    "__v": 0,
     "filters": [
       "Бренд",
       "Тип",
@@ -37,7 +29,6 @@
     "order": 10,
     "path": "Для Котів,Посуд",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya-kotiv---posud.jpg",
-    "__v": 0,
     "filters": ["Бренд", "Колір", "Матеріал", "Країна-виробник товару"]
   },
   {
@@ -46,7 +37,6 @@
     "order": 4,
     "path": "Для Птахів,Догляд та Гігієна",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv---doglyad_ta_gіgієna.jpg",
-    "__v": 0,
     "filters": [
       "Бренд",
       "Призначення",
@@ -62,7 +52,7 @@
     "order": 5,
     "path": "Рослини та Догляд за ними,Засоби захисту рослин,Прилипачі",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---zasobi_zakhistu_roslin---prilipachі.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Призначення", "Метод застосування", "Форма препарату"]
   },
   {
@@ -71,7 +61,7 @@
     "order": 5,
     "path": "Рослини та Догляд за ними,Добрива,Мікродобрива ",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---dobriva---mіkrodobriva_.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Призначення", "Вид", "Фасування"]
   },
   {
@@ -80,7 +70,7 @@
     "order": 17,
     "path": "Насіння,Насіння овочів,Насіння ріпи",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_rіpi.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вага в упаковці",
@@ -96,7 +86,7 @@
     "order": 2,
     "path": "Товари для дому,Компостери",
     "imagePath": "https://storage.googleapis.com/live_world/categories/tovari_dlya_domu---komposteri.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Об'єм", "Матеріал", "Колір"]
   },
   {
@@ -105,7 +95,7 @@
     "order": 7,
     "path": "Для Гризунів,Аксесуари для кліток",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_grizunіv---aksesuari_dlya_klіtok.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -123,7 +113,7 @@
     "order": 12,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для садових рослин",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_sadovikh_roslin.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -139,7 +129,7 @@
     "order": 0,
     "path": "Насіння,Насіння овочів",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вага в упаковці",
@@ -156,7 +146,7 @@
     "order": 7,
     "path": "Насіння,Насіння зернових культур",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_zernovikh_kultur.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вага в упаковці",
@@ -176,7 +166,7 @@
     "order": 2,
     "path": "Для Гризунів",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_grizunіv.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Країна реєстрації бренду", "Країна-виробник товару"]
   },
   {
@@ -185,7 +175,7 @@
     "order": 4,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для квітучих рослин",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_kvіtuchikh_roslin.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -201,7 +191,7 @@
     "order": 9,
     "path": "Насіння,Насіння овочів,Насіння буряка",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_buryaka.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Сорт",
@@ -219,7 +209,7 @@
     "order": 14,
     "path": "Насіння,Насіння овочів,Насіння картоплі",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_kartoplі.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Сорт",
@@ -235,7 +225,7 @@
     "order": 3,
     "path": "Для Собак,Іграшки",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---іgrashki.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Матеріал",
@@ -250,7 +240,7 @@
     "order": 12,
     "path": "Для Котів,Туалетні наповнювачі",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_kotіv---tualetnі_napovnyuvachі.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -266,7 +256,7 @@
     "order": 1,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для газонів",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_gazonіv.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -282,7 +272,7 @@
     "order": 1,
     "path": "Насіння,Насіння овочів,Насіння огірків",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_ogіrkіv.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -300,7 +290,7 @@
     "order": 3,
     "path": "Насіння,Насіння овочів,Насіння капусти",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_kapusti.jpg",
-    "__v": 0,
+
     " filters": [
       "Бренд ",
       "Вид",
@@ -319,7 +309,7 @@
     "order": 2,
     "path": "Для Собак,Ветпрепарати",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---vetpreparati.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тварина",
@@ -336,7 +326,7 @@
     "order": 8,
     "path": "Для Котів,Догляд та Гігієна",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_kotіv---doglyad_ta_gіgієna.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -351,7 +341,7 @@
     "order": 1,
     "path": "Рослини та Догляд за ними,Садовий інвертар",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---sadovii_іnvertar.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Густина (щільність)",
@@ -371,7 +361,7 @@
     "order": 0,
     "path": "Рослини та Догляд за ними,Засоби захисту рослин,Інсектициди",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---zasobi_zakhistu_roslin---іnsektitsidi.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -387,7 +377,7 @@
     "order": 3,
     "path": "Рослини та Догляд за ними,Засоби захисту рослин,Протруйникинасіння",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---zasobi_zakhistu_roslin---protruinikinasіnnya.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -402,7 +392,7 @@
     "order": 1,
     "path": "Рослини та Догляд за ними,Добрива,Органічні добрива",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---dobriva---organіchnі_dobriva.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Фасування", "Призначення", "Вид"]
   },
   {
@@ -419,7 +409,7 @@
     "order": 3,
     "path": "Для Собак,Одяг та Аксесуари,Намордники",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---odyag_ta_aksesuari---namordniki.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Тип", "Країна-виробник товару", "Новий - б/в"]
   },
   {
@@ -428,7 +418,7 @@
     "order": 6,
     "path": "Для Собак,Повідці",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---povіdtsі.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -447,7 +437,7 @@
     "order": 1,
     "path": "Для Птахів,Вітаміни",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv---vіtamіni.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -464,7 +454,7 @@
     "order": 0,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для бегонії",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_begonії.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -480,7 +470,7 @@
     "order": 2,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для декоративно-листяних рослин",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_dekorativno-listyanikh_roslin.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -496,7 +486,7 @@
     "order": 4,
     "path": "Рослини та Догляд за ними,Добрива,Органомінеральні добрива",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---dobriva---organomіneralnі_dobriva.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Фасування", "Призначення", "Вид"]
   },
   {
@@ -505,7 +495,7 @@
     "order": 5,
     "path": "Насіння",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Час висаджування",
@@ -523,7 +513,7 @@
     "order": 8,
     "path": "Насіння,Насіння овочів,Насіння гарбуза",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_garbuza.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Час висаджування",
@@ -540,7 +530,7 @@
     "order": 11,
     "path": "Насіння,Насіння овочів,Насіння баклажанів",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_baklazhanіv.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Сорт",
@@ -558,7 +548,7 @@
     "order": 16,
     "path": "Насіння,Насіння овочів,Насіння патисонів",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_patisonіv.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Сорт",
@@ -576,7 +566,7 @@
     "order": 0,
     "path": "Товари для дому,Зоотовари",
     "imagePath": "https://storage.googleapis.com/live_world/categories/tovari_dlya_domu---zootovari.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Країна реєстрація бренду", "Країна-виробник товару"]
   },
   {
@@ -585,7 +575,7 @@
     "order": 1,
     "path": "Товари для дому,Побутова хімія",
     "imagePath": "https://storage.googleapis.com/live_world/categories/tovari_dlya_domu---pobutova_khіmіya.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Країна реєстрація бренду", "Країна-виробник товару"]
   },
   {
@@ -594,7 +584,7 @@
     "order": 1,
     "path": "Для Собак,Одяг та Аксесуари,Повідці",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---odyag_ta_aksesuari---povіdtsі.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -613,7 +603,7 @@
     "order": 4,
     "path": "Для Котів,Одяг та Аксесуари",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_kotіv---odyag_ta_aksesuari.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -629,7 +619,7 @@
     "order": 4,
     "path": "Для Гризунів,Догляд та Гігієна",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_grizunіv---doglyad_ta_gіgієna.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -646,7 +636,7 @@
     "order": 8,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для пальм",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_palm.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -662,7 +652,7 @@
     "order": 2,
     "path": "Рослини та Догляд за ними,Вазони",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---vazoni.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Об'єм, л",
@@ -683,7 +673,7 @@
     "order": 4,
     "path": "Рослини та Догляд за ними,Добрива",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---dobriva.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Фасування", "Призначення", "Вид"]
   },
   {
@@ -692,7 +682,7 @@
     "order": 2,
     "path": "Насіння,Насіння овочів,Насіння перцю",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_pertsyu.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Час висаджування",
@@ -709,7 +699,7 @@
     "order": 0,
     "path": "Для Собак,Корм та Смаколики",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---korm_ta_smakoliki.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вага 1 шт",
@@ -733,7 +723,7 @@
     "order": 5,
     "path": "Для Собак,Нашийники",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---nashiiniki.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тварина",
@@ -750,7 +740,7 @@
     "order": 9,
     "path": "Для Собак,Догляд та Гігієна",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---doglyad_ta_gіgієna.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -767,7 +757,7 @@
     "order": 3,
     "path": "Для Котів,Іграшки",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_kotіv---іgrashki.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -782,7 +772,7 @@
     "order": 9,
     "path": "Для Котів,Спальні місця та перенесення",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_kotіv---spalnі_mіstsya_ta_perenesennya.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -798,7 +788,7 @@
     "order": 5,
     "path": "Для Гризунів,Клітки та вольєри ",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_grizunіv---klіtki_ta_volєri_.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -817,7 +807,7 @@
     "order": 6,
     "path": "Для Птахів,Наповнювачі",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv---napovnyuvachі.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -836,7 +826,7 @@
     "order": 0,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -852,7 +842,7 @@
     "order": 15,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для цибулинних",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_tsibulinnikh.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -868,7 +858,7 @@
     "order": 2,
     "path": "Насіння,Насіння пряних і зелених трав",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_pryanikh_і_zelenikh_trav.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Культура",
@@ -887,7 +877,7 @@
     "order": 0,
     "path": "Насіння,Насіння пряних і зелених трав,Насіння Щавелю",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_pryanikh_і_zelenikh_trav---nasіnnya_shchavelyu.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Час висаджування",
@@ -905,7 +895,7 @@
     "order": 4,
     "path": "Насіння,Насіння газонних трав",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_gazonnikh_trav.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Сорт",
@@ -922,7 +912,7 @@
     "order": 5,
     "path": "Для Птахів,Клітки та вольєри ",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv---klіtki_ta_volєri_.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -941,7 +931,7 @@
     "order": 4,
     "path": "Рослини та Догляд за ними,Засоби захисту рослин,Молюскоциди",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---zasobi_zakhistu_roslin---molyuskotsidi.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -956,7 +946,7 @@
     "order": 4,
     "path": "Насіння,Насіння овочів,Насіння цибулі",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_tsibulі.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -974,7 +964,7 @@
     "order": 0,
     "path": "Для Птахів,Корм та Смаколики",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv---korm_ta_smakoliki.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид папуги",
@@ -994,7 +984,7 @@
     "order": 7,
     "path": "Для Птахів,Аксесуари для кліток",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv---aksesuari_dlya_klіtok.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -1013,7 +1003,7 @@
     "order": 3,
     "path": "Рослини та Догляд за ними,Добрива,Біодобрива",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---dobriva---bіodobriva.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Фасування", "Призначення", "Вид"]
   },
   {
@@ -1022,7 +1012,7 @@
     "order": 6,
     "path": "Насіння,Насіння ягід",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_yagіd.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -1041,7 +1031,7 @@
     "order": 1,
     "path": "Для Собак,Вітаміни",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---vіtamіni.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -1058,7 +1048,7 @@
     "order": 7,
     "path": "Для Собак,Шлеї",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---shleї.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -1078,7 +1068,7 @@
     "order": 0,
     "path": "Для Собак,Догляд та Гігієна,Інструменти для грумінгу",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---doglyad_ta_gіgієna---іnstrumenti_dlya_grumіngu.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -1093,7 +1083,7 @@
     "order": 1,
     "path": "Для Котів,Вітаміни",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_kotіv---vіtamіni.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Призначення", "Тип", "Країна-виробник товару"]
   },
   {
@@ -1102,7 +1092,7 @@
     "order": 9,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для пеларгоній",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_pelargonіi.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -1118,7 +1108,7 @@
     "order": 10,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для плодово-ягідних рослин",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_plodovo-yagіdnikh_roslin.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -1134,7 +1124,7 @@
     "order": 13,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для тепличних рослин",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_teplichnikh_roslin.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -1150,7 +1140,7 @@
     "order": 2,
     "path": "Рослини та Догляд за ними,Добрива,Стимулятори росту рослин",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---dobriva---stimulyatori_rostu_roslin.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Фасування", "Призначення", "Вид", "Тип"]
   },
   {
@@ -1159,7 +1149,7 @@
     "order": 12,
     "path": "Насіння,Насіння овочів,Насіння дині",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_dinі.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Сортотип",
@@ -1176,7 +1166,7 @@
     "order": 3,
     "path": "Товари для дому,Для поливу",
     "imagePath": "https://storage.googleapis.com/live_world/categories/tovari_dlya_domu---dlya_polivu.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Країна реєстрації бренду", "Країна-виробник товару"]
   },
   {
@@ -1185,7 +1175,7 @@
     "order": 11,
     "path": "Для Собак,Посуд",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---posud.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -1203,7 +1193,7 @@
     "order": 0,
     "path": "Для Котів,Догляд та Гігієна,Інструменти для грумінгу",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_kotіv---doglyad_ta_gіgієna---іnstrumenti_dlya_grumіngu.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -1218,7 +1208,7 @@
     "order": 5,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для кімнатних рослин",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_kіmnatnikh_roslin.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -1235,7 +1225,7 @@
     "order": 6,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для листяних дерев і чагарників",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_listyanikh_derev_і_chagarnikіv.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Вага, кг"]
   },
   {
@@ -1244,7 +1234,7 @@
     "order": 11,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для розсади ",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_rozsadi_.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Вид", "Об'єм, л", "Вага, кг", "Форма"]
   },
   {
@@ -1253,7 +1243,7 @@
     "order": 16,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для цитрусових",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_tsitrusovikh.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Вид", "Об'єм, л", "Вага, кг"]
   },
   {
@@ -1262,7 +1252,7 @@
     "order": 10,
     "path": "Насіння,Насіння овочів,Насіння кабачків",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_kabachkіv.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Сорт",
@@ -1281,7 +1271,7 @@
     "order": 1,
     "path": "Насіння,Насіння пряних і зелених трав,Насіння Базиліку",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_pryanikh_і_zelenikh_trav---nasіnnya_bazilіku.jpg",
-    "__v": 0,
+
     "filter": [
       "Бренд",
       "Культура",
@@ -1300,7 +1290,7 @@
     "order": 8,
     "path": "Насіння,Насіння олійних культур",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_olіinikh_kultur.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -1317,7 +1307,7 @@
     "order": 0,
     "path": "Для Собак,Одяг та Аксесуари,Нашийники",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---odyag_ta_aksesuari---nashiiniki.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тварина",
@@ -1334,7 +1324,7 @@
     "order": 2,
     "path": "Для Собак,Одяг та Аксесуари,Шлеї",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---odyag_ta_aksesuari---shleї.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -1354,7 +1344,7 @@
     "order": 0,
     "path": "Для Собак",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Країна реєстрації бренду", "Країна-виробник товару"]
   },
   {
@@ -1363,7 +1353,7 @@
     "order": 2,
     "path": "Для Гризунів,Ветпрепарати",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_grizunіv---vetpreparati.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тварина",
@@ -1380,7 +1370,7 @@
     "order": 17,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Універсальні",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---unіversalnі.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -1396,7 +1386,7 @@
     "order": 3,
     "path": "Рослини та Догляд за ними,Засоби захисту рослин",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---zasobi_zakhistu_roslin.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -1411,7 +1401,7 @@
     "order": 6,
     "path": "Рослини та Догляд за ними,Засоби захисту рослин,Десиканти",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---zasobi_zakhistu_roslin---desikanti.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -1427,7 +1417,7 @@
     "order": 0,
     "path": "Насіння,Насіння овочів,Насіння помідорів",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_pomіdorіv.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Колір плоду",
@@ -1445,7 +1435,7 @@
     "order": 7,
     "path": "Насіння,Насіння овочів,Насіння редиски",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_rediski.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Сорт",
@@ -1463,7 +1453,7 @@
     "order": 18,
     "path": "Насіння,Насіння овочів,Насіння артишоку",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_artishoku.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Термін дозрівання",
@@ -1479,7 +1469,7 @@
     "order": 3,
     "path": "Насіння,Насіння бобових культур",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_bobovikh_kultur.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -1498,7 +1488,7 @@
     "order": 8,
     "path": "Для Собак,Намордники",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---namordniki.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Тип", "Країна-виробник товару", "Новий - б/в"]
   },
   {
@@ -1507,7 +1497,7 @@
     "order": 2,
     "path": "Для Котів,Ветпрепарати",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_kotіv---vetpreparati.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -1523,7 +1513,7 @@
     "order": 11,
     "path": "Для Котів,Туалети",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_kotіv---tualeti.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Колір", "Матеріал", "Країна-виробник товару"]
   },
   {
@@ -1532,7 +1522,7 @@
     "order": 6,
     "path": "Для Гризунів,Наповнювачі",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_grizunіv---napovnyuvachі.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -1551,7 +1541,7 @@
     "order": 2,
     "path": "Для Птахів,Ветпрепарати",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv---vetpreparati.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тварина",
@@ -1568,7 +1558,7 @@
     "order": 5,
     "path": "Насіння,Насіння овочів,Насіння кавуна",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_kavuna.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Сорт",
@@ -1585,7 +1575,7 @@
     "order": 1,
     "path": "Насіння,Насіння квітів",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_kvіtіv.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -1604,7 +1594,7 @@
     "order": 10,
     "path": "Для Собак,Спальні місця та перенесення",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_sobak---spalnі_mіstsya_ta_perenesennya.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -1621,7 +1611,7 @@
     "order": 1,
     "path": "Для Котів",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_kotiv.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Країна реєстрації бренду", "Країна-виробник товару"]
   },
   {
@@ -1630,7 +1620,7 @@
     "order": 0,
     "path": "Для Гризунів,Корм та Смаколики",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_grizunіv---korm_ta_smakoliki.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Властивості",
@@ -1647,7 +1637,7 @@
     "order": 1,
     "path": "Для Гризунів,Вітаміни",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_grizunіv---vіtamіni.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -1664,7 +1654,7 @@
     "order": 3,
     "path": "Для Гризунів,Іграшки",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_grizunіv---іgrashki.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Матеріал",
@@ -1679,7 +1669,7 @@
     "order": 4,
     "path": "Рослини та Догляд за ними",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -1701,7 +1691,7 @@
     "order": 7,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для овочевих культур",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_ovochevikh_kultur.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -1718,7 +1708,7 @@
     "order": 14,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для хвойних і декоративних рослин",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_khvoinikh_і_dekorativnikh_roslin.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Вид",
@@ -1735,7 +1725,7 @@
     "order": 1,
     "path": "Рослини та Догляд за ними,Засоби захисту рослин,Фунгіциди",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---zasobi_zakhistu_roslin---fungіtsidi.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -1751,7 +1741,7 @@
     "order": 0,
     "path": "Рослини та Догляд за ними,Добрива,Мінеральні добрива",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---dobriva---mіneralnі_dobriva.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Фасування", "Призначення", "Вид"]
   },
   {
@@ -1760,7 +1750,7 @@
     "order": 6,
     "path": "Насіння,Насіння овочів,Насіння моркви",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_morkvi.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Сортотип",
@@ -1778,7 +1768,7 @@
     "order": 0,
     "path": "Для Котів,Корм та Смаколики",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_kotіv---korm_ta_smakoliki.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -1798,7 +1788,7 @@
     "order": 3,
     "path": "Для Птахів",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Країна реєстрації бренду", "Країна-виробник товару"]
   },
   {
@@ -1807,7 +1797,7 @@
     "order": 3,
     "path": "Рослини та Догляд за ними,Субстрати та грунти для рослин,Для кактусів",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---substrati_ta_grunti_dlya_roslin---dlya_kaktusіv.jpg",
-    "__v": 0,
+
     "filters": ["Бренд", "Вид", "Об'єм, л", "Призначення", "Вага, кг", "Форма"]
   },
   {
@@ -1816,7 +1806,7 @@
     "order": 2,
     "path": "Рослини та Догляд за ними,Засоби захисту рослин,Гербіциди",
     "imagePath": "https://storage.googleapis.com/live_world/categories/roslini_ta_doglyad_za_nimi---zasobi_zakhistu_roslin---gerbіtsidi.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Призначення",
@@ -1832,7 +1822,7 @@
     "order": 13,
     "path": "Насіння,Насіння овочів,Насіння салату",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_salatu.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Тип",
@@ -1849,7 +1839,7 @@
     "order": 15,
     "path": "Насіння,Насіння овочів,Насіння редьки",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_redki.jpg",
-    "__v": 0,
+
     "filters": [
       "Бренд",
       "Сорт",
@@ -1867,7 +1857,6 @@
     "order": 5,
     "path": "Насіння,Насіння сидератів і медоносів",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_sideratіv_і_medonosіv.jpg",
-    "__v": 0,
     "filters": [
       "Бренд",
       "Тип",

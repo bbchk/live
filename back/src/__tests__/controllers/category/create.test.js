@@ -6,6 +6,7 @@ import app from "@src/app.js";
 
 import { setupDB, teardownDB } from "#src/__tests__/in_memory_db/db_utils.js";
 import { adminToken } from "#src/__tests__/utils/admin_token.js";
+import { randomCategory } from "#src/__tests__/utils/data_generator.js";
 
 beforeAll(async function () {
   await setupDB();
@@ -17,14 +18,9 @@ afterAll(async function () {
 describe("POST /categories", () => {
   it("should create new category", async () => {
     const testCategory = {
-      _id: "662f4cfbc6d68f43b03f1cde",
-      name: "TODO",
-      order: 1,
-      path: "TODO",
-      imagePath:
-        "https://storage.googleapis.com/live_world/categories/todo.jpg",
-      filters: [],
-      __v: 0,
+      ...randomCategory(),
+      _id: "65ad3ec1864784208de09952",
+      path: "test_path",
     };
 
     const { statusCode, body, type } = await supertest(app)

@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken"; // Import jsonwebtoken library
 
 import { setupDB, teardownDB } from "#src/__tests__/in_memory_db/db_utils.js";
 import { adminToken } from "#src/__tests__/utils/admin_token.js";
+import { randomUser } from "#src/__tests__/utils/data_generator.js";
 
 beforeAll(async function () {
   await setupDB();
@@ -14,8 +15,9 @@ afterAll(async function () {
 
 describe("AUTH /user", () => {
   it("should successfully sign in a user with valid credentials", async () => {
+    const usr = randomUser();
     const user = {
-      email: "example@gmail.com",
+      ...usr,
       password: "flco7G90cy#BK8HpAJQ5t5JHLWu9q&8JCe",
     };
 
@@ -33,10 +35,10 @@ describe("AUTH /user", () => {
   });
 
   it("should successfully sign up a user with valid credentials", async () => {
+    const usr = randomUser();
     const newUser = {
-      firstName: "first",
+      ...usr,
       email: "example2@gmail.com",
-      password: "flco7G90cy#BK8HpAJQ5t5JHLWu9q&8JCe",
     };
 
     const { statusCode, body, type } = await supertest(app)

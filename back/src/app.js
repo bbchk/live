@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
 
 import { productsRoutes } from "./routes/product.routes.js";
 import { categoryRoutes } from "./routes/category.routes.js";
