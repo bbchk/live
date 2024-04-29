@@ -11,7 +11,3 @@ export function readJsonFile(filePath) {
     );
   }
 }
-
-// Example usage:
-// const categories = readJsonFile("../test_data/categories.json");
-// console.log("🚀 ~ categories:", categories);

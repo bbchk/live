@@ -17,6 +17,7 @@ describe("GET /categories", () => {
 
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
+    expect(body.length).toBeGreaterThan(0);
     expect(body).toBeInstanceOf(Array);
   });
 
@@ -26,26 +27,20 @@ describe("GET /categories", () => {
       `/categories/${categoryPath}`
     );
 
+    const expectedCategory = {
+      _id: "65ad3ec1864774208de09914",
+      name: "Посуд",
+      order: 10,
+      path: "Для Котів,Посуд",
+      imagePath:
+        "https://storage.googleapis.com/live_world/categories/dlya-kotiv---posud.jpg",
+      __v: 0,
+      filters: ["Бренд", "Колір", "Матеріал", "Країна-виробник товару"],
+    };
+
+    expect(body).toEqual(expectedCategory);
+
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
   });
 });
-
-// const categoryExample = {
-//   _id: "65ad3ec1864774208de09924",
-//   name: "Іграшки",
-//   order: 3,
-//   path: "Для Птахів,Іграшки",
-//   imagePath:
-//     "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv---іgrashki.jpg",
-//   __v: 0,
-//   "filters ": [
-//     "Бренд",
-//     "Матеріал",
-//     "Тип",
-//     "Країна-виробник товару",
-//     "Новий - б/в",
-//   ],
-// };
-
-// expect(body).toMatchObject({});
