@@ -70,11 +70,13 @@ describe("GET /products", () => {
     const { statusCode, body, type } = await supertest(app).get(
       `/products/by-category-path/${categoryPath}/filtered-by/${filtersStr}`
     );
-    console.log(body);
 
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
-    // expect(body).toBeGreaterThan(0);
-    // expect(body).toBeInstanceOf(Array);
+
+    const { products, productsCount, minMaxPrice, numPages } = body;
+    expect(numPages).toBeGreaterThan(0);
+    expect(products).toBeInstanceOf(Array);
+    expect(productsCount).toBe(products.length);
   });
 });
