@@ -12,16 +12,10 @@ const Data = () => {
       const fetchLikedProducts = async () => {
         const token = user.token;
 
+        //todo test
         try {
-          const res = await axios.post(
-            `/products/getByIds`,
-            user.likedProducts,
-            {
-              headers: {
-                "Content-type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            }
+          const res = await axios.get(
+            `/products/by-ids?ids=${user.likedProducts}`
           );
 
           setLikedProducts(res.data);

@@ -22,11 +22,10 @@ const router = express.Router();
 
 router.get("/", getProducts);
 router.get("/product/:id", getProductById);
+router.get("/by-ids", getProductsByIds);
 
 router.get("/:slugCategoryPath/:filtersStr?", getProductsByCategoryAndFilters);
 router.get("/filters/:slugCategoryPath/:filtersStr?", getFilters);
-
-router.post("/getbyIds", getProductsByIds);
 
 router.use(requireAuth);
 router.use(isAdmin);

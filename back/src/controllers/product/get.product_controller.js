@@ -11,7 +11,7 @@ export const getProductById = asyncErrorHandler(async (req, res, next) => {
 });
 
 export const getProductsByIds = asyncErrorHandler(async (req, res, next) => {
-  const productIds = req.body;
+  const productIds = req.query.ids.split(",");
   const result = await productService.getProductsByIds(productIds);
 
   res.status(200).json(result.products);

@@ -21,6 +21,7 @@ describe("GET /products", () => {
 
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
+
     expect(body.length).toBeGreaterThan(0);
     expect(body).toBeInstanceOf(Array);
   });
@@ -34,7 +35,24 @@ describe("GET /products", () => {
 
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
+
     expect(body._id).toEqual(pd._id);
     expect(body.path).toEqual(pd.path);
+  });
+
+  it("should successfully get products by passed ids array from database", async () => {
+    const randProducts = [];
+    for (let i = 0; i < 5; i++) {
+      randProducts.push(randomProduct());
+    }
+
+    const { statusCode, body, type } = await supertest(app).get(
+      `/products/by-ids?ids=${randProducts.map((p) => p._id).join(",")}`
+    );
+
+    expect(statusCode).toBe(200);
+    expect(type).toBe("application/json");
+    expect(body.length).toBeGreaterThan(0);
+    expect(body).toBeInstanceOf(Array);
   });
 });
