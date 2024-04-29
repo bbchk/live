@@ -14,10 +14,6 @@ export const getProductsByIds = asyncErrorHandler(async (req, res, next) => {
   const productIds = req.body;
   const result = await productService.getProductsByIds(productIds);
 
-  // if (result.error) {
-  //   return res.status(400).json({ error: result.error });
-  // }
-
   res.status(200).json(result.products);
 });
 

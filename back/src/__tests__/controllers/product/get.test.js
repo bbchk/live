@@ -3,6 +3,8 @@ import app from "@src/app.js";
 
 import { setupDB, teardownDB } from "#src/__tests__/in_memory_db/db_utils.js";
 import { adminToken } from "#src/__tests__/utils/admin_token.js";
+import { randomProduct } from "#src/__tests__/utils/data_generator.js";
+import Product from "#src/models/category.model.js";
 
 beforeAll(async function () {
   await setupDB();
@@ -23,12 +25,16 @@ describe("GET /products", () => {
     expect(body).toBeInstanceOf(Array);
   });
 
-  it.skip("should successfully get product by its id from database", async () => {
-    const { statusCode, body, type } = await supertest(app).get("/products/");
+  it("should successfully get product by its id from database", async () => {
+    const pd = randomProduct();
+
+    const { statusCode, body, type } = await supertest(app).get(
+      `/products/product/${pd._id}`
+    );
 
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
-    expect(body.length).toBeGreaterThan(0);
-    expect(body).toBeInstanceOf(Array);
+    expect(body._id).toEqual(pd._id);
+    expect(body.path).toEqual(pd.path);
   });
 });
