@@ -13,6 +13,7 @@ const RecsCarousel = () => {
     let recsWorker = new Worker("/recsWorker.js");
     recsWorker.postMessage({ id: productId });
     recsWorker.onmessage = (event) => {
+      console.log("🚀 ~ event:", event);
       setRecs(event.data);
     };
 
@@ -23,7 +24,7 @@ const RecsCarousel = () => {
       }
     };
   }, []);
-
+  1;
   return (
     <section className={`${s.recs}`}>
       <h3>Також вас можуть зацікавити</h3>

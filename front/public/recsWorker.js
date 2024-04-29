@@ -125,23 +125,19 @@ function similarities(documents, product) {
 self.onmessage = async (event) => {
   const { id } = event.data;
 
-  // try {
-  const productQuery = await fetch(
-    `http://localhost:4000/products/product/${id}`
-  );
-  const product = await productQuery.json();
+  try {
+    const productQuery = await fetch(
+      `http://localhost:4000/products/product/by-id/${id}`
+    );
+    const product = await productQuery.json();
 
-  const allProductQuery = await fetch(`http://localhost:4000/products`);
-  const products = await allProductQuery.json();
+    const allProductQuery = await fetch(`http://localhost:4000/products`);
+    const products = await allProductQuery.json();
 
-  const similaritiesRes = similarities(
-    // products.filter((p) => p._id != "65b2606f213addb487b8aaac"),
-    products,
-    product
-  );
+    const similaritiesRes = similarities(products, product);
 
-  self.postMessage(similaritiesRes);
-  // } catch (error) {
-  //   self.postMessage({ error: error.message });
-  // }
+    self.postMessage(similaritiesRes);
+  } catch (error) {
+    self.postMessage({ error: error.message });
+  }
 };

@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./product_figure.module.scss";
 import Image from "next/image";
 import { Carousel, CarouselItem } from "/comps/carousel/carousel";
 import ImageFallback from "#root/comps/image/fallback_image.js";
 
 const ProductFigure = ({ images }) => {
+  //todo image flickers when recs product clicked
   const [selectedImageIdx, setSelectedImageIdx] = useState(0);
 
   const carouselId = "ProductImagesCarousel";

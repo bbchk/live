@@ -13,10 +13,6 @@ import Reviews from "./comps/reviews";
 import useObserver from "hooks/useObserver.js";
 
 const LandingProductAboutPage = ({ product }) => {
-  const ref = useRef();
-  const isVisible = useObserver(ref); // use the custom hook
-  // const reviews = [];
-
   return (
     <article className={`${s.landing_product_about}`}>
       <div className={`${s.product_figure}`}>
@@ -26,7 +22,7 @@ const LandingProductAboutPage = ({ product }) => {
         <ProductMainInfo product={product} />
       </div>
 
-      <div className={`${s.descriptionAndCharacteristics}`} ref={ref}>
+      <div className={`${s.descriptionAndCharacteristics}`}>
         <div className="mb-5">
           <Description product={product} />
         </div>
@@ -36,12 +32,9 @@ const LandingProductAboutPage = ({ product }) => {
       <div className={`${s.reviews}`}>
         <Reviews product={product} />
       </div>
-
-      {isVisible && (
-        <div className={`${s.recs}`}>
-          <RecsCarousel isVisible={isVisible} />
-        </div>
-      )}
+      <div className={`${s.recs}`}>
+        <RecsCarousel />
+      </div>
     </article>
   );
 };
