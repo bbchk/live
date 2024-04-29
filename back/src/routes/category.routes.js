@@ -14,9 +14,12 @@ import {
 const router = express.Router();
 
 router.get("/", getCategories);
-router.get("/:path", getCategoryByPath);
+router.get("/category/by-path/:path", getCategoryByPath);
 
-router.get("/subcategories/:path", getDirectSubcategoriesByPath);
+router.get(
+  "/subcategories/by-parent-category-path/:path",
+  getDirectSubcategoriesByPath
+);
 
 router.use(requireAuth, isAdmin);
 router.post("/", createCategory);

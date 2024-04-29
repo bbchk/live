@@ -3,8 +3,13 @@ import app from "@src/app.js";
 
 import { setupDB, teardownDB } from "#src/__tests__/in_memory_db/db_utils.js";
 import { adminToken } from "#src/__tests__/utils/admin_token.js";
-import { randomProduct } from "#src/__tests__/utils/data_generator.js";
+import {
+  randomCategory,
+  randomProduct,
+} from "#src/__tests__/utils/data_generator.js";
 import Product from "#src/models/category.model.js";
+import { slugify } from "@bbuukk/slugtrans/slugify";
+import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
 beforeAll(async function () {
   await setupDB();
@@ -30,7 +35,7 @@ describe("GET /products", () => {
     const pd = randomProduct();
 
     const { statusCode, body, type } = await supertest(app).get(
-      `/products/product/${pd._id}`
+      `/products/product/by-id/${pd._id}`
     );
 
     expect(statusCode).toBe(200);
@@ -54,5 +59,22 @@ describe("GET /products", () => {
     expect(type).toBe("application/json");
     expect(body.length).toBeGreaterThan(0);
     expect(body).toBeInstanceOf(Array);
+  });
+
+  it("should successfully get products by slugified category path and filterStr", async () => {
+    const randCategory = randomCategory();
+
+    const filtersStr = "page=1;tsina=1,100";
+    const categoryPath = slugify(transliterate(randCategory.path));
+
+    const { statusCode, body, type } = await supertest(app).get(
+      `/products/by-category-path/${categoryPath}/filtered-by/${filtersStr}`
+    );
+    console.log(body);
+
+    expect(statusCode).toBe(200);
+    expect(type).toBe("application/json");
+    // expect(body).toBeGreaterThan(0);
+    // expect(body).toBeInstanceOf(Array);
   });
 });

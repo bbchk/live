@@ -5,12 +5,3 @@ export const createProduct = asyncErrorHandler(async (req, res, next) => {
   const product = await productService.createProduct(req.body);
   res.status(200).json(product);
 });
-
-export const createProducts = asyncErrorHandler(async (req, res, next) => {
-  try {
-    const createdProducts = await productService.createProducts(req.body);
-    res.status(200).json(createdProducts);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});

@@ -9,10 +9,7 @@ import {
   getFilters,
 } from "#src/controllers/product/get.product_controller.js";
 
-import {
-  createProduct,
-  createProducts,
-} from "#src/controllers/product/create.product_controller.js";
+import { createProduct } from "#src/controllers/product/create.product_controller.js";
 
 import { updateProduct } from "#src/controllers/product/update.product_controller.js";
 
@@ -21,20 +18,19 @@ import { deleteProduct } from "#src/controllers/product/delete.product_controlle
 const router = express.Router();
 
 router.get("/", getProducts);
-router.get("/product/:id", getProductById);
-router.get("/by-ids", getProductsByIds);
 
-router.get("/:slugCategoryPath/:filtersStr?", getProductsByCategoryAndFilters);
+router.get("/by-ids", getProductsByIds);
+router.get("/product/by-id/:id", getProductById);
+router.get(
+  "/by-category-path/:slugCategoryPath/filtered-by/:filtersStr?",
+  getProductsByCategoryAndFilters
+);
+
 router.get("/filters/:slugCategoryPath/:filtersStr?", getFilters);
 
-router.use(requireAuth);
-router.use(isAdmin);
-
+router.use(requireAuth, isAdmin);
 router.post("/", createProduct);
-router.post("/many", createProducts);
-
 router.patch("/:id", updateProduct);
-
 router.delete("/:id", deleteProduct);
 
 export { router as productsRoutes };
