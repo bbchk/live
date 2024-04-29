@@ -8,7 +8,6 @@ beforeAll(async () => {
   await inMemoryDB.clearDatabase();
   await inMemoryDB.populateWithTestData();
 });
-
 afterAll(async () => await inMemoryDB.disconnect());
 
 describe("GET /categories", () => {

@@ -25,7 +25,6 @@ export async function populateWithTestData() {
     "src/__tests__/in_memory_db/data/products.json"
   );
   const users = readJsonFile("src/__tests__/in_memory_db/data/users.json");
-
   await category.insertMany(categories);
   await Product.insertMany(products);
   await User.insertMany(users);
