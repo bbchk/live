@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "store/filtersSlice";
 import { useRouter } from "next/router";
 import { startLoading } from "store/modalSlice.js";
-import { minify } from "next/dist/build/swc";
 
 //todo inconsistent currentMinMax, it changes on page refresh, when set on some points lower
 const PriceSlider = ({ minMax }) => {
@@ -31,13 +30,14 @@ const PriceSlider = ({ minMax }) => {
     }
   }, [activeFilters]);
 
-  // useEffect(() => {
-  //   if (minMaxPrice[1] > minMax[1] || minMaxPrice[0] < minMax[0]) {
-  //     setSubmitDisabled(true);
-  //   } else {
-  //     setSubmitDisabled(false);
-  //   }
-  // }, [minMaxPrice]);
+  useEffect(() => {
+    console.log(minMaxPrice);
+    if (minMaxPrice[1] > minMax[1] || minMaxPrice[0] < minMax[0]) {
+      setSubmitDisabled(true);
+    } else {
+      setSubmitDisabled(false);
+    }
+  }, [minMaxPrice]);
 
   function handleConfirm(event, newValue) {
     if (activeFilters?.tsina) {
@@ -87,12 +87,15 @@ const PriceSlider = ({ minMax }) => {
           value={minMaxPrice[0]}
           onChange={handleInputChange(0)}
           className={`form-control ${s.input} ${s.left}`}
+          type="number"
         />
         <span>—</span>
+
         <input
           value={minMaxPrice[1]}
           onChange={handleInputChange(1)}
           className={`form-control ${s.input} ${s.right}`}
+          type="number"
         />
         <button
           onClick={handleConfirm}

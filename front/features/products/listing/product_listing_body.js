@@ -11,7 +11,6 @@ import Selected from "./comps/filter/selected";
 const ProductListingBody = ({
   filtersMap,
   minMaxPrice,
-
   products,
   productsCount,
   category,
