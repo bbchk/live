@@ -18,7 +18,7 @@ const filtersSlice = createSlice({
       delete state.filters[action.payload.filterName];
     },
     deleteAllFilters: (state) => {
-      state.filters = {};
+      state.filters = { page: state.filters.page };
     },
     updateFilter: (state, action) => {
       if (state.filters[action.payload.filterName]) {

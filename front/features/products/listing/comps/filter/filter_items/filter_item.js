@@ -11,7 +11,6 @@ import { setFilter, deleteFilter } from "store/filtersSlice";
 
 import { startLoading } from "store/modalSlice";
 
-//todo fix TypeError: activeOptions is undefined bug when checkbox gets unchecked
 // sometimes activeOptions is undefined when checkbox gets unchecked, but not always, further more it does depend on value of checkbox
 const FilterChecks = ({ filterLabel, options, idx }) => {
   const { filters } = useSelector((state) => state.filters);
@@ -26,9 +25,6 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(filters);
-    console.log("🚀 ~ activeOptions:", activeOptions);
-
     if (activeOptions != null) {
       if (activeOptions.length > 0) {
         dispatch(
@@ -41,10 +37,6 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
   }, [activeOptions]);
 
   function handleChange(isChecked, option) {
-    console.log("🚀 ~ option:", option);
-    console.log("🚀 ~ isChecked:", isChecked);
-    console.log("🚀 ~ activeOptions:", activeOptions);
-
     const slugOption = slugify(transliterate(option));
     if (isChecked) {
       if (activeOptions != null) {
@@ -57,7 +49,6 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
         activeOptions.filter((activeOption) => activeOption !== slugOption)
       );
     }
-    console.log("🚀 ~ activeOptions:", activeOptions);
   }
 
   return (

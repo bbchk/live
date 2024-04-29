@@ -123,49 +123,49 @@ export default Listing;
 export async function getServerSideProps(context) {
   const { categoryPath, filtersStr } = context.params;
 
-  // try {
-  const productsRes = await axios.get(
-    `/products/by-category-path/${categoryPath}/filtered-by/${filtersStr}`
-  );
-  const products = productsRes.data;
+  try {
+    const productsRes = await axios.get(
+      `/products/by-category-path/${categoryPath}/filtered-by/${filtersStr}`
+    );
+    const products = productsRes.data;
 
-  let page = 1;
-  const match = filtersStr.match(/page=(\d+)/);
-  if (match) {
-    page = filtersStr.match(/page=(\d+)/)[1];
-  }
+    let page = 1;
+    const match = filtersStr.match(/page=(\d+)/);
+    if (match) {
+      page = filtersStr.match(/page=(\d+)/)[1];
+    }
 
-  const activeCategoryRes = await axios.get(
-    `/categories/category/by-path/${categoryPath}`
-  );
-  const activeCategory = activeCategoryRes.data;
+    const activeCategoryRes = await axios.get(
+      `/categories/category/by-path/${categoryPath}`
+    );
+    const activeCategory = activeCategoryRes.data;
 
-  const directSubcategoriesRes = await axios.get(
-    `/categories/subcategories/by-parent-category-path/${categoryPath}`
-  );
-  const directSubcategories = directSubcategoriesRes.data;
+    const directSubcategoriesRes = await axios.get(
+      `/categories/subcategories/by-parent-category-path/${categoryPath}`
+    );
+    const directSubcategories = directSubcategoriesRes.data;
 
-  const filtersRes = await axios.get(
-    `/products/filters/${categoryPath}/${filtersStr}`
-  );
-  const filtersMap = filtersRes.data;
+    const filtersRes = await axios.get(
+      `/products/filters/${categoryPath}/${filtersStr}`
+    );
+    const filtersMap = filtersRes.data;
 
-  //todo make it a minutes for production
-  const HALF_AN_HOUR = 1800;
-  return {
-    props: {
-      data: {
-        activeCategory,
-        directSubcategories,
-        filtersMap,
-        ...products,
-        page,
+    //todo make it a minutes for production
+    const HALF_AN_HOUR = 1800;
+    return {
+      props: {
+        data: {
+          activeCategory,
+          directSubcategories,
+          filtersMap,
+          ...products,
+          page,
+        },
+        revalidate: HALF_AN_HOUR,
       },
-      revalidate: HALF_AN_HOUR,
-    },
-  };
-  // } catch (e) {
-  //   console.error("An error occurred while fetching product data: ", e);
-  //   return { notFound: true };
-  // }
+    };
+  } catch (e) {
+    console.error("An error occurred while fetching product data: ", e);
+    return { notFound: true };
+  }
 }
