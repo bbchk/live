@@ -5,6 +5,7 @@ import s from "./card.module.scss";
 
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
+import ImageFallback from "#root/comps/image/fallback_image.js";
 
 const SubcategoryCard = ({ category }) => {
   const { name, imagePath } = category;
@@ -15,11 +16,12 @@ const SubcategoryCard = ({ category }) => {
 
   return (
     <Link href={categoryPathSlug} as={categoryPathSlug} className={`${s.card}`}>
-      <Image
+      <ImageFallback
         src={imagePath}
+        fallbackSrc={"/assets/goods_placeholder.svg"}
         width={150}
         height={150}
-        alt="subcategory image"
+        alt="підкатегорія"
         priority
       />
       <div>

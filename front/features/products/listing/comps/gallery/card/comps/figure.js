@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+
+import ImageFallback from "comps/image/fallback_image.js";
+
 import s from "./figure.module.scss";
 import lcs from "../listing_card.module.scss";
 import { useDispatch } from "react-redux";
@@ -15,11 +18,12 @@ const ProductFigure = ({ product, productUrl }) => {
       onClick={() => dispatch(startLoading())}
     >
       <figure className={`${s.figure} `}>
-        <Image
+        <ImageFallback
           src={
             //todo implement displaying many images on product
             product.images && product.images[0]
           }
+          fallbackSrc={"/assets/goods_placeholder.svg"}
           alt="product image"
           width={250}
           height={250}

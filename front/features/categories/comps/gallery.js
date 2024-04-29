@@ -1,6 +1,5 @@
 import Card from "./card";
 import s from "./gallery.module.scss";
-import { useSelector } from "react-redux";
 
 const Gallery = ({ flatCategoryMap }) => {
   const rootCategories = flatCategoryMap.filter((_, index) => index % 6 === 0);

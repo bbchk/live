@@ -8,6 +8,7 @@ import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
 import { startLoading } from "store/modalSlice.js";
+import ImageFallback from "comps/image/fallback_image.js";
 
 const Card = ({ category, subcategories }) => {
   const dispatch = useDispatch();
@@ -21,14 +22,15 @@ const Card = ({ category, subcategories }) => {
         href={categoryPathSlug(category.path)}
         onClick={() => dispatch(startLoading())}
       >
-        <Image
-          className={``}
+        <ImageFallback
           src={category.imagePath}
-          alt="Category image"
+          fallbackSrc={"/assets/goods_placeholder.svg"}
+          alt="основна категорія"
           width={300}
           height={150}
           priority
         />
+        <Image />
         <h2 className={`${s.naming} `}>{category.name}</h2>
       </Link>
 

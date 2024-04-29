@@ -2,6 +2,7 @@ import { useState } from "react";
 import s from "./product_figure.module.scss";
 import Image from "next/image";
 import { Carousel, CarouselItem } from "/comps/carousel/carousel";
+import ImageFallback from "#root/comps/image/fallback_image.js";
 
 const ProductFigure = ({ images }) => {
   const [selectedImageIdx, setSelectedImageIdx] = useState(0);
@@ -32,8 +33,9 @@ const ProductFigure = ({ images }) => {
                 activeIdx={selectedImageIdx}
                 index={index}
               >
-                <Image
+                <ImageFallback
                   src={images[index]}
+                  fallbackSrc={"/assets/goods_placeholder.svg"}
                   alt="product"
                   width={500}
                   height={500}

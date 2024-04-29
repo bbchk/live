@@ -11,7 +11,7 @@ import { balsamiqSans } from "#root/pages/_app.js";
 import Link from "next/link";
 import WriteReviewFormFooter from "./comps/write_review_form_footer";
 import FileInput from "comps/input_fields/file_input";
-import ImageLoad from "comps/image_load/image_load";
+import ImageLoad from "comps/image/image_load";
 
 import { useDispatch, useSelector } from "react-redux";
 
