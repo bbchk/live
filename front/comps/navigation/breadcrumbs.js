@@ -3,6 +3,7 @@ import Link from "next/link";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import { useSelector, useDispatch } from "react-redux";
+import { deleteAllFilters } from "store/filtersSlice";
 
 import { startLoading } from "store/modalSlice";
 
@@ -43,7 +44,10 @@ const Breadcrumbs = ({ category }) => {
                 >
                   <Link
                     href={`/products/${categoryPathSlug}/page=1`}
-                    onClick={() => dispatch(startLoading())}
+                    onClick={() => {
+                      dispatch(startLoading());
+                      dispatch(deleteAllFilters());
+                    }}
                   >
                     {pathPart}
                   </Link>

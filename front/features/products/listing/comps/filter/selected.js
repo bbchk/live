@@ -7,6 +7,7 @@ import { startLoading } from "store/modalSlice.js";
 const Selected = ({ productsCount }) => {
   const router = useRouter();
   const dispatch = useDispatch();
+
   const { filters: activeFilters } = useSelector((state) => state.filters);
   const isActiveFilters = Object.keys(activeFilters).some((f) => f != "page");
 
