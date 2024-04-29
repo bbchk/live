@@ -6,7 +6,6 @@ import { Suspense, lazy, use, useEffect } from "react";
 
 import LandingHeader from "features/products/landing/mutual/layout/landing_header";
 import { useDispatch } from "react-redux";
-import { stopLoading } from "store/modalSlice.js";
 
 const LandingProductAboutPage = lazy(() =>
   import("features/products/landing/about/landing_product_about")
@@ -18,6 +17,8 @@ const LandingProductReviewsPage = lazy(() =>
   import("features/products/landing/reviews/reviews_page")
 );
 
+import { useStopLoading } from "hooks/useStopLoading";
+
 //todo make fallback page for suspense
 //todo fix we take first category available on product, but it can be not the category user was in
 const Landing = ({ product }) => {
@@ -25,9 +26,7 @@ const Landing = ({ product }) => {
   const router = useRouter();
   const { activeTab } = router.query;
 
-  useEffect(() => {
-    dispatch(stopLoading());
-  }, [product]);
+  const { loading } = useStopLoading();
 
   //todo delete
   product.reviews = [

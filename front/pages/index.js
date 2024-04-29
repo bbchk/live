@@ -2,8 +2,10 @@ import CategoriesGallery from "features/categories/comps/gallery";
 import Head from "next/head";
 import axios from "axios";
 
+import { useStopLoading } from "hooks/useStopLoading";
+
 const Home = ({ flatCategoryMap }) => {
-  //todo useEffect to set categoriesPath of user to []
+  const { loading } = useStopLoading();
 
   return (
     <>

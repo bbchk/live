@@ -1,18 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
-import ProductGallery from "features/products/listing/comps/gallery/gallery";
-
-import SortGroup from "features/products/listing/comps/filter/sort-group";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-
-import { slugify } from "@bbuukk/slugtrans/slugify";
-import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
 import SubcategoriesGallery from "features/products/listing/comps/subcategories/gallery";
 
-import { addToCategoriesPath } from "store/categoriesSlice";
 import Head from "next/head";
 
 import { useGenFilterStr } from "hooks/genFilterStr";
@@ -20,7 +13,7 @@ import { setFilters } from "store/filtersSlice";
 import { useGetFilterMapFromStr } from "hooks/useGetFilterMapFromStr";
 import ProductListingBody from "features/products/listing/product_listing_body";
 import ListingHeader from "../../../../features/products/listing/comps/listing_header";
-import { stopLoading } from "store/modalSlice.js";
+import { useStopLoading } from "hooks/useStopLoading";
 
 const Listing = ({
   data: {
@@ -39,16 +32,11 @@ const Listing = ({
   const dispatch = useDispatch();
   const { categoryPath, filtersStr } = router.query;
   const { filters } = useSelector((state) => state.filters);
-  const { loading } = useSelector((state) => state.modals);
 
   const { getFilterMapFromStr } = useGetFilterMapFromStr();
   const { genFiltersStr } = useGenFilterStr();
 
-  useEffect(() => {
-    if (loading) {
-      dispatch(stopLoading());
-    }
-  }, [router.query]);
+  const { loading } = useStopLoading();
 
   useEffect(() => {
     const { filtersStr } = router.query;
