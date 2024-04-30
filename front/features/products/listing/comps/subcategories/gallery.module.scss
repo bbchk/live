@@ -23,7 +23,7 @@
   @media screen and (width < 992px) {
     display: flex;
     flex-flow: row nowrap;
-    overflow: auto;
+    overflow-x: auto;
 
     padding: 1rem 0;
 

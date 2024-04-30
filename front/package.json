@@ -37,7 +37,6 @@
     "next-auth": "^4.24.7",
     "next-redux-wrapper": "^8.1.0",
     "nookies": "^2.5.2",
-    "npm": "^10.2.5",
     "react": "^18",
     "react-bootstrap": "^2.9.1",
     "react-dom": "^18",
@@ -48,7 +47,6 @@
     "sass": "^1.69.5",
     "sharp": "^0.33.2",
     "slugify": "^1.6.6",
-    "styled-components": "^6.1.8",
     "transliteration": "^2.3.5",
     "uuid": "^9.0.1"
   },
