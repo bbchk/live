@@ -7,6 +7,7 @@ import FiltersOffcanvasToggler from "features/products/listing/comps/filter/fili
 import s from "./product_listing_body.module.scss";
 import FiltersOffcanvas from "./comps/filter/filiters_offcanvas/filters_offcanvas";
 import Selected from "./comps/filter/selected";
+import NoProductYet from "#root/comps/warnings/no_products.js";
 
 const ProductListingBody = ({
   filtersMap,
@@ -21,36 +22,47 @@ const ProductListingBody = ({
 
   return (
     <>
-      <FiltersOffcanvas
-        id={filtersOffcanvasId}
-        filters={filtersMap}
-        minMaxPrice={minMaxPrice}
-        productsCount={productsCount}
-      />
-      <div className={`${s.body}`}>
-        <div className={`${s.filters_offcanvas_toggler}`}>
-          <FiltersOffcanvasToggler id={filtersOffcanvasId} />
-        </div>
-        <div className={`${s.selected}`}>
-          <Selected productsCount={productsCount} />
-        </div>
-        <div className={`${s.sort_group}`}>
-          <SortGroup />
-        </div>
-        <div className={`${s.filters_decor_line}`}></div>
-        <div className={`${s.filters}`}>
-          <FiltersAccordion
-            id="filtersAccordion"
+      {productsCount > 0 ? (
+        <>
+          <FiltersOffcanvas
+            id={filtersOffcanvasId}
             filters={filtersMap}
             minMaxPrice={minMaxPrice}
+            productsCount={productsCount}
           />
-        </div>
+          <div className={`${s.body}`}>
+            <div className={`${s.filters_offcanvas_toggler}`}>
+              <FiltersOffcanvasToggler id={filtersOffcanvasId} />
+            </div>
+            <div className={`${s.selected}`}>
+              <Selected productsCount={productsCount} />
+            </div>
+            <div className={`${s.sort_group}`}>
+              <SortGroup />
+            </div>
+            <div className={`${s.filters_decor_line}`}></div>
+            <div className={`${s.filters}`}>
+              <FiltersAccordion
+                id="filtersAccordion"
+                filters={filtersMap}
+                minMaxPrice={minMaxPrice}
+              />
+            </div>
 
-        <div className={`${s.gallery}`}>
-          <ProductGallery activeProducts={products} activeCategory={category} />
-          <ProductsPagination numPages={numPages} activePageId={page} />
+            <div className={`${s.gallery}`}>
+              <ProductGallery
+                activeProducts={products}
+                activeCategory={category}
+              />
+              <ProductsPagination numPages={numPages} activePageId={page} />
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className={`${s.no_prodcuts}`}>
+          <NoProductYet />
         </div>
-      </div>
+      )}
     </>
   );
 };

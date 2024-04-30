@@ -44,6 +44,16 @@
     margin-left: 0;
   }
 
+  .no_prodcuts {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   @media screen and (width < 1100px) {
     grid-template-columns: 1fr 2fr 3fr;
     grid-template-areas:

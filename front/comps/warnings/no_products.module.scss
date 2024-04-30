@@ -1,0 +1,32 @@
+@use "./styles/variables" as *;
+
+.no_products {
+  display: flex;
+  gap: 3rem;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  figure {
+    display: flex;
+    gap: 1.5rem;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    color: $color-blue-dasl;
+    figcaption {
+      font-size: 1.2rem;
+    }
+  }
+
+  a {
+    display: flex;
+    gap: 1rem;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.5rem;
+  }
+}
