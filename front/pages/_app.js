@@ -3,6 +3,13 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
 
+// Import the styles manually to prevent a Font Awesome icon server-side rendering bug
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
+// Prevent fontawesome from adding its CSS since we did it manually above
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 import { SessionProvider, getSession } from "next-auth/react";

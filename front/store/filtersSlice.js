@@ -18,7 +18,8 @@ const filtersSlice = createSlice({
       delete state.filters[action.payload.filterName];
     },
     deleteAllFilters: (state) => {
-      state.filters = { page: state.filters.page };
+      const page = state.filters.page;
+      state.filters = { page: page ? page : ["1"] };
     },
     updateFilter: (state, action) => {
       if (state.filters[action.payload.filterName]) {
