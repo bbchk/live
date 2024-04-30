@@ -34,15 +34,22 @@ const ProductFigure = ({ images }) => {
                 activeIdx={selectedImageIdx}
                 index={index}
               >
-                <ImageFallback
-                  src={images[index]}
-                  fallbackSrc={"/assets/goods_placeholder.svg"}
-                  alt="product"
-                  width={500}
-                  height={500}
-                  className={`${s.image}`}
-                  priority
-                />
+                <div className={`${s.figure}`}>
+                  <ImageFallback
+                    src={images[index]}
+                    fallbackSrc={"/assets/goods_placeholder.svg"}
+                    alt="товар"
+                    style={{
+                      objectFit: "contain",
+                      margin: "auto",
+                      padding: "1rem",
+                    }}
+                    width={500}
+                    height={500}
+                    className={`${s.image}`}
+                    priority
+                  />
+                </div>
               </CarouselItem>
             );
           })}
@@ -69,8 +76,13 @@ const ProductFigure = ({ images }) => {
                   src={img}
                   className={`${s.thumbnail_image}`}
                   alt={`Thumbnail ${index}`}
+                  style={{
+                    objectFit: "contain",
+                    margin: "auto",
+                    padding: "5px",
+                  }}
                   width={100}
-                  height={100}
+                  height={80}
                 />
               </button>
             );
