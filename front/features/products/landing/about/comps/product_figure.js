@@ -5,10 +5,14 @@ import { Carousel, CarouselItem } from "/comps/carousel/carousel";
 import ImageFallback from "#root/comps/image/fallback_image.js";
 
 const ProductFigure = ({ images }) => {
-  //todo image flickers when recs product clicked
   const [selectedImageIdx, setSelectedImageIdx] = useState(0);
 
   const carouselId = "ProductImagesCarousel";
+
+  if (images?.length === 0) {
+    images = ["/assets/goods_placeholder.svg"];
+  }
+
   return (
     <section className={`${s.landing_product_figure}`}>
       <Carousel
