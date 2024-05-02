@@ -13,9 +13,11 @@ jobs:
       # JWT_SECRET: ${{ secrets.JWT_SECRET }}
       TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
       # NODE_ENV: test
-      NODE_ENV: ${{ env.NODE_ENV }}
+      NODE_ENV: ${{ vars.NODE_ENV }}
 
     steps:
+      - name: Print envs
+        run: echo "secret $TEST_JWT_SECRET env $NODE_ENV"
       - uses: actions/checkout@v3
       - name: Setup Node
         uses: actions/setup-node@v3
