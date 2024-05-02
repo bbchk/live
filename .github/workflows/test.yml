@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup Node
         uses: actions/setup-node@v3
-      - run: npm ci
-      - name: Change directory and run test
+      - name: Change to back-end and run tests
         run: |
           cd back
+          npm ci
           npm run test
