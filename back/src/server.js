@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
+// require('dotenv').config({ path: './config/.env' })
+
 import mongoose from "mongoose";
 import { mainLogger as ml } from "./utils/loggers.js";
 import { cleanup } from "./utils/server_cleanup.js";
