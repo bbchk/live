@@ -16,7 +16,7 @@ export const userSlice = createSlice({
     //   state.user = [...state.user, action.payload];
     // },
     setCart: (state, action) => {
-      state.user ??= { cart: action.payload };
+      state.user.cart = action.payload;
     },
     addToCart: (state, action) => {
       if (state.user && Array.isArray(state.user.cart)) {

@@ -13,7 +13,7 @@ config.autoAddCss = false;
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 import { SessionProvider, getSession } from "next-auth/react";
-import { setCart } from "store/userSlice";
+import { setCart, signIn } from "store/userSlice";
 
 import React, { useState, useEffect, Suspense } from "react";
 
@@ -131,8 +131,8 @@ function FetchData() {
       async function getUserCart() {
         const session = await getSession();
 
-        const cart = await getCart(session);
-        dispatch(setCart(cart));
+        const user = await getCart(session);
+        dispatch(signIn(user));
       }
       getUserCart();
       setFetched(true);

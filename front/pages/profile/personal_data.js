@@ -5,11 +5,6 @@ import PersonalData from "features/profile/comps/personal_data/personal_data";
 import Tabs from "features/profile/comps/tabs/index";
 
 const PersonalDataPage = () => {
-  // console.log(session);
-  // const router = useRouter();
-  // const { data: session, status } = useSession();
-  // console.log("🚀 ~ session:", session);
-
   return (
     <>
       <Head>
@@ -19,9 +14,6 @@ const PersonalDataPage = () => {
           content="Живий Світ | Персональна інформація"
         />
       </Head>
-
-      {/* <div className="accordion d-flex flex-column gap-3" id="accordionExample"> */}
-      {/* </div> */}
 
       <div className={`d-flex`}>
         <Tabs />

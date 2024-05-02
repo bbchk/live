@@ -7,6 +7,7 @@ export const useCart = () => {
   const dispatch = useDispatch();
 
   async function add(product) {
+    console.log(product);
     const { _id, name, price, images, left } = product;
     const cartItem = { _id, name, price, images, left };
 
@@ -78,34 +79,11 @@ export const useCart = () => {
     }
   }
 
-  async function removeAll(productId) {
-    // try {
-    //   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    //   let cartItem = cart.find((item) => item.product._id === productId);
-    //   if (cartItem && cartItem.quantity > 1) {
-    //     cartItem.quantity--;
-    //   } else if (cartItem) {
-    //     cart = cart.filter((item) => item.product._id !== productId);
-    //   }
-    //   localStorage.setItem("cart", JSON.stringify(cart));
-    //   dispatch(deleteCartItem(productId));
-    //   if (session) {
-    //     const response = await axios.delete(
-    //       `/user/cart/${session.user.id}/delete/${productId}`,
-    //       undefined,
-    //       {
-    //         headers: {
-    //           Authorization: `Bearer ${session.user.token}`,
-    //         },
-    //       }
-    //     );
-    //   }
-    // } catch (e) {
-    //   console.log(e);
-    // }
-  }
+  //todo
+  async function removeAll(productId) {}
 
   async function getCart(session) {
+    console.log("🚀 ~ session:", session);
     try {
       const localStorageCartJson = localStorage.getItem("cart");
       const lscart = JSON.parse(localStorageCartJson) || [];
