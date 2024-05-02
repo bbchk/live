@@ -9,6 +9,11 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    env: # Define environment variables here
+      # JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
+      # NODE_ENV: test
+      NODE_ENV: ${{ env.NODE_ENV }}
 
     steps:
       - uses: actions/checkout@v3

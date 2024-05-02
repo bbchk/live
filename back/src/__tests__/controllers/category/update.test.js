@@ -22,6 +22,9 @@ describe("PATCH /categories", () => {
       .set("Authorization", `Bearer ${adminToken}`)
       .send(category);
 
+    console.log("🚀 ~ body:", body);
+    console.log("🚀 ~ testCategory:", category);
+
     expect(statusCode).toBe(200);
     expect(type).toBe("application/json");
     expect(body).toEqual(category);
