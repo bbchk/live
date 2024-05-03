@@ -25,26 +25,26 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
 
-      - name: Test back-end application
+      - name: Lint and Test
         run: |
-          cd back
           npm ci
           npm run lint
           npm run test
+        working-directory: back
+
   back-end-start:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-      - name: Build back-end application
+      - uses: actions/setup-node@v3
+
+      - name: Start
         run: |
-          cd back
           npm ci
           npm run start &
-          sleep 10
+          sleep 5
           kill $(jobs -p)
+        working-directory: back
