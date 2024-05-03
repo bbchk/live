@@ -1,4 +1,4 @@
-name: Back-end build, lint and test
+name: Back-end lint, test and start
 
 env:
   TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
@@ -29,7 +29,7 @@ jobs:
           npm ci
           npm run lint
           npm run test
-  back-end-build:
+  back-end-start:
     runs-on: ubuntu-latest
 
     steps:
@@ -40,4 +40,6 @@ jobs:
         run: |
           cd back
           npm ci
-          npm run build
+          npm run start &
+          sleep 10
+          kill $(jobs -p)
