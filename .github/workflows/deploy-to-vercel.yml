@@ -1,0 +1,39 @@
+name: Deploy to Vercel
+
+env:
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+on:
+  workflow_run:
+    workflows:
+      ["Back-end lint, test and start", "Front-end build, lint and test"]
+    types:
+      - completed
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy_backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Deploy Backend to Vercel
+        run: |
+          npm ci
+          npx vercel --token=$VERCEL_TOKEN --prod
+        working-directory: back
+  deploy_frontend:
+    needs: deploy_backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Deploy Backend to Vercel
+        run: |
+          npm ci
+          npx vercel --token=$VERCEL_TOKEN --prod
+        working-directory: front

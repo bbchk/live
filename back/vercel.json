@@ -1,4 +1,5 @@
 {
+  "name": "live-back",
   "version": 2,
   "builds": [
     {
@@ -11,11 +12,5 @@
       "src": "/(.*)",
       "dest": "src/server.js"
     }
-  ],
-  "git": {
-    "deploymentEnabled": {
-      "*": false,
-      "main": true
-    }
-  }
+  ]
 }
