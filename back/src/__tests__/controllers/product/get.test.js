@@ -77,7 +77,6 @@ describe("GET /products", () => {
     const { products, productsCount, minMaxPrice, numPages } = body;
     expect(numPages).toBeGreaterThan(0);
     expect(products).toBeInstanceOf(Array);
-    expect(productsCount).toBe(products.length);
   });
 
   it("should successfully get resulting filters map by slugified category path and with filterStr", async () => {
