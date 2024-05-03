@@ -1,0 +1,43 @@
+name: Back-end build, lint and test
+
+env:
+  TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+  MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
+  NODE_ENV: ${{ vars.NODE_ENV }}
+  PORT: ${{ vars.PORT }}
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  back-end-lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Test back-end application
+        run: |
+          cd back
+          npm ci
+          npm run lint
+          npm run test
+  back-end-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+      - name: Build back-end application
+        run: |
+          cd back
+          npm ci
+          npm run build

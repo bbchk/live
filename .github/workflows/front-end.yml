@@ -1,0 +1,49 @@
+name: Front-end build, lint and test
+
+env:
+  GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
+  GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+  NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+  NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+  NEXT_PUBLIC_BACKEND_URL: ${{ vars.NEXT_PUBLIC_BACKEND_URL }}
+  MAINTENANCE_MODE: ${{ vars.MAINTENANCE_MODE }}
+  NODE_ENV: ${{ vars.NODE_ENV }}
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  front-end-lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+      - name: Test front-end application
+        run: |
+          cd front
+          npm ci
+          npm run lint
+        #   npm run test
+  front-end-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+      - name: Build front-end application
+        run: |
+          cd back
+          npm ci
+          npm run dev &
+          sleep 10
+          cd ..
+          cd front
+          npm ci
+          npm run build
