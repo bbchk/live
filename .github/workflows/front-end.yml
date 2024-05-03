@@ -1,6 +1,7 @@
 name: Front-end build, lint and test
 
 env:
+  #front-end
   GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
   GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
   NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
@@ -11,11 +12,22 @@ env:
   MAINTENANCE_MODE: ${{ vars.MAINTENANCE_MODE }}
   NODE_ENV: ${{ vars.NODE_ENV }}
 
+  #back-end
+  PORT: ${{ vars.PORT }}
+  TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+  MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
 on:
   push:
     branches: [main, dev]
   pull_request:
     branches: [main, dev]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   front-end-lint-and-test:
