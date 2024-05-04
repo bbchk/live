@@ -6,7 +6,7 @@
     "path": "Для Птахів,Іграшки",
     "imagePath": "https://storage.googleapis.com/live_world/categories/dlya_ptakhіv---іgrashki.jpg",
     "__v": 0,
-    "filters ": [
+    "filters": [
       "Бренд",
       "Матеріал",
       "Тип",
@@ -301,7 +301,7 @@
     "path": "Насіння,Насіння овочів,Насіння капусти",
     "imagePath": "https://storage.googleapis.com/live_world/categories/nasіnnya---nasіnnya_ovochіv---nasіnnya_kapusti.jpg",
     "__v": 0,
-    " filters": [
+    "filters": [
       "Бренд ",
       "Вид",
       "Час висаджування",
