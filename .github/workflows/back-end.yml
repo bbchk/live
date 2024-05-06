@@ -1,4 +1,4 @@
-name: Back-end lint, test and start
+name: Back-end
 
 env:
   TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  back-end-lint-and-test:
+  lint-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,7 +34,7 @@ jobs:
           npm run test
         working-directory: back
 
-  back-end-start:
+  start:
     runs-on: ubuntu-latest
 
     steps:
