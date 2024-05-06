@@ -1,8 +1,7 @@
 name: Deploy
 on:
   workflow_run:
-    workflows:
-      ["Back-end lint, test and start", "Front-end build, lint and test"]
+    workflows: ["Back-end", "Front-end"]
     types:
       - completed
   workflow_dispatch:
