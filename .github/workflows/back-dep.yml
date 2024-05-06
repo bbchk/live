@@ -11,11 +11,6 @@ on:
     branches: [main, dev]
   workflow_dispatch:
 
-env:
-  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_FRONT_PROJECT_ID }}
-
 jobs:
   preview:
     runs-on: ubuntu-latest
@@ -30,18 +25,7 @@ jobs:
       - name: Deploy
         uses: amondnet/vercel-action@v19
         with:
-          vercel-token: $VERCEL_TOKEN
-          vercel-org-id: $VERCEL_ORG_ID
-          vercel-project-id: $VERCEL_PROJECT_ID
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_FRONT_PROJECT_ID }}
           vercel-args: "--prod"
-
-      # - name: Install Vercel CLI
-      # run: npm install --global vercel@latest && vercel link --repo --yes --token $VERCEL_TOKEN
-      # working-directory: back
-
-      # - name: Install Vercel CLI
-      # run: npm install --global vercel@latest
-      # - run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      # - run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-      # - name: Deploy
-      # run: cd back && vercel --token $VERCEL_TOKEN --prod
