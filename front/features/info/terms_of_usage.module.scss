@@ -2,7 +2,7 @@
 
 .terms_of_usage {
   line-height: 1.6;
-  padding: 20px;
+  padding: 4rem;
 
   h1 {
     color: #333;
@@ -26,6 +26,7 @@
       font-weight: bold;
     }
     dd {
+      //   width: 100ch;
       margin-left: 1rem;
       margin-bottom: 1rem;
     }

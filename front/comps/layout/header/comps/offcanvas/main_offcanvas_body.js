@@ -52,7 +52,7 @@ const MainOffcanvasBody = () => {
         <h5>Інформація про магазин</h5>
         <NavLink text={"Про нас"} href={"/info"} />
         <NavLink text={"Політика приватності"} href={"/privacy-policy"} />
-        <NavLink text={"Умови використання сайту"} href={"/info"} />
+        <NavLink text={"Умови використання сайту"} href={"/terms-of-usage"} />
       </ul>
       {session && (
         <ul className="navbar-nav justify-content-end flex-grow-1">

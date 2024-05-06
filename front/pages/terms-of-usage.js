@@ -11,7 +11,7 @@ const UsageTerms = () => {
           content="Живий Світ - Угода користувача і умови використання сайту магазину"
         />
       </Head>
-      <TermsOfUsage></TermsOfUsage>
+      <TermsOfUsage />
     </>
   );
 };
