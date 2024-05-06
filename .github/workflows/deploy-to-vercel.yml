@@ -25,14 +25,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: npm ci
-
-      - name: Install dependencies and build
+      - name: Start back-end locally
         run: |
-          cd front
           npm ci
-          npm run build  # Make sure your frontend project has a build script
-          cd ..
+          npm run dev &
+          sleep 5
+        working-directory: back
+
+      - name: Build front-end application
+        run: |
+          npm ci
+          npm run build
+        working-directory: front
 
       - name: Deploy Frontend
         uses: amondnet/vercel-action@v20
@@ -40,7 +44,7 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_FRONT_PROJECT_ID }}
-          scope: your-vercel-username
+          scope: bbuukk
           working-directory: ./front
           github-comment: false # Optional: if you want to disable automatic comments from Vercel bot
 
@@ -50,6 +54,6 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_BACK_PROJECT_ID }}
-          scope: your-vercel-username
+          scope: bbuukk
           working-directory: ./back
           github-comment: false # Optional: if you want to disable automatic comments from Vercel bot
