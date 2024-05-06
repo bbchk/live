@@ -1,10 +1,16 @@
 {
-  "name": "back",
+  "name": "live-back",
   "version": "1.0.0",
+  "description": "Back-end for the Live web-application",
+  "author": "Bohdan Buchok bohdanbuchok@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bbuukk/live"
+  },
   "imports": {
     "#src/*": "./src/*"
   },
-  "description": "",
   "main": "src/server.js",
   "type": "module",
   "scripts": {
@@ -15,8 +21,6 @@
     "lint:fix": "eslint --fix ./*.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@bbuukk/slugtrans": "^1.0.9",
     "axios": "^1.6.8",
