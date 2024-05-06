@@ -53,7 +53,7 @@ jobs:
       - name: Start back-end locally
         run: |
           npm ci
-          npm run dev &
+          npm run dev & 
           sleep 5
         working-directory: back
 
