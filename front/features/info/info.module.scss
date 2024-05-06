@@ -1,7 +1,72 @@
 @use "styles/variables" as *;
-@use "styles/mixins" as *;
-@import "node_modules/rfs/sass.sass";
 
 .info {
   color: $color-blue-dasl;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+
+    &.motto {
+      padding: 2rem;
+
+      font-weight: bold;
+      text-align: center;
+
+      span {
+        color: $color-green-dur;
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  p {
+    color: darken($color: $color-blue-dasl, $amount: 10);
+    line-height: 1.6;
+    font-size: 1.5rem;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  section.additional {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+
+    section {
+      display: flex;
+      flex-flow: column nowrap;
+      // justify-content: flex-start;
+      align-items: center;
+
+      flex: 1 1 33%;
+      padding: 1rem;
+    }
+  }
+
+  // .statistics {
+  //   display: flex;
+  //   flex-flow: row wrap;
+
+  //   .stat-item {
+  //     background: #fff;
+  //     padding: 15px;
+  //     border-radius: 5px;
+  //     h3 {
+  //       color: #333;
+  //       margin: 0 0 5px 0;
+  //     }
+  //     p {
+  //       color: #666;
+  //       margin: 0;
+  //     }
+  //   }
+  // }
 }

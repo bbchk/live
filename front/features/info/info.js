@@ -1,56 +1,52 @@
 import s from "./info.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faPaw } from "@fortawesome/free-regular-svg-icons";
+import { faPaw, faSeedling } from "@fortawesome/free-solid-svg-icons";
 
 export const Info = () => {
   return (
-    <div className={`${s.info}`}>
-      <section>
-        <h1 className="icon-link">
-          <i className="bi bi-info-square-fill"></i>
-          <span>Про нас</span>
-        </h1>
-
-        <div className="container mt-3">
-          <p className="fs-3">
-            Магазин найкращих товарів для вашого дому, улюбленців та рослин{" "}
-          </p>
+    <article className={`${s.info}`}>
+      <h2>Про нас</h2>
+      <h3 className={`${s.motto}`}>
+        <FontAwesomeIcon icon={faSeedling} />
+        <FontAwesomeIcon icon={faPaw} />
+        <span>
+          <strong>Живий світ</strong> − це більше, ніж просто інтернет-магазин.
+        </span>
+      </h3>
+      <p>
+        <br /> З 2023 року ми допомагаємо вам дбати про ваших чотирилапих
+        друзів, надаючи широкий асортимент товарів для домашніх тварин, саду,
+        городу та товарів для дому.
+      </p>
+      <p>
+        Наша місія − зробити ваше життя та життя ваших улюбленців здоровішим,
+        щасливішим і зручнішим. Ми пропонуємо тільки найкращі товари, які
+        відповідають найвищим стандартам якості та безпеки.
+      </p>
+      {/* <div class="statistics">
+        <div class="stat-item">
+          <h3>1.2 млн</h3>
+          <p>товарів доступних до покупки</p>
         </div>
-      </section>
-      <section className="mt-4">
-        <h1 className="icon-link">
-          <i className="bi bi-clock-fill"></i>
-          <span>Коли працюємо?</span>
-        </h1>
-
-        <div className="container mt-3">
-          <p className="fs-3">
-            ⚬ Пн-Сб: 8:00 - 18:00
-            <br />⚬ Нд: 9:00 - 17:00
-          </p>
+        <div class="stat-item">
+          <h3>500 тис.</h3>
+          <p>користувачів відвідали нас у 2024 році</p>
         </div>
-      </section>
-      <section className="mt-4">
-        <h1 className="icon-link">
-          <i className="bi bi-telephone-fill"></i>
-          <span>Адреса</span>
-        </h1>
-        <div className="container mt-3">
-          <p className="fs-3"> М. Калинівка, вул. Вулична, 19</p>
+        <div class="stat-item">
+          <h3>89%</h3>
+          <p>наших покупців повертаються</p>
         </div>
-      </section>
-      <section className="mt-4">
-        <h1>
-          <i className="bi bi-geo-alt-fill"></i>
-          <span>Де ?</span>
-        </h1>
-        <iframe
-          className={`${s.map}`}
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41503.63579534659!2d28.492456474575008!3d49.44714723276756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472d156d2f7d8293%3A0x71c0e196b3ed0ac7!2sPoint%20of%20Invincibility!5e0!3m2!1sen!2sua!4v1686229918593!5m2!1sen!2sua"
-          allowFullScreen={true}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
-      </section>
-    </div>
+        <div class="stat-item">
+          <h3>3 млн</h3>
+          <p>відвідувачів в місяць</p>
+        </div>
+      </div> */}
+      <p>
+        Ми прагнемо бути вашим надійним помічником у догляді за домашніми
+        тваринами, надаючи зручність і доступність у кожній покупці.
+      </p>
+    </article>
   );
 };
 
