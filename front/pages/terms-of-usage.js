@@ -1,3 +1,4 @@
+import TermsOfUsage from "#root/features/info/terms_of_usage.js";
 import Head from "next/head";
 
 const UsageTerms = () => {
@@ -10,7 +11,7 @@ const UsageTerms = () => {
           content="Живий Світ - Угода користувача і умови використання сайту магазину"
         />
       </Head>
-      <h1>IN DEV</h1>
+      <TermsOfUsage></TermsOfUsage>
     </>
   );
 };

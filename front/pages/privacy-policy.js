@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
           content="Живий Світ | Політика конфіденційності"
         />
       </Head>
-      <h1>IN DEV</h1>
+      <p>djsfsdf</p>
     </>
   );
 };
