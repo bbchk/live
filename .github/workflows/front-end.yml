@@ -1,64 +1,64 @@
-name: Front-end
+# name: Front-end
 
-env:
-  #front-end
-  GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
-  GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
-  NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
-  NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+# env:
+#   #front-end
+#   GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
+#   GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+#   NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+#   NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+#   DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
-  NEXT_PUBLIC_BACKEND_URL: ${{ vars.NEXT_PUBLIC_BACKEND_URL }}
-  MAINTENANCE_MODE: ${{ vars.MAINTENANCE_MODE }}
-  NODE_ENV: ${{ vars.NODE_ENV }}
+#   NEXT_PUBLIC_BACKEND_URL: ${{ vars.NEXT_PUBLIC_BACKEND_URL }}
+#   MAINTENANCE_MODE: ${{ vars.MAINTENANCE_MODE }}
+#   NODE_ENV: ${{ vars.NODE_ENV }}
 
-  #back-end
-  PORT: ${{ vars.PORT }}
-  TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
-  JWT_SECRET: ${{ secrets.JWT_SECRET }}
-  MONGODB_URI: ${{ secrets.MONGODB_URI }}
+#   #back-end
+#   PORT: ${{ vars.PORT }}
+#   TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
+#   JWT_SECRET: ${{ secrets.JWT_SECRET }}
+#   MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
-on:
-  push:
-    branches: [main, dev]
-  pull_request:
-    branches: [main, dev]
-  workflow_dispatch:
+# on:
+#   push:
+#     branches: [main, dev]
+#   pull_request:
+#     branches: [main, dev]
+#   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.ref }}
+#   cancel-in-progress: true
 
-jobs:
-  lint-and-test:
-    runs-on: ubuntu-latest
+# jobs:
+#   lint-and-test:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-node@v3
 
-      - name: Lint and Test
-        run: |
-          npm ci 
-          # npm run lint
-          # npm run test
-        working-directory: front
+#       - name: Lint and Test
+#         run: |
+#           npm ci
+#           # npm run lint
+#           # npm run test
+#         working-directory: front
 
-  # build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
+# build:
+#   runs-on: ubuntu-latest
+#   steps:
+#     - uses: actions/checkout@v3
+#     - uses: actions/setup-node@v3
 
-  #     - name: Start back-end locally
-  #       run: |
-  #         npm ci
-  #         npm run dev &
-  #         sleep 5
-  #       working-directory: back
+#     - name: Start back-end locally
+#       run: |
+#         npm ci
+#         npm run dev &
+#         sleep 5
+#       working-directory: back
 
-  #     - name: Build front-end application
-  #       run: |
-  #         npm ci
-  #         npm run build
-  #       working-directory: front
+#     - name: Build front-end application
+#       run: |
+#         npm ci
+#         npm run build
+#       working-directory: front

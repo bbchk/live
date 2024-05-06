@@ -1,13 +1,19 @@
 name: Preview
+# on:
+#   workflow_run:
+#     workflows: ["Back-end", "Front-end"]
+#     types:
+#       - completed
+#   workflow_dispatch:
+
 on:
-  workflow_run:
-    workflows: ["Back-end", "Front-end"]
-    types:
-      - completed
+  push:
+    branches: [main, dev]
   workflow_dispatch:
+
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_FRONT_PROJECT_ID }}
 jobs:
   preview:
     runs-on: ubuntu-latest
