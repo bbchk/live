@@ -1,7 +1,7 @@
 {
   "name": "live-front",
   "version": "0.1.0",
-  "description": "Front",
+  "description": "Front-end for the Live web-application",
   "author": "Bohdan Buchok bohdanbuchok@gmail.com",
   "license": "MIT",
   "repository": {
