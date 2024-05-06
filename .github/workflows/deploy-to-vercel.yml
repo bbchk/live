@@ -12,24 +12,45 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy_backend:
+  deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - name: Deploy Backend to Vercel
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - run: npm ci
+
+      - name: Install dependencies and build
         run: |
+          cd front
           npm ci
-          npx vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --confirm
-        working-directory: back
-  deploy_frontend:
-    needs: deploy_backend
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - name: Deploy Backend to Vercel
-        run: |
-          npm ci
-          npx vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --confirm
-        working-directory: front
+          npm run build  # Make sure your frontend project has a build script
+          cd ..
+
+      - name: Deploy Frontend
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_FRONT_PROJECT_ID }}
+          scope: your-vercel-username
+          working-directory: ./front
+          github-comment: false # Optional: if you want to disable automatic comments from Vercel bot
+
+      - name: Deploy Backend
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_BACK_PROJECT_ID }}
+          scope: your-vercel-username
+          working-directory: ./back
+          github-comment: false # Optional: if you want to disable automatic comments from Vercel bot
