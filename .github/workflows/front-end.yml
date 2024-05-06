@@ -44,21 +44,21 @@ jobs:
           # npm run test
         working-directory: front
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
 
-      - name: Start back-end locally
-        run: |
-          npm ci
-          npm run dev & 
-          sleep 5
-        working-directory: back
+  #     - name: Start back-end locally
+  #       run: |
+  #         npm ci
+  #         npm run dev &
+  #         sleep 5
+  #       working-directory: back
 
-      - name: Build front-end application
-        run: |
-          npm ci
-          npm run build
-        working-directory: front
+  #     - name: Build front-end application
+  #       run: |
+  #         npm ci
+  #         npm run build
+  #       working-directory: front

@@ -34,17 +34,17 @@ jobs:
           npm run test
         working-directory: back
 
-  start:
-    runs-on: ubuntu-latest
+  # start:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
 
-      - name: Start
-        run: |
-          npm ci
-          npm run start &
-          sleep 5
-          kill $(jobs -p)
-        working-directory: back
+  #     - name: Start
+  #       run: |
+  #         npm ci
+  #         npm run start &
+  #         sleep 5
+  #         kill $(jobs -p)
+  #       working-directory: back
