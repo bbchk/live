@@ -18,9 +18,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.24.5",
-    "@babel/eslint-parser": "^7.24.5",
-    "@babel/preset-env": "^7.24.5",
     "@bbuukk/slugtrans": "^1.0.9",
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
@@ -40,6 +37,9 @@
     "winston-mongodb": "^5.1.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/eslint-parser": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
     "@eslint/js": "^9.1.1",
     "cross-env": "^7.0.3",
     "eslint": "^9.1.1",

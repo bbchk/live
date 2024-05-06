@@ -1,59 +1,59 @@
-name: Deploy
-on:
-  workflow_run:
-    workflows: ["Back-end", "Front-end"]
-    types:
-      - completed
-  workflow_dispatch:
+# name: Deploy
+# on:
+#   workflow_run:
+#     workflows: ["Back-end", "Front-end"]
+#     types:
+#       - completed
+#   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.ref }}
+#   cancel-in-progress: true
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         node-version: [14.x]
 
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ matrix.node-version }}
 
-      - name: Start back-end locally
-        run: |
-          npm ci
-          npm run dev &
-          sleep 5
-        working-directory: back
+#       - name: Start back-end locally
+#         run: |
+#           npm ci
+#           npm run dev &
+#           sleep 5
+#         working-directory: back
 
-      - name: Build front-end application
-        run: |
-          npm ci
-          npm run build
-        working-directory: front
+#       - name: Build front-end application
+#         run: |
+#           npm ci
+#           npm run build
+#         working-directory: front
 
-      - name: Deploy Frontend
-        uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_FRONT_PROJECT_ID }}
-          scope: bbuukk
-          working-directory: ./front
-          github-comment: false # Optional: if you want to disable automatic comments from Vercel bot
+#       - name: Deploy Frontend
+#         uses: amondnet/vercel-action@v20
+#         with:
+#           vercel-token: ${{ secrets.VERCEL_TOKEN }}
+#           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+#           vercel-project-id: ${{ secrets.VERCEL_FRONT_PROJECT_ID }}
+#           scope: bbuukk
+#           working-directory: ./front
+#           github-comment: false # Optional: if you want to disable automatic comments from Vercel bot
 
-      - name: Deploy Backend
-        uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_BACK_PROJECT_ID }}
-          scope: bbuukk
-          working-directory: ./back
-          github-comment: false # Optional: if you want to disable automatic comments from Vercel bot
+#       - name: Deploy Backend
+#         uses: amondnet/vercel-action@v20
+#         with:
+#           vercel-token: ${{ secrets.VERCEL_TOKEN }}
+#           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+#           vercel-project-id: ${{ secrets.VERCEL_BACK_PROJECT_ID }}
+#           scope: bbuukk
+#           working-directory: ./back
+#           github-comment: false # Optional: if you want to disable automatic comments from Vercel bot

@@ -2,3 +2,4 @@ collections/
 dump/
 charactersitics/
 .vscode/*
+.vercel
