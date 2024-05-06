@@ -1,0 +1,48 @@
+name: Deploy
+on:
+  # todo delete on push
+  push:
+    branches: [main, dev]
+  workflow_run:
+    workflows: ["Back-end", "Front-end"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  back-end:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          npm: cache
+
+      - name: Install Dependencies
+        run: cd back && npm install
+      - name: Deploy
+        uses: amondnet/vercel-action@v19
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_BACK_PROJECT_ID }}
+          vercel-args: "--prod"
+          vercel-dir: "back"
+  front-end:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          npm: cache
+
+      - name: Install Dependencies
+        run: cd front && npm install
+      - name: Deploy
+        uses: amondnet/vercel-action@v19
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_FRONT_PROJECT_ID }}
+          vercel-args: "--prod"
+          vercel-dir: "front"

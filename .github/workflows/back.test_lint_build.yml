@@ -1,0 +1,50 @@
+name: Back-end
+
+env:
+  TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+  MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
+  NODE_ENV: ${{ vars.NODE_ENV }}
+  PORT: ${{ vars.PORT }}
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+
+      - name: Lint and Test
+        run: |
+          npm ci
+          npm run lint
+          npm run test
+        working-directory: back
+
+  start:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+
+      - name: Start
+        run: |
+          npm ci
+          npm run start &
+          sleep 5
+          kill $(jobs -p)
+        working-directory: back
