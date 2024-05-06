@@ -1,7 +1,6 @@
 import CategoriesGallery from "features/categories/comps/gallery";
 import Head from "next/head";
 import axios from "axios";
-
 import { useStopLoading } from "hooks/useStopLoading";
 
 const Home = ({ flatCategoryMap }) => {
@@ -30,25 +29,17 @@ export default Home;
 
 export async function getStaticProps() {
   const res = await axios.get(`/categories`);
-  const categories = res.data;
+  const allCategories = res.data;
 
-  const rootCategories = categories
-    .filter((category) => category.path.split(",").length == 1)
-    .sort((a, b) => a.order - b.order);
+  const rootCategories = filterAndSort(allCategories);
 
-  //we cannot return js map from getStaticProps, use array
   const flatCategoryMap = [];
-
-  rootCategories.forEach((c) => {
-    const pathString = c.path;
-    const regex = new RegExp(`^${pathString},[^,]+$`);
-    const subcategories = categories
-      .filter((c) => {
-        return c.path.match(regex) && c.path !== pathString;
-      })
-      .slice(0, 5);
-    flatCategoryMap.push(c, ...subcategories);
-  });
+  rootCategories.forEach((rootCat) =>
+    flatCategoryMap.push(
+      rootCat,
+      ...findSubcategoriesOf(rootCat, allCategories)
+    )
+  );
 
   const HALF_AN_HOUR_IN_SECONDS = 1800;
   return {
@@ -57,4 +48,20 @@ export async function getStaticProps() {
       revalidate: HALF_AN_HOUR_IN_SECONDS,
     },
   };
+}
+
+function filterAndSort(categories) {
+  return categories
+    .filter((category) => category.path.split(",").length === 1)
+    .sort((a, b) => a.order - b.order);
+}
+
+function findSubcategoriesOf(rootCategory, categories) {
+  const pathString = rootCategory.path;
+  const regex = new RegExp(`^${pathString},[^,]+$`);
+  return categories
+    .filter(
+      (category) => category.path.match(regex) && category.path !== pathString
+    )
+    .slice(0, 5);
 }
