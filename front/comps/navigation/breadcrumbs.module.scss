@@ -1,12 +1,25 @@
 @use "./styles/variables" as *;
-@use "./styles/mixins" as *;
 
-.breadcrumbs ol {
-  margin: 0;
-}
+.breadcrumbs {
+  ol {
+    margin: 0;
 
-@media screen and (max-width: 768px) {
-  .breadcrumbs ol li {
+    li {
+      a {
+        color: rgba($color: $color-blue-dasl, $alpha: 0.9);
+      }
+
+      &.active {
+        font-weight: bold;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    display: inline-block;
+    line-height: normal;
+    padding: 0;
+
     &::before {
       font-family: "bootstrap-icons";
       color: $color-blue-dasl !important;
@@ -18,9 +31,5 @@
     &:not(:nth-last-child(2)) {
       display: none;
     }
-
-    display: inline-block;
-    line-height: normal;
-    padding: 0;
   }
 }

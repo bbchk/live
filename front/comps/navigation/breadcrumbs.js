@@ -12,6 +12,7 @@ import { useEffect } from "react";
 
 const Breadcrumbs = ({ category }) => {
   const dispatch = useDispatch();
+
   const { categories: allCategories } = useSelector(
     (state) => state.categories
   );
@@ -22,6 +23,11 @@ const Breadcrumbs = ({ category }) => {
       dispatch(getCategoriesInfo());
     }
   }, [status, dispatch]);
+
+  function handleNavigate() {
+    dispatch(startLoading());
+    dispatch(deleteAllFilters());
+  }
 
   return (
     <>
@@ -44,20 +50,18 @@ const Breadcrumbs = ({ category }) => {
                 transliterate(clickedCategoryPath)
               );
 
-              const isActiveCategory = index === pathParts.length - 1;
+              const isActive = index === pathParts.length - 1;
+
               return (
                 <li
                   className={`breadcrumb-item ${s.item} ${
-                    isActiveCategory ? "active" : ""
+                    isActive ? s.active : ""
                   }`}
                   key={pathPart}
                 >
                   <Link
                     href={`/products/${categoryPathSlug}/page=1`}
-                    onClick={() => {
-                      dispatch(startLoading());
-                      dispatch(deleteAllFilters());
-                    }}
+                    onClick={handleNavigate}
                   >
                     {pathPart}
                   </Link>
