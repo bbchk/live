@@ -1,0 +1,16 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 3%;
+
+  i {
+    font-size: 0.75em;
+  }
+  p {
+    color: rgba($color-blue-dasl, 0.8);
+    font-size: 0.9em;
+  }
+}

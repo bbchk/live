@@ -1,0 +1,54 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+@import "node_modules/rfs/sass.sass";
+
+//todo if image background is white, there is no border between text element and image and as well there is no border on top of card, correct this
+//todo padding on name
+
+.card {
+  display: flex;
+  flex-flow: column nowrap;
+
+  border-radius: 5px;
+
+  height: 100%;
+  width: 100%;
+
+  color: $color-blue-dasl;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+
+  img {
+    flex: 0 1 70%;
+    min-height: 70%;
+
+    border-radius: 5px;
+
+    width: 100%;
+    max-height: 70%;
+
+    object-fit: contain;
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex: 0 1 30%;
+    padding: 0 0.5rem;
+    p {
+      @include truncate_lines_after(2);
+    }
+  }
+
+  transition: color 0.25s;
+  &:hover {
+    p {
+      color: saturate($color: $color-blue-dasl, $amount: 80%);
+
+      text-decoration: underline;
+    }
+  }
+}
