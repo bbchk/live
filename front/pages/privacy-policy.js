@@ -1,3 +1,4 @@
+import Policy from "#root/features/info/privacy_policy.js";
 import Head from "next/head";
 
 const PrivacyPolicy = () => {
@@ -10,7 +11,7 @@ const PrivacyPolicy = () => {
           content="Живий Світ | Політика конфіденційності"
         />
       </Head>
-      <p>djsfsdf</p>
+      <Policy />
     </>
   );
 };
