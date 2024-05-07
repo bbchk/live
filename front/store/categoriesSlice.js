@@ -6,12 +6,12 @@ export const getCategoriesInfo = createAsyncThunk(
   async () => {
     try {
       const res = await axios.get(`/categories/`);
-      
+
       return { categories: res.data };
     } catch (error) {
       throw new Error("Failed to fetch categories");
     }
-  } 
+  }
 );
 
 export const categoriesSlice = createSlice({
@@ -19,9 +19,6 @@ export const categoriesSlice = createSlice({
   initialState: {
     categories: null,
     activeCategory: null,
-
-    categoriesPath: [], //todo what is this for?
-
     status: "idle",
     error: null,
   },
@@ -31,12 +28,6 @@ export const categoriesSlice = createSlice({
     },
     create: (state, action) => {
       state.categories = [...state.categories, action.payload];
-    },
-    setCategoriesPath: (state, action) => {
-      state.categoriesPath = action.payload;
-    },
-    addToCategoriesPath: (state, action) => {
-      state.categoriesPath = [...state.categoriesPath, action.payload];
     },
   },
   extraReducers: (builder) => {

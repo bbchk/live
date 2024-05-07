@@ -7,11 +7,21 @@ import { deleteAllFilters } from "store/filtersSlice";
 
 import { startLoading } from "store/modalSlice";
 
+import { getCategoriesInfo } from "store/categoriesSlice";
+import { useEffect } from "react";
+
 const Breadcrumbs = ({ category }) => {
   const dispatch = useDispatch();
   const { categories: allCategories } = useSelector(
     (state) => state.categories
   );
+
+  const status = useSelector((state) => state.categories.status);
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(getCategoriesInfo());
+    }
+  }, [status, dispatch]);
 
   return (
     <>
