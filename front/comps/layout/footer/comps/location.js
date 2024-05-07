@@ -1,10 +1,11 @@
 import s from "./location.module.scss";
+import { MapRounded } from "@mui/icons-material";
 
 const Location = () => {
   return (
     <address className={`${s.location}`}>
       <h2>
-        <i className="bi bi-pin-map-fill"></i>
+        <MapRounded />
         <span>Мапа</span>
       </h2>
       <iframe

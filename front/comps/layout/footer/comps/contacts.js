@@ -1,8 +1,10 @@
+import { LocationOnRounded } from "@mui/icons-material";
+
 const Contacts = () => {
   return (
     <address>
       <h2>
-        <i className="bi bi-geo-alt-fill"></i>
+        <LocationOnRounded />
         <span>Адреса</span>
       </h2>
       <p className="text-center">м. Калинівка, вул. Незалежності, 47б</p>

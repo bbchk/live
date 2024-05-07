@@ -1,8 +1,10 @@
+import { HistoryToggleOffRounded } from "@mui/icons-material";
+
 const WorkHours = () => {
   return (
     <section>
       <h2>
-        <i className="bi bi-clock-fill"></i>
+        <HistoryToggleOffRounded />
         <span>Коли працюємо?</span>
       </h2>
 
