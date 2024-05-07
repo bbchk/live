@@ -6,6 +6,7 @@ const modalsSlice = createSlice({
   initialState: {
     loading: false,
     mainOffcanvasOpen: false,
+    filterOffcanvasOpen: false,
     signInModalOpen: false,
     signUpModalOpen: false,
     changePasswordModalOpen: false,
@@ -16,6 +17,9 @@ const modalsSlice = createSlice({
   reducers: {
     toggleMainOffcanvas: (state) => {
       state.mainOffcanvasOpen = !state.mainOffcanvasOpen;
+    },
+    toggleFilterOffcanvas: (state) => {
+      state.filterOffcanvasOpen = !state.filterOffcanvasOpen;
     },
     toggleSignInModal: (state) => {
       state.signUpModalOpen = false;
@@ -47,6 +51,7 @@ const modalsSlice = createSlice({
 });
 
 export const {
+  toggleFilterOffcanvas,
   toggleMainOffcanvas,
   toggleSignUpModal,
   toggleSignInModal,

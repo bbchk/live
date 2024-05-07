@@ -15,50 +15,23 @@ const ProductFigure = ({ images }) => {
 
   return (
     <section className={`${s.landing_product_figure}`}>
-      <Carousel
-        id={carouselId}
-        onPrev={() =>
-          setTimeout(
-            () => setSelectedImageIdx((selectedImageIdx - 1) % images.length),
-            600
-          )
-        }
-        onNext={() =>
-          setTimeout(
-            () => setSelectedImageIdx((selectedImageIdx + 1) % images.length),
-            600
-          )
-        }
-      >
-        {images &&
-          images.map((img, index) => {
-            return (
-              <CarouselItem
-                key={`carouselProductFigureItem-${index}`}
-                activeIdx={selectedImageIdx}
-                index={index}
-              >
-                <div className={`${s.figure}`}>
-                  <ImageFallback
-                    src={images[index]}
-                    fallbackSrc={"/assets/goods_placeholder.svg"}
-                    alt="товар"
-                    style={{
-                      objectFit: "contain",
-                      margin: "auto",
-                      padding: "1rem",
-                    }}
-                    width={500}
-                    height={500}
-                    sizes="(max-width: 600px) 100vw, (max-width: 768px) 60vw, 50vw"
-                    className={`${s.image}`}
-                    priority
-                  />
-                </div>
-              </CarouselItem>
-            );
-          })}
-      </Carousel>
+      <div className={`${s.figure}`}>
+        <ImageFallback
+          src={images[selectedImageIdx]}
+          fallbackSrc={"/assets/goods_placeholder.svg"}
+          alt="товар"
+          style={{
+            objectFit: "contain",
+            margin: "auto",
+            padding: "1rem",
+          }}
+          width={500}
+          height={500}
+          sizes="(max-width: 600px) 100vw, (max-width: 768px) 60vw, 50vw"
+          className={`${s.image}`}
+          priority
+        />
+      </div>
 
       <footer className={`${s.thumbnails}`}>
         {images &&
@@ -68,9 +41,7 @@ const ProductFigure = ({ images }) => {
               <button
                 key={index}
                 className={`${s.thumbnail} ${isSelected ? s.selected : ""}`}
-                onClick={() =>
-                  setTimeout(() => setSelectedImageIdx(index), 600)
-                }
+                onClick={() => setTimeout(() => setSelectedImageIdx(index), 0)}
                 type="button"
                 data-bs-target={`#${carouselId}`}
                 data-bs-slide-to={index}
