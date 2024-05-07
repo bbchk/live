@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import s from "./card.module.scss";
+
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import Image from "next/image";
 
 import { slugify } from "@bbuukk/slugtrans/slugify";
@@ -12,6 +12,7 @@ import ImageFallback from "comps/image/fallback_image.js";
 
 const Card = ({ category, subcategories }) => {
   const dispatch = useDispatch();
+
   const categoryPathSlug = (path) => {
     return `/products/${slugify(transliterate(path))}/page=1`;
   };
@@ -36,20 +37,18 @@ const Card = ({ category, subcategories }) => {
       </Link>
 
       <ul className={`${s.subcat_list}`}>
-        {subcategories
-          .sort((a, b) => a.order - b.order)
-          .map(({ _id, path, name }, index) => {
-            return (
-              <li key={_id}>
-                <Link
-                  href={categoryPathSlug(path)}
-                  onClick={() => dispatch(startLoading())}
-                >
-                  {index == 4 ? `${name}` : `${name}`}
-                </Link>
-              </li>
-            );
-          })}
+        {subcategories.map(({ _id, path, name }, index) => {
+          return (
+            <li key={_id}>
+              <Link
+                href={categoryPathSlug(path)}
+                onClick={() => dispatch(startLoading())}
+              >
+                {index == 4 ? `${name}` : `${name}`}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

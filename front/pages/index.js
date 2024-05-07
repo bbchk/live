@@ -28,23 +28,19 @@ const Home = ({ flatCategoryMap }) => {
 export default Home;
 
 export async function getStaticProps() {
-  // console.time("fetch");
-
   const res = await axios.get(`/categories`);
   const allCategories = res.data;
-  // console.timeEnd("fetch");
 
-  // console.time("operate");
   const rootCategories = filterAndSort(allCategories);
 
   const flatCategoryMap = [];
+
   rootCategories.forEach((rootCat) =>
     flatCategoryMap.push(
       rootCat,
       ...findSubcategoriesOf(rootCat, allCategories)
     )
   );
-  // console.timeEnd("operate");
 
   const HALF_AN_HOUR_IN_SECONDS = 1800;
   return {
@@ -68,5 +64,6 @@ function findSubcategoriesOf(rootCategory, categories) {
     .filter(
       (category) => category.path.match(regex) && category.path !== pathString
     )
+    .sort((a, b) => a.order - b.order)
     .slice(0, 5);
 }
