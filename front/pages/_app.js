@@ -38,7 +38,6 @@ import Header from "comps/layout/header/header";
 
 const Footer = lazy(() => import("comps/layout/footer/footer"));
 
-// import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -60,11 +59,12 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
-  //this is what the solution says:
   useEffect(() => {
-    import("bootstrap/dist/js/bootstrap");
-    import("bootstrap/dist/js/bootstrap.bundle");
-    import("@popperjs/core");
+    if (typeof window !== "undefined") {
+      // require("bootstrap/dist/js/bootstrap");
+      require("bootstrap/dist/js/bootstrap.bundle.min.js");
+      require("@popperjs/core");
+    }
   }, []);
 
   return (
