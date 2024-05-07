@@ -1,19 +1,17 @@
 import "styles/globals.scss";
 import Head from "next/head";
-import { useRouter } from "next/router";
+
 import axios from "axios";
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 // Import the styles manually to prevent a Font Awesome icon server-side rendering bug
 import "@fortawesome/fontawesome-svg-core/styles.css";
-
 // Prevent fontawesome from adding its CSS since we did it manually above
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
-
 import { SessionProvider, getSession } from "next-auth/react";
-import { setCart, signIn } from "store/userSlice";
+import { signIn } from "store/userSlice";
 
 import React, { useState, useEffect, Suspense } from "react";
 
@@ -37,13 +35,13 @@ const WriteReviewModal = lazy(() =>
 );
 
 import Header from "comps/layout/header/header";
-import Footer from "comps/layout/footer/footer";
+
+const Footer = lazy(() => import("comps/layout/footer/footer"));
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import { enableMapSet } from "immer";
-
-// Call this before using Redux Toolkit or Immer
 enableMapSet();
 
 import { Provider } from "react-redux";
@@ -57,7 +55,7 @@ import { useCart } from "hooks/useCart";
 
 import { Balsamiq_Sans } from "next/font/google";
 import { Pacifico } from "next/font/google";
-import { toggleLoading } from "#root/store/modalSlice.js";
+
 const balsamiqSans = Balsamiq_Sans({ weight: "400", subsets: ["latin"] });
 const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
 export { balsamiqSans, pacifico };
@@ -66,9 +64,6 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
-  const router = useRouter();
-  const excludedPaths = ["/404", "/pay"];
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       require("bootstrap/dist/js/bootstrap");
@@ -104,9 +99,7 @@ const Body = ({ children }) => {
 
   return (
     <div className={`min-vh-65 ${balsamiqSans.className}`}>
-      <div className={`loading_overlay ${loading ? "show" : ""} `}>
-        {/* <div className="loader" /> */}
-      </div>
+      <div className={`loading_overlay ${loading ? "show" : ""} `} />
 
       <FetchData />
       <Modals />
@@ -115,7 +108,6 @@ const Body = ({ children }) => {
   );
 };
 
-//? todo unefficient
 //todo it loads all the products on the first render or rerender of this component
 function FetchData() {
   const dispatch = useDispatch();
