@@ -17,12 +17,13 @@ const Card = ({ category, subcategories }) => {
     return `/products/${slugify(transliterate(path))}/page=1`;
   };
 
+  function handleClick() {
+    dispatch(startLoading());
+  }
+
   return (
     <div className={`${s.cat_card}`}>
-      <Link
-        href={categoryPathSlug(category.path)}
-        onClick={() => dispatch(startLoading())}
-      >
+      <Link href={categoryPathSlug(category.path)} onClick={handleClick}>
         <ImageFallback
           src={category.imagePath}
           fallbackSrc={"/assets/goods_placeholder.svg"}
@@ -33,18 +34,15 @@ const Card = ({ category, subcategories }) => {
           priority
         />
         <Image />
-        <h2 className={`${s.naming} `}>{category.name}</h2>
+        <h2>{category.name}</h2>
       </Link>
 
       <ul className={`${s.subcat_list}`}>
-        {subcategories.map(({ _id, path, name }, index) => {
+        {subcategories.map(({ _id, path, name }) => {
           return (
             <li key={_id}>
-              <Link
-                href={categoryPathSlug(path)}
-                onClick={() => dispatch(startLoading())}
-              >
-                {index == 4 ? `${name}` : `${name}`}
+              <Link href={categoryPathSlug(path)} onClick={handleClick}>
+                {name}
               </Link>
             </li>
           );
