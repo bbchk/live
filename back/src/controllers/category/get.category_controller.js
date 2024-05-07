@@ -8,6 +8,12 @@ export const getCategories = asyncErrorHandler(async (req, res, next) => {
   res.status(200).json(categories);
 });
 
+export const getRootCategories = asyncErrorHandler(async (req, res, next) => {
+  const rootCategories = await categoryService.getRootCategories();
+
+  res.status(200).json(rootCategories);
+});
+
 export const getCategoryByPath = asyncErrorHandler(async (req, res, next) => {
   const { path: slugPath } = req.params;
 

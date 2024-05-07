@@ -3,7 +3,7 @@ import Head from "next/head";
 import axios from "axios";
 import { useStopLoading } from "hooks/useStopLoading";
 
-const Home = ({ flatCategoryMap }) => {
+const Home = ({ rootCategories }) => {
   const { loading } = useStopLoading();
 
   return (
@@ -19,7 +19,7 @@ const Home = ({ flatCategoryMap }) => {
       </Head>
 
       <div className="my-5">
-        <CategoriesGallery flatCategoryMap={flatCategoryMap} />
+        <CategoriesGallery rootCategories={rootCategories} />
       </div>
     </>
   );
@@ -28,42 +28,14 @@ const Home = ({ flatCategoryMap }) => {
 export default Home;
 
 export async function getStaticProps() {
-  const res = await axios.get(`/categories`);
-  const allCategories = res.data;
+  const res = await axios.get(`/categories/root`);
+  const rootCategories = res.data;
 
-  const rootCategories = filterAndSort(allCategories);
-
-  const flatCategoryMap = [];
-
-  rootCategories.forEach((rootCat) =>
-    flatCategoryMap.push(
-      rootCat,
-      ...findSubcategoriesOf(rootCat, allCategories)
-    )
-  );
-
-  const HALF_AN_HOUR_IN_SECONDS = 1800;
+  const HALF_AN_HOUR = 1800;
   return {
     props: {
-      flatCategoryMap: flatCategoryMap,
-      revalidate: HALF_AN_HOUR_IN_SECONDS,
+      rootCategories,
+      revalidate: HALF_AN_HOUR,
     },
   };
-}
-
-function filterAndSort(categories) {
-  return categories
-    .filter((category) => category.path.split(",").length === 1)
-    .sort((a, b) => a.order - b.order);
-}
-
-function findSubcategoriesOf(rootCategory, categories) {
-  const pathString = rootCategory.path;
-  const regex = new RegExp(`^${pathString},[^,]+$`);
-  return categories
-    .filter(
-      (category) => category.path.match(regex) && category.path !== pathString
-    )
-    .sort((a, b) => a.order - b.order)
-    .slice(0, 5);
 }

@@ -7,6 +7,51 @@ export const getCategories = async () => {
   return await category.find({}).sort({ createdAt: -1 });
 };
 
+export const getRootCategories = async () => {
+  const rootCats = await category.aggregate([
+    {
+      $addFields: {
+        pathLength: { $size: { $split: ["$path", ","] } },
+      },
+    },
+    {
+      $match: { pathLength: 1 },
+    },
+    {
+      $sort: { order: 1 },
+    },
+  ]);
+
+  const result = await Promise.all(
+    rootCats.map(async (rc) => {
+      const subcats = await category.aggregate([
+        {
+          $addFields: {
+            pathLength: { $size: { $split: ["$path", ","] } },
+          },
+        },
+        {
+          $match: {
+            pathLength: 2,
+
+            path: { $regex: rc.path, $options: "i" },
+          },
+        },
+        {
+          $sort: { order: 1 },
+        },
+        {
+          $limit: 5,
+        },
+      ]);
+
+      return { ...rc, subcats };
+    })
+  );
+
+  return result;
+};
+
 export const getCategoryBySlugPath = async (slugCategoryPath) => {
   const path = untransliterate(unslugify(slugCategoryPath));
   return await category.findOne({

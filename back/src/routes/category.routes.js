@@ -7,6 +7,7 @@ import { updateCategory } from "#src/controllers/category/update.category_contro
 
 import {
   getCategories,
+  getRootCategories,
   getCategoryByPath,
   getDirectSubcategoriesByPath,
 } from "#src/controllers/category/get.category_controller.js";
@@ -14,6 +15,7 @@ import {
 const router = express.Router();
 
 router.get("/", getCategories);
+router.get("/root", getRootCategories);
 router.get("/category/by-path/:path", getCategoryByPath);
 
 router.get(
