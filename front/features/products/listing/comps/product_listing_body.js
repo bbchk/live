@@ -1,22 +1,24 @@
 import FiltersAccordion from "features/products/listing/comps/filter/filters_accordion/filters_accordion";
-import ProductGallery from "./comps/gallery/gallery";
-import ProductsPagination from "./comps/gallery/pagination/pagination";
-import SortGroup from "./comps/filter/sort-group";
+import ProductGallery from "./gallery/gallery";
+import ProductsPagination from "./gallery/pagination/pagination";
+import SortGroup from "./filter/sort-group";
 import FiltersOffcanvasToggler from "features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas_toggler";
 
 import s from "./product_listing_body.module.scss";
-import FiltersOffcanvas from "./comps/filter/filiters_offcanvas/filters_offcanvas";
-import Selected from "./comps/filter/selected";
+import FiltersOffcanvas from "./filter/filiters_offcanvas/filters_offcanvas";
+import Selected from "./filter/selected";
 import NoProductYet from "#root/comps/warnings/no_products.js";
 
 const ProductListingBody = ({
-  filtersMap,
-  minMaxPrice,
-  products,
-  productsCount,
-  category,
-  numPages,
-  page,
+  data: {
+    filtersMap,
+    minMaxPrice,
+    products,
+    productsCount,
+    category,
+    numPages,
+    page,
+  },
 }) => {
   const filtersOffcanvasId = "filtersOffcanvas";
 

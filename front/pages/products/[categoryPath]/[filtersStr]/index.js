@@ -1,79 +1,29 @@
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
-
-import SubcategoriesGallery from "features/products/listing/comps/subcategories/gallery";
-
 import Head from "next/head";
 
-import { useGenFilterStr } from "hooks/genFilterStr";
-import { setFilters } from "store/filtersSlice";
-import { useGetFilterMapFromStr } from "hooks/useGetFilterMapFromStr";
-import ProductListingBody from "features/products/listing/product_listing_body";
-import ListingHeader from "../../../../features/products/listing/comps/listing_header";
 import { useStopLoading } from "hooks/useStopLoading";
 
-const Listing = ({
-  data: {
+import { useUpdateFilters } from "features/products/listing/hooks/use_update_filters";
+import { useDispatchInitialFilters } from "features/products/listing/hooks/use_dispatch_initial_filters.js";
+import { usePageValidation } from "features/products/listing/hooks/use_page_validation";
+
+import ListingHeader from "features/products/listing/comps/listing_header";
+import SubcategoriesGallery from "features/products/listing/comps/subcategories/gallery";
+import ProductListingBody from "features/products/listing/comps/product_listing_body";
+
+const Listing = ({ data }) => {
+  const {
     activeCategory: category,
     directSubcategories: subcategories,
-    products,
-    productsCount,
     numPages,
-    filtersMap,
-    minMaxPrice,
-    page,
-  },
-}) => {
-  //todo indefinite products tscrooling
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const { categoryPath, filtersStr } = router.query;
-  const { filters } = useSelector((state) => state.filters);
+  } = data;
 
-  const { getFilterMapFromStr } = useGetFilterMapFromStr();
-  const { genFiltersStr } = useGenFilterStr();
+  useStopLoading();
+  usePageValidation(numPages);
 
-  const { loading } = useStopLoading();
+  useDispatchInitialFilters();
 
-  useEffect(() => {
-    const { filtersStr } = router.query;
-
-    const match = filtersStr.match(/page=(\d+)/);
-    const pageValue = match ? match[1] : null;
-
-    if (pageValue > numPages || pageValue < 1) {
-      router.push(`/404`);
-    }
-  }, [router.query]);
-
-  useEffect(() => {
-    const filtersMap = getFilterMapFromStr(filtersStr);
-    dispatch(setFilters(filtersMap));
-
-    return () => {
-      dispatch(setFilters({}));
-    };
-  }, []);
-
-  //todo fetch filtered products on client side
-  useEffect(() => {
-    let newFiltersStr = genFiltersStr(filters);
-
-    if (Object.keys(filters).length != 0 && newFiltersStr != filtersStr) {
-      const filtersStrPageDefault = newFiltersStr.replace(/page=\d+/, "page=1");
-
-      router.push(`/products/${categoryPath}/${filtersStrPageDefault}`);
-    }
-  }, [filters]);
-
-  //todo collect filters only on first render of page
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [activeProducts, setActiveProducts] = useState(products);
-  // const [activeCategory, setActiveCategory] = useState(category);
-  // const [activeSubcategories, setActiveSubcategories] = useState(subcategories);
+  useUpdateFilters();
 
   return (
     <>
@@ -81,22 +31,14 @@ const Listing = ({
         <title>{`Живий світ | ${category.path}`}</title>
         <meta name="description" content={`Живий Світ | ${category.path}`} />
       </Head>
-      {/* {!isLoading && ( */}
-      <div>
-        <div>
+
+      <>
+        <>
           <ListingHeader category={category} />
           <SubcategoriesGallery subcategories={subcategories} />
-        </div>
-        <ProductListingBody
-          filtersMap={filtersMap}
-          minMaxPrice={minMaxPrice}
-          products={products}
-          productsCount={productsCount}
-          category={category}
-          numPages={numPages}
-          page={page}
-        />
-      </div>
+        </>
+        <ProductListingBody data={data} />
+      </>
     </>
   );
 };
@@ -106,35 +48,20 @@ export default Listing;
 export async function getServerSideProps(context) {
   const { categoryPath, filtersStr } = context.params;
 
+  const endpoints = {
+    products: `/products/by-category-path/${categoryPath}/filtered-by/${filtersStr}`,
+    activeCategory: `/categories/category/by-path/${categoryPath}`,
+    directSubcategories: `/categories/subcategories/by-parent-category-path/${categoryPath}`,
+    filters: `/products/filters/${categoryPath}/${filtersStr}`,
+  };
+
   try {
-    const productsRes = await axios.get(
-      `/products/by-category-path/${categoryPath}/filtered-by/${filtersStr}`
-    );
-    const products = productsRes.data;
+    const products = await fetchData(endpoints.products);
+    const activeCategory = await fetchData(endpoints.activeCategory);
+    const directSubcategories = await fetchData(endpoints.directSubcategories);
+    const filtersMap = await fetchData(endpoints.filters);
 
-    let page = 1;
-    const match = filtersStr.match(/page=(\d+)/);
-    if (match) {
-      page = filtersStr.match(/page=(\d+)/)[1];
-    }
-
-    const activeCategoryRes = await axios.get(
-      `/categories/category/by-path/${categoryPath}`
-    );
-    const activeCategory = activeCategoryRes.data;
-
-    const directSubcategoriesRes = await axios.get(
-      `/categories/subcategories/by-parent-category-path/${categoryPath}`
-    );
-    const directSubcategories = directSubcategoriesRes.data;
-
-    const filtersRes = await axios.get(
-      `/products/filters/${categoryPath}/${filtersStr}`
-    );
-    const filtersMap = filtersRes.data;
-
-    //todo make it a minutes for production
-    const HALF_AN_HOUR = 1800;
+    const HALF_AN_HOUR = 1800; // 30 minutes
     return {
       props: {
         data: {
@@ -142,13 +69,17 @@ export async function getServerSideProps(context) {
           directSubcategories,
           filtersMap,
           ...products,
-          page,
+          page: filtersStr.match(/page=(\d+)/)[1] || 1,
         },
         revalidate: HALF_AN_HOUR,
       },
     };
   } catch (e) {
-    // console.error("An error occurred while fetching product data: ", e);
     return { notFound: true };
   }
+}
+
+async function fetchData(url) {
+  const response = await axios.get(url);
+  return response.data;
 }
