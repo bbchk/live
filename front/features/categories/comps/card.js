@@ -28,6 +28,7 @@ const Card = ({ category, subcategories }) => {
           alt="основна категорія"
           width={300}
           height={150}
+          sizes="(max-width: 600px) 50vw, (max-width: 768px) 35vw, 20vw"
           priority
         />
         <Image />

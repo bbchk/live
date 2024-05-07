@@ -50,6 +50,7 @@ const ProductFigure = ({ images }) => {
                     }}
                     width={500}
                     height={500}
+                    sizes="(max-width: 600px) 100vw, (max-width: 768px) 60vw, 50vw"
                     className={`${s.image}`}
                     priority
                   />
@@ -85,6 +86,7 @@ const ProductFigure = ({ images }) => {
                     margin: "auto",
                     padding: "5px",
                   }}
+                  sizes="(max-width: 600px) 20vw, (max-width: 768px) 15vw, (max-width: 992px) 10vw, 5vw"
                   width={100}
                   height={80}
                 />

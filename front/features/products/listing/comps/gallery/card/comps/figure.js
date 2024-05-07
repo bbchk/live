@@ -25,9 +25,10 @@ const ProductFigure = ({ product, productUrl }) => {
           }
           fallbackSrc={"/assets/goods_placeholder.svg"}
           alt="product image"
+          quality={80}
           width={250}
           height={250}
-          quality={100}
+          sizes="(max-width: 600px) 50vw, (max-width: 768px) 35vw,(max-width: 800px) 30vw,(max-width: 1200px) 25vw, 15vw"
           priority
         />
         <figcaption>{product.name}</figcaption>
