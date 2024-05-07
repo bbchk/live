@@ -29,6 +29,7 @@ export default Home;
 
 export async function getStaticProps() {
   // console.time("fetch");
+
   const res = await axios.get(`/categories`);
   const allCategories = res.data;
   // console.timeEnd("fetch");

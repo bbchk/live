@@ -1,22 +1,13 @@
 @use "./styles/mixins" as *;
 @use "./styles/variables" as *;
-@import "node_modules/rfs/sass.sass";
 
 .gallery {
   .header {
     h2 {
       width: 20%;
-      a {
-        @include margin-left(20%);
-
-        // font-weight: bold;
-
-        @include font-size(2.5rem);
-        color: $color-blue-dasl;
-      }
-    }
-
-    &:hover a {
+      margin-left: 5%;
+      font-size: 2.5rem;
+      color: $color-blue-dasl;
     }
   }
 

@@ -8,9 +8,7 @@ const Gallery = ({ flatCategoryMap }) => {
   return (
     <div id="categories" className={`${s.gallery}`}>
       <div className={`${s.header}`}>
-        <h2>
-          <a href="#categories">Категорії</a>
-        </h2>
+        <h2>Категорії</h2>
       </div>
       <div
         className={` container row row-cols-sm-12 row-cols-lg-3 row-cols-xxl-4 ${s.body} mt-1 mx-auto g-5`}

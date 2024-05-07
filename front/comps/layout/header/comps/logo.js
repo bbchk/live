@@ -10,7 +10,7 @@ import s from "./logo.module.scss";
 const Logo = () => {
   return (
     <>
-      <Link className={`${s.logo}  ${hs.logo} ${pacifico.className}`} href="/">
+      <Link className={`${s.logo} ${hs.logo} ${pacifico.className}`} href="/">
         <Image
           src={"/assets/logo.svg"}
           alt="Logo of the site"
