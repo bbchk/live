@@ -1,13 +1,11 @@
 import { Schema, model } from "mongoose";
 
-let schemaOptions = {
-  toJSON: {
-    virtuals: true,
-    transform: function (doc, ret) {
-      delete ret.__v;
-    },
-  },
-};
+// let schemaOptions = {
+//   toJSON: {
+//     virtuals: true,
+
+//   },
+// };
 
 const categorySchema = new Schema(
   {
@@ -32,14 +30,14 @@ const categorySchema = new Schema(
       type: [String],
       required: false,
     },
-  },
-  schemaOptions
+  }
+  // schemaOptions
 );
 
-let nestLevelVirtual = categorySchema.virtual("nestLevel");
+// let nestLevelVirtual = categorySchema.virtual("nestLevel");
 
-nestLevelVirtual.get(function () {
-  return this.path.split(",").length;
-});
+// nestLevelVirtual.get(function () {
+//   return this.path.split(",").length;
+// });
 
 export default model("category", categorySchema);

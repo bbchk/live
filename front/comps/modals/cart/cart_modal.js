@@ -21,6 +21,16 @@ const CartModal = () => {
 
   const cart = useMemo(() => user?.cart, [user?.cart]);
 
+  //todo synco state
+  // const { getCart } = useCart();
+  // async function getUserCart() {
+  //   const session = await getSession();
+
+  //   const user = await getCart(session);
+  //   dispatch(signIn(user));
+  // }
+  // getUserCart();
+
   //todo set cart items and total cost to localStorage on signOut
   useEffect(() => {
     if (cart) {

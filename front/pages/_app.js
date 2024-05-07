@@ -46,12 +46,7 @@ enableMapSet();
 
 import { Provider } from "react-redux";
 import { store } from "store/store";
-import { useDispatch, useSelector } from "react-redux";
-
-import { getProductsInfo } from "store/productsSlice";
-import { getCategoriesInfo } from "store/categoriesSlice";
-
-import { useCart } from "hooks/useCart";
+import { useSelector } from "react-redux";
 
 import { Balsamiq_Sans } from "next/font/google";
 import { Pacifico } from "next/font/google";
@@ -101,38 +96,11 @@ const Body = ({ children }) => {
     <div className={`min-vh-65 ${balsamiqSans.className}`}>
       <div className={`loading_overlay ${loading ? "show" : ""} `} />
 
-      <FetchData />
       <Modals />
       {children}
     </div>
   );
 };
-
-//todo it loads all the products on the first render or rerender of this component
-function FetchData() {
-  const dispatch = useDispatch();
-  const [fetched, setFetched] = useState(false);
-
-  const { getCart } = useCart();
-
-  useEffect(() => {
-    if (!fetched) {
-      dispatch(getProductsInfo());
-      dispatch(getCategoriesInfo());
-
-      async function getUserCart() {
-        const session = await getSession();
-
-        const user = await getCart(session);
-        dispatch(signIn(user));
-      }
-      getUserCart();
-      setFetched(true);
-    }
-  }, [dispatch, fetched]);
-
-  return null;
-}
 
 function Modals() {
   return (
