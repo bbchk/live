@@ -1,5 +1,6 @@
 import "styles/globals.scss";
 import Head from "next/head";
+import Script from "next/script";
 
 import axios from "axios";
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -60,13 +61,9 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // require("bootstrap/dist/js/bootstrap");
-      require("bootstrap/dist/js/bootstrap.bundle.min.js");
-      require("@popperjs/core");
-    }
+    const Bootstrap = require("bootstrap/dist/js/bootstrap");
+    const Popper = require("@popperjs/core");
   }, []);
-
   return (
     <div>
       <Head>
@@ -77,6 +74,7 @@ export default function App({
           content="Живий Світ: Магазин найкращих товарів для вашого дому, домашніх улюбленців та рослин"
         />
       </Head>
+
       <SessionProvider session={session}>
         <Provider store={store}>
           <Header />
@@ -86,6 +84,11 @@ export default function App({
           <Footer />
         </Provider>
       </SessionProvider>
+      <Script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"
+      ></Script>
     </div>
   );
 }
