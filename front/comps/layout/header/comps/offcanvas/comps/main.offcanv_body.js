@@ -21,7 +21,11 @@ import {
 import { balsamiqSans } from "#root/pages/_app.js";
 
 import { signOut, useSession } from "next-auth/react";
-import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
+import {
+  toggleCartModal,
+  toggleSignInModal,
+  toggleMainOffcanvas,
+} from "store/modalSlice";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
 
@@ -81,7 +85,7 @@ function MainOffcanvasBody() {
           text="Кошик покупок"
           component="button"
           onClick={() => {
-            console.log("bug");
+            dispatch(toggleCartModal());
           }}
         >
           <ShoppingCart />
@@ -142,8 +146,16 @@ const Item = ({ text, component, onClick, href, children }) => {
 };
 
 const ItemButton = ({ text, onClick, children }) => {
+  const dispatch = useDispatch();
   return (
-    <Item text={text} component="button" onClick={onClick}>
+    <Item
+      text={text}
+      component="button"
+      onClick={() => {
+        dispatch(toggleMainOffcanvas());
+        onClick();
+      }}
+    >
       {children}
     </Item>
   );

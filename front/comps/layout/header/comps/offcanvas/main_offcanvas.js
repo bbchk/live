@@ -8,7 +8,7 @@ import { toggleMainOffcanvas } from "store/modalSlice";
 
 import { SwipeableDrawer, Box, Divider, Button } from "@mui/material";
 import {
-  Menu as MenuIcon,
+  MenuRounded,
   Home as HomeIcon,
   AccountCircle as AccountCircleIcon,
 } from "@mui/icons-material";
@@ -39,7 +39,7 @@ export const OffcanvasToggler = ({ id }) => {
       className={`${s.offcanvas_toggler}`}
       onClick={() => dispatch(toggleMainOffcanvas())}
     >
-      <MenuIcon fontSize="large" />
+      <MenuRounded fontSize="large" />
     </Button>
   );
 };
