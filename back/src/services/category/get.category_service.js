@@ -8,41 +8,34 @@ export const getCategories = async () => {
 };
 
 export const getRootCategories = async () => {
+  const addNestLevel = () => ({
+    $addFields: {
+      nestLevel: { $size: { $split: ["$path", ","] } },
+    },
+  });
+
+  const matchNestLevel = (length) => ({
+    $match: { nestLevel: length },
+  });
+
+  const sortByOrder = () => ({
+    $sort: { order: 1 },
+  });
+
   const rootCats = await category.aggregate([
-    {
-      $addFields: {
-        pathLength: { $size: { $split: ["$path", ","] } },
-      },
-    },
-    {
-      $match: { pathLength: 1 },
-    },
-    {
-      $sort: { order: 1 },
-    },
+    addNestLevel(),
+    matchNestLevel(1),
+    sortByOrder(),
   ]);
 
   const result = await Promise.all(
     rootCats.map(async (rc) => {
       const subcats = await category.aggregate([
-        {
-          $addFields: {
-            pathLength: { $size: { $split: ["$path", ","] } },
-          },
-        },
-        {
-          $match: {
-            pathLength: 2,
-
-            path: { $regex: rc.path, $options: "i" },
-          },
-        },
-        {
-          $sort: { order: 1 },
-        },
-        {
-          $limit: 5,
-        },
+        addNestLevel(),
+        matchNestLevel(2),
+        { $match: { path: { $regex: rc.path, $options: "i" } } },
+        sortByOrder(),
+        { $limit: 5 },
       ]);
 
       return { ...rc, subcats };
