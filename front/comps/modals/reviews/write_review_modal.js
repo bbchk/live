@@ -11,12 +11,12 @@ import { balsamiqSans } from "#root/pages/_app.js";
 //todo input validation
 const WriteReviewModal = () => {
   const dispatch = useDispatch();
-  const { writeReviewModal } = useSelector((state) => state.modals);
+  const { writeReviewModalOpen } = useSelector((state) => state.modals);
 
   return (
     <Modal
       id="WriteReviewModal"
-      show={writeReviewModal}
+      show={writeReviewModalOpen}
       onHide={() => dispatch(toggleWriteReviewModal())}
       centered
       size="lg"

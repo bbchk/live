@@ -1,6 +1,5 @@
 import "styles/globals.scss";
 import Head from "next/head";
-import Script from "next/script";
 
 import axios from "axios";
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -11,12 +10,11 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
-import { SessionProvider, getSession } from "next-auth/react";
-import { signIn } from "store/userSlice";
+import "bootstrap/dist/css/bootstrap.css";
 
-import React, { useState, useEffect, Suspense } from "react";
+import { SessionProvider } from "next-auth/react";
 
-import { lazy } from "react";
+import { Suspense, lazy } from "react";
 
 const ChangePasswordModal = lazy(() =>
   import("comps/modals/change_password/change_password_modal")
@@ -35,12 +33,9 @@ const WriteReviewModal = lazy(() =>
   import("comps/modals/reviews/write_review_modal")
 );
 
+import { LoadingOverlay } from "comps/loading/overlay";
 import Header from "comps/layout/header/header";
-
 const Footer = lazy(() => import("comps/layout/footer/footer"));
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
 
 import { enableMapSet } from "immer";
 enableMapSet();
@@ -51,6 +46,7 @@ import { useSelector } from "react-redux";
 
 import { Balsamiq_Sans } from "next/font/google";
 import { Pacifico } from "next/font/google";
+import { MainOffcanvas } from "#root/comps/layout/header/comps/offcanvas/main_offcanvas.js";
 
 const balsamiqSans = Balsamiq_Sans({ weight: "400", subsets: ["latin"] });
 const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
@@ -60,10 +56,6 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
-  useEffect(() => {
-    const Bootstrap = require("bootstrap/dist/js/bootstrap");
-    const Popper = require("@popperjs/core");
-  }, []);
   return (
     <div>
       <Head>
@@ -84,22 +76,18 @@ export default function App({
           <Footer />
         </Provider>
       </SessionProvider>
-      <Script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"
-      ></Script>
     </div>
   );
 }
 
 const Body = ({ children }) => {
-  const { loading } = useSelector((state) => state.modals);
+  const { loading, mainOffcanvasOpen } = useSelector((state) => state.modals);
 
   return (
     <div className={`min-vh-65 ${balsamiqSans.className}`}>
-      <div className={`loading_overlay ${loading ? "show" : ""} `} />
+      <LoadingOverlay loading={loading} />
 
+      <MainOffcanvas />
       <Modals />
       {children}
     </div>
@@ -107,16 +95,23 @@ const Body = ({ children }) => {
 };
 
 function Modals() {
+  const {
+    signInModalOpen,
+    signUpModalOpen,
+    changePasswordModalOpen,
+    deleteAccountModalOpen,
+    cartModalOpen,
+    writeReviewModalOpen,
+  } = useSelector((state) => state.modals);
+
   return (
-    <>
-      <Suspense fallback={<></>}>
-        <DeleteAccountModal />
-        <ChangePasswordModal />
-        <SignInModal />
-        <SignUpModal />
-        <CartModal />
-        <WriteReviewModal />
-      </Suspense>
-    </>
+    <Suspense fallback={<LoadingOverlay loading={true} />}>
+      {deleteAccountModalOpen && <DeleteAccountModal />}
+      {changePasswordModalOpen && <ChangePasswordModal />}
+      {signInModalOpen && <SignInModal />}
+      {signUpModalOpen && <SignUpModal />}
+      {writeReviewModalOpen && <WriteReviewModal />}
+      {cartModalOpen && <CartModal />}
+    </Suspense>
   );
 }

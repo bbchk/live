@@ -1,41 +1,45 @@
-import hs from "../../header.module.scss";
-
 import s from "./main_offcanvas.module.scss";
-import MainOffcanvasHeader from "./main_offcanvas_header";
-import MainOffcanvasBody from "./main_offcanvas_body";
 
-import Offcanvas from "comps/offcanvas/offcanvas";
-import OffcanvasHeader from "comps/offcanvas/offcanvas_header";
-import OffcanvasBody from "comps/offcanvas/offcanvas_body";
+import MainOffcanvasHeader from "./comps/main.offcanv_header";
+import MainOffcanvasBody from "./comps/main.offcanv_body";
+
+import { useDispatch, useSelector } from "react-redux";
+import { toggleMainOffcanvas } from "store/modalSlice";
+
+import { SwipeableDrawer, Box, Divider, Button } from "@mui/material";
+import {
+  Menu as MenuIcon,
+  Home as HomeIcon,
+  AccountCircle as AccountCircleIcon,
+} from "@mui/icons-material";
 
 export const MainOffcanvas = ({ id }) => {
-  return (
-    <Offcanvas id={id}>
-      <OffcanvasHeader
-        id={`${id}Header`}
-        style={{ "--background-color": "#c8e59b" }}
-      >
-        <MainOffcanvasHeader />
-      </OffcanvasHeader>
+  const dispatch = useDispatch();
+  const { mainOffcanvasOpen } = useSelector((state) => state.modals);
 
-      <OffcanvasBody>
+  return (
+    <SwipeableDrawer
+      open={mainOffcanvasOpen}
+      onClose={() => dispatch(toggleMainOffcanvas())}
+      transitionDuration={{ appear: 250, enter: 250, exit: 250 }}
+    >
+      <Box sx={{ width: 350 }} role="presentation">
+        <MainOffcanvasHeader />
+        <Divider />
         <MainOffcanvasBody />
-      </OffcanvasBody>
-    </Offcanvas>
+      </Box>
+    </SwipeableDrawer>
   );
 };
 
 export const OffcanvasToggler = ({ id }) => {
+  const dispatch = useDispatch();
   return (
-    <div className={`${s.offcanvas_toggler} ${hs.offcanvas_toggler}`}>
-      <button
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target={`#${id}`}
-        aria-controls={id}
-      >
-        <i className="bi bi-list" />
-      </button>
-    </div>
+    <Button
+      className={`${s.offcanvas_toggler}`}
+      onClick={() => dispatch(toggleMainOffcanvas())}
+    >
+      <MenuIcon fontSize="large" />
+    </Button>
   );
 };

@@ -1,17 +1,22 @@
+import { main } from "@popperjs/core";
 import { createSlice } from "@reduxjs/toolkit";
 
 const modalsSlice = createSlice({
   name: "modals",
   initialState: {
     loading: false,
+    mainOffcanvasOpen: false,
     signInModalOpen: false,
     signUpModalOpen: false,
     changePasswordModalOpen: false,
     deleteAccountModalOpen: false,
     cartModalOpen: false,
-    writeReviewModal: false,
+    writeReviewModalOpen: false,
   },
   reducers: {
+    toggleMainOffcanvas: (state) => {
+      state.mainOffcanvasOpen = !state.mainOffcanvasOpen;
+    },
     toggleSignInModal: (state) => {
       state.signUpModalOpen = false;
       state.signInModalOpen = !state.signInModalOpen;
@@ -30,7 +35,7 @@ const modalsSlice = createSlice({
       state.cartModalOpen = !state.cartModalOpen;
     },
     toggleWriteReviewModal: (state) => {
-      state.writeReviewModal = !state.writeReviewModal;
+      state.writeReviewModalOpen = !state.writeReviewModalOpen;
     },
     startLoading: (state) => {
       state.loading = true;
@@ -42,6 +47,7 @@ const modalsSlice = createSlice({
 });
 
 export const {
+  toggleMainOffcanvas,
   toggleSignUpModal,
   toggleSignInModal,
   toggleChangePasswordModal,

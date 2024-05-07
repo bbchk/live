@@ -3,23 +3,18 @@
 
 .offcanvas_toggler {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
 
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 
-    height: 3rem;
-    width: 3rem;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
+  font-size: 1.2em;
+  color: $color-blue-dasl;
 
-    font-size: 1.2em;
-    color: $color-blue-dasl;
-
-    &:hover {
-      @include icon_on_hover;
-    }
+  &:hover {
+    @include icon_on_hover;
   }
 }

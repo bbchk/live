@@ -14,9 +14,8 @@ const Header = () => {
 
   return (
     <header className={`${s.header_container}`}>
-      <nav className={`navbar ${s.header} ${balsamiqSans.className}`}>
-        <OffcanvasToggler id="mainOffcanvas" />
-        <MainOffcanvas id="mainOffcanvas" />
+      <nav className={`${s.header} ${balsamiqSans.className}`}>
+        <OffcanvasToggler />
         <Logo />
         <SearchBar />
         <ButtonGroup />
