@@ -30,7 +30,7 @@ const AuthPopover = () => {
 
   const handleSignUp = async (e) => {
     closePopover();
-    dispatch(toggle(SIGN_UP_MODAL));
+    // dispatch(toggle(SIGN_UP_MODAL));
   };
 
   const [showPopover, setShowPopover] = useState(false);
@@ -43,9 +43,6 @@ const AuthPopover = () => {
       }
     }, 250);
   };
-
-  const signInButtonRef = useRef(null);
-  const activeEl = useRef(null);
 
   const handleShow = () => {
     setShowPopover(true);
@@ -65,7 +62,6 @@ const AuthPopover = () => {
       <Popover.Body>
         <div className={`${s.unsigned_popover} ${balsamiqSans.className}`}>
           <button
-            ref={signInButtonRef}
             className={` ${s.sign_in_button} button_submit`}
             onClick={handleSignIn}
           >
@@ -78,10 +74,6 @@ const AuthPopover = () => {
               href="/"
               onClick={handleSignUp}
               className={`${s.sign_up} icon-link`}
-              onBlur={() => {
-                setShowPopover(false);
-                setTimeout(() => activeEl.current.focus(), 0);
-              }}
             >
               Зареєструватись
             </Link>
@@ -100,9 +92,6 @@ const AuthPopover = () => {
           overlay={unsignedPopover}
           rootClose
           show={showPopover}
-          onEntered={() =>
-            signInButtonRef.current && signInButtonRef.current.focus()
-          }
         >
           <AccountCircleRounded
             className={`${s.profile_icon}`}

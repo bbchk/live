@@ -142,7 +142,10 @@ const CartModal = () => {
             <p>Кошик поки що порожній</p>
             <button
               className={`button_primary`}
-              onClick={() => dispatch(toggle(CART_MODAL))}
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(toggle(CART_MODAL));
+              }}
             >
               Продовжити покупки
             </button>
