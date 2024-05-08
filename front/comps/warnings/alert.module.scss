@@ -1,0 +1,40 @@
+@use "./styles/variables" as *;
+
+.alert {
+  //   color: green;
+  //   background-color: lightgreen;
+  //   border: 1px solid darkgreen;
+
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+
+  position: absolute;
+  top: -100px;
+  width: 100%;
+
+  z-index: 9999;
+  opacity: 1;
+
+  animation: slideOut 4s forwards;
+
+  @keyframes slideOut {
+    0% {
+      top: -100px;
+      opacity: 0;
+    }
+    20% {
+      top: 0;
+      opacity: 1;
+    }
+    80% {
+      top: 0;
+      opacity: 1;
+    }
+    100% {
+      display: none;
+      top: -100px;
+      opacity: 0;
+    }
+  }
+}

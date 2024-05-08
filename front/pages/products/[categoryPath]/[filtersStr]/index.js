@@ -38,8 +38,9 @@ const Listing = ({ data }) => {
           <SubcategoriesGallery subcategories={subcategories} />
         </>
 
-        <div className="container" id="main_content" />
-        <ProductListingBody data={data} />
+        <div id="main_content">
+          <ProductListingBody data={data} />
+        </div>
       </>
     </>
   );

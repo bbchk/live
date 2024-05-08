@@ -8,6 +8,7 @@ import SignFormByServices from "../sign_form_by_services";
 import { useDispatch, useSelector } from "react-redux";
 
 import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
+import { useSession } from "next-auth/react";
 
 //todo input validation
 //todo make modal responsive
@@ -18,6 +19,11 @@ const SignInModal = () => {
 
   const toggle = () => dispatch(toggleSignInModal());
   const toggleAlternative = () => dispatch(toggleSignUpModal());
+
+  const { data: session } = useSession();
+  if (session) {
+    return <CustomAlert text={"Ви уже авторизовані 😌"} />;
+  }
 
   return (
     <>

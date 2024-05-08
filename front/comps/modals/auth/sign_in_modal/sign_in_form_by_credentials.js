@@ -31,8 +31,9 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
     if (res.ok) {
       const session = await getSession();
 
-      const cart = await getCart(session);
-      dispatch(setCart(cart));
+      //todo set cart
+      // const cart = await getCart(session);
+      // dispatch(setCart(cart));
 
       toggleModal();
     } else {

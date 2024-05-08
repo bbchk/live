@@ -7,6 +7,7 @@ const modalsSlice = createSlice({
     loading: false,
     mainOffcanvasOpen: false,
     filterOffcanvasOpen: false,
+    hotkeysModalOpen: false,
     signInModalOpen: false,
     signUpModalOpen: false,
     changePasswordModalOpen: false,
@@ -41,6 +42,9 @@ const modalsSlice = createSlice({
     toggleWriteReviewModal: (state) => {
       state.writeReviewModalOpen = !state.writeReviewModalOpen;
     },
+    toggleHotkeysModalOpen: (state) => {
+      state.hotkeysModalOpen = !state.hotkeysModalOpen;
+    },
     startLoading: (state) => {
       state.loading = true;
     },
@@ -55,6 +59,7 @@ export const {
   toggleMainOffcanvas,
   toggleSignUpModal,
   toggleSignInModal,
+  toggleHotkeysModalOpen,
   toggleChangePasswordModal,
   toggleDeleteAccountModal,
   toggleCartModal,

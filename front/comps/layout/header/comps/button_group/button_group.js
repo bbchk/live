@@ -10,9 +10,11 @@ import IconButton from "./icon_button";
 import AuthPopover from "./auth_popover";
 import s from "./button_group.module.scss";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faListUl } from "@fortawesome/free-regular-svg-icons";
-import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
+import {
+  ChecklistRtlRounded,
+  FavoriteBorderRounded,
+  ShoppingCartRounded,
+} from "@mui/icons-material";
 
 //todo list of links with unordered list
 const ButtonGroup = () => {
@@ -46,13 +48,13 @@ const ButtonGroup = () => {
               href={"/profile/orders_list"}
               tooltipText={"Список замовлень"}
             >
-              <i className={`bi bi-list-ul `} />
+              <ChecklistRtlRounded />
             </IconButton>
             <IconButton
               href={"/profile/wish_list"}
               tooltipText={"Список бажаного"}
             >
-              <FontAwesomeIcon icon={faHeart} />
+              <FavoriteBorderRounded />
             </IconButton>
           </>
         )}
@@ -61,7 +63,7 @@ const ButtonGroup = () => {
           tooltipText={"Кошик покупок"}
           onClick={() => dispatch(toggleCartModal())}
         >
-          <FontAwesomeIcon icon={faBasketShopping} />
+          <ShoppingCartRounded />
         </IconButton>
       </ul>
     </nav>

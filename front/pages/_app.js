@@ -32,6 +32,7 @@ const CartModal = lazy(() => import("comps/modals/cart/cart_modal"));
 const WriteReviewModal = lazy(() =>
   import("comps/modals/reviews/write_review_modal")
 );
+const HotkeysModal = lazy(() => import("comps/modals/hotkeys/hotkeys.modal"));
 
 import { LoadingOverlay } from "comps/loading/overlay";
 import Header from "comps/layout/header/header";
@@ -61,13 +62,14 @@ if (process.env.NODE_ENV === "production") {
 require("punycode/");
 
 import SkipToMainContent from "comps/accessibility/skip_to_main_content";
+import CustomHotkeys from "comps/accessibility/hotkeys";
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
   return (
-    <div>
+    <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title> Живий світ: Магазин зоотоварів і товарів для дому </title>
@@ -79,6 +81,7 @@ export default function App({
 
       <SessionProvider session={session}>
         <Provider store={store}>
+          <CustomHotkeys />
           <SkipToMainContent mainContentId={"main_content"} />
           <Header />
           <Body>
@@ -87,7 +90,7 @@ export default function App({
           <Footer />
         </Provider>
       </SessionProvider>
-    </div>
+    </>
   );
 }
 
@@ -112,6 +115,7 @@ function Modals() {
     deleteAccountModalOpen,
     cartModalOpen,
     writeReviewModalOpen,
+    hotkeysModalOpen,
   } = useSelector((state) => state.modals);
 
   return (
@@ -122,6 +126,7 @@ function Modals() {
       {signUpModalOpen && <SignUpModal />}
       {writeReviewModalOpen && <WriteReviewModal />}
       {cartModalOpen && <CartModal />}
+      {hotkeysModalOpen && <HotkeysModal />}
     </Suspense>
   );
 }

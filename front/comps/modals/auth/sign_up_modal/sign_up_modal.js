@@ -13,7 +13,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
 
+import { useSession } from "next-auth/react";
+
 //todo input validation
+import CustomAlert from "comps/warnings/alert";
 
 const SignUpModal = () => {
   const dispatch = useDispatch();
@@ -21,6 +24,11 @@ const SignUpModal = () => {
 
   const toggle = () => dispatch(toggleSignUpModal());
   const toggleAlternative = () => dispatch(toggleSignInModal());
+
+  const { data: session } = useSession();
+  if (session) {
+    return <CustomAlert text={"Ви уже авторизовані 😌"} />;
+  }
 
   return (
     <>

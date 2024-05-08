@@ -17,7 +17,8 @@ const SearchBar = () => {
       onSubmit={handleSearch}
     >
       <input
-        disabled
+        id="search_bar_input"
+        // disabled
         className={`form-control ${s.search_field}`}
         type="search"
         placeholder="шукати..."

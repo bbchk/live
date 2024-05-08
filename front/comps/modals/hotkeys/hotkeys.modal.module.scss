@@ -1,0 +1,73 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.modal {
+  color: $color-blue-dasl;
+
+  .modal_body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: min-content min-content;
+    gap: 1rem;
+
+    overflow-y: auto;
+
+    grid-template-areas:
+      "general general"
+      "navigation focus";
+
+    .hotkeys_group {
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid $color-blue-dasl;
+
+      &.focus {
+        grid-area: focus;
+      }
+
+      &.general {
+        grid-area: general;
+      }
+
+      &.navigation {
+        grid-area: navigation;
+      }
+
+      .hotkey_item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 0.2rem;
+
+        p.keys {
+          display: inline-flex;
+          justify-content: flex-end;
+          gap: 0.5rem;
+
+          span {
+            padding: 0 10px;
+            min-width: 2.5rem;
+            border-radius: 5px;
+
+            text-align: center;
+
+            border: 1px solid $color-green-dur;
+            border-bottom-width: 2px;
+
+            background-color: $color-green-nyanza;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: min-content min-content min-content;
+      grid-template-areas:
+        "general"
+        "navigation"
+        "focus";
+    }
+  }
+}
