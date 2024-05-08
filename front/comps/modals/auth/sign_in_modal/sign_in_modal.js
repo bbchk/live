@@ -15,6 +15,7 @@ const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS;
 
 import { useSession } from "next-auth/react";
 import useTabTrap from "comps/accessibility/hooks/useTabbingTrap.js";
+import CustomAlert from "#root/comps/warnings/alert.js";
 
 //todo input validation
 //todo make modal responsive

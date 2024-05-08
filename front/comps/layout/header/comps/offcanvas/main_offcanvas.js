@@ -4,7 +4,12 @@ import MainOffcanvasHeader from "./comps/main.offcanv_header";
 import MainOffcanvasBody from "./comps/main.offcanv_body";
 
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMainOffcanvas } from "store/slices/global_comps/global_comps.slice";
+
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { MAIN_OFFCANVAS } = GLOBAL_COMPS;
 
 import { SwipeableDrawer, Box, Divider, Button } from "@mui/material";
 import {
@@ -18,7 +23,7 @@ export const MainOffcanvas = ({ id }) => {
   const { mainOffcanvasOpen } = useSelector((state) => state.modals);
 
   function handleToggle() {
-    dispatch(toggleMainOffcanvas());
+    dispatch(toggle(MAIN_OFFCANVAS));
   }
 
   return (
@@ -42,7 +47,7 @@ export const OffcanvasToggler = ({ id }) => {
   return (
     <Button
       className={`${s.offcanvas_toggler}`}
-      onClick={() => dispatch(toggleMainOffcanvas())}
+      onClick={() => dispatch(toggle(MAIN_OFFCANVAS))}
       aria-label="Меню"
     >
       <MenuRounded fontSize="large" />
