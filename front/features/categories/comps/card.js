@@ -23,7 +23,11 @@ const Card = ({ category, subcategories }) => {
 
   return (
     <div className={`${s.cat_card}`}>
-      <Link href={categoryPathSlug(category.path)} onClick={handleClick}>
+      <Link
+        href={categoryPathSlug(category.path)}
+        onClick={handleClick}
+        // aria-label={`Navigate to ${category.name}`}
+      >
         <ImageFallback
           src={category.imagePath}
           fallbackSrc={"/assets/goods_placeholder.svg"}

@@ -28,7 +28,7 @@ import {
   toggle,
   GLOBAL_COMPS,
 } from "store/slices/global_comps/global_comps.slice";
-const { SIGN_IN_MODAL, CART_MODAL } = GLOBAL_COMPS;
+const { SIGN_IN_MODAL, CART_MODAL, MAIN_OFFCANVAS } = GLOBAL_COMPS;
 
 function MainOffcanvasBody() {
   const dispatch = useDispatch();

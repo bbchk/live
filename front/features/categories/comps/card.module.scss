@@ -49,6 +49,10 @@ $radius: 0.7rem;
     list-style-type: disc;
 
     li {
+      a {
+        border-radius: 5px;
+      }
+
       &:hover {
         color: $color-blue-dasl;
         a {

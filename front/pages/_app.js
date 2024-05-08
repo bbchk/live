@@ -14,7 +14,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import { SessionProvider } from "next-auth/react";
 
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 
 const ChangePasswordModal = lazy(() =>
   import("comps/modals/change_password/change_password_modal")
@@ -96,6 +96,19 @@ export default function App({
 
 const Body = ({ children }) => {
   const { loading, mainOffcanvasOpen } = useSelector((state) => state.modals);
+
+  function handleFirstTab(e) {
+    if (e.key === "Tab" && e.keyCode === 9) {
+      document.body.classList.add("user-is-tabbing");
+      window.removeEventListener("keydown", handleFirstTab);
+    }
+  }
+
+  useEffect(() => {
+    if (window) {
+      window.addEventListener("keydown", handleFirstTab);
+    }
+  }, []);
 
   return (
     <div className={`min-vh-65 ${balsamiqSans.className}`}>

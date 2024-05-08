@@ -10,11 +10,27 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice.js";
+import { useDispatch } from "react-redux";
+const { MAIN_OFFCANVAS } = GLOBAL_COMPS;
+
 export default function MainOffcanvasHeader() {
+  const dispatch = useDispatch();
+
   return (
     <AppBar position="static" className={`${s.header}`}>
       <Toolbar>
-        <IconButton edge="start" aria-label="logo">
+        <IconButton
+          edge="start"
+          // disabled
+          aria-label="logo"
+          onClick={() => {
+            dispatch(toggle(MAIN_OFFCANVAS));
+          }}
+        >
           <Image
             src={"/assets/logo.svg"}
             alt="Логотип магазину"
