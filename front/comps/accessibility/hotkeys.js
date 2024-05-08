@@ -60,7 +60,12 @@ const CustomHotkeys = () => {
   // ctrl + b: Bookmark a product
   // ctrl + shift + b: View bookmarked produc
 
-  return null;
+  return (
+    <div
+      tabIndex={999}
+      aria-label="Доступні гарячі клавіші, щоб переглянути натисніть комбінацію клавіш shift+?"
+    />
+  );
 };
 
 export default CustomHotkeys;

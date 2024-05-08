@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
 import { useSession } from "next-auth/react";
+import useTabTrap from "comps/accessibility/hooks/useTabbingTrap.js";
 
 //todo input validation
 //todo make modal responsive
@@ -19,6 +20,8 @@ const SignInModal = () => {
 
   const toggle = () => dispatch(toggleSignInModal());
   const toggleAlternative = () => dispatch(toggleSignUpModal());
+
+  useTabTrap(signInModalOpen, "SignInModal");
 
   const { data: session } = useSession();
   if (session) {

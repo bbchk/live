@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
@@ -10,7 +10,9 @@ import { balsamiqSans } from "pages/_app";
 import s from "./auth_popover.module.scss";
 
 import { AccountCircleRounded } from "@mui/icons-material";
+import { set } from "#root/store/productsSlice.js";
 
+//todo work with focus and tabbing through popover
 const AuthPopover = () => {
   const dispatch = useDispatch();
 
@@ -37,6 +39,9 @@ const AuthPopover = () => {
     }, 250);
   };
 
+  const signInButtonRef = useRef(null);
+  const activeEl = useRef(null);
+
   const handleShow = () => {
     setShowPopover(true);
   };
@@ -55,6 +60,7 @@ const AuthPopover = () => {
       <Popover.Body>
         <div className={`${s.unsigned_popover} ${balsamiqSans.className}`}>
           <button
+            ref={signInButtonRef}
             className={` ${s.sign_in_button} button_submit`}
             onClick={handleSignIn}
           >
@@ -67,6 +73,10 @@ const AuthPopover = () => {
               href="/"
               onClick={handleSignUp}
               className={`${s.sign_up} icon-link`}
+              onBlur={() => {
+                setShowPopover(false);
+                setTimeout(() => activeEl.current.focus(), 0);
+              }}
             >
               Зареєструватись
             </Link>
@@ -78,19 +88,24 @@ const AuthPopover = () => {
 
   return (
     <li className={`${s.overlay_trigger}`} aria-label={"Персональний кабінет"}>
-      <OverlayTrigger
-        trigger={["hover", "focus"]}
-        placement="bottom"
-        overlay={unsignedPopover}
-        rootClose
-        show={showPopover}
-      >
-        <AccountCircleRounded
-          className={`${s.profile_icon}`}
-          onMouseEnter={handleShow}
-          onMouseLeave={handleHide}
-        />
-      </OverlayTrigger>
+      <button aria-label="Увійти або зареєструватись" onClick={handleSignIn}>
+        <OverlayTrigger
+          trigger={["hover", "focus"]}
+          placement="bottom"
+          overlay={unsignedPopover}
+          rootClose
+          show={showPopover}
+          onEntered={() =>
+            signInButtonRef.current && signInButtonRef.current.focus()
+          }
+        >
+          <AccountCircleRounded
+            className={`${s.profile_icon}`}
+            onMouseEnter={handleShow}
+            onMouseLeave={handleHide}
+          />
+        </OverlayTrigger>
+      </button>
     </li>
   );
 };

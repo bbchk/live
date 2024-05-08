@@ -80,10 +80,12 @@ import { toggleCartModal } from "store/modalSlice";
 
 import { balsamiqSans } from "pages/_app";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import CartItem from "./cart_item/cart_item";
 import Image from "next/image";
+
+import useTabTrap from "comps/accessibility/hooks/useTabbingTrap";
 
 const CartModal = () => {
   const dispatch = useDispatch();
@@ -94,6 +96,8 @@ const CartModal = () => {
   const [totalCost, setTotalCost] = useState(0);
 
   const cart = useMemo(() => user?.cart, [user?.cart]);
+
+  useTabTrap(cartModalOpen, "cartModal");
 
   //todo set cart items and total cost to localStorage on signOut
   useEffect(() => {
@@ -111,7 +115,7 @@ const CartModal = () => {
 
   return (
     <Modal
-      id="changePasswordModalOpen"
+      id="cartModal"
       show={cartModalOpen}
       onHide={() => dispatch(toggleCartModal())}
       centered
