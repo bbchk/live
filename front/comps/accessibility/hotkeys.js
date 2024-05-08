@@ -1,3 +1,5 @@
+import { sign } from "crypto";
+import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useDispatch } from "react-redux";
@@ -40,7 +42,10 @@ const CustomHotkeys = () => {
 
   //navigation
   useHotkeys("shift+h", () => navigateTo("/"));
+
   useHotkeys("shift+p", () => navigateTo("/profile/personal_data"));
+  useHotkeys("shift+w", () => navigateTo("/profile/wish_list"));
+  useHotkeys("shift+o", () => navigateTo("/profile/orders_list"));
 
   useHotkeys("shift+c", () => toggle(CART_MODAL), [dispatch]);
   useHotkeys("alt+shift+i", () => toggle(SIGN_IN_MODAL), [dispatch]);
@@ -50,6 +55,9 @@ const CustomHotkeys = () => {
   //focus management
   useHotkeys("ctrl+alt+f", () => focusOn("search_bar_input"));
   useHotkeys("ctrl+alt+m", () => focusOn("main_content"));
+
+  //user
+  useHotkeys("alt+shift+q", () => signOut({ callbackUrl: "/" }), [dispatch]);
 
   //todo for landing page
   // Shopping Cart Shortcuts: These can help users manage their shopping cart.

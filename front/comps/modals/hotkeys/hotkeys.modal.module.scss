@@ -7,14 +7,15 @@
   .modal_body {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: min-content min-content;
+    grid-template-rows: min-content min-content min-content;
     gap: 1rem;
 
     overflow-y: auto;
 
     grid-template-areas:
       "general general"
-      "navigation focus";
+      "navigation focus"
+      "not_auth_user auth_user";
 
     .hotkeys_group {
       padding: 0.5rem;
@@ -31,6 +32,15 @@
 
       &.navigation {
         grid-area: navigation;
+      }
+
+      &.user {
+        &.auth {
+          grid-area: auth_user;
+        }
+        &.not_auth {
+          grid-area: not_auth_user;
+        }
       }
 
       .hotkey_item {
@@ -63,7 +73,7 @@
 
     @media screen and (max-width: 992px) {
       grid-template-columns: 1fr;
-      grid-template-rows: min-content min-content min-content;
+      // grid-template-rows: min-content min-content min-content;
       grid-template-areas:
         "general"
         "navigation"

@@ -12,10 +12,13 @@ import { balsamiqSans } from "pages/_app";
 import { KeyboardRounded } from "@mui/icons-material";
 import { useId } from "react";
 import useTabTrap from "comps/accessibility/hooks/useTabbingTrap.js";
+import { useSession } from "next-auth/react";
 
 const HotkeysModal = () => {
   const dispatch = useDispatch();
   const { hotkeysModalOpen } = useSelector((state) => state.modals);
+
+  const { data: session } = useSession();
 
   useTabTrap(hotkeysModalOpen, "hotkeysModal");
 
@@ -47,16 +50,7 @@ const HotkeysModal = () => {
             dscrpt={"Перейти на домашню сторінку"}
             hk={["shift", "h"]}
           />
-          <HotkeyItem dscrpt={"Перейти до профілю"} hk={["shift", "p"]} />
           <HotkeyItem dscrpt={"Відкрити кошик покупок"} hk={["shift", "c"]} />
-          <HotkeyItem
-            dscrpt={"Відкрити модальне вікно входу"}
-            hk={["alt", "shift", "i"]}
-          />
-          <HotkeyItem
-            dscrpt={"Відкрити вікно реєстрації"}
-            hk={["alt", "shift", "u"]}
-          />
           <HotkeyItem
             dscrpt={"Відкрити бокове меню"}
             hk={["alt", "shift", "o"]}
@@ -71,6 +65,38 @@ const HotkeysModal = () => {
             dscrpt={"Фокусуватись на основному вмісті"}
             hk={["ctrl", "alt", "m"]}
           />
+        </menu>
+
+        <menu className={`${s.hotkeys_group} ${s.user} ${s.auth}`}>
+          <HotkeyItem
+            dscrpt={"Перейти до особистого кабінету"}
+            hk={["shift", "p"]}
+          />
+
+          <HotkeyItem
+            dscrpt={"Перейти до списку бажаного"}
+            hk={["shift", "w"]}
+          />
+          <HotkeyItem
+            dscrpt={"Перейти до моїх замовлень"}
+            hk={["shift", "o"]}
+          />
+          <HotkeyItem
+            dscrpt={"Вийти з облікового запису"}
+            hk={["alt", "shift", "q"]}
+          />
+        </menu>
+        <menu className={`${s.hotkeys_group} ${s.user} ${s.not_auth}`}>
+          <>
+            <HotkeyItem
+              dscrpt={"Зареєструвати обліковий запис"}
+              hk={["alt", "shift", "u"]}
+            />
+            <HotkeyItem
+              dscrpt={"Увійти в обліковий запис"}
+              hk={["alt", "shift", "i"]}
+            />
+          </>
         </menu>
       </Modal.Body>
     </Modal>
