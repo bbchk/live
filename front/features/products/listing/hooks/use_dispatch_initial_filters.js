@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { setFilters } from "store/filtersSlice";
+import { setFilters } from "store/slices/filters.slice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 

@@ -4,7 +4,7 @@ import lcs from "../listing.product_card.module.scss";
 import Image from "next/image";
 import StarRating from "comps/rating/star_rating";
 import { useDispatch } from "react-redux";
-import { startLoading } from "store/modalSlice";
+import { startLoading } from "store/slices/global_comps/global_comps.slice";
 
 //use rating from product
 const ProductRating = ({ product, productUrl }) => {

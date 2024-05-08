@@ -8,8 +8,8 @@ import { useRouter } from "next/router";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { deleteAllFilters } from "store/filtersSlice";
-import { startLoading } from "store/modalSlice.js";
+import { deleteAllFilters } from "store/slices/filters.slice";
+import { startLoading } from "store/slices/global_comps/global_comps.slice.js";
 
 const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
   const dispatch = useDispatch();

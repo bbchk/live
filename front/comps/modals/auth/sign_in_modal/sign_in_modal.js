@@ -7,7 +7,12 @@ import SignInFormByCredentials from "./sign_in_form_by_credentials";
 import SignFormByServices from "../sign_form_by_services";
 import { useDispatch, useSelector } from "react-redux";
 
-import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
+import {
+  toggle as tg,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS;
+
 import { useSession } from "next-auth/react";
 import useTabTrap from "comps/accessibility/hooks/useTabbingTrap.js";
 
@@ -18,8 +23,8 @@ const SignInModal = () => {
   const dispatch = useDispatch();
   const { signInModalOpen } = useSelector((state) => state.modals);
 
-  const toggle = () => dispatch(toggleSignInModal());
-  const toggleAlternative = () => dispatch(toggleSignUpModal());
+  const toggle = () => dispatch(tg(SIGN_IN_MODAL));
+  const toggleAlternative = () => dispatch(tg(SIGN_UP_MODAL));
 
   useTabTrap(signInModalOpen, "SignInModal");
 

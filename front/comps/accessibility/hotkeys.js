@@ -1,20 +1,26 @@
 import { useRouter } from "next/router";
 import { useHotkeys } from "react-hotkeys-hook";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  toggleHotkeysModalOpen,
-  toggleCartModal,
-  toggleSignUpModal,
-  toggleSignInModal,
-  toggleMainOffcanvas,
-} from "store/modalSlice";
+import { useDispatch } from "react-redux";
+import { toggle as toggleGlobalComponent } from "store/slices/global_comps/global_comps.slice";
+import { GLOBAL_COMPS } from "store/slices/global_comps/global_comps.slice";
+const {
+  MAIN_OFFCANVAS,
+  HOTKEYS_MODAL,
+  SIGN_IN_MODAL,
+  SIGN_UP_MODAL,
+  CART_MODAL,
+  // FILTER_OFFCANVAS,
+  // CHANGE_PASSWORD_MODAL,
+  // DELETE_ACCOUNT_MODAL,
+  // WRITE_REVIEW_MODAL,
+} = GLOBAL_COMPS;
 
 const CustomHotkeys = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  function open(openModal) {
-    dispatch(openModal());
+  function toggle(compName) {
+    dispatch(toggleGlobalComponent(compName));
   }
 
   function navigateTo(path) {
@@ -30,16 +36,16 @@ const CustomHotkeys = () => {
   }
 
   //general
-  useHotkeys("shift+?", () => open(toggleHotkeysModalOpen), [dispatch]);
+  useHotkeys("shift+?", () => toggle(HOTKEYS_MODAL), [dispatch]);
 
   //navigation
   useHotkeys("shift+h", () => navigateTo("/"));
   useHotkeys("shift+p", () => navigateTo("/profile/personal_data"));
 
-  useHotkeys("shift+c", () => open(toggleCartModal), [dispatch]);
-  useHotkeys("alt+shift+i", () => open(toggleSignInModal), [dispatch]);
-  useHotkeys("alt+shift+u", () => open(toggleSignUpModal), [dispatch]);
-  useHotkeys("alt+shift+o", () => open(toggleMainOffcanvas), [dispatch]);
+  useHotkeys("shift+c", () => toggle(CART_MODAL), [dispatch]);
+  useHotkeys("alt+shift+i", () => toggle(SIGN_IN_MODAL), [dispatch]);
+  useHotkeys("alt+shift+u", () => toggle(SIGN_UP_MODAL), [dispatch]);
+  useHotkeys("alt+shift+o", () => toggle(MAIN_OFFCANVAS), [dispatch]);
 
   //focus management
   useHotkeys("ctrl+alt+f", () => focusOn("search_bar_input"));
@@ -63,7 +69,7 @@ const CustomHotkeys = () => {
   return (
     <div
       tabIndex={999}
-      aria-label="Доступні гарячі клавіші, щоб переглянути натисніть комбінацію клавіш shift+?"
+      aria-label="Доступні гарячі клавіші, щоб переглянути їх натисніть комбінацію клавіш shift+?"
     />
   );
 };

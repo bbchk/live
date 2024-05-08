@@ -1,7 +1,7 @@
 // import s from "./cart_modal.module.scss";
 
 // import { useDispatch, useSelector } from "react-redux";
-// import { toggleCartModal } from "store/modalSlice";
+// import { toggleCartModal } from "store/slices/global_comps/global_comps.slice";
 
 // import { balsamiqSans } from "pages/_app";
 
@@ -76,7 +76,11 @@ import { Modal } from "react-bootstrap";
 import s from "./cart_modal.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCartModal } from "store/modalSlice";
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { CART_MODAL } = GLOBAL_COMPS;
 
 import { balsamiqSans } from "pages/_app";
 
@@ -117,7 +121,7 @@ const CartModal = () => {
     <Modal
       id="cartModal"
       show={cartModalOpen}
-      onHide={() => dispatch(toggleCartModal())}
+      onHide={() => dispatch(toggle(CART_MODAL))}
       centered
       fullscreen="lg-down"
       size="xl"
@@ -160,7 +164,7 @@ const CartModal = () => {
                 <li>
                   <button
                     className={`button_primary`}
-                    onClick={() => dispatch(toggleCartModal())}
+                    onClick={() => dispatch(toggle(CART_MODAL))}
                   >
                     Продовжити покупки
                   </button>

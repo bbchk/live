@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useDispatch } from "react-redux";
-import { addToCart, deleteCartItem } from "store/userSlice";
+import { addToCart, deleteCartItem } from "store/slices/user.slice";
 export const useCart = () => {
   const { data: session, update } = useSession();
   const dispatch = useDispatch();

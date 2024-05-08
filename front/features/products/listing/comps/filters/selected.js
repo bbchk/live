@@ -1,8 +1,8 @@
 import s from "./selected.module.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteAllFilters } from "store/filtersSlice";
+import { deleteAllFilters } from "store/slices/filters.slice";
 import { useRouter } from "next/router";
-import { startLoading } from "store/modalSlice.js";
+import { startLoading } from "store/slices/global_comps/global_comps.slice.js";
 
 const Selected = ({ productsCount }) => {
   const router = useRouter();

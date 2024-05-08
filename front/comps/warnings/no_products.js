@@ -3,7 +3,7 @@ import s from "./no_products.module.scss";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { startLoading } from "store/modalSlice";
+import { startLoading } from "store/slices/global_comps/global_comps.slice";
 
 const NoProductYet = () => {
   const dispatch = useDispatch();

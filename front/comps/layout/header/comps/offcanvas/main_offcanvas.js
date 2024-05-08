@@ -4,7 +4,7 @@ import MainOffcanvasHeader from "./comps/main.offcanv_header";
 import MainOffcanvasBody from "./comps/main.offcanv_body";
 
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMainOffcanvas } from "store/modalSlice";
+import { toggleMainOffcanvas } from "store/slices/global_comps/global_comps.slice";
 
 import { SwipeableDrawer, Box, Divider, Button } from "@mui/material";
 import {

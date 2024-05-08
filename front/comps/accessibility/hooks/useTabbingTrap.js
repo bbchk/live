@@ -13,6 +13,7 @@ const useTabTrap = (modalOpen, modalId) => {
         );
 
         const firstEl = focusableEls.at(0);
+
         const lastEl = focusableEls.at(-1);
 
         const shiftKey = event.shiftKey;

@@ -7,7 +7,7 @@ import PasswordInputField from "comps/input_fields/password_input_field";
 import { signIn, getSession } from "next-auth/react";
 import { useCart } from "hooks/useCart";
 import { useDispatch } from "react-redux";
-import { setCart } from "store/userSlice";
+import { setCart } from "store/slices/user.slice";
 
 const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const [email, setEmail] = useState("");

@@ -5,11 +5,16 @@ import s from "./change_password_modal.module.scss";
 // import Link from "next/link";
 
 import { useDispatch, useSelector } from "react-redux";
-import { toggleChangePasswordModal } from "store/modalSlice";
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { CHANGE_PASSWORD_MODAL } = GLOBAL_COMPS;
 
 import PasswordInputField from "comps/input_fields/password_input_field";
 import { useEffect, useState } from "react";
 import { balsamiqSans } from "pages/_app";
+import useTabTrap from "comps/accessibility/hooks/useTabbingTrap.js";
 
 //todo input validation
 //todo make modal responsive
@@ -17,6 +22,8 @@ import { balsamiqSans } from "pages/_app";
 const ChangePasswordModal = () => {
   const dispatch = useDispatch();
   const { changePasswordModalOpen } = useSelector((state) => state.modals);
+
+  useTabTrap(changePasswordModalOpen, "changePasswordModal");
 
   const [hasBeenBeingModified, setHasBeenBeingModified] = useState(false);
 
@@ -43,9 +50,9 @@ const ChangePasswordModal = () => {
 
   return (
     <Modal
-      id="changePasswordModalOpen"
+      id="changePasswordModal"
       show={changePasswordModalOpen}
-      onHide={() => dispatch(toggleChangePasswordModal())}
+      onHide={() => dispatch(toggle(CHANGE_PASSWORD_MODAL))}
       centered
       className={`${s.modal} ${balsamiqSans.className}`}
     >
@@ -99,7 +106,7 @@ const ChangePasswordModal = () => {
                 type="button"
                 onClick={() => {
                   setHasBeenBeingModified(false);
-                  dispatch(toggleChangePasswordModal());
+                  dispatch(toggle(CHANGE_PASSWORD_MODAL));
                 }}
               >
                 Скасувати
@@ -115,7 +122,7 @@ const ChangePasswordModal = () => {
                 disabled={!hasBeenBeingModified}
                 onClick={() => {
                   setHasBeenBeingModified(false);
-                  dispatch(toggleChangePasswordModal());
+                  dispatch(toggle(CHANGE_PASSWORD_MODAL));
                 }}
               >
                 Зберегти

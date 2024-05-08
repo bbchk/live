@@ -1,7 +1,7 @@
 import s from "./checkbox.module.scss";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { startLoading } from "store/modalSlice";
+import { startLoading } from "store/slices/global_comps/global_comps.slice";
 
 const CheckBox = ({ id, label, checked, handleChange }) => {
   const dispatch = useDispatch();

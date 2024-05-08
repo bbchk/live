@@ -2,8 +2,13 @@ import s from "./security.module.scss";
 import card_s from "./../card.module.scss";
 import { Card } from "react-bootstrap";
 
-import { useDispatch, useSelector } from "react-redux";
-import { toggleChangePasswordModal } from "store/modalSlice";
+import { useDispatch } from "react-redux";
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { CHANGE_PASSWORD_MODAL } = GLOBAL_COMPS;
+
 import { signOut } from "next-auth/react";
 
 const Security = () => {
@@ -15,7 +20,7 @@ const Security = () => {
         <h5>Безпека</h5>
       </Card.Header>
       <Card.Body className={`${card_s.body} ${s.security}`}>
-        <button onClick={() => dispatch(toggleChangePasswordModal())}>
+        <button onClick={() => dispatch(toggle(CHANGE_PASSWORD_MODAL))}>
           Змінити пароль?
         </button>
         <button

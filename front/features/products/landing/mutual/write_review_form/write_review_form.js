@@ -15,7 +15,11 @@ import ImageLoad from "comps/image/image_load";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { toggleWriteReviewModal } from "store/modalSlice";
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { WRITE_REVIEW_MODAL } = GLOBAL_COMPS;
 
 const WriteReviewForm = () => {
   const dispatch = useDispatch();
@@ -32,7 +36,7 @@ const WriteReviewForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (writeReviewModal) {
-      dispatch(toggleWriteReviewModal());
+      dispatch(toggle(WRITE_REVIEW_MODAL));
     }
     // console.log(review);
     // const ALL_STARS = 5;

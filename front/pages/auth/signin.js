@@ -2,8 +2,12 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 
-import { toggleSignInModal } from "store/modalSlice";
-import { useEffect, useRef } from "react";
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { SIGN_IN_MODAL } = GLOBAL_COMPS;
+import { useEffect } from "react";
 
 const SignIn = () => {
   const router = useRouter();
@@ -13,7 +17,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (!session) {
-      dispatch(toggleSignInModal());
+      dispatch(toggle(SIGN_IN_MODAL));
     } else {
       router.push("/profile/personal_data");
     }

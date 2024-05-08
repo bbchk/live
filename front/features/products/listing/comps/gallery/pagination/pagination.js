@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 
 import s from "./pagination.module.scss";
-import { startLoading } from "store/modalSlice";
+import { startLoading } from "store/slices/global_comps/global_comps.slice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 

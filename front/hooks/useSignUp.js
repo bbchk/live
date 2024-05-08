@@ -2,7 +2,7 @@ import axios from "axios";
 import { setCookie } from "nookies";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { signIn } from "store/userSlice";
+import { signIn } from "store/slices/user.slice";
 
 export const useSignUp = () => {
   const [error, setError] = useState(null);

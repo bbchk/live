@@ -4,13 +4,18 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import { useDispatch } from "react-redux";
 
-import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS;
+
 import { balsamiqSans } from "pages/_app";
 
 import s from "./auth_popover.module.scss";
 
 import { AccountCircleRounded } from "@mui/icons-material";
-import { set } from "#root/store/productsSlice.js";
+import { set } from "#root/store/slices/products.slice.js";
 
 //todo work with focus and tabbing through popover
 const AuthPopover = () => {
@@ -20,12 +25,12 @@ const AuthPopover = () => {
 
   const handleSignIn = async (e) => {
     closePopover();
-    dispatch(toggleSignInModal());
+    dispatch(toggle(SIGN_IN_MODAL));
   };
 
   const handleSignUp = async (e) => {
     closePopover();
-    dispatch(toggleSignUpModal());
+    dispatch(toggle(SIGN_UP_MODAL));
   };
 
   const [showPopover, setShowPopover] = useState(false);

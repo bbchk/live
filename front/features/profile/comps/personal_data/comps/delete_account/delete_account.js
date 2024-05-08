@@ -2,7 +2,12 @@ import s from "./delete_account.module.scss";
 import card_s from "./../card.module.scss";
 import { Card } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { toggleDeleteAccountModal } from "store/modalSlice";
+
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { DELETE_ACCOUNT_MODAL } = GLOBAL_COMPS;
 
 const DeleteAccount = () => {
   const dispatch = useDispatch();
@@ -22,7 +27,7 @@ const DeleteAccount = () => {
           className="button_danger"
           onClick={() => {
             //todo delete account
-            dispatch(toggleDeleteAccountModal());
+            dispatch(toggle(DELETE_ACCOUNT_MODAL));
             // signOut({ callbackUrl: "/" });
           }}
         >

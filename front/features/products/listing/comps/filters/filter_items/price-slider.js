@@ -2,9 +2,9 @@ import Slider from "@mui/material/Slider";
 import React, { use, useEffect, useState } from "react";
 import s from "./price-slider.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilter } from "store/filtersSlice";
+import { setFilter } from "store/slices/filters.slice";
 import { useRouter } from "next/router";
-import { startLoading } from "store/modalSlice.js";
+import { startLoading } from "store/slices/global_comps/global_comps.slice.js";
 
 //todo inconsistent currentMinMax, it changes on page refresh, when set on some points lower
 const PriceSlider = ({ minMax }) => {

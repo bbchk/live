@@ -7,7 +7,7 @@ import s from "./figure.module.scss";
 import lcs from "../listing.product_card.module.scss";
 import { useDispatch } from "react-redux";
 
-import { startLoading } from "store/modalSlice";
+import { startLoading } from "store/slices/global_comps/global_comps.slice";
 
 const ProductFigure = ({ product, productUrl }) => {
   const dispatch = useDispatch();

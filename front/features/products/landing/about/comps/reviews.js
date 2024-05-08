@@ -9,7 +9,11 @@ import Link from "next/link";
 
 import { useDispatch } from "react-redux";
 
-import { toggleWriteReviewModal } from "store/modalSlice";
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { WRITE_REVIEW_MODAL } = GLOBAL_COMPS;
 import WriteReviewForm from "../../mutual/write_review_form/write_review_form";
 import { useRouter } from "next/router";
 
@@ -43,7 +47,7 @@ const Reviews = ({ product }) => {
               <span>{amountOfReviews}</span>
             </h2>
             <button
-              onClick={() => dispatch(toggleWriteReviewModal())}
+              onClick={() => dispatch(toggle(WRITE_REVIEW_MODAL))}
               className={`${s.write_review_btn} button_primary`}
             >
               <p>Написати відгук</p>

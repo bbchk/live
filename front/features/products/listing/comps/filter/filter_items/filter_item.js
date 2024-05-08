@@ -3,13 +3,13 @@ import s from "./filter_item.module.scss";
 import CheckBox from "comps/input_fields/checkbox";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addFilter } from "store/filtersSlice";
+import { addFilter } from "store/slices/filters.slice";
 import { useEffect, useState } from "react";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import { slugify } from "@bbuukk/slugtrans/slugify";
-import { setFilter, deleteFilter } from "store/filtersSlice";
+import { setFilter, deleteFilter } from "store/slices/filters.slice";
 
-import { startLoading } from "store/modalSlice";
+import { startLoading } from "store/slices/global_comps/global_comps.slice";
 
 // sometimes activeOptions is undefined when checkbox gets unchecked, but not always, further more it does depend on value of checkbox
 const FilterChecks = ({ filterLabel, options, idx }) => {

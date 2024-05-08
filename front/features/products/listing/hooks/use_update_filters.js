@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilters } from "store/filtersSlice";
+import { setFilters } from "store/slices/filters.slice";
 
 const genFiltersStr = (filters) => {
   let filtersStr = "";

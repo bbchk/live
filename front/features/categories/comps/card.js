@@ -7,7 +7,7 @@ import Image from "next/image";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
-import { startLoading } from "store/modalSlice.js";
+import { startLoading } from "store/slices/global_comps/global_comps.slice.js";
 import ImageFallback from "comps/image/fallback_image.js";
 
 const Card = ({ category, subcategories }) => {

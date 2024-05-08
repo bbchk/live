@@ -2,21 +2,28 @@ import { Modal } from "react-bootstrap";
 import s from "./hotkeys.modal.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { toggleHotkeysModalOpen } from "store/modalSlice";
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { HOTKEYS_MODAL } = GLOBAL_COMPS;
 
 import { balsamiqSans } from "pages/_app";
 import { KeyboardRounded } from "@mui/icons-material";
 import { useId } from "react";
+import useTabTrap from "comps/accessibility/hooks/useTabbingTrap.js";
 
 const HotkeysModal = () => {
   const dispatch = useDispatch();
   const { hotkeysModalOpen } = useSelector((state) => state.modals);
 
-  const toggleModal = () => dispatch(toggleHotkeysModalOpen());
+  useTabTrap(hotkeysModalOpen, "hotkeysModal");
+
+  const toggleModal = () => dispatch(toggle(HOTKEYS_MODAL));
 
   return (
     <Modal
-      id="HotkeysModalOpen"
+      id="hotkeysModal"
       show={hotkeysModalOpen}
       onHide={toggleModal}
       centered

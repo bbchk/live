@@ -3,11 +3,11 @@ import Link from "next/link";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteAllFilters } from "store/filtersSlice";
+import { deleteAllFilters } from "store/slices/filters.slice";
 
-import { startLoading } from "store/modalSlice";
+import { startLoading } from "store/slices/global_comps/global_comps.slice";
 
-import { getCategoriesInfo } from "store/categoriesSlice";
+import { getCategoriesInfo } from "store/slices/categories.slice";
 import { useEffect } from "react";
 
 const Breadcrumbs = ({ category }) => {

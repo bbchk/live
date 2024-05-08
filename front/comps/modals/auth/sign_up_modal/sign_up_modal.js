@@ -11,19 +11,26 @@ import SignUpForm from "./sign_up_form_by_credentials";
 import { useSelector } from "react-redux";
 
 import { useDispatch } from "react-redux";
-import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
+import {
+  toggle as tg,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS;
 
 import { useSession } from "next-auth/react";
 
 //todo input validation
 import CustomAlert from "comps/warnings/alert";
+import useTabTrap from "#root/comps/accessibility/hooks/useTabbingTrap.js";
 
 const SignUpModal = () => {
   const dispatch = useDispatch();
   const { signUpModalOpen } = useSelector((state) => state.modals);
 
-  const toggle = () => dispatch(toggleSignUpModal());
-  const toggleAlternative = () => dispatch(toggleSignInModal());
+  const toggle = () => dispatch(tg(SIGN_UP_MODAL));
+  const toggleAlternative = () => dispatch(tg(SIGN_IN_MODAL));
+
+  useTabTrap(signUpModalOpen, "signUpModal");
 
   const { data: session } = useSession();
   if (session) {
@@ -33,7 +40,7 @@ const SignUpModal = () => {
   return (
     <>
       <Modal
-        id="changePasswordModal"
+        id="signUpModal"
         show={signUpModalOpen}
         onHide={toggle}
         fullscreen="md-down"

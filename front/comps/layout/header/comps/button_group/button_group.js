@@ -2,7 +2,12 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 import { useDispatch } from "react-redux";
-import { toggleCartModal } from "store/modalSlice";
+
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { CART_MODAL } = GLOBAL_COMPS;
 
 import hs from "../../header.module.scss";
 
@@ -61,7 +66,7 @@ const ButtonGroup = () => {
 
         <IconButton
           tooltipText={"Кошик покупок"}
-          onClick={() => dispatch(toggleCartModal())}
+          onClick={() => dispatch(toggle(CART_MODAL))}
           id="header_cart_btn"
         >
           <ShoppingCartRounded />

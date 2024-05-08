@@ -2,9 +2,14 @@ import { Modal } from "react-bootstrap";
 import s from "./delete_account_modal.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { toggleDeleteAccountModal } from "store/modalSlice";
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { DELETE_ACCOUNT_MODAL } = GLOBAL_COMPS;
 
 import { balsamiqSans } from "pages/_app";
+import useTabTrap from "comps/accessibility/hooks/useTabbingTrap.js";
 
 const DeleteAccountModal = () => {
   const dispatch = useDispatch();
@@ -15,11 +20,13 @@ const DeleteAccountModal = () => {
     //todo implement delete account logic
   };
 
-  const toggleModal = () => dispatch(toggleDeleteAccountModal());
+  const toggleModal = () => dispatch(toggle(DELETE_ACCOUNT_MODAL));
+
+  useTabTrap(deleteAccountModalOpen, "deleteAccountModal");
 
   return (
     <Modal
-      id="DeleteAccountModalOpen"
+      id="deleteAccountModal"
       show={deleteAccountModalOpen}
       onHide={toggleModal}
       centered

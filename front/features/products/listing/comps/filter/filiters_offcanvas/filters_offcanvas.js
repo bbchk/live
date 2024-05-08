@@ -9,10 +9,14 @@ import { useRouter } from "next/router";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { deleteAllFilters } from "store/filtersSlice";
-import { startLoading } from "store/modalSlice.js";
+import { deleteAllFilters } from "store/slices/filters.slice";
+import { startLoading } from "store/slices/global_comps/global_comps.slice.js";
 
-import { toggleFilterOffcanvas } from "store/modalSlice";
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { FILTER_OFFCANVAS } = GLOBAL_COMPS;
 
 const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
   const dispatch = useDispatch();
@@ -27,7 +31,7 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
   //todo make filterItems in filtersAccordion unique
 
   function handleToggle() {
-    dispatch(toggleFilterOffcanvas());
+    dispatch(toggle(FILTER_OFFCANVAS));
   }
 
   return (

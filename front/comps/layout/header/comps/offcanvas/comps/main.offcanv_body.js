@@ -21,13 +21,14 @@ import {
 import { balsamiqSans } from "#root/pages/_app.js";
 
 import { signOut, useSession } from "next-auth/react";
-import {
-  toggleCartModal,
-  toggleSignInModal,
-  toggleMainOffcanvas,
-} from "store/modalSlice";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
+
+import {
+  toggle,
+  GLOBAL_COMPS,
+} from "store/slices/global_comps/global_comps.slice";
+const { SIGN_IN_MODAL, CART_MODAL } = GLOBAL_COMPS;
 
 function MainOffcanvasBody() {
   const dispatch = useDispatch();
@@ -70,7 +71,7 @@ function MainOffcanvasBody() {
             <List>
               <ItemButton
                 text="Увійти в акаунт"
-                onClick={() => dispatch(toggleSignInModal())}
+                onClick={() => dispatch(toggle(SIGN_IN_MODAL))}
               >
                 <AccountCircle />
               </ItemButton>
@@ -85,7 +86,7 @@ function MainOffcanvasBody() {
           text="Кошик покупок"
           component="button"
           onClick={() => {
-            dispatch(toggleCartModal());
+            dispatch(toggle(CART_MODAL));
           }}
         >
           <ShoppingCart />
@@ -152,7 +153,7 @@ const ItemButton = ({ text, onClick, children }) => {
       text={text}
       component="button"
       onClick={() => {
-        dispatch(toggleMainOffcanvas());
+        dispatch(toggle(MAIN_OFFCANVAS));
         onClick();
       }}
     >
