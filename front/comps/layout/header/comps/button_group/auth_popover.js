@@ -18,6 +18,7 @@ import { AccountCircleRounded } from "@mui/icons-material";
 import useDoOnKey from "hooks/useDoOnKey";
 
 const AuthPopover = () => {
+  const isHoveredRef = useRef(false);
   const lastFocusedElement = useRef(null);
   const signInButton = useRef(null);
 
@@ -26,18 +27,21 @@ const AuthPopover = () => {
   const [showPopover, setShowPopover] = useState(false);
 
   const handleHide = () => {
-    lastFocusedElement.current && lastFocusedElement.current.focus();
     setTimeout(() => {
-      setShowPopover(false);
-    }, 300);
+      if (!isHoveredRef.current) {
+        lastFocusedElement.current && lastFocusedElement.current.focus();
+        setShowPopover(false);
+      }
+    }, 100);
   };
 
   const handleShow = () => {
     lastFocusedElement.current = document.activeElement;
     setShowPopover(true);
     setTimeout(() => {
-      signInButton.current.focus({ preventScroll: true });
-    }, 300);
+      signInButton.current &&
+        signInButton.current.focus({ preventScroll: true });
+    }, 0);
   };
 
   useDoOnKey("Escape", handleHide);
@@ -46,7 +50,14 @@ const AuthPopover = () => {
     <Popover
       id="authPopover"
       className={`${s.auth_popover}`}
-      onMouseEnter={handleShow}
+      onMouseEnter={() => {
+        isHoveredRef.current = true;
+        handleShow();
+      }}
+      onMouseLeave={() => {
+        isHoveredRef.current = false;
+        handleHide();
+      }}
     >
       <Popover.Body onMouseLeave={handleHide}>
         <div className={`${s.unsigned_popover} ${balsamiqSans.className}`}>
