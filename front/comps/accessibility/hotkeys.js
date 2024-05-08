@@ -45,6 +45,7 @@ const CustomHotkeys = () => {
   useHotkeys("ctrl+alt+f", () => focusOn("search_bar_input"));
   useHotkeys("ctrl+alt+m", () => focusOn("main_content"));
 
+  //todo for landing page
   // Shopping Cart Shortcuts: These can help users manage their shopping cart.
   // ctrl + shift + a: Add selected product to the cart
   // ctrl + shift + r: Remove selected product from the cart

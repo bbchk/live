@@ -31,7 +31,7 @@ const HotkeysModal = () => {
       <Modal.Body className={`${s.modal_body}`}>
         <menu className={`${s.hotkeys_group} ${s.general}`}>
           <HotkeyItem
-            dscrpt={"Відкрити модальне вікно гарячих клавіш"}
+            dscrpt={"Відкрити вікно гарячих клавіш"}
             hk={["shift", "?"]}
           />
         </menu>
@@ -41,30 +41,27 @@ const HotkeysModal = () => {
             hk={["shift", "h"]}
           />
           <HotkeyItem dscrpt={"Перейти до профілю"} hk={["shift", "p"]} />
-          <HotkeyItem
-            dscrpt={"Відкрити модальне вікно кошика"}
-            hk={["shift", "c"]}
-          />
+          <HotkeyItem dscrpt={"Відкрити кошик покупок"} hk={["shift", "c"]} />
           <HotkeyItem
             dscrpt={"Відкрити модальне вікно входу"}
             hk={["alt", "shift", "i"]}
           />
           <HotkeyItem
-            dscrpt={"Відкрити модальне вікно реєстрації"}
+            dscrpt={"Відкрити вікно реєстрації"}
             hk={["alt", "shift", "u"]}
           />
           <HotkeyItem
-            dscrpt={"Відкрити головне вікно offcanvas"}
+            dscrpt={"Відкрити бокове меню"}
             hk={["alt", "shift", "o"]}
           />
         </menu>
         <menu className={`${s.hotkeys_group} ${s.focus}`}>
           <HotkeyItem
-            dscrpt={"Фокус на рядку пошуку"}
+            dscrpt={"Фокусуватись на пошуку"}
             hk={["ctrl", "alt", "f"]}
           />
           <HotkeyItem
-            dscrpt={"Фокус на основному вмісті"}
+            dscrpt={"Фокусуватись на основному вмісті"}
             hk={["ctrl", "alt", "m"]}
           />
         </menu>
