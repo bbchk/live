@@ -12,7 +12,7 @@ const IconButton = ({
   ...props
 }) => {
   return (
-    <li onClick={onClick} {...props}>
+    <li onClick={onClick} tabIndex={0} {...props}>
       <CustomTooltip tooltipText={tooltipText}>
         <Link className={`${s.icon_btn}`} href={href} aria-label={tooltipText}>
           {children}

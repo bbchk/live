@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
@@ -15,54 +15,48 @@ import { balsamiqSans } from "pages/_app";
 import s from "./auth_popover.module.scss";
 
 import { AccountCircleRounded } from "@mui/icons-material";
+import useDoOnKey from "hooks/useDoOnKey";
 
-//todo work with focus and tabbing through popover
 const AuthPopover = () => {
+  const lastFocusedElement = useRef(null);
+  const signInButton = useRef(null);
+
   const dispatch = useDispatch();
-
-  const closePopover = () => document.body.click();
-
-  const handleSignIn = async (e) => {
-    closePopover();
-    dispatch(toggle(SIGN_IN_MODAL));
-  };
-
-  const handleSignUp = async (e) => {
-    closePopover();
-    dispatch(toggle(SIGN_UP_MODAL));
-  };
 
   const [showPopover, setShowPopover] = useState(false);
 
-  let popoverhover = false;
   const handleHide = () => {
+    lastFocusedElement.current && lastFocusedElement.current.focus();
     setTimeout(() => {
-      if (!popoverhover) {
-        setShowPopover(false);
-      }
+      setShowPopover(false);
     }, 250);
   };
 
   const handleShow = () => {
+    lastFocusedElement.current = document.activeElement;
     setShowPopover(true);
+    setTimeout(() => {
+      signInButton.current.focus({ preventScroll: true });
+    }, 250);
   };
+
+  useDoOnKey("Escape", handleHide);
 
   const unsignedPopover = (
     <Popover
+      id="authPopover"
       className={`${s.auth_popover}`}
-      onMouseLeave={() => {
-        setShowPopover(false);
-        popoverhover = false;
-      }}
-      onMouseEnter={() => {
-        popoverhover = true;
-      }}
+      onMouseEnter={handleShow}
     >
-      <Popover.Body>
+      <Popover.Body onMouseLeave={handleHide}>
         <div className={`${s.unsigned_popover} ${balsamiqSans.className}`}>
           <button
+            ref={signInButton}
             className={` ${s.sign_in_button} button_submit`}
-            onClick={handleSignIn}
+            onClick={() => {
+              setShowPopover(false);
+              dispatch(toggle(SIGN_IN_MODAL));
+            }}
           >
             <p>Увійти</p>
           </button>
@@ -71,11 +65,22 @@ const AuthPopover = () => {
             <span>Не зареєстровані? </span>
             <Link
               href="/"
-              onClick={handleSignUp}
+              onClick={() => {
+                setShowPopover(false);
+                dispatch(toggle(SIGN_UP_MODAL));
+              }}
               className={`${s.sign_up} icon-link`}
             >
               Зареєструватись
             </Link>
+            <div
+              className="visually_hidden"
+              tabIndex={0}
+              onFocus={(e) => {
+                e.preventDefault();
+                handleHide();
+              }}
+            />
           </p>
         </div>
       </Popover.Body>
@@ -92,11 +97,16 @@ const AuthPopover = () => {
           rootClose
           show={showPopover}
         >
-          <AccountCircleRounded
-            className={`${s.profile_icon}`}
-            onMouseEnter={handleShow}
+          <button
+            className={`${s.popover_button}`}
+            onClick={handleShow}
             onMouseLeave={handleHide}
-          />
+          >
+            <AccountCircleRounded
+              className={`${s.profile_icon}`}
+              onMouseEnter={handleShow}
+            />
+          </button>
         </OverlayTrigger>
       </div>
     </li>

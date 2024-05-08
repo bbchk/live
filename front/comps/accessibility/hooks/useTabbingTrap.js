@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useTabTrap = (modalOpen, modalId) => {
+const useTabTrap = (modalOpen, modalId, firstElementId, lastElementId) => {
   useEffect(() => {
     if (modalOpen) {
       const modal = document.getElementById(modalId);
@@ -15,8 +15,11 @@ const useTabTrap = (modalOpen, modalId) => {
             'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
           )
         );
-        const firstEl = focusableEls.at(0);
-        const lastEl = focusableEls.at(-1);
+
+        const firstEl =
+          document.getElementById(firstElementId) || focusableEls.at(0);
+        const lastEl =
+          document.getElementById(lastElementId) || focusableEls.at(-1);
 
         event.preventDefault();
 

@@ -43,6 +43,11 @@
     cursor: pointer;
   }
 
+  .popover_button {
+    display: flex;
+    border-radius: 100%;
+  }
+
   @media only screen and (max-width: 600px) {
     display: none;
   }
