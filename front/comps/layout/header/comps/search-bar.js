@@ -2,6 +2,7 @@ import { useState } from "react";
 import s from "./search-bar.module.scss";
 import hs from "../header.module.scss";
 import { SearchRounded } from "@mui/icons-material";
+import useDoOnKey from "#root/hooks/useDoOnKey.js";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
@@ -9,6 +10,10 @@ const SearchBar = () => {
   const handleSearch = () => {
     // console.log(`searching...${searchText}`);
   };
+
+  useDoOnKey("Escape", () =>
+    document.getElementById("search_bar_input").blur()
+  );
 
   return (
     <form
@@ -18,8 +23,7 @@ const SearchBar = () => {
     >
       <input
         id="search_bar_input"
-        // disabled
-        className={`form-control ${s.search_field}`}
+        className={`${s.search_field}`}
         type="search"
         placeholder="шукати..."
         aria-label="Search"

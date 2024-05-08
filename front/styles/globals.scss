@@ -27,20 +27,6 @@ html {
       color: inherit;
     }
 
-    button {
-      &:focus {
-        border: none;
-      }
-
-      &:active {
-        border: none;
-      }
-
-      &:visited {
-        border: none;
-      }
-    }
-
     scroll-behavior: smooth;
     overflow-x: hidden;
   }
@@ -138,6 +124,11 @@ $carouosel-transition: transform $carousel-transition-duration ease-out;
 }
 
 //todo change styles
-// :focus {
-//   outline: 2px dotted blue;
-// }
+button:focus,
+a:focus,
+input:focus {
+  border: none;
+  outline: none;
+  box-shadow: 0 0 0 2px #719ece;
+  border-radius: 10px;
+}

@@ -6,15 +6,26 @@
   justify-content: center;
   align-items: center;
 
-  height: 3rem;
-  width: 3rem;
   border-radius: 0.5rem;
-  padding: 0.5rem;
 
-  font-size: 1.2em;
-  color: $color-blue-dasl;
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  &:hover {
-    @include icon_on_hover;
+    border-radius: 10px;
+    padding: 0.5rem;
+
+    height: 3rem;
+    width: 3rem;
+
+    svg {
+      fill: $color-blue-dasl;
+    }
+
+    transition: background-color 0.25s;
+    &:hover {
+      @include icon_on_hover;
+    }
   }
 }

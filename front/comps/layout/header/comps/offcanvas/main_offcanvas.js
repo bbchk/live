@@ -1,4 +1,5 @@
 import s from "./main_offcanvas.module.scss";
+import hs from "../../header.module.scss";
 
 import MainOffcanvasHeader from "./comps/main.offcanv_header";
 import MainOffcanvasBody from "./comps/main.offcanv_body";
@@ -11,7 +12,7 @@ import {
 } from "store/slices/global_comps/global_comps.slice";
 const { MAIN_OFFCANVAS } = GLOBAL_COMPS;
 
-import { SwipeableDrawer, Box, Divider, Button } from "@mui/material";
+import { SwipeableDrawer, Box, Divider } from "@mui/material";
 import {
   MenuRounded,
   Home as HomeIcon,
@@ -45,12 +46,13 @@ export const MainOffcanvas = ({ id }) => {
 export const OffcanvasToggler = ({ id }) => {
   const dispatch = useDispatch();
   return (
-    <Button
-      className={`${s.offcanvas_toggler}`}
-      onClick={() => dispatch(toggle(MAIN_OFFCANVAS))}
-      aria-label="Меню"
-    >
-      <MenuRounded fontSize="large" />
-    </Button>
+    <div className={`${s.offcanvas_toggler} ${hs.offcanvas_toggler}`}>
+      <button
+        onClick={() => dispatch(toggle(MAIN_OFFCANVAS))}
+        aria-label="Меню"
+      >
+        <MenuRounded fontSize="large" />
+      </button>
+    </div>
   );
 };

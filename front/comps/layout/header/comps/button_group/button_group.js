@@ -67,7 +67,6 @@ const ButtonGroup = () => {
         <IconButton
           tooltipText={"Кошик покупок"}
           onClick={() => dispatch(toggle(CART_MODAL))}
-          id="header_cart_btn"
         >
           <ShoppingCartRounded />
         </IconButton>

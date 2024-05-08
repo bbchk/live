@@ -29,7 +29,7 @@ const AuthPopover = () => {
     lastFocusedElement.current && lastFocusedElement.current.focus();
     setTimeout(() => {
       setShowPopover(false);
-    }, 250);
+    }, 300);
   };
 
   const handleShow = () => {
@@ -37,7 +37,7 @@ const AuthPopover = () => {
     setShowPopover(true);
     setTimeout(() => {
       signInButton.current.focus({ preventScroll: true });
-    }, 250);
+    }, 300);
   };
 
   useDoOnKey("Escape", handleHide);
