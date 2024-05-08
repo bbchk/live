@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
@@ -15,7 +15,6 @@ import { balsamiqSans } from "pages/_app";
 import s from "./auth_popover.module.scss";
 
 import { AccountCircleRounded } from "@mui/icons-material";
-import { set } from "#root/store/slices/products.slice.js";
 
 //todo work with focus and tabbing through popover
 const AuthPopover = () => {
@@ -30,7 +29,7 @@ const AuthPopover = () => {
 
   const handleSignUp = async (e) => {
     closePopover();
-    // dispatch(toggle(SIGN_UP_MODAL));
+    dispatch(toggle(SIGN_UP_MODAL));
   };
 
   const [showPopover, setShowPopover] = useState(false);
@@ -85,7 +84,7 @@ const AuthPopover = () => {
 
   return (
     <li className={`${s.overlay_trigger}`} aria-label={"Персональний кабінет"}>
-      <button aria-label="Увійти або зареєструватись" onClick={handleSignIn}>
+      <div aria-label="Увійти або зареєструватись">
         <OverlayTrigger
           trigger={["hover", "focus"]}
           placement="bottom"
@@ -99,7 +98,7 @@ const AuthPopover = () => {
             onMouseLeave={handleHide}
           />
         </OverlayTrigger>
-      </button>
+      </div>
     </li>
   );
 };
