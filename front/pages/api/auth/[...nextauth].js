@@ -116,5 +116,5 @@ export const authOptions = {
 
 export default NextAuth({
   ...authOptions,
-  debug: process.env.NODE_ENV !== "production" ? true : false,
+  // debug: process.env.NODE_ENV !== "production" ? true : false,
 });

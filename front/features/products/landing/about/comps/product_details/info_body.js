@@ -2,10 +2,16 @@ import s from "./info_body.module.scss";
 import { useSession } from "next-auth/react";
 import { useCart } from "hooks/useCart";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faMessage } from "@fortawesome/free-regular-svg-icons";
-import { useRouter } from "next/router";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faHeart } from "@fortawesome/free-regular-svg-icons";
+// import { faMessage } from "@fortawesome/free-regular-svg-icons";
+// import { useRouter } from "next/router";
+
+import {
+  AddShoppingCartRounded,
+  FavoriteBorderRounded,
+  ChatRounded,
+} from "@mui/icons-material";
 
 const InfoBody = ({ product }) => {
   const {
@@ -22,8 +28,6 @@ const InfoBody = ({ product }) => {
     packing,
     code = "000000",
   } = product;
-
-  const router = useRouter();
 
   const { add } = useCart();
   function handleBuy(product) {
@@ -47,11 +51,11 @@ const InfoBody = ({ product }) => {
         onClick={() => handleBuy(product)}
       >
         <p>Купити</p>
-        <i className="bi bi-cart4"></i>
+        <AddShoppingCartRounded className="icon_button_on_hover" />
       </button>
 
       <button className={`${s.like_btn} icon_button_primary`}>
-        <FontAwesomeIcon className="icon_button_on_hover" icon={faHeart} />
+        <FavoriteBorderRounded className="icon_button_on_hover" />
       </button>
 
       <button
@@ -62,7 +66,7 @@ const InfoBody = ({ product }) => {
           // });
         }}
       >
-        <FontAwesomeIcon className="icon_button_on_hover" icon={faMessage} />
+        <ChatRounded className="icon_button_on_hover" />
       </button>
     </div>
   );

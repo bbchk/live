@@ -26,11 +26,16 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
   //todo make it cancel_all_filters button rerender whole offcanvas for filters to refresh
   //todo make filterItems in filtersAccordion unique
 
+  function handleToggle() {
+    dispatch(toggleFilterOffcanvas());
+  }
+
   return (
     <div className={`${s.offcanvas}`}>
       <SwipeableDrawer
         open={filterOffcanvasOpen}
-        onClose={() => dispatch(toggleFilterOffcanvas())}
+        onOpen={handleToggle}
+        onClose={handleToggle}
         transitionDurationk={{ appear: 250, enter: 250, exit: 250 }}
       >
         <Box sx={{ width: 350 }} role="presentation">

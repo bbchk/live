@@ -1,6 +1,7 @@
 import { useState } from "react";
 import s from "./search-bar.module.scss";
 import hs from "../header.module.scss";
+import { SearchRounded } from "@mui/icons-material";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
@@ -24,9 +25,13 @@ const SearchBar = () => {
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       />
-      <button className={`button_submit ${s.search_button}`} type="submit">
+      <button
+        className={`button_submit ${s.search_button}`}
+        type="submit"
+        aria-label="Здійснити пошук"
+      >
         <p>знайти</p>
-        <i className="bi bi-search-heart" />
+        <SearchRounded />
       </button>
     </form>
   );

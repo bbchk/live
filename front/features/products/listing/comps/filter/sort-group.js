@@ -26,7 +26,11 @@ const SortGroup = () => {
 
   return (
     <search className={`${s.filters}`}>
-      <select className={`form-select ${s.select}`} onChange={handleChange}>
+      <select
+        aria-label="Сортувати товари за:"
+        className={`form-select ${s.select}`}
+        onChange={handleChange}
+      >
         {[
           "За рейтингом",
           "Від дешевших до дорогих",

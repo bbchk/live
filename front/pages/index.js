@@ -18,7 +18,7 @@ const Home = ({ rootCategories }) => {
         />
       </Head>
 
-      <div className="my-5">
+      <div id="main_content" className="my-5">
         <CategoriesGallery rootCategories={rootCategories} />
       </div>
     </>

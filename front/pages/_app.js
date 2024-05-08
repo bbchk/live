@@ -52,6 +52,16 @@ const balsamiqSans = Balsamiq_Sans({ weight: "400", subsets: ["latin"] });
 const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
 export { balsamiqSans, pacifico };
 
+if (process.env.NODE_ENV === "production") {
+  console.log = function () {};
+  console.warn = function () {};
+  console.error = function () {};
+}
+
+require("punycode/");
+
+import SkipToMainContent from "comps/accessibility/skip_to_main_content";
+
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
@@ -69,6 +79,7 @@ export default function App({
 
       <SessionProvider session={session}>
         <Provider store={store}>
+          <SkipToMainContent mainContentId={"main_content"} />
           <Header />
           <Body>
             <Component {...pageProps} />
@@ -93,7 +104,6 @@ const Body = ({ children }) => {
     </div>
   );
 };
-
 function Modals() {
   const {
     signInModalOpen,

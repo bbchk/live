@@ -31,7 +31,12 @@ const NoProductYet = () => {
           <br /> Пробачте за тимчасові незручності!
         </figcaption>
       </figure>
-      <Link href={"#"} onClick={goBack} className="link_primary">
+      <Link
+        href={"#"}
+        onClick={goBack}
+        className="link_primary"
+        id="main_content"
+      >
         <i className="bi bi-box-arrow-left" />
         <p>Повернутись назад</p>
       </Link>

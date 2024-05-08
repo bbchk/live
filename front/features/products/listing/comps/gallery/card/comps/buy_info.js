@@ -1,5 +1,6 @@
 import s from "./buy_info.module.scss";
 import lcs from "../listing_card.module.scss";
+import { AddShoppingCartRounded } from "@mui/icons-material";
 
 const BuyInfo = ({ product }) => {
   return (
@@ -9,7 +10,7 @@ const BuyInfo = ({ product }) => {
       </p>
 
       <button className={`${s.add_to_cart_button}`}>
-        <i className="bi bi-cart4" />
+        <AddShoppingCartRounded />
       </button>
     </section>
   );

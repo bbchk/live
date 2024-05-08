@@ -6,6 +6,8 @@ import StarRating from "comps/rating/star_rating";
 import { useDispatch } from "react-redux";
 import { startLoading } from "store/modalSlice";
 
+import { ChatRounded } from "@mui/icons-material";
+
 //use rating from product
 const ProductRating = ({ product, productUrl }) => {
   return (
@@ -16,7 +18,7 @@ const ProductRating = ({ product, productUrl }) => {
         onClick={() => dispatch(startLoading())}
       >
         <StarRating rating={2.5} />
-        <i className="bi bi-chat-left-text" />
+        <ChatRounded className={`${s.chat_icon}`} />
         <p>{10}</p>
       </Link>
     </section>

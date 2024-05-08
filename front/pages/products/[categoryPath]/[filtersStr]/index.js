@@ -37,6 +37,8 @@ const Listing = ({ data }) => {
           <ListingHeader category={category} />
           <SubcategoriesGallery subcategories={subcategories} />
         </>
+
+        <div className="container" id="main_content" />
         <ProductListingBody data={data} />
       </>
     </>

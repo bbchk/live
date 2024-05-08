@@ -9,6 +9,8 @@ import { balsamiqSans } from "pages/_app";
 
 import s from "./auth_popover.module.scss";
 
+import { AccountCircleRounded } from "@mui/icons-material";
+
 const AuthPopover = () => {
   const dispatch = useDispatch();
 
@@ -75,7 +77,7 @@ const AuthPopover = () => {
   );
 
   return (
-    <li className={`${s.overlay_trigger}`}>
+    <li className={`${s.overlay_trigger}`} aria-label={"Персональний кабінет"}>
       <OverlayTrigger
         trigger={["hover", "focus"]}
         placement="bottom"
@@ -83,11 +85,11 @@ const AuthPopover = () => {
         rootClose
         show={showPopover}
       >
-        <i
-          className={`bi bi-person-circle ${s.profile_icon}`}
+        <AccountCircleRounded
+          className={`${s.profile_icon}`}
           onMouseEnter={handleShow}
           onMouseLeave={handleHide}
-        ></i>
+        />
       </OverlayTrigger>
     </li>
   );

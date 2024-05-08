@@ -1,13 +1,14 @@
 @use "./styles/variables" as *;
-@use "./styles/mixins" as *;
 
 .rating {
   display: flex;
   align-items: center;
   gap: 3%;
 
-  i {
-    font-size: 0.75em;
+  .chat_icon {
+    width: 0.75em;
+    height: 0.75em;
+    fill: lighten($color-blue-defrance, 10);
   }
   p {
     color: rgba($color-blue-dasl, 0.8);

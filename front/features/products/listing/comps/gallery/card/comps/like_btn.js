@@ -1,5 +1,6 @@
 import s from "./like_btn.module.scss";
 import lcs from "../listing_card.module.scss";
+import { FavoriteBorderRounded, FavoriteRounded } from "@mui/icons-material";
 
 const LikeButton = ({ isLiked }) => {
   return (
@@ -8,9 +9,9 @@ const LikeButton = ({ isLiked }) => {
       //   onMouseDown={() => like(product._id)}
     >
       {isLiked ? (
-        <i className={`bi bi-heart-fill ${s.liked}`} />
+        <FavoriteRounded className={`bi bi-heart-fill ${s.liked}`} />
       ) : (
-        <i className="bi bi-heart" />
+        <FavoriteBorderRounded />
       )}
     </button>
   );

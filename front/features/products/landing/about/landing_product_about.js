@@ -18,7 +18,7 @@ const LandingProductAboutPage = ({ product }) => {
       <div className={`${s.product_figure}`}>
         <ProductFigure images={product.images} />
       </div>
-      <div className={`${s.product_main_info}`}>
+      <div id="main_content" className={`${s.product_main_info}`}>
         <ProductMainInfo product={product} />
       </div>
 

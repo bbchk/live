@@ -33,7 +33,6 @@ const Card = ({ category, subcategories }) => {
           sizes="(max-width: 600px) 50vw, (max-width: 768px) 20vw, (max-width: 1000px) 25vw, (max-width: 1200px) 20vw, 10vw"
           priority
         />
-        <Image />
         <h2>{category.name}</h2>
       </Link>
 

@@ -8,7 +8,7 @@ const IconButton = ({ href = "#", children, tooltipText, onClick }) => {
   return (
     <li onClick={onClick}>
       <CustomTooltip tooltipText={tooltipText}>
-        <Link className={`${s.icon_btn}`} href={href}>
+        <Link className={`${s.icon_btn}`} href={href} aria-label={tooltipText}>
           {children}
         </Link>
       </CustomTooltip>
