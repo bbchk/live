@@ -21,6 +21,7 @@ const SubcategoryCard = ({ category }) => {
         fallbackSrc={"/assets/goods_placeholder.svg"}
         width={150}
         height={150}
+        sizes="(max-width: 768px) 25vw,(max-width: 1200px) 151vw, 5vw"
         alt="підкатегорія"
         priority
       />

@@ -20,7 +20,7 @@ const ProductFigure = ({ product, productUrl }) => {
       <figure className={`${s.figure} `}>
         <ImageFallback
           src={
-            //todo implement displaying many images on product
+            //todo implement displaying many images on hover
             product.images && product.images[0]
           }
           fallbackSrc={"/assets/goods_placeholder.svg"}
@@ -28,7 +28,7 @@ const ProductFigure = ({ product, productUrl }) => {
           quality={80}
           width={250}
           height={250}
-          sizes="(max-width: 600px) 50vw, (max-width: 768px) 35vw,(max-width: 800px) 30vw,(max-width: 1200px) 25vw, 15vw"
+          sizes="(max-width: 600px) 50vw, (max-width: 768px) 35vw,(max-width: 800px) 30vw,(max-width: 1200px) 25vw, 10vw"
           priority
         />
         <figcaption>{product.name}</figcaption>
