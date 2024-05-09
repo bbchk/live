@@ -15,7 +15,10 @@ on:
       MONGODB_URI:
         required: true
 
-    # working-directory: ${{ inputs.working-directory }}
+# defaults:
+#   run:
+#     working-directory: back
+# working-directory: ${{ inputs.working-directory }}
 
 jobs:
   log-inputs:
@@ -24,13 +27,11 @@ jobs:
       - name: Log inputs
         run: |
           echo "Node version: ${{ inputs.node-version }}"
-          echo "Working directory: ${{ inputs.working-directory }}"
+          # echo "Working directory: ${{ inputs.working-directory }}"
 
   lint-and-test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: back
+
     needs: log-inputs
     env:
       NODE_ENV: ${{ vars.NODE_ENV }}
@@ -42,7 +43,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.node-version }}
-          cache: "npm"
 
       - name: Lint and Test
         run: |
@@ -66,11 +66,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.node-version }}
-          cache: "npm"
 
       - name: Start
         run: |
           npm ci
           npm run start &
           sleep 5
-          kill $(jobs -p)
+          kildl $(jobs -p)
