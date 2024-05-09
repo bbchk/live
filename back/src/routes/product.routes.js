@@ -1,5 +1,6 @@
 import express from "express";
-import { requireAuth, isAdmin } from "../middleware/auth.js";
+import { requireAuth, isAdmin } from "#src/middleware/auth.js";
+import cacheFor from "#src/middleware/cache.js";
 
 import {
   getProducts,
@@ -16,17 +17,21 @@ import { updateProduct } from "#src/controllers/product/update.product_controlle
 import { deleteProduct } from "#src/controllers/product/delete.product_controller.js";
 
 const router = express.Router();
+const chRouter = express.Router();
 
-router.get("/", getProducts);
+chRouter.get("/", getProducts);
 
-router.get("/by-ids", getProductsByIds);
-router.get("/product/by-id/:id", getProductById);
-router.get(
+chRouter.get("/by-ids", getProductsByIds);
+chRouter.get("/product/by-id/:id", getProductById);
+chRouter.get(
   "/by-category-path/:slugCategoryPath/filtered-by/:filtersStr?",
   getProductsByCategoryAndFilters
 );
 
-router.get("/filters/:slugCategoryPath/:filtersStr?", getFilters);
+chRouter.get("/filters/:slugCategoryPath/:filtersStr?", getFilters);
+
+const ONE_MINUTE = 60;
+router.use(cacheFor(ONE_MINUTE), chRouter);
 
 router.use(requireAuth, isAdmin);
 router.post("/", createProduct);

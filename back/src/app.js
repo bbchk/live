@@ -26,7 +26,7 @@ app.use("/user", userRoutes);
 //no favicon
 app.use(function (req, res, next) {
   if (req.originalUrl === "/favicon.ico") {
-    return res.status(204).json({ nope: true });
+    return res.status(204);
   } else {
     next();
   }

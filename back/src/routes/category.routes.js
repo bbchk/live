@@ -12,18 +12,21 @@ import {
   getDirectSubcategoriesByPath,
 } from "#src/controllers/category/get.category_controller.js";
 
-import cacheMiddleware from "#src/middleware/cache.js";
+import cacheFor from "#src/middleware/cache.js";
 
 const router = express.Router();
+const chRouter = express.Router();
 
-router.get("/", cacheMiddleware(10), getCategories);
-router.get("/root", getRootCategories);
-router.get("/category/by-path/:path", getCategoryByPath);
-
-router.get(
+chRouter.get("/", getCategories);
+chRouter.get("/root", getRootCategories);
+chRouter.get("/category/by-path/:path", getCategoryByPath);
+chRouter.get(
   "/subcategories/by-parent-category-path/:path",
   getDirectSubcategoriesByPath
 );
+
+const TEN_MINUTES = 600;
+router.use(cacheFor(TEN_MINUTES), chRouter);
 
 router.use(requireAuth, isAdmin);
 router.post("/", createCategory);
