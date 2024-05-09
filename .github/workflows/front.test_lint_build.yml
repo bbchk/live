@@ -45,8 +45,8 @@ jobs:
     needs: log-inputs
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.node-version }}
           # cache: "npm"
@@ -62,8 +62,8 @@ jobs:
     needs: log-inputs
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.node-version }}
           # cache: "npm"

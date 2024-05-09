@@ -11,8 +11,30 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  #back
+  NODE_ENV: ${{ vars.NODE_ENV }}
+  PORT: ${{ vars.PORT }}
+  #front
+  NEXT_PUBLIC_BACKEND_URL: ${{ vars.NEXT_PUBLIC_BACKEND_URL }}
+  MAINTENANCE_MODE: ${{ vars.MAINTENANCE_MODE }}
+
 jobs:
-  front-end-testing-linting-building:
+  # output_vars:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     some_var: ${{ steps.variables_to_output.outputs.some_var }}
+  #     another_var: ${{ steps.variables_to_output.outputs.another_var }}
+  #   steps:
+  #     - name: Print inputs passed to the reusable workflow
+  #       id: variables_to_output
+  #       run: |
+  #         echo "node_env: $SOME_VAR"
+  #         echo "some_var=$SOME_VAR" >> $GITHUB_OUTPUT
+  #         echo "another var: $ANOTHER_VAR"
+  #         echo "another_var=$ANOTHER_VAR" >> $GITHUB_OUTPUT
+
+  back-end-testing-linting-starting:
     uses: bbuukk/live/.github/workflows/back.test_lint_start.yml@main
     with:
       node-version: 20
@@ -22,7 +44,7 @@ jobs:
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
-  back-end-testing-linting-starting:
+  front-end-testing-linting-building:
     uses: bbuukk/live/.github/workflows/front.test_lint_build.yml@main
     with:
       node-version: 20

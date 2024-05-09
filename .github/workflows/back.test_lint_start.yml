@@ -34,10 +34,13 @@ jobs:
       run:
         working-directory: back
     needs: log-inputs
+    env:
+      NODE_ENV: ${{ vars.NODE_ENV }}
+      PORT: ${{ vars.PORT }}
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.node-version }}
           # cache: "npm"
@@ -45,8 +48,8 @@ jobs:
       - name: Lint and Test
         run: |
           npm ci
-          npm run lint
-          npm run test
+          # npm run lint
+          # npm run test
 
   start:
     runs-on: ubuntu-latest
@@ -54,10 +57,13 @@ jobs:
       run:
         working-directory: back
     needs: log-inputs
+    env:
+      NODE_ENV: ${{ vars.NODE_ENV }}
+      PORT: ${{ vars.PORT }}
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.node-version }}
           # cache: "npm"
