@@ -5,6 +5,7 @@ import SortGroup from "../comps/filters/sort-group";
 import FiltersOffcanvasToggler from "features/products/listing/comps/filters/filiters_offcanvas/filters_offcanvas_toggler";
 
 import s from "./listing.body.module.scss";
+
 import FiltersOffcanvas from "../comps/filters/filiters_offcanvas/filters_offcanvas";
 import Selected from "../comps/filters/selected";
 import NoProductYet from "#root/comps/warnings/no_products.js";
@@ -42,7 +43,7 @@ const ProductListingBody = ({
             <div className={`${s.sort_group}`}>
               <SortGroup />
             </div>
-            <div className={`${s.filters_decor_line}`}></div>
+            <div className={`${s.filters_decor_line}`} />
             <div className={`${s.filters}`}>
               <FiltersAccordion
                 id="filtersAccordion"

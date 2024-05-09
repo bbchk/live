@@ -3,7 +3,7 @@ import { Accordion as A } from "react-bootstrap";
 
 const Accordion = ({ defaultActiveKey, children, ...props }) => {
   return (
-    <A defaultActiveKey={defaultActiveKey} {...props}>
+    <A defaultActiveKey={defaultActiveKey} {...props} className={s.accordion}>
       {children}
     </A>
   );

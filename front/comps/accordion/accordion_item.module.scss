@@ -1,2 +1,12 @@
 @use "./styles/variables" as *;
-@use "./styles/mixins" as *;
+
+.item {
+  border: none;
+  .header {
+    border-bottom: 1px solid rgba($color-blue-dasl, 0.1);
+    button {
+      color: $color-blue-dasl;
+      font-size: 1.2rem;
+    }
+  }
+}
