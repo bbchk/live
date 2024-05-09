@@ -44,7 +44,7 @@ const ProductGallery = ({
           product={product}
           like={() => {}}
           isLiked={false}
-          priority={index < 10}
+          priority={index < columnCount}
         />
       </div>
     );
