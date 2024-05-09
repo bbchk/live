@@ -19,7 +19,8 @@ on:
 
 defaults:
   run:
-    working-directory: ${{ inputs.working-directory }}
+    working-directory: back
+    # working-directory: ${{ inputs.working-directory }}
 
 jobs:
   lint-and-test:

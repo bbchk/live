@@ -29,7 +29,7 @@ on:
 
 defaults:
   run:
-    working-directory: ${{ inputs.working-directory }}
+    working-directory: front
 
 jobs:
   lint-and-test:
