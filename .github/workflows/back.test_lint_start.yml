@@ -37,6 +37,7 @@ jobs:
     env:
       NODE_ENV: ${{ vars.NODE_ENV }}
       PORT: ${{ vars.PORT }}
+      TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
 
     steps:
       - uses: actions/checkout@v4
@@ -48,8 +49,8 @@ jobs:
       - name: Lint and Test
         run: |
           npm ci
-          # npm run lint
-          # npm run test
+          npm run lint
+          npm run test
 
   start:
     runs-on: ubuntu-latest
