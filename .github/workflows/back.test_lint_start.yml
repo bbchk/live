@@ -17,9 +17,6 @@ on:
       MONGODB_URI:
         required: true
 
-defaults:
-  run:
-    working-directory: ./back
     # working-directory: ${{ inputs.working-directory }}
 
 jobs:
@@ -33,6 +30,9 @@ jobs:
 
   lint-and-test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: back
     needs: log-inputs
 
     steps:
@@ -50,6 +50,9 @@ jobs:
 
   start:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: back
     needs: log-inputs
 
     steps:
