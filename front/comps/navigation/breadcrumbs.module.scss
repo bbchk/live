@@ -5,31 +5,35 @@
     margin: 0;
 
     li {
+      $icon_size: 1rem;
+      line-height: $icon_size;
+
       a {
         color: rgba($color: $color-blue-dasl, $alpha: 0.9);
+
+        display: flex;
+
+        svg {
+          margin-right: 5px;
+          width: $icon_size;
+          height: $icon_size;
+        }
       }
 
       &.active {
         font-weight: bold;
       }
     }
-  }
 
-  @media screen and (max-width: 768px) {
-    display: inline-block;
-    line-height: normal;
-    padding: 0;
+    @media screen and (max-width: 768px) {
+      li:not(:nth-last-child(2)) {
+        display: none;
+      }
 
-    &::before {
-      font-family: "bootstrap-icons";
-      color: $color-blue-dasl !important;
-      content: "\F22D" !important;
-      display: inline-block;
-      vertical-align: text-top;
-    }
-
-    &:not(:nth-last-child(2)) {
-      display: none;
+      li::before {
+        color: $color-blue-dasl !important;
+        content: "↫" !important;
+      }
     }
   }
 }

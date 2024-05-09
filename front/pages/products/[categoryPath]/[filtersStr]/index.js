@@ -64,6 +64,11 @@ export async function getServerSideProps(context) {
     const directSubcategories = await fetchData(endpoints.directSubcategories);
     const filtersMap = await fetchData(endpoints.filters);
 
+    // context.res.setHeader(
+    //   "Cache-Control",
+    //   "public, s-maxage=10, stale-while-revalidate=59"
+    // );
+
     const HALF_AN_HOUR = 1800; // 30 minutes
     return {
       props: {

@@ -9,6 +9,7 @@ import { startLoading } from "store/slices/global_comps/global_comps.slice";
 
 import { getCategoriesInfo } from "store/slices/categories.slice";
 import { useEffect } from "react";
+import { CottageRounded } from "@mui/icons-material";
 
 const Breadcrumbs = ({ category }) => {
   const dispatch = useDispatch();
@@ -37,7 +38,10 @@ const Breadcrumbs = ({ category }) => {
       >
         <ol className="breadcrumb">
           <li className={`breadcrumb-item`}>
-            <Link href="/">Головна</Link>
+            <Link href="/">
+              <CottageRounded />
+              Головна
+            </Link>
           </li>
 
           {allCategories &&
