@@ -15,9 +15,9 @@ on:
       MONGODB_URI:
         required: true
 
-# defaults:
-#   run:
-#     working-directory: back
+defaults:
+  run:
+    working-directory: back
 # working-directory: ${{ inputs.working-directory }}
 
 jobs:
