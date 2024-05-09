@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 
 import { startLoading } from "store/slices/global_comps/global_comps.slice";
 
-const ProductFigure = ({ product, productUrl }) => {
+const ProductFigure = ({ product, productUrl, priority }) => {
   const dispatch = useDispatch();
   return (
     <Link
@@ -29,7 +29,7 @@ const ProductFigure = ({ product, productUrl }) => {
           width={250}
           height={250}
           sizes="(max-width: 600px) 50vw, (max-width: 768px) 35vw,(max-width: 800px) 30vw,(max-width: 1200px) 25vw, 10vw"
-          priority
+          priority={priority}
         />
         <figcaption>{product.name}</figcaption>
       </figure>

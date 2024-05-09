@@ -8,14 +8,14 @@ const ProductGallery = ({
   return (
     //todo make main work for accesability
     <main className={`${s.gallery}`}>
-      {products.map((product) => {
+      {products.map((product, idx) => {
         return (
           <ListingProductCard
             key={product._id}
             product={product}
-            category={category}
             like={() => {}}
             isLiked={false}
+            priority={idx < 10}
           />
         );
       })}

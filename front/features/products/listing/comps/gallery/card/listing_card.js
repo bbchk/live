@@ -8,16 +8,22 @@ import ProductRating from "./comps/rating";
 import BuyInfo from "./comps/buy_info";
 import LikeButton from "./comps/like_btn";
 
-const ListingProductCard = ({ product, like, isLiked }) => {
+const ListingProductCard = ({ product, like, isLiked, ...props }) => {
   const productUrl = (activeTab) =>
     `/product/${slugify(transliterate(product.name))}/${
       product._id
     }/${activeTab}`;
 
+  const { priority } = props;
+
   return (
     <article className={`${s.card} `}>
       <LikeButton isLiked={false} />
-      <ProductFigure product={product} productUrl={productUrl} />
+      <ProductFigure
+        product={product}
+        productUrl={productUrl}
+        priority={priority}
+      />
       <ProductRating product={product} productUrl={productUrl} />
       <BuyInfo product={product} />
     </article>
