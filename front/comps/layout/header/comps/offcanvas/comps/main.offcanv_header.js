@@ -23,21 +23,13 @@ export default function MainOffcanvasHeader() {
   return (
     <AppBar position="static" className={`${s.header}`}>
       <Toolbar>
-        <IconButton
-          edge="start"
-          // disabled
-          aria-label="logo"
-          onClick={() => {
-            dispatch(toggle(MAIN_OFFCANVAS));
-          }}
-        >
-          <Image
-            src={"/assets/logo.svg"}
-            alt="Логотип магазину"
-            width={30}
-            height={30}
-          />
-        </IconButton>
+        <Image
+          src={"/assets/logo.svg"}
+          alt="Логотип магазину"
+          width={30}
+          height={30}
+        />
+
         <Typography
           variant="h6"
           className={`${pacifico.className} ${s.shop_name}`}

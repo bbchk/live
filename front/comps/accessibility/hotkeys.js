@@ -75,7 +75,7 @@ const CustomHotkeys = () => {
 
   return (
     <div
-      tabIndex={999}
+      tabIndex={0}
       aria-label="Доступні гарячі клавіші, щоб переглянути їх натисніть комбінацію клавіш shift+?"
     />
   );

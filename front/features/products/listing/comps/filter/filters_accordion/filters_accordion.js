@@ -10,23 +10,25 @@ import { slugify } from "@bbuukk/slugtrans/slugify";
 //   //todo fix all remaining english options in filters
 //   //todo why filters render in wrong order, brand got to be first
 //   //todo price does not refresh on categoryPath change
-const FiltersAccordion = ({
-  id,
-  filters,
-  minMaxPrice: minMax,
-  show = true,
-}) => {
+const FiltersAccordion = ({ filters, minMaxPrice: minMax, show = true }) => {
+  const fiilterAccordionId = "filtersAccordion";
   return (
     <search>
-      <Accordion id={id}>
-        <AccordionItem id={"priceSlicerAccItem"} label="Ціна" show={show}>
+      <Accordion
+        defaultActiveKey={["0", "1", "2", "3", "4"].map(
+          (idx) => fiilterAccordionId + "-" + idx
+        )}
+        flush
+        alwaysOpen
+      >
+        <AccordionItem eventKey={`${fiilterAccordionId}-${0}`} label="Ціна">
           <PriceSlider minMax={minMax} />
         </AccordionItem>
         {filters.map(([filterLabel, options], idx) => {
           return (
             <AccordionItem
               key={filterLabel}
-              id={slugify(transliterate(filterLabel))}
+              eventKey={`${fiilterAccordionId}-${idx + 1}`}
               label={filterLabel}
               show={show}
             >

@@ -20,21 +20,18 @@ const ProductListingBody = ({
     page,
   },
 }) => {
-  const filtersOffcanvasId = "filtersOffcanvas";
-
   return (
     <>
       {productsCount > 0 ? (
         <>
           <FiltersOffcanvas
-            id={filtersOffcanvasId}
             filters={filtersMap}
             minMaxPrice={minMaxPrice}
             productsCount={productsCount}
           />
           <div className={`${s.body}`}>
             <div className={`${s.filters_offcanvas_toggler}`}>
-              <FiltersOffcanvasToggler id={filtersOffcanvasId} />
+              <FiltersOffcanvasToggler />
             </div>
             <div className={`${s.selected}`}>
               <Selected productsCount={productsCount} />
@@ -45,7 +42,6 @@ const ProductListingBody = ({
             <div className={`${s.filters_decor_line}`}></div>
             <div className={`${s.filters}`}>
               <FiltersAccordion
-                id="filtersAccordion"
                 filters={filtersMap}
                 minMaxPrice={minMaxPrice}
               />

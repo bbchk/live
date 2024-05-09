@@ -1,10 +1,11 @@
 import s from "./accordion.module.scss";
+import { Accordion as A } from "react-bootstrap";
 
-const Accordion = ({ id, children }) => {
+const Accordion = ({ defaultActiveKey, children, ...props }) => {
   return (
-    <div className={`${s.filter_accordion} accordion accordion-flush`} id={id}>
+    <A defaultActiveKey={defaultActiveKey} {...props}>
       {children}
-    </div>
+    </A>
   );
 };
 

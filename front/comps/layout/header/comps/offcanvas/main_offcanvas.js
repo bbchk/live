@@ -19,7 +19,7 @@ import {
   AccountCircle as AccountCircleIcon,
 } from "@mui/icons-material";
 
-export const MainOffcanvas = ({ id }) => {
+export const MainOffcanvas = () => {
   const dispatch = useDispatch();
   const { mainOffcanvasOpen } = useSelector((state) => state.modals);
 
@@ -43,7 +43,7 @@ export const MainOffcanvas = ({ id }) => {
   );
 };
 
-export const OffcanvasToggler = ({ id }) => {
+export const OffcanvasToggler = () => {
   const dispatch = useDispatch();
   return (
     <div className={`${s.offcanvas_toggler} ${hs.offcanvas_toggler}`}>
