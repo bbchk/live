@@ -1,0 +1,79 @@
+name: Test
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  front-end-testing-linting-building:
+    uses: bbuukk/live/.github/workflows/back.test_lint_start.yml@main
+    with:
+      node-version: 20
+      working-directory: back
+    secrets:
+      TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
+  back-end-testing-linting-starting:
+    uses: bbuukk/live/.github/workflows/front.test_lint_build.yml@main
+    with:
+      node-version: 20
+      working-directory: front
+    secrets:
+      GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
+      GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+      NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+      NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+#? todo deploy to development env
+#   back-end:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: "npm"
+
+#       - name: Install Dependencies
+#         run: cd back && npm install
+#       - name: Deploy
+#         uses: amondnet/vercel-action@v19
+#         with:
+#           vercel-token: ${{ secrets.VERCEL_TOKEN }}
+#           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+#           vercel-project-id: ${{ secrets.VERCEL_BACK_PROJECT_ID }}
+#           vercel-args: "--prod"
+#           vercel-dir: "back"
+#   front-end:
+#     runs-on: ubuntu-latest
+#     needs: back-end
+#     steps:
+#       - run: sleep 30
+#       - uses: actions/checkout@v4
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: "npm"
+
+#       - name: Install Dependencies
+#         run: cd front && npm install
+#       - name: Deploy
+#         uses: amondnet/vercel-action@v19
+#         with:
+#           vercel-token: ${{ secrets.VERCEL_TOKEN }}
+#           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+#           vercel-project-id: ${{ secrets.VERCEL_FRONT_PROJECT_ID }}
+#           vercel-args: "--prod"
+#           vercel-dir: "front"

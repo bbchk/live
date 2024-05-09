@@ -1,4 +1,4 @@
-name: Front-end Testing, Linting, and Building
+name: Back-end Testing, Linting, and Starting
 
 on:
   workflow_call:
@@ -10,16 +10,6 @@ on:
         required: true
         type: string
     secrets:
-      GOOGLE_ID:
-        required: true
-      GOOGLE_SECRET:
-        required: true
-      NEXTAUTH_URL:
-        required: true
-      NEXTAUTH_SECRET:
-        required: true
-      DATABASE_URL:
-        required: true
       TEST_JWT_SECRET:
         required: true
       JWT_SECRET:
@@ -41,11 +31,11 @@ jobs:
       - name: Lint and Test
         run: |
           npm ci
-          # npm run lint
-          # npm run test
+          npm run lint
+          npm run test
         working-directory: ${{ inputs.working-directory }}
 
-  build:
+  start:
     runs-on: ubuntu-latest
 
     steps:
@@ -55,15 +45,10 @@ jobs:
           node-version: ${{ inputs.node-version }}
           cache: "npm"
 
-      - name: Start back-end locally
+      - name: Start
         run: |
           npm ci
-          npm run dev &
+          npm run start &
           sleep 5
-        working-directory: back
-
-      - name: Build front-end application
-        run: |
-          npm ci
-          npm run build
+          kill $(jobs -p)
         working-directory: ${{ inputs.working-directory }}
