@@ -23,15 +23,24 @@ defaults:
     # working-directory: ${{ inputs.working-directory }}
 
 jobs:
+  log-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log inputs
+        run: |
+          echo "Node version: ${{ inputs.node-version }}"
+          echo "Working directory: ${{ inputs.working-directory }}"
+
   lint-and-test:
     runs-on: ubuntu-latest
+    needs: log-inputs
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ inputs.node-version }}
-          cache: "npm"
+          # cache: "npm"
 
       - name: Lint and Test
         run: |
@@ -41,13 +50,14 @@ jobs:
 
   start:
     runs-on: ubuntu-latest
+    needs: log-inputs
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ inputs.node-version }}
-          cache: "npm"
+          # cache: "npm"
 
       - name: Start
         run: |
