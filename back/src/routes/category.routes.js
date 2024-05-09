@@ -12,9 +12,11 @@ import {
   getDirectSubcategoriesByPath,
 } from "#src/controllers/category/get.category_controller.js";
 
+import cacheMiddleware from "#src/middleware/cache.js";
+
 const router = express.Router();
 
-router.get("/", getCategories);
+router.get("/", cacheMiddleware(10), getCategories);
 router.get("/root", getRootCategories);
 router.get("/category/by-path/:path", getCategoryByPath);
 

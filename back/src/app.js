@@ -23,6 +23,15 @@ app.use("/categories", categoryRoutes);
 app.use("/products", productsRoutes);
 app.use("/user", userRoutes);
 
+//no favicon
+app.use(function (req, res, next) {
+  if (req.originalUrl === "/favicon.ico") {
+    return res.status(204).json({ nope: true });
+  } else {
+    next();
+  }
+});
+
 app.all("*", (req, res, next) => {
   const err = new _Error(`Can't find ${req.originalUrl} on the server!`, 404);
   next(err);
