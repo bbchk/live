@@ -25,10 +25,8 @@ jobs:
         working-directory: back
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          path: back
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ inputs.node-version }}
           cache: "npm"
@@ -46,8 +44,8 @@ jobs:
         working-directory: ${{ inputs.working-directory }}
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ inputs.node-version }}
           cache: "npm"
