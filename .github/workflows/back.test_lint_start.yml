@@ -32,7 +32,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        action: ["test-lint", "start"]
+        action: ["lint-test", "start"]
 
     env:
       NODE_ENV: ${{ vars.NODE_ENV }}
@@ -50,7 +50,7 @@ jobs:
         run: npm ci
 
       - name: Lint and Test
-        if: matrix.action == 'test-lint'
+        if: matrix.action == 'lint-test'
         run: |
           npm run lint
           npm run test
