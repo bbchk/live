@@ -49,10 +49,12 @@ const ProductListingBody = ({
             </div>
 
             <div className={`${s.gallery}`}>
-              <ProductGallery
-                activeProducts={products}
-                activeCategory={category}
-              />
+              <div className={`${s.products}`}>
+                <ProductGallery
+                  activeProducts={products}
+                  activeCategory={category}
+                />
+              </div>
               <ProductsPagination numPages={numPages} activePageId={page} />
             </div>
           </div>
