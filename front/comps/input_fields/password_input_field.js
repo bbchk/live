@@ -2,6 +2,7 @@ import s from "./password_input_filed.module.scss";
 import InputField from "./input_field";
 
 import { useState } from "react";
+import { VisibilityRounded, VisibilityOffRounded } from "@mui/icons-material";
 
 const PasswordInputField = ({
   id,
@@ -31,11 +32,11 @@ const PasswordInputField = ({
           setIsPasswordPlainText(!isPasswordPlainText);
         }}
       >
-        <i
-          className={`bi bi-eye-${
-            isPasswordPlainText ? "" : "slash-"
-          }fill icon_button_on_hover`}
-        />
+        {isPasswordPlainText ? (
+          <VisibilityRounded className={`icon_button_on_hover ${s.eye}`} />
+        ) : (
+          <VisibilityOffRounded className={`icon_button_on_hover ${s.eye}`} />
+        )}
       </button>
     </div>
   );

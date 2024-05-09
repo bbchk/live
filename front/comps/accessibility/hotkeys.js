@@ -36,27 +36,34 @@ const CustomHotkeys = () => {
     }
   }
 
+  //second hotkey is for ukrainian keyboard layout
   //general
-  useHotkeys("shift+?", () => toggle(HOTKEYS_MODAL), [dispatch]);
+  useHotkeys("shift+?, shift+.", () => toggle(HOTKEYS_MODAL), [dispatch]);
 
   //navigation
-  useHotkeys("shift+h", () => navigateTo("/"));
+  useHotkeys("shift+h, shift+р", () => navigateTo("/"));
 
-  useHotkeys("shift+p", () => navigateTo("/profile/personal_data"));
-  useHotkeys("shift+w", () => navigateTo("/profile/wish_list"));
-  useHotkeys("shift+o", () => navigateTo("/profile/orders_list"));
+  useHotkeys("shift+p, shift+з", () => navigateTo("/profile/personal_data"));
+  useHotkeys("shift+w, shift+ц", () => navigateTo("/profile/wish_list"));
+  useHotkeys("shift+o, shift+o", () => navigateTo("/profile/orders_list"));
 
-  useHotkeys("shift+c", () => toggle(CART_MODAL), [dispatch]);
-  useHotkeys("alt+shift+i", () => toggle(SIGN_IN_MODAL), [dispatch]);
-  useHotkeys("alt+shift+u", () => toggle(SIGN_UP_MODAL), [dispatch]);
-  useHotkeys("alt+shift+o", () => toggle(MAIN_OFFCANVAS), [dispatch]);
+  useHotkeys("shift+c, shift+с", () => toggle(CART_MODAL), [dispatch]);
+  useHotkeys("alt+shift+i, alt+shift+ш", () => toggle(SIGN_IN_MODAL), [
+    dispatch,
+  ]);
+  useHotkeys("alt+shift+u, alt+shift+г", () => toggle(SIGN_UP_MODAL), [
+    dispatch,
+  ]);
+  useHotkeys("alt+shift+o, alt+shift+щ", () => toggle(MAIN_OFFCANVAS), [
+    dispatch,
+  ]);
 
   //focus management
-  useHotkeys("ctrl+alt+f", () => focusOn("search_bar_input"));
-  useHotkeys("ctrl+alt+m", () => focusOn("main_content"));
+  useHotkeys("ctrl+alt+f, alt+shift+а", () => focusOn("search_bar_input"));
+  useHotkeys("ctrl+alt+m, alt+shift+ь", () => focusOn("main_content"));
 
   //user
-  useHotkeys("alt+shift+q", () => signOut({ callbackUrl: "/" }), [dispatch]);
+  useHotkeys("shift+e", () => signOut({ callbackUrl: "/" }), [dispatch]);
 
   //todo for landing page
   // Shopping Cart Shortcuts: These can help users manage their shopping cart.

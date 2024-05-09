@@ -25,4 +25,11 @@
 
 .g {
   box-shadow: 0 0 0 0.05rem $color-wh-lightsilv;
+
+  .skeleton {
+    box-shadow: 0 0 0 0.05rem $color-wh-lightsilv;
+    height: 100%;
+
+    // background-color: white;
+  }
 }

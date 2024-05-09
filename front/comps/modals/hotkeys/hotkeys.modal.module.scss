@@ -7,15 +7,21 @@
   .modal_body {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: min-content min-content min-content;
+    grid-template-rows: min-content min-content min-content min-content;
     gap: 1rem;
+    padding-top: 0;
 
     overflow-y: auto;
 
     grid-template-areas:
+      "alert alert"
       "general general"
       "navigation focus"
       "not_auth_user auth_user";
+
+    .alert {
+      grid-area: alert;
+    }
 
     .hotkeys_group {
       padding: 0.5rem;
@@ -73,11 +79,14 @@
 
     @media screen and (max-width: 992px) {
       grid-template-columns: 1fr;
-      // grid-template-rows: min-content min-content min-content;
+      grid-template-rows: min-content min-content min-content min-content;
       grid-template-areas:
+        "alert"
         "general"
         "navigation"
-        "focus";
+        "focus"
+        "not_auth_user"
+        "auth_user";
     }
   }
 }

@@ -1,4 +1,5 @@
 import FiltersAccordion from "features/products/listing/comps/filter/filters_accordion/filters_accordion";
+
 import ProductGallery from "./gallery/gallery";
 import ProductsPagination from "./gallery/pagination/pagination";
 import SortGroup from "./filter/sort-group";
