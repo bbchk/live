@@ -53,6 +53,7 @@
     "react-dom": "^18",
     "react-hotkeys-hook": "^4.5.0",
     "react-redux": "^9.0.4",
+    "react-virtualized": "^9.22.5",
     "react-virtualized-auto-sizer": "^1.0.24",
     "react-window": "^1.8.10",
     "redux": "^5.0.1",
