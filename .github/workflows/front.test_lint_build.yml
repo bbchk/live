@@ -35,7 +35,7 @@ jobs:
         run: |
           echo "Node version: ${{ inputs.node-version }}"
           echo "Working directory: ${{ inputs.working-directory }}"
-  tls:
+  tlb:
     needs: log-inputs
     runs-on: ubuntu-latest
     defaults:

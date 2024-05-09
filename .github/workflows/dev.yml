@@ -19,7 +19,6 @@ jobs:
       working-directory: back
     secrets:
       TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
   back-end-testing-linting-starting:
