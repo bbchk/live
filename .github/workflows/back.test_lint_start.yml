@@ -15,51 +15,29 @@ on:
       MONGODB_URI:
         required: true
 
-# defaults:
-#   run:
-#     working-directory: back
-defaults:
-  run:
-    working-directory: ${{ inputs.working-directory }}
-
 jobs:
-  # log-inputs:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Log inputs
-  #       run: |
-  #         echo "Node version: ${{ inputs.node-version }}"
-  #         echo "Working directory: ${{ inputs.working-directory }}"
-  lint-and-test:
+  log-inputs:
     runs-on: ubuntu-latest
+    steps:
+      - name: Log inputs
+        run: |
+          echo "Node version: ${{ inputs.node-version }}"
+          echo "Working directory: ${{ inputs.working-directory }}"
+  lint-test-start:
+    needs: log-inputs
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    strategy:
+      fail-fast: true
+      matrix:
+        action: ["test-lint", "start"]
 
-    # needs: log-inputs
     env:
       NODE_ENV: ${{ vars.NODE_ENV }}
       PORT: ${{ vars.PORT }}
       TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ inputs.node-version }}
-
-      - name: Lint and Test
-        run: |
-          npm ci
-          npm run lint
-          npm run test
-
-  start:
-    runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directoory: back
-    # needs: log-inputs
-    env:
-      NODE_ENV: ${{ vars.NODE_ENV }}
-      PORT: ${{ vars.PORT }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
     steps:
@@ -68,7 +46,17 @@ jobs:
         with:
           node-version: ${{ inputs.node-version }}
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint and Test
+        if: matrix.action == 'test-lint'
+        run: |
+          npm run lint
+          npm run test
+
       - name: Start
+        if: matrix.action == 'start'
         run: |
           npm ci
           npm run start &
