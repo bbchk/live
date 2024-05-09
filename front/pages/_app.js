@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === "production") {
   console.error = function () {};
 }
 
-require("punycode/");
+// require("punycode/");
 
 import SkipToMainContent from "comps/accessibility/skip_to_main_content";
 import CustomHotkeys from "comps/accessibility/hotkeys";
