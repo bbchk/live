@@ -71,4 +71,4 @@ jobs:
           npm ci
           npm run start &
           sleep 5
-          kildl $(jobs -p)
+          kill $(jobs -p)
