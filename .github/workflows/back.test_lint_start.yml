@@ -19,7 +19,7 @@ on:
 
 defaults:
   run:
-    working-directory: back
+    working-directory: ./back
     # working-directory: ${{ inputs.working-directory }}
 
 jobs:

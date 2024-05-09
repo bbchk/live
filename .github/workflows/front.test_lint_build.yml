@@ -29,7 +29,7 @@ on:
 
 defaults:
   run:
-    working-directory: front
+    working-directory: ./front
 
 jobs:
   log-inputs:
@@ -73,7 +73,7 @@ jobs:
           npm ci
           npm run dev &
           sleep 5
-        working-directory: back
+        working-directory: ./back
 
       - name: Build front-end application
         run: |
