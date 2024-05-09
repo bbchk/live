@@ -20,6 +20,9 @@ on:
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: back
 
     steps:
       - uses: actions/checkout@v4
@@ -35,10 +38,12 @@ jobs:
           npm ci
           npm run lint
           npm run test
-        working-directory: ${{ inputs.working-directory }}
 
   start:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
 
     steps:
       - uses: actions/checkout@v4
@@ -53,4 +58,3 @@ jobs:
           npm run start &
           sleep 5
           kill $(jobs -p)
-        working-directory: ${{ inputs.working-directory }}
