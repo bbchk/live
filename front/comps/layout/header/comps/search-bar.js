@@ -23,7 +23,7 @@ const SearchBar = () => {
     >
       <input
         id="search_bar_input"
-        className={`${s.search_field}`}
+        className={` ${s.search_field}`}
         type="search"
         placeholder="шукати..."
         aria-label="Search"

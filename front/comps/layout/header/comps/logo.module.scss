@@ -24,4 +24,10 @@
       display: none;
     }
   }
+
+  @media only screen and (width < 300px) {
+    img {
+      display: none;
+    }
+  }
 }

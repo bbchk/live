@@ -1,6 +1,4 @@
 @use "./styles/variables" as *;
-@use "./styles/mixins" as *;
-@import "node_modules/rfs/sass.sass";
 
 .search_bar {
   display: flex;
@@ -10,11 +8,13 @@
   .search_field {
     flex: 0 1 90%;
 
+    width: 100%;
+
     padding: 1rem;
     border: 0;
     border-radius: 1rem 0 0 1rem;
 
-    @include font-size(1.5rem);
+    font-size: 1.5rem;
 
     &::placeholder {
       color: rgba($color-blue-indep, 100%);
@@ -24,13 +24,12 @@
   .search_button {
     gap: 0.3rem;
 
-    flex: 0 1 10%;
+    flex: 0 0 10%;
 
     border-radius: 0 1rem 1rem 0;
     border: 0;
 
     font-size: 1.5rem;
-
     svg {
       width: 1.4rem;
       height: 1.4rem;
