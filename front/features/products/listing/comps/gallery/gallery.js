@@ -9,7 +9,7 @@ import {
   Grid,
 } from "react-virtualized";
 
-const MIN_COLUMNS = 4; // Number of columns
+const MIN_COLUMNS = 2; // Minimum number of columns
 const MIN_COLUMN_WIDTH = 250; // Minimum width for a column
 
 const ProductGallery = ({
@@ -53,6 +53,7 @@ const ProductGallery = ({
                   let columnCount = Math.floor(width / MIN_COLUMN_WIDTH);
                   columnCount =
                     columnCount < MIN_COLUMNS ? MIN_COLUMNS : columnCount;
+
                   return (
                     <Grid
                       autoHeight
@@ -71,7 +72,7 @@ const ProductGallery = ({
                       isScrolling={isScrolling}
                       onScroll={onChildScroll}
                       overscanColumnCount={0}
-                      overscanRowCount={2}
+                      overscanRowCount={1}
                       rowCount={Math.ceil(products.length / columnCount)}
                       rowHeight={400}
                       scrollTop={scrollTop}
