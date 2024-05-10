@@ -3,13 +3,13 @@ name: Back-end Testing, Linting, and Starting
 on:
   workflow_call:
     inputs:
+      environment:
+        required: true
+        type: string
       node-version:
         required: true
         type: string
       working-directory:
-        required: true
-        type: string
-      environment:
         required: true
         type: string
     secrets:
