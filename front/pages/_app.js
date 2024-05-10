@@ -62,8 +62,6 @@ if (process.env.NODiE_ENV === 'production') {
 }
 /* eslint-enable */
 
-// require("punycode/");
-
 import SkipToMainContent from 'comps/accessibility/skip_to_main_content'
 import CustomHotkeys from 'comps/accessibility/hotkeys'
 
@@ -91,9 +89,9 @@ export default function App({
             <Component {...pageProps} />
           </Body>
 
-          {/* <Suspense fallback={<div>Loading...</div>}> */}
-          <Footer />
-          {/* </Suspense> */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <Footer />
+          </Suspense>
         </Provider>
       </SessionProvider>
     </>
@@ -110,13 +108,24 @@ const Body = ({ children }) => {
         window.removeEventListener('keydown', handleTabUsersStyling)
       }
     }
+
     if (window) {
       window.addEventListener('keydown', handleTabUsersStyling)
     }
   }, [])
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    })
+  }, [])
+
   return (
-    <div className={`min-vh-65 ${balsamiqSans.className}`}>
+    <div
+      className={`${balsamiqSans.className}`}
+      style={{ 'min-height': '80vh' }}
+    >
       <LoadingOverlay loading={loading} />
       <MainOffcanvas />
       <Modals />
@@ -124,6 +133,7 @@ const Body = ({ children }) => {
     </div>
   )
 }
+
 function Modals() {
   const {
     signInModalOpen,

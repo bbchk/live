@@ -26,8 +26,13 @@ module.exports = {
           './node_modules/react-bootstrap/**/*.{js,jsx,ts,tsx}',
           './node_modules/react-bootstrap/**/*.{scss,css}',
         ],
-        safelist: ['html', 'body'],
+        safelist: {
+          standard: ['html', 'body', 'btn'],
+          deep: [/^col/, /^navbar/, /^nav/, /^modal/],
+        },
         defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+        whitelist: require('purgecss-with-wordpress').whitelist, // Whitelist all classes
+        whitelistPatterns: require('purgecss-with-wordpress').whitelistPatterns, // Whitelist based on patterns
       },
     ],
   ],
