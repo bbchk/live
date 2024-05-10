@@ -34,6 +34,11 @@ jobs:
           echo "VARS"
           echo "NODE_ENV:  ${{ vars.NODE_ENV }}"
           echo "PORT: ${{ vars.PORT }}"
+          if [[ -n "${{ secrets.TEST_JWT_SECRET }}" ]]; then
+            echo "TEST_JWT_SECRET is present and not empty"
+          else
+            echo "TEST_JWT_SECRET is not present or empty"
+          fi
   tls:
     runs-on: ubuntu-latest
     needs: log-inputs-and-vars
