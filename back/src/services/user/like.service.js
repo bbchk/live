@@ -1,8 +1,8 @@
-import User from "#src/models/user.model.js";
+import User from '#src/models/user.model.js';
 
 export const addLikedProduct = async (userId, product) => {
   return await User.updateOne(
     { _id: userId },
-    { $push: { likedProducts: product } }
+    { $push: { likedProducts: product } },
   );
 };

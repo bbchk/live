@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose";
-import bcrypt from "bcryptjs";
-import validator from "validator";
+import { Schema, model } from 'mongoose';
+import bcrypt from 'bcryptjs';
+import validator from 'validator';
 
 const userSchema = new Schema(
   {
@@ -16,7 +16,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Пошта є обов'язовим полем"],
       lowercase: true,
-      unique: [true, "Користувач з цієї поштою вже зареєстрований"],
+      unique: [true, 'Користувач з цієї поштою вже зареєстрований'],
     },
     password: {
       type: String,
@@ -32,7 +32,7 @@ const userSchema = new Schema(
     likedProducts: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Product",
+        ref: 'Product',
         required: false,
       },
     ],
@@ -40,7 +40,7 @@ const userSchema = new Schema(
       {
         product: {
           type: Schema.Types.ObjectId,
-          ref: "Product",
+          ref: 'Product',
           required: function () {
             return this.quantity != null;
           },
@@ -54,23 +54,23 @@ const userSchema = new Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 userSchema.statics.signIn = async function (email, password) {
   if (!email || !password) {
-    throw Error("Email and password fields cannot be blank");
+    throw Error('Email and password fields cannot be blank');
   }
 
   const user = await this.findOne({ email });
 
   if (!user) {
-    throw Error("Incorrect email");
+    throw Error('Incorrect email');
   }
 
   const match = await bcrypt.compare(password, user.password);
   if (!match) {
-    throw Error("Incorrect password");
+    throw Error('Incorrect password');
   }
 
   return user;
@@ -80,20 +80,20 @@ userSchema.statics.signUp = async function (user) {
   const { firstName, secondName, email, password, localStorageCartJson } = user;
 
   if (!email || !password) {
-    throw Error("Email and password fields cannot be blank");
+    throw Error('Email and password fields cannot be blank');
   }
 
   if (!validator.isEmail(email)) {
-    throw Error("Email is not valid");
+    throw Error('Email is not valid');
   }
 
   if (!validator.isStrongPassword(password)) {
-    throw Error("Password is not strong enough");
+    throw Error('Password is not strong enough');
   }
 
   const isUserExists = await this.findOne({ email });
   if (isUserExists) {
-    throw Error("Email already in use");
+    throw Error('Email already in use');
   }
 
   const hash = await bcrypt.hash(password, 10);
@@ -121,4 +121,4 @@ userSchema.statics.signUp = async function (user) {
   }
 };
 
-export default model("User", userSchema);
+export default model('User', userSchema);

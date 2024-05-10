@@ -1,7 +1,7 @@
-import * as productService from "#src/services/product/get/get.product_service.js";
-import * as categoryAndFiltersProductService from "#src/services/product/get/get_by_category&filters.product_service.js";
-import * as productsFilterService from "#src/services/product/get/get_filters.product_service.js";
-import { asyncErrorHandler } from "#src/utils/async_error_handler.js";
+import * as productService from '#src/services/product/get/get.product_service.js';
+import * as categoryAndFiltersProductService from '#src/services/product/get/get_by_category&filters.product_service.js';
+import * as productsFilterService from '#src/services/product/get/get_filters.product_service.js';
+import { asyncErrorHandler } from '#src/utils/async_error_handler.js';
 
 export const getProductById = asyncErrorHandler(async (req, res, next) => {
   const { id } = req.params;
@@ -11,7 +11,7 @@ export const getProductById = asyncErrorHandler(async (req, res, next) => {
 });
 
 export const getProductsByIds = asyncErrorHandler(async (req, res, next) => {
-  const productIds = req.query.ids.split(",");
+  const productIds = req.query.ids.split(',');
   const result = await productService.getProductsByIds(productIds);
 
   res.status(200).json(result.products);
@@ -42,14 +42,14 @@ export const getProductsByCategoryAndFilters = asyncErrorHandler(
       const result =
         await categoryAndFiltersProductService.getProductsByCategoryAndFilters(
           slugCategoryPath,
-          filtersStr
+          filtersStr,
         );
 
       return res.status(200).json(result);
     } catch (err) {
       return res.status(500).json({ error: err.message });
     }
-  }
+  },
 );
 
 export const getFilters = asyncErrorHandler(async (req, res, next) => {
@@ -66,7 +66,7 @@ export const getFilters = asyncErrorHandler(async (req, res, next) => {
   try {
     const result = await productsFilterService.getFiltersS(
       slugCategoryPath,
-      filtersStr
+      filtersStr,
     );
 
     return res.status(200).json(result);

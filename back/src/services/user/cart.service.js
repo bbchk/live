@@ -1,10 +1,10 @@
-import User from "#src/models/user.model.js";
+import User from '#src/models/user.model.js';
 
 export const addCartItem = async (userId, productId) => {
   let user = await User.findById(userId);
   if (user?.cart) {
     let cartItem = user.cart.find(
-      (item) => item.product.toString() === productId
+      (item) => item.product.toString() === productId,
     );
     if (cartItem) {
       cartItem.quantity++;
@@ -28,13 +28,13 @@ export const deleteCartItem = async (userId, productId) => {
   let user = await User.findById(userId);
   if (user?.cart) {
     let cartItem = user.cart.find(
-      (item) => item.product.toString() === productId
+      (item) => item.product.toString() === productId,
     );
     if (cartItem && cartItem.quantity > 1) {
       cartItem.quantity--;
     } else if (cartItem) {
       user.cart = user.cart.filter(
-        (item) => item.product.toString() !== productId
+        (item) => item.product.toString() !== productId,
       );
     }
   }
@@ -45,7 +45,7 @@ export const syncCart = async (userId, localStorageCartOptimized) => {
   let user = await User.findById(userId);
   localStorageCartOptimized.forEach((item) => {
     let cartItem = user?.cart.find(
-      (cartItem) => cartItem.product.toString() === item.product
+      (cartItem) => cartItem.product.toString() === item.product,
     );
     if (cartItem) {
       cartItem.quantity += Math.abs(cartItem.quantity - item.quantity);
@@ -58,15 +58,15 @@ export const syncCart = async (userId, localStorageCartOptimized) => {
   });
   await user.save();
   return await user.populate({
-    path: "cart.product",
-    select: "name price images left",
+    path: 'cart.product',
+    select: 'name price images left',
   });
 };
 
 export const getCart = async (userId) => {
   let user = await User.findById(userId);
   return await user.populate({
-    path: "cart.product",
-    select: "name price images left",
+    path: 'cart.product',
+    select: 'name price images left',
   });
 };

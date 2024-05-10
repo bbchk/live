@@ -1,5 +1,5 @@
-import { untransliterate } from "@bbuukk/slugtrans/transliterate";
-import { unslugify } from "@bbuukk/slugtrans/slugify";
+import { untransliterate } from '@bbuukk/slugtrans/transliterate';
+import { unslugify } from '@bbuukk/slugtrans/slugify';
 
 export function unslugifyFilter({ slugKey, slugOptions }) {
   let key = untransliterate(unslugify(slugKey));

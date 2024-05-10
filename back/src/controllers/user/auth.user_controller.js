@@ -1,6 +1,6 @@
-import user from "#src/models/user.model.js";
-import * as authService from "#src/services/user/auth.service.js";
-import { asyncErrorHandler } from "#src/utils/async_error_handler.js";
+import user from '#src/models/user.model.js';
+import * as authService from '#src/services/user/auth.service.js';
+import { asyncErrorHandler } from '#src/utils/async_error_handler.js';
 
 export const signIn = asyncErrorHandler(async (req, res, next) => {
   const { email, password } = req.body;

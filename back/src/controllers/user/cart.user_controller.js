@@ -1,5 +1,5 @@
-import * as cartService from "#src/services/user/cart.service.js";
-import { asyncErrorHandler } from "#src/utils/async_error_handler.js";
+import * as cartService from '#src/services/user/cart.service.js';
+import { asyncErrorHandler } from '#src/utils/async_error_handler.js';
 
 export const addCartItem = asyncErrorHandler(async (req, res, next) => {
   const { userId, productId } = req.params;
@@ -25,7 +25,7 @@ export const syncCart = asyncErrorHandler(async (req, res, next) => {
 
   const userCart = await cartService.syncCart(
     userId,
-    localStorageCartOptimized
+    localStorageCartOptimized,
   );
   res.status(200).json(userCart);
 });

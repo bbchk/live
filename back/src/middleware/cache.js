@@ -1,8 +1,8 @@
-import cache from "memory-cache";
+import cache from 'memory-cache';
 
 let cacheMiddleware = (duration) => {
   return (req, res, next) => {
-    let key = "__express__" + req.originalUrl || req.url;
+    let key = '__express__' + req.originalUrl || req.url;
     let cachedBody = cache.get(key);
     if (cachedBody) {
       res.send(cachedBody);

@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 //todo make certain fields required true
 const productSchema = new Schema(
@@ -10,7 +10,7 @@ const productSchema = new Schema(
     category: [
       {
         type: Schema.Types.ObjectId,
-        ref: "category",
+        ref: 'category',
         required: false,
       },
     ],
@@ -40,7 +40,7 @@ const productSchema = new Schema(
       required: false,
     },
   },
-  { timestamps: false }
+  { timestamps: false },
 );
 
-export default model("Product", productSchema);
+export default model('Product', productSchema);

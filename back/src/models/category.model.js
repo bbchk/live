@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 // let schemaOptions = {
 //   toJSON: {
@@ -20,7 +20,7 @@ const categorySchema = new Schema(
     path: {
       type: String,
       required: [true, "Шлях є обов'язовим полем"],
-      unique: [true, "Категорія з таким шляхом вже існує"],
+      unique: [true, 'Категорія з таким шляхом вже існує'],
     },
     imagePath: {
       type: String,
@@ -30,7 +30,7 @@ const categorySchema = new Schema(
       type: [String],
       required: false,
     },
-  }
+  },
   // schemaOptions
 );
 
@@ -40,4 +40,4 @@ const categorySchema = new Schema(
 //   return this.path.split(",").length;
 // });
 
-export default model("category", categorySchema);
+export default model('category', categorySchema);

@@ -21,9 +21,9 @@ function getFiltersMap(products, activeCategory) {
 }
 
 function getMapFromFilterStr(filtersStr) {
-  const BY_FILTER_ENTRIES = ";";
-  const BY_KEY_AND_VALUE = "=";
-  const BY_VALUES = ",";
+  const BY_FILTER_ENTRIES = ';';
+  const BY_KEY_AND_VALUE = '=';
+  const BY_VALUES = ',';
 
   let filters = null;
 
@@ -39,7 +39,7 @@ function getMapFromFilterStr(filtersStr) {
 
 function intersectMaps(...maps) {
   const allKeys = Array.from(
-    new Set(maps.flatMap((map) => Array.from(map.keys())))
+    new Set(maps.flatMap((map) => Array.from(map.keys()))),
   );
 
   const intersectedMap = new Map();
@@ -69,7 +69,7 @@ function intersectArrays(...arrays) {
   }
 
   const intersection = Object.keys(elementFrequency).filter(
-    (element) => elementFrequency[element] === arrays.length
+    (element) => elementFrequency[element] === arrays.length,
   );
 
   return intersection;

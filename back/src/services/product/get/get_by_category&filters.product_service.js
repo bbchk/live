@@ -1,17 +1,17 @@
-import Product from "#src/models/product.model.js";
+import Product from '#src/models/product.model.js';
 
 import {
   getMapFromFilterStr,
   getFiltersMap,
-} from "./utils/filters_map.util.js";
-import { unslugifyFilter } from "./utils/unslugify_filter.util.js";
+} from './utils/filters_map.util.js';
+import { unslugifyFilter } from './utils/unslugify_filter.util.js';
 
 import {
   getSubcategories,
   getCategoryBySlugPath,
-} from "#src/services/category/get.category_service.js";
-import { getFiltersS } from "./get_filters.product_service.js";
-import { get } from "mongoose";
+} from '#src/services/category/get.category_service.js';
+import { getFiltersS } from './get_filters.product_service.js';
+import { get } from 'mongoose';
 
 //todo
 //? if categoryPath is not changed from previous time, we can just use
@@ -21,7 +21,7 @@ import { get } from "mongoose";
 
 export async function getProductsByCategoryAndFilters(
   slugCategoryPath,
-  filtersStr
+  filtersStr,
 ) {
   const PRODUCTS_BY_PAGE = 50;
 
@@ -36,23 +36,23 @@ export async function getProductsByCategoryAndFilters(
   /*Creating query for resulted products*/
   let query = Product.find({
     category: { $in: activeCategoriesIds },
-  }).select("name price images characteristics");
+  }).select('name price images characteristics');
 
   /*Applying filters to resulted products query*/
   filters.forEach((slugOptions, slugKey) => {
     switch (slugKey) {
-      case "page":
-      case "tsina":
+      case 'page':
+      case 'tsina':
         break;
-      case "sortuvannya":
+      case 'sortuvannya':
         switch (slugOptions[0]) {
-          case "vid-deshevshykh-do-dorohykh":
+          case 'vid-deshevshykh-do-dorohykh':
             query = query.sort({ price: 1 });
             break;
-          case "vid-dorohykh-do-deshevykh":
+          case 'vid-dorohykh-do-deshevykh':
             query = query.sort({ price: -1 });
             break;
-          case "za-reyutynhom":
+          case 'za-reyutynhom':
             query = query.sort({ starRating: 1 });
             break;
         }
@@ -65,7 +65,7 @@ export async function getProductsByCategoryAndFilters(
           });
 
         query = query.where(`characteristics.${unslugifiedKey}`, {
-          $in: unslugifiedOptions.map((o) => new RegExp(`^${o}$`, "i")),
+          $in: unslugifiedOptions.map((o) => new RegExp(`^${o}$`, 'i')),
         });
         break;
     }
@@ -74,10 +74,10 @@ export async function getProductsByCategoryAndFilters(
   result.products = await query.exec();
   result.minMaxPrice = getMinMaxPrice(result.products);
 
-  const minMaxPrice = filters.get("tsina");
+  const minMaxPrice = filters.get('tsina');
   if (minMaxPrice) {
     result.products = result.products.filter(
-      (p) => p.price >= minMaxPrice[0] && p.price <= minMaxPrice[1]
+      (p) => p.price >= minMaxPrice[0] && p.price <= minMaxPrice[1],
     );
   }
 
@@ -85,12 +85,12 @@ export async function getProductsByCategoryAndFilters(
   result.numPages = getNumberOfPages(result.products);
 
   /*Filtering products by page*/
-  const pageValue = filters.get("page");
+  const pageValue = filters.get('page');
   if (pageValue) {
     const pageId = pageValue[0];
     result.products = result.products.slice(
       PRODUCTS_BY_PAGE * (pageId - 1),
-      PRODUCTS_BY_PAGE * pageId
+      PRODUCTS_BY_PAGE * pageId,
     );
   }
 

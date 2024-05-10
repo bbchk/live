@@ -1,13 +1,13 @@
-import { readJsonFile } from "#src/__tests__/utils/readJson.js";
-import mongoose from "mongoose";
+import { readJsonFile } from '#src/__tests__/utils/readJson.js';
+import mongoose from 'mongoose';
 
-import { mainLogger as ml } from "#src/utils/loggers.js";
+import { mainLogger as ml } from '#src/utils/loggers.js';
 
-import category from "#src/models/category.model.js";
-import Product from "#src/models/product.model.js";
-import User from "#src/models/user.model.js";
+import category from '#src/models/category.model.js';
+import Product from '#src/models/product.model.js';
+import User from '#src/models/user.model.js';
 
-import { MongoMemoryServer } from "mongodb-memory-server";
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
 let mongoServer;
 
@@ -23,18 +23,18 @@ export async function teardownDB() {
 
 async function connect() {
   mongoServer = await MongoMemoryServer.create();
-  const mongoUri = mongoServer.getUri("test");
+  const mongoUri = mongoServer.getUri('test');
   await mongoose.connect(mongoUri);
 }
 
 async function populateWithTestData() {
   let categories = readJsonFile(
-    "src/__tests__/in_memory_db/data/categories.json"
+    'src/__tests__/in_memory_db/data/categories.json',
   );
   const products = readJsonFile(
-    "src/__tests__/in_memory_db/data/products.json"
+    'src/__tests__/in_memory_db/data/products.json',
   );
-  const users = readJsonFile("src/__tests__/in_memory_db/data/users.json");
+  const users = readJsonFile('src/__tests__/in_memory_db/data/users.json');
   await category.insertMany(categories);
   await Product.insertMany(products);
   await User.insertMany(users);

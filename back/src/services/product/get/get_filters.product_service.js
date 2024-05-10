@@ -1,15 +1,15 @@
-import Product from "#src/models/product.model.js";
+import Product from '#src/models/product.model.js';
 import {
   getCategoryBySlugPath,
   getSubcategories,
-} from "../../category/get.category_service.js";
+} from '../../category/get.category_service.js';
 
 import {
   getMapFromFilterStr,
   getFiltersMap,
   intersectMaps,
-} from "./utils/filters_map.util.js";
-import { unslugifyFilter } from "./utils/unslugify_filter.util.js";
+} from './utils/filters_map.util.js';
+import { unslugifyFilter } from './utils/unslugify_filter.util.js';
 
 //todo refactor, use switch
 
@@ -24,7 +24,7 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
     const allFilterMaps = [];
 
     for (let [slugKey, slugOptions] of filters) {
-      if (slugKey === "page") {
+      if (slugKey === 'page') {
         continue;
       }
 
@@ -35,19 +35,19 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
 
       let characteristicsQuery = Product.find({
         category: { $in: activeCategoriesIds },
-      }).select("characteristics");
+      }).select('characteristics');
 
       let filteredCharacteristics = [];
 
-      if (slugKey === "tsina") {
+      if (slugKey === 'tsina') {
         filteredCharacteristics = await characteristicsQuery
-          .where("price")
+          .where('price')
           .gte(slugOptions[0])
           .lte(slugOptions[1])
           .exec();
       } else {
         const regexFilterValues = options.map(
-          (value) => new RegExp(`^${value}$`, "i")
+          (value) => new RegExp(`^${value}$`, 'i'),
         );
 
         filteredCharacteristics = await characteristicsQuery
@@ -59,12 +59,12 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
 
       const filterMap = getFiltersMap(filteredCharacteristics, activeCategory);
 
-      if (slugKey !== "tsina") {
+      if (slugKey !== 'tsina') {
         const allFilterValues = await Product.distinct(
           `characteristics.${key}`,
           {
             category: { $in: activeCategoriesIds },
-          }
+          },
         );
 
         filterMap.set(key, allFilterValues);
@@ -85,7 +85,7 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
     let allCategoryProducts = await Product.find({
       category: { $in: activeCategoriesIds },
     })
-      .select("characteristics")
+      .select('characteristics')
       .sort({ createdAt: -1 })
       .exec();
 

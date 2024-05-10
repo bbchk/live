@@ -1,15 +1,15 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 dotenv.config();
 
-import winston from "winston";
-import expressWinston from "express-winston";
+import winston from 'winston';
+import expressWinston from 'express-winston';
 const { transports } = winston;
-import MongoDB from "winston-mongodb";
+import MongoDB from 'winston-mongodb';
 // import mongoose from "mongoose";
 
-import { mainLogger as ml } from "#src/utils/loggers.js";
+import { mainLogger as ml } from '#src/utils/loggers.js';
 
-expressWinston.requestWhitelist.push("body");
+expressWinston.requestWhitelist.push('body');
 
 export const infoLogger = expressWinston.logger({
   winstonInstance: ml,
@@ -19,8 +19,8 @@ export const infoLogger = expressWinston.logger({
 
 const errorLoggerTransports = [new transports.Console()];
 
-if (process.env.NODE_ENV !== "production") {
-  errorLoggerTransports.push(new transports.File({ filename: "errors.log" }));
+if (process.env.NODE_ENV !== 'production') {
+  errorLoggerTransports.push(new transports.File({ filename: 'errors.log' }));
 }
 
 export const errorLogger = expressWinston.errorLogger({
@@ -31,8 +31,8 @@ export const errorLogger = expressWinston.errorLogger({
     winston.format.timestamp(),
     winston.format.prettyPrint(),
     winston.format.printf(
-      (info) => `[${info.timestamp}] ${info.level}: ${info.meta.message}`
-    )
+      (info) => `[${info.timestamp}] ${info.level}: ${info.meta.message}`,
+    ),
   ),
   expressFormat: true,
   statusLevels: true,

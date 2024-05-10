@@ -1,4 +1,4 @@
-import { mainLogger as ml } from "#src/utils/loggers.js";
+import { mainLogger as ml } from '#src/utils/loggers.js';
 
 export async function cleanup(server, exitCode = 0) {
   ml.info(`Server is closing on port ${process.env.PORT}`);
