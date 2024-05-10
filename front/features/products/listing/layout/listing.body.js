@@ -46,7 +46,6 @@ const ProductListingBody = ({
             <div className={`${s.filters_decor_line}`} />
             <div className={`${s.filters}`}>
               <FiltersAccordion
-                id='filtersAccordion'
                 filters={filtersMap}
                 minMaxPrice={minMaxPrice}
               />

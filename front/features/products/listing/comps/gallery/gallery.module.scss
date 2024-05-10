@@ -1,35 +1,8 @@
 @use './styles/variables' as *;
 @use './styles/mixins' as *;
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  grid-auto-rows: 25rem;
-
-  @media screen and (width < 1200px) {
-    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-  }
-
-  @media screen and (width < 992px) {
-    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-    grid-auto-rows: 23rem;
-  }
-
-  @media screen and (width < 620px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 20rem;
-
-    font-size: 0.9rem;
-  }
-}
-
 .g {
   box-shadow: 0 0 0 0.05rem $color-wh-lightsilv;
-
-  .skeleton {
-    box-shadow: 0 0 0 0.05rem $color-wh-lightsilv;
-    height: 100%;
-
-    // background-color: white;
-  }
+  border-radius: 0 0 0.5rem 0.5rem;
+  overflow: hidden;
 }

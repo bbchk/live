@@ -6,7 +6,7 @@ import s from './gallery.module.scss'
 
 const SubcategoriesGallery = ({ subcategories }) => {
   return (
-    <>
+    <div>
       {subcategories && (
         <nav className={`${s.gallery} row g-3`}>
           {subcategories
@@ -20,7 +20,7 @@ const SubcategoriesGallery = ({ subcategories }) => {
             })}
         </nav>
       )}
-    </>
+    </div>
   )
 }
 

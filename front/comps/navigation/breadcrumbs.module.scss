@@ -34,6 +34,15 @@
         color: $color-blue-dasl !important;
         content: '↫' !important;
       }
+
+      li a svg {
+        display: none;
+      }
+
+      li {
+        display: flex;
+        gap: 0.5rem;
+      }
     }
   }
 }

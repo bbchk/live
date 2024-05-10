@@ -3,8 +3,6 @@ import FilterChecks from '../filter_items/filter_item'
 import s from './filters_accordion.module.scss'
 import Accordion from 'comps/accordion/accordion'
 import AccordionItem from 'comps/accordion/accordion_item'
-import { transliterate } from '@bbuukk/slugtrans/transliterate'
-import { slugify } from '@bbuukk/slugtrans/slugify'
 
 //   //todo sometimes it changes filterValues when another one is chosen
 //   //todo fix all remaining english options in filters
@@ -15,7 +13,7 @@ const FiltersAccordion = ({ filters, minMaxPrice: minMax, show = true }) => {
   return (
     <search>
       <Accordion
-        defaultActiveKey={['0', '1', '2', '3', '4'].map(
+        defaultActiveKey={['0', '1', '2', '3'].map(
           (idx) => fiilterAccordionId + '-' + idx,
         )}
         flush

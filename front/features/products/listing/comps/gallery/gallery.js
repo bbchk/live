@@ -16,27 +16,11 @@ const ProductGallery = ({
   activeProducts: products,
   activeCategory: category,
 }) => {
-  const SkeletonCard = () => (
-    <div className={`${s.card} ${s.skeleton}`}>
-      {/* <div className={`${s.image}`}></div>
-      <div className={`${s.name}`}></div>
-      <div className={`${s.price}`}></div> */}
-    </div>
-  )
-
   const cellRenderer = ({ columnIndex, rowIndex, key, style, columnCount }) => {
     const index = rowIndex * columnCount + columnIndex
     const product = products[index]
 
     if (!product) return null
-
-    if (!product) {
-      return (
-        <div key={key} style={style}>
-          {/* <SkeletonCard /> */}
-        </div>
-      )
-    }
 
     return (
       <div key={key} style={style}>

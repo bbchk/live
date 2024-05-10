@@ -9,6 +9,7 @@ import s from './product_listing_body.module.scss'
 import FiltersOffcanvas from './filter/filiters_offcanvas/filters_offcanvas'
 import Selected from './filter/selected'
 import NoProductYet from '#root/comps/warnings/no_products.js'
+import { useSelector } from 'react-redux'
 
 const ProductListingBody = ({
   data: {
@@ -21,15 +22,21 @@ const ProductListingBody = ({
     page,
   },
 }) => {
+  //todo lazy load
+  const { filterOffcanvasOpen } = useSelector((state) => state.modals)
+
   return (
     <>
       {productsCount > 0 ? (
         <>
-          <FiltersOffcanvas
-            filters={filtersMap}
-            minMaxPrice={minMaxPrice}
-            productsCount={productsCount}
-          />
+          {filterOffcanvasOpen && (
+            <FiltersOffcanvas
+              filters={filtersMap}
+              minMaxPrice={minMaxPrice}
+              productsCount={productsCount}
+            />
+          )}
+
           <div className={`${s.body}`}>
             <div className={`${s.filters_offcanvas_toggler}`}>
               <FiltersOffcanvasToggler />

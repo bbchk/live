@@ -90,7 +90,10 @@ export default function App({
           <Body>
             <Component {...pageProps} />
           </Body>
+
+          {/* <Suspense fallback={<div>Loading...</div>}> */}
           <Footer />
+          {/* </Suspense> */}
         </Provider>
       </SessionProvider>
     </>
@@ -115,7 +118,6 @@ const Body = ({ children }) => {
   return (
     <div className={`min-vh-65 ${balsamiqSans.className}`}>
       <LoadingOverlay loading={loading} />
-
       <MainOffcanvas />
       <Modals />
       {children}
