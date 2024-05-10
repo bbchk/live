@@ -1,8 +1,6 @@
 @use './variables' as *;
 @use './mixins' as *;
 
-@import '~bootstrap/dist/css/bootstrap';
-
 @import './normalize.scss';
 @import './reset.scss';
 @import './comps/buttons.scss';

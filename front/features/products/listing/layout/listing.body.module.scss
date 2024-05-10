@@ -2,6 +2,8 @@
 @use './styles/mixins' as *;
 
 .body {
+  @include foo;
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 3rem 1fr;
