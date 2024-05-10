@@ -1,14 +1,14 @@
 import s from './like_btn.module.scss'
-import lcs from '../listing_card.module.scss'
-import { FavoriteBorderRounded, FavoriteRounded } from '@mui/icons-material'
 
-const LikeButton = ({ isLiked }) => {
+import { FavoriteBorderRounded, FavoriteRounded } from '@mui/icons-material'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToWishList, removeFromWishList } from 'store/slices/user.slice'
+
+const LikeButton = ({ product }) => {
   return (
-    <button
-      className={`${s.like_button}`}
-      //   onMouseDown={() => like(product._id)}
-    >
-      {isLiked ? (
+    <button className={`${s.like_button}`} onMouseDown={() => product.like()}>
+      {product.isLiked ? (
         <FavoriteRounded className={`bi bi-heart-fill ${s.liked}`} />
       ) : (
         <FavoriteBorderRounded />

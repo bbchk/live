@@ -1,9 +1,13 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createSlice } from '@reduxjs/toolkit'
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState: { user: null },
+  initialState: {
+    user: null,
+    cart: [],
+    status: 'idle',
+    error: null,
+  },
   reducers: {
     signIn: (state, action) => {
       state.user = action.payload
@@ -11,10 +15,6 @@ export const userSlice = createSlice({
     signOut: (state) => {
       state.user = null
     },
-    //todo
-    // addLikedProduct: (state, action) => {
-    //   state.user = [...state.user, action.payload];
-    // },
     setCart: (state, action) => {
       state.user.cart = action.payload
     },

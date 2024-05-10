@@ -4,6 +4,7 @@ import { categoriesReducer } from './slices/categories.slice'
 import { filtersReducer } from './slices/filters.slice'
 import { userReducer } from './slices/user.slice'
 import { modalsReducer } from './slices/global_comps/global_comps.slice'
+import { wishListReducer } from './slices/wish_list.slice'
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     filters: filtersReducer,
     categories: categoriesReducer,
     user: userReducer,
+    wishList: wishListReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 })

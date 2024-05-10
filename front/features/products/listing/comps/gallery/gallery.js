@@ -1,3 +1,5 @@
+import useLocalStorage from '#root/hooks/useLocalStorage.js'
+import { useDispatch, useSelector } from 'react-redux'
 import ListingProductCard from './card/listing_card'
 
 import s from './gallery.module.scss'
@@ -9,6 +11,10 @@ import {
   Grid,
 } from 'react-virtualized'
 
+import { add, remove, set } from 'store/slices/wish_list.slice'
+import { use, useEffect } from 'react'
+import { useWishList } from '#root/hooks/useWishList.js'
+
 const MIN_COLUMNS = 2 // Minimum number of columns
 const MIN_COLUMN_WIDTH = 250 // Minimum width for a column
 
@@ -16,20 +22,20 @@ const ProductGallery = ({
   activeProducts: products,
   activeCategory: category,
 }) => {
+  const [wishList, like] = useWishList()
+  console.log('🚀 ~ wishList:', wishList)
   const cellRenderer = ({ columnIndex, rowIndex, key, style, columnCount }) => {
     const index = rowIndex * columnCount + columnIndex
     const product = products[index]
 
     if (!product) return null
 
+    product.isLiked = wishList.includes(product._id)
+    product.like = like
+
     return (
       <div key={key} style={style}>
-        <ListingProductCard
-          product={product}
-          like={() => {}}
-          isLiked={false}
-          priority={index < columnCount}
-        />
+        <ListingProductCard product={product} priority={index < columnCount} />
       </div>
     )
   }
