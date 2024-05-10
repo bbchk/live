@@ -19,18 +19,22 @@ on:
         required: true
 
 jobs:
-  log-inputs:
+  log-inputs-and-vars:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
       - name: Log inputs
         run: |
+          echo "INPUTS"
           echo "Node version: ${{ inputs.node-version }}"
           echo "Working directory: ${{ inputs.working-directory }}"
           echo "Environment: ${{ inputs.environment }}"
+          echo "VARS"
+          echo "NODE_ENV:  ${{ vars.NODE_ENV }}"
+          echo "PORT: ${{ vars.PORT }}"
   tls:
     runs-on: ubuntu-latest
-    needs: log-inputs
+    needs: log-inputs-and-vars
     environment: ${{ inputs.environment }}
     defaults:
       run:
