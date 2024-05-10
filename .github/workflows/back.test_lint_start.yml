@@ -13,7 +13,7 @@ on:
         required: true
         type: string
     secrets:
-      TEST_JWT_SECRET:
+      JWT_SECRET_FOR_TESTING:
         required: true
       JWT_SECRET:
         required: true
@@ -50,7 +50,7 @@ jobs:
     env:
       NODE_ENV: ${{ vars.NODE_ENV }}
       PORT: ${{ vars.PORT }}
-      TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
+      JWT_SECRET_FOR_TESTING: ${{ secrets.JWT_SECRET_FOR_TESTING }}
       # JWT_SECRET: ${{ secrets.JWT_SECRET }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 

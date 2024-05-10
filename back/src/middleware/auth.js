@@ -13,7 +13,7 @@ export const requireAuth = asyncErrorHandler(async (req, res, next) => {
 
   const secretKey =
     process.env.NODE_ENV !== 'production'
-      ? process.env.TEST_JWT_SECRET
+      ? process.env.JWT_SECRET_FOR_TESTING
       : process.env.JWT_SECRET
   let id
   try {
