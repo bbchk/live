@@ -50,8 +50,7 @@ jobs:
   back-end-deploy:
     runs-on: ubuntu-latest
     environment: PROD
-    needs:
-      [back-end-testing-linting-starting, front-end-testing-linting-building]
+    needs: [back-end-testing-linting-starting]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -70,7 +69,7 @@ jobs:
           vercel-dir: 'back'
   front-end-deploy:
     runs-on: ubuntu-latest
-    needs: back-end-deploy
+    needs: [front-end-testing-linting-building]
     environment: PROD
     steps:
       - uses: actions/checkout@v4
