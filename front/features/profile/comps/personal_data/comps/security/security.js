@@ -1,22 +1,22 @@
-import s from './security.module.scss';
-import card_s from './../card.module.scss';
-import { Card } from 'react-bootstrap';
+import s from './security.module.scss'
+import card_s from './../card.module.scss'
+import { Card } from 'react-bootstrap'
 
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 import {
   toggle,
   GLOBAL_COMPS,
-} from 'store/slices/global_comps/global_comps.slice';
-const { CHANGE_PASSWORD_MODAL } = GLOBAL_COMPS;
+} from 'store/slices/global_comps/global_comps.slice'
+const { CHANGE_PASSWORD_MODAL } = GLOBAL_COMPS
 
-import { signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react'
 
 const Security = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   return (
     <Card className={`${card_s.card}`}>
       <Card.Header className={`${card_s.header}`}>
-        <i className="bi bi-lock-fill"></i>
+        <i className='bi bi-lock-fill'></i>
         <h5>Безпека</h5>
       </Card.Header>
       <Card.Body className={`${card_s.body} ${s.security}`}>
@@ -26,15 +26,15 @@ const Security = () => {
         <button
           onClick={() => {
             signOut({ callbackUrl: '/' }).then(() => {
-              window.location.href = '/';
-            });
+              window.location.href = '/'
+            })
           }}
         >
           Вийти з акаунту
         </button>
       </Card.Body>
     </Card>
-  );
-};
+  )
+}
 
-export default Security;
+export default Security

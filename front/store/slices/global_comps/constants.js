@@ -10,4 +10,4 @@ export const GLOBAL_COMPS = {
   DELETE_ACCOUNT_MODAL: 'deleteAccountModalOpen',
   CART_MODAL: 'cartModalOpen',
   WRITE_REVIEW_MODAL: 'writeReviewModalOpen',
-};
+}

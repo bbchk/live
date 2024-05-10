@@ -72,59 +72,59 @@
 
 // export default CartModal;
 
-import { Modal } from 'react-bootstrap';
-import s from './cart_modal.module.scss';
+import { Modal } from 'react-bootstrap'
+import s from './cart_modal.module.scss'
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 import {
   toggle,
   GLOBAL_COMPS,
-} from 'store/slices/global_comps/global_comps.slice';
-const { CART_MODAL } = GLOBAL_COMPS;
+} from 'store/slices/global_comps/global_comps.slice'
+const { CART_MODAL } = GLOBAL_COMPS
 
-import { balsamiqSans } from 'pages/_app';
+import { balsamiqSans } from 'pages/_app'
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react'
 
-import CartItem from './cart_item/cart_item';
-import Image from 'next/image';
+import CartItem from './cart_item/cart_item'
+import Image from 'next/image'
 
-import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap';
+import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap'
 
 const CartModal = () => {
-  const dispatch = useDispatch();
-  const { cartModalOpen } = useSelector((state) => state.modals);
-  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch()
+  const { cartModalOpen } = useSelector((state) => state.modals)
+  const { user } = useSelector((state) => state.user)
 
-  const [cartItems, setCartItems] = useState([]);
-  const [totalCost, setTotalCost] = useState(0);
+  const [cartItems, setCartItems] = useState([])
+  const [totalCost, setTotalCost] = useState(0)
 
-  const cart = useMemo(() => user?.cart, [user?.cart]);
+  const cart = useMemo(() => user?.cart, [user?.cart])
 
-  useTabTrap(cartModalOpen, 'cartModal');
+  useTabTrap(cartModalOpen, 'cartModal')
 
   //todo set cart items and total cost to localStorage on signOut
   useEffect(() => {
     if (cart) {
-      setCartItems(cart);
+      setCartItems(cart)
       const totalCost = cart.reduce(
         (acc, item) => acc + item.product.price * item.quantity,
         0,
-      );
-      setTotalCost(totalCost);
+      )
+      setTotalCost(totalCost)
     }
-  }, [cart]);
+  }, [cart])
 
-  const handleBuy = async (e, value) => {};
+  const handleBuy = async (e, value) => {}
 
   return (
     <Modal
-      id="cartModal"
+      id='cartModal'
       show={cartModalOpen}
       onHide={() => dispatch(toggle(CART_MODAL))}
       centered
-      fullscreen="lg-down"
-      size="xl"
+      fullscreen='lg-down'
+      size='xl'
       className={`${s.modal} ${balsamiqSans.className}`}
     >
       <Modal.Header closeButton={true} className={`${s.modal_header}`}>
@@ -134,8 +134,8 @@ const CartModal = () => {
         {cartItems.length === 0 ? (
           <div className={`${s.empty_cart}`}>
             <Image
-              src="/assets/empty_cart.svg"
-              alt="Empty cart"
+              src='/assets/empty_cart.svg'
+              alt='Empty cart'
               width={200}
               height={200}
             />
@@ -150,7 +150,7 @@ const CartModal = () => {
                   product={product}
                   quantity={quantity}
                 />
-              );
+              )
             })}
 
             <footer>
@@ -184,7 +184,7 @@ const CartModal = () => {
         )}
       </Modal.Body>
     </Modal>
-  );
-};
+  )
+}
 
-export default CartModal;
+export default CartModal

@@ -1,30 +1,30 @@
-import { useSession } from 'next-auth/react';
-import Image from 'next/image';
+import { useSession } from 'next-auth/react'
+import Image from 'next/image'
 
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from 'store/slices/global_comps/global_comps.slice';
-const { CART_MODAL } = GLOBAL_COMPS;
+} from 'store/slices/global_comps/global_comps.slice'
+const { CART_MODAL } = GLOBAL_COMPS
 
-import hs from '../../header.module.scss';
+import hs from '../../header.module.scss'
 
-import IconButton from './icon_button';
-import AuthPopover from './auth_popover';
-import s from './button_group.module.scss';
+import IconButton from './icon_button'
+import AuthPopover from './auth_popover'
+import s from './button_group.module.scss'
 
 import {
   ChecklistRtlRounded,
   FavoriteBorderRounded,
   ShoppingCartRounded,
-} from '@mui/icons-material';
+} from '@mui/icons-material'
 
 //todo list of links with unordered list
 const ButtonGroup = () => {
-  const dispatch = useDispatch();
-  const { data: session } = useSession();
+  const dispatch = useDispatch()
+  const { data: session } = useSession()
 
   return (
     <nav className={` ${s.auth_btn_group} ${hs.icon_btn_group}`}>
@@ -37,7 +37,7 @@ const ButtonGroup = () => {
             >
               <Image
                 src={session.user.image}
-                alt="Profile"
+                alt='Profile'
                 width={50}
                 height={50}
               />
@@ -72,7 +72,7 @@ const ButtonGroup = () => {
         </IconButton>
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default ButtonGroup;
+export default ButtonGroup

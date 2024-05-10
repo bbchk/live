@@ -6,4 +6,4 @@ module.exports = {
   },
   testMatch: ['**/*.test.[jt]s?(x)'],
   setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
-};
+}

@@ -1,16 +1,16 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
-import ImageFallback from 'comps/image/fallback_image.js';
+import ImageFallback from 'comps/image/fallback_image.js'
 
-import s from './figure.module.scss';
-import lcs from '../listing.product_card.module.scss';
-import { useDispatch } from 'react-redux';
+import s from './figure.module.scss'
+import lcs from '../listing.product_card.module.scss'
+import { useDispatch } from 'react-redux'
 
-import { startLoading } from 'store/slices/global_comps/global_comps.slice';
+import { startLoading } from 'store/slices/global_comps/global_comps.slice'
 
 const ProductFigure = ({ product, productUrl }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   return (
     <Link
       className={`${lcs.figure}`}
@@ -24,7 +24,7 @@ const ProductFigure = ({ product, productUrl }) => {
             product.images && product.images[0]
           }
           fallbackSrc={'/assets/goods_placeholder.svg'}
-          alt="product image"
+          alt='product image'
           width={250}
           height={250}
           quality={100}
@@ -33,7 +33,7 @@ const ProductFigure = ({ product, productUrl }) => {
         <figcaption>{product.name}</figcaption>
       </figure>
     </Link>
-  );
-};
+  )
+}
 
-export default ProductFigure;
+export default ProductFigure

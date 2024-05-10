@@ -1,85 +1,85 @@
-import Slider from '@mui/material/Slider';
-import React, { use, useEffect, useState } from 'react';
-import s from './price-slider.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from 'store/slices/filters.slice';
-import { useRouter } from 'next/router';
-import { startLoading } from 'store/slices/global_comps/global_comps.slice.js';
+import Slider from '@mui/material/Slider'
+import React, { use, useEffect, useState } from 'react'
+import s from './price-slider.module.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { setFilter } from 'store/slices/filters.slice'
+import { useRouter } from 'next/router'
+import { startLoading } from 'store/slices/global_comps/global_comps.slice.js'
 
 //todo inconsistent currentMinMax, it changes on page refresh, when set on some points lower
 const PriceSlider = ({ minMax }) => {
-  const MIN_DISTANCE = 10;
+  const MIN_DISTANCE = 10
 
-  const { filtersStr } = useRouter().query;
-  const dispatch = useDispatch();
+  const { filtersStr } = useRouter().query
+  const dispatch = useDispatch()
 
-  const [minMaxPrice, setMinMaxPrice] = useState([minMax[0], minMax[1]]);
-  const [submitDisabled, setSubmitDisabled] = useState(false);
+  const [minMaxPrice, setMinMaxPrice] = useState([minMax[0], minMax[1]])
+  const [submitDisabled, setSubmitDisabled] = useState(false)
 
-  const { filters: activeFilters } = useSelector((state) => state.filters);
+  const { filters: activeFilters } = useSelector((state) => state.filters)
 
   useEffect(() => {
     //resetting price slider when all filters are removed
     if (Object.keys(activeFilters).length === 0) {
-      setMinMaxPrice([minMax[0], minMax[1]]);
+      setMinMaxPrice([minMax[0], minMax[1]])
     } else {
-      const isPriceFilterApplied = Object.keys(activeFilters).includes('tsina');
+      const isPriceFilterApplied = Object.keys(activeFilters).includes('tsina')
       if (isPriceFilterApplied) {
-        setMinMaxPrice(activeFilters.tsina);
+        setMinMaxPrice(activeFilters.tsina)
       } else {
-        setMinMaxPrice([minMax[0], minMax[1]]);
+        setMinMaxPrice([minMax[0], minMax[1]])
       }
     }
-  }, [activeFilters]);
+  }, [activeFilters])
 
   useEffect(() => {
     if (minMaxPrice[1] > minMax[1] || minMaxPrice[0] < minMax[0]) {
-      setSubmitDisabled(true);
+      setSubmitDisabled(true)
     } else {
-      setSubmitDisabled(false);
+      setSubmitDisabled(false)
     }
-  }, [minMaxPrice]);
+  }, [minMaxPrice])
 
   function handleConfirm(event, newValue) {
     if (activeFilters?.tsina) {
       if (minMaxPrice.toString() === activeFilters.tsina.toString()) {
-        return;
+        return
       }
     }
 
-    dispatch(startLoading());
+    dispatch(startLoading())
     dispatch(
       setFilter({
         filterName: 'tsina',
         filterValue: [minMaxPrice[0], minMaxPrice[1]],
       }),
-    );
+    )
   }
 
   const handleChange = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
-      return;
+      return
     }
     if (newValue[1] - newValue[0] < MIN_DISTANCE) {
       if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], minMax[1] - MIN_DISTANCE);
+        const clamped = Math.min(newValue[0], minMax[1] - MIN_DISTANCE)
 
-        setMinMaxPrice([clamped, clamped + MIN_DISTANCE]);
+        setMinMaxPrice([clamped, clamped + MIN_DISTANCE])
       } else {
-        const clamped = Math.max(newValue[1], MIN_DISTANCE);
-        setMinMaxPrice([clamped - MIN_DISTANCE, clamped]);
+        const clamped = Math.max(newValue[1], MIN_DISTANCE)
+        setMinMaxPrice([clamped - MIN_DISTANCE, clamped])
       }
     } else {
-      setMinMaxPrice(newValue);
+      setMinMaxPrice(newValue)
     }
-  };
+  }
 
   const handleInputChange = (index) => (event) => {
-    const newValues = [...minMaxPrice];
+    const newValues = [...minMaxPrice]
     newValues[index] =
-      event.target.value === '' ? 0 : Number(event.target.value);
-    setMinMaxPrice(newValues);
-  };
+      event.target.value === '' ? 0 : Number(event.target.value)
+    setMinMaxPrice(newValues)
+  }
 
   return (
     <div className={`${s.price_slider}`}>
@@ -88,7 +88,7 @@ const PriceSlider = ({ minMax }) => {
           value={minMaxPrice[0]}
           onChange={handleInputChange(0)}
           className={`form-control ${s.input} ${s.left}`}
-          type="number"
+          type='number'
         />
         <span>—</span>
 
@@ -96,7 +96,7 @@ const PriceSlider = ({ minMax }) => {
           value={minMaxPrice[1]}
           onChange={handleInputChange(1)}
           className={`form-control ${s.input} ${s.right}`}
-          type="number"
+          type='number'
         />
         <button
           onClick={handleConfirm}
@@ -108,7 +108,7 @@ const PriceSlider = ({ minMax }) => {
       </div>
       <div className={`${s.body}`}>
         <Slider
-          range="true"
+          range='true'
           min={minMax[0]}
           max={minMax[1]}
           step={10}
@@ -119,7 +119,7 @@ const PriceSlider = ({ minMax }) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PriceSlider;
+export default PriceSlider

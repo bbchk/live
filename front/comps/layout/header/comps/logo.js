@@ -1,19 +1,19 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from 'next/link'
+import Image from 'next/image'
 
-import { pacifico } from 'pages/_app';
+import { pacifico } from 'pages/_app'
 
-import hs from '../header.module.scss';
+import hs from '../header.module.scss'
 
-import s from './logo.module.scss';
+import s from './logo.module.scss'
 
 const Logo = () => {
   return (
     <>
-      <Link className={`${s.logo} ${hs.logo} ${pacifico.className}`} href="/">
+      <Link className={`${s.logo} ${hs.logo} ${pacifico.className}`} href='/'>
         <Image
           src={'/assets/logo.svg'}
-          alt="Logo of the site"
+          alt='Logo of the site'
           width={50}
           height={50}
           priority
@@ -21,7 +21,7 @@ const Logo = () => {
         <p>Живий світ</p>
       </Link>
     </>
-  );
-};
+  )
+}
 
-export default Logo;
+export default Logo

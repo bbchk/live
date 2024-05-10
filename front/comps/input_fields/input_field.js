@@ -1,5 +1,5 @@
-import { useId } from 'react';
-import s from './input_field.module.scss';
+import { useId } from 'react'
+import s from './input_field.module.scss'
 
 const InputField = ({
   type,
@@ -10,7 +10,7 @@ const InputField = ({
   error,
   disabled,
 }) => {
-  const id = useId();
+  const id = useId()
 
   return (
     <div className={`form-floating ${s.input_container}`}>
@@ -27,7 +27,7 @@ const InputField = ({
         {label}
       </label>
     </div>
-  );
-};
+  )
+}
 
-export default InputField;
+export default InputField

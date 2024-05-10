@@ -1,4 +1,4 @@
-import s from './small_buy_area.module.scss';
+import s from './small_buy_area.module.scss'
 
 const SmallBuyArea = ({ product: { price } }) => {
   return (
@@ -9,10 +9,10 @@ const SmallBuyArea = ({ product: { price } }) => {
       </p>
       <button className={` ${s.buy_button} icon-link `}>
         <p>Купити</p>
-        <i className="bi bi-cart4"></i>
+        <i className='bi bi-cart4'></i>
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default SmallBuyArea;
+export default SmallBuyArea

@@ -1,16 +1,16 @@
-import ListingProductCard from './card/listing_card';
+import ListingProductCard from './card/listing_card'
 
-import s from './gallery.module.scss';
+import s from './gallery.module.scss'
 
 import {
   AutoSizer,
   InfiniteLoader,
   WindowScroller,
   Grid,
-} from 'react-virtualized';
+} from 'react-virtualized'
 
-const MIN_COLUMNS = 2; // Minimum number of columns
-const MIN_COLUMN_WIDTH = 250; // Minimum width for a column
+const MIN_COLUMNS = 2 // Minimum number of columns
+const MIN_COLUMN_WIDTH = 250 // Minimum width for a column
 
 const ProductGallery = ({
   activeProducts: products,
@@ -22,20 +22,20 @@ const ProductGallery = ({
       <div className={`${s.name}`}></div>
       <div className={`${s.price}`}></div> */}
     </div>
-  );
+  )
 
   const cellRenderer = ({ columnIndex, rowIndex, key, style, columnCount }) => {
-    const index = rowIndex * columnCount + columnIndex;
-    const product = products[index];
+    const index = rowIndex * columnCount + columnIndex
+    const product = products[index]
 
-    if (!product) return null;
+    if (!product) return null
 
     if (!product) {
       return (
         <div key={key} style={style}>
           {/* <SkeletonCard /> */}
         </div>
-      );
+      )
     }
 
     return (
@@ -47,8 +47,8 @@ const ProductGallery = ({
           priority={index < columnCount}
         />
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div className={`${s.g}`}>
@@ -64,9 +64,9 @@ const ProductGallery = ({
             {({ height, isScrolling, onChildScroll, scrollTop }) => (
               <AutoSizer disableHeight>
                 {({ width }) => {
-                  let columnCount = Math.floor(width / MIN_COLUMN_WIDTH);
+                  let columnCount = Math.floor(width / MIN_COLUMN_WIDTH)
                   columnCount =
-                    columnCount < MIN_COLUMNS ? MIN_COLUMNS : columnCount;
+                    columnCount < MIN_COLUMNS ? MIN_COLUMNS : columnCount
 
                   return (
                     <Grid
@@ -92,7 +92,7 @@ const ProductGallery = ({
                       scrollTop={scrollTop}
                       width={width}
                     />
-                  );
+                  )
                 }}
               </AutoSizer>
             )}
@@ -100,7 +100,7 @@ const ProductGallery = ({
         )}
       </InfiniteLoader>
     </div>
-  );
-};
+  )
+}
 
-export default ProductGallery;
+export default ProductGallery

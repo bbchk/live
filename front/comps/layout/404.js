@@ -1,4 +1,4 @@
-import s from './404.module.scss';
+import s from './404.module.scss'
 
 const NotFound = () => {
   return (
@@ -8,7 +8,7 @@ const NotFound = () => {
         <p>Сторінку не знайдено</p>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

@@ -1,22 +1,22 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import s from './landing_tabs_navigation.module.scss';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import s from './landing_tabs_navigation.module.scss'
 
-import { slugify } from '@bbuukk/slugtrans/slugify';
-import { transliterate } from '@bbuukk/slugtrans/transliterate';
+import { slugify } from '@bbuukk/slugtrans/slugify'
+import { transliterate } from '@bbuukk/slugtrans/transliterate'
 
 const TabsNavigation = ({ activeTab }) => {
-  const router = useRouter();
-  const { productSlug, productId } = router.query;
+  const router = useRouter()
+  const { productSlug, productId } = router.query
 
   const productUrl = (activeTab) =>
-    `/product/${productSlug}/${productId}/${activeTab}`;
+    `/product/${productSlug}/${productId}/${activeTab}`
 
   const TabLink = ({ tabName, label }) => {
     const handleClick = (e) => {
-      e.preventDefault();
-      router.push(productUrl(tabName), undefined, { shallow: true });
-    };
+      e.preventDefault()
+      router.push(productUrl(tabName), undefined, { shallow: true })
+    }
 
     return (
       <li className={`nav-item ${s.link_container}`}>
@@ -25,14 +25,14 @@ const TabsNavigation = ({ activeTab }) => {
           className={`nav-link ${s.link}  ${
             activeTab === tabName ? s.active : ''
           }`}
-          aria-current="page"
+          aria-current='page'
           onClick={handleClick}
         >
           {label}
         </Link>
       </li>
-    );
-  };
+    )
+  }
 
   return (
     <>
@@ -46,7 +46,7 @@ const TabsNavigation = ({ activeTab }) => {
         <TabLink tabName={'reviews'} label={'Відгуки'} />
       </ul>
     </>
-  );
-};
+  )
+}
 
-export default TabsNavigation;
+export default TabsNavigation

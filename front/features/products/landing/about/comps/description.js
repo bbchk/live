@@ -1,38 +1,38 @@
-import { useEffect, useRef, useState } from 'react';
-import s from './description.module.scss';
+import { useEffect, useRef, useState } from 'react'
+import s from './description.module.scss'
 
 //? todo is using these libraries safe in sake of xss(cross-site-scripting)?
-import parse from 'html-react-parser';
-import { useRouter } from 'next/router';
+import parse from 'html-react-parser'
+import { useRouter } from 'next/router'
 
 const Description = ({ product }) => {
-  const [expanded, setExpanded] = useState(false);
-  const [isOverflowing, setIsOverflowing] = useState(false);
+  const [expanded, setExpanded] = useState(false)
+  const [isOverflowing, setIsOverflowing] = useState(false)
 
-  const textRef = useRef();
+  const textRef = useRef()
 
-  const router = useRouter();
+  const router = useRouter()
 
   const toggleExpanded = () => {
     if (!expanded) {
-      textRef.current.style.maxHeight = `${textRef.current.scrollHeight}px`;
+      textRef.current.style.maxHeight = `${textRef.current.scrollHeight}px`
     }
-    setExpanded(!expanded);
-  };
+    setExpanded(!expanded)
+  }
 
   useEffect(() => {
     if (!expanded) {
-      textRef.current.style.maxHeight = null;
+      textRef.current.style.maxHeight = null
     }
-  }, [expanded]);
+  }, [expanded])
 
   useEffect(() => {
-    setIsOverflowing(textRef.current.scrollHeight > 300);
-  }, [product.description]);
+    setIsOverflowing(textRef.current.scrollHeight > 300)
+  }, [product.description])
 
   return (
     <>
-      <div id="landingProductDescription" className={`${s.description}`}>
+      <div id='landingProductDescription' className={`${s.description}`}>
         <div
           ref={textRef}
           className={`${s.text} ${
@@ -50,13 +50,13 @@ const Description = ({ product }) => {
           ) : (
             <>
               <p>Читати більше</p>
-              <i className="bi bi-chevron-down" />
+              <i className='bi bi-chevron-down' />
             </>
           )}
         </button>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Description;
+export default Description

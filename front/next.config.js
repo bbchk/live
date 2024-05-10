@@ -29,9 +29,9 @@ module.exports = {
           destination: '/maintenance.html',
           permanent: false,
         },
-      ];
+      ]
     }
-    return [];
+    return []
   },
   //! todo delete this after testing
   eslint: {
@@ -39,4 +39,4 @@ module.exports = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-};
+}

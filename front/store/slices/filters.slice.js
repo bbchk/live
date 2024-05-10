@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
 const filtersSlice = createSlice({
   name: 'filters',
@@ -9,25 +9,25 @@ const filtersSlice = createSlice({
   },
   reducers: {
     setFilters: (state, action) => {
-      state.filters = action.payload;
+      state.filters = action.payload
     },
     setFilter: (state, action) => {
-      state.filters[action.payload.filterName] = action.payload.filterValue;
+      state.filters[action.payload.filterName] = action.payload.filterValue
     },
     deleteFilter: (state, action) => {
-      delete state.filters[action.payload.filterName];
+      delete state.filters[action.payload.filterName]
     },
     deleteAllFilters: (state) => {
-      const page = state.filters.page;
-      state.filters = { page: page ? page : ['1'] };
+      const page = state.filters.page
+      state.filters = { page: page ? page : ['1'] }
     },
     updateFilter: (state, action) => {
       if (state.filters[action.payload.filterName]) {
-        state.filters[action.payload.filterName] = action.payload.filterValues;
+        state.filters[action.payload.filterName] = action.payload.filterValues
       }
     },
   },
-});
+})
 
 export const {
   setFilters,
@@ -35,6 +35,6 @@ export const {
   deleteFilter,
   updateFilter,
   deleteAllFilters,
-} = filtersSlice.actions;
+} = filtersSlice.actions
 
-export const filtersReducer = filtersSlice.reducer;
+export const filtersReducer = filtersSlice.reducer

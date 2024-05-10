@@ -1,4 +1,4 @@
-import s from './privacy_policy.module.scss';
+import s from './privacy_policy.module.scss'
 
 const Policy = () => {
   return (
@@ -37,11 +37,11 @@ const Policy = () => {
         <dt>Маєте запитання?</dt>
         <dd>
           Для звернення з питань конфіденційності, будь ласка, зв'яжіться з нами
-          через <a href="mailto:privacy@zhyvysvit.ua">privacy@zhyvysvit.ua</a>.
+          через <a href='mailto:privacy@zhyvysvit.ua'>privacy@zhyvysvit.ua</a>.
         </dd>
       </dl>
     </article>
-  );
-};
+  )
+}
 
-export default Policy;
+export default Policy

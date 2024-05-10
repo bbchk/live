@@ -1,16 +1,16 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
-import ImageFallback from 'comps/image/fallback_image.js';
+import ImageFallback from 'comps/image/fallback_image.js'
 
-import s from './figure.module.scss';
-import lcs from '../listing_card.module.scss';
-import { useDispatch } from 'react-redux';
+import s from './figure.module.scss'
+import lcs from '../listing_card.module.scss'
+import { useDispatch } from 'react-redux'
 
-import { startLoading } from 'store/slices/global_comps/global_comps.slice';
+import { startLoading } from 'store/slices/global_comps/global_comps.slice'
 
 const ProductFigure = ({ product, productUrl, priority }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   return (
     <Link
       className={`${lcs.figure}`}
@@ -24,17 +24,17 @@ const ProductFigure = ({ product, productUrl, priority }) => {
             product.images && product.images[0]
           }
           fallbackSrc={'/assets/goods_placeholder.svg'}
-          alt="product image"
+          alt='product image'
           quality={80}
           width={250}
           height={250}
-          sizes="(max-width: 600px) 50vw, (max-width: 768px) 35vw,(max-width: 800px) 30vw,(max-width: 1200px) 25vw, 10vw"
+          sizes='(max-width: 600px) 50vw, (max-width: 768px) 35vw,(max-width: 800px) 30vw,(max-width: 1200px) 25vw, 10vw'
           priority={priority}
         />
         <figcaption>{product.name}</figcaption>
       </figure>
     </Link>
-  );
-};
+  )
+}
 
-export default ProductFigure;
+export default ProductFigure

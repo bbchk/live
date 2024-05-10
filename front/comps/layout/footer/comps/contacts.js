@@ -1,4 +1,4 @@
-import { LocationOnRounded } from '@mui/icons-material';
+import { LocationOnRounded } from '@mui/icons-material'
 
 const Contacts = () => {
   return (
@@ -7,9 +7,9 @@ const Contacts = () => {
         <LocationOnRounded />
         <span>Адреса</span>
       </h2>
-      <p className="text-center">м. Калинівка, вул. Незалежності, 47б</p>
+      <p className='text-center'>м. Калинівка, вул. Незалежності, 47б</p>
     </address>
-  );
-};
+  )
+}
 
-export default Contacts;
+export default Contacts

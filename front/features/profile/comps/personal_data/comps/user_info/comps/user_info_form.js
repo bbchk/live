@@ -1,34 +1,34 @@
-import { useEffect, useState } from 'react';
-import s from './user_info_form.module.scss';
-import ps from '../user_info.module.scss';
-import { useSession } from 'next-auth/react';
-import InputField from 'comps/input_fields/input_field';
+import { useEffect, useState } from 'react'
+import s from './user_info_form.module.scss'
+import ps from '../user_info.module.scss'
+import { useSession } from 'next-auth/react'
+import InputField from 'comps/input_fields/input_field'
 
 const UserInfoForm = () => {
-  const { data: session, status } = useSession();
-  const user = session?.user;
+  const { data: session, status } = useSession()
+  const user = session?.user
 
-  const [isBeingModified, setIsBeingModified] = useState(false);
-  const [hasBeenBeingModified, setHasBeenBeingModified] = useState(false);
+  const [isBeingModified, setIsBeingModified] = useState(false)
+  const [hasBeenBeingModified, setHasBeenBeingModified] = useState(false)
 
   const [userInfo, setUserInfo] = useState({
     firstName: '',
     secondName: '',
     email: '',
-  });
+  })
 
   useEffect(() => {
     setUserInfo({
       firstName: user?.firstName || '',
       secondName: user?.secondName || '',
       email: user?.email || '',
-    });
-  }, [session, isBeingModified]);
+    })
+  }, [session, isBeingModified])
 
   const handleSubmit = async (e, value) => {
-    e.preventDefault();
-    setIsBeingModified(false);
-  };
+    e.preventDefault()
+    setIsBeingModified(false)
+  }
 
   return (
     <form
@@ -37,37 +37,37 @@ const UserInfoForm = () => {
     >
       <div className={`${s.input_group}`}>
         <InputField
-          type="text"
-          id="profileFirstNameInput"
+          type='text'
+          id='profileFirstNameInput'
           label="Ім'я:"
           value={userInfo.firstName}
           disabled={!isBeingModified}
           onChange={(e) => {
-            setHasBeenBeingModified(true);
-            setUserInfo({ ...userInfo, firstName: e.target.value });
+            setHasBeenBeingModified(true)
+            setUserInfo({ ...userInfo, firstName: e.target.value })
           }}
         />
         <InputField
-          type="text"
-          id="profileSecondNameInput"
-          label="Прізвище:"
+          type='text'
+          id='profileSecondNameInput'
+          label='Прізвище:'
           value={userInfo.secondName}
           disabled={!isBeingModified}
           onChange={(e) => {
-            setHasBeenBeingModified(true);
-            setUserInfo({ ...userInfo, secondName: e.target.value });
+            setHasBeenBeingModified(true)
+            setUserInfo({ ...userInfo, secondName: e.target.value })
           }}
         />
 
         <InputField
-          type="email"
-          id="profileEmailInput"
-          label="Пошта:"
+          type='email'
+          id='profileEmailInput'
+          label='Пошта:'
           value={userInfo.email}
           disabled={!isBeingModified}
           onChange={(e) => {
-            setHasBeenBeingModified(true);
-            setUserInfo({ ...userInfo, email: e.target.value });
+            setHasBeenBeingModified(true)
+            setUserInfo({ ...userInfo, email: e.target.value })
           }}
         />
       </div>
@@ -76,7 +76,7 @@ const UserInfoForm = () => {
         {!isBeingModified && (
           <li>
             <button
-              type="button"
+              type='button'
               className={`button_primary`}
               onClick={() => setIsBeingModified(true)}
             >
@@ -88,14 +88,14 @@ const UserInfoForm = () => {
           <>
             <li>
               <button
-                data-toggle="tooltip"
+                data-toggle='tooltip'
                 title={hasBeenBeingModified ? '' : 'Дані не були змінені'}
-                data-placement="bottom"
-                type="submit"
+                data-placement='bottom'
+                type='submit'
                 className={`button_primary`}
                 disabled={!hasBeenBeingModified}
                 onClick={() => {
-                  setHasBeenBeingModified(false);
+                  setHasBeenBeingModified(false)
                 }}
               >
                 Зберегти
@@ -103,11 +103,11 @@ const UserInfoForm = () => {
             </li>
             <li>
               <button
-                type="button"
+                type='button'
                 className={`button_primary`}
                 onClick={() => {
-                  setHasBeenBeingModified(false);
-                  setIsBeingModified(false);
+                  setHasBeenBeingModified(false)
+                  setIsBeingModified(false)
                 }}
               >
                 Скасувати
@@ -117,7 +117,7 @@ const UserInfoForm = () => {
         )}
       </menu>
     </form>
-  );
-};
+  )
+}
 
-export default UserInfoForm;
+export default UserInfoForm

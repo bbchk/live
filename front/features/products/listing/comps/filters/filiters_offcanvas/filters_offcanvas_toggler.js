@@ -1,18 +1,18 @@
-import s from './filters_offcanvas_toggler.module.scss';
+import s from './filters_offcanvas_toggler.module.scss'
 
 const FiltersOffcanvasToggler = ({ id }) => {
   return (
     <button
       className={`${s.filters_offcanvas_toggler} button_primary`}
-      type="button"
-      data-bs-toggle="offcanvas"
+      type='button'
+      data-bs-toggle='offcanvas'
       data-bs-target={`#${id}`}
       aria-controls={id}
     >
       <p>Фільтри</p>
-      <i className="bi bi-funnel" />
+      <i className='bi bi-funnel' />
     </button>
-  );
-};
+  )
+}
 
-export default FiltersOffcanvasToggler;
+export default FiltersOffcanvasToggler

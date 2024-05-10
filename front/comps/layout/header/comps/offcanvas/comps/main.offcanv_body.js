@@ -1,4 +1,4 @@
-import s from './main.offcanv_body.module.scss';
+import s from './main.offcanv_body.module.scss'
 
 import {
   List,
@@ -7,7 +7,7 @@ import {
   ListItemText,
   Divider,
   Typography,
-} from '@mui/material';
+} from '@mui/material'
 import {
   Menu as MenuIcon,
   Home as HomeIcon,
@@ -17,23 +17,23 @@ import {
   ReceiptLong,
   ShoppingCart,
   MeetingRoom,
-} from '@mui/icons-material';
-import { balsamiqSans } from '#root/pages/_app.js';
+} from '@mui/icons-material'
+import { balsamiqSans } from '#root/pages/_app.js'
 
-import { signOut, useSession } from 'next-auth/react';
-import { useDispatch } from 'react-redux';
-import Image from 'next/image';
+import { signOut, useSession } from 'next-auth/react'
+import { useDispatch } from 'react-redux'
+import Image from 'next/image'
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from 'store/slices/global_comps/global_comps.slice';
-const { SIGN_IN_MODAL, CART_MODAL, MAIN_OFFCANVAS } = GLOBAL_COMPS;
+} from 'store/slices/global_comps/global_comps.slice'
+const { SIGN_IN_MODAL, CART_MODAL, MAIN_OFFCANVAS } = GLOBAL_COMPS
 
 function MainOffcanvasBody() {
-  const dispatch = useDispatch();
-  const { data: session } = useSession();
-  const user = session?.user;
+  const dispatch = useDispatch()
+  const { data: session } = useSession()
+  const user = session?.user
 
   return (
     <div className={`${balsamiqSans.className}`}>
@@ -42,7 +42,7 @@ function MainOffcanvasBody() {
           <>
             <List>
               <ItemLink
-                text="Особистий кабінет"
+                text='Особистий кабінет'
                 href={`/profile/personal_data`}
               >
                 <Image
@@ -50,19 +50,19 @@ function MainOffcanvasBody() {
                   src={user.image}
                   width={50}
                   height={50}
-                  sizes="5vw"
-                  alt="користувача"
+                  sizes='5vw'
+                  alt='користувача'
                 />
               </ItemLink>
             </List>
             <Divider />
-            <ItemLink text="Усі категорії товарів" href="/">
+            <ItemLink text='Усі категорії товарів' href='/'>
               <Interests />
             </ItemLink>
-            <ItemLink text="Список бажань" href="/profile/wish_list">
+            <ItemLink text='Список бажань' href='/profile/wish_list'>
               <Favorite />
             </ItemLink>
-            <ItemLink text="Мої замовлення" href="/profile/orders_list">
+            <ItemLink text='Мої замовлення' href='/profile/orders_list'>
               <ReceiptLong />
             </ItemLink>
           </>
@@ -70,23 +70,23 @@ function MainOffcanvasBody() {
           <>
             <List>
               <ItemButton
-                text="Увійти в акаунт"
+                text='Увійти в акаунт'
                 onClick={() => dispatch(toggle(SIGN_IN_MODAL))}
               >
                 <AccountCircle />
               </ItemButton>
             </List>
             <Divider />
-            <ItemLink text="Усі категорії товарів" href="/">
+            <ItemLink text='Усі категорії товарів' href='/'>
               <Interests />
             </ItemLink>
           </>
         )}
         <ItemButton
-          text="Кошик покупок"
-          component="button"
+          text='Кошик покупок'
+          component='button'
           onClick={() => {
-            dispatch(toggle(CART_MODAL));
+            dispatch(toggle(CART_MODAL))
           }}
         >
           <ShoppingCart />
@@ -95,10 +95,10 @@ function MainOffcanvasBody() {
       <Divider />
 
       <List className={`${s.dotted_list}`}>
-        <ListHeading text="Інформація про магазин" />
-        <ItemLink text="Про нас" href="/info" />
-        <ItemLink text="Політика приватності" href="/privacy-policy" />
-        <ItemLink text="Умови використання сайту" href="/terms-of-usage" />
+        <ListHeading text='Інформація про магазин' />
+        <ItemLink text='Про нас' href='/info' />
+        <ItemLink text='Політика приватності' href='/privacy-policy' />
+        <ItemLink text='Умови використання сайту' href='/terms-of-usage' />
       </List>
 
       {session && (
@@ -106,11 +106,11 @@ function MainOffcanvasBody() {
           <Divider />
           <List>
             <ItemButton
-              text="Вийти з акаунту"
+              text='Вийти з акаунту'
               onClick={() => {
                 signOut({ callbackUrl: '/' }).then(() => {
-                  window.location.href = '/';
-                });
+                  window.location.href = '/'
+                })
               }}
             >
               <MeetingRoom />
@@ -119,10 +119,10 @@ function MainOffcanvasBody() {
         </>
       )}
     </div>
-  );
+  )
 }
 
-export default MainOffcanvasBody;
+export default MainOffcanvasBody
 
 const Item = ({ text, component, onClick, href, children }) => {
   return (
@@ -143,40 +143,40 @@ const Item = ({ text, component, onClick, href, children }) => {
         primary={text}
       />
     </ListItem>
-  );
-};
+  )
+}
 
 const ItemButton = ({ text, onClick, children }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   return (
     <Item
       text={text}
-      component="button"
+      component='button'
       onClick={() => {
-        dispatch(toggle(MAIN_OFFCANVAS));
-        onClick();
+        dispatch(toggle(MAIN_OFFCANVAS))
+        onClick()
       }}
     >
       {children}
     </Item>
-  );
-};
+  )
+}
 
 const ItemLink = ({ text, href, children }) => {
   return (
-    <Item text={text} component="a" href={href}>
+    <Item text={text} component='a' href={href}>
       {children}
     </Item>
-  );
-};
+  )
+}
 
 const ListHeading = ({ text }) => {
   return (
     <Typography
       className={`${s.list_heading} ${balsamiqSans.className}`}
-      variant="h6"
+      variant='h6'
     >
       {text}
     </Typography>
-  );
-};
+  )
+}

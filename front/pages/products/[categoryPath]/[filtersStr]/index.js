@@ -1,35 +1,35 @@
-import axios from 'axios';
-import Head from 'next/head';
+import axios from 'axios'
+import Head from 'next/head'
 
-import { useStopLoading } from 'hooks/useStopLoading';
+import { useStopLoading } from 'hooks/useStopLoading'
 
-import { useUpdateFilters } from 'features/products/listing/hooks/use_update_filters';
-import { useDispatchInitialFilters } from 'features/products/listing/hooks/use_dispatch_initial_filters.js';
-import { usePageValidation } from 'features/products/listing/hooks/use_page_validation';
+import { useUpdateFilters } from 'features/products/listing/hooks/use_update_filters'
+import { useDispatchInitialFilters } from 'features/products/listing/hooks/use_dispatch_initial_filters.js'
+import { usePageValidation } from 'features/products/listing/hooks/use_page_validation'
 
-import ListingHeader from 'features/products/listing/comps/listing_header';
-import SubcategoriesGallery from 'features/products/listing/comps/subcategories/gallery';
-import ProductListingBody from 'features/products/listing/comps/product_listing_body';
+import ListingHeader from 'features/products/listing/comps/listing_header'
+import SubcategoriesGallery from 'features/products/listing/comps/subcategories/gallery'
+import ProductListingBody from 'features/products/listing/comps/product_listing_body'
 
 const Listing = ({ data }) => {
   const {
     activeCategory: category,
     directSubcategories: subcategories,
     numPages,
-  } = data;
+  } = data
 
-  useStopLoading();
-  usePageValidation(numPages);
+  useStopLoading()
+  usePageValidation(numPages)
 
-  useDispatchInitialFilters();
+  useDispatchInitialFilters()
 
-  useUpdateFilters();
+  useUpdateFilters()
 
   return (
     <>
       <Head>
         <title>{`Живий світ | ${category.path}`}</title>
-        <meta name="description" content={`Живий Світ | ${category.path}`} />
+        <meta name='description' content={`Живий Світ | ${category.path}`} />
       </Head>
 
       <>
@@ -38,33 +38,33 @@ const Listing = ({ data }) => {
           <SubcategoriesGallery subcategories={subcategories} />
         </>
 
-        <div id="main_content">
+        <div id='main_content'>
           <ProductListingBody data={data} />
         </div>
       </>
     </>
-  );
-};
+  )
+}
 
-export default Listing;
+export default Listing
 
 export async function getServerSideProps(context) {
-  const { categoryPath, filtersStr } = context.params;
+  const { categoryPath, filtersStr } = context.params
 
   const endpoints = {
     products: `/products/by-category-path/${categoryPath}/filtered-by/${filtersStr}`,
     activeCategory: `/categories/category/by-path/${categoryPath}`,
     directSubcategories: `/categories/subcategories/by-parent-category-path/${categoryPath}`,
     filters: `/products/filters/${categoryPath}/${filtersStr}`,
-  };
+  }
 
   try {
-    const products = await fetchData(endpoints.products);
-    const activeCategory = await fetchData(endpoints.activeCategory);
-    const directSubcategories = await fetchData(endpoints.directSubcategories);
-    const filtersMap = await fetchData(endpoints.filters);
+    const products = await fetchData(endpoints.products)
+    const activeCategory = await fetchData(endpoints.activeCategory)
+    const directSubcategories = await fetchData(endpoints.directSubcategories)
+    const filtersMap = await fetchData(endpoints.filters)
 
-    const HALF_AN_HOUR = 1800; // 30 minutes
+    const HALF_AN_HOUR = 1800 // 30 minutes
     return {
       props: {
         data: {
@@ -76,13 +76,13 @@ export async function getServerSideProps(context) {
         },
         revalidate: HALF_AN_HOUR,
       },
-    };
+    }
   } catch (e) {
-    return { notFound: true };
+    return { notFound: true }
   }
 }
 
 async function fetchData(url) {
-  const response = await axios.get(url);
-  return response.data;
+  const response = await axios.get(url)
+  return response.data
 }

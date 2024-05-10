@@ -1,22 +1,22 @@
-import s from './filters_offcanvas.module.scss';
-import Offcanvas from 'comps/offcanvas/offcanvas';
-import OffcanvasHeader from 'comps/offcanvas/offcanvas_header';
-import OffcanvasBody from 'comps/offcanvas/offcanvas_body';
-import FiltersAccordion from '../filters_accordion/filters_accordion';
+import s from './filters_offcanvas.module.scss'
+import Offcanvas from 'comps/offcanvas/offcanvas'
+import OffcanvasHeader from 'comps/offcanvas/offcanvas_header'
+import OffcanvasBody from 'comps/offcanvas/offcanvas_body'
+import FiltersAccordion from '../filters_accordion/filters_accordion'
 
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { deleteAllFilters } from 'store/slices/filters.slice';
-import { startLoading } from 'store/slices/global_comps/global_comps.slice.js';
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { deleteAllFilters } from 'store/slices/filters.slice'
+import { startLoading } from 'store/slices/global_comps/global_comps.slice.js'
 
 const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const { filters: activeFilters } = useSelector((state) => state.filters);
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const { filters: activeFilters } = useSelector((state) => state.filters)
 
-  const isActiveFilters = Object.keys(activeFilters).some((f) => f != 'page');
+  const isActiveFilters = Object.keys(activeFilters).some((f) => f != 'page')
 
   //todo add loading overlay to offcanvas
   //todo make it cancel_all_filters button rerender whole offcanvas for filters to refresh
@@ -27,7 +27,7 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
       <Offcanvas id={id}>
         <OffcanvasHeader id={`${id}Header`}>
           <header>
-            <i className="bi bi-funnel-fill" />
+            <i className='bi bi-funnel-fill' />
             <h2>Фільтри</h2>
           </header>
         </OffcanvasHeader>
@@ -38,9 +38,9 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
               <button
                 className={`${s.cancel_all_btn} button_danger_secondary`}
                 onClick={() => {
-                  dispatch(startLoading());
-                  dispatch(deleteAllFilters());
-                  router.push(`/products/${router.query.categoryPath}/page=1`);
+                  dispatch(startLoading())
+                  dispatch(deleteAllFilters())
+                  router.push(`/products/${router.query.categoryPath}/page=1`)
                 }}
               >
                 Скасувати усі фільтри
@@ -48,7 +48,7 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
             )}
 
             <FiltersAccordion
-              id="filtersOffcanvasAccordion"
+              id='filtersOffcanvasAccordion'
               filters={filters}
               minMaxPrice={minMaxPrice}
               show={false}
@@ -60,15 +60,15 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
             <>
               <p>{`Знайдено ${productsCount} товарів`}</p>
               <button
-                className="button_submit"
-                type="button"
-                data-bs-toggle="offcanvas"
+                className='button_submit'
+                type='button'
+                data-bs-toggle='offcanvas'
                 data-bs-target={`#${id}`}
                 aria-controls={id}
                 onClick={() => {
                   router.push(
                     `/products/${router.query.categoryPath}/${router.query.filtersStr}`,
-                  );
+                  )
                 }}
               >
                 Показати
@@ -76,9 +76,9 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
             </>
           ) : (
             <button
-              className="button_primary"
-              type="button"
-              data-bs-toggle="offcanvas"
+              className='button_primary'
+              type='button'
+              data-bs-toggle='offcanvas'
               data-bs-target={`#${id}`}
               aria-controls={id}
             >
@@ -88,7 +88,7 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
         </footer>
       </Offcanvas>
     </div>
-  );
-};
+  )
+}
 
-export default FiltersOffcanvas;
+export default FiltersOffcanvas

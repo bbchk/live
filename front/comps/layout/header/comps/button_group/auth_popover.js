@@ -1,62 +1,62 @@
-import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
-import { useDispatch } from 'react-redux';
+import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Popover from 'react-bootstrap/Popover'
+import { useDispatch } from 'react-redux'
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from 'store/slices/global_comps/global_comps.slice';
-const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS;
+} from 'store/slices/global_comps/global_comps.slice'
+const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS
 
-import { balsamiqSans } from 'pages/_app';
+import { balsamiqSans } from 'pages/_app'
 
-import s from './auth_popover.module.scss';
+import s from './auth_popover.module.scss'
 
-import { AccountCircleRounded } from '@mui/icons-material';
-import useDoOnKey from 'hooks/useDoOnKey';
+import { AccountCircleRounded } from '@mui/icons-material'
+import useDoOnKey from 'hooks/useDoOnKey'
 
 const AuthPopover = () => {
-  const isHoveredRef = useRef(false);
-  const lastFocusedElement = useRef(null);
-  const signInButton = useRef(null);
+  const isHoveredRef = useRef(false)
+  const lastFocusedElement = useRef(null)
+  const signInButton = useRef(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const [showPopover, setShowPopover] = useState(false);
+  const [showPopover, setShowPopover] = useState(false)
 
   const handleHide = () => {
     setTimeout(() => {
       if (!isHoveredRef.current) {
-        lastFocusedElement.current && lastFocusedElement.current.focus();
-        setShowPopover(false);
+        lastFocusedElement.current && lastFocusedElement.current.focus()
+        setShowPopover(false)
       }
-    }, 100);
-  };
+    }, 100)
+  }
 
   const handleShow = () => {
-    lastFocusedElement.current = document.activeElement;
-    setShowPopover(true);
+    lastFocusedElement.current = document.activeElement
+    setShowPopover(true)
     setTimeout(() => {
       signInButton.current &&
-        signInButton.current.focus({ preventScroll: true });
-    }, 0);
-  };
+        signInButton.current.focus({ preventScroll: true })
+    }, 0)
+  }
 
-  useDoOnKey('Escape', handleHide);
+  useDoOnKey('Escape', handleHide)
 
   const unsignedPopover = (
     <Popover
-      id="authPopover"
+      id='authPopover'
       className={`${s.auth_popover}`}
       onMouseEnter={() => {
-        isHoveredRef.current = true;
-        handleShow();
+        isHoveredRef.current = true
+        handleShow()
       }}
       onMouseLeave={() => {
-        isHoveredRef.current = false;
-        handleHide();
+        isHoveredRef.current = false
+        handleHide()
       }}
     >
       <Popover.Body onMouseLeave={handleHide}>
@@ -65,8 +65,8 @@ const AuthPopover = () => {
             ref={signInButton}
             className={` ${s.sign_in_button} button_submit`}
             onClick={() => {
-              setShowPopover(false);
-              dispatch(toggle(SIGN_IN_MODAL));
+              setShowPopover(false)
+              dispatch(toggle(SIGN_IN_MODAL))
             }}
           >
             <p>Увійти</p>
@@ -75,35 +75,35 @@ const AuthPopover = () => {
           <p>
             <span>Не зареєстровані? </span>
             <Link
-              href="/"
+              href='/'
               onClick={() => {
-                setShowPopover(false);
-                dispatch(toggle(SIGN_UP_MODAL));
+                setShowPopover(false)
+                dispatch(toggle(SIGN_UP_MODAL))
               }}
               className={`${s.sign_up} icon-link`}
             >
               Зареєструватись
             </Link>
             <div
-              className="visually_hidden"
+              className='visually_hidden'
               tabIndex={0}
               onFocus={(e) => {
-                e.preventDefault();
-                handleHide();
+                e.preventDefault()
+                handleHide()
               }}
             />
           </p>
         </div>
       </Popover.Body>
     </Popover>
-  );
+  )
 
   return (
     <li className={`${s.overlay_trigger}`} aria-label={'Персональний кабінет'}>
-      <div aria-label="Увійти або зареєструватись">
+      <div aria-label='Увійти або зареєструватись'>
         <OverlayTrigger
           trigger={['hover', 'focus']}
-          placement="bottom"
+          placement='bottom'
           overlay={unsignedPopover}
           rootClose
           show={showPopover}
@@ -121,7 +121,7 @@ const AuthPopover = () => {
         </OverlayTrigger>
       </div>
     </li>
-  );
-};
+  )
+}
 
-export default AuthPopover;
+export default AuthPopover

@@ -1,11 +1,11 @@
-import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
-import GithubProvider from 'next-auth/providers/github';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import axios from 'axios';
+import NextAuth from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
+import GithubProvider from 'next-auth/providers/github'
+import CredentialsProvider from 'next-auth/providers/credentials'
+import axios from 'axios'
 
-import { MongoDBAdapter } from '@auth/mongodb-adapter';
-import clientPromise from './lib/mongodb';
+import { MongoDBAdapter } from '@auth/mongodb-adapter'
+import clientPromise from './lib/mongodb'
 
 //todo implement apple and facebook providers
 
@@ -28,9 +28,9 @@ const googleProvider = GoogleProvider({
       image: profile.picture,
       likedProducts: [],
       cart: [],
-    };
+    }
   },
-});
+})
 
 const githubProvider = GithubProvider({
   clientId: process.env.GITHUB_ID,
@@ -44,58 +44,58 @@ const githubProvider = GithubProvider({
       image: profile.avatar_url,
       likedProducts: [],
       cart: [],
-    };
+    }
   },
-});
+})
 
 const credentialsProvider = CredentialsProvider({
   type: 'credentials',
   credentials: {},
   async authorize(credentials) {
-    const { email, password } = credentials;
+    const { email, password } = credentials
 
     try {
       const response = await axios.post(
-        `/user/signIn`,
+        '/user/signIn',
         {
           email: email,
           password: password,
         },
         { headers: { 'Content-type': 'application/json' } },
-      );
-      let user = response.data;
+      )
+      let user = response.data
 
       if (response.status === 200) {
-        return user;
+        return user
       } else {
-        throw new Error('User not authenticated');
+        throw new Error('User not authenticated')
       }
     } catch (error) {
-      throw new Error('User not authenticated');
+      throw new Error('User not authenticated')
     }
   },
-});
+})
 
 // Callbacks
 const callbacks = {
   async jwt({ token, user, session, trigger, account }) {
     if (trigger === 'update') {
-      token.user = session.user;
+      token.user = session.user
     }
     if (account) {
-      token.access_token = account.access_token;
-      token.provider = account.provider;
-      token.user = user;
+      token.access_token = account.access_token
+      token.provider = account.provider
+      token.user = user
     }
-    return token;
+    return token
   },
   async session({ session, token }) {
-    session.provider = token.provider;
-    session.access_token = token.access_token;
-    session.user = token.user;
-    return session;
+    session.provider = token.provider
+    session.access_token = token.access_token
+    session.user = token.user
+    return session
   },
-};
+}
 
 // Auth options
 export const authOptions = {
@@ -109,9 +109,9 @@ export const authOptions = {
     signIn: '/auth/signin',
   },
   secret: process.env.NEXTAUTH_SECRET,
-};
+}
 
 export default NextAuth({
   ...authOptions,
   // debug: process.env.NODE_ENV !== "production" ? true : false,
-});
+})

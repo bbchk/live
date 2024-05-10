@@ -1,28 +1,28 @@
-import s from './filter_item.module.scss';
+import s from './filter_item.module.scss'
 
-import CheckBox from 'comps/input_fields/checkbox';
+import CheckBox from 'comps/input_fields/checkbox'
 
-import { useDispatch, useSelector } from 'react-redux';
-import { addFilter } from 'store/slices/filters.slice';
-import { useEffect, useState } from 'react';
-import { transliterate } from '@bbuukk/slugtrans/transliterate';
-import { slugify } from '@bbuukk/slugtrans/slugify';
-import { setFilter, deleteFilter } from 'store/slices/filters.slice';
+import { useDispatch, useSelector } from 'react-redux'
+import { addFilter } from 'store/slices/filters.slice'
+import { useEffect, useState } from 'react'
+import { transliterate } from '@bbuukk/slugtrans/transliterate'
+import { slugify } from '@bbuukk/slugtrans/slugify'
+import { setFilter, deleteFilter } from 'store/slices/filters.slice'
 
-import { startLoading } from 'store/slices/global_comps/global_comps.slice';
+import { startLoading } from 'store/slices/global_comps/global_comps.slice'
 
 // sometimes activeOptions is undefined when checkbox gets unchecked, but not always, further more it does depend on value of checkbox
 const FilterChecks = ({ filterLabel, options, idx }) => {
-  const { filters } = useSelector((state) => state.filters);
+  const { filters } = useSelector((state) => state.filters)
 
-  const slugFilterLabel = slugify(transliterate(filterLabel));
-  const [activeOptions, setActiveOptions] = useState([]);
+  const slugFilterLabel = slugify(transliterate(filterLabel))
+  const [activeOptions, setActiveOptions] = useState([])
 
   useEffect(() => {
-    setActiveOptions(filters[slugFilterLabel]);
-  }, [filters]);
+    setActiveOptions(filters[slugFilterLabel])
+  }, [filters])
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (activeOptions != null) {
@@ -32,25 +32,25 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
             filterName: slugFilterLabel,
             filterValue: activeOptions,
           }),
-        );
+        )
       } else {
-        dispatch(deleteFilter({ filterName: slugFilterLabel }));
+        dispatch(deleteFilter({ filterName: slugFilterLabel }))
       }
     }
-  }, [activeOptions]);
+  }, [activeOptions])
 
   function handleChange(isChecked, option) {
-    const slugOption = slugify(transliterate(option));
+    const slugOption = slugify(transliterate(option))
     if (isChecked) {
       if (activeOptions != null) {
-        setActiveOptions([...activeOptions, slugOption]);
+        setActiveOptions([...activeOptions, slugOption])
       } else {
-        setActiveOptions([slugOption]);
+        setActiveOptions([slugOption])
       }
     } else {
       setActiveOptions(
         activeOptions.filter((activeOption) => activeOption !== slugOption),
-      );
+      )
     }
   }
 
@@ -59,7 +59,7 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
       {Array.from(options).map((option) => {
         const isChecked = filters[slugFilterLabel]?.includes(
           slugify(transliterate(option)),
-        );
+        )
 
         return (
           <div key={option} className={`${s.checkbox}`}>
@@ -70,10 +70,10 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
               handleChange={handleChange}
             />
           </div>
-        );
+        )
       })}
     </section>
-  );
-};
+  )
+}
 
-export default FilterChecks;
+export default FilterChecks

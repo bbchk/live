@@ -1,42 +1,42 @@
-import { Modal } from 'react-bootstrap';
-import s from './hotkeys.modal.module.scss';
+import { Modal } from 'react-bootstrap'
+import s from './hotkeys.modal.module.scss'
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 import {
   toggle,
   GLOBAL_COMPS,
-} from 'store/slices/global_comps/global_comps.slice';
-const { HOTKEYS_MODAL } = GLOBAL_COMPS;
+} from 'store/slices/global_comps/global_comps.slice'
+const { HOTKEYS_MODAL } = GLOBAL_COMPS
 
-import { balsamiqSans } from 'pages/_app';
-import { KeyboardRounded } from '@mui/icons-material';
-import { useId } from 'react';
-import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap.js';
-import { useSession } from 'next-auth/react';
-import CustomAlert from '#root/comps/warnings/alert.js';
+import { balsamiqSans } from 'pages/_app'
+import { KeyboardRounded } from '@mui/icons-material'
+import { useId } from 'react'
+import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap.js'
+import { useSession } from 'next-auth/react'
+import CustomAlert from '#root/comps/warnings/alert.js'
 
 const HotkeysModal = () => {
-  const dispatch = useDispatch();
-  const { hotkeysModalOpen } = useSelector((state) => state.modals);
+  const dispatch = useDispatch()
+  const { hotkeysModalOpen } = useSelector((state) => state.modals)
 
-  const { data: session } = useSession();
+  const { data: session } = useSession()
 
-  useTabTrap(hotkeysModalOpen, 'hotkeysModal');
+  useTabTrap(hotkeysModalOpen, 'hotkeysModal')
 
-  const toggleModal = () => dispatch(toggle(HOTKEYS_MODAL));
+  const toggleModal = () => dispatch(toggle(HOTKEYS_MODAL))
 
   return (
     <>
       <Modal
-        id="hotkeysModal"
+        id='hotkeysModal'
         show={hotkeysModalOpen}
         onHide={toggleModal}
         centered
-        size="xl"
-        fullscreen="lg-down"
+        size='xl'
+        fullscreen='lg-down'
         className={`${s.modal} ${balsamiqSans.className}`}
       >
-        <Modal.Header closeButton={true} className="modal_header_title_center">
+        <Modal.Header closeButton={true} className='modal_header_title_center'>
           {/* <KeyboardRounded /> */}
 
           <h3>Гарячі клавіші</h3>
@@ -112,13 +112,13 @@ const HotkeysModal = () => {
         </Modal.Body>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default HotkeysModal;
+export default HotkeysModal
 
 const HotkeyItem = ({ dscrpt, hk }) => {
-  const id = useId();
+  const id = useId()
   return (
     <li className={`${s.hotkey_item}`}>
       <p className={`${s.description}`}>{dscrpt}</p>
@@ -128,5 +128,5 @@ const HotkeyItem = ({ dscrpt, hk }) => {
         ))}
       </p>
     </li>
-  );
-};
+  )
+}

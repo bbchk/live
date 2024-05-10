@@ -1,11 +1,11 @@
-import s from './review_item.module.scss';
-import StarRating from 'comps/rating/star_rating';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import s from './review_item.module.scss'
+import StarRating from 'comps/rating/star_rating'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faEllipsisVertical,
   faArrowTurnUp,
-} from '@fortawesome/free-solid-svg-icons';
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
 
 const ReviewItem = ({ review }) => {
   const {
@@ -19,7 +19,7 @@ const ReviewItem = ({ review }) => {
     likes,
     dislikes,
     subreviews,
-  } = review;
+  } = review
 
   return (
     <div className={`${s.review_item}`}>
@@ -62,7 +62,7 @@ const ReviewItem = ({ review }) => {
         </div>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default ReviewItem;
+export default ReviewItem

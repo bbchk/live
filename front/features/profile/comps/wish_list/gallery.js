@@ -1,52 +1,52 @@
-import { useEffect, useState } from 'react';
-import s from './gallery.module.scss';
-import ProductCard from 'features/products/listing/comps/gallery/card';
-import axios from 'axios';
+import { useEffect, useState } from 'react'
+import s from './gallery.module.scss'
+import ProductCard from 'features/products/listing/comps/gallery/card'
+import axios from 'axios'
 
 const Data = () => {
   //todo save likedProducts to localStorage
-  const [likedProducts, setLikedProducts] = useState('');
+  const [likedProducts, setLikedProducts] = useState('')
 
   useEffect(() => {
     if (user) {
       const fetchLikedProducts = async () => {
-        const token = user.token;
+        const token = user.token
 
         //todo test
         try {
           const res = await axios.get(
             `/products/by-ids?ids=${user.likedProducts}`,
-          );
+          )
 
-          setLikedProducts(res.data);
+          setLikedProducts(res.data)
         } catch (error) {
           // console.error(error);
         }
-      };
-      fetchLikedProducts();
+      }
+      fetchLikedProducts()
     }
-  }, [user]);
+  }, [user])
 
   return (
     <>
       {likedProducts && (
-        <div className="container row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 gx-3 gy-4">
+        <div className='container row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 gx-3 gy-4'>
           {activeFilters &&
             likedProducts.map((product) => {
               return (
-                <div key={product._id} className="col">
+                <div key={product._id} className='col'>
                   <ProductCard
                     product={product}
                     like={() => {}}
                     isLiked={true}
                   />
                 </div>
-              );
+              )
             })}
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Data;
+export default Data

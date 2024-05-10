@@ -1,5 +1,5 @@
-import { Alert } from '@mui/material';
-import s from './alert.module.scss';
+import { Alert } from '@mui/material'
+import s from './alert.module.scss'
 
 const CustomAlert = ({ text, severity = 'info', animated = true }) => {
   return (
@@ -9,7 +9,7 @@ const CustomAlert = ({ text, severity = 'info', animated = true }) => {
     >
       {text}
     </Alert>
-  );
-};
+  )
+}
 
-export default CustomAlert;
+export default CustomAlert

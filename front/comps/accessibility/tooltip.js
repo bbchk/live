@@ -1,5 +1,5 @@
-import { Tooltip, OverlayTrigger } from 'react-bootstrap';
-import s from './tooltip.module.scss';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap'
+import s from './tooltip.module.scss'
 
 export const CustomTooltip = ({
   children,
@@ -16,9 +16,9 @@ export const CustomTooltip = ({
     >
       {children}
     </OverlayTrigger>
-  );
-};
+  )
+}
 
 function renderTooltip(props) {
-  return <Tooltip className={`${s.tooltip}`}>{props}</Tooltip>;
+  return <Tooltip className={`${s.tooltip}`}>{props}</Tooltip>
 }

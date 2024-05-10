@@ -1,44 +1,44 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
-import s from './index.module.scss';
-import { signOut, useSession } from 'next-auth/react';
-import Image from 'next/image';
-import Tab from './tab';
-import ProfileTab from './profile-tab';
+import s from './index.module.scss'
+import { signOut, useSession } from 'next-auth/react'
+import Image from 'next/image'
+import Tab from './tab'
+import ProfileTab from './profile-tab'
 
 const Tabs = () => {
   return (
     <nav className={`${s.tabs}`}>
       <ul>
         <ProfileTab />
-        <Tab href="/profile/personal_data">
-          <i className="bi bi-person-circle" />
+        <Tab href='/profile/personal_data'>
+          <i className='bi bi-person-circle' />
           <p>Особистий кабінет</p>
         </Tab>
 
-        <Tab href="/profile/wish_list">
-          <i className="bi bi-heart-fill" />
+        <Tab href='/profile/wish_list'>
+          <i className='bi bi-heart-fill' />
           <p>Список бажань</p>
         </Tab>
-        <Tab href="/profile/wish_list" disabled>
-          <i className="bi bi-list-check" />
+        <Tab href='/profile/wish_list' disabled>
+          <i className='bi bi-list-check' />
           <p>Мої замовлення</p>
         </Tab>
 
         <Tab
-          href="#"
+          href='#'
           onClick={() => {
             signOut({ callbackUrl: '/' }).then(() => {
-              window.location.href = '/';
-            });
+              window.location.href = '/'
+            })
           }}
         >
-          <i className="bi bi-box-arrow-left" />
+          <i className='bi bi-box-arrow-left' />
           <p>Вийти з акаунту</p>
         </Tab>
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default Tabs;
+export default Tabs

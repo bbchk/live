@@ -1,5 +1,5 @@
-import s from './like_btn.module.scss';
-import lcs from '../listing.product_card.module.scss';
+import s from './like_btn.module.scss'
+import lcs from '../listing.product_card.module.scss'
 
 const LikeButton = ({ isLiked }) => {
   return (
@@ -10,10 +10,10 @@ const LikeButton = ({ isLiked }) => {
       {isLiked ? (
         <i className={`bi bi-heart-fill ${s.liked}`} />
       ) : (
-        <i className="bi bi-heart" />
+        <i className='bi bi-heart' />
       )}
     </button>
-  );
-};
+  )
+}
 
-export default LikeButton;
+export default LikeButton

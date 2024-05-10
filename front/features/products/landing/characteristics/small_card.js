@@ -1,6 +1,6 @@
-import ImageFallback from '#root/comps/image/fallback_image.js';
-import s from './small_card.module.scss';
-import Image from 'next/image';
+import ImageFallback from '#root/comps/image/fallback_image.js'
+import s from './small_card.module.scss'
+import Image from 'next/image'
 
 const Small_Card = ({ product: { images, name } }) => {
   return (
@@ -8,7 +8,7 @@ const Small_Card = ({ product: { images, name } }) => {
       <ImageFallback
         src={images && images[0]}
         fallbackSrc={'/assets/goods_placeholder.svg'}
-        alt="Picture of the product"
+        alt='Picture of the product'
         width={500}
         height={500}
         className={`${s.image}`}
@@ -16,7 +16,7 @@ const Small_Card = ({ product: { images, name } }) => {
 
       <p className={`${s.name}`}>{name}</p>
     </div>
-  );
-};
+  )
+}
 
-export default Small_Card;
+export default Small_Card

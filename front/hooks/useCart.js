@@ -1,38 +1,38 @@
-import axios from 'axios';
-import { useSession } from 'next-auth/react';
-import { useDispatch } from 'react-redux';
-import { addToCart, deleteCartItem } from 'store/slices/user.slice';
+import axios from 'axios'
+import { useSession } from 'next-auth/react'
+import { useDispatch } from 'react-redux'
+import { addToCart, deleteCartItem } from 'store/slices/user.slice'
 export const useCart = () => {
-  const { data: session, update } = useSession();
-  const dispatch = useDispatch();
+  const { data: session, update } = useSession()
+  const dispatch = useDispatch()
 
   async function add(product) {
-    console.log(product);
-    const { _id, name, price, images, left } = product;
-    const cartItem = { _id, name, price, images, left };
+    console.log(product)
+    const { _id, name, price, images, left } = product
+    const cartItem = { _id, name, price, images, left }
 
     try {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let cart = JSON.parse(localStorage.getItem('cart')) || []
       let existingCartItem = cart.find(
         (item) => item.product._id == cartItem._id,
-      );
+      )
 
       if (existingCartItem) {
-        existingCartItem.quantity++;
+        existingCartItem.quantity++
       } else {
         cart.push({
           product: cartItem,
           quantity: 1,
-        });
+        })
       }
 
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem('cart', JSON.stringify(cart))
       dispatch(
         addToCart({
           product: cartItem,
           quantity: 1,
         }),
-      );
+      )
 
       if (session) {
         const response = await axios.post(
@@ -43,7 +43,7 @@ export const useCart = () => {
               Authorization: `Bearer ${session.user.token}`,
             },
           },
-        );
+        )
       }
     } catch (e) {
       // console.log(e);
@@ -52,17 +52,17 @@ export const useCart = () => {
 
   async function remove(productId) {
     try {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      let cartItem = cart.find((item) => item.product._id === productId);
+      let cart = JSON.parse(localStorage.getItem('cart')) || []
+      let cartItem = cart.find((item) => item.product._id === productId)
 
       if (cartItem && cartItem.quantity > 1) {
-        cartItem.quantity--;
+        cartItem.quantity--
       } else if (cartItem) {
-        cart = cart.filter((item) => item.product._id !== productId);
+        cart = cart.filter((item) => item.product._id !== productId)
       }
 
-      localStorage.setItem('cart', JSON.stringify(cart));
-      dispatch(deleteCartItem(productId));
+      localStorage.setItem('cart', JSON.stringify(cart))
+      dispatch(deleteCartItem(productId))
 
       if (session) {
         const response = await axios.delete(
@@ -72,7 +72,7 @@ export const useCart = () => {
               Authorization: `Bearer ${session.user.token}`,
             },
           },
-        );
+        )
       }
     } catch (e) {
       // console.log(e);
@@ -83,27 +83,27 @@ export const useCart = () => {
   async function removeAll(productId) {}
 
   async function getCart(session) {
-    console.log('🚀 ~ session:', session);
+    console.log('🚀 ~ session:', session)
     try {
-      const localStorageCartJson = localStorage.getItem('cart');
-      const lscart = JSON.parse(localStorageCartJson) || [];
+      const localStorageCartJson = localStorage.getItem('cart')
+      const lscart = JSON.parse(localStorageCartJson) || []
 
-      let cart = [];
+      let cart = []
 
       //if local storage cart is not empty, sync it with user cart on sign in
       if (session) {
         if (lscart.length > 0) {
-          const syncedCart = await syncAndFetch(session.user, lscart);
-          localStorage.setItem('cart', JSON.stringify(syncedCart));
-          cart = syncedCart;
+          const syncedCart = await syncAndFetch(session.user, lscart)
+          localStorage.setItem('cart', JSON.stringify(syncedCart))
+          cart = syncedCart
         } else {
-          cart = await fetchCart(session.user);
+          cart = await fetchCart(session.user)
         }
       } else {
-        cart = lscart;
+        cart = lscart
       }
 
-      return cart;
+      return cart
     } catch (e) {
       // console.log(e);
     }
@@ -112,8 +112,8 @@ export const useCart = () => {
   async function syncAndFetch(user, lscart) {
     try {
       const localStorageCartOptimized = lscart.map((item) => {
-        return { product: item.product._id, quantity: item.quantity };
-      });
+        return { product: item.product._id, quantity: item.quantity }
+      })
 
       const res = await axios.patch(
         `/user/cart/${user.id}/sync`,
@@ -124,9 +124,9 @@ export const useCart = () => {
             Authorization: `Bearer ${user.token}`,
           },
         },
-      );
+      )
 
-      return res.data;
+      return res.data
     } catch (e) {
       // console.log(e);
     }
@@ -138,14 +138,14 @@ export const useCart = () => {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
-      });
+      })
 
-      return res.data;
+      return res.data
     } catch (e) {
       // console.log(e);
     }
   }
 
   // return { add, subtract, remove, sync };
-  return { add, remove, getCart };
-};
+  return { add, remove, getCart }
+}

@@ -1,7 +1,7 @@
-import { main } from '@popperjs/core';
-import { createSlice } from '@reduxjs/toolkit';
-import { GLOBAL_COMPS as G } from './constants';
-export { G as GLOBAL_COMPS };
+import { main } from '@popperjs/core'
+import { createSlice } from '@reduxjs/toolkit'
+import { GLOBAL_COMPS as G } from './constants'
+export { G as GLOBAL_COMPS }
 
 const initialState = {
   loading: false, // loading overlay
@@ -16,7 +16,7 @@ const initialState = {
   [G.DELETE_ACCOUNT_MODAL]: false,
   [G.CART_MODAL]: false,
   [G.WRITE_REVIEW_MODAL]: false,
-};
+}
 
 const modalsSlice = createSlice({
   name: 'modals',
@@ -26,18 +26,18 @@ const modalsSlice = createSlice({
       //todo modals close other modals if open
       // Object.assign(state, initialState);
 
-      const activeModalKey = action.payload;
-      state[activeModalKey] = !state[activeModalKey];
+      const activeModalKey = action.payload
+      state[activeModalKey] = !state[activeModalKey]
     },
     startLoading: (state) => {
-      state.loading = true;
+      state.loading = true
     },
     stopLoading: (state) => {
-      state.loading = false;
+      state.loading = false
     },
   },
-});
+})
 
-export const { toggle, startLoading, stopLoading } = modalsSlice.actions;
+export const { toggle, startLoading, stopLoading } = modalsSlice.actions
 
-export const modalsReducer = modalsSlice.reducer;
+export const modalsReducer = modalsSlice.reducer

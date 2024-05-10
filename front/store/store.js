@@ -1,9 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { productsReducer } from './slices/products.slice';
-import { categoriesReducer } from './slices/categories.slice';
-import { filtersReducer } from './slices/filters.slice';
-import { userReducer } from './slices/user.slice';
-import { modalsReducer } from './slices/global_comps/global_comps.slice';
+import { configureStore } from '@reduxjs/toolkit'
+import { productsReducer } from './slices/products.slice'
+import { categoriesReducer } from './slices/categories.slice'
+import { filtersReducer } from './slices/filters.slice'
+import { userReducer } from './slices/user.slice'
+import { modalsReducer } from './slices/global_comps/global_comps.slice'
 
 export const store = configureStore({
   reducer: {
@@ -14,4 +14,4 @@ export const store = configureStore({
     user: userReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
-});
+})

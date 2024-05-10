@@ -1,5 +1,5 @@
 // import Figure from "../../mutual/auxiliary/figure";
-import s from './order-card.module.scss';
+import s from './order-card.module.scss'
 
 const OrderCard = ({
   imageUrl,
@@ -20,7 +20,7 @@ const OrderCard = ({
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default OrderCard;
+export default OrderCard

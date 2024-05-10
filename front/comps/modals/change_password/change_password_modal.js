@@ -1,37 +1,37 @@
 // import { useState } from "react";
-import { Modal } from 'react-bootstrap';
-import s from './change_password_modal.module.scss';
+import { Modal } from 'react-bootstrap'
+import s from './change_password_modal.module.scss'
 
 // import Link from "next/link";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 import {
   toggle,
   GLOBAL_COMPS,
-} from 'store/slices/global_comps/global_comps.slice';
-const { CHANGE_PASSWORD_MODAL } = GLOBAL_COMPS;
+} from 'store/slices/global_comps/global_comps.slice'
+const { CHANGE_PASSWORD_MODAL } = GLOBAL_COMPS
 
-import PasswordInputField from 'comps/input_fields/password_input_field';
-import { useEffect, useState } from 'react';
-import { balsamiqSans } from 'pages/_app';
-import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap.js';
+import PasswordInputField from 'comps/input_fields/password_input_field'
+import { useEffect, useState } from 'react'
+import { balsamiqSans } from 'pages/_app'
+import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap.js'
 
 //todo input validation
 //todo make modal responsive
 //todo make it really change password
 const ChangePasswordModal = () => {
-  const dispatch = useDispatch();
-  const { changePasswordModalOpen } = useSelector((state) => state.modals);
+  const dispatch = useDispatch()
+  const { changePasswordModalOpen } = useSelector((state) => state.modals)
 
-  useTabTrap(changePasswordModalOpen, 'changePasswordModal');
+  useTabTrap(changePasswordModalOpen, 'changePasswordModal')
 
-  const [hasBeenBeingModified, setHasBeenBeingModified] = useState(false);
+  const [hasBeenBeingModified, setHasBeenBeingModified] = useState(false)
 
   const [passwordInfo, setPasswordInfo] = useState({
     oldPassword: '',
     newPassword: '',
     newPasswordRepeat: '',
-  });
+  })
 
   useEffect(() => {
     return () => {
@@ -39,18 +39,18 @@ const ChangePasswordModal = () => {
         oldPassword: '',
         newPassword: '',
         newPasswordRepeat: '',
-      });
-      setHasBeenBeingModified(false);
-    };
-  }, [changePasswordModalOpen]);
+      })
+      setHasBeenBeingModified(false)
+    }
+  }, [changePasswordModalOpen])
 
   const handleSubmit = async (e, value) => {
-    e.preventDefault();
-  };
+    e.preventDefault()
+  }
 
   return (
     <Modal
-      id="changePasswordModal"
+      id='changePasswordModal'
       show={changePasswordModalOpen}
       onHide={() => dispatch(toggle(CHANGE_PASSWORD_MODAL))}
       centered
@@ -63,50 +63,50 @@ const ChangePasswordModal = () => {
         <form onSubmit={handleSubmit}>
           <div className={`${s.input_group}`}>
             <PasswordInputField
-              id="oldPasswordInputField"
+              id='oldPasswordInputField'
               value={passwordInfo.oldPassword}
               onChange={(e) => {
-                setHasBeenBeingModified(true);
+                setHasBeenBeingModified(true)
                 setPasswordInfo({
                   ...passwordInfo,
                   oldPassword: e.target.value,
-                });
+                })
               }}
-              label="Ваш старий пароль"
+              label='Ваш старий пароль'
             />
             <PasswordInputField
-              id="newPasswordInputField"
+              id='newPasswordInputField'
               value={passwordInfo.newPassword}
               onChange={(e) => {
-                setHasBeenBeingModified(true);
+                setHasBeenBeingModified(true)
                 setPasswordInfo({
                   ...passwordInfo,
                   newPassword: e.target.value,
-                });
+                })
               }}
-              label="Новий пароль"
+              label='Новий пароль'
             />
             <PasswordInputField
-              id="newPasswordRepeatInputField"
+              id='newPasswordRepeatInputField'
               value={passwordInfo.newPasswordRepeat}
               onChange={(e) => {
-                setHasBeenBeingModified(true);
+                setHasBeenBeingModified(true)
                 setPasswordInfo({
                   ...passwordInfo,
                   newPasswordRepeat: e.target.value,
-                });
+                })
               }}
-              label="Новий пароль ще раз"
+              label='Новий пароль ще раз'
             />
           </div>
           <menu className={`${s.button_group}`}>
             <li>
               <button
-                className="button_primary"
-                type="button"
+                className='button_primary'
+                type='button'
                 onClick={() => {
-                  setHasBeenBeingModified(false);
-                  dispatch(toggle(CHANGE_PASSWORD_MODAL));
+                  setHasBeenBeingModified(false)
+                  dispatch(toggle(CHANGE_PASSWORD_MODAL))
                 }}
               >
                 Скасувати
@@ -114,15 +114,15 @@ const ChangePasswordModal = () => {
             </li>
             <li>
               <button
-                className="button_submit"
-                data-toggle="tooltip"
+                className='button_submit'
+                data-toggle='tooltip'
                 title={hasBeenBeingModified ? '' : 'Дані не були змінені'}
-                data-placement="bottom"
-                type="submit"
+                data-placement='bottom'
+                type='submit'
                 disabled={!hasBeenBeingModified}
                 onClick={() => {
-                  setHasBeenBeingModified(false);
-                  dispatch(toggle(CHANGE_PASSWORD_MODAL));
+                  setHasBeenBeingModified(false)
+                  dispatch(toggle(CHANGE_PASSWORD_MODAL))
                 }}
               >
                 Зберегти
@@ -132,7 +132,7 @@ const ChangePasswordModal = () => {
         </form>
       </Modal.Body>
     </Modal>
-  );
-};
+  )
+}
 
-export default ChangePasswordModal;
+export default ChangePasswordModal

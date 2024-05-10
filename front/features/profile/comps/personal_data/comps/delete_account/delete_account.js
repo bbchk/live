@@ -1,21 +1,21 @@
-import s from './delete_account.module.scss';
-import card_s from './../card.module.scss';
-import { Card } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import s from './delete_account.module.scss'
+import card_s from './../card.module.scss'
+import { Card } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from 'store/slices/global_comps/global_comps.slice';
-const { DELETE_ACCOUNT_MODAL } = GLOBAL_COMPS;
+} from 'store/slices/global_comps/global_comps.slice'
+const { DELETE_ACCOUNT_MODAL } = GLOBAL_COMPS
 
 const DeleteAccount = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   return (
     <Card className={`${card_s.card}`}>
       <Card.Header className={`${card_s.header} ${s.header}`}>
-        <i className="bi bi-trash3-fill" />
+        <i className='bi bi-trash3-fill' />
         <h5>Видалити акаунт</h5>
       </Card.Header>
       <Card.Body className={`${card_s.body} ${s.body}`}>
@@ -24,10 +24,10 @@ const DeleteAccount = () => {
           Будь ласка, будьте впевненими.
         </p>
         <button
-          className="button_danger"
+          className='button_danger'
           onClick={() => {
             //todo delete account
-            dispatch(toggle(DELETE_ACCOUNT_MODAL));
+            dispatch(toggle(DELETE_ACCOUNT_MODAL))
             // signOut({ callbackUrl: "/" });
           }}
         >
@@ -35,7 +35,7 @@ const DeleteAccount = () => {
         </button>
       </Card.Body>
     </Card>
-  );
-};
+  )
+}
 
-export default DeleteAccount;
+export default DeleteAccount

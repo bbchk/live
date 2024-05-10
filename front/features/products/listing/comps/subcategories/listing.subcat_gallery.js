@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import SubcategoryCard from './listing.subcat_card';
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import SubcategoryCard from './listing.subcat_card'
 
-import s from './listing.subcat_gallery.module.scss';
+import s from './listing.subcat_gallery.module.scss'
 
 const SubcategoriesGallery = ({ subcategories }) => {
   return (
@@ -16,12 +16,12 @@ const SubcategoriesGallery = ({ subcategories }) => {
                 <li key={category._id} className={`col ${s.col}`}>
                   <SubcategoryCard category={category} />
                 </li>
-              );
+              )
             })}
         </nav>
       )}
     </>
-  );
-};
+  )
+}
 
-export default SubcategoriesGallery;
+export default SubcategoriesGallery

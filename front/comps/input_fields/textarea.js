@@ -1,4 +1,4 @@
-import s from './textarea.module.scss';
+import s from './textarea.module.scss'
 
 const TextArea = ({ value, onChange, placeholder, rows = 3, ...props }) => {
   return (
@@ -10,7 +10,7 @@ const TextArea = ({ value, onChange, placeholder, rows = 3, ...props }) => {
       rows={rows}
       {...props}
     />
-  );
-};
+  )
+}
 
-export default TextArea;
+export default TextArea

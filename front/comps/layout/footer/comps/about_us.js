@@ -1,4 +1,4 @@
-import { InfoRounded } from '@mui/icons-material';
+import { InfoRounded } from '@mui/icons-material'
 
 const AboutUs = () => {
   return (
@@ -9,7 +9,7 @@ const AboutUs = () => {
       </h2>
       <p>Магазин найкращих товарів для вашого дому, улюбленців та рослин </p>
     </section>
-  );
-};
+  )
+}
 
-export default AboutUs;
+export default AboutUs

@@ -1,20 +1,20 @@
-import Image from 'next/image';
-import s from './cart_item.module.scss';
-import { useState } from 'react';
-import QuantityInput from './quantity_input';
-import { useCart } from 'hooks/useCart';
+import Image from 'next/image'
+import s from './cart_item.module.scss'
+import { useState } from 'react'
+import QuantityInput from './quantity_input'
+import { useCart } from 'hooks/useCart'
 
 //changin quantity should change the quantity in the cart
 //remove functionality
 const CartItem = ({ product, quantity }) => {
   // const [quantity, setQuantity] = useState(initq);
-  const { removeAll } = useCart();
+  const { removeAll } = useCart()
   return (
     <div className={`${s.cart_item}`}>
       <div>
         <Image
           src={product.images ? product.images[0] : '/images/placeholder.png'}
-          alt="Picture of the product"
+          alt='Picture of the product'
           width={250}
           height={250}
           priority
@@ -26,7 +26,7 @@ const CartItem = ({ product, quantity }) => {
             // console.log("remove");
           }}
         >
-          <i className="bi bi-trash" />
+          <i className='bi bi-trash' />
         </button>
       </div>
       <div>
@@ -39,7 +39,7 @@ const CartItem = ({ product, quantity }) => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartItem;
+export default CartItem

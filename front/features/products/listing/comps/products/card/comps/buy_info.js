@@ -1,5 +1,5 @@
-import s from './buy_info.module.scss';
-import lcs from '../listing.product_card.module.scss';
+import s from './buy_info.module.scss'
+import lcs from '../listing.product_card.module.scss'
 
 const BuyInfo = ({ product }) => {
   return (
@@ -9,10 +9,10 @@ const BuyInfo = ({ product }) => {
       </p>
 
       <button className={`${s.add_to_cart_button}`}>
-        <i className="bi bi-cart4" />
+        <i className='bi bi-cart4' />
       </button>
     </section>
-  );
-};
+  )
+}
 
-export default BuyInfo;
+export default BuyInfo

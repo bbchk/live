@@ -1,8 +1,8 @@
-import s from './password_input_filed.module.scss';
-import InputField from './input_field';
+import s from './password_input_filed.module.scss'
+import InputField from './input_field'
 
-import { useState } from 'react';
-import { VisibilityRounded, VisibilityOffRounded } from '@mui/icons-material';
+import { useState } from 'react'
+import { VisibilityRounded, VisibilityOffRounded } from '@mui/icons-material'
 
 const PasswordInputField = ({
   id,
@@ -12,7 +12,7 @@ const PasswordInputField = ({
   placeholder,
   error,
 }) => {
-  const [isPasswordPlainText, setIsPasswordPlainText] = useState(false);
+  const [isPasswordPlainText, setIsPasswordPlainText] = useState(false)
 
   return (
     <div className={`form-floating mb-2 ${s.password_input_container}`}>
@@ -27,9 +27,9 @@ const PasswordInputField = ({
       />
       <button
         className={`${s.eye_button} `}
-        type="button"
+        type='button'
         onClick={() => {
-          setIsPasswordPlainText(!isPasswordPlainText);
+          setIsPasswordPlainText(!isPasswordPlainText)
         }}
       >
         {isPasswordPlainText ? (
@@ -39,7 +39,7 @@ const PasswordInputField = ({
         )}
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default PasswordInputField;
+export default PasswordInputField

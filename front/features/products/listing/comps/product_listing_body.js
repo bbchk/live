@@ -1,14 +1,14 @@
-import FiltersAccordion from 'features/products/listing/comps/filter/filters_accordion/filters_accordion';
+import FiltersAccordion from 'features/products/listing/comps/filter/filters_accordion/filters_accordion'
 
-import ProductGallery from './gallery/gallery';
-import ProductsPagination from './gallery/pagination/pagination';
-import SortGroup from './filter/sort-group';
-import FiltersOffcanvasToggler from 'features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas_toggler';
+import ProductGallery from './gallery/gallery'
+import ProductsPagination from './gallery/pagination/pagination'
+import SortGroup from './filter/sort-group'
+import FiltersOffcanvasToggler from 'features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas_toggler'
 
-import s from './product_listing_body.module.scss';
-import FiltersOffcanvas from './filter/filiters_offcanvas/filters_offcanvas';
-import Selected from './filter/selected';
-import NoProductYet from '#root/comps/warnings/no_products.js';
+import s from './product_listing_body.module.scss'
+import FiltersOffcanvas from './filter/filiters_offcanvas/filters_offcanvas'
+import Selected from './filter/selected'
+import NoProductYet from '#root/comps/warnings/no_products.js'
 
 const ProductListingBody = ({
   data: {
@@ -65,7 +65,7 @@ const ProductListingBody = ({
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default ProductListingBody;
+export default ProductListingBody

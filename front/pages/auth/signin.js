@@ -1,47 +1,47 @@
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from 'store/slices/global_comps/global_comps.slice';
-const { SIGN_IN_MODAL } = GLOBAL_COMPS;
-import { useEffect } from 'react';
+} from 'store/slices/global_comps/global_comps.slice'
+const { SIGN_IN_MODAL } = GLOBAL_COMPS
+import { useEffect } from 'react'
 
 const SignIn = () => {
-  const router = useRouter();
+  const router = useRouter()
 
-  const dispatch = useDispatch();
-  const { data: session } = useSession();
+  const dispatch = useDispatch()
+  const { data: session } = useSession()
 
   useEffect(() => {
     if (!session) {
-      dispatch(toggle(SIGN_IN_MODAL));
+      dispatch(toggle(SIGN_IN_MODAL))
     } else {
-      router.push('/profile/personal_data');
+      router.push('/profile/personal_data')
     }
     // eslint-disable-next-line
-  }, [session, dispatch]);
+  }, [session, dispatch])
 
   const { signInModalOpen, signUpModalOpen } = useSelector(
     (state) => state.modals,
-  );
+  )
 
   useEffect(() => {
-    let timeoutId;
+    let timeoutId
     if (!signInModalOpen && !signUpModalOpen) {
       timeoutId = setTimeout(() => {
-        router.push('/');
-      }, 200);
+        router.push('/')
+      }, 200)
     }
     return () => {
-      clearTimeout(timeoutId);
-    };
+      clearTimeout(timeoutId)
+    }
     // eslint-disable-next-line
-  }, [signInModalOpen, signUpModalOpen]);
+  }, [signInModalOpen, signUpModalOpen])
 
-  return <></>;
-};
+  return <></>
+}
 
-export default SignIn;
+export default SignIn

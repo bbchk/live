@@ -1,11 +1,11 @@
-import s from './characteristics.module.scss';
+import s from './characteristics.module.scss'
 
 const Characteristics = ({ title, product }) => {
   return (
     <>
-      <div id="characteristics" className={`${s.characteristics}`}>
+      <div id='characteristics' className={`${s.characteristics}`}>
         <h2 className={`${s.title}`}>
-          <a href="#characteristics">{title}</a>
+          <a href='#characteristics'>{title}</a>
         </h2>
         <div className={`${s.splitter}`} />
         {Object.entries(product.characteristics).map(([key, value], index) => (
@@ -25,7 +25,7 @@ const Characteristics = ({ title, product }) => {
         ))}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Characteristics;
+export default Characteristics

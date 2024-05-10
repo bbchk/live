@@ -1,7 +1,7 @@
-import s from './info.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import s from './info.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faPaw } from "@fortawesome/free-regular-svg-icons";
-import { faPaw, faSeedling } from '@fortawesome/free-solid-svg-icons';
+import { faPaw, faSeedling } from '@fortawesome/free-solid-svg-icons'
 
 export const Info = () => {
   return (
@@ -47,7 +47,7 @@ export const Info = () => {
         тваринами, надаючи зручність і доступність у кожній покупці.
       </p>
     </article>
-  );
-};
+  )
+}
 
-export default Info;
+export default Info

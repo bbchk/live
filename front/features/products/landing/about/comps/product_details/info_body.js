@@ -1,6 +1,6 @@
-import s from './info_body.module.scss';
-import { useSession } from 'next-auth/react';
-import { useCart } from 'hooks/useCart';
+import s from './info_body.module.scss'
+import { useSession } from 'next-auth/react'
+import { useCart } from 'hooks/useCart'
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -11,7 +11,7 @@ import {
   AddShoppingCartRounded,
   FavoriteBorderRounded,
   ChatRounded,
-} from '@mui/icons-material';
+} from '@mui/icons-material'
 
 const InfoBody = ({ product }) => {
   const {
@@ -27,11 +27,11 @@ const InfoBody = ({ product }) => {
     starRating = 3.7,
     packing,
     code = '000000',
-  } = product;
+  } = product
 
-  const { add } = useCart();
+  const { add } = useCart()
   function handleBuy(product) {
-    add(product);
+    add(product)
   }
 
   return (
@@ -51,11 +51,11 @@ const InfoBody = ({ product }) => {
         onClick={() => handleBuy(product)}
       >
         <p>Купити</p>
-        <AddShoppingCartRounded className="icon_button_on_hover" />
+        <AddShoppingCartRounded className='icon_button_on_hover' />
       </button>
 
       <button className={`${s.like_btn} icon_button_primary`}>
-        <FavoriteBorderRounded className="icon_button_on_hover" />
+        <FavoriteBorderRounded className='icon_button_on_hover' />
       </button>
 
       <button
@@ -66,10 +66,10 @@ const InfoBody = ({ product }) => {
           // });
         }}
       >
-        <ChatRounded className="icon_button_on_hover" />
+        <ChatRounded className='icon_button_on_hover' />
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default InfoBody;
+export default InfoBody

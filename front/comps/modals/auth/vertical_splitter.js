@@ -1,4 +1,4 @@
-import s from './modal.module.scss';
+import s from './modal.module.scss'
 
 const VerticalSplitter = () => {
   return (
@@ -7,7 +7,7 @@ const VerticalSplitter = () => {
       <p>або</p>
       <div className={`${s.line}`}></div>
     </div>
-  );
-};
+  )
+}
 
-export default VerticalSplitter;
+export default VerticalSplitter

@@ -1,15 +1,15 @@
-import s from './selected.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import { deleteAllFilters } from 'store/slices/filters.slice';
-import { useRouter } from 'next/router';
-import { startLoading } from 'store/slices/global_comps/global_comps.slice.js';
+import s from './selected.module.scss'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteAllFilters } from 'store/slices/filters.slice'
+import { useRouter } from 'next/router'
+import { startLoading } from 'store/slices/global_comps/global_comps.slice.js'
 
 const Selected = ({ productsCount }) => {
-  const router = useRouter();
-  const dispatch = useDispatch();
+  const router = useRouter()
+  const dispatch = useDispatch()
 
-  const { filters: activeFilters } = useSelector((state) => state.filters);
-  const isActiveFilters = Object.keys(activeFilters).some((f) => f != 'page');
+  const { filters: activeFilters } = useSelector((state) => state.filters)
+  const isActiveFilters = Object.keys(activeFilters).some((f) => f != 'page')
 
   return (
     <>
@@ -19,9 +19,9 @@ const Selected = ({ productsCount }) => {
           <button
             className={`${s.cancel_all_btn} button_danger_secondary`}
             onClick={() => {
-              dispatch(startLoading());
-              dispatch(deleteAllFilters());
-              router.push(`/products/${router.query.categoryPath}/page=1`);
+              dispatch(startLoading())
+              dispatch(deleteAllFilters())
+              router.push(`/products/${router.query.categoryPath}/page=1`)
             }}
           >
             Скасувати
@@ -29,7 +29,7 @@ const Selected = ({ productsCount }) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Selected;
+export default Selected

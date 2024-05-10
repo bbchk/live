@@ -1,8 +1,8 @@
-import s from './sign_form_by_services.module.scss';
-import modal_s from './modal.module.scss';
+import s from './sign_form_by_services.module.scss'
+import modal_s from './modal.module.scss'
 
-import { signIn } from 'next-auth/react';
-import Image from 'next/image';
+import { signIn } from 'next-auth/react'
+import Image from 'next/image'
 
 const SignFormByServices = () => {
   const ServiceButton = ({ serviceName }) => {
@@ -10,7 +10,7 @@ const SignFormByServices = () => {
       <button
         onClick={() => {
           try {
-            signIn(serviceName, { redirect: false });
+            signIn(serviceName, { redirect: false })
           } catch (e) {
             // console.log(e);
           }
@@ -19,14 +19,14 @@ const SignFormByServices = () => {
       >
         <Image
           src={`/assets/services/${serviceName}_icon.svg`}
-          width="20"
-          height="20"
-          alt="service"
+          width='20'
+          height='20'
+          alt='service'
         />
         {serviceName.charAt(0).toUpperCase() + serviceName.slice(1)}
       </button>
-    );
-  };
+    )
+  }
 
   return (
     <div className={`${s.by_services} ${modal_s.right}`}>
@@ -41,7 +41,7 @@ const SignFormByServices = () => {
         {/* <ServiceButton serviceName={"apple"} /> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SignFormByServices;
+export default SignFormByServices

@@ -1,6 +1,6 @@
-import s from './like_btn.module.scss';
-import lcs from '../listing_card.module.scss';
-import { FavoriteBorderRounded, FavoriteRounded } from '@mui/icons-material';
+import s from './like_btn.module.scss'
+import lcs from '../listing_card.module.scss'
+import { FavoriteBorderRounded, FavoriteRounded } from '@mui/icons-material'
 
 const LikeButton = ({ isLiked }) => {
   return (
@@ -14,7 +14,7 @@ const LikeButton = ({ isLiked }) => {
         <FavoriteBorderRounded />
       )}
     </button>
-  );
-};
+  )
+}
 
-export default LikeButton;
+export default LikeButton

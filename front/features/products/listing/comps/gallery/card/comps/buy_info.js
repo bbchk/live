@@ -1,6 +1,6 @@
-import s from './buy_info.module.scss';
-import lcs from '../listing_card.module.scss';
-import { AddShoppingCartRounded } from '@mui/icons-material';
+import s from './buy_info.module.scss'
+import lcs from '../listing_card.module.scss'
+import { AddShoppingCartRounded } from '@mui/icons-material'
 
 const BuyInfo = ({ product }) => {
   return (
@@ -13,7 +13,7 @@ const BuyInfo = ({ product }) => {
         <AddShoppingCartRounded />
       </button>
     </section>
-  );
-};
+  )
+}
 
-export default BuyInfo;
+export default BuyInfo

@@ -1,35 +1,35 @@
-import { useRouter } from 'next/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import {  } from "@fortawesome/free-regular-svg-icons";
 import {
   faAnglesLeft,
   faAnglesRight,
   faAngleLeft,
   faAngleRight,
-} from '@fortawesome/free-solid-svg-icons';
-import Link from 'next/link';
+} from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 
-import s from './pagination.module.scss';
-import { startLoading } from 'store/slices/global_comps/global_comps.slice';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import s from './pagination.module.scss'
+import { startLoading } from 'store/slices/global_comps/global_comps.slice'
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 
 //todo refactoring
 function ProductsPagination({ numPages, activePageId }) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const router = useRouter();
-  const { categoryPath, filtersStr } = router.query;
+  const router = useRouter()
+  const { categoryPath, filtersStr } = router.query
   const getPath = (pageId) => {
     const filtersStrWithNewPageId = filtersStr.replace(
       /page=\d+/,
       `page=${pageId}`,
-    );
+    )
 
-    return `/products/${categoryPath}/${filtersStrWithNewPageId}`;
-  };
+    return `/products/${categoryPath}/${filtersStrWithNewPageId}`
+  }
 
-  const isActive = (pageId) => pageId == activePageId;
+  const isActive = (pageId) => pageId == activePageId
 
   const PaginationItem = ({ pageId, onClick, children }) => {
     return (
@@ -37,10 +37,10 @@ function ProductsPagination({ numPages, activePageId }) {
         href={getPath(pageId)}
         onClick={(event) => {
           if (isActive(pageId) || pageId == undefined) {
-            event.preventDefault();
+            event.preventDefault()
           } else {
-            if (onClick) onClick();
-            dispatch(startLoading());
+            if (onClick) onClick()
+            dispatch(startLoading())
           }
         }}
       >
@@ -48,26 +48,26 @@ function ProductsPagination({ numPages, activePageId }) {
           {children}
         </li>
       </Link>
-    );
-  };
-
-  const [currentPage, setCurrentPage] = useState(activePageId);
-  const maxPageItems = 5;
-
-  let startPage = Math.max(1, currentPage - Math.floor(maxPageItems / 2));
-  let endPage = Math.min(numPages, startPage + maxPageItems - 1);
-
-  if (endPage - startPage + 1 < maxPageItems) {
-    startPage = Math.max(1, endPage - maxPageItems + 1);
+    )
   }
 
-  const pageItems = [];
+  const [currentPage, setCurrentPage] = useState(activePageId)
+  const maxPageItems = 5
+
+  let startPage = Math.max(1, currentPage - Math.floor(maxPageItems / 2))
+  let endPage = Math.min(numPages, startPage + maxPageItems - 1)
+
+  if (endPage - startPage + 1 < maxPageItems) {
+    startPage = Math.max(1, endPage - maxPageItems + 1)
+  }
+
+  const pageItems = []
   for (let i = startPage; i <= endPage; i++) {
     pageItems.push(
       <PaginationItem key={i} pageId={i}>
         <p>{i}</p>
       </PaginationItem>,
-    );
+    )
   }
 
   if (startPage > 1) {
@@ -79,7 +79,7 @@ function ProductsPagination({ numPages, activePageId }) {
       >
         ...
       </PaginationItem>,
-    );
+    )
   }
 
   if (endPage < numPages) {
@@ -91,13 +91,13 @@ function ProductsPagination({ numPages, activePageId }) {
       >
         ...
       </PaginationItem>,
-    );
+    )
   }
 
   return (
     <>
       {numPages > 1 && (
-        <nav aria-label="pagination">
+        <nav aria-label='pagination'>
           <ul className={`${s.pagination}`}>
             <ul className={`${s.controls} ${isActive(1) ? s.disabled : ''}`}>
               <PaginationItem pageId={1}>
@@ -128,7 +128,7 @@ function ProductsPagination({ numPages, activePageId }) {
         </nav>
       )}
     </>
-  );
+  )
 }
 
-export default ProductsPagination;
+export default ProductsPagination

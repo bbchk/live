@@ -1,8 +1,8 @@
-import s from './product_main_info.module.scss';
+import s from './product_main_info.module.scss'
 
-import { useState } from 'react';
-import MainInfoHeader from './info_header';
-import InfoBody from './info_body';
+import { useState } from 'react'
+import MainInfoHeader from './info_header'
+import InfoBody from './info_body'
 
 const ProductMainInfo = ({ product }) => {
   return (
@@ -10,7 +10,7 @@ const ProductMainInfo = ({ product }) => {
       <MainInfoHeader product={product} />
       <InfoBody product={product} />
     </main>
-  );
-};
+  )
+}
 
-export default ProductMainInfo;
+export default ProductMainInfo

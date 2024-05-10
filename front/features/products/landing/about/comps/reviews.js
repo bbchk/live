@@ -1,41 +1,41 @@
-import s from './reviews.module.scss';
-import ps from '../landing_product_about.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-import ReviewItem from '../../reviews/review_item';
+import s from './reviews.module.scss'
+import ps from '../landing_product_about.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import ReviewItem from '../../reviews/review_item'
 
-import Link from 'next/link';
+import Link from 'next/link'
 
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from 'store/slices/global_comps/global_comps.slice';
-const { WRITE_REVIEW_MODAL } = GLOBAL_COMPS;
-import WriteReviewForm from '../../mutual/write_review_form/write_review_form';
-import { useRouter } from 'next/router';
+} from 'store/slices/global_comps/global_comps.slice'
+const { WRITE_REVIEW_MODAL } = GLOBAL_COMPS
+import WriteReviewForm from '../../mutual/write_review_form/write_review_form'
+import { useRouter } from 'next/router'
 
 const Reviews = ({ product }) => {
-  const { reviews } = product;
-  const MAX_REVIEWS_ON_ABOUT_PAGE = 3;
-  const dispatch = useDispatch();
+  const { reviews } = product
+  const MAX_REVIEWS_ON_ABOUT_PAGE = 3
+  const dispatch = useDispatch()
 
-  const router = useRouter();
+  const router = useRouter()
   const handleNavigation = (e) => {
     const productPathNoActiveTab = router.asPath
       .split('/')
       .slice(0, -1)
-      .join('/');
+      .join('/')
 
-    e.preventDefault();
+    e.preventDefault()
     router.push(productPathNoActiveTab + '/reviews', undefined, {
       shallow: true,
-    });
-  };
+    })
+  }
 
-  const amountOfReviews = reviews.length;
+  const amountOfReviews = reviews.length
 
   return (
     <div className={`${s.reviews}`}>
@@ -73,19 +73,19 @@ const Reviews = ({ product }) => {
           </>
         )}
         {reviews.slice(0, MAX_REVIEWS_ON_ABOUT_PAGE).map((review) => {
-          return <ReviewItem key={`review-${review.id}`} review={review} />;
+          return <ReviewItem key={`review-${review.id}`} review={review} />
         })}
       </div>
       <footer className={`${s.footer}`}>
         {amountOfReviews > 0 && (
-          <Link href="#" onClick={handleNavigation}>
+          <Link href='#' onClick={handleNavigation}>
             <p>Подивитись усі відгуки на товар</p>
             <FontAwesomeIcon icon={faArrowRight} />
           </Link>
         )}
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default Reviews;
+export default Reviews

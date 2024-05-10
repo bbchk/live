@@ -1,29 +1,29 @@
-import { useSignUp } from 'hooks/useSignUp';
-import { useState } from 'react';
+import { useSignUp } from 'hooks/useSignUp'
+import { useState } from 'react'
 
-import s from './sign_up_form_by_credentials.module.scss';
-import modal_s from '../modal.module.scss';
-import Link from 'next/link';
-import InputField from 'comps/input_fields/input_field';
-import PasswordInputField from 'comps/input_fields/password_input_field';
+import s from './sign_up_form_by_credentials.module.scss'
+import modal_s from '../modal.module.scss'
+import Link from 'next/link'
+import InputField from 'comps/input_fields/input_field'
+import PasswordInputField from 'comps/input_fields/password_input_field'
 
 const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
-  const [firstName, setFirstName] = useState('');
-  const [secondName, setSecondName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { signUp, isLoading, error } = useSignUp();
+  const [firstName, setFirstName] = useState('')
+  const [secondName, setSecondName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { signUp, isLoading, error } = useSignUp()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     //todo put cart as well
-    const localStorageCartJson = JSON.parse(localStorage.getItem('cart'));
-    await signUp(firstName, secondName, email, password, localStorageCartJson);
+    const localStorageCartJson = JSON.parse(localStorage.getItem('cart'))
+    await signUp(firstName, secondName, email, password, localStorageCartJson)
     if (!error) {
-      toggleModal();
+      toggleModal()
     }
-  };
+  }
 
   return (
     <form
@@ -32,40 +32,40 @@ const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
     >
       <div className={`${s.input_group}`}>
         <InputField
-          type="text"
-          id="signUpFirstNameInputField"
+          type='text'
+          id='signUpFirstNameInputField'
           value={firstName}
           onChange={(e) => {
-            setFirstName(e.target.value);
+            setFirstName(e.target.value)
           }}
           label="Ім'я*"
         ></InputField>
         <InputField
-          type="text"
-          id="signUpSecondNameInputField"
+          type='text'
+          id='signUpSecondNameInputField'
           value={secondName}
           onChange={(e) => {
-            setSecondName(e.target.value);
+            setSecondName(e.target.value)
           }}
-          label="Прізвище"
+          label='Прізвище'
         />
         <InputField
-          type="email"
-          id="signUpEmailInputField"
+          type='email'
+          id='signUpEmailInputField'
           value={email}
           onChange={(e) => {
-            1;
-            setEmail(e.target.value);
+            1
+            setEmail(e.target.value)
           }}
-          label="Пошта*"
+          label='Пошта*'
         />
         <PasswordInputField
-          id="signUpPasswordInputField"
+          id='signUpPasswordInputField'
           value={password}
           onChange={(e) => {
-            setPassword(e.target.value);
+            setPassword(e.target.value)
           }}
-          label="Пароль*"
+          label='Пароль*'
         />
       </div>
 
@@ -75,30 +75,30 @@ const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
             </div> */}
       <div className={`form-text`}>
         Реєструючись, ви погоджуєтеся з умовами{' '}
-        <Link href="/privacy-policy">
+        <Link href='/privacy-policy'>
           положення про обробку і захист персональних даних
         </Link>
-        {` `}та <Link href="/terms-of-usage">угодою користувача</Link>
+        {` `}та <Link href='/terms-of-usage'>угодою користувача</Link>
       </div>
 
-      <button disabled={isLoading} type="submit" className="button_primary ">
+      <button disabled={isLoading} type='submit' className='button_primary '>
         Зареєструватись
       </button>
       {/* signIn('credentials', { redirect: false, password: 'password' }) */}
 
       <Link
         className={`text-center d-block ${s.sign_in_link}`}
-        href="#"
+        href='#'
         onClick={() => {
-          toggleModal();
-          toggleSignInModal();
+          toggleModal()
+          toggleSignInModal()
         }}
       >
         Я вже зареєстрований
       </Link>
       {error ? <div className={`${s.error}`}>{error}</div> : <></>}
     </form>
-  );
-};
+  )
+}
 
-export default SignUpForm;
+export default SignUpForm

@@ -1,9 +1,9 @@
-import Card from './card';
-import s from './gallery.module.scss';
+import Card from './card'
+import s from './gallery.module.scss'
 
 const Gallery = ({ rootCategories }) => {
   return (
-    <div id="categories" className={`${s.gallery}`}>
+    <div id='categories' className={`${s.gallery}`}>
       <div className={`${s.header}`}>
         <h2>Категорії</h2>
       </div>
@@ -18,12 +18,12 @@ const Gallery = ({ rootCategories }) => {
             >
               <Card category={category} subcategories={category.subcats} />
             </div>
-          );
+          )
         })}
       </div>
       <div className={`${s.decor_line} mt-5`}></div>
     </div>
-  );
-};
+  )
+}
 
-export default Gallery;
+export default Gallery
