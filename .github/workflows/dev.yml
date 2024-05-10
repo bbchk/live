@@ -19,7 +19,7 @@ jobs:
       working-directory: back
       environment: DEV
     secrets:
-      JWT_SECRET_FOR_TESTING: ${{ secrets.JWT_SECRET_FOR_TESTING }}
+      TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
   front-end-testing-linting-building:
@@ -34,7 +34,7 @@ jobs:
       NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      JWT_SECRET_FOR_TESTING: ${{ secrets.JWT_SECRET_FOR_TESTING }}
+      TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 #

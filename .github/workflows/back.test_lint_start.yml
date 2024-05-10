@@ -13,7 +13,7 @@ on:
         required: true
         type: string
     secrets:
-      JWT_SECRET_FOR_TESTING:
+      TEST_JWT_SECRET:
         required: true
       JWT_SECRET:
         required: true
@@ -50,7 +50,7 @@ jobs:
     env:
       NODE_ENV: ${{ vars.NODE_ENV }}
       PORT: ${{ vars.PORT }}
-      JWT_SECRET_FOR_TESTING: ${{ secrets.JWT_SECRET_FOR_TESTING }}
+      TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
@@ -62,6 +62,8 @@ jobs:
 
       - name: Lint and Test
         if: matrix.action == 'lint-test'
+        env:
+          NODE_ENV: test
         run: |
           npm ci --include=dev
           npm run lint
