@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 
 const genAuthToken = (user) => {
   const secretKey =
-    process.env.NODE_ENV === 'test'
+    process.env.NODE_ENV !== 'production'
       ? process.env.TEST_JWT_SECRET
       : process.env.JWT_SECRET
   const token = jwt.sign(
