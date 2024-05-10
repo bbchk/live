@@ -99,5 +99,5 @@ jobs:
       - name: Build front-end
         if: matrix.action == 'build'
         run: |
-          npm ci 
+          npm ci --include=dev
           npm run build
