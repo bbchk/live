@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  front-end-testing-linting-building:
+  back-end-testing-linting-starting:
     uses: bbuukk/live/.github/workflows/back.test_lint_start.yml@main
     with:
       node-version: 20
@@ -22,7 +22,7 @@ jobs:
       TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
-  back-end-testing-linting-starting:
+  front-end-testing-linting-building:
     uses: bbuukk/live/.github/workflows/front.test_lint_build.yml@main
     with:
       node-version: 20
