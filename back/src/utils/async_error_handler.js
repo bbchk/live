@@ -1,5 +1,5 @@
 export const asyncErrorHandler = (controller) => {
   return (req, res, next) => {
-    controller(req, res, next).catch((err) => next(err));
-  };
-};
+    controller(req, res, next).catch((err) => next(err))
+  }
+}

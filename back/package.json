@@ -17,8 +17,9 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix ./*.js",
+    "lint": "eslint --no-error-on-unmatched-pattern",
+    "lint:quiet": "eslint --quiet --no-error-on-unmatched-pattern",
+    "lint:fix": "eslint --fix --no-error-on-unmatched-pattern",
     "format": "prettier --write ."
   },
   "keywords": [],

@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose';
-import bcrypt from 'bcryptjs';
-import validator from 'validator';
+import { Schema, model } from 'mongoose'
+import bcrypt from 'bcryptjs'
+import validator from 'validator'
 
 const userSchema = new Schema(
   {
@@ -42,66 +42,66 @@ const userSchema = new Schema(
           type: Schema.Types.ObjectId,
           ref: 'Product',
           required: function () {
-            return this.quantity != null;
+            return this.quantity != null
           },
         },
         quantity: {
           type: Number,
           required: function () {
-            return this.product != null;
+            return this.product != null
           },
         },
       },
     ],
   },
   { timestamps: true },
-);
+)
 
 userSchema.statics.signIn = async function (email, password) {
   if (!email || !password) {
-    throw Error('Email and password fields cannot be blank');
+    throw Error('Email and password fields cannot be blank')
   }
 
-  const user = await this.findOne({ email });
+  const user = await this.findOne({ email })
 
   if (!user) {
-    throw Error('Incorrect email');
+    throw Error('Incorrect email')
   }
 
-  const match = await bcrypt.compare(password, user.password);
+  const match = await bcrypt.compare(password, user.password)
   if (!match) {
-    throw Error('Incorrect password');
+    throw Error('Incorrect password')
   }
 
-  return user;
-};
+  return user
+}
 
 userSchema.statics.signUp = async function (user) {
-  const { firstName, secondName, email, password, localStorageCartJson } = user;
+  const { firstName, secondName, email, password, localStorageCartJson } = user
 
   if (!email || !password) {
-    throw Error('Email and password fields cannot be blank');
+    throw Error('Email and password fields cannot be blank')
   }
 
   if (!validator.isEmail(email)) {
-    throw Error('Email is not valid');
+    throw Error('Email is not valid')
   }
 
   if (!validator.isStrongPassword(password)) {
-    throw Error('Password is not strong enough');
+    throw Error('Password is not strong enough')
   }
 
-  const isUserExists = await this.findOne({ email });
+  const isUserExists = await this.findOne({ email })
   if (isUserExists) {
-    throw Error('Email already in use');
+    throw Error('Email already in use')
   }
 
-  const hash = await bcrypt.hash(password, 10);
+  const hash = await bcrypt.hash(password, 10)
 
-  const min = 0;
-  const max = 4;
-  const randomImageIdx = Math.floor(Math.random() * (max - min + 1)) + min;
-  const defaultUserImage = `https://storage.googleapis.com/live_world/users/user${randomImageIdx}.jpg`;
+  const min = 0
+  const max = 4
+  const randomImageIdx = Math.floor(Math.random() * (max - min + 1)) + min
+  const defaultUserImage = `https://storage.googleapis.com/live_world/users/user${randomImageIdx}.jpg`
 
   const newUser = await this.create({
     firstName: firstName,
@@ -110,15 +110,15 @@ userSchema.statics.signUp = async function (user) {
     password: hash,
     image: defaultUserImage,
     cart: localStorageCartJson,
-  });
+  })
 
   {
-    let newUserDoc = newUser._doc;
+    let newUserDoc = newUser._doc
     let { firstName, secondName, email, image, likedProducts, cart, _id } =
-      newUserDoc;
+      newUserDoc
 
-    return { firstName, secondName, email, image, likedProducts, cart, _id };
+    return { firstName, secondName, email, image, likedProducts, cart, _id }
   }
-};
+}
 
-export default model('User', userSchema);
+export default model('User', userSchema)

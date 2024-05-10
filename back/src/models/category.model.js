@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from 'mongoose'
 
 // let schemaOptions = {
 //   toJSON: {
@@ -32,7 +32,7 @@ const categorySchema = new Schema(
     },
   },
   // schemaOptions
-);
+)
 
 // let nestLevelVirtual = categorySchema.virtual("nestLevel");
 
@@ -40,4 +40,4 @@ const categorySchema = new Schema(
 //   return this.path.split(",").length;
 // });
 
-export default model('category', categorySchema);
+export default model('category', categorySchema)

@@ -1,13 +1,14 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import dotenv from 'dotenv'
+dotenv.config()
 
-import winston from 'winston';
-const { transports } = winston;
-import MongoDB from 'winston-mongodb';
+import winston from 'winston'
+const { transports } = winston
+// eslint-disable-next-line no-unused-vars
+import MongoDB from 'winston-mongodb'
 
-const THIRTY_DAYS = 2592000;
-const MAX_DOCS_NUMBER = 1000;
-const COLLECTION_SIZE_BYTES = 1000;
+const THIRTY_DAYS = 2592000
+const MAX_DOCS_NUMBER = 1000
+const COLLECTION_SIZE_BYTES = 1000
 
 const optionsDB = {
   options: {
@@ -22,9 +23,9 @@ const optionsDB = {
   storeHost: false, // Disable storing hostname in log documents
   leaveConnectionOpen: false,
   expireAfterSeconds: THIRTY_DAYS, // TTL (time-to-live) in seconds for documents
-};
+}
 
-const mainLoggerTransports = [];
+const mainLoggerTransports = []
 
 if (process.env.NODE_ENV === 'production') {
   mainLoggerTransports.push(
@@ -38,7 +39,7 @@ if (process.env.NODE_ENV === 'production') {
       collection: 'logs.errors',
       ...optionsDB,
     }),
-  );
+  )
 }
 
 if (process.env.NODE_ENV !== 'production') {
@@ -47,11 +48,11 @@ if (process.env.NODE_ENV !== 'production') {
       format: winston.format.combine(
         winston.format.colorize(),
         winston.format.printf((info) => {
-          return `${info.level}:${info.message}`;
+          return `${info.level}:${info.message}`
         }),
       ),
     }),
-  );
+  )
 }
 
 winston.loggers.add('mainLogger', {
@@ -68,6 +69,6 @@ winston.loggers.add('mainLogger', {
   meta: true,
   expressFormat: true,
   statusLevels: true,
-});
+})
 
-export const mainLogger = winston.loggers.get('mainLogger');
+export const mainLogger = winston.loggers.get('mainLogger')

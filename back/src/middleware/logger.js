@@ -1,26 +1,28 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import dotenv from 'dotenv'
+dotenv.config()
 
-import winston from 'winston';
-import expressWinston from 'express-winston';
-const { transports } = winston;
-import MongoDB from 'winston-mongodb';
+import winston from 'winston'
+import expressWinston from 'express-winston'
+const { transports } = winston
+
+//eslint-disable-next-line no-unused-vars
+import MongoDB from 'winston-mongodb'
 // import mongoose from "mongoose";
 
-import { mainLogger as ml } from '#src/utils/loggers.js';
+import { mainLogger as ml } from '#src/utils/loggers.js'
 
-expressWinston.requestWhitelist.push('body');
+expressWinston.requestWhitelist.push('body')
 
 export const infoLogger = expressWinston.logger({
   winstonInstance: ml,
   expressFormat: true,
   statusLevels: true,
-});
+})
 
-const errorLoggerTransports = [new transports.Console()];
+const errorLoggerTransports = [new transports.Console()]
 
 if (process.env.NODE_ENV !== 'production') {
-  errorLoggerTransports.push(new transports.File({ filename: 'errors.log' }));
+  errorLoggerTransports.push(new transports.File({ filename: 'errors.log' }))
 }
 
 export const errorLogger = expressWinston.errorLogger({
@@ -36,4 +38,4 @@ export const errorLogger = expressWinston.errorLogger({
   ),
   expressFormat: true,
   statusLevels: true,
-});
+})

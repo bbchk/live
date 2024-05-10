@@ -1,10 +1,10 @@
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'
 
 const genAuthToken = (user) => {
   const secretKey =
     process.env.NODE_ENV === 'test'
       ? process.env.TEST_JWT_SECRET
-      : process.env.JWT_SECRET;
+      : process.env.JWT_SECRET
   const token = jwt.sign(
     {
       _id: user._id,
@@ -13,9 +13,9 @@ const genAuthToken = (user) => {
       email: user.email,
     },
     secretKey,
-  );
+  )
 
-  return token;
-};
+  return token
+}
 
-export default genAuthToken;
+export default genAuthToken
