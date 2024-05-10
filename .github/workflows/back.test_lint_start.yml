@@ -15,6 +15,8 @@ on:
     secrets:
       TEST_JWT_SECRET:
         required: true
+      JWT_SECRET:
+        required: true
       MONGODB_URI:
         required: true
 
@@ -48,6 +50,7 @@ jobs:
       NODE_ENV: ${{ vars.NODE_ENV }}
       PORT: ${{ vars.PORT }}
       TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
     steps:
