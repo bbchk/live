@@ -27,7 +27,7 @@ describe('AUTH /user', () => {
     expect(statusCode).toBe(200)
     expect(type).toBe('application/json')
 
-    const secretKey = process.env.JWT_SECRET_FOR_TESTING
+    const secretKey = process.env.JWT_SECRET
 
     const verifiedToken = jwt.verify(body.token, secretKey)
 
@@ -48,7 +48,7 @@ describe('AUTH /user', () => {
     expect(statusCode).toBe(200)
     expect(type).toBe('application/json')
 
-    const secretKey = process.env.JWT_SECRET_FOR_TESTING
+    const secretKey = process.env.JWT_SECRET
     const verifiedToken = jwt.verify(body.token, secretKey)
 
     expect(verifiedToken).toBeTruthy()

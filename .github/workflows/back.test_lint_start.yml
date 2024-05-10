@@ -51,7 +51,7 @@ jobs:
       NODE_ENV: ${{ vars.NODE_ENV }}
       PORT: ${{ vars.PORT }}
       JWT_SECRET_FOR_TESTING: ${{ secrets.JWT_SECRET_FOR_TESTING }}
-      # JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
     steps:
