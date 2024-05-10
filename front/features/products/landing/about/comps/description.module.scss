@@ -1,5 +1,5 @@
-@use "./styles/variables" as *;
-@use "./styles/mixins" as *;
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
 
 .description {
   overflow: hidden;
@@ -18,7 +18,7 @@
       max-height: 300px; // Adjust as needed on smaller screens
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         bottom: 0;
         left: 0;

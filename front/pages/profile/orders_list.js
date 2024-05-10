@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Head from 'next/head';
 
 //todo protect personal pages with server side auth session check
 //todo axios get my orders on client side

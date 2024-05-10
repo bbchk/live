@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import s from "./carousel.module.scss";
+import s from './carousel.module.scss';
 
 export const Carousel = ({ id, onPrev, onNext, children }) => {
   const childrenArray = React.Children.toArray(children);
@@ -37,7 +37,7 @@ export const Carousel = ({ id, onPrev, onNext, children }) => {
 
 export const CarouselItem = ({ index, activeIdx, children }) => {
   return (
-    <div className={`carousel-item ${index === activeIdx ? "active" : ""}`}>
+    <div className={`carousel-item ${index === activeIdx ? 'active' : ''}`}>
       {children}
     </div>
   );

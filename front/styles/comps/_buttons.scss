@@ -1,4 +1,4 @@
-@use "./styles/variables" as *;
+@use './styles/variables' as *;
 
 @mixin button {
   display: flex;
@@ -20,7 +20,10 @@
     height: 1rem;
   }
 
-  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
+  transition:
+    border-color 0.25s,
+    background-color 0.25s,
+    color 0.25s;
 }
 
 button.button_primary {

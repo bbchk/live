@@ -72,24 +72,24 @@
 
 // export default CartModal;
 
-import { Modal } from "react-bootstrap";
-import s from "./cart_modal.module.scss";
+import { Modal } from 'react-bootstrap';
+import s from './cart_modal.module.scss';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { CART_MODAL } = GLOBAL_COMPS;
 
-import { balsamiqSans } from "pages/_app";
+import { balsamiqSans } from 'pages/_app';
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-import CartItem from "./cart_item/cart_item";
-import Image from "next/image";
+import CartItem from './cart_item/cart_item';
+import Image from 'next/image';
 
-import useTabTrap from "comps/accessibility/hooks/useTabbingTrap";
+import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap';
 
 const CartModal = () => {
   const dispatch = useDispatch();
@@ -101,7 +101,7 @@ const CartModal = () => {
 
   const cart = useMemo(() => user?.cart, [user?.cart]);
 
-  useTabTrap(cartModalOpen, "cartModal");
+  useTabTrap(cartModalOpen, 'cartModal');
 
   //todo set cart items and total cost to localStorage on signOut
   useEffect(() => {
@@ -109,7 +109,7 @@ const CartModal = () => {
       setCartItems(cart);
       const totalCost = cart.reduce(
         (acc, item) => acc + item.product.price * item.quantity,
-        0
+        0,
       );
       setTotalCost(totalCost);
     }

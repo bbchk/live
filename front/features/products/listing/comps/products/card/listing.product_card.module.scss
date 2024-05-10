@@ -1,5 +1,5 @@
-@use "./styles/variables" as *;
-@use "./styles/mixins" as *;
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
 
 .card {
   display: flex;
@@ -19,7 +19,9 @@
 
   color: $color-blue-dasl;
 
-  transition: transform 0.25s, box-shadow 0.2s 0.1s;
+  transition:
+    transform 0.25s,
+    box-shadow 0.2s 0.1s;
 
   .figure {
     flex: 0 0 75%;

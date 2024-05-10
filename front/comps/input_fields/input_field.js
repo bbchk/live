@@ -1,5 +1,5 @@
-import { useId } from "react";
-import s from "./input_field.module.scss";
+import { useId } from 'react';
+import s from './input_field.module.scss';
 
 const InputField = ({
   type,
@@ -17,7 +17,7 @@ const InputField = ({
       <input
         type={type}
         id={id}
-        className={`form-control ${error ? "is-invalid" : ""}`}
+        className={`form-control ${error ? 'is-invalid' : ''}`}
         value={value}
         onChange={onChange}
         placeholder={placeholder}

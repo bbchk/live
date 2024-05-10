@@ -1,5 +1,5 @@
-@use "./styles/variables" as *;
-@use "./styles/mixins" as *;
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
 
 .landing_product_about {
   display: grid;
@@ -8,9 +8,9 @@
   row-gap: 1rem;
 
   grid-template-areas:
-    "product_figure product_main_info"
-    "descriptionAndCharacteristics reviews"
-    "recs recs";
+    'product_figure product_main_info'
+    'descriptionAndCharacteristics reviews'
+    'recs recs';
 
   .product_figure {
     grid-area: product_figure;
@@ -44,10 +44,10 @@
   @media screen and (width < 1200px) {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      "product_figure product_main_info"
-      "descriptionAndCharacteristics descriptionAndCharacteristics"
-      "reviews reviews"
-      "recs recs";
+      'product_figure product_main_info'
+      'descriptionAndCharacteristics descriptionAndCharacteristics'
+      'reviews reviews'
+      'recs recs';
 
     .descriptionAndCharacteristics {
       width: 100vw;
@@ -72,11 +72,11 @@
 
     grid-template-columns: 1fr;
     grid-template-areas:
-      "product_figure"
-      "product_main_info"
-      "descriptionAndCharacteristics"
-      "reviews"
-      "recs";
+      'product_figure'
+      'product_main_info'
+      'descriptionAndCharacteristics'
+      'reviews'
+      'recs';
 
     .product_figure,
     .product_main_info,

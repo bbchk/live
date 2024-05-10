@@ -1,5 +1,5 @@
-import s from "./accordion.module.scss";
-import { Accordion as A } from "react-bootstrap";
+import s from './accordion.module.scss';
+import { Accordion as A } from 'react-bootstrap';
 
 const Accordion = ({ defaultActiveKey, children, ...props }) => {
   return (

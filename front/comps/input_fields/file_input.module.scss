@@ -1,4 +1,4 @@
-@use "./styles/variables" as *;
+@use './styles/variables' as *;
 
 .file_input_label {
   padding: 0.5rem;
@@ -14,7 +14,9 @@
 
   cursor: pointer;
 
-  transition: background-color 0.25s, color 0.25s;
+  transition:
+    background-color 0.25s,
+    color 0.25s;
   &:hover {
     background-color: rgba($color-blue-dasl, 0.1);
     color: saturate($color-blue-defrance, 50%);

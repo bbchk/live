@@ -1,10 +1,10 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import s from "./index.module.scss";
-import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
-import Tab from "./tab";
-import ProfileTab from "./profile-tab";
+import s from './index.module.scss';
+import { signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
+import Tab from './tab';
+import ProfileTab from './profile-tab';
 
 const Tabs = () => {
   return (
@@ -28,8 +28,8 @@ const Tabs = () => {
         <Tab
           href="#"
           onClick={() => {
-            signOut({ callbackUrl: "/" }).then(() => {
-              window.location.href = "/";
+            signOut({ callbackUrl: '/' }).then(() => {
+              window.location.href = '/';
             });
           }}
         >

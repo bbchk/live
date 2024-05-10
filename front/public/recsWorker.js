@@ -1,5 +1,5 @@
 function calculateTF(term, document) {
-  var words = document.split(" ");
+  var words = document.split(' ');
   var termCount = words.reduce((acc, word) => {
     return word.toLowerCase() === term.toLowerCase() ? acc + 1 : acc;
   }, 0);
@@ -9,7 +9,7 @@ function calculateTF(term, document) {
 // Function to calculate inverse document frequency (IDF)
 function calculateIDF(term, documents) {
   var docsWithTerm = documents.filter((document) => {
-    return document.toLowerCase().split(" ").includes(term.toLowerCase());
+    return document.toLowerCase().split(' ').includes(term.toLowerCase());
   });
   return Math.log(documents.length / (docsWithTerm.length + 1));
 }
@@ -23,12 +23,12 @@ function calculateTFIDF(term, document, documents) {
 
 // Function to calculate cosine similarity between two documents
 function calculateCosineSimilarity(document1, document2, documents) {
-  var terms = new Set([...document1.split(" "), ...document2.split(" ")]);
+  var terms = new Set([...document1.split(' '), ...document2.split(' ')]);
   var vector1 = Array.from(terms).map((term) =>
-    calculateTFIDF(term, document1, documents)
+    calculateTFIDF(term, document1, documents),
   );
   var vector2 = Array.from(terms).map((term) =>
-    calculateTFIDF(term, document2, documents)
+    calculateTFIDF(term, document2, documents),
   );
 
   // Calculate dot product
@@ -40,12 +40,12 @@ function calculateCosineSimilarity(document1, document2, documents) {
   var magnitude1 = Math.sqrt(
     vector1.reduce((acc, value) => {
       return acc + value * value;
-    }, 0)
+    }, 0),
   );
   var magnitude2 = Math.sqrt(
     vector2.reduce((acc, value) => {
       return acc + value * value;
-    }, 0)
+    }, 0),
   );
 
   // Calculate cosine similarity
@@ -55,14 +55,14 @@ function calculateCosineSimilarity(document1, document2, documents) {
 function processString(input_object) {
   const title_text = input_object.name;
   const description_text = input_object.description.slice(0, 100);
-  const full_text = title_text + " " + description_text;
+  const full_text = title_text + ' ' + description_text;
   // Remove HTML tags
-  const withoutHtmlTags = full_text.replace(/<[^>]*>/g, "");
+  const withoutHtmlTags = full_text.replace(/<[^>]*>/g, '');
 
   // Remove punctuation symbols and make lowercase
   const punctuationRegex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
 
-  let withoutPunctuation = withoutHtmlTags.replace(punctuationRegex, "");
+  let withoutPunctuation = withoutHtmlTags.replace(punctuationRegex, '');
   let lowercaseString = withoutPunctuation.toLowerCase();
   const withoutPunctuationAndLowercase = lowercaseString;
 
@@ -76,7 +76,7 @@ function processString(input_object) {
 
   // Join the words back into a string
 
-  const result = processedWords.join(" ");
+  const result = processedWords.join(' ');
 
   //   input_object.description = result;
   return result;
@@ -98,7 +98,7 @@ function getItemObjects(objectArr, documentIndexes, allSimiliarities) {
   let res = top_ids.map((id1) =>
     objectArr.find(function (element) {
       return element._id == id1;
-    })
+    }),
   );
 
   return res;
@@ -114,7 +114,7 @@ function similarities(documents, product) {
   let currDoc = processString(product);
 
   let similarityList = processedDocuments.map((doc) =>
-    calculateCosineSimilarity(currDoc, doc, processedDocuments)
+    calculateCosineSimilarity(currDoc, doc, processedDocuments),
   );
 
   let res = getItemObjects(documents, documentIndexes, similarityList);
@@ -127,7 +127,7 @@ self.onmessage = async (event) => {
 
   try {
     const productQuery = await fetch(
-      `http://localhost:4000/products/product/by-id/${id}`
+      `http://localhost:4000/products/product/by-id/${id}`,
     );
     const product = await productQuery.json();
 

@@ -1,18 +1,18 @@
-import { useState } from "react";
-import s from "./search-bar.module.scss";
-import hs from "../header.module.scss";
-import { SearchRounded } from "@mui/icons-material";
-import useDoOnKey from "#root/hooks/useDoOnKey.js";
+import { useState } from 'react';
+import s from './search-bar.module.scss';
+import hs from '../header.module.scss';
+import { SearchRounded } from '@mui/icons-material';
+import useDoOnKey from '#root/hooks/useDoOnKey.js';
 
 const SearchBar = () => {
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState('');
 
   const handleSearch = () => {
     // console.log(`searching...${searchText}`);
   };
 
-  useDoOnKey("Escape", () =>
-    document.getElementById("search_bar_input").blur()
+  useDoOnKey('Escape', () =>
+    document.getElementById('search_bar_input').blur(),
   );
 
   return (

@@ -1,4 +1,4 @@
-import s from "./terms_of_usage.module.scss";
+import s from './terms_of_usage.module.scss';
 
 export const TermsOfUsage = () => {
   return (

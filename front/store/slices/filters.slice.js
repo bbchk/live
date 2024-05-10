@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const filtersSlice = createSlice({
-  name: "filters",
+  name: 'filters',
   initialState: {
     filters: {},
-    status: "idle",
+    status: 'idle',
     error: null,
   },
   reducers: {
@@ -19,7 +19,7 @@ const filtersSlice = createSlice({
     },
     deleteAllFilters: (state) => {
       const page = state.filters.page;
-      state.filters = { page: page ? page : ["1"] };
+      state.filters = { page: page ? page : ['1'] };
     },
     updateFilter: (state, action) => {
       if (state.filters[action.payload.filterName]) {

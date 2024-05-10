@@ -1,21 +1,21 @@
-import s from "./reviews.module.scss";
-import ps from "../landing_product_about.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import ReviewItem from "../../reviews/review_item";
+import s from './reviews.module.scss';
+import ps from '../landing_product_about.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import ReviewItem from '../../reviews/review_item';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { WRITE_REVIEW_MODAL } = GLOBAL_COMPS;
-import WriteReviewForm from "../../mutual/write_review_form/write_review_form";
-import { useRouter } from "next/router";
+import WriteReviewForm from '../../mutual/write_review_form/write_review_form';
+import { useRouter } from 'next/router';
 
 const Reviews = ({ product }) => {
   const { reviews } = product;
@@ -25,12 +25,12 @@ const Reviews = ({ product }) => {
   const router = useRouter();
   const handleNavigation = (e) => {
     const productPathNoActiveTab = router.asPath
-      .split("/")
+      .split('/')
       .slice(0, -1)
-      .join("/");
+      .join('/');
 
     e.preventDefault();
-    router.push(productPathNoActiveTab + "/reviews", undefined, {
+    router.push(productPathNoActiveTab + '/reviews', undefined, {
       shallow: true,
     });
   };

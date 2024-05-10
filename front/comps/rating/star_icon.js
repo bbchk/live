@@ -1,4 +1,4 @@
-import s from "./star_icon.module.scss";
+import s from './star_icon.module.scss';
 
 const StarIcon = ({ id, starValue }) => {
   return (
@@ -14,11 +14,11 @@ const StarIcon = ({ id, starValue }) => {
         <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="0%">
           <stop
             offset={`${starValue * 100}%`}
-            style={{ stopColor: "orange", stopOpacity: 1 }}
+            style={{ stopColor: 'orange', stopOpacity: 1 }}
           />
           <stop
             offset={`${starValue * 100}%`}
-            style={{ stopColor: "lightgrey", stopOpacity: 1 }}
+            style={{ stopColor: 'lightgrey', stopOpacity: 1 }}
           />
         </linearGradient>
       </defs>

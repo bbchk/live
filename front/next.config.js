@@ -2,31 +2,31 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["storage.googleapis.com"],
+    domains: ['storage.googleapis.com'],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "storage.googleapis.com",
-        pathname: "/live_world/*.*",
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        pathname: '/live_world/*.*',
       },
       {
-        protocol: "https",
-        hostname: "lh3.googleusercontent.com",
-        pathname: "/a/*",
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        pathname: '/a/*',
       },
       {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
-        pathname: "/u/*",
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        pathname: '/u/*',
       },
     ],
   },
   async redirects() {
-    if (process.env.MAINTENANCE_MODE === "true") {
+    if (process.env.MAINTENANCE_MODE === 'true') {
       return [
         {
-          source: "/:path((?!maintenance.html).*)",
-          destination: "/maintenance.html",
+          source: '/:path((?!maintenance.html).*)',
+          destination: '/maintenance.html',
           permanent: false,
         },
       ];

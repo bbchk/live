@@ -1,7 +1,7 @@
-import OrderCard from "./order-card";
-import s from "./order.module.scss";
+import OrderCard from './order-card';
+import s from './order.module.scss';
 
-const Order = ({ id = 123287, date = "07.02.2012" }) => {
+const Order = ({ id = 123287, date = '07.02.2012' }) => {
   return (
     <>
       <div className={`card card-body ${s.data}`}>

@@ -1,7 +1,7 @@
-import s from "./recs_carousel.module.scss";
-import ListingProductCard from "features/products/listing/comps/gallery/card/listing_card";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import s from './recs_carousel.module.scss';
+import ListingProductCard from 'features/products/listing/comps/gallery/card/listing_card';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
 const RecsCarousel = () => {
   const router = useRouter();
@@ -10,10 +10,10 @@ const RecsCarousel = () => {
   const [recs, setRecs] = useState([]);
 
   useEffect(() => {
-    let recsWorker = new Worker("/recsWorker.js");
+    let recsWorker = new Worker('/recsWorker.js');
     recsWorker.postMessage({ id: productId });
     recsWorker.onmessage = (event) => {
-      console.log("🚀 ~ event:", event);
+      console.log('🚀 ~ event:', event);
       setRecs(event.data);
     };
 

@@ -1,20 +1,20 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import ImageFallback from "comps/image/fallback_image.js";
+import ImageFallback from 'comps/image/fallback_image.js';
 
-import s from "./figure.module.scss";
-import lcs from "../listing_card.module.scss";
-import { useDispatch } from "react-redux";
+import s from './figure.module.scss';
+import lcs from '../listing_card.module.scss';
+import { useDispatch } from 'react-redux';
 
-import { startLoading } from "store/slices/global_comps/global_comps.slice";
+import { startLoading } from 'store/slices/global_comps/global_comps.slice';
 
 const ProductFigure = ({ product, productUrl, priority }) => {
   const dispatch = useDispatch();
   return (
     <Link
       className={`${lcs.figure}`}
-      href={productUrl("about")}
+      href={productUrl('about')}
       onClick={() => dispatch(startLoading())}
     >
       <figure className={`${s.figure} `}>
@@ -23,7 +23,7 @@ const ProductFigure = ({ product, productUrl, priority }) => {
             //todo implement displaying many images on hover
             product.images && product.images[0]
           }
-          fallbackSrc={"/assets/goods_placeholder.svg"}
+          fallbackSrc={'/assets/goods_placeholder.svg'}
           alt="product image"
           quality={80}
           width={250}

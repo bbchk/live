@@ -1,5 +1,5 @@
-import s from "./listing.header.module.scss";
-import Breadcrumbs from "comps/navigation/breadcrumbs";
+import s from './listing.header.module.scss';
+import Breadcrumbs from 'comps/navigation/breadcrumbs';
 
 const ListingHeader = ({ category }) => {
   return (

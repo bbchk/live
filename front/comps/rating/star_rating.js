@@ -1,7 +1,7 @@
-import s from "./star_rating.module.scss";
-import { useId } from "react";
+import s from './star_rating.module.scss';
+import { useId } from 'react';
 
-import StarIcon from "./star_icon";
+import StarIcon from './star_icon';
 
 const StarRating = ({ rating }) => {
   const id = useId();

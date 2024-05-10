@@ -1,4 +1,4 @@
-import s from "./skip_to_main_content.module.scss";
+import s from './skip_to_main_content.module.scss';
 
 const SkipToMainContent = ({ mainContentId }) => {
   return (

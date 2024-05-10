@@ -1,15 +1,15 @@
-import s from "./security.module.scss";
-import card_s from "./../card.module.scss";
-import { Card } from "react-bootstrap";
+import s from './security.module.scss';
+import card_s from './../card.module.scss';
+import { Card } from 'react-bootstrap';
 
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { CHANGE_PASSWORD_MODAL } = GLOBAL_COMPS;
 
-import { signOut } from "next-auth/react";
+import { signOut } from 'next-auth/react';
 
 const Security = () => {
   const dispatch = useDispatch();
@@ -25,8 +25,8 @@ const Security = () => {
         </button>
         <button
           onClick={() => {
-            signOut({ callbackUrl: "/" }).then(() => {
-              window.location.href = "/";
+            signOut({ callbackUrl: '/' }).then(() => {
+              window.location.href = '/';
             });
           }}
         >

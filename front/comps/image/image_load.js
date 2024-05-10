@@ -1,12 +1,12 @@
-import s from "./image_load.module.scss";
-import { useEffect, useRef, useState } from "react";
-import Rate from "comps/rating/rate";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-regular-svg-icons";
-import { faRotateRight, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import Image from "next/image";
+import s from './image_load.module.scss';
+import { useEffect, useRef, useState } from 'react';
+import Rate from 'comps/rating/rate';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-regular-svg-icons';
+import { faRotateRight, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import Image from 'next/image';
 
-import FileInput from "comps/input_fields/file_input";
+import FileInput from 'comps/input_fields/file_input';
 
 const ImageLoad = ({ selectedImages, setSelectedImages }) => {
   const handleDelete = (index) => {
@@ -35,12 +35,12 @@ const ImageLoad = ({ selectedImages, setSelectedImages }) => {
       const totalImages = selectedImages.length + newImageFiles.length;
 
       if (totalImages > 5) {
-        alert("You cannot upload more than 5 images.");
+        alert('You cannot upload more than 5 images.');
         newImageFiles.splice(5 - selectedImages.length);
       }
 
       const newImageUrls = newImageFiles.map((file) =>
-        URL.createObjectURL(file)
+        URL.createObjectURL(file),
       );
       setSelectedImages((prevImages) => [...prevImages, ...newImageUrls]);
 

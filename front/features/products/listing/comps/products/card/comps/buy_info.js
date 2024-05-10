@@ -1,5 +1,5 @@
-import s from "./buy_info.module.scss";
-import lcs from "../listing.product_card.module.scss";
+import s from './buy_info.module.scss';
+import lcs from '../listing.product_card.module.scss';
 
 const BuyInfo = ({ product }) => {
   return (

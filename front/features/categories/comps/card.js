@@ -1,14 +1,14 @@
-import { useDispatch } from "react-redux";
-import s from "./card.module.scss";
+import { useDispatch } from 'react-redux';
+import s from './card.module.scss';
 
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { slugify } from "@bbuukk/slugtrans/slugify";
-import { transliterate } from "@bbuukk/slugtrans/transliterate";
+import { slugify } from '@bbuukk/slugtrans/slugify';
+import { transliterate } from '@bbuukk/slugtrans/transliterate';
 
-import { startLoading } from "store/slices/global_comps/global_comps.slice.js";
-import ImageFallback from "comps/image/fallback_image.js";
+import { startLoading } from 'store/slices/global_comps/global_comps.slice.js';
+import ImageFallback from 'comps/image/fallback_image.js';
 
 const Card = ({ category, subcategories }) => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const Card = ({ category, subcategories }) => {
       >
         <ImageFallback
           src={category.imagePath}
-          fallbackSrc={"/assets/goods_placeholder.svg"}
+          fallbackSrc={'/assets/goods_placeholder.svg'}
           alt="основна категорія"
           width={300}
           height={150}

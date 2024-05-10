@@ -1,20 +1,20 @@
 // import { useState } from "react";
-import { Modal } from "react-bootstrap";
-import s from "./change_password_modal.module.scss";
+import { Modal } from 'react-bootstrap';
+import s from './change_password_modal.module.scss';
 
 // import Link from "next/link";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { CHANGE_PASSWORD_MODAL } = GLOBAL_COMPS;
 
-import PasswordInputField from "comps/input_fields/password_input_field";
-import { useEffect, useState } from "react";
-import { balsamiqSans } from "pages/_app";
-import useTabTrap from "comps/accessibility/hooks/useTabbingTrap.js";
+import PasswordInputField from 'comps/input_fields/password_input_field';
+import { useEffect, useState } from 'react';
+import { balsamiqSans } from 'pages/_app';
+import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap.js';
 
 //todo input validation
 //todo make modal responsive
@@ -23,22 +23,22 @@ const ChangePasswordModal = () => {
   const dispatch = useDispatch();
   const { changePasswordModalOpen } = useSelector((state) => state.modals);
 
-  useTabTrap(changePasswordModalOpen, "changePasswordModal");
+  useTabTrap(changePasswordModalOpen, 'changePasswordModal');
 
   const [hasBeenBeingModified, setHasBeenBeingModified] = useState(false);
 
   const [passwordInfo, setPasswordInfo] = useState({
-    oldPassword: "",
-    newPassword: "",
-    newPasswordRepeat: "",
+    oldPassword: '',
+    newPassword: '',
+    newPasswordRepeat: '',
   });
 
   useEffect(() => {
     return () => {
       setPasswordInfo({
-        oldPassword: "",
-        newPassword: "",
-        newPasswordRepeat: "",
+        oldPassword: '',
+        newPassword: '',
+        newPasswordRepeat: '',
       });
       setHasBeenBeingModified(false);
     };
@@ -116,7 +116,7 @@ const ChangePasswordModal = () => {
               <button
                 className="button_submit"
                 data-toggle="tooltip"
-                title={hasBeenBeingModified ? "" : "Дані не були змінені"}
+                title={hasBeenBeingModified ? '' : 'Дані не були змінені'}
                 data-placement="bottom"
                 type="submit"
                 disabled={!hasBeenBeingModified}

@@ -1,7 +1,7 @@
-import s from "./profile_image.module.scss";
-import ps from "../user_info.module.scss";
-import { useSession } from "next-auth/react";
-import Image from "next/image";
+import s from './profile_image.module.scss';
+import ps from '../user_info.module.scss';
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 const ProfileImage = () => {
   const { data: session } = useSession();

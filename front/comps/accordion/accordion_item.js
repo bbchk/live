@@ -1,6 +1,6 @@
-import s from "./accordion_item.module.scss";
+import s from './accordion_item.module.scss';
 
-import { Accordion as A } from "react-bootstrap";
+import { Accordion as A } from 'react-bootstrap';
 
 const AccordionItem = ({ eventKey, label, show = false, children }) => {
   return (

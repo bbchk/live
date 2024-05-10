@@ -1,5 +1,5 @@
-@use "./styles/variables" as *;
-@use "./styles/mixins" as *;
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
 
 .body {
   display: grid;
@@ -8,9 +8,9 @@
   row-gap: 1rem;
 
   grid-template-areas:
-    "selected selected selected sort"
-    "filter gallery gallery gallery"
-    "filter gallery gallery gallery";
+    'selected selected selected sort'
+    'filter gallery gallery gallery'
+    'filter gallery gallery gallery';
 
   .filters_offcanvas_toggler {
     display: none;
@@ -57,9 +57,9 @@
   @media screen and (width < 1100px) {
     grid-template-columns: 1fr 2fr 3fr;
     grid-template-areas:
-      "filters_offcanvas_toggler . sort"
-      "gallery gallery gallery"
-      "gallery gallery gallery";
+      'filters_offcanvas_toggler . sort'
+      'gallery gallery gallery'
+      'gallery gallery gallery';
 
     .gallery {
       margin-left: 1rem;

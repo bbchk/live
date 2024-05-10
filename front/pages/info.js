@@ -1,5 +1,5 @@
-import { Info } from "../features/info/info";
-import Head from "next/head";
+import { Info } from '../features/info/info';
+import Head from 'next/head';
 
 const ShopInfo = () => {
   return (

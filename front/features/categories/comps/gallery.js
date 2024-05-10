@@ -1,5 +1,5 @@
-import Card from "./card";
-import s from "./gallery.module.scss";
+import Card from './card';
+import s from './gallery.module.scss';
 
 const Gallery = ({ rootCategories }) => {
   return (

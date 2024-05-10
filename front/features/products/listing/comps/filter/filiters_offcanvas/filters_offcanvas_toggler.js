@@ -1,8 +1,8 @@
-import s from "./filters_offcanvas_toggler.module.scss";
-import { useDispatch } from "react-redux";
+import s from './filters_offcanvas_toggler.module.scss';
+import { useDispatch } from 'react-redux';
 
-import { toggle } from "store/slices/global_comps/global_comps.slice";
-import { GLOBAL_COMPS } from "store/slices/global_comps/global_comps.slice";
+import { toggle } from 'store/slices/global_comps/global_comps.slice';
+import { GLOBAL_COMPS } from 'store/slices/global_comps/global_comps.slice';
 const { FILTER_OFFCANVAS } = GLOBAL_COMPS;
 
 const FiltersOffcanvasToggler = ({ id }) => {

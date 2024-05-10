@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import s from "./product_figure.module.scss";
-import Image from "next/image";
-import { Carousel, CarouselItem } from "/comps/carousel/carousel";
-import ImageFallback from "#root/comps/image/fallback_image.js";
+import { useEffect, useState } from 'react';
+import s from './product_figure.module.scss';
+import Image from 'next/image';
+import { Carousel, CarouselItem } from '/comps/carousel/carousel';
+import ImageFallback from '#root/comps/image/fallback_image.js';
 
 const ProductFigure = ({ images }) => {
   const [selectedImageIdx, setSelectedImageIdx] = useState(0);
 
-  const carouselId = "ProductImagesCarousel";
+  const carouselId = 'ProductImagesCarousel';
 
   if (images?.length === 0) {
-    images = ["/assets/goods_placeholder.svg"];
+    images = ['/assets/goods_placeholder.svg'];
   }
 
   return (
@@ -18,12 +18,12 @@ const ProductFigure = ({ images }) => {
       <div className={`${s.figure}`}>
         <ImageFallback
           src={images[selectedImageIdx]}
-          fallbackSrc={"/assets/goods_placeholder.svg"}
+          fallbackSrc={'/assets/goods_placeholder.svg'}
           alt="товар"
           style={{
-            objectFit: "contain",
-            margin: "auto",
-            padding: "1rem",
+            objectFit: 'contain',
+            margin: 'auto',
+            padding: '1rem',
           }}
           width={500}
           height={500}
@@ -40,12 +40,12 @@ const ProductFigure = ({ images }) => {
             return (
               <button
                 key={index}
-                className={`${s.thumbnail} ${isSelected ? s.selected : ""}`}
+                className={`${s.thumbnail} ${isSelected ? s.selected : ''}`}
                 onClick={() => setTimeout(() => setSelectedImageIdx(index), 0)}
                 type="button"
                 data-bs-target={`#${carouselId}`}
                 data-bs-slide-to={index}
-                aria-current={isSelected ? "true" : "false"}
+                aria-current={isSelected ? 'true' : 'false'}
                 aria-label={`Slide ${index}`}
               >
                 <Image
@@ -53,9 +53,9 @@ const ProductFigure = ({ images }) => {
                   className={`${s.thumbnail_image}`}
                   alt={`Thumbnail ${index}`}
                   style={{
-                    objectFit: "contain",
-                    margin: "auto",
-                    padding: "5px",
+                    objectFit: 'contain',
+                    margin: 'auto',
+                    padding: '5px',
                   }}
                   sizes="(max-width: 600px) 20vw, (max-width: 768px) 15vw, (max-width: 992px) 10vw, 5vw"
                   width={100}

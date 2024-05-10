@@ -1,28 +1,28 @@
-import s from "./filters_offcanvas.module.scss";
+import s from './filters_offcanvas.module.scss';
 
-import FiltersAccordion from "../filters_accordion/filters_accordion";
+import FiltersAccordion from '../filters_accordion/filters_accordion';
 import {
   SwipeableDrawer,
   Box,
   AppBar,
   Toolbar,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
 
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteAllFilters } from "store/slices/filters.slice";
-import { startLoading } from "store/slices/global_comps/global_comps.slice.js";
-import { FilterAltRounded } from "@mui/icons-material";
+import { deleteAllFilters } from 'store/slices/filters.slice';
+import { startLoading } from 'store/slices/global_comps/global_comps.slice.js';
+import { FilterAltRounded } from '@mui/icons-material';
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { FILTER_OFFCANVAS } = GLOBAL_COMPS;
-import { balsamiqSans } from "pages/_app";
+import { balsamiqSans } from 'pages/_app';
 
 const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
   const { filters: activeFilters } = useSelector((state) => state.filters);
   const { filterOffcanvasOpen } = useSelector((state) => state.modals);
 
-  const isActiveFilters = Object.keys(activeFilters).some((f) => f != "page");
+  const isActiveFilters = Object.keys(activeFilters).some((f) => f != 'page');
 
   //todo add loading overlay to offcanvas
   //todo make it cancel_all_filters button rerender whole offcanvas for filters to refresh
@@ -92,7 +92,7 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
                 onClick={() => {
                   dispatch(toggle(FILTER_OFFCANVAS));
                   router.push(
-                    `/products/${router.query.categoryPath}/${router.query.filtersStr}`
+                    `/products/${router.query.categoryPath}/${router.query.filtersStr}`,
                   );
                 }}
               >

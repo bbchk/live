@@ -1,12 +1,12 @@
-import s from "./delete_account.module.scss";
-import card_s from "./../card.module.scss";
-import { Card } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import s from './delete_account.module.scss';
+import card_s from './../card.module.scss';
+import { Card } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { DELETE_ACCOUNT_MODAL } = GLOBAL_COMPS;
 
 const DeleteAccount = () => {

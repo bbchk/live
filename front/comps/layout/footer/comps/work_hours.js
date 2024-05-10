@@ -1,4 +1,4 @@
-import { HistoryToggleOffRounded } from "@mui/icons-material";
+import { HistoryToggleOffRounded } from '@mui/icons-material';
 
 const WorkHours = () => {
   return (

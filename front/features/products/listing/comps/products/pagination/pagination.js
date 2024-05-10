@@ -1,18 +1,18 @@
-import { useRouter } from "next/router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import {  } from "@fortawesome/free-regular-svg-icons";
 import {
   faAnglesLeft,
   faAnglesRight,
   faAngleLeft,
   faAngleRight,
-} from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
+} from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
-import s from "./pagination.module.scss";
-import { startLoading } from "store/slices/global_comps/global_comps.slice";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
+import s from './pagination.module.scss';
+import { startLoading } from 'store/slices/global_comps/global_comps.slice';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 //todo refactoring
 function ProductsPagination({ numPages, activePageId }) {
@@ -23,7 +23,7 @@ function ProductsPagination({ numPages, activePageId }) {
   const getPath = (pageId) => {
     const filtersStrWithNewPageId = filtersStr.replace(
       /page=\d+/,
-      `page=${pageId}`
+      `page=${pageId}`,
     );
 
     return `/products/${categoryPath}/${filtersStrWithNewPageId}`;
@@ -44,7 +44,7 @@ function ProductsPagination({ numPages, activePageId }) {
           }
         }}
       >
-        <li className={`${s.item} ${isActive(pageId) ? s.active : ""}`}>
+        <li className={`${s.item} ${isActive(pageId) ? s.active : ''}`}>
           {children}
         </li>
       </Link>
@@ -66,31 +66,31 @@ function ProductsPagination({ numPages, activePageId }) {
     pageItems.push(
       <PaginationItem key={i} pageId={i}>
         <p>{i}</p>
-      </PaginationItem>
+      </PaginationItem>,
     );
   }
 
   if (startPage > 1) {
     pageItems.unshift(
       <PaginationItem
-        key={"left_elipsis"}
+        key={'left_elipsis'}
         pageId={startPage - 1}
         onClick={() => setCurrentPage(startPage - 1)}
       >
         ...
-      </PaginationItem>
+      </PaginationItem>,
     );
   }
 
   if (endPage < numPages) {
     pageItems.push(
       <PaginationItem
-        key={"right_elipsis"}
+        key={'right_elipsis'}
         pageId={endPage + 1}
         onClick={() => setCurrentPage(endPage + 1)}
       >
         ...
-      </PaginationItem>
+      </PaginationItem>,
     );
   }
 
@@ -99,7 +99,7 @@ function ProductsPagination({ numPages, activePageId }) {
       {numPages > 1 && (
         <nav aria-label="pagination">
           <ul className={`${s.pagination}`}>
-            <ul className={`${s.controls} ${isActive(1) ? s.disabled : ""}`}>
+            <ul className={`${s.controls} ${isActive(1) ? s.disabled : ''}`}>
               <PaginationItem pageId={1}>
                 <FontAwesomeIcon icon={faAnglesLeft} />
               </PaginationItem>
@@ -114,7 +114,7 @@ function ProductsPagination({ numPages, activePageId }) {
             </li>
             <ul
               className={`${s.controls} ${
-                isActive(numPages) ? s.disabled : ""
+                isActive(numPages) ? s.disabled : ''
               }`}
             >
               <PaginationItem pageId={Math.max(1, Number(activePageId) + 1)}>

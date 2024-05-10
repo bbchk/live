@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-import s from "./description.module.scss";
+import { useEffect, useRef, useState } from 'react';
+import s from './description.module.scss';
 
 //? todo is using these libraries safe in sake of xss(cross-site-scripting)?
-import parse from "html-react-parser";
-import { useRouter } from "next/router";
+import parse from 'html-react-parser';
+import { useRouter } from 'next/router';
 
 const Description = ({ product }) => {
   const [expanded, setExpanded] = useState(false);
@@ -36,7 +36,7 @@ const Description = ({ product }) => {
         <div
           ref={textRef}
           className={`${s.text} ${
-            expanded ? s.expanded : isOverflowing ? s.fade_out : ""
+            expanded ? s.expanded : isOverflowing ? s.fade_out : ''
           }`}
         >
           {parse(product.description)}

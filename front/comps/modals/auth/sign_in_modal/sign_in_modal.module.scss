@@ -1,13 +1,3 @@
-@use "./styles/variables" as *;
-@use "./styles/mixins" as *;
-@import "node_modules/rfs/sass.sass";
-
-
-        
-       
-       
-    
-
-
-
-
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+@import 'node_modules/rfs/sass.sass';

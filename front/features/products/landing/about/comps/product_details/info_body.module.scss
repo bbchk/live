@@ -1,18 +1,18 @@
-@use "./styles/variables" as *;
-@use "./styles/mixins" as *;
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
 
 .buy_area {
   display: grid;
   grid-template-columns: 10rem max-content 5rem 3rem;
   grid-template-rows: min-content 1fr;
 
-  grid-template-areas: "price buy_btn like_btn comment_btn";
+  grid-template-areas: 'price buy_btn like_btn comment_btn';
 
   @media screen and (width < 992px) {
     grid-template-columns: 1fr 0fr 5rem 3rem;
     grid-template-areas:
-      "price price like_btn comment_btn"
-      "buy_btn buy_btn buy_btn buy_btn";
+      'price price like_btn comment_btn'
+      'buy_btn buy_btn buy_btn buy_btn';
 
     .buy_btn {
       margin-top: 1rem;

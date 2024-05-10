@@ -1,7 +1,7 @@
-import useObserver from "#root/hooks/useObserver.js";
-import { useEffect, useRef } from "react";
-import s from "./location.module.scss";
-import { MapRounded } from "@mui/icons-material";
+import useObserver from '#root/hooks/useObserver.js';
+import { useEffect, useRef } from 'react';
+import s from './location.module.scss';
+import { MapRounded } from '@mui/icons-material';
 
 const Location = () => {
   const ref = useRef();

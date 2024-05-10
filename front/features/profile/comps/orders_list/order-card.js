@@ -1,9 +1,9 @@
 // import Figure from "../../mutual/auxiliary/figure";
-import s from "./order-card.module.scss";
+import s from './order-card.module.scss';
 
 const OrderCard = ({
   imageUrl,
-  naming = "Алєана 16*15.5 фіолетовий прозорий",
+  naming = 'Алєана 16*15.5 фіолетовий прозорий',
   amount = 1,
   price = 10,
 }) => {

@@ -1,9 +1,9 @@
-import Image from "next/image";
-import s from "./no_products.module.scss";
-import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { useRouter } from "next/router";
-import { startLoading } from "store/slices/global_comps/global_comps.slice";
+import Image from 'next/image';
+import s from './no_products.module.scss';
+import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import { startLoading } from 'store/slices/global_comps/global_comps.slice';
 
 const NoProductYet = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const NoProductYet = () => {
     <article className={`${s.no_products} `}>
       <figure>
         <Image
-          src={"/assets/empty_shelf.svg"}
+          src={'/assets/empty_shelf.svg'}
           alt="product image"
           width={150}
           height={150}
@@ -32,7 +32,7 @@ const NoProductYet = () => {
         </figcaption>
       </figure>
       <Link
-        href={"#"}
+        href={'#'}
         onClick={goBack}
         className="link_primary"
         id="main_content"

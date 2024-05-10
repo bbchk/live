@@ -1,21 +1,21 @@
-import { Modal } from "react-bootstrap";
-import s from "./sign_in_modal.module.scss";
-import modal_s from "../modal.module.scss";
-import VerticalSplitter from "../vertical_splitter";
+import { Modal } from 'react-bootstrap';
+import s from './sign_in_modal.module.scss';
+import modal_s from '../modal.module.scss';
+import VerticalSplitter from '../vertical_splitter';
 
-import SignInFormByCredentials from "./sign_in_form_by_credentials";
-import SignFormByServices from "../sign_form_by_services";
-import { useDispatch, useSelector } from "react-redux";
+import SignInFormByCredentials from './sign_in_form_by_credentials';
+import SignFormByServices from '../sign_form_by_services';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   toggle as tg,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS;
 
-import { useSession } from "next-auth/react";
-import useTabTrap from "comps/accessibility/hooks/useTabbingTrap.js";
-import CustomAlert from "#root/comps/warnings/alert.js";
+import { useSession } from 'next-auth/react';
+import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap.js';
+import CustomAlert from '#root/comps/warnings/alert.js';
 
 //todo input validation
 //todo make modal responsive
@@ -27,11 +27,11 @@ const SignInModal = () => {
   const toggle = () => dispatch(tg(SIGN_IN_MODAL));
   const toggleAlternative = () => dispatch(tg(SIGN_UP_MODAL));
 
-  useTabTrap(signInModalOpen, "SignInModal");
+  useTabTrap(signInModalOpen, 'SignInModal');
 
   const { data: session } = useSession();
   if (session) {
-    return <CustomAlert text={"Ви уже авторизовані 😌"} />;
+    return <CustomAlert text={'Ви уже авторизовані 😌'} />;
   }
 
   return (

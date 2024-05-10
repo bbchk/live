@@ -13,15 +13,21 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".",
+    "baseUrl": "."
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "setupTests.js",
-    "pages/_app.js"
-, "pages/profile/orders_list.js", "pages/profile/wish_list.js", "pages/profile/personal_data.js", "pages/index.js", "utils/connectMongoDB.js", "pages/_document.js", "pages/404.js"  ],
+    "pages/_app.js",
+    "pages/profile/orders_list.js",
+    "pages/profile/wish_list.js",
+    "pages/profile/personal_data.js",
+    "pages/index.js",
+    "utils/connectMongoDB.js",
+    "pages/_document.js",
+    "pages/404.js"
+  ],
   "exclude": ["node_modules"]
 }
-

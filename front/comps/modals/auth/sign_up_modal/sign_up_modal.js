@@ -1,27 +1,27 @@
-import { useSignUp } from "hooks/useSignUp";
-import { useState } from "react";
-import { Modal } from "react-bootstrap";
+import { useSignUp } from 'hooks/useSignUp';
+import { useState } from 'react';
+import { Modal } from 'react-bootstrap';
 
-import s from "./sign_up_modal.module.scss";
-import modal_s from "../modal.module.scss";
-import Link from "next/link";
-import SignFormByServices from "../sign_form_by_services";
-import VerticalSplitter from "../vertical_splitter";
-import SignUpForm from "./sign_up_form_by_credentials";
-import { useSelector } from "react-redux";
+import s from './sign_up_modal.module.scss';
+import modal_s from '../modal.module.scss';
+import Link from 'next/link';
+import SignFormByServices from '../sign_form_by_services';
+import VerticalSplitter from '../vertical_splitter';
+import SignUpForm from './sign_up_form_by_credentials';
+import { useSelector } from 'react-redux';
 
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 import {
   toggle as tg,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS;
 
-import { useSession } from "next-auth/react";
+import { useSession } from 'next-auth/react';
 
 //todo input validation
-import CustomAlert from "comps/warnings/alert";
-import useTabTrap from "#root/comps/accessibility/hooks/useTabbingTrap.js";
+import CustomAlert from 'comps/warnings/alert';
+import useTabTrap from '#root/comps/accessibility/hooks/useTabbingTrap.js';
 
 const SignUpModal = () => {
   const dispatch = useDispatch();
@@ -30,11 +30,11 @@ const SignUpModal = () => {
   const toggle = () => dispatch(tg(SIGN_UP_MODAL));
   const toggleAlternative = () => dispatch(tg(SIGN_IN_MODAL));
 
-  useTabTrap(signUpModalOpen, "signUpModal");
+  useTabTrap(signUpModalOpen, 'signUpModal');
 
   const { data: session } = useSession();
   if (session) {
-    return <CustomAlert text={"Ви уже авторизовані 😌"} />;
+    return <CustomAlert text={'Ви уже авторизовані 😌'} />;
   }
 
   return (

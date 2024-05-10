@@ -1,19 +1,19 @@
-import { Modal } from "react-bootstrap";
-import s from "./hotkeys.modal.module.scss";
+import { Modal } from 'react-bootstrap';
+import s from './hotkeys.modal.module.scss';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { HOTKEYS_MODAL } = GLOBAL_COMPS;
 
-import { balsamiqSans } from "pages/_app";
-import { KeyboardRounded } from "@mui/icons-material";
-import { useId } from "react";
-import useTabTrap from "comps/accessibility/hooks/useTabbingTrap.js";
-import { useSession } from "next-auth/react";
-import CustomAlert from "#root/comps/warnings/alert.js";
+import { balsamiqSans } from 'pages/_app';
+import { KeyboardRounded } from '@mui/icons-material';
+import { useId } from 'react';
+import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap.js';
+import { useSession } from 'next-auth/react';
+import CustomAlert from '#root/comps/warnings/alert.js';
 
 const HotkeysModal = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const HotkeysModal = () => {
 
   const { data: session } = useSession();
 
-  useTabTrap(hotkeysModalOpen, "hotkeysModal");
+  useTabTrap(hotkeysModalOpen, 'hotkeysModal');
 
   const toggleModal = () => dispatch(toggle(HOTKEYS_MODAL));
 
@@ -45,67 +45,67 @@ const HotkeysModal = () => {
           <div className={s.alert}>
             <CustomAlert
               text={
-                "Переконайтесь, що використовуєте латиницю, деякі клавіші не підтримуються українською. Вибачте за тимчасові незручності!"
+                'Переконайтесь, що використовуєте латиницю, деякі клавіші не підтримуються українською. Вибачте за тимчасові незручності!'
               }
               animated={false}
             />
           </div>
           <menu className={`${s.hotkeys_group} ${s.general}`}>
             <HotkeyItem
-              dscrpt={"Відкрити вікно гарячих клавіш"}
-              hk={["shift", "?"]}
+              dscrpt={'Відкрити вікно гарячих клавіш'}
+              hk={['shift', '?']}
             />
           </menu>
           <menu className={`${s.hotkeys_group} ${s.navigation}`}>
             <HotkeyItem
-              dscrpt={"Перейти на домашню сторінку"}
-              hk={["shift", "h"]}
+              dscrpt={'Перейти на домашню сторінку'}
+              hk={['shift', 'h']}
             />
-            <HotkeyItem dscrpt={"Відкрити кошик покупок"} hk={["shift", "c"]} />
+            <HotkeyItem dscrpt={'Відкрити кошик покупок'} hk={['shift', 'c']} />
             <HotkeyItem
-              dscrpt={"Відкрити бокове меню"}
-              hk={["alt", "shift", "o"]}
+              dscrpt={'Відкрити бокове меню'}
+              hk={['alt', 'shift', 'o']}
             />
           </menu>
           <menu className={`${s.hotkeys_group} ${s.focus}`}>
             <HotkeyItem
-              dscrpt={"Фокусуватись на пошуку"}
-              hk={["ctrl", "alt", "f"]}
+              dscrpt={'Фокусуватись на пошуку'}
+              hk={['ctrl', 'alt', 'f']}
             />
             <HotkeyItem
-              dscrpt={"Фокусуватись на основному вмісті"}
-              hk={["ctrl", "alt", "m"]}
+              dscrpt={'Фокусуватись на основному вмісті'}
+              hk={['ctrl', 'alt', 'm']}
             />
           </menu>
 
           <menu className={`${s.hotkeys_group} ${s.user} ${s.auth}`}>
             <HotkeyItem
-              dscrpt={"Перейти до особистого кабінету"}
-              hk={["shift", "p"]}
+              dscrpt={'Перейти до особистого кабінету'}
+              hk={['shift', 'p']}
             />
 
             <HotkeyItem
-              dscrpt={"Перейти до списку бажаного"}
-              hk={["shift", "w"]}
+              dscrpt={'Перейти до списку бажаного'}
+              hk={['shift', 'w']}
             />
             <HotkeyItem
-              dscrpt={"Перейти до моїх замовлень"}
-              hk={["shift", "o"]}
+              dscrpt={'Перейти до моїх замовлень'}
+              hk={['shift', 'o']}
             />
             <HotkeyItem
-              dscrpt={"Вийти з облікового запису"}
-              hk={["alt", "shift", "q"]}
+              dscrpt={'Вийти з облікового запису'}
+              hk={['alt', 'shift', 'q']}
             />
           </menu>
           <menu className={`${s.hotkeys_group} ${s.user} ${s.not_auth}`}>
             <>
               <HotkeyItem
-                dscrpt={"Зареєструвати обліковий запис"}
-                hk={["alt", "shift", "u"]}
+                dscrpt={'Зареєструвати обліковий запис'}
+                hk={['alt', 'shift', 'u']}
               />
               <HotkeyItem
-                dscrpt={"Увійти в обліковий запис"}
-                hk={["alt", "shift", "i"]}
+                dscrpt={'Увійти в обліковий запис'}
+                hk={['alt', 'shift', 'i']}
               />
             </>
           </menu>

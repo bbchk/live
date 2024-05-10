@@ -1,25 +1,25 @@
-import { useSession } from "next-auth/react";
-import Image from "next/image";
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { CART_MODAL } = GLOBAL_COMPS;
 
-import hs from "../../header.module.scss";
+import hs from '../../header.module.scss';
 
-import IconButton from "./icon_button";
-import AuthPopover from "./auth_popover";
-import s from "./button_group.module.scss";
+import IconButton from './icon_button';
+import AuthPopover from './auth_popover';
+import s from './button_group.module.scss';
 
 import {
   ChecklistRtlRounded,
   FavoriteBorderRounded,
   ShoppingCartRounded,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
 //todo list of links with unordered list
 const ButtonGroup = () => {
@@ -32,8 +32,8 @@ const ButtonGroup = () => {
         {session ? (
           session.user.image && (
             <IconButton
-              href={"/profile/personal_data"}
-              tooltipText={"Персональний кабінет"}
+              href={'/profile/personal_data'}
+              tooltipText={'Персональний кабінет'}
             >
               <Image
                 src={session.user.image}
@@ -50,14 +50,14 @@ const ButtonGroup = () => {
         {session && (
           <>
             <IconButton
-              href={"/profile/orders_list"}
-              tooltipText={"Список замовлень"}
+              href={'/profile/orders_list'}
+              tooltipText={'Список замовлень'}
             >
               <ChecklistRtlRounded />
             </IconButton>
             <IconButton
-              href={"/profile/wish_list"}
-              tooltipText={"Список бажаного"}
+              href={'/profile/wish_list'}
+              tooltipText={'Список бажаного'}
             >
               <FavoriteBorderRounded />
             </IconButton>
@@ -65,7 +65,7 @@ const ButtonGroup = () => {
         )}
 
         <IconButton
-          tooltipText={"Кошик покупок"}
+          tooltipText={'Кошик покупок'}
           onClick={() => dispatch(toggle(CART_MODAL))}
         >
           <ShoppingCartRounded />

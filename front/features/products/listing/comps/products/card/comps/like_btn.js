@@ -1,5 +1,5 @@
-import s from "./like_btn.module.scss";
-import lcs from "../listing.product_card.module.scss";
+import s from './like_btn.module.scss';
+import lcs from '../listing.product_card.module.scss';
 
 const LikeButton = ({ isLiked }) => {
   return (

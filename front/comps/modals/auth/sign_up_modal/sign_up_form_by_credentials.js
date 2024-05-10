@@ -1,24 +1,24 @@
-import { useSignUp } from "hooks/useSignUp";
-import { useState } from "react";
+import { useSignUp } from 'hooks/useSignUp';
+import { useState } from 'react';
 
-import s from "./sign_up_form_by_credentials.module.scss";
-import modal_s from "../modal.module.scss";
-import Link from "next/link";
-import InputField from "comps/input_fields/input_field";
-import PasswordInputField from "comps/input_fields/password_input_field";
+import s from './sign_up_form_by_credentials.module.scss';
+import modal_s from '../modal.module.scss';
+import Link from 'next/link';
+import InputField from 'comps/input_fields/input_field';
+import PasswordInputField from 'comps/input_fields/password_input_field';
 
 const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
-  const [firstName, setFirstName] = useState("");
-  const [secondName, setSecondName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [secondName, setSecondName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { signUp, isLoading, error } = useSignUp();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     //todo put cart as well
-    const localStorageCartJson = JSON.parse(localStorage.getItem("cart"));
+    const localStorageCartJson = JSON.parse(localStorage.getItem('cart'));
     await signUp(firstName, secondName, email, password, localStorageCartJson);
     if (!error) {
       toggleModal();
@@ -74,7 +74,7 @@ const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
               не має містити пробілів, спеціальних символів або емодзі.
             </div> */}
       <div className={`form-text`}>
-        Реєструючись, ви погоджуєтеся з умовами{" "}
+        Реєструючись, ви погоджуєтеся з умовами{' '}
         <Link href="/privacy-policy">
           положення про обробку і захист персональних даних
         </Link>

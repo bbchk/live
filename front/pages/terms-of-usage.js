@@ -1,5 +1,5 @@
-import TermsOfUsage from "#root/features/info/terms_of_usage.js";
-import Head from "next/head";
+import TermsOfUsage from '#root/features/info/terms_of_usage.js';
+import Head from 'next/head';
 
 const UsageTerms = () => {
   return (

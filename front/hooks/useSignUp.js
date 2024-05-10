@@ -1,8 +1,8 @@
-import axios from "axios";
-import { setCookie } from "nookies";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { signIn } from "store/slices/user.slice";
+import axios from 'axios';
+import { setCookie } from 'nookies';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signIn } from 'store/slices/user.slice';
 
 export const useSignUp = () => {
   const [error, setError] = useState(null);
@@ -14,7 +14,7 @@ export const useSignUp = () => {
     secondName,
     email,
     password,
-    localStorageCartJson
+    localStorageCartJson,
   ) => {
     setIsLoading(true);
     setError(false);
@@ -28,11 +28,11 @@ export const useSignUp = () => {
         localStorageCartJson,
       });
 
-      localStorage.setItem("user", JSON.stringify(response.data));
+      localStorage.setItem('user', JSON.stringify(response.data));
       dispatch(signIn(response.data));
-      setCookie(null, "auth-token", response.data.token, {
-        path: "/",
-        sameSite: "strict",
+      setCookie(null, 'auth-token', response.data.token, {
+        path: '/',
+        sameSite: 'strict',
         maxAge: 3 * 24 * 60 * 60, // expires in 3 days
       });
       setIsLoading(false);

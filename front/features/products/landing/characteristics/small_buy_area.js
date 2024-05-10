@@ -1,4 +1,4 @@
-import s from "./small_buy_area.module.scss";
+import s from './small_buy_area.module.scss';
 
 const SmallBuyArea = ({ product: { price } }) => {
   return (

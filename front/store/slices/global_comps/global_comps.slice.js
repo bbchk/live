@@ -1,6 +1,6 @@
-import { main } from "@popperjs/core";
-import { createSlice } from "@reduxjs/toolkit";
-import { GLOBAL_COMPS as G } from "./constants";
+import { main } from '@popperjs/core';
+import { createSlice } from '@reduxjs/toolkit';
+import { GLOBAL_COMPS as G } from './constants';
 export { G as GLOBAL_COMPS };
 
 const initialState = {
@@ -19,7 +19,7 @@ const initialState = {
 };
 
 const modalsSlice = createSlice({
-  name: "modals",
+  name: 'modals',
   initialState,
   reducers: {
     toggle: (state, action) => {

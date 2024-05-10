@@ -1,23 +1,23 @@
-import s from "./main_offcanvas.module.scss";
-import hs from "../../header.module.scss";
+import s from './main_offcanvas.module.scss';
+import hs from '../../header.module.scss';
 
-import MainOffcanvasHeader from "./comps/main.offcanv_header";
-import MainOffcanvasBody from "./comps/main.offcanv_body";
+import MainOffcanvasHeader from './comps/main.offcanv_header';
+import MainOffcanvasBody from './comps/main.offcanv_body';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { MAIN_OFFCANVAS } = GLOBAL_COMPS;
 
-import { SwipeableDrawer, Box, Divider } from "@mui/material";
+import { SwipeableDrawer, Box, Divider } from '@mui/material';
 import {
   MenuRounded,
   Home as HomeIcon,
   AccountCircle as AccountCircleIcon,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
 export const MainOffcanvas = () => {
   const dispatch = useDispatch();

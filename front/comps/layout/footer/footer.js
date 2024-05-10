@@ -1,9 +1,9 @@
-import s from "./footer.module.scss";
-import AboutUs from "./comps/about_us";
-import WorkHours from "./comps/work_hours";
-import Contacts from "./comps/contacts";
-import Location from "./comps/location";
-import { balsamiqSans } from "pages/_app";
+import s from './footer.module.scss';
+import AboutUs from './comps/about_us';
+import WorkHours from './comps/work_hours';
+import Contacts from './comps/contacts';
+import Location from './comps/location';
+import { balsamiqSans } from 'pages/_app';
 
 const Footer = () => (
   <footer className={` ${s.footer} ${balsamiqSans.className}`}>

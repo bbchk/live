@@ -1,5 +1,5 @@
-import Policy from "#root/features/info/privacy_policy.js";
-import Head from "next/head";
+import Policy from '#root/features/info/privacy_policy.js';
+import Head from 'next/head';
 
 const PrivacyPolicy = () => {
   return (

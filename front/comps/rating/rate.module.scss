@@ -1,4 +1,4 @@
-@use "styles/variables" as *;
+@use 'styles/variables' as *;
 
 .rate {
   width: 100%;
@@ -43,7 +43,9 @@
         fill: $color-yell-brightsun;
       }
 
-      transition: fill 0.25s, color 0.25s;
+      transition:
+        fill 0.25s,
+        color 0.25s;
     }
 
     & > .star:hover svg,

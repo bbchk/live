@@ -1,5 +1,5 @@
-import s from "./reviews_page.module.scss";
-import ReviewItem from "./review_item";
+import s from './reviews_page.module.scss';
+import ReviewItem from './review_item';
 
 const LandingProductReviewsPage = ({ product }) => {
   const { reviews } = product;

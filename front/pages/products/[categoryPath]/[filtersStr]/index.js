@@ -1,15 +1,15 @@
-import axios from "axios";
-import Head from "next/head";
+import axios from 'axios';
+import Head from 'next/head';
 
-import { useStopLoading } from "hooks/useStopLoading";
+import { useStopLoading } from 'hooks/useStopLoading';
 
-import { useUpdateFilters } from "features/products/listing/hooks/use_update_filters";
-import { useDispatchInitialFilters } from "features/products/listing/hooks/use_dispatch_initial_filters.js";
-import { usePageValidation } from "features/products/listing/hooks/use_page_validation";
+import { useUpdateFilters } from 'features/products/listing/hooks/use_update_filters';
+import { useDispatchInitialFilters } from 'features/products/listing/hooks/use_dispatch_initial_filters.js';
+import { usePageValidation } from 'features/products/listing/hooks/use_page_validation';
 
-import ListingHeader from "features/products/listing/comps/listing_header";
-import SubcategoriesGallery from "features/products/listing/comps/subcategories/gallery";
-import ProductListingBody from "features/products/listing/comps/product_listing_body";
+import ListingHeader from 'features/products/listing/comps/listing_header';
+import SubcategoriesGallery from 'features/products/listing/comps/subcategories/gallery';
+import ProductListingBody from 'features/products/listing/comps/product_listing_body';
 
 const Listing = ({ data }) => {
   const {

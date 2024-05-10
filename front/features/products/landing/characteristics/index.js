@@ -1,8 +1,8 @@
-import Characteristics from "features/products/landing/mutual/characteristics";
-import SmallCard from "./small_card";
-import SmallBuyArea from "./small_buy_area";
+import Characteristics from 'features/products/landing/mutual/characteristics';
+import SmallCard from './small_card';
+import SmallBuyArea from './small_buy_area';
 
-import DecorLine from "comps/decor/decor_line";
+import DecorLine from 'comps/decor/decor_line';
 
 //todo add Head like in about page
 const ProductCharacteristics = ({ product }) => {

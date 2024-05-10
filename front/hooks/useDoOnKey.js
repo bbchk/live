@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const useDoOnKey = (key, action, dependencies) => {
   useEffect(() => {
@@ -8,10 +8,10 @@ const useDoOnKey = (key, action, dependencies) => {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, dependencies);
 };

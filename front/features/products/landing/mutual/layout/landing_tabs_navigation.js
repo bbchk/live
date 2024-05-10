@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import s from "./landing_tabs_navigation.module.scss";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import s from './landing_tabs_navigation.module.scss';
 
-import { slugify } from "@bbuukk/slugtrans/slugify";
-import { transliterate } from "@bbuukk/slugtrans/transliterate";
+import { slugify } from '@bbuukk/slugtrans/slugify';
+import { transliterate } from '@bbuukk/slugtrans/transliterate';
 
 const TabsNavigation = ({ activeTab }) => {
   const router = useRouter();
@@ -21,9 +21,9 @@ const TabsNavigation = ({ activeTab }) => {
     return (
       <li className={`nav-item ${s.link_container}`}>
         <Link
-          href={""}
+          href={''}
           className={`nav-link ${s.link}  ${
-            activeTab === tabName ? s.active : ""
+            activeTab === tabName ? s.active : ''
           }`}
           aria-current="page"
           onClick={handleClick}
@@ -39,11 +39,11 @@ const TabsNavigation = ({ activeTab }) => {
       <ul className={`nav nav-underline ${s.navigation}`}>
         <div className={`${s.decor_line}`} />
 
-        <TabLink tabName={"about"} label={"Усе про товар"} />
+        <TabLink tabName={'about'} label={'Усе про товар'} />
 
-        <TabLink tabName={"characteristics"} label={"Характеристики"} />
+        <TabLink tabName={'characteristics'} label={'Характеристики'} />
 
-        <TabLink tabName={"reviews"} label={"Відгуки"} />
+        <TabLink tabName={'reviews'} label={'Відгуки'} />
       </ul>
     </>
   );

@@ -1,19 +1,19 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const useTabTrap = (modalOpen, modalId, firstElementId, lastElementId) => {
   useEffect(() => {
     if (modalOpen) {
       const modal = document.getElementById(modalId);
       const handleKeyDown = (event) => {
-        if (event.key !== "Tab" && event.keyCode !== 9) {
+        if (event.key !== 'Tab' && event.keyCode !== 9) {
           return;
         }
 
         // Get a list of all focusable elements in the modal
         const focusableEls = Array.from(
           modal.querySelectorAll(
-            'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-          )
+            'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select',
+          ),
         );
 
         const firstEl =
@@ -30,10 +30,10 @@ const useTabTrap = (modalOpen, modalId, firstElementId, lastElementId) => {
         }
       };
 
-      modal.addEventListener("keydown", handleKeyDown);
+      modal.addEventListener('keydown', handleKeyDown);
 
       return () => {
-        modal.removeEventListener("keydown", handleKeyDown);
+        modal.removeEventListener('keydown', handleKeyDown);
       };
     }
   }, [modalOpen, modalId]);

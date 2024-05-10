@@ -4,7 +4,7 @@ export const useGetActiveProducts = () => {
 
     const activeProducts = allProducts.filter((p) => {
       const activeCategory = p.category.find((cat) =>
-        cat.path.includes(activeCategoryPath)
+        cat.path.includes(activeCategoryPath),
       );
       if (activeCategory) {
         return p;

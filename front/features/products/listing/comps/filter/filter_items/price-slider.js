@@ -1,10 +1,10 @@
-import Slider from "@mui/material/Slider";
-import React, { use, useEffect, useState } from "react";
-import s from "./price-slider.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { setFilter } from "store/slices/filters.slice";
-import { useRouter } from "next/router";
-import { startLoading } from "store/slices/global_comps/global_comps.slice.js";
+import Slider from '@mui/material/Slider';
+import React, { use, useEffect, useState } from 'react';
+import s from './price-slider.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from 'store/slices/filters.slice';
+import { useRouter } from 'next/router';
+import { startLoading } from 'store/slices/global_comps/global_comps.slice.js';
 
 //todo inconsistent currentMinMax, it changes on page refresh, when set on some points lower
 const PriceSlider = ({ minMax }) => {
@@ -23,7 +23,7 @@ const PriceSlider = ({ minMax }) => {
     if (Object.keys(activeFilters).length === 0) {
       setMinMaxPrice([minMax[0], minMax[1]]);
     } else {
-      const isPriceFilterApplied = Object.keys(activeFilters).includes("tsina");
+      const isPriceFilterApplied = Object.keys(activeFilters).includes('tsina');
       if (isPriceFilterApplied) {
         setMinMaxPrice(activeFilters.tsina);
       } else {
@@ -50,9 +50,9 @@ const PriceSlider = ({ minMax }) => {
     dispatch(startLoading());
     dispatch(
       setFilter({
-        filterName: "tsina",
+        filterName: 'tsina',
         filterValue: [minMaxPrice[0], minMaxPrice[1]],
-      })
+      }),
     );
   }
 
@@ -77,7 +77,7 @@ const PriceSlider = ({ minMax }) => {
   const handleInputChange = (index) => (event) => {
     const newValues = [...minMaxPrice];
     newValues[index] =
-      event.target.value === "" ? 0 : Number(event.target.value);
+      event.target.value === '' ? 0 : Number(event.target.value);
     setMinMaxPrice(newValues);
   };
 

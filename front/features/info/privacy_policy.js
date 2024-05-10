@@ -1,4 +1,4 @@
-import s from "./privacy_policy.module.scss";
+import s from './privacy_policy.module.scss';
 
 const Policy = () => {
   return (

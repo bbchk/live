@@ -1,20 +1,20 @@
-import { getToken } from "next-auth/jwt";
-import { withAuth } from "next-auth/middleware";
-import { NextRequest, NextResponse } from "next/server";
+import { getToken } from 'next-auth/jwt';
+import { withAuth } from 'next-auth/middleware';
+import { NextRequest, NextResponse } from 'next/server';
 
 export default async function middleware(req, event) {
   const token = await getToken({ req });
   const isAuthenticated = !!token;
 
-  if (isAuthenticated && req.nextUrl.pathname.startsWith("/auth/signin")) {
-    return NextResponse.redirect(new URL("/", req.url));
+  if (isAuthenticated && req.nextUrl.pathname.startsWith('/auth/signin')) {
+    return NextResponse.redirect(new URL('/', req.url));
   }
 
   //todo breaks application if navigate directly to the profile/personal_data
-  if (req.nextUrl.pathname.startsWith("/profile/")) {
+  if (req.nextUrl.pathname.startsWith('/profile/')) {
     const authMiddleware = await withAuth({
       pages: {
-        signIn: "/auth/signin",
+        signIn: '/auth/signin',
       },
     });
     return authMiddleware(req, event);

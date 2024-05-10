@@ -1,4 +1,4 @@
-@use "./styles/variables" as *;
+@use './styles/variables' as *;
 
 .list_heading {
   padding: 0rem 1rem;
@@ -35,10 +35,14 @@ $icon-size: 2rem;
       background-color: rgba($color-blue-dasl, 0.1);
       fill: rgba($color-blue-dasl, 0.3);
 
-      transition: background-color 0.25s, fill 0.2s;
+      transition:
+        background-color 0.25s,
+        fill 0.2s;
     }
   }
-  transition: background-color 0.25s, color 0.25s;
+  transition:
+    background-color 0.25s,
+    color 0.25s;
 
   &:hover {
     background-color: $color-green-medbud;

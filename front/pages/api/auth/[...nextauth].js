@@ -1,11 +1,11 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import GithubProvider from "next-auth/providers/github";
-import CredentialsProvider from "next-auth/providers/credentials";
-import axios from "axios";
+import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
+import GithubProvider from 'next-auth/providers/github';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import axios from 'axios';
 
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import clientPromise from "./lib/mongodb";
+import { MongoDBAdapter } from '@auth/mongodb-adapter';
+import clientPromise from './lib/mongodb';
 
 //todo implement apple and facebook providers
 
@@ -16,7 +16,7 @@ const googleProvider = GoogleProvider({
   authorization: {
     params: {
       scope:
-        "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid",
+        'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid',
     },
   },
   profile(profile) {
@@ -39,7 +39,7 @@ const githubProvider = GithubProvider({
     return {
       id: profile.id,
       firstName: profile?.name,
-      secondName: "",
+      secondName: '',
       email: profile.email,
       image: profile.avatar_url,
       likedProducts: [],
@@ -49,7 +49,7 @@ const githubProvider = GithubProvider({
 });
 
 const credentialsProvider = CredentialsProvider({
-  type: "credentials",
+  type: 'credentials',
   credentials: {},
   async authorize(credentials) {
     const { email, password } = credentials;
@@ -61,17 +61,17 @@ const credentialsProvider = CredentialsProvider({
           email: email,
           password: password,
         },
-        { headers: { "Content-type": "application/json" } }
+        { headers: { 'Content-type': 'application/json' } },
       );
       let user = response.data;
 
       if (response.status === 200) {
         return user;
       } else {
-        throw new Error("User not authenticated");
+        throw new Error('User not authenticated');
       }
     } catch (error) {
-      throw new Error("User not authenticated");
+      throw new Error('User not authenticated');
     }
   },
 });
@@ -79,7 +79,7 @@ const credentialsProvider = CredentialsProvider({
 // Callbacks
 const callbacks = {
   async jwt({ token, user, session, trigger, account }) {
-    if (trigger === "update") {
+    if (trigger === 'update') {
       token.user = session.user;
     }
     if (account) {
@@ -102,11 +102,11 @@ export const authOptions = {
   providers: [googleProvider, githubProvider, credentialsProvider],
   adapter: MongoDBAdapter(clientPromise),
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   callbacks,
   pages: {
-    signIn: "/auth/signin",
+    signIn: '/auth/signin',
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

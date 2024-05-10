@@ -1,61 +1,61 @@
-import "styles/globals.scss";
-import Head from "next/head";
+import 'styles/globals.scss';
+import Head from 'next/head';
 
-import axios from "axios";
+import axios from 'axios';
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 // Import the styles manually to prevent a Font Awesome icon server-side rendering bug
-import "@fortawesome/fontawesome-svg-core/styles.css";
+import '@fortawesome/fontawesome-svg-core/styles.css';
 // Prevent fontawesome from adding its CSS since we did it manually above
-import { config } from "@fortawesome/fontawesome-svg-core";
+import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 
-import "bootstrap/dist/css/bootstrap.css";
-import "@mui/material/styles";
+import 'bootstrap/dist/css/bootstrap.css';
+import '@mui/material/styles';
 
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider } from 'next-auth/react';
 
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect } from 'react';
 
-const ChangePasswordModal = lazy(() =>
-  import("comps/modals/change_password/change_password_modal")
+const ChangePasswordModal = lazy(
+  () => import('comps/modals/change_password/change_password_modal'),
 );
-const SignInModal = lazy(() =>
-  import("comps/modals/auth/sign_in_modal/sign_in_modal")
+const SignInModal = lazy(
+  () => import('comps/modals/auth/sign_in_modal/sign_in_modal'),
 );
-const SignUpModal = lazy(() =>
-  import("comps/modals/auth/sign_up_modal/sign_up_modal")
+const SignUpModal = lazy(
+  () => import('comps/modals/auth/sign_up_modal/sign_up_modal'),
 );
-const DeleteAccountModal = lazy(() =>
-  import("comps/modals/delete_account/delete_account_modal.js")
+const DeleteAccountModal = lazy(
+  () => import('comps/modals/delete_account/delete_account_modal.js'),
 );
-const CartModal = lazy(() => import("comps/modals/cart/cart_modal"));
-const WriteReviewModal = lazy(() =>
-  import("comps/modals/reviews/write_review_modal")
+const CartModal = lazy(() => import('comps/modals/cart/cart_modal'));
+const WriteReviewModal = lazy(
+  () => import('comps/modals/reviews/write_review_modal'),
 );
-const HotkeysModal = lazy(() => import("comps/modals/hotkeys/hotkeys.modal"));
+const HotkeysModal = lazy(() => import('comps/modals/hotkeys/hotkeys.modal'));
 
-import { LoadingOverlay } from "comps/loading/overlay";
-import Header from "comps/layout/header/header";
-const Footer = lazy(() => import("comps/layout/footer/footer"));
+import { LoadingOverlay } from 'comps/loading/overlay';
+import Header from 'comps/layout/header/header';
+const Footer = lazy(() => import('comps/layout/footer/footer'));
 
-import { enableMapSet } from "immer";
+import { enableMapSet } from 'immer';
 enableMapSet();
 
-import { Provider } from "react-redux";
-import { store } from "store/store";
-import { useSelector } from "react-redux";
+import { Provider } from 'react-redux';
+import { store } from 'store/store';
+import { useSelector } from 'react-redux';
 
-import { Balsamiq_Sans } from "next/font/google";
-import { Pacifico } from "next/font/google";
-import { MainOffcanvas } from "#root/comps/layout/header/comps/offcanvas/main_offcanvas.js";
+import { Balsamiq_Sans } from 'next/font/google';
+import { Pacifico } from 'next/font/google';
+import { MainOffcanvas } from '#root/comps/layout/header/comps/offcanvas/main_offcanvas.js';
 
-const balsamiqSans = Balsamiq_Sans({ weight: "400", subsets: ["latin"] });
-const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
+const balsamiqSans = Balsamiq_Sans({ weight: '400', subsets: ['latin'] });
+const pacifico = Pacifico({ weight: '400', subsets: ['latin'] });
 export { balsamiqSans, pacifico };
 
 /* eslint-disable */
-if (process.env.NODiE_ENV === "production") {
+if (process.env.NODiE_ENV === 'production') {
   console.log = function () {};
   console.warn = function () {};
   console.error = function () {};
@@ -64,8 +64,8 @@ if (process.env.NODiE_ENV === "production") {
 
 // require("punycode/");
 
-import SkipToMainContent from "comps/accessibility/skip_to_main_content";
-import CustomHotkeys from "comps/accessibility/hotkeys";
+import SkipToMainContent from 'comps/accessibility/skip_to_main_content';
+import CustomHotkeys from 'comps/accessibility/hotkeys';
 
 export default function App({
   Component,
@@ -85,7 +85,7 @@ export default function App({
       <SessionProvider session={session}>
         <Provider store={store}>
           <CustomHotkeys />
-          <SkipToMainContent mainContentId={"main_content"} />
+          <SkipToMainContent mainContentId={'main_content'} />
           <Header />
           <Body>
             <Component {...pageProps} />
@@ -102,13 +102,13 @@ const Body = ({ children }) => {
 
   useEffect(() => {
     function handleTabUsersStyling(e) {
-      if (e.key === "Tab" && e.keyCode === 9) {
-        document.body.classList.add("user-is-tabbing");
-        window.removeEventListener("keydown", handleTabUsersStyling);
+      if (e.key === 'Tab' && e.keyCode === 9) {
+        document.body.classList.add('user-is-tabbing');
+        window.removeEventListener('keydown', handleTabUsersStyling);
       }
     }
     if (window) {
-      window.addEventListener("keydown", handleTabUsersStyling);
+      window.addEventListener('keydown', handleTabUsersStyling);
     }
   }, []);
 

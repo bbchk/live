@@ -1,7 +1,7 @@
-import { useSession } from "next-auth/react";
-import s from "./tab.module.scss";
-import Link from "next/link";
-import Image from "next/image";
+import { useSession } from 'next-auth/react';
+import s from './tab.module.scss';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const ProfileTab = () => {
   const { data: session } = useSession();
@@ -9,7 +9,7 @@ const ProfileTab = () => {
   return (
     <Link
       className={`${s.tab} ${s.profile_tab}`}
-      href={"/profiler/personal_data"}
+      href={'/profiler/personal_data'}
     >
       <div className={`${s.image}`}>
         {user && user.image && (

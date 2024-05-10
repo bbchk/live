@@ -1,26 +1,26 @@
-import s from "./breadcrumbs.module.scss";
-import Link from "next/link";
-import { slugify } from "@bbuukk/slugtrans/slugify";
-import { transliterate } from "@bbuukk/slugtrans/transliterate";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteAllFilters } from "store/slices/filters.slice";
+import s from './breadcrumbs.module.scss';
+import Link from 'next/link';
+import { slugify } from '@bbuukk/slugtrans/slugify';
+import { transliterate } from '@bbuukk/slugtrans/transliterate';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteAllFilters } from 'store/slices/filters.slice';
 
-import { startLoading } from "store/slices/global_comps/global_comps.slice";
+import { startLoading } from 'store/slices/global_comps/global_comps.slice';
 
-import { getCategoriesInfo } from "store/slices/categories.slice";
-import { useEffect } from "react";
-import { CottageRounded } from "@mui/icons-material";
+import { getCategoriesInfo } from 'store/slices/categories.slice';
+import { useEffect } from 'react';
+import { CottageRounded } from '@mui/icons-material';
 
 const Breadcrumbs = ({ category }) => {
   const dispatch = useDispatch();
 
   const { categories: allCategories } = useSelector(
-    (state) => state.categories
+    (state) => state.categories,
   );
 
   const status = useSelector((state) => state.categories.status);
   useEffect(() => {
-    if (status === "idle") {
+    if (status === 'idle') {
       dispatch(getCategoriesInfo());
     }
   }, [status, dispatch]);
@@ -45,13 +45,13 @@ const Breadcrumbs = ({ category }) => {
           </li>
 
           {allCategories &&
-            category.path.split(",").map((pathPart, index, pathParts) => {
+            category.path.split(',').map((pathPart, index, pathParts) => {
               const clickedCategoryIndex = index + 1;
               const clickedCategoryPath = pathParts
                 .slice(0, clickedCategoryIndex)
-                .join(",");
+                .join(',');
               const categoryPathSlug = slugify(
-                transliterate(clickedCategoryPath)
+                transliterate(clickedCategoryPath),
               );
 
               const isActive = index === pathParts.length - 1;
@@ -59,7 +59,7 @@ const Breadcrumbs = ({ category }) => {
               return (
                 <li
                   className={`breadcrumb-item ${s.item} ${
-                    isActive ? s.active : ""
+                    isActive ? s.active : ''
                   }`}
                   key={pathPart}
                 >

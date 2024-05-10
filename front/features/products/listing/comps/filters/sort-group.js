@@ -1,17 +1,17 @@
-import s from "./sort-group.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { setFilter, deleteFilter } from "store/slices/filters.slice";
-import { transliterate } from "@bbuukk/slugtrans/transliterate";
-import { slugify } from "@bbuukk/slugtrans/slugify";
-import { useEffect, useState } from "react";
-import { startLoading } from "store/slices/global_comps/global_comps.slice.js";
+import s from './sort-group.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter, deleteFilter } from 'store/slices/filters.slice';
+import { transliterate } from '@bbuukk/slugtrans/transliterate';
+import { slugify } from '@bbuukk/slugtrans/slugify';
+import { useEffect, useState } from 'react';
+import { startLoading } from 'store/slices/global_comps/global_comps.slice.js';
 
 //todo add funcitonality
 const SortGroup = () => {
   const dispatch = useDispatch();
   const { filters } = useSelector((state) => state.filters);
 
-  const slugFilterLabel = slugify(transliterate("сортування"));
+  const slugFilterLabel = slugify(transliterate('сортування'));
   const handleChange = (event) => {
     dispatch(startLoading());
     const value = event.target.value;
@@ -20,7 +20,7 @@ const SortGroup = () => {
       setFilter({
         filterName: slugFilterLabel,
         filterValue: [slugValue],
-      })
+      }),
     );
   };
 
@@ -28,12 +28,12 @@ const SortGroup = () => {
     <search className={`${s.filters}`}>
       <select className={`form-select ${s.select}`} onChange={handleChange}>
         {[
-          "За рейтингом",
-          "Від дешевших до дорогих",
-          "Від дорогих до дешевих",
+          'За рейтингом',
+          'Від дешевших до дорогих',
+          'Від дорогих до дешевих',
         ].map((option) => {
           const isSelected = filters[slugFilterLabel]?.includes(
-            slugify(transliterate(option))
+            slugify(transliterate(option)),
           );
 
           return (

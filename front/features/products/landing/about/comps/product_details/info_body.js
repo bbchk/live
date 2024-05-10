@@ -1,6 +1,6 @@
-import s from "./info_body.module.scss";
-import { useSession } from "next-auth/react";
-import { useCart } from "hooks/useCart";
+import s from './info_body.module.scss';
+import { useSession } from 'next-auth/react';
+import { useCart } from 'hooks/useCart';
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -11,7 +11,7 @@ import {
   AddShoppingCartRounded,
   FavoriteBorderRounded,
   ChatRounded,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
 const InfoBody = ({ product }) => {
   const {
@@ -23,10 +23,10 @@ const InfoBody = ({ product }) => {
     images,
     weight,
     left,
-    reviews = ["good", "bad", "good", "bad", "good", "bad"],
+    reviews = ['good', 'bad', 'good', 'bad', 'good', 'bad'],
     starRating = 3.7,
     packing,
-    code = "000000",
+    code = '000000',
   } = product;
 
   const { add } = useCart();
@@ -42,7 +42,7 @@ const InfoBody = ({ product }) => {
           <span className={`${s.currency}`}> ₴ </span>
         </p>
         <p className={`${s.is_left}`}>
-          {left > 0 ? "Є в наявності" : "Немає в наявності"}{" "}
+          {left > 0 ? 'Є в наявності' : 'Немає в наявності'}{' '}
         </p>
       </div>
 

@@ -1,21 +1,21 @@
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Popover from "react-bootstrap/Popover";
-import { useDispatch } from "react-redux";
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+import { useDispatch } from 'react-redux';
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS;
 
-import { balsamiqSans } from "pages/_app";
+import { balsamiqSans } from 'pages/_app';
 
-import s from "./auth_popover.module.scss";
+import s from './auth_popover.module.scss';
 
-import { AccountCircleRounded } from "@mui/icons-material";
-import useDoOnKey from "hooks/useDoOnKey";
+import { AccountCircleRounded } from '@mui/icons-material';
+import useDoOnKey from 'hooks/useDoOnKey';
 
 const AuthPopover = () => {
   const isHoveredRef = useRef(false);
@@ -44,7 +44,7 @@ const AuthPopover = () => {
     }, 0);
   };
 
-  useDoOnKey("Escape", handleHide);
+  useDoOnKey('Escape', handleHide);
 
   const unsignedPopover = (
     <Popover
@@ -99,10 +99,10 @@ const AuthPopover = () => {
   );
 
   return (
-    <li className={`${s.overlay_trigger}`} aria-label={"Персональний кабінет"}>
+    <li className={`${s.overlay_trigger}`} aria-label={'Персональний кабінет'}>
       <div aria-label="Увійти або зареєструватись">
         <OverlayTrigger
-          trigger={["hover", "focus"]}
+          trigger={['hover', 'focus']}
           placement="bottom"
           overlay={unsignedPopover}
           rootClose

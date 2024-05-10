@@ -1,5 +1,5 @@
-import s from "./quantity_input.module.scss";
-import { useCart } from "hooks/useCart";
+import s from './quantity_input.module.scss';
+import { useCart } from 'hooks/useCart';
 
 const QuantityInput = ({ product, quantity }) => {
   const { add, remove } = useCart();

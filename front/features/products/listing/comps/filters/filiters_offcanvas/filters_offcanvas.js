@@ -1,22 +1,22 @@
-import s from "./filters_offcanvas.module.scss";
-import Offcanvas from "comps/offcanvas/offcanvas";
-import OffcanvasHeader from "comps/offcanvas/offcanvas_header";
-import OffcanvasBody from "comps/offcanvas/offcanvas_body";
-import FiltersAccordion from "../filters_accordion/filters_accordion";
+import s from './filters_offcanvas.module.scss';
+import Offcanvas from 'comps/offcanvas/offcanvas';
+import OffcanvasHeader from 'comps/offcanvas/offcanvas_header';
+import OffcanvasBody from 'comps/offcanvas/offcanvas_body';
+import FiltersAccordion from '../filters_accordion/filters_accordion';
 
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { deleteAllFilters } from "store/slices/filters.slice";
-import { startLoading } from "store/slices/global_comps/global_comps.slice.js";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { deleteAllFilters } from 'store/slices/filters.slice';
+import { startLoading } from 'store/slices/global_comps/global_comps.slice.js';
 
 const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { filters: activeFilters } = useSelector((state) => state.filters);
 
-  const isActiveFilters = Object.keys(activeFilters).some((f) => f != "page");
+  const isActiveFilters = Object.keys(activeFilters).some((f) => f != 'page');
 
   //todo add loading overlay to offcanvas
   //todo make it cancel_all_filters button rerender whole offcanvas for filters to refresh
@@ -67,7 +67,7 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
                 aria-controls={id}
                 onClick={() => {
                   router.push(
-                    `/products/${router.query.categoryPath}/${router.query.filtersStr}`
+                    `/products/${router.query.categoryPath}/${router.query.filtersStr}`,
                   );
                 }}
               >

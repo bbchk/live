@@ -1,4 +1,4 @@
-@use "./styles/variables" as *;
+@use './styles/variables' as *;
 
 .breadcrumbs {
   ol {
@@ -32,7 +32,7 @@
 
       li::before {
         color: $color-blue-dasl !important;
-        content: "↫" !important;
+        content: '↫' !important;
       }
     }
   }

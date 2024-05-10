@@ -1,4 +1,4 @@
-import { LocationOnRounded } from "@mui/icons-material";
+import { LocationOnRounded } from '@mui/icons-material';
 
 const Contacts = () => {
   return (

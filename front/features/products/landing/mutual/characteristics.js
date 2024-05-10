@@ -1,4 +1,4 @@
-import s from "./characteristics.module.scss";
+import s from './characteristics.module.scss';
 
 const Characteristics = ({ title, product }) => {
   return (

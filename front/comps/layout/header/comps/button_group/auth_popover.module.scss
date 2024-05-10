@@ -1,6 +1,6 @@
-@use "./styles/variables" as *;
-@use "./styles/mixins" as *;
-@import "node_modules/rfs/sass.sass";
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+@import 'node_modules/rfs/sass.sass';
 
 .auth_popover {
   box-shadow: 0 0 4px 3px rgba($color-blue-dasl, 0.2);

@@ -1,8 +1,8 @@
-import Image from "next/image";
-import s from "./cart_item.module.scss";
-import { useState } from "react";
-import QuantityInput from "./quantity_input";
-import { useCart } from "hooks/useCart";
+import Image from 'next/image';
+import s from './cart_item.module.scss';
+import { useState } from 'react';
+import QuantityInput from './quantity_input';
+import { useCart } from 'hooks/useCart';
 
 //changin quantity should change the quantity in the cart
 //remove functionality
@@ -13,7 +13,7 @@ const CartItem = ({ product, quantity }) => {
     <div className={`${s.cart_item}`}>
       <div>
         <Image
-          src={product.images ? product.images[0] : "/images/placeholder.png"}
+          src={product.images ? product.images[0] : '/images/placeholder.png'}
           alt="Picture of the product"
           width={250}
           height={250}

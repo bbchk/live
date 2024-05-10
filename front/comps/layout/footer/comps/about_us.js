@@ -1,4 +1,4 @@
-import { InfoRounded } from "@mui/icons-material";
+import { InfoRounded } from '@mui/icons-material';
 
 const AboutUs = () => {
   return (

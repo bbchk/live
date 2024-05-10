@@ -1,14 +1,14 @@
-import { useEffect } from "react";
-import { setFilters } from "store/slices/filters.slice";
-import { useDispatch } from "react-redux";
-import { useRouter } from "next/router";
+import { useEffect } from 'react';
+import { setFilters } from 'store/slices/filters.slice';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
 const getFilterMapFromStr = (filtersStr) => {
   let filters = {};
   if (filtersStr) {
-    filtersStr.split(";").forEach((fs) => {
-      const [filterName, filterValue] = fs.split("=");
-      filters[filterName] = filterValue.split(",");
+    filtersStr.split(';').forEach((fs) => {
+      const [filterName, filterValue] = fs.split('=');
+      filters[filterName] = filterValue.split(',');
     });
   }
   return filters;

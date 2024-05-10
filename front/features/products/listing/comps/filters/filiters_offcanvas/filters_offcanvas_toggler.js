@@ -1,4 +1,4 @@
-import s from "./filters_offcanvas_toggler.module.scss";
+import s from './filters_offcanvas_toggler.module.scss';
 
 const FiltersOffcanvasToggler = ({ id }) => {
   return (

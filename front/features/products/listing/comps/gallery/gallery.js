@@ -1,13 +1,13 @@
-import ListingProductCard from "./card/listing_card";
+import ListingProductCard from './card/listing_card';
 
-import s from "./gallery.module.scss";
+import s from './gallery.module.scss';
 
 import {
   AutoSizer,
   InfiniteLoader,
   WindowScroller,
   Grid,
-} from "react-virtualized";
+} from 'react-virtualized';
 
 const MIN_COLUMNS = 2; // Minimum number of columns
 const MIN_COLUMN_WIDTH = 250; // Minimum width for a column

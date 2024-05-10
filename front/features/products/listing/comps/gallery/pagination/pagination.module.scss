@@ -1,6 +1,6 @@
-@use "./styles/mixins" as *;
-@use "./styles/variables" as *;
-@import "node_modules/rfs/sass.sass";
+@use './styles/mixins' as *;
+@use './styles/variables' as *;
+@import 'node_modules/rfs/sass.sass';
 
 .pagination {
   display: flex;
@@ -65,7 +65,9 @@
     line-height: $item-size;
     text-align: center;
 
-    transition: color 0.25s, box-shadow 0.25s;
+    transition:
+      color 0.25s,
+      box-shadow 0.25s;
     &:hover,
     &.active {
       box-shadow: 0 0 0 0.1rem $color-green-dur inset;

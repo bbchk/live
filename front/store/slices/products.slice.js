@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const getProductsInfo = createAsyncThunk(
-  "products/fetchFromDB",
+  'products/fetchFromDB',
   async () => {
     //todo change to then and catch chain instead of try catch block
     try {
@@ -10,19 +10,19 @@ export const getProductsInfo = createAsyncThunk(
 
       return { products: res.data };
     } catch (error) {
-      throw new Error("Failed to fetch products");
+      throw new Error('Failed to fetch products');
     }
-  }
+  },
 );
 
 //todo delete unneccesary state variables
 const productsSlice = createSlice({
-  name: "products",
+  name: 'products',
   initialState: {
     products: null,
     activeProducts: null,
     activeIndiProduct: null,
-    status: "idle",
+    status: 'idle',
     error: null,
   },
   reducers: {
@@ -39,14 +39,14 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getProductsInfo.pending, (state) => {
-        state.status = "loading";
+        state.status = 'loading';
       })
       .addCase(getProductsInfo.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = 'succeeded';
         state.products = action.payload.products;
       })
       .addCase(getProductsInfo.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = 'failed';
         state.error = action.error.message;
       });
   },

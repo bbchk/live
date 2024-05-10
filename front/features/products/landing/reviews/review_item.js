@@ -1,11 +1,11 @@
-import s from "./review_item.module.scss";
-import StarRating from "comps/rating/star_rating";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import s from './review_item.module.scss';
+import StarRating from 'comps/rating/star_rating';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faEllipsisVertical,
   faArrowTurnUp,
-} from "@fortawesome/free-solid-svg-icons";
-import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
 
 const ReviewItem = ({ review }) => {
   const {

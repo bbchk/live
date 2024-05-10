@@ -1,5 +1,5 @@
-@use "styles/variables" as *;
-@use "styles/mixins" as *;
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
 
 .modal {
   color: $color-blue-dasl;
@@ -14,10 +14,10 @@
     overflow-y: auto;
 
     grid-template-areas:
-      "alert alert"
-      "general general"
-      "navigation focus"
-      "not_auth_user auth_user";
+      'alert alert'
+      'general general'
+      'navigation focus'
+      'not_auth_user auth_user';
 
     .alert {
       grid-area: alert;
@@ -81,12 +81,12 @@
       grid-template-columns: 1fr;
       grid-template-rows: min-content min-content min-content min-content;
       grid-template-areas:
-        "alert"
-        "general"
-        "navigation"
-        "focus"
-        "not_auth_user"
-        "auth_user";
+        'alert'
+        'general'
+        'navigation'
+        'focus'
+        'not_auth_user'
+        'auth_user';
     }
   }
 }

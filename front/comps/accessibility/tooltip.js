@@ -1,10 +1,10 @@
-import { Tooltip, OverlayTrigger } from "react-bootstrap";
-import s from "./tooltip.module.scss";
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import s from './tooltip.module.scss';
 
 export const CustomTooltip = ({
   children,
   tooltipText,
-  placement = "bottom",
+  placement = 'bottom',
   show = 400,
   hide = 200,
 }) => {

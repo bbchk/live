@@ -1,5 +1,5 @@
 export function stripHtmlTags(str) {
-  if (str === null || str === "") return false;
+  if (str === null || str === '') return false;
   else str = str.toString();
-  return str.replace(/<[^>]*>/g, "");
+  return str.replace(/<[^>]*>/g, '');
 }

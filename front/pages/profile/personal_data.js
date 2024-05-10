@@ -1,6 +1,6 @@
-import Head from "next/head";
-import PersonalData from "features/profile/comps/personal_data/personal_data";
-import Tabs from "features/profile/comps/tabs/index";
+import Head from 'next/head';
+import PersonalData from 'features/profile/comps/personal_data/personal_data';
+import Tabs from 'features/profile/comps/tabs/index';
 
 const PersonalDataPage = () => {
   return (

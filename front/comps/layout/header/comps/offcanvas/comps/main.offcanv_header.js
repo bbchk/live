@@ -1,20 +1,20 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { pacifico } from "pages/_app";
+import { pacifico } from 'pages/_app';
 
-import s from "./main.offcanv_header.module.scss";
+import s from './main.offcanv_header.module.scss';
 
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice.js";
-import { useDispatch } from "react-redux";
+} from 'store/slices/global_comps/global_comps.slice.js';
+import { useDispatch } from 'react-redux';
 const { MAIN_OFFCANVAS } = GLOBAL_COMPS;
 
 export default function MainOffcanvasHeader() {
@@ -24,7 +24,7 @@ export default function MainOffcanvasHeader() {
     <AppBar position="static" className={`${s.header}`}>
       <Toolbar>
         <Image
-          src={"/assets/logo.svg"}
+          src={'/assets/logo.svg'}
           alt="Логотип магазину"
           width={30}
           height={30}

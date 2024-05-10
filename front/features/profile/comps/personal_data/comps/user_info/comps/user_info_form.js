@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import s from "./user_info_form.module.scss";
-import ps from "../user_info.module.scss";
-import { useSession } from "next-auth/react";
-import InputField from "comps/input_fields/input_field";
+import { useEffect, useState } from 'react';
+import s from './user_info_form.module.scss';
+import ps from '../user_info.module.scss';
+import { useSession } from 'next-auth/react';
+import InputField from 'comps/input_fields/input_field';
 
 const UserInfoForm = () => {
   const { data: session, status } = useSession();
@@ -12,16 +12,16 @@ const UserInfoForm = () => {
   const [hasBeenBeingModified, setHasBeenBeingModified] = useState(false);
 
   const [userInfo, setUserInfo] = useState({
-    firstName: "",
-    secondName: "",
-    email: "",
+    firstName: '',
+    secondName: '',
+    email: '',
   });
 
   useEffect(() => {
     setUserInfo({
-      firstName: user?.firstName || "",
-      secondName: user?.secondName || "",
-      email: user?.email || "",
+      firstName: user?.firstName || '',
+      secondName: user?.secondName || '',
+      email: user?.email || '',
     });
   }, [session, isBeingModified]);
 
@@ -89,7 +89,7 @@ const UserInfoForm = () => {
             <li>
               <button
                 data-toggle="tooltip"
-                title={hasBeenBeingModified ? "" : "Дані не були змінені"}
+                title={hasBeenBeingModified ? '' : 'Дані не були змінені'}
                 data-placement="bottom"
                 type="submit"
                 className={`button_primary`}

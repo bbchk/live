@@ -1,4 +1,4 @@
-import s from "./file_input.module.scss"; // adjust the path to your CSS module
+import s from './file_input.module.scss'; // adjust the path to your CSS module
 
 const FileInput = ({
   accept,
@@ -12,7 +12,7 @@ const FileInput = ({
       <input
         type="file"
         accept={accept}
-        style={{ display: "none" }}
+        style={{ display: 'none' }}
         onChange={handleImageChange}
         multiple={multiple}
         {...props}

@@ -1,25 +1,25 @@
-import { useRouter } from "next/router";
-import s from "./info_header.module.scss";
-import StarRating from "comps/rating/star_rating";
-import Link from "next/link";
+import { useRouter } from 'next/router';
+import s from './info_header.module.scss';
+import StarRating from 'comps/rating/star_rating';
+import Link from 'next/link';
 
 const MainInfoHeader = ({
   product: {
     name,
-    reviews = ["good", "bad", "good", "bad", "good", "bad"],
+    reviews = ['good', 'bad', 'good', 'bad', 'good', 'bad'],
     starRating = 3.7,
-    code = "000000",
+    code = '000000',
   },
 }) => {
   const router = useRouter();
   const productPathNoActiveTab = router.asPath
-    .split("/")
+    .split('/')
     .slice(0, -1)
-    .join("/");
+    .join('/');
 
   const handleNavigation = (e) => {
     e.preventDefault();
-    router.push(productPathNoActiveTab + "/reviews", undefined, {
+    router.push(productPathNoActiveTab + '/reviews', undefined, {
       shallow: true,
     });
   };

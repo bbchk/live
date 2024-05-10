@@ -1,8 +1,8 @@
-import s from "./sign_form_by_services.module.scss";
-import modal_s from "./modal.module.scss";
+import s from './sign_form_by_services.module.scss';
+import modal_s from './modal.module.scss';
 
-import { signIn } from "next-auth/react";
-import Image from "next/image";
+import { signIn } from 'next-auth/react';
+import Image from 'next/image';
 
 const SignFormByServices = () => {
   const ServiceButton = ({ serviceName }) => {
@@ -35,8 +35,8 @@ const SignFormByServices = () => {
       </h6>
 
       <div className={`${s.button_group}`}>
-        <ServiceButton serviceName={"google"} />
-        <ServiceButton serviceName={"github"} />
+        <ServiceButton serviceName={'google'} />
+        <ServiceButton serviceName={'github'} />
         {/* <ServiceButton serviceName={"facebook"} /> */}
         {/* <ServiceButton serviceName={"apple"} /> */}
       </div>

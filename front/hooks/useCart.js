@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useSession } from "next-auth/react";
-import { useDispatch } from "react-redux";
-import { addToCart, deleteCartItem } from "store/slices/user.slice";
+import axios from 'axios';
+import { useSession } from 'next-auth/react';
+import { useDispatch } from 'react-redux';
+import { addToCart, deleteCartItem } from 'store/slices/user.slice';
 export const useCart = () => {
   const { data: session, update } = useSession();
   const dispatch = useDispatch();
@@ -12,9 +12,9 @@ export const useCart = () => {
     const cartItem = { _id, name, price, images, left };
 
     try {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
       let existingCartItem = cart.find(
-        (item) => item.product._id == cartItem._id
+        (item) => item.product._id == cartItem._id,
       );
 
       if (existingCartItem) {
@@ -26,12 +26,12 @@ export const useCart = () => {
         });
       }
 
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem('cart', JSON.stringify(cart));
       dispatch(
         addToCart({
           product: cartItem,
           quantity: 1,
-        })
+        }),
       );
 
       if (session) {
@@ -42,7 +42,7 @@ export const useCart = () => {
             headers: {
               Authorization: `Bearer ${session.user.token}`,
             },
-          }
+          },
         );
       }
     } catch (e) {
@@ -52,7 +52,7 @@ export const useCart = () => {
 
   async function remove(productId) {
     try {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
       let cartItem = cart.find((item) => item.product._id === productId);
 
       if (cartItem && cartItem.quantity > 1) {
@@ -61,7 +61,7 @@ export const useCart = () => {
         cart = cart.filter((item) => item.product._id !== productId);
       }
 
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem('cart', JSON.stringify(cart));
       dispatch(deleteCartItem(productId));
 
       if (session) {
@@ -71,7 +71,7 @@ export const useCart = () => {
             headers: {
               Authorization: `Bearer ${session.user.token}`,
             },
-          }
+          },
         );
       }
     } catch (e) {
@@ -83,9 +83,9 @@ export const useCart = () => {
   async function removeAll(productId) {}
 
   async function getCart(session) {
-    console.log("🚀 ~ session:", session);
+    console.log('🚀 ~ session:', session);
     try {
-      const localStorageCartJson = localStorage.getItem("cart");
+      const localStorageCartJson = localStorage.getItem('cart');
       const lscart = JSON.parse(localStorageCartJson) || [];
 
       let cart = [];
@@ -94,7 +94,7 @@ export const useCart = () => {
       if (session) {
         if (lscart.length > 0) {
           const syncedCart = await syncAndFetch(session.user, lscart);
-          localStorage.setItem("cart", JSON.stringify(syncedCart));
+          localStorage.setItem('cart', JSON.stringify(syncedCart));
           cart = syncedCart;
         } else {
           cart = await fetchCart(session.user);
@@ -120,10 +120,10 @@ export const useCart = () => {
         localStorageCartOptimized,
         {
           headers: {
-            "Content-type": "application/json",
+            'Content-type': 'application/json',
             Authorization: `Bearer ${user.token}`,
           },
-        }
+        },
       );
 
       return res.data;

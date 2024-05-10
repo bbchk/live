@@ -1,7 +1,7 @@
-import s from "./checkbox.module.scss";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { startLoading } from "store/slices/global_comps/global_comps.slice";
+import s from './checkbox.module.scss';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { startLoading } from 'store/slices/global_comps/global_comps.slice';
 
 const CheckBox = ({ id, label, checked, handleChange }) => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const CheckBox = ({ id, label, checked, handleChange }) => {
   return (
     <label htmlFor={id} className={`form-check ${s.form_check}`}>
       <input
-        className={`form-check-input ${isChecked ? s.active : ""}`}
+        className={`form-check-input ${isChecked ? s.active : ''}`}
         type="checkbox"
         checked={isChecked}
         onChange={(e) => {

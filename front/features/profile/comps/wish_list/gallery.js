@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import s from "./gallery.module.scss";
-import ProductCard from "features/products/listing/comps/gallery/card";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import s from './gallery.module.scss';
+import ProductCard from 'features/products/listing/comps/gallery/card';
+import axios from 'axios';
 
 const Data = () => {
   //todo save likedProducts to localStorage
-  const [likedProducts, setLikedProducts] = useState("");
+  const [likedProducts, setLikedProducts] = useState('');
 
   useEffect(() => {
     if (user) {
@@ -15,7 +15,7 @@ const Data = () => {
         //todo test
         try {
           const res = await axios.get(
-            `/products/by-ids?ids=${user.likedProducts}`
+            `/products/by-ids?ids=${user.likedProducts}`,
           );
 
           setLikedProducts(res.data);

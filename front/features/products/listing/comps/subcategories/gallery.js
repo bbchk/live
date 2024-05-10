@@ -1,8 +1,8 @@
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import SubcategoryCard from "./card";
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import SubcategoryCard from './card';
 
-import s from "./gallery.module.scss";
+import s from './gallery.module.scss';
 
 const SubcategoriesGallery = ({ subcategories }) => {
   return (

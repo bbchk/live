@@ -1,4 +1,4 @@
-import s from "./main.offcanv_body.module.scss";
+import s from './main.offcanv_body.module.scss';
 
 import {
   List,
@@ -7,7 +7,7 @@ import {
   ListItemText,
   Divider,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
 import {
   Menu as MenuIcon,
   Home as HomeIcon,
@@ -17,17 +17,17 @@ import {
   ReceiptLong,
   ShoppingCart,
   MeetingRoom,
-} from "@mui/icons-material";
-import { balsamiqSans } from "#root/pages/_app.js";
+} from '@mui/icons-material';
+import { balsamiqSans } from '#root/pages/_app.js';
 
-import { signOut, useSession } from "next-auth/react";
-import { useDispatch } from "react-redux";
-import Image from "next/image";
+import { signOut, useSession } from 'next-auth/react';
+import { useDispatch } from 'react-redux';
+import Image from 'next/image';
 
 import {
   toggle,
   GLOBAL_COMPS,
-} from "store/slices/global_comps/global_comps.slice";
+} from 'store/slices/global_comps/global_comps.slice';
 const { SIGN_IN_MODAL, CART_MODAL, MAIN_OFFCANVAS } = GLOBAL_COMPS;
 
 function MainOffcanvasBody() {
@@ -108,8 +108,8 @@ function MainOffcanvasBody() {
             <ItemButton
               text="Вийти з акаунту"
               onClick={() => {
-                signOut({ callbackUrl: "/" }).then(() => {
-                  window.location.href = "/";
+                signOut({ callbackUrl: '/' }).then(() => {
+                  window.location.href = '/';
                 });
               }}
             >

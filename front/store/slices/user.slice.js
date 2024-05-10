@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState: { user: null },
   reducers: {
     signIn: (state, action) => {
@@ -21,7 +21,7 @@ export const userSlice = createSlice({
     addToCart: (state, action) => {
       if (state.user && Array.isArray(state.user.cart)) {
         const existingItemIndex = state.user.cart.findIndex(
-          (item) => item.product._id === action.payload.product._id
+          (item) => item.product._id === action.payload.product._id,
         );
 
         if (existingItemIndex >= 0) {
@@ -37,7 +37,7 @@ export const userSlice = createSlice({
     deleteCartItem: (state, action) => {
       if (state.user && Array.isArray(state.user.cart)) {
         const existingItemIndex = state.user.cart.findIndex(
-          (item) => item.product._id === action.payload
+          (item) => item.product._id === action.payload,
         );
 
         if (existingItemIndex >= 0) {

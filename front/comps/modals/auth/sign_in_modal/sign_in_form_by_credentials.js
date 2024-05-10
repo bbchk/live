@@ -1,17 +1,17 @@
-import { useState } from "react";
-import s from "./sign_in_form_by_credentials.module.scss";
-import modal_s from "../modal.module.scss";
-import Link from "next/link";
-import InputField from "comps/input_fields/input_field";
-import PasswordInputField from "comps/input_fields/password_input_field";
-import { signIn, getSession } from "next-auth/react";
-import { useCart } from "hooks/useCart";
-import { useDispatch } from "react-redux";
-import { setCart } from "store/slices/user.slice";
+import { useState } from 'react';
+import s from './sign_in_form_by_credentials.module.scss';
+import modal_s from '../modal.module.scss';
+import Link from 'next/link';
+import InputField from 'comps/input_fields/input_field';
+import PasswordInputField from 'comps/input_fields/password_input_field';
+import { signIn, getSession } from 'next-auth/react';
+import { useCart } from 'hooks/useCart';
+import { useDispatch } from 'react-redux';
+import { setCart } from 'store/slices/user.slice';
 
 const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
@@ -20,10 +20,10 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await signIn("credentials", {
+    const res = await signIn('credentials', {
       email: email,
       password: password,
-      localStorageCartJson: localStorage.getItem("cart"),
+      localStorageCartJson: localStorage.getItem('cart'),
       redirect: false,
     });
 
