@@ -4,7 +4,7 @@ import axios from "axios";
 import { useStopLoading } from "hooks/useStopLoading";
 
 const Home = ({ rootCategories }) => {
-  const { loading } = useStopLoading();
+  useStopLoading();
 
   return (
     <>

@@ -54,11 +54,13 @@ const balsamiqSans = Balsamiq_Sans({ weight: "400", subsets: ["latin"] });
 const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
 export { balsamiqSans, pacifico };
 
-if (process.env.NODE_ENV === "production") {
+/* eslint-disable */
+if (process.env.NODiE_ENV === "production") {
   console.log = function () {};
   console.warn = function () {};
   console.error = function () {};
 }
+/* eslint-enable */
 
 // require("punycode/");
 
@@ -96,18 +98,17 @@ export default function App({
 }
 
 const Body = ({ children }) => {
-  const { loading, mainOffcanvasOpen } = useSelector((state) => state.modals);
-
-  function handleFirstTab(e) {
-    if (e.key === "Tab" && e.keyCode === 9) {
-      document.body.classList.add("user-is-tabbing");
-      window.removeEventListener("keydown", handleFirstTab);
-    }
-  }
+  const { loading } = useSelector((state) => state.modals);
 
   useEffect(() => {
+    function handleTabUsersStyling(e) {
+      if (e.key === "Tab" && e.keyCode === 9) {
+        document.body.classList.add("user-is-tabbing");
+        window.removeEventListener("keydown", handleTabUsersStyling);
+      }
+    }
     if (window) {
-      window.addEventListener("keydown", handleFirstTab);
+      window.addEventListener("keydown", handleTabUsersStyling);
     }
   }, []);
 

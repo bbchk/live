@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import PersonalData from "features/profile/comps/personal_data/personal_data";
 import Tabs from "features/profile/comps/tabs/index";
 

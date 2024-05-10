@@ -51,8 +51,8 @@ const githubProvider = GithubProvider({
 const credentialsProvider = CredentialsProvider({
   type: "credentials",
   credentials: {},
-  async authorize(credentials, req) {
-    const { email, password, localStorageCartJson } = credentials;
+  async authorize(credentials) {
+    const { email, password } = credentials;
 
     try {
       const response = await axios.post(
@@ -78,10 +78,7 @@ const credentialsProvider = CredentialsProvider({
 
 // Callbacks
 const callbacks = {
-  async signIn({ user, account, profile }) {
-    return true;
-  },
-  async jwt({ token, user, session, trigger, account, profile }) {
+  async jwt({ token, user, session, trigger, account }) {
     if (trigger === "update") {
       token.user = session.user;
     }

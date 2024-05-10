@@ -21,7 +21,8 @@ const SignIn = () => {
     } else {
       router.push("/profile/personal_data");
     }
-  }, [session]);
+    // eslint-disable-next-line
+  }, [session, dispatch]);
 
   const { signInModalOpen, signUpModalOpen } = useSelector(
     (state) => state.modals
@@ -37,7 +38,8 @@ const SignIn = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [signInModalOpen, signUpModalOpen, router]);
+    // eslint-disable-next-line
+  }, [signInModalOpen, signUpModalOpen]);
 
   return <></>;
 };
