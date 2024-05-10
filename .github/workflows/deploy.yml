@@ -25,6 +25,7 @@ jobs:
     with:
       node-version: 20
       working-directory: back
+      environment: PROD
     secrets:
       TEST_JWT_SECRET: ${{ secrets.TEST_JWT_SECRET }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
@@ -34,6 +35,7 @@ jobs:
     with:
       node-version: 20
       working-directory: front
+      environment: PROD
     secrets:
       GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
       GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
@@ -46,6 +48,7 @@ jobs:
 
   back-end-deploy:
     runs-on: ubuntu-latest
+    environment: PROD
     needs:
       [back-end-testing-linting-starting, front-end-testing-linting-building]
     steps:
@@ -68,6 +71,7 @@ jobs:
   front-end-deploy:
     runs-on: ubuntu-latest
     needs: back-end-deploy
+    environment: PROD
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
