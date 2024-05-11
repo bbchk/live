@@ -5,7 +5,6 @@ import useUpdateUser from './useUpdateUser'
 const useChangePassword = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
-  const { data: session, update } = useSession()
 
   const [updateUser, _, err] = useUpdateUser()
 
@@ -18,11 +17,20 @@ const useChangePassword = () => {
     newPassword,
     newPasswordRepeat,
   }) => {
+    console.log('changePassword')
     setIsLoading(true)
     setError(false)
 
     if (newPassword !== newPasswordRepeat) {
+      console.log('Паролі не співпадають')
       setError('Паролі не співпадають')
+      setIsLoading(false)
+      return
+    }
+
+    if (newPassword !== oldPassword) {
+      console.log('')
+      setError('Ваш новий пароль не може бути таким самим, як старий')
       setIsLoading(false)
       return
     }

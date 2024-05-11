@@ -26,6 +26,7 @@ const ChangePasswordModal = () => {
   const { changePasswordModalOpen } = useSelector((state) => state.modals)
 
   const [changePassword, _, error] = useChangePassword()
+  console.log('🚀 ~ error:', error)
 
   useTabTrap(changePasswordModalOpen, 'changePasswordModal')
 
@@ -50,8 +51,13 @@ const ChangePasswordModal = () => {
 
   const handleSubmit = async (e, value) => {
     e.preventDefault()
+    console.log('submit')
 
     await changePassword({ ...passwordInfo })
+
+    //todo
+    // dispatch(toggle(CHANGE_PASSWORD_MODAL))
+    setHasBeenBeingModified(false)
   }
 
   return (
@@ -127,10 +133,6 @@ const ChangePasswordModal = () => {
                 data-placement='bottom'
                 type='submit'
                 disabled={!hasBeenBeingModified}
-                onClick={() => {
-                  setHasBeenBeingModified(false)
-                  dispatch(toggle(CHANGE_PASSWORD_MODAL))
-                }}
               >
                 Зберегти
               </button>
