@@ -38,6 +38,7 @@ const HotkeysModal = lazy(() => import('comps/modals/hotkeys/hotkeys.modal'))
 import { LoadingOverlay } from 'comps/loading/overlay'
 import Header from 'comps/layout/header/header'
 const Footer = lazy(() => import('comps/layout/footer/footer'))
+// import Footer from 'comps/layout/footer/footer'
 
 import { enableMapSet } from 'immer'
 enableMapSet()
@@ -125,7 +126,7 @@ const Body = ({ children }) => {
   return (
     <div
       className={`${balsamiqSans.className}`}
-      style={{ 'min-height': '80vh' }}
+      style={{ 'min-height': '100vh' }}
     >
       <LoadingOverlay loading={loading} />
       <MainOffcanvas />

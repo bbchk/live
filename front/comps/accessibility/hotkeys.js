@@ -43,9 +43,9 @@ const CustomHotkeys = () => {
   //navigation
   useHotkeys('shift+h, shift+р', () => navigateTo('/'))
 
-  useHotkeys('shift+p, shift+з', () => navigateTo('/profile/personal_data'))
+  useHotkeys('shift+p, shift+з', () => navigateTo('/user/personal_data'))
   useHotkeys('shift+w, shift+ц', () => navigateTo('/user/wish_list'))
-  useHotkeys('shift+o, shift+o', () => navigateTo('/profile/orders_list'))
+  useHotkeys('shift+o, shift+o', () => navigateTo('/user/orders_list'))
 
   useHotkeys('shift+c, shift+с', () => toggle(CART_MODAL), [dispatch])
   useHotkeys('alt+shift+i, alt+shift+ш', () => toggle(SIGN_IN_MODAL), [

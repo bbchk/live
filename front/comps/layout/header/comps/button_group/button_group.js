@@ -32,7 +32,7 @@ const ButtonGroup = () => {
         {session ? (
           session.user.image && (
             <IconButton
-              href={'/profile/personal_data'}
+              href={'/user/personal_data'}
               tooltipText={'Персональний кабінет'}
             >
               <Image
@@ -50,7 +50,7 @@ const ButtonGroup = () => {
         {session && (
           <>
             <IconButton
-              href={'/profile/orders_list'}
+              href={'/user/orders_list'}
               tooltipText={'Список замовлень'}
             >
               <ChecklistRtlRounded />

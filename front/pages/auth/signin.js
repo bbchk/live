@@ -1,47 +1,55 @@
+import { useEffect, useState } from 'react'
+
+import VerticalSplitter from 'comps/modals/auth/vertical_splitter.js'
+
+import SignInFormByCredentials from 'comps/modals/auth/sign_in_modal/sign_in_form_by_credentials.js'
+import SignUpFormByCredentials from 'comps/modals/auth/sign_up_modal/sign_up_form_by_credentials.js'
+import SignFormByServices from 'comps/modals/auth/sign_form_by_services.js'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { useDispatch, useSelector } from 'react-redux'
-
-import {
-  toggle,
-  GLOBAL_COMPS,
-} from 'store/slices/global_comps/global_comps.slice'
-const { SIGN_IN_MODAL } = GLOBAL_COMPS
-import { useEffect } from 'react'
 
 const SignIn = () => {
   const router = useRouter()
-
-  const dispatch = useDispatch()
   const { data: session } = useSession()
 
   useEffect(() => {
-    if (!session) {
-      dispatch(toggle(SIGN_IN_MODAL))
-    } else {
-      router.push('/profile/personal_data')
+    if (session) {
+      router.push('/user/personal_data')
     }
-    // eslint-disable-next-line
-  }, [session, dispatch])
+  }, [session])
 
-  const { signInModalOpen, signUpModalOpen } = useSelector(
-    (state) => state.modals,
+  const [modal, setModal] = useState(true)
+
+  const toggleAlternative = () => {
+    setModal(!modal)
+  }
+
+  return (
+    <div
+      style={{
+        margin: '2rem 20rem',
+        border: '1px solid #2f4858',
+        padding: '1rem',
+        'border-radius': '10px',
+      }}
+    >
+      {modal ? (
+        <SignInFormByCredentials
+          toggleModal={() => {}}
+          toggleSignUpModal={toggleAlternative}
+        />
+      ) : (
+        <SignUpFormByCredentials
+          toggleModal={() => {}}
+          toggleSignInModal={toggleAlternative}
+        />
+      )}
+
+      <VerticalSplitter />
+
+      <SignFormByServices />
+    </div>
   )
-
-  useEffect(() => {
-    let timeoutId
-    if (!signInModalOpen && !signUpModalOpen) {
-      timeoutId = setTimeout(() => {
-        router.push('/')
-      }, 200)
-    }
-    return () => {
-      clearTimeout(timeoutId)
-    }
-    // eslint-disable-next-line
-  }, [signInModalOpen, signUpModalOpen])
-
-  return <></>
 }
 
 export default SignIn

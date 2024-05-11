@@ -26,44 +26,53 @@ const UserListTabs = () => {
   return (
     <div className={`${s.tabs}`}>
       <List>
-        <ItemLink text='Особистий кабінет' href='/profile/personal_data'>
-          {/* <AccountCircle /> */}
-          <div className={`${s.image}`}>
-            {user && user.image && (
-              <Image
-                src={user.image}
-                width={50}
-                height={50}
-                sizes='100vw'
-                alt='user'
-              />
-            )}
-          </div>
-        </ItemLink>
+        {session && (
+          <ItemLink text='Особистий кабінет' href='/user/personal_data'>
+            {/* <AccountCircle /> */}
+            <div className={`${s.image}`}>
+              {user && user.image && (
+                <Image
+                  src={user.image}
+                  width={50}
+                  height={50}
+                  sizes='100vw'
+                  alt='user'
+                />
+              )}
+            </div>
+          </ItemLink>
+        )}
 
         <ItemLink text='Список бажань' href='/user/wish_list'>
           <Favorite />
         </ItemLink>
-        <ItemLink text='Мої замовлення' href='/profile/orders_list'>
-          <ReceiptLong />
-        </ItemLink>
-        <Divider />
-        <List>
-          <ItemLink text='На головну сторінку' href='/'>
-            <Home />
+        {session && (
+          <ItemLink text='Мої замовлення' href='/user/orders_list'>
+            <ReceiptLong />
           </ItemLink>
-          <ItemButton
-            text='Вийти з акаунтa'
-            onClick={() => {
-              dispatch(toggle(MAIN_OFFCANVAS))
-              signOut({ callbackUrl: '/' }).then(() => {
-                window.location.href = '/'
-              })
-            }}
-          >
-            <MeetingRoom />
-          </ItemButton>
-        </List>
+        )}
+
+        {session && (
+          <>
+            <Divider />
+            <List>
+              <ItemLink text='На головну сторінку' href='/'>
+                <Home />
+              </ItemLink>
+              <ItemButton
+                text='Вийти з акаунтa'
+                onClick={() => {
+                  dispatch(toggle(MAIN_OFFCANVAS))
+                  signOut({ callbackUrl: '/' }).then(() => {
+                    window.location.href = '/'
+                  })
+                }}
+              >
+                <MeetingRoom />
+              </ItemButton>
+            </List>
+          </>
+        )}
       </List>
     </div>
   )

@@ -43,10 +43,7 @@ function MainOffcanvasBody() {
         {session ? (
           <>
             <List>
-              <ItemLink
-                text='Особистий кабінет'
-                href={`/profile/personal_data`}
-              >
+              <ItemLink text='Особистий кабінет' href={`/user/personal_data`}>
                 <Image
                   className={`${s.user_avatar}`}
                   src={user.image}
@@ -64,7 +61,7 @@ function MainOffcanvasBody() {
             <ItemLink text='Список бажань' href='/user/wish_list'>
               <Favorite />
             </ItemLink>
-            <ItemLink text='Мої замовлення' href='/profile/orders_list'>
+            <ItemLink text='Мої замовлення' href='/user/orders_list'>
               <ReceiptLong />
             </ItemLink>
           </>

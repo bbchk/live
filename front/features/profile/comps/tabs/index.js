@@ -11,7 +11,7 @@ const Tabs = () => {
     <nav className={`${s.tabs}`}>
       <ul>
         <ProfileTab />
-        <Tab href='/profile/personal_data'>
+        <Tab href='/user/personal_data'>
           <i className='bi bi-person-circle' />
           <p>Особистий кабінет</p>
         </Tab>

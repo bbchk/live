@@ -20,7 +20,7 @@ import CustomAlert from '#root/comps/warnings/alert.js'
 //todo input validation
 //todo make modal responsive
 
-const SignInModal = () => {
+const SignInModal = ({ open }) => {
   const dispatch = useDispatch()
   const { signInModalOpen } = useSelector((state) => state.modals)
 
@@ -38,7 +38,7 @@ const SignInModal = () => {
     <>
       <Modal
         id='SignInModal'
-        show={signInModalOpen}
+        show={signInModalOpen || open}
         onHide={toggle}
         centered
         fullscreen='md-down'
