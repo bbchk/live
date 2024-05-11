@@ -63,7 +63,7 @@ const CustomHotkeys = () => {
   useHotkeys('ctrl+alt+m, alt+shift+ь', () => focusOn('main_content'))
 
   //user
-  useHotkeys('shift+e', () => signOut({ callbackUrl: '/' }), [dispatch])
+  useHotkeys('alt+shift+q', () => signOut({ callbackUrl: '/' }), [dispatch])
 
   //todo for landing page
   // Shopping Cart Shortcuts: These can help users manage their shopping cart.

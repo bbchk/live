@@ -2,8 +2,13 @@ import CategoriesGallery from 'features/categories/comps/gallery'
 import Head from 'next/head'
 import axios from 'axios'
 import { useStopLoading } from 'hooks/useStopLoading'
+import { useSession } from 'next-auth/react'
 
 const Home = ({ rootCategories }) => {
+  const { data: session, status } = useSession()
+  const user = session?.user
+  // console.log('🚀 ~ user:', user)
+
   useStopLoading()
 
   return (

@@ -5,7 +5,9 @@ import Image from 'next/image'
 
 const ProfileImage = () => {
   const { data: session } = useSession()
+
   const user = session?.user
+
   return (
     <div className={`${s.profile_image} ${ps.profile_image}`}>
       {user && user.image && (

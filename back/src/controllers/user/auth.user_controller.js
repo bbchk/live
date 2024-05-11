@@ -13,6 +13,7 @@ export const signIn = asyncErrorHandler(async (req, res, next) => {
     email: email,
     token: token,
     likedProducts: user.likedProducts,
+    wishList: user.wishList,
     cart: user.cart,
     image: user.image,
   })

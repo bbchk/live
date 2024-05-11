@@ -4,6 +4,8 @@ const useTabTrap = (modalOpen, modalId, firstElementId, lastElementId) => {
   useEffect(() => {
     if (modalOpen) {
       const modal = document.getElementById(modalId)
+      if (!modal) return
+
       const handleKeyDown = (event) => {
         if (event.key !== 'Tab' && event.keyCode !== 9) {
           return

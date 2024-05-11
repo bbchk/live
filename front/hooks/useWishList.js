@@ -15,168 +15,93 @@ export const useWishList = () => {
   //     // eslint-disable-next-line react-hooks/exhaustive-deps
   //   }, [dispatch])
   const { data: session } = useSession()
+
   const authHeader = session && {
     headers: {
       Authorization: `Bearer ${session.user.token}`,
     },
   }
 
+  // useEffect(() => {
+  //   //todo dispatch to wishlist slice
+  // }, [wishList])
+
   const [wishList, setValue] = useLocalStorage('wish_list', [])
 
-  async function like() {
-    if (this.isLiked) {
-      setValue(wishList.filter((id) => id !== this._id))
-      if (session) {
-        await axios.delete(
-          `/user/wish-list/${session.user.id}/delete/${this._id}`,
-          authHeader,
-        )
+  // todo can't be in many compoponents
+  useEffect(() => {
+    if (session) {
+      console.log('🚀 ~ session:', session)
+      const isWishListDifferent =
+        JSON.stringify(session.user.wishList) !== JSON.stringify(wishList)
+
+      console.log(isWishListDifferent)
+
+      if (isWishListDifferent) {
+        ;(async () => {
+          try {
+            const response = await axios.patch(
+              `/user/wish-list/${session.user.id}/sync`,
+              wishList,
+              authHeader,
+            )
+            console.log(response.data)
+            setValue(response.data)
+          } catch (e) {
+            //todo dispatch error to wishlist slice and display alert to the user
+            //todo log
+          }
+        })()
       }
-    } else {
-      setValue([...wishList, this._id])
-      if (session) {
+    }
+    // eslint-disable-next-line
+  }, [session])
+
+  useEffect(() => {
+    return () => {
+      //sync wish list state with the server
+    }
+  }, []) // Em
+
+  const addToWishList = async (productId) => {
+    if (session) {
+      try {
         await axios.post(
-          `/user/wish-list/${session.user.id}/add/${this._id}`,
+          `/user/wish-list/${session.user.id}/add/${productId}`,
           undefined,
           authHeader,
         )
+      } catch (e) {
+        //todo dispatch error to wishlist slice and display alert to the user
+        //todo log
       }
     }
-    this.isLiked = !this.isLiked
+    setValue([...wishList, productId])
   }
 
-  //   async function add(product) {
-  //     try {
-  //       if (session) {
-  //         const response = await axios.post(
-  //           `/user/wish-list/${session.user.id}/add/${_id}`,
-  //           undefined,
-  //           {
-  //             headers: {
-  //               Authorization: `Bearer ${session.user.token}`,
-  //             },
-  //           },
-  //         )
-  //       }
-  //     } catch (e) {
-  //       // console.log(e);
-  //     }
-  //   }
-
-  function dislike() {
-    if (this.isLiked) {
-      setValue(wishList.filter((id) => id !== this._id))
-      //   dispatch(remove(this._id))
-    } else {
-      setValue([...wishList, this._id])
-      //   dispatch(add(this._id))
+  const removeFromWishList = async (productId) => {
+    if (session) {
+      try {
+        await axios.delete(
+          `/user/wish-list/${session.user.id}/delete/${productId}`,
+          authHeader,
+        )
+      } catch (e) {
+        //todo dispatch error to wishlist slice and display alert to the user
+        //todo log
+      }
     }
-    this.isLiked = !this.isLiked
+    setValue(wishList.filter((id) => id !== productId))
+  }
+
+  async function like() {
+    console.log(wishList)
+    if (!wishList.includes(this._id)) {
+      await addToWishList(this._id)
+    } else {
+      await removeFromWishList(this._id)
+    }
   }
 
   return [wishList, like]
-
-  //   async function add(product) {
-  //     try {
-  //       if (session) {
-  //         const response = await axios.post(
-  //           `/user/cart/${session.user.id}/add/${_id}`,
-  //           undefined,
-  //           {
-  //             headers: {
-  //               Authorization: `Bearer ${session.user.token}`,
-  //             },
-  //           },
-  //         )
-  //       }
-  //     } catch (e) {
-  //       // console.log(e);
-  //     }
-  //   }
-
-  //   async function remove(productId) {
-  //     try {
-  //       let cart = JSON.parse(localStorage.getItem('cart')) || []
-  //       let cartItem = cart.find((item) => item.product._id === productId)
-
-  //       if (cartItem && cartItem.quantity > 1) {
-  //         cartItem.quantity--
-  //       } else if (cartItem) {
-  //         cart = cart.filter((item) => item.product._id !== productId)
-  //       }
-
-  //       localStorage.setItem('cart', JSON.stringify(cart))
-  //       dispatch(deleteCartItem(productId))
-
-  //       if (session) {
-  //         const response = await axios.delete(
-  //           `/user/cart/${session.user.id}/delete/${productId}`,
-  //           {
-  //             headers: {
-  //               Authorization: `Bearer ${session.user.token}`,
-  //             },
-  //           },
-  //         )
-  //       }
-  //     } catch (e) {
-  //       // console.log(e);
-  //     }
-  //   }
-
-  //todo
-  //   async function removeAll(productId) {}
-
-  //   async function getWishList(session) {
-  //     try {
-  //       const localStorageCartJson = localStorage.getItem('cart')
-  //       const lscart = JSON.parse(localStorageCartJson) || []
-
-  //       let cart = []
-
-  //       //if local storage cart is not empty, sync it with user cart on sign in
-  //       if (session) {
-  //         if (lscart.length > 0) {
-  //           const syncedCart = await syncAndFetch(session.user, lscart)
-  //           localStorage.setItem('cart', JSON.stringify(syncedCart))
-  //           cart = syncedCart
-  //         } else {
-  //           cart = await fetchCart(session.user)
-  //         }
-  //       } else {
-  //         cart = lscart
-  //       }
-
-  //       return cart
-  //     } catch (e) {
-  //       // console.log(e);
-  //     }
-  //   }
-
-  //   const res = await axios.patch(
-  //     `/user/cart/${user.id}/sync`,
-  //     localStorageCartOptimized,
-  //     {
-  //       headers: {
-  //         'Content-type': 'application/json',
-  //         Authorization: `Bearer ${user.token}`,
-  //       },
-  //     },
-  //   )
-
-  //   async function fetch(user) {
-  //     try {
-  //       const res = await axios.get(`/user/cart/${user.id}/fetch`, {
-  //         headers: {
-  //           Authorization: `Bearer ${user.token}`,
-  //         },
-  //       })
-
-  //       return res.data
-  //     } catch (e) {
-  //       // console.log(e);
-  //     }
-  //   }
-
-  //todo
-  //   return { add, remove, getCart }
 }

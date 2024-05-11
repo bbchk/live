@@ -7,7 +7,6 @@ import ProductFigure from './comps/figure'
 import ProductRating from './comps/rating'
 import BuyInfo from './comps/buy_info'
 import LikeButton from './comps/like_btn'
-import useLocalStorage from '#root/hooks/useLocalStorage.js'
 
 const ListingProductCard = ({ product, ...props }) => {
   const productUrl = (activeTab) =>

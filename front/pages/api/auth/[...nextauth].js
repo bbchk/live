@@ -28,6 +28,7 @@ const googleProvider = GoogleProvider({
       image: profile.picture,
       likedProducts: [],
       cart: [],
+      wishList: [],
     }
   },
 })
@@ -44,6 +45,7 @@ const githubProvider = GithubProvider({
       image: profile.avatar_url,
       likedProducts: [],
       cart: [],
+      wishList: [],
     }
   },
 })

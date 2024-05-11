@@ -29,7 +29,7 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    likedProducts: [
+    wishList: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Product',
@@ -57,12 +57,18 @@ const userSchema = new Schema(
   { timestamps: true },
 )
 
+userSchema.pre('save', function (next) {
+  this.wishList = [...new Set(this.wishList)]
+  next()
+})
+
 userSchema.statics.signIn = async function (email, password) {
   if (!email || !password) {
     throw Error('Email and password fields cannot be blank')
   }
 
   const user = await this.findOne({ email })
+  console.log('🚀 ~ user:', user)
 
   if (!user) {
     throw Error('Incorrect email')
@@ -76,6 +82,7 @@ userSchema.statics.signIn = async function (email, password) {
   return user
 }
 
+//todo add wishlist
 userSchema.statics.signUp = async function (user) {
   const { firstName, secondName, email, password, localStorageCartJson } = user
 
@@ -110,6 +117,7 @@ userSchema.statics.signUp = async function (user) {
     password: hash,
     image: defaultUserImage,
     cart: localStorageCartJson,
+    // wishList: user.wishList
   })
 
   {
