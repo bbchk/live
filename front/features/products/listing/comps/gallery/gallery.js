@@ -19,7 +19,8 @@ const ProductGallery = ({
   activeProducts: products,
   activeCategory: category,
 }) => {
-  const [wishList, like] = useWishList()
+  const [_, like] = useWishList()
+  const { wishList, status } = useSelector((state) => state.wishList)
   console.log('🚀 ~ wishList:', wishList)
 
   const cellRenderer = ({ columnIndex, rowIndex, key, style, columnCount }) => {

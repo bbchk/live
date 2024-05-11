@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { getSession, signIn as nextAuthSignIn } from 'next-auth/react'
-import { useWishList } from 'hooks/useWishList.js'
+import { signIn as nextAuthSignIn } from 'next-auth/react'
 import useSyncWishList from 'hooks/use_sync_wish_list'
+import useLocalStorage from './useLocalStorage'
 
 //we need to set redux wishlist state to local storage wishlist state on every run
 //when we sync we need to get redux state compare with session state and sync if needed
@@ -28,7 +28,7 @@ function onError() {
 
 function useSignIn() {
   const sync = useSyncWishList()
-  // useSyncWishList(wishList, like)
+  const [wshl, _] = useLocalStorage('wish_list', [])
 
   return async function signIn(email, password) {
     const res = await nextAuthSignIn('credentials', {
@@ -39,7 +39,8 @@ function useSignIn() {
     })
 
     if (res) {
-      await sync()
+      //?what if we sign in on page, until unmount and not synced??
+      await sync(wshl)
     } else {
       onError()
     }

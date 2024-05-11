@@ -9,6 +9,7 @@ export const wishListSlice = createSlice({
   },
   reducers: {
     set: (state, action) => {
+      console.log(action.payload)
       state.wishList = action.payload
       state.status = 'succeeded'
     },
@@ -18,9 +19,12 @@ export const wishListSlice = createSlice({
     remove: (state, action) => {
       state.wishList = state.wishList.filter((id) => id !== action.payload)
     },
+    setStatus: (state, action) => {
+      state.status = 'meh'
+    },
   },
 })
 
-export const { set, add, remove } = wishListSlice.actions
+export const { set, add, remove, setStatus } = wishListSlice.actions
 
 export const wishListReducer = wishListSlice.reducer
