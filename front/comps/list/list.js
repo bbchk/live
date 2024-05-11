@@ -2,11 +2,17 @@ import { ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material'
 
 import s from './list.module.scss'
 import { balsamiqSans } from '#root/pages/_app.js'
+import { useRouter } from 'next/router'
 
 const Item = ({ text, component, onClick, href, children }) => {
+  const router = useRouter()
+
+  const isActive = (href) => {
+    return router.pathname === href
+  }
   return (
     <ListItem
-      className={`${s.item}`}
+      className={`${s.item} ${isActive(href) ? s.active : ''} button_secondary`}
       button
       component={component}
       href={href}
@@ -52,4 +58,4 @@ const ListHeading = ({ text }) => {
   )
 }
 
-export { ItemButton, ItemLink, ListHeading }
+export { Item, ItemButton, ItemLink, ListHeading }

@@ -61,7 +61,7 @@ function MainOffcanvasBody() {
             <ItemLink text='Усі категорії товарів' href='/'>
               <Interests />
             </ItemLink>
-            <ItemLink text='Список бажань' href='/profile/wish_list'>
+            <ItemLink text='Список бажань' href='/user/wish_list'>
               <Favorite />
             </ItemLink>
             <ItemLink text='Мої замовлення' href='/profile/orders_list'>

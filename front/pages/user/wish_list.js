@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import TabsLayout from 'comps/layout/tabs/tabs.layout'
-import Tabs from 'features/user/wish_list/wish_list.tabs'
+import Tabs from 'features/user/comps/user.tabs'
 
 const WishList = () => {
   return (

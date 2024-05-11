@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import PersonalData from 'features/profile/comps/personal_data/personal_data'
-import Tabs from 'features/profile/comps/tabs/index'
+
+import TabsLayout from 'comps/layout/tabs/tabs.layout'
+import Tabs from 'features/user/comps/user.tabs'
 
 const PersonalDataPage = () => {
   return (
@@ -13,10 +15,7 @@ const PersonalDataPage = () => {
         />
       </Head>
 
-      <div className={'d-flex'}>
-        <Tabs />
-        <PersonalData />
-      </div>
+      <TabsLayout Tabs={Tabs} Content={PersonalData} />
     </>
   )
 }

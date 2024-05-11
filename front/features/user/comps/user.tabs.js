@@ -1,8 +1,8 @@
 import { List, Divider } from '@mui/material'
 
 import {
-  Menu as MenuIcon,
-  Home as HomeIcon,
+  Menu,
+  Home,
   AccountCircle,
   Favorite,
   Interests,
@@ -11,23 +11,36 @@ import {
   MeetingRoom,
 } from '@mui/icons-material'
 
-import s from './wish_list.tabs.module.scss'
+import s from './user.tabs.module.scss'
 
 import { ItemLink, ItemButton, ListHeading } from 'comps/list/list.js'
 import ProfileTab from '#root/features/profile/comps/tabs/profile-tab.js'
 
+import { useSession } from 'next-auth/react'
+
+import Image from 'next/image'
+
 const UserListTabs = () => {
+  const { data: session } = useSession()
+  const user = session?.user
   return (
     <div className={`${s.tabs}`}>
       <List>
-        <ProfileTab />
         <ItemLink text='Особистий кабінет' href='/profile/personal_data'>
-          <AccountCircle />
+          {/* <AccountCircle /> */}
+          <div className={`${s.image}`}>
+            {user && user.image && (
+              <Image
+                src={user.image}
+                width={50}
+                height={50}
+                sizes='100vw'
+                alt='user'
+              />
+            )}
+          </div>
         </ItemLink>
 
-        <ItemLink text='Усі категорії товарів' href='/'>
-          <Interests />
-        </ItemLink>
         <ItemLink text='Список бажань' href='/user/wish_list'>
           <Favorite />
         </ItemLink>
@@ -36,8 +49,11 @@ const UserListTabs = () => {
         </ItemLink>
         <Divider />
         <List>
+          <ItemLink text='На головну сторінку' href='/'>
+            <Home />
+          </ItemLink>
           <ItemButton
-            text='Вийти з акаунту'
+            text='Вийти з акаунтa'
             onClick={() => {
               dispatch(toggle(MAIN_OFFCANVAS))
               signOut({ callbackUrl: '/' }).then(() => {

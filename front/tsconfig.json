@@ -22,7 +22,7 @@
     "setupTests.js",
     "pages/_app.js",
     "pages/profile/orders_list.js",
-    "pages/profile/wish_list.js",
+    "pages/user/wish_list.js",
     "pages/profile/personal_data.js",
     "pages/index.js",
     "utils/connectMongoDB.js",

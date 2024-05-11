@@ -3,11 +3,14 @@ import s from './tab.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { ItemLink, ItemButton, ListHeading } from 'comps/list/list.js'
+
 const ProfileTab = () => {
   const { data: session } = useSession()
   const user = session?.user
   return (
-    <Link
+    <ItemLink
+      text={`${user?.firstName}  ${user?.secondName}`}
       className={`${s.tab} ${s.profile_tab}`}
       href={'/profiler/personal_data'}
     >
@@ -22,11 +25,11 @@ const ProfileTab = () => {
           />
         )}
       </div>
-      <div className={`${s.credentials}`}>
+      {/* <div className={`${s.credentials}`}>
         <p>{`${user?.firstName}  ${user?.secondName}`}</p>
         <p>{user?.email}</p>
-      </div>
-    </Link>
+      </div> */}
+    </ItemLink>
   )
 }
 

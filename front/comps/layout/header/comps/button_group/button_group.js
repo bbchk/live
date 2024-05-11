@@ -56,7 +56,7 @@ const ButtonGroup = () => {
               <ChecklistRtlRounded />
             </IconButton>
             <IconButton
-              href={'/profile/wish_list'}
+              href={'/user/wish_list'}
               tooltipText={'Список бажаного'}
             >
               <FavoriteBorderRounded />

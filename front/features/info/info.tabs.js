@@ -1,14 +1,9 @@
 import { List, Divider } from '@mui/material'
 
 import {
-  Menu as MenuIcon,
-  Home as HomeIcon,
-  AccountCircle,
-  Favorite,
-  Interests,
-  ReceiptLong,
-  ShoppingCart,
-  MeetingRoom,
+  PrivacyTipRounded,
+  GavelRounded,
+  InfoRounded,
 } from '@mui/icons-material'
 
 import s from './info.tabs.module.scss'
@@ -20,14 +15,15 @@ const UserListTabs = () => {
     <div className={`${s.tabs}`}>
       <List>
         <ItemLink text='Про нас' href='/info/about_us'>
-          <AccountCircle />
+          <InfoRounded />
         </ItemLink>
 
         <ItemLink text='Політика конфеденційності' href='/info/privacy-policy'>
-          <Interests />
+          <PrivacyTipRounded />
         </ItemLink>
+
         <ItemLink text='Правила сайту' href='/info/terms-of-usage'>
-          <Favorite />
+          <GavelRounded />
         </ItemLink>
         <Divider />
       </List>

@@ -16,11 +16,11 @@ const Tabs = () => {
           <p>Особистий кабінет</p>
         </Tab>
 
-        <Tab href='/profile/wish_list'>
+        <Tab href='/user/wish_list'>
           <i className='bi bi-heart-fill' />
           <p>Список бажань</p>
         </Tab>
-        <Tab href='/profile/wish_list' disabled>
+        <Tab href='/user/wish_list' disabled>
           <i className='bi bi-list-check' />
           <p>Мої замовлення</p>
         </Tab>

@@ -11,10 +11,35 @@
 $icon-size: 2rem;
 
 .item {
+  &.active {
+    background-color: rgba($color-blue-dasl, 0.05);
+    border-right: 1px solid $color-green-dur;
+
+    .item_text {
+      text-decoration: underline;
+    }
+
+    .item_icon svg {
+      background-color: $color-green-dur;
+      fill: white;
+    }
+  }
+
   .item_text {
     font-size: 1.1rem;
   }
+
   .item_icon {
+    img {
+      width: $icon-size;
+      height: $icon-size;
+
+      border-radius: 50%;
+      margin-right: 0.5rem;
+
+      box-shadow: 0 0 0.1rem 0.1rem rgba($color-blue-dasl, 0.5);
+    }
+
     svg {
       width: $icon-size;
       height: $icon-size;
