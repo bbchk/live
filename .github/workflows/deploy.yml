@@ -79,7 +79,7 @@ jobs:
 
       # todo test
       - name: Wait to back-end fully deploy
-        run: sleep 20
+        run: sleep 60
 
       - name: Install Dependencies
         run: cd front && npm install
