@@ -78,7 +78,7 @@ jobs:
           node-version: 20
 
       # todo test
-      - name: Wait to back-end fully deploy
+      - name: Wait for back-end to fully deploy
         run: sleep 60
 
       - name: Install Dependencies
