@@ -1,3 +1,5 @@
+import _Error from '#src/utils/error.js'
+import bcrypt from 'bcryptjs'
 import User from '#src/models/user.model.js'
 import genAuthToken from '#src/utils/gen_auth_token.js'
 
@@ -15,6 +17,18 @@ export const signUp = async (user) => {
 }
 
 export const update = async (userId, updatedData) => {
+  const { password, oldPasword } = updatedData
+
+  if (password && oldPasword) {
+    let user = await User.findById(userId)
+
+    const match = await bcrypt.compare(oldPasword, user.password)
+    if (!match) {
+      throw new _Error(`Старий пароль не є правильним`, 404)
+    }
+    updatedData.password = await bcrypt.hash(password, 10)
+  }
+
   try {
     const user = await User.findByIdAndUpdate(userId, updatedData, {
       new: true,

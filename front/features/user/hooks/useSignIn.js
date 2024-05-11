@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { signIn as nextAuthSignIn } from 'next-auth/react'
 import useSyncWishList from 'hooks/use_sync_wish_list'
-import useLocalStorage from './useLocalStorage'
+import useLocalStorage from '../../../hooks/useLocalStorage'
 
 //we need to set redux wishlist state to local storage wishlist state on every run
 //when we sync we need to get redux state compare with session state and sync if needed

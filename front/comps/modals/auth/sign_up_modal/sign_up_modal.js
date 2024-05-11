@@ -1,4 +1,3 @@
-import { useSignUp } from 'hooks/useSignUp'
 import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 

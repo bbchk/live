@@ -5,15 +5,16 @@ import { useSession } from 'next-auth/react'
 import InputField from 'comps/input_fields/input_field'
 import axios from 'axios'
 import Alert from 'comps/warnings/alert'
+import useUpdateUser from '#root/features/user/hooks/useUpdateUser.js'
 
 const UserInfoForm = () => {
-  const { data: session, update } = useSession()
+  const { data: session } = useSession()
+  const [updateUser, _, error] = useUpdateUser()
 
   const user = session?.user
 
   const [isBeingModified, setIsBeingModified] = useState(false)
   const [hasBeenBeingModified, setHasBeenBeingModified] = useState(false)
-  const [error, setError] = useState(null)
 
   const [userInfo, setUserInfo] = useState({
     firstName: session?.user.firstName,
@@ -37,34 +38,7 @@ const UserInfoForm = () => {
     }, true)
 
     if (!isSame) {
-      try {
-        const response = await axios.patch(
-          `/user/personal-info/${session.user.id}`,
-          userInfo,
-          {
-            headers: {
-              Authorization: `Bearer ${session.user.token}`,
-            },
-          },
-        )
-
-        const requestSuccessful =
-          response.status >= 200 && response.status < 300
-
-        if (requestSuccessful) {
-          await update({
-            ...session,
-            user: {
-              ...session?.user,
-              ...userInfo,
-            },
-          })
-        } else {
-          setError('Помилка при збереженні даних')
-        }
-      } catch (e) {
-        setError('Помилка при збереженні даних')
-      }
+      await updateUser(userInfo)
     }
     setIsBeingModified(false)
   }

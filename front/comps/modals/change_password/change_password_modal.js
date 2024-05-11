@@ -3,6 +3,7 @@ import { Modal } from 'react-bootstrap'
 import s from './change_password_modal.module.scss'
 
 // import Link from "next/link";
+import Alert from 'comps/warnings/alert'
 
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -15,6 +16,7 @@ import PasswordInputField from 'comps/input_fields/password_input_field'
 import { useEffect, useState } from 'react'
 import { balsamiqSans } from 'pages/_app'
 import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap.js'
+import useChangePassword from 'features/user/hooks/useChangePasword.js'
 
 //todo input validation
 //todo make modal responsive
@@ -22,6 +24,8 @@ import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap.js'
 const ChangePasswordModal = () => {
   const dispatch = useDispatch()
   const { changePasswordModalOpen } = useSelector((state) => state.modals)
+
+  const [changePassword, _, error] = useChangePassword()
 
   useTabTrap(changePasswordModalOpen, 'changePasswordModal')
 
@@ -46,6 +50,8 @@ const ChangePasswordModal = () => {
 
   const handleSubmit = async (e, value) => {
     e.preventDefault()
+
+    await changePassword({ ...passwordInfo })
   }
 
   return (
@@ -99,6 +105,7 @@ const ChangePasswordModal = () => {
               label='Новий пароль ще раз'
             />
           </div>
+          {error && <Alert text={error} severity={'error'} animated={false} />}
           <menu className={`${s.button_group}`}>
             <li>
               <button

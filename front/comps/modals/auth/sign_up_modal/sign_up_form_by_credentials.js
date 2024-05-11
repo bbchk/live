@@ -1,4 +1,5 @@
-import { useSignUp } from 'hooks/useSignUp'
+import { useSignUp } from 'features/user/hooks/useSignUp'
+
 import { useState } from 'react'
 
 import s from './sign_up_form_by_credentials.module.scss'

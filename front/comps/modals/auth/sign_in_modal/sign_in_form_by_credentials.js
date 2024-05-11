@@ -5,7 +5,7 @@ import Link from 'next/link'
 import InputField from 'comps/input_fields/input_field'
 import PasswordInputField from 'comps/input_fields/password_input_field'
 
-import useSignIn from 'hooks/useSignIn'
+import useSignIn from 'features/user/hooks/useSignIn.js'
 
 const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const [email, setEmail] = useState('')
