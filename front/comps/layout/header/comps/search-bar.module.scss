@@ -21,6 +21,7 @@
     }
 
     &:focus {
+      outline: none;
       box-shadow: 0 0 0.2rem 0.1rem rgba($color-blue-dasl, 0.4) inset;
     }
   }
