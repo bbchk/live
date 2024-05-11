@@ -13,3 +13,14 @@ export const signUp = async (user) => {
   const token = genAuthToken(newUser._id)
   return { ...newUser, token }
 }
+
+export const update = async (userId, updatedData) => {
+  try {
+    const user = await User.findByIdAndUpdate(userId, updatedData, {
+      new: true,
+    })
+    return user
+  } catch (error) {
+    throw error
+  }
+}

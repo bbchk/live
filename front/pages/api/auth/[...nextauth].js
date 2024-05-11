@@ -81,8 +81,8 @@ const credentialsProvider = CredentialsProvider({
 // Callbacks
 const callbacks = {
   async jwt({ token, user, session, trigger, account }) {
-    if (trigger === 'update' && session) {
-      return { ...token, ...session?.user }
+    if (trigger === 'update') {
+      token.user = session.user
     }
 
     if (account) {

@@ -4,10 +4,14 @@
   width: 100%;
 
   &.animated {
-    position: absolute;
-    z-index: 9999;
-    opacity: 1;
+    width: 100vw;
+    position: fixed;
     top: -100px;
+    left: 0;
+    z-index: 9999;
+
+    opacity: 1;
+
     animation: slideOut 4s forwards;
 
     @keyframes slideOut {

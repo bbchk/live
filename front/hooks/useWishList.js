@@ -18,8 +18,10 @@ export const useWishList = () => {
       await getSession().then((session) => {
         if (status === 'idle') {
           if (session) {
+            console.log('🚀 ~ session:', session)
             dispatch(wishList.set(session.user.wishList))
           } else {
+            console.log('🚀 ~ localStWishList:', localStWishList)
             dispatch(wishList.set(localStWishList))
           }
         }

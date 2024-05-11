@@ -37,10 +37,14 @@ function useSyncWishList() {
             authHeader,
           )
           resultWishList = response.data
-        } catch (e) {}
+        } catch (e) {
+          //todo
+        }
       }
       setValue(resultWishList)
       dispatch(wishListSlice.set(resultWishList))
+
+      console.log('🚀 ~ session:', session)
       await update({
         ...session,
         user: {
