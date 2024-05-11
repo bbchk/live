@@ -14,7 +14,6 @@ import {
 import s from './user.tabs.module.scss'
 
 import { ItemLink, ItemButton, ListHeading } from 'comps/list/list.js'
-import ProfileTab from '#root/features/profile/comps/tabs/profile-tab.js'
 
 import { useSession } from 'next-auth/react'
 

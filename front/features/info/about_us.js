@@ -1,13 +1,15 @@
 import s from './about_us.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaw, faSeedling } from '@fortawesome/free-solid-svg-icons'
+
+import { PetsRounded, YardRounded } from '@mui/icons-material'
 
 export const AboutUs = () => {
   return (
     <article className={`${s.about_us}`}>
       <h3 className={`${s.motto}`}>
-        <FontAwesomeIcon icon={faSeedling} />
-        <FontAwesomeIcon icon={faPaw} />
+        <div className={`${s.syms}`}>
+          <PetsRounded />
+          <YardRounded />
+        </div>
         <span>
           <strong>Живий світ</strong> − це більше, ніж просто інтернет-магазин.
         </span>
@@ -49,12 +51,3 @@ export const AboutUs = () => {
 }
 
 export default AboutUs
-
-{
-  /* <List className={`${s.dotted_list}`}>
-<ListHeading text='Інформація про магазин' />
-<ItemLink text='Про нас' href='/info/abouts' />
-<ItemLink text='Політика приватності' href='/info/privacy-policy' />
-<ItemLink text='Умови використання сайту' href='/info/terms-of-usage' />
-</List> */
-}

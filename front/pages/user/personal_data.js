@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import PersonalData from 'features/profile/comps/personal_data/personal_data'
+import PersonalData from '#root/features/user/personal_data/personal_data.js'
 
 import TabsLayout from 'comps/layout/tabs/tabs.layout'
 import Tabs from 'features/user/comps/user.tabs'

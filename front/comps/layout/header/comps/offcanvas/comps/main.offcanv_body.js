@@ -99,7 +99,7 @@ function MainOffcanvasBody() {
 
       <List className={`${s.dotted_list}`}>
         <ListHeading text='Інформація про магазин' />
-        <ItemLink text='Про нас' href='/info/abouts' />
+        <ItemLink text='Про нас' href='/info/about_us' />
         <ItemLink text='Політика приватності' href='/info/privacy-policy' />
         <ItemLink text='Умови використання сайту' href='/info/terms-of-usage' />
       </List>

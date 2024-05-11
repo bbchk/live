@@ -1,5 +1,7 @@
 import { InfoRounded } from '@mui/icons-material'
 
+import s from './about_us.module.scss'
+
 const AboutUs = () => {
   return (
     <section>

@@ -14,10 +14,22 @@
     margin-bottom: 1rem;
 
     &.motto {
+      display: flex;
+      max-width: 40ch;
       padding: 2rem;
 
+      .syms {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          width: 4rem;
+          height: 4rem;
+        }
+      }
+
       font-weight: bold;
-      text-align: center;
 
       span {
         color: $color-green-dur;
