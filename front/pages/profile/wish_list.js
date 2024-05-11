@@ -1,5 +1,6 @@
-// import Gallery from "features/profile/comps/wish_list/gallery";
 import Head from 'next/head'
+import TabsLayout from 'comps/layout/tabs/tabs.layout'
+import Tabs from 'features/user/wish_list/wish_list.tabs'
 
 const WishList = () => {
   return (
@@ -14,7 +15,12 @@ const WishList = () => {
 
       {/* <TabLayout> */}
       {/* <Gallery></Gallery> */}
-      <h1>UNDER DEVELOPMENT</h1>
+
+      <TabsLayout
+        Tabs={Tabs}
+        Content={() => <div className='w-100 h-100 bg-primary' />}
+      />
+
       {/* </TabLayo ut> */}
     </>
   )

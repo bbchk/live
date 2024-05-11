@@ -1,12 +1,10 @@
-import s from './info.module.scss'
+import s from './about_us.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faPaw } from "@fortawesome/free-regular-svg-icons";
 import { faPaw, faSeedling } from '@fortawesome/free-solid-svg-icons'
 
-export const Info = () => {
+export const AboutUs = () => {
   return (
-    <article className={`${s.info}`}>
-      <h2>Про нас</h2>
+    <article className={`${s.about_us}`}>
       <h3 className={`${s.motto}`}>
         <FontAwesomeIcon icon={faSeedling} />
         <FontAwesomeIcon icon={faPaw} />
@@ -50,4 +48,13 @@ export const Info = () => {
   )
 }
 
-export default Info
+export default AboutUs
+
+{
+  /* <List className={`${s.dotted_list}`}>
+<ListHeading text='Інформація про магазин' />
+<ItemLink text='Про нас' href='/info/abouts' />
+<ItemLink text='Політика приватності' href='/info/privacy-policy' />
+<ItemLink text='Умови використання сайту' href='/info/terms-of-usage' />
+</List> */
+}

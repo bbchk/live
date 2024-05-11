@@ -1,0 +1,44 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.tab {
+  width: 100%;
+  padding: 0.3em 0.5em;
+
+  .content {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+
+    i {
+      margin-right: 20px;
+    }
+
+    p {
+      font-size: 0.8em;
+    }
+  }
+}
+
+.profile_tab {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+
+  .image {
+    object-fit: contain;
+
+    img {
+      object-fit: contain;
+      border-radius: 500px;
+    }
+  }
+
+  .credentials {
+    p:first-child {
+    }
+    p:last-child {
+      font-size: 0.8em;
+    }
+  }
+}

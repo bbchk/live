@@ -24,6 +24,8 @@ import { signOut, useSession } from 'next-auth/react'
 import { useDispatch } from 'react-redux'
 import Image from 'next/image'
 
+import { ItemLink, ItemButton, ListHeading } from 'comps/list/list.js'
+
 import {
   toggle,
   GLOBAL_COMPS,
@@ -71,7 +73,10 @@ function MainOffcanvasBody() {
             <List>
               <ItemButton
                 text='Увійти в акаунт'
-                onClick={() => dispatch(toggle(SIGN_IN_MODAL))}
+                onClick={() => {
+                  dispatch(toggle(MAIN_OFFCANVAS))
+                  dispatch(toggle(SIGN_IN_MODAL))
+                }}
               >
                 <AccountCircle />
               </ItemButton>
@@ -86,6 +91,7 @@ function MainOffcanvasBody() {
           text='Кошик покупок'
           component='button'
           onClick={() => {
+            dispatch(toggle(MAIN_OFFCANVAS))
             dispatch(toggle(CART_MODAL))
           }}
         >
@@ -96,9 +102,9 @@ function MainOffcanvasBody() {
 
       <List className={`${s.dotted_list}`}>
         <ListHeading text='Інформація про магазин' />
-        <ItemLink text='Про нас' href='/info' />
-        <ItemLink text='Політика приватності' href='/privacy-policy' />
-        <ItemLink text='Умови використання сайту' href='/terms-of-usage' />
+        <ItemLink text='Про нас' href='/info/abouts' />
+        <ItemLink text='Політика приватності' href='/info/privacy-policy' />
+        <ItemLink text='Умови використання сайту' href='/info/terms-of-usage' />
       </List>
 
       {session && (
@@ -108,6 +114,7 @@ function MainOffcanvasBody() {
             <ItemButton
               text='Вийти з акаунту'
               onClick={() => {
+                dispatch(toggle(MAIN_OFFCANVAS))
                 signOut({ callbackUrl: '/' }).then(() => {
                   window.location.href = '/'
                 })
@@ -123,60 +130,3 @@ function MainOffcanvasBody() {
 }
 
 export default MainOffcanvasBody
-
-const Item = ({ text, component, onClick, href, children }) => {
-  return (
-    <ListItem
-      className={`${s.item}`}
-      button
-      component={component}
-      href={href}
-      onClick={onClick}
-    >
-      {children && (
-        <ListItemIcon className={`${s.item_icon}`}>{children}</ListItemIcon>
-      )}
-      <ListItemText
-        primaryTypographyProps={{
-          className: `${balsamiqSans.className} ${s.item_text}`,
-        }}
-        primary={text}
-      />
-    </ListItem>
-  )
-}
-
-const ItemButton = ({ text, onClick, children }) => {
-  const dispatch = useDispatch()
-  return (
-    <Item
-      text={text}
-      component='button'
-      onClick={() => {
-        dispatch(toggle(MAIN_OFFCANVAS))
-        onClick()
-      }}
-    >
-      {children}
-    </Item>
-  )
-}
-
-const ItemLink = ({ text, href, children }) => {
-  return (
-    <Item text={text} component='a' href={href}>
-      {children}
-    </Item>
-  )
-}
-
-const ListHeading = ({ text }) => {
-  return (
-    <Typography
-      className={`${s.list_heading} ${balsamiqSans.className}`}
-      variant='h6'
-    >
-      {text}
-    </Typography>
-  )
-}

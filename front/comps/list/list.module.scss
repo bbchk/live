@@ -1,0 +1,49 @@
+@use './styles/variables' as *;
+
+.list_heading {
+  padding: 0rem 1rem;
+  padding-bottom: 0.5rem;
+
+  font-size: 1.1rem;
+  color: darken($color: $color-blue-dasl, $amount: 10);
+}
+
+$icon-size: 2rem;
+
+.item {
+  .item_text {
+    font-size: 1.1rem;
+  }
+  .item_icon {
+    svg {
+      width: $icon-size;
+      height: $icon-size;
+
+      padding: 0.1rem;
+      border-radius: 5px;
+
+      background-color: rgba($color-blue-dasl, 0.1);
+      fill: rgba($color-blue-dasl, 0.3);
+
+      transition:
+        background-color 0.25s,
+        fill 0.2s;
+    }
+  }
+  transition:
+    background-color 0.25s,
+    color 0.25s;
+
+  &:hover {
+    background-color: $color-green-medbud;
+
+    .item_text {
+      text-decoration: underline;
+    }
+
+    svg {
+      background-color: $color-green-dur;
+      fill: white;
+    }
+  }
+}

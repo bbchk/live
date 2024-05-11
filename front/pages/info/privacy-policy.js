@@ -1,5 +1,7 @@
 import Policy from '#root/features/info/privacy_policy.js'
 import Head from 'next/head'
+import TabsLayout from 'comps/layout/tabs/tabs.layout'
+import Tabs from 'features/info/info.tabs'
 
 const PrivacyPolicy = () => {
   return (
@@ -11,7 +13,8 @@ const PrivacyPolicy = () => {
           content='Живий Світ | Політика конфіденційності'
         />
       </Head>
-      <Policy />
+
+      <TabsLayout Tabs={Tabs} Content={Policy} />
     </>
   )
 }

@@ -1,5 +1,7 @@
 import TermsOfUsage from '#root/features/info/terms_of_usage.js'
 import Head from 'next/head'
+import TabsLayout from 'comps/layout/tabs/tabs.layout'
+import Tabs from 'features/info/info.tabs'
 
 const UsageTerms = () => {
   return (
@@ -11,7 +13,7 @@ const UsageTerms = () => {
           content='Живий Світ - Угода користувача і умови використання сайту магазину'
         />
       </Head>
-      <TermsOfUsage />
+      <TabsLayout Tabs={Tabs} Content={TermsOfUsage} />
     </>
   )
 }
