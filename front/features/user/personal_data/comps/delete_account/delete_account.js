@@ -3,6 +3,8 @@ import card_s from './../card.module.scss'
 import { Card } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 
+import { DeleteOutlineRounded } from '@mui/icons-material'
+
 import {
   toggle,
   GLOBAL_COMPS,
@@ -15,7 +17,7 @@ const DeleteAccount = () => {
   return (
     <Card className={`${card_s.card}`}>
       <Card.Header className={`${card_s.header} ${s.header}`}>
-        <i className='bi bi-trash3-fill' />
+        <DeleteOutlineRounded />
         <h5>Видалити акаунт</h5>
       </Card.Header>
       <Card.Body className={`${card_s.body} ${s.body}`}>

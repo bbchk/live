@@ -2,6 +2,8 @@ import s from './security.module.scss'
 import card_s from './../card.module.scss'
 import { Card } from 'react-bootstrap'
 
+import { LockRounded } from '@mui/icons-material'
+
 import { useDispatch } from 'react-redux'
 import {
   toggle,
@@ -16,7 +18,7 @@ const Security = () => {
   return (
     <Card className={`${card_s.card}`}>
       <Card.Header className={`${card_s.header}`}>
-        <i className='bi bi-lock-fill'></i>
+        <LockRounded />
         <h5>Безпека</h5>
       </Card.Header>
       <Card.Body className={`${card_s.body} ${s.security}`}>
