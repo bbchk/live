@@ -1,15 +1,14 @@
-import { getSession } from 'next-auth/react'
+import { getSession, useSession } from 'next-auth/react'
 import useLocalStorage from './useLocalStorage'
 import * as wishListSlice from 'store/slices/wish_list.slice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import axios from 'axios'
-import { use } from 'react'
 
 //? pass init value
 function useSyncWishList() {
   const dispatch = useDispatch()
   const [_, setValue] = useLocalStorage('wish_list', [])
-  // const { status } = useSelector((state) => state.wishList)
+  const { update } = useSession()
 
   //on login we use local storage
   //on onmount we use global state
@@ -29,7 +28,7 @@ function useSyncWishList() {
         JSON.stringify(session.user.wishList) !== JSON.stringify(wishList)
       const isWishListEmpty = wishList.length === 0
 
-      console.log(isWishListDifferent && !isWishListEmpty)
+      let resultWishList = wishList
       if (isWishListDifferent && !isWishListEmpty) {
         try {
           const response = await axios.patch(
@@ -37,18 +36,21 @@ function useSyncWishList() {
             wishList,
             authHeader,
           )
-          const syncedWishList = response.data
-          setValue(syncedWishList)
-          dispatch(wishListSlice.set(syncedWishList))
+          resultWishList = response.data
         } catch (e) {}
-      } else {
-        //? need it?
-        setValue(wishList)
-        dispatch(wishListSlice.set(wishList))
       }
+      setValue(resultWishList)
+      dispatch(wishListSlice.set(resultWishList))
+      await update({
+        ...session,
+        user: {
+          ...session?.user,
+          wishList: resultWishList,
+        },
+      })
     } else {
       setValue(wishList)
-      // dispatch(wishListSlice.set(wishList))
+      // dispatch(wishListSlice.set(wishList)) // we dispatch in in useWishList
     }
   }
 }

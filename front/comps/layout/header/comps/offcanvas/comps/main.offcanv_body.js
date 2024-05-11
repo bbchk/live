@@ -54,16 +54,6 @@ function MainOffcanvasBody() {
                 />
               </ItemLink>
             </List>
-            <Divider />
-            <ItemLink text='Усі категорії товарів' href='/'>
-              <Interests />
-            </ItemLink>
-            <ItemLink text='Список бажань' href='/user/wish_list'>
-              <Favorite />
-            </ItemLink>
-            <ItemLink text='Мої замовлення' href='/user/orders_list'>
-              <ReceiptLong />
-            </ItemLink>
           </>
         ) : (
           <>
@@ -78,12 +68,15 @@ function MainOffcanvasBody() {
                 <AccountCircle />
               </ItemButton>
             </List>
-            <Divider />
-            <ItemLink text='Усі категорії товарів' href='/'>
-              <Interests />
-            </ItemLink>
           </>
         )}
+        <Divider />
+        <ItemLink text='Усі категорії товарів' href='/'>
+          <Interests />
+        </ItemLink>
+        <ItemLink text='Список бажань' href='/user/wish_list'>
+          <Favorite />
+        </ItemLink>
         <ItemButton
           text='Кошик покупок'
           component='button'
@@ -94,6 +87,11 @@ function MainOffcanvasBody() {
         >
           <ShoppingCart />
         </ItemButton>
+        {session && (
+          <ItemLink text='Мої замовлення' href='/user/orders_list'>
+            <ReceiptLong />
+          </ItemLink>
+        )}
       </List>
       <Divider />
 

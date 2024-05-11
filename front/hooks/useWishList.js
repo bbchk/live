@@ -30,17 +30,13 @@ export const useWishList = () => {
 
   //sync with localStorage and db on unmount
 
-  useEffect(() => {
-    return () => {
-      dispatch(wishList.setStatus())
-    }
-  })
-
+  //todo sends [] on dismount
   const wshlRef = useRef(wshl)
   wshlRef.current = wshl // having up to date wishList in ref
   useEffect(() => {
     // todo if we have a wishList in session and it is different from local storage we need to sync it on component mount
     return () => {
+      console.log(wshlRef.current)
       ;(async () => await sync(wshlRef.current))()
     }
   }, [])
