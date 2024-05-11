@@ -20,6 +20,7 @@ const ProductGallery = ({
   activeCategory: category,
 }) => {
   const [wishList, like] = useWishList()
+  console.log('🚀 ~ wishList:', wishList)
 
   const cellRenderer = ({ columnIndex, rowIndex, key, style, columnCount }) => {
     const index = rowIndex * columnCount + columnIndex

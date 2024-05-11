@@ -4,41 +4,25 @@ import modal_s from '../modal.module.scss'
 import Link from 'next/link'
 import InputField from 'comps/input_fields/input_field'
 import PasswordInputField from 'comps/input_fields/password_input_field'
-import { signIn, getSession } from 'next-auth/react'
-import { useCart } from 'hooks/useCart'
-import { useDispatch } from 'react-redux'
-import { setCart } from 'store/slices/user.slice'
+
+import useSignIn from 'hooks/useSignIn'
 
 const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
 
-  const dispatch = useDispatch()
-  const { getCart } = useCart()
+  const signIn = useSignIn()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const res = await signIn('credentials', {
-      email: email,
-      password: password,
-      localStorageCartJson: localStorage.getItem('cart'),
-      redirect: false,
+    await signIn(email, password).then((res) => {
+      if (res) {
+        toggleModal()
+      }
     })
-
-    //todo style display error message
-    if (res.ok) {
-      const session = await getSession()
-
-      //todo set cart
-      // const cart = await getCart(session);
-      // dispatch(setCart(cart));
-
-      toggleModal()
-    } else {
-      setError(res.error)
-    }
+    //todo handle error
   }
 
   return (

@@ -1,39 +1,51 @@
-import { useState } from 'react'
-import { setCookie } from 'nookies'
-import { useDispatch } from 'react-redux'
-import { signIn as sign_in } from 'store/slices/user.slice'
 import axios from 'axios'
+import { getSession, signIn as nextAuthSignIn } from 'next-auth/react'
+import { useWishList } from 'hooks/useWishList.js'
+import useSyncWishList from 'hooks/use_sync_wish_list'
 
-export const useSignIn = () => {
-  const [error, setError] = useState(null)
-  const [isLoading, setIsLoading] = useState(null)
-  const dispatch = useDispatch()
+//we need to set redux wishlist state to local storage wishlist state on every run
+//when we sync we need to get redux state compare with session state and sync if needed
+//why can't we read from localstorage on every run?
 
-  const signIn = async (email, password) => {
-    setIsLoading(true)
-    setError(false)
+//todo place and reuse in useSignInHook
+// async function onSuccessfulSignIn() {
+//   //todo style display error message
 
-    try {
-      const response = await axios.post(
-        `/user/signIn`,
-        { email, password },
-        { headers: { 'Content-type': 'application/json' } },
-      )
+//   const session = await getSession()
 
-      const json = response.data
-      localStorage.setItem('user', JSON.stringify(json))
-      dispatch(sign_in(json))
-      setCookie(null, 'auth-token', json.token, {
-        path: '/',
-        sameSite: 'strict',
-        maxAge: 3 * 24 * 60 * 60, // expires in 3 days
-      })
-      setIsLoading(false)
-    } catch (error) {
-      setIsLoading(false)
-      setError(error.response.data.error)
-    }
-  }
+//   //sync wishList
+//   sync(session)
 
-  return { signIn, isLoading, error }
+//   //sync cart
+//   // const cart = await getCart(session);
+//   // dispatch(setCart(cart));
+//   // toggleModal()
+// }
+
+function onError() {
+  console.log('err')
 }
+
+function useSignIn() {
+  const sync = useSyncWishList()
+  // useSyncWishList(wishList, like)
+
+  return async function signIn(email, password) {
+    const res = await nextAuthSignIn('credentials', {
+      email: email,
+      password: password,
+      // localStorageCartJson: localStorage.getItem('cart'),
+      redirect: false,
+    })
+
+    if (res) {
+      await sync()
+    } else {
+      onError()
+    }
+
+    return res
+  }
+}
+
+export default useSignIn

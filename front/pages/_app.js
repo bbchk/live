@@ -42,7 +42,7 @@ const Footer = lazy(() => import('comps/layout/footer/footer'))
 import { enableMapSet } from 'immer'
 enableMapSet()
 
-import { Provider } from 'react-redux'
+import { Provider, useDispatch } from 'react-redux'
 import { store } from 'store/store'
 import { useSelector } from 'react-redux'
 
@@ -99,6 +99,7 @@ export default function App({
 }
 
 const Body = ({ children }) => {
+  const dispatch = useDispatch()
   const { loading } = useSelector((state) => state.modals)
 
   useEffect(() => {
@@ -120,6 +121,15 @@ const Body = ({ children }) => {
       behavior: 'instant',
     })
   }, [])
+
+  // set global state
+  useEffect(() => {
+    console.log('navigated')
+
+    //? if session set from it, else from local storage
+    // const sync = useSyncWishList()
+    // dispatch(wishList.set(list))
+  })
 
   return (
     <div
