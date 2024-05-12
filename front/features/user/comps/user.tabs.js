@@ -15,11 +15,15 @@ import s from './user.tabs.module.scss'
 
 import { ItemLink, ItemButton, ListHeading } from 'comps/list/list.js'
 
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 
 import Image from 'next/image'
+import { useDispatch } from 'react-redux'
+import { toggle } from 'store/slices/global_comps/global_comps.slice'
+import { MAIN_OFFCANVAS } from 'store/slices/global_comps/global_comps.slice'
 
 const UserListTabs = () => {
+  const dispatch = useDispatch()
   const { data: session } = useSession()
   const user = session?.user
   return (

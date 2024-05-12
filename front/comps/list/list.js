@@ -14,6 +14,7 @@ const Item = ({ text, component, onClick, href, children }) => {
     <ListItem
       className={`${s.item} ${isActive(href) ? s.active : ''} button_secondary`}
       button
+      id={isActive(href) ? 'main_content' : undefined}
       component={component}
       href={href}
       onClick={onClick}

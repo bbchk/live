@@ -19,7 +19,9 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
 
     await signIn(email, password).then((res) => {
       if (res.ok) {
-        toggleModal()
+        setTimeout(() => {
+          toggleModal()
+        }, 1000)
       }
     })
     //todo handle error
@@ -31,6 +33,9 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
       className={`${s.by_credentials} ${modal_s.left}`}
     >
       {error && <Alert text={error} severity={'error'} />}
+      {status === 'success' && (
+        <Alert text={'Ви успішно авторизовані!'} severity={'success'} />
+      )}
       <div className={`${s.input_group}`}>
         <InputField
           type='email'

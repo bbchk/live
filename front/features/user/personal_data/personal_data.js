@@ -5,7 +5,7 @@ import DeleteAccount from './comps/delete_account/delete_account'
 
 const PersonalData = () => {
   return (
-    <section className={`${s.personal}`}>
+    <section className={`${s.personal}`} id='main_content'>
       <UserInfo />
       <Security />
       <DeleteAccount />
