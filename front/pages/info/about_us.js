@@ -13,12 +13,10 @@ const ShopInfo = () => {
           content='Живий Світ - Магазин найкращих товарів для вашого дому, домашніх улюбленців та рослин '
         />
       </Head>
+
       <TabsLayout Tabs={() => <Tabs />} Content={AboutUs} />
     </>
   )
 }
 
 export default ShopInfo
-
-// <div id='main_content'>
-// {/* </div> */}

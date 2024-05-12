@@ -41,11 +41,10 @@ const CustomHotkeys = () => {
   useHotkeys('shift+?, shift+.', () => toggle(HOTKEYS_MODAL), [dispatch])
 
   //navigation
-  useHotkeys('shift+h, shift+р', () => navigateTo('/'))
-
-  useHotkeys('shift+p, shift+з', () => navigateTo('/user/personal_data'))
-  useHotkeys('shift+w, shift+ц', () => navigateTo('/user/wish_list'))
-  useHotkeys('shift+o, shift+o', () => navigateTo('/user/orders_list'))
+  useHotkeys('g+h, п+р', () => navigateTo('/'))
+  useHotkeys('g+u, п+г', () => navigateTo('/user/personal_data'))
+  useHotkeys('g+w, п+ц', () => navigateTo('/user/wish_list'))
+  useHotkeys('g+o, п+о', () => navigateTo('/user/orders_list'))
 
   useHotkeys('shift+c, shift+с', () => toggle(CART_MODAL), [dispatch])
   useHotkeys('alt+shift+i, alt+shift+ш', () => toggle(SIGN_IN_MODAL), [
@@ -54,13 +53,11 @@ const CustomHotkeys = () => {
   useHotkeys('alt+shift+u, alt+shift+г', () => toggle(SIGN_UP_MODAL), [
     dispatch,
   ])
-  useHotkeys('alt+shift+o, alt+shift+щ', () => toggle(MAIN_OFFCANVAS), [
-    dispatch,
-  ])
-
+  useHotkeys('shift+o, shift+щ', () => toggle(MAIN_OFFCANVAS), [dispatch])
+  // da
   //focus management
-  useHotkeys('ctrl+alt+f, alt+shift+а', () => focusOn('search_bar_input'))
-  useHotkeys('ctrl+alt+m, alt+shift+ь', () => focusOn('main_content'))
+  useHotkeys('/, s', () => focusOn('search_bar_input'))
+  useHotkeys('ctrl+m, сtrl+ь', () => focusOn('main_content'))
 
   //user
   useHotkeys('alt+shift+q', () => signOut({ callbackUrl: '/' }), [dispatch])

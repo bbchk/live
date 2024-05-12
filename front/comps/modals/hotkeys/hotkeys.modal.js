@@ -59,39 +59,27 @@ const HotkeysModal = () => {
           <menu className={`${s.hotkeys_group} ${s.navigation}`}>
             <HotkeyItem
               dscrpt={'Перейти на домашню сторінку'}
-              hk={['shift', 'h']}
+              hk={['g', 'h']}
             />
             <HotkeyItem dscrpt={'Відкрити кошик покупок'} hk={['shift', 'c']} />
-            <HotkeyItem
-              dscrpt={'Відкрити бокове меню'}
-              hk={['alt', 'shift', 'o']}
-            />
+            <HotkeyItem dscrpt={'Відкрити бокове меню'} hk={['shift', 'o']} />
           </menu>
           <menu className={`${s.hotkeys_group} ${s.focus}`}>
-            <HotkeyItem
-              dscrpt={'Фокусуватись на пошуку'}
-              hk={['ctrl', 'alt', 'f']}
-            />
+            <HotkeyItem dscrpt={'Фокусуватись на пошуку'} hk={['s']} />
             <HotkeyItem
               dscrpt={'Фокусуватись на основному вмісті'}
-              hk={['ctrl', 'alt', 'm']}
+              hk={['ctrl', 'm']}
             />
           </menu>
 
           <menu className={`${s.hotkeys_group} ${s.user} ${s.auth}`}>
             <HotkeyItem
               dscrpt={'Перейти до особистого кабінету'}
-              hk={['shift', 'p']}
+              hk={['g', 'p']}
             />
 
-            <HotkeyItem
-              dscrpt={'Перейти до списку бажаного'}
-              hk={['shift', 'w']}
-            />
-            <HotkeyItem
-              dscrpt={'Перейти до моїх замовлень'}
-              hk={['shift', 'o']}
-            />
+            <HotkeyItem dscrpt={'Перейти до списку бажаного'} hk={['g', 'w']} />
+            <HotkeyItem dscrpt={'Перейти до моїх замовлень'} hk={['g', 'o']} />
             <HotkeyItem
               dscrpt={'Вийти з облікового запису'}
               hk={['alt', 'shift', 'q']}

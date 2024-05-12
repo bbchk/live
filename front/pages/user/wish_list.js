@@ -13,15 +13,10 @@ const WishList = () => {
         />
       </Head>
 
-      {/* <TabLayout> */}
-      {/* <Gallery></Gallery> */}
-
       <TabsLayout
         Tabs={Tabs}
         Content={() => <div className='w-100 h-100 bg-primary' />}
       />
-
-      {/* </TabLayo ut> */}
     </>
   )
 }
