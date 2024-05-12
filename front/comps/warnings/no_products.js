@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import { startLoading } from 'store/slices/global_comps/global_comps.slice'
+import { ArrowCircleLeftRounded, SearchOffRounded } from '@mui/icons-material'
 
 const NoProductYet = () => {
   const dispatch = useDispatch()
@@ -18,27 +19,31 @@ const NoProductYet = () => {
   return (
     <article className={`${s.no_products} `}>
       <figure>
-        <Image
+        {/* <Image
           src={'/assets/empty_shelf.svg'}
           alt='product image'
           width={150}
           height={150}
           quality={100}
           priority
-        />
+        /> */}
+        <SearchOffRounded />
         <figcaption>
-          У даній категорій відсутні товари.
-          <br /> Пробачте за тимчасові незручності!
+          <span>Нічого не знайдено 😔</span>
         </figcaption>
       </figure>
+      <p className={`${s.appeal}`}>
+        Ми постійно оновлюємо наш асортимент, тому, будь ласка, поверніться
+        пізніше та спробуйте ще раз 🥺
+      </p>
       <Link
         href={'#'}
         onClick={goBack}
         className='link_primary'
         id='main_content'
       >
-        <i className='bi bi-box-arrow-left' />
-        <p>Повернутись назад</p>
+        <ArrowCircleLeftRounded />
+        <p>Повернутись на попередню сторінку</p>
       </Link>
     </article>
   )

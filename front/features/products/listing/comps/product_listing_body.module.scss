@@ -7,6 +7,8 @@
   grid-template-rows: 3rem 1fr;
   row-gap: 1rem;
 
+  margin-top: 4rem;
+
   grid-template-areas:
     'selected selected selected sort'
     'filter gallery gallery gallery'
@@ -42,10 +44,6 @@
 
     margin: 0 1rem;
     margin-left: 0;
-
-    // .products {
-    //   min-height: 5200px;
-    // }
   }
 
   .no_products {

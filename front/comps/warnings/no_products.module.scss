@@ -1,23 +1,38 @@
 @use './styles/variables' as *;
 
 .no_products {
+  margin-top: 4rem;
+
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 
+  padding: 1rem;
+
+  color: $color-blue-dasl;
+
   figure {
     display: flex;
-    gap: 1.5rem;
-    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    gap: 0.5rem;
 
-    color: $color-blue-dasl;
-    figcaption {
-      font-size: 1.2rem;
+    $size: 3rem;
+    svg {
+      width: 5rem;
+      height: 5rem;
     }
+
+    figcaption {
+      font-size: 3rem;
+    }
+  }
+
+  .appeal {
+    text-align: center;
+    max-width: 45ch;
   }
 
   a {
@@ -27,6 +42,40 @@
     justify-content: center;
     align-items: center;
 
+    text-align: center;
+
     font-size: 1.5rem;
+  }
+
+  @media screen and (width < 1200px) {
+    margin-top: 2rem;
+  }
+
+  @media screen and (width < 992px) {
+    margin-top: 1rem;
+    figure {
+      flex-flow: column nowrap;
+      svg {
+        width: 6rem;
+        height: 6rem;
+      }
+
+      figcaption {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  @media screen and (width < 992px) {
+    figure {
+      figcaption {
+        font-size: 1.8rem;
+      }
+    }
+
+    a {
+      max-width: 25ch;
+      font-size: 1rem;
+    }
   }
 }

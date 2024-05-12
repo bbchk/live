@@ -4,7 +4,7 @@
 .listing_header {
   padding: 1rem 3rem 3rem 3rem;
 
-  .category_label {
+  .label {
     margin-top: 1rem;
   }
   @media screen and (width < 992px) {
@@ -13,5 +13,13 @@
 
   @media screen and (width < 768px) {
     padding: 1rem 2rem 0 1rem;
+  }
+
+  @media screen and (width < 662px) {
+    padding: 1rem 2rem 0 1rem;
+
+    .label {
+      font-size: 1.2rem;
+    }
   }
 }

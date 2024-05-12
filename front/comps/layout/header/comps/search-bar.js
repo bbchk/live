@@ -20,13 +20,13 @@ const SearchBar = () => {
   useDoOnKey('Escape', () => document.getElementById('search_bar_input').blur())
 
   useEffect(() => {
-    const isSearchPage = categoryPath.includes('search=')
+    const isSearchPage = categoryPath?.includes('search=')
     if (isSearchPage) {
       const slugQuery = categoryPath.split('search=')[1]
       const query = untransliterate(unslugify(slugQuery))
       setSearchText(query)
     }
-  }, [])
+  }, [categoryPath])
 
   const [searchText, setSearchText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
