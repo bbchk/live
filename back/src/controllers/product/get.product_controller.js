@@ -17,6 +17,13 @@ export const keywordsByCategoryId = asyncErrorHandler(
   },
 )
 
+export const byQuery = asyncErrorHandler(async (req, res, next) => {
+  const { query } = req.params
+  const result = await products.getProductsByQuery(query)
+
+  res.status(200).json(result)
+})
+
 export const byId = asyncErrorHandler(async (req, res, next) => {
   const { id } = req.params
   const result = await products.getProductById(id)

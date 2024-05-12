@@ -4,34 +4,42 @@ import s from './search-bar.module.scss'
 import hs from '../header.module.scss'
 import { SearchRounded } from '@mui/icons-material'
 import useDoOnKey from '#root/hooks/useDoOnKey.js'
+import { startLoading } from 'store/slices/global_comps/global_comps.slice'
+import {
+  setSearchRes,
+  removeSearchRes,
+} from '#root/store/slices/search.slice.js'
+import { useDispatch } from 'react-redux'
+import { slugify } from '@bbuukk/slugtrans/slugify'
+import { transliterate } from '@bbuukk/slugtrans/transliterate'
+import axios from 'axios'
 
 const SearchBar = () => {
+  const dispatch = useDispatch()
   useDoOnKey('Escape', () => document.getElementById('search_bar_input').blur())
 
   const [searchText, setSearchText] = useState('')
-  const [searchWorker, setSearchWorker] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(false)
 
-  useEffect(() => {
-    let worker = new Worker('/workers/search.worker.js', {
-      type: 'module',
-    })
-    setSearchWorker(worker)
-
-    return () => {
-      if (worker) {
-        worker.terminate()
-      }
-    }
-  }, [])
-
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault()
-    if (searchWorker) {
-      searchWorker.postMessage({ query: searchText })
-      searchWorker.onmessage = (event) => {
-        console.log('Search results:', event.data)
-      }
+    setIsLoading(true)
+    dispatch(startLoading())
+
+    try {
+      const query = slugify(transliterate(searchText))
+      const response = await axios.get(`products/search/${query}`)
+      const products = response.data
+      console.log('🚀 ~ products:', products)
+
+      dispatch(setSearchRes(products))
+      // router.push(`/products/search/${searchText}`)
+    } catch (e) {
+      console.log('🚀 ~ e:', e)
+      // setError(e.data)
     }
+    setIsLoading(false)
   }
 
   return (
@@ -48,6 +56,7 @@ const SearchBar = () => {
         aria-label='Search'
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
+        disabled={isLoading}
       />
       <button
         className={`button_submit ${s.search_button}`}

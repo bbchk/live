@@ -43,12 +43,12 @@ const productSchema = new Schema(
     },
     keywords: {
       type: [String],
-      required: false,
+      required: true,
     },
   },
   { timestamps: false },
 )
 
-// productSchema.index({ keywords: 'text' })
+productSchema.index({ keywords: 'text' })
 
 export default model('Product', productSchema)

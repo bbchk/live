@@ -13,6 +13,8 @@ chRouter.get('/by-ids', products.get.byIds)
 chRouter.get('/keywords/by-cat-id/:catId', products.get.keywordsByCategoryId)
 
 chRouter.get('/product/by-id/:id', products.get.byId)
+
+chRouter.get('/search/:query', products.get.byQuery)
 chRouter.get(
   '/by-category-path/:slugCategoryPath/filtered-by/:filtersStr?',
   products.get.byCategoryAndFilters,

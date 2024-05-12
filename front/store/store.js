@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { productsReducer } from './slices/products.slice'
+import { searchReducer } from './slices/search.slice'
 import { categoriesReducer } from './slices/categories.slice'
 import { filtersReducer } from './slices/filters.slice'
 import { userReducer } from './slices/user.slice'
@@ -8,7 +8,7 @@ import { wishListReducer } from './slices/wish_list.slice'
 
 export const store = configureStore({
   reducer: {
-    products: productsReducer,
+    search: searchReducer,
     modals: modalsReducer,
     filters: filtersReducer,
     categories: categoriesReducer,

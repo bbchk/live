@@ -5,7 +5,9 @@ import {
   getSubcategories,
   getCategoryById,
 } from '#src/services/category/get.category_service.js'
-import { updateProducts } from '#src/services/product/update.product_service.js'
+import { slugify, unslugify } from '@bbuukk/slugtrans/slugify'
+import { transliterate, untransliterate } from '@bbuukk/slugtrans/transliterate'
+import { sanitize, processForSE } from '@bbuukk/slugtrans/process'
 
 export const getProducts = async () => {
   const products = await Product.find({})
@@ -17,7 +19,19 @@ export const getProducts = async () => {
   return products
 }
 
-// Product.find({ $text: { $search: "some keywords" } })
+export const getProductsByQuery = async (query) => {
+  query = untransliterate(unslugify(query))
+  query = processForSE(sanitize(query))
+
+  const result = await Product.find({
+    $text: { $search: query },
+  })
+    .select('description name brand price images characteristics')
+    .populate('category')
+    .exec()
+
+  return result
+}
 
 export const getKeywordsByCategory = async (catId) => {
   const activeCategory = await getCategoryById(catId)

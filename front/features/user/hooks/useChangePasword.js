@@ -1,7 +1,6 @@
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import useUpdateUser from './useUpdateUser'
-import { set } from '#root/store/slices/products.slice.js'
 
 const useChangePassword = () => {
   const [error, setError] = useState(null)
