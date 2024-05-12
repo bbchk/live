@@ -15,6 +15,7 @@ import { transliterate } from '@bbuukk/slugtrans/transliterate'
 import axios from 'axios'
 
 const SearchBar = () => {
+  const router = useRouter()
   const dispatch = useDispatch()
   useDoOnKey('Escape', () => document.getElementById('search_bar_input').blur())
 
@@ -24,22 +25,25 @@ const SearchBar = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault()
-    setIsLoading(true)
+    // setIsLoading(true)
     dispatch(startLoading())
 
-    try {
-      const query = slugify(transliterate(searchText))
-      const response = await axios.get(`products/search/${query}`)
-      const products = response.data
-      console.log('🚀 ~ products:', products)
+    const query = slugify(transliterate(searchText))
+    console.log('🚀 ~ query:', query)
+    router.push(`/products/search=${query}/page=1`)
+    // router.push(`/products/dlya-kotiv/page=1`)
 
-      dispatch(setSearchRes(products))
-      // router.push(`/products/search/${searchText}`)
-    } catch (e) {
-      console.log('🚀 ~ e:', e)
-      // setError(e.data)
-    }
-    setIsLoading(false)
+    // try {
+    // const response = await axios.get(`products/search/${query}`)
+    // const products = response.data
+    // console.log('🚀 ~ products:', products)
+    // dispatch(setSearchRes(products))
+    // router.push(`/products/search/${searchText}`)
+    // } catch (e) {
+    //   console.log('🚀 ~ e:', e.response)
+    // setError(e.response.data.message)
+    // }
+    // setIsLoading(false)
   }
 
   return (

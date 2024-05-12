@@ -1,8 +1,7 @@
-import * as products from '#src/services/product/get/get.product_service.js'
-import * as categoryAndFiltersProductService from '#src/services/product/get/get_by_category&filters.product_service.js'
-import * as productsFilterService from '#src/services/product/get/get_filters.product_service.js'
+import * as products from '#src/services/product/get.product_service.js'
 import { asyncErrorHandler } from '#src/utils/async_error_handler.js'
 
+//todo validation
 export const all = asyncErrorHandler(async (req, res, next) => {
   const result = await products.getProducts()
   res.status(200).json(result)
@@ -16,13 +15,6 @@ export const keywordsByCategoryId = asyncErrorHandler(
     res.status(200).json(result)
   },
 )
-
-export const byQuery = asyncErrorHandler(async (req, res, next) => {
-  const { query } = req.params
-  const result = await products.getProductsByQuery(query)
-
-  res.status(200).json(result)
-})
 
 export const byId = asyncErrorHandler(async (req, res, next) => {
   const { id } = req.params
@@ -38,50 +30,37 @@ export const byIds = asyncErrorHandler(async (req, res, next) => {
   res.status(200).json(result)
 })
 
+export const byQuery = asyncErrorHandler(async (req, res, next) => {
+  const { query } = req.params
+  const result = await products.getProductsByQuery(query, filtersStr)
+
+  res.status(200).json(result)
+})
+
 export const byCategoryAndFilters = asyncErrorHandler(
   async (req, res, next) => {
     let { slugCategoryPath, filtersStr } = req.params
 
-    // try {
-    //   //todo slugCategoryPath, filtersStr validation
-    //   //todo add page filter to filtersStr if it is not present
-    // } catch (e) {
-
-    // }
-
-    try {
-      const result =
-        await categoryAndFiltersProductService.getProductsByCategoryAndFilters(
-          slugCategoryPath,
-          filtersStr,
-        )
-
-      return res.status(200).json(result)
-    } catch (err) {
-      return res.status(500).json({ error: err.message })
-    }
-  },
-)
-
-export const filters = asyncErrorHandler(async (req, res, next) => {
-  let { slugCategoryPath, filtersStr } = req.params
-
-  // try {
-  //   //todo
-  //   //slugCategoryPath, filtersStr validation
-  //   //add page filter to filtersStr if it is not present
-  // } catch (e) {
-
-  // }
-
-  try {
-    const result = await productsFilterService.getFiltersS(
+    const result = await products.getProductsByCategoryAndFilters(
       slugCategoryPath,
       filtersStr,
     )
 
     return res.status(200).json(result)
-  } catch (err) {
-    return res.status(500).json({ error: err.message })
-  }
-})
+  },
+)
+
+// export const filters = asyncErrorHandler(async (req, res, next) => {
+//   let { slugCategoryPath, filtersStr } = req.params
+
+//   try {
+//     const result = await productsFilterService.getFiltersS(
+//       slugCategoryPath,
+//       filtersStr,
+//     )
+
+//     return res.status(200).json(result)
+//   } catch (err) {
+//     return res.status(500).json({ error: err.message })
+//   }
+// })

@@ -20,8 +20,6 @@ chRouter.get(
   products.get.byCategoryAndFilters,
 )
 
-chRouter.get('/filters/:slugCategoryPath/:filtersStr?', products.get.filters)
-
 const ONE_MINUTE = 60
 router.use(cacheFor(ONE_MINUTE), chRouter)
 

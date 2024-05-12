@@ -51,6 +51,15 @@ export default Listing
 export async function getServerSideProps(context) {
   const { categoryPath, filtersStr } = context.params
 
+  // const isBySearch = slugCategoryPath.includes('search=')
+  //   console.log('🚀 ~ isBySearch:', isBySearch)
+  // if (isBySearch) {
+  //   const query = slugCategoryPath.split('search=')[1]
+  //   console.log('🚀 ~ query:', query)
+  //   result = await products.getProductsByQuery(query)
+  //   console.log('🚀 ~ result:', result)
+  // } else {
+
   const endpoints = {
     products: `/products/by-category-path/${categoryPath}/filtered-by/${filtersStr}`,
     activeCategory: `/categories/category/by-path/${categoryPath}`,
@@ -59,20 +68,21 @@ export async function getServerSideProps(context) {
   }
 
   try {
-    const products = await fetchData(endpoints.products)
-    const activeCategory = await fetchData(endpoints.activeCategory)
-    const directSubcategories = await fetchData(endpoints.directSubcategories)
-    const filtersMap = await fetchData(endpoints.filters)
+    const data = await fetchData(endpoints.products)
+    // const activeCategory = await fetchData(endpoints.activeCategory)
+    // const directSubcategories = await fetchData(endpoints.directSubcategories)
+    // const filtersMap = await fetchData(endpoints.filters)
 
-    const HALF_AN_HOUR = 1800 // 30 minutes
+    const filtersMap = []
+
+    const page = filtersStr.match(/page=(\d+)/)[1] || 1
+    const HALF_AN_HOUR = 1800
     return {
       props: {
         data: {
-          activeCategory,
-          directSubcategories,
+          ...data,
           filtersMap,
-          ...products,
-          page: filtersStr.match(/page=(\d+)/)[1] || 1,
+          page: page,
         },
         revalidate: HALF_AN_HOUR,
       },

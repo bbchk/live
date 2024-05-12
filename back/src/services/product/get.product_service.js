@@ -4,10 +4,14 @@ import { mongoose } from 'mongoose'
 import {
   getSubcategories,
   getCategoryById,
+  getCategoryBySlugPath,
 } from '#src/services/category/get.category_service.js'
 import { slugify, unslugify } from '@bbuukk/slugtrans/slugify'
 import { transliterate, untransliterate } from '@bbuukk/slugtrans/transliterate'
 import { sanitize, processForSE } from '@bbuukk/slugtrans/process'
+import processAndGatherData from '#src/services/product/utils/get/process_and_gather_data.util.js'
+
+import { FOR_LISTING_PAGE } from '#src/services/product/utils/get/constants.js'
 
 export const getProducts = async () => {
   const products = await Product.find({})
@@ -17,20 +21,6 @@ export const getProducts = async () => {
     .exec()
 
   return products
-}
-
-export const getProductsByQuery = async (query) => {
-  query = untransliterate(unslugify(query))
-  query = processForSE(sanitize(query))
-
-  const result = await Product.find({
-    $text: { $search: query },
-  })
-    .select('description name brand price images characteristics')
-    .populate('category')
-    .exec()
-
-  return result
 }
 
 export const getKeywordsByCategory = async (catId) => {
@@ -67,4 +57,34 @@ export const getProductsByIds = async (productIds) => {
     _id: { $in: productIds },
   })
   return products
+}
+
+export async function getByQuery(query, filtersStr) {
+  query = untransliterate(unslugify(query))
+  query = processForSE(sanitize(query))
+
+  let dbQuery = await Product.find({
+    $text: { $search: query },
+  }).select(FOR_LISTING_PAGE)
+
+  const data = await processAndGatherData(dbQuery, filtersStr)
+  return data
+}
+
+export async function getProductsByCategoryAndFilters(
+  slugCategoryPath,
+  filtersStr,
+) {
+  const activeCategory = await getCategoryBySlugPath(slugCategoryPath)
+
+  const subcategories = await getSubcategories(activeCategory)
+  const subcategoriesIds = subcategories.map((c) => c._id)
+
+  let dbQuery = Product.find({
+    category: { $in: subcategoriesIds },
+  }).select(FOR_LISTING_PAGE)
+
+  const data = await processAndGatherData(dbQuery, filtersStr)
+
+  return { ...data, activeCategory, directSubcategories: subcategories }
 }
