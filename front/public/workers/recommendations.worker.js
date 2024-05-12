@@ -54,38 +54,19 @@ function calculateCosineSimilarity(document1, document2, documents) {
   return dotProduct / (magnitude1 * magnitude2)
 }
 
-function getItemObjects(objectArr, documentIndexes, allSimiliarities) {
-  let combined = []
-  for (let i = 0; i < allSimiliarities.length; i++) {
-    combined.push([allSimiliarities[i], documentIndexes[i]])
-  }
-  combined.sort(function (a, b) {
-    return b[0] - a[0]
-  })
-
-  let top = combined.slice(1, 11)
-
-  let top_ids = top.map((elem) => elem[1])
-
-  let res = top_ids.map((id1) =>
-    objectArr.find(function (element) {
-      return element._id == id1
-    }),
-  )
-
-  return res
-}
-
 function similarities(documents, product) {
   let processedDocuments = documents.slice(0, 250).map((doc) => stringify(doc))
+  console.log('🚀 ~ processedDocuments:', processedDocuments)
 
   let documentIndexes = documents.map((doc) => doc._id)
 
   let currDoc = stringify(product)
+  console.log('🚀 ~ currDoc:', currDoc)
 
   let similarityList = processedDocuments.map((doc) =>
     calculateCosineSimilarity(currDoc, doc, processedDocuments),
   )
+  console.log('🚀 ~ similarityList:', similarityList)
 
   let res = getItemObjects(documents, documentIndexes, similarityList)
 
@@ -108,6 +89,29 @@ self.onmessage = async (event) => {
 
     self.postMessage(similaritiesRes)
   } catch (error) {
+    console.log(error)
     self.postMessage({ error: error.message })
   }
+}
+
+function getItemObjects(objectArr, documentIndexes, allSimiliarities) {
+  let combined = []
+  for (let i = 0; i < allSimiliarities.length; i++) {
+    combined.push([allSimiliarities[i], documentIndexes[i]])
+  }
+  combined.sort(function (a, b) {
+    return b[0] - a[0]
+  })
+
+  let top = combined.slice(1, 11)
+
+  let top_ids = top.map((elem) => elem[1])
+
+  let res = top_ids.map((id1) =>
+    objectArr.find(function (element) {
+      return element._id == id1
+    }),
+  )
+
+  return res
 }

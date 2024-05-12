@@ -38,9 +38,17 @@ const productSchema = new Schema(
     starRating: {
       type: Number,
       required: false,
+      min: 0,
+      max: 5,
+    },
+    keywords: {
+      type: [String],
+      required: false,
     },
   },
   { timestamps: false },
 )
+
+// productSchema.index({ keywords: 'text' })
 
 export default model('Product', productSchema)

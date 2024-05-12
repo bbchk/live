@@ -15,10 +15,12 @@ const RecsCarousel = () => {
     let recsWorker = new Worker('/workers/recommendations.worker.js', {
       type: 'module',
     })
+
     recsWorker.postMessage({ id: productId })
     recsWorker.onmessage = (event) => {
-      console.log('🚀 ~ event:', event)
-      setRecs(event.data)
+      if (!event.data.error) {
+        setRecs(event.data)
+      }
     }
 
     return () => {
@@ -35,11 +37,12 @@ const RecsCarousel = () => {
       <div
         className={`row flex-row flex-nowrap overflow-auto ${s.scroll_container}`}
       >
-        {recs.map((product) => (
-          <div className={`${s.col}`} key={product._id}>
-            <ListingProductCard product={product} />
-          </div>
-        ))}
+        {recs &&
+          recs.map((product) => (
+            <div className={`${s.col}`} key={product._id}>
+              <ListingProductCard product={product} />
+            </div>
+          ))}
       </div>
     </section>
   )

@@ -5,7 +5,7 @@ import { asyncErrorHandler } from '#src/utils/async_error_handler.js'
 
 export const all = asyncErrorHandler(async (req, res, next) => {
   const result = await products.getProducts()
-  res.status(200).json(result.products)
+  res.status(200).json(result)
 })
 
 export const keywordsByCategoryId = asyncErrorHandler(
