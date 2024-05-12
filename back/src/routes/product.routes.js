@@ -2,40 +2,30 @@ import express from 'express'
 import { requireAuth, isAdmin } from '#src/middleware/auth.js'
 import cacheFor from '#src/middleware/cache.js'
 
-import {
-  getProducts,
-  getProductById,
-  getProductsByIds,
-  getProductsByCategoryAndFilters,
-  getFilters,
-} from '#src/controllers/product/get.product_controller.js'
-
-import { createProduct } from '#src/controllers/product/create.product_controller.js'
-
-import { updateProduct } from '#src/controllers/product/update.product_controller.js'
-
-import { deleteProduct } from '#src/controllers/product/delete.product_controller.js'
+import * as products from '#src/controllers/product/export.js'
 
 const router = express.Router()
 const chRouter = express.Router()
 
-chRouter.get('/', getProducts)
+chRouter.get('/', products.get.all)
+chRouter.get('/by-ids', products.get.byIds)
 
-chRouter.get('/by-ids', getProductsByIds)
-chRouter.get('/product/by-id/:id', getProductById)
+chRouter.get('/keywords/by-cat-id/:catId', products.get.keywordsByCategoryId)
+
+chRouter.get('/product/by-id/:id', products.get.byId)
 chRouter.get(
   '/by-category-path/:slugCategoryPath/filtered-by/:filtersStr?',
-  getProductsByCategoryAndFilters,
+  products.get.byCategoryAndFilters,
 )
 
-chRouter.get('/filters/:slugCategoryPath/:filtersStr?', getFilters)
+chRouter.get('/filters/:slugCategoryPath/:filtersStr?', products.get.filters)
 
 const ONE_MINUTE = 60
 router.use(cacheFor(ONE_MINUTE), chRouter)
 
 router.use(requireAuth, isAdmin)
-router.post('/', createProduct)
-router.patch('/:id', updateProduct)
-router.delete('/:id', deleteProduct)
+router.post('/', products.create.product)
+router.patch('/:id', products.update.byId)
+router.delete('/:id', products.remove.byId)
 
 export { router as productsRoutes }

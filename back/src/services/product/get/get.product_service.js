@@ -1,30 +1,10 @@
 import Product from '#src/models/product.model.js'
+import _Error from '#src/utils/error.js'
 import { mongoose } from 'mongoose'
-
-export const getProductById = async (id) => {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return { error: 'No such product', status: 404 }
-  }
-
-  const product = await Product.findById(id).populate('category')
-
-  if (!product) {
-    return { error: 'No such product', status: 400 }
-  }
-
-  return { product }
-}
-
-export const getProductsByIds = async (productIds) => {
-  try {
-    const products = await Product.find({
-      _id: { $in: productIds },
-    })
-    return { products }
-  } catch (err) {
-    throw new Error(err.message)
-  }
-}
+import {
+  getSubcategories,
+  getCategoryById,
+} from '#src/services/category/get.category_service.js'
 
 export const getProducts = async () => {
   const products = await Product.find({})
@@ -33,5 +13,41 @@ export const getProducts = async () => {
     .populate('category')
     .exec()
 
-  return { products }
+  return products
+}
+
+export const getKeywordsByCategory = async (catId) => {
+  const activeCategory = await getCategoryById(catId)
+
+  const subcategories = await getSubcategories(activeCategory)
+  console.log('🚀 ~ subcategoriesIds:', subcategories)
+
+  const subcategoriesIds = subcategories.map((c) => c._id)
+
+  return await Product.find({
+    category: { $in: subcategoriesIds },
+  })
+    .select('keywords')
+    .exec()
+}
+
+export const getProductById = async (id) => {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw _Error('Product id is not valid', 404)
+  }
+
+  const product = await Product.findById(id).populate('category')
+
+  if (!product) {
+    throw _Error('No such product', 404)
+  }
+
+  return product
+}
+
+export const getProductsByIds = async (productIds) => {
+  const products = await Product.find({
+    _id: { $in: productIds },
+  })
+  return products
 }

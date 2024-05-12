@@ -1,42 +1,46 @@
-import * as productService from '#src/services/product/get/get.product_service.js'
+import * as products from '#src/services/product/get/get.product_service.js'
 import * as categoryAndFiltersProductService from '#src/services/product/get/get_by_category&filters.product_service.js'
 import * as productsFilterService from '#src/services/product/get/get_filters.product_service.js'
 import { asyncErrorHandler } from '#src/utils/async_error_handler.js'
 
-export const getProductById = asyncErrorHandler(async (req, res, next) => {
+export const all = asyncErrorHandler(async (req, res, next) => {
+  const result = await products.getProducts()
+  res.status(200).json(result.products)
+})
+
+export const keywordsByCategoryId = asyncErrorHandler(
+  async (req, res, next) => {
+    const { catId } = req.params
+    const result = await products.getKeywordsByCategory(catId)
+
+    res.status(200).json(result)
+  },
+)
+
+export const byId = asyncErrorHandler(async (req, res, next) => {
   const { id } = req.params
-  const result = await productService.getProductById(id)
+  const result = await products.getProductById(id)
 
-  res.status(200).json(result.product)
+  res.status(200).json(result)
 })
 
-export const getProductsByIds = asyncErrorHandler(async (req, res, next) => {
+export const byIds = asyncErrorHandler(async (req, res, next) => {
   const productIds = req.query.ids.split(',')
-  const result = await productService.getProductsByIds(productIds)
+  const result = await products.getProductsByIds(productIds)
 
-  res.status(200).json(result.products)
+  res.status(200).json(result)
 })
 
-export const getProducts = asyncErrorHandler(async (req, res, next) => {
-  const result = await productService.getProducts()
-
-  if (result.error) {
-    return res.status(400).json({ error: result.error })
-  }
-
-  res.status(200).json(result.products)
-})
-
-export const getProductsByCategoryAndFilters = asyncErrorHandler(
+export const byCategoryAndFilters = asyncErrorHandler(
   async (req, res, next) => {
     let { slugCategoryPath, filtersStr } = req.params
 
-    try {
-      //todo slugCategoryPath, filtersStr validation
-      //todo add page filter to filtersStr if it is not present
-    } catch (e) {
-      return res.status(400).json({ error: e.message })
-    }
+    // try {
+    //   //todo slugCategoryPath, filtersStr validation
+    //   //todo add page filter to filtersStr if it is not present
+    // } catch (e) {
+
+    // }
 
     try {
       const result =
@@ -52,16 +56,16 @@ export const getProductsByCategoryAndFilters = asyncErrorHandler(
   },
 )
 
-export const getFilters = asyncErrorHandler(async (req, res, next) => {
+export const filters = asyncErrorHandler(async (req, res, next) => {
   let { slugCategoryPath, filtersStr } = req.params
 
-  try {
-    //todo
-    //slugCategoryPath, filtersStr validation
-    //add page filter to filtersStr if it is not present
-  } catch (e) {
-    return res.status(400).json({ error: e.message })
-  }
+  // try {
+  //   //todo
+  //   //slugCategoryPath, filtersStr validation
+  //   //add page filter to filtersStr if it is not present
+  // } catch (e) {
+
+  // }
 
   try {
     const result = await productsFilterService.getFiltersS(

@@ -1,10 +1,26 @@
 import category from '#src/models/category.model.js'
+import _Error from '#src/utils/error.js'
+import { mongoose } from 'mongoose'
 
 import { unslugify } from '@bbuukk/slugtrans/slugify'
 import { untransliterate } from '@bbuukk/slugtrans/transliterate'
 
 export const getCategories = async () => {
   return await category.find({}).sort({ createdAt: -1 })
+}
+
+export const getCategoryById = async (id) => {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw _Error('Category id is not valid', 404)
+  }
+
+  const result = await category.findById(id).exec()
+
+  if (!result) {
+    throw _Error('No such category', 404)
+  }
+
+  return result
 }
 
 export const getRootCategories = async () => {
