@@ -26,7 +26,6 @@ const ChangePasswordModal = () => {
   const { changePasswordModalOpen } = useSelector((state) => state.modals)
 
   const [changePassword, _, error] = useChangePassword()
-  console.log('🚀 ~ error:', error)
 
   useTabTrap(changePasswordModalOpen, 'changePasswordModal')
 

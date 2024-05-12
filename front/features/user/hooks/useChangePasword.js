@@ -17,19 +17,28 @@ const useChangePassword = () => {
     newPassword,
     newPasswordRepeat,
   }) => {
-    console.log('changePassword')
     setIsLoading(true)
     setError(false)
 
+    if (newPassword.length === 0) {
+      setError('Новий пароль не може бути відсутній')
+      setIsLoading(false)
+      return
+    }
+
+    if (oldPassword.length === 0) {
+      setError('Старий пароль не може бути відсутній')
+      setIsLoading(false)
+      return
+    }
+
     if (newPassword !== newPasswordRepeat) {
-      console.log('Паролі не співпадають')
       setError('Паролі не співпадають')
       setIsLoading(false)
       return
     }
 
-    if (newPassword !== oldPassword) {
-      console.log('')
+    if (newPassword === oldPassword) {
       setError('Ваш новий пароль не може бути таким самим, як старий')
       setIsLoading(false)
       return

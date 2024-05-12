@@ -21,6 +21,9 @@ const useUpdateUser = () => {
           },
         },
       )
+      const { message, statusCode } = response.data
+      console.log('🚀 ~ message:', message)
+      console.log('🚀 ~ statusCode:', statusCode)
 
       const requestSuccessful = response.status >= 200 && response.status < 300
 
@@ -33,10 +36,10 @@ const useUpdateUser = () => {
           },
         })
       } else {
-        setError('Помилка при збереженні даних')
+        setError(data.message)
       }
     } catch (e) {
-      setError(e.response.data.error)
+      // setError(e.response.data.error)
     } finally {
       setIsLoading(false)
     }
