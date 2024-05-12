@@ -35,7 +35,7 @@ const Breadcrumbs = ({ category }) => {
         aria-label='Category path breadcrumbs'
       >
         <ol className='breadcrumb'>
-          <li className={`breadcrumb-item ${category ? '' : s.active}`}>
+          <li className={`breadcrumb-item ${category ? '' : s.home_active}`}>
             <Link href='/'>
               <CottageRounded />
               Головна
