@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose'
 import bcrypt from 'bcryptjs'
 import validator from 'validator'
+import _Error from '#src/utils/error.js'
 
 const userSchema = new Schema(
   {
@@ -64,18 +65,18 @@ userSchema.pre('save', function (next) {
 
 userSchema.statics.signIn = async function (email, password) {
   if (!email || !password) {
-    throw Error('Email and password fields cannot be blank')
+    throw new _Error(`Пошта чи пароль не можу бути відсутніми`, 400)
   }
 
   const user = await this.findOne({ email })
 
   if (!user) {
-    throw Error('Incorrect email')
+    throw new _Error(`Користувача з такою поштою не знайдено`, 404)
   }
 
   const match = await bcrypt.compare(password, user.password)
   if (!match) {
-    throw Error('Incorrect password')
+    throw new _Error(`Пароль не є правильним`, 401)
   }
 
   return user
@@ -86,20 +87,20 @@ userSchema.statics.signUp = async function (user) {
   const { firstName, secondName, email, password, localStorageCartJson } = user
 
   if (!email || !password) {
-    throw Error('Email and password fields cannot be blank')
+    throw new _Error(`Пошта чи пароль не можу бути відсутніми`, 400)
   }
 
   if (!validator.isEmail(email)) {
-    throw Error('Email is not valid')
+    throw new _Error(`Такої пошти не існує`, 400)
   }
 
   if (!validator.isStrongPassword(password)) {
-    throw Error('Password is not strong enough')
+    throw new _Error(`Пароль не достатньо сильний`, 400)
   }
 
   const isUserExists = await this.findOne({ email })
   if (isUserExists) {
-    throw Error('Email already in use')
+    throw new _Error(`Пошта уже використовується`, 409)
   }
 
   const hash = await bcrypt.hash(password, 10)

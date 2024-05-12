@@ -1,10 +1,11 @@
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import useUpdateUser from './useUpdateUser'
+import { set } from '#root/store/slices/products.slice.js'
 
 const useChangePassword = () => {
   const [error, setError] = useState(null)
-  const [isLoading, setIsLoading] = useState(null)
+  const [status, setStatus] = useState('idle')
 
   const [updateUser, _, err] = useUpdateUser()
 
@@ -17,42 +18,40 @@ const useChangePassword = () => {
     newPassword,
     newPasswordRepeat,
   }) => {
-    setIsLoading(true)
-    setError(false)
+    setStatus('loading')
+    setError(null)
 
-    if (newPassword.length === 0) {
-      setError('Новий пароль не може бути відсутній')
-      setIsLoading(false)
-      return
-    }
+    const result = (() => {
+      if (!newPassword.length) {
+        return 'Новий пароль не може бути відсутній'
+      }
 
-    if (oldPassword.length === 0) {
-      setError('Старий пароль не може бути відсутній')
-      setIsLoading(false)
-      return
-    }
+      if (!oldPassword.length) {
+        return 'Старий пароль не може бути відсутній'
+      }
 
-    if (newPassword !== newPasswordRepeat) {
-      setError('Паролі не співпадають')
-      setIsLoading(false)
-      return
-    }
+      if (newPassword !== newPasswordRepeat) {
+        return 'Паролі не співпадають'
+      }
 
-    if (newPassword === oldPassword) {
-      setError('Ваш новий пароль не може бути таким самим, як старий')
-      setIsLoading(false)
-      return
-    }
+      if (newPassword === oldPassword) {
+        return 'Ваш новий пароль не може бути таким самим, як старий'
+      }
+
+      return null
+    })()
+    setError(result)
+    setStatus(result ? 'loading' : 'fail')
 
     await updateUser({
       oldPassword: oldPassword,
       password: newPassword,
     })
 
-    setIsLoading(false)
+    setStatus('success')
   }
 
-  return [changePassword, isLoading, error]
+  return [changePassword, status, error]
 }
 
 export default useChangePassword

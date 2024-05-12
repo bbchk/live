@@ -66,14 +66,19 @@ const credentialsProvider = CredentialsProvider({
         { headers: { 'Content-type': 'application/json' } },
       )
       let user = response.data
+      console.log('🚀 ~ response:', response)
 
       if (response.status === 200) {
         return user
       } else {
         throw new Error('User not authenticated')
       }
-    } catch (error) {
-      throw new Error('User not authenticated')
+    } catch (e) {
+      // console.log(error)
+      // throw error
+
+      // console.log(error)
+      throw new Error(e.response.data.message)
     }
   },
 })

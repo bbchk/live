@@ -1,36 +1,15 @@
-import axios from 'axios'
 import { signIn as nextAuthSignIn } from 'next-auth/react'
 import useSyncWishList from 'hooks/use_sync_wish_list'
 import useLocalStorage from '../../../hooks/useLocalStorage'
-
-//we need to set redux wishlist state to local storage wishlist state on every run
-//when we sync we need to get redux state compare with session state and sync if needed
-//why can't we read from localstorage on every run?
-
-//todo place and reuse in useSignInHook
-// async function onSuccessfulSignIn() {
-//   //todo style display error message
-
-//   const session = await getSession()
-
-//   //sync wishList
-//   sync(session)
-
-//   //sync cart
-//   // const cart = await getCart(session);
-//   // dispatch(setCart(cart));
-//   // toggleModal()
-// }
-
-function onError() {
-  console.log('err')
-}
+import { useState } from 'react'
 
 function useSignIn() {
   const sync = useSyncWishList()
   const [wshl, _] = useLocalStorage('wish_list', [])
+  const [error, setError] = useState(null)
+  const [status, setStatus] = useState('idle')
 
-  return async function signIn(email, password) {
+  async function signIn(email, password) {
     const res = await nextAuthSignIn('credentials', {
       email: email,
       password: password,
@@ -38,15 +17,19 @@ function useSignIn() {
       redirect: false,
     })
 
-    if (res) {
-      //?what if we sign in on page, until unmount and not synced??
-      await sync(wshl)
+    if (res.ok) {
+      await sync(wshl) //?what if we sign in on page, until unmount and not synced??
+      setStatus('success')
     } else {
-      onError()
+      console.log(res)
+      setStatus('fail')
+      setError(res.error)
     }
 
     return res
   }
+
+  return [signIn, status, error]
 }
 
 export default useSignIn

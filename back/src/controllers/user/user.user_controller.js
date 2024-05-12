@@ -31,7 +31,6 @@ export const signUp = asyncErrorHandler(async (req, res, next) => {
 
 export const update = asyncErrorHandler(async (req, res, next) => {
   //todo validate updatedData/ password email, etc
-
   const { userId } = req.params
   const updatedData = req.body
 

@@ -6,6 +6,7 @@ const CustomAlert = ({ text, severity = 'info', animated = true }) => {
     <Alert
       severity={severity}
       className={`${s.alert} ${animated ? s.animated : ''}`}
+      key={text}
     >
       {text}
     </Alert>

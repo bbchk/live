@@ -19,27 +19,27 @@ export const signUp = async (user) => {
 }
 
 export const update = async (userId, updatedData) => {
-  const { password, oldPassword } = updatedData
-
-  if (password && !oldPassword) {
-    throw new _Error(`Введіть старий пароль`, 404)
-  }
-
-  if (!password && oldPassword) {
-    throw new _Error(`Введіть новий пароль`, 404)
-  }
-
-  if (password && oldPassword) {
-    let user = await User.findById(userId)
-
-    const match = await bcrypt.compare(oldPassword, user.password)
-    if (!match) {
-      throw new _Error(`Старий пароль не є правильним`, 404)
-    }
-    updatedData.password = await bcrypt.hash(password, 10)
-  }
-
   try {
+    const { password, oldPassword } = updatedData
+
+    if (password && !oldPassword) {
+      throw new _Error(`Введіть старий пароль`, 400)
+    }
+
+    if (!password && oldPassword) {
+      throw new _Error(`Введіть новий пароль`, 400)
+    }
+
+    if (password && oldPassword) {
+      let user = await User.findById(userId)
+
+      const match = await bcrypt.compare(oldPassword, user.password)
+      if (!match) {
+        throw new _Error(`Старий пароль не є правильним`, 401)
+      }
+      updatedData.password = await bcrypt.hash(password, 10)
+    }
+
     const user = await User.findByIdAndUpdate(userId, updatedData, {
       new: true,
     })

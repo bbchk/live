@@ -4,21 +4,21 @@ import modal_s from '../modal.module.scss'
 import Link from 'next/link'
 import InputField from 'comps/input_fields/input_field'
 import PasswordInputField from 'comps/input_fields/password_input_field'
+import Alert from 'comps/warnings/alert'
 
 import useSignIn from 'features/user/hooks/useSignIn.js'
 
 const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState(null)
 
-  const signIn = useSignIn()
+  const [signIn, status, error] = useSignIn()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     await signIn(email, password).then((res) => {
-      if (res) {
+      if (res.ok) {
         toggleModal()
       }
     })
@@ -30,6 +30,7 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
       onSubmit={handleSubmit}
       className={`${s.by_credentials} ${modal_s.left}`}
     >
+      {error && <Alert text={error} severity={'error'} />}
       <div className={`${s.input_group}`}>
         <InputField
           type='email'
@@ -71,7 +72,6 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
       >
         Зареєструватись
       </Link>
-      {error ? <div className={``}>{error}</div> : <></>}
     </form>
   )
 }

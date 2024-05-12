@@ -39,7 +39,7 @@ const useUpdateUser = () => {
         setError(data.message)
       }
     } catch (e) {
-      // setError(e.response.data.error)
+      setError(e.response.data.message)
     } finally {
       setIsLoading(false)
     }
