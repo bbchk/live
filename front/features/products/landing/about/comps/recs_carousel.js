@@ -10,7 +10,11 @@ const RecsCarousel = () => {
   const [recs, setRecs] = useState([])
 
   useEffect(() => {
-    let recsWorker = new Worker('/recsWorker.js')
+    // const numCores = navigator.hardwareConcurrency || 4
+    // console.log(`Number of cores: ${numCores}`)
+    let recsWorker = new Worker('/workers/recommendations.worker.js', {
+      type: 'module',
+    })
     recsWorker.postMessage({ id: productId })
     recsWorker.onmessage = (event) => {
       console.log('🚀 ~ event:', event)
@@ -24,7 +28,7 @@ const RecsCarousel = () => {
       }
     }
   }, [])
-  1
+
   return (
     <section className={`${s.recs}`}>
       <h3>Також вас можуть зацікавити</h3>

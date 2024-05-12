@@ -1,3 +1,5 @@
+import { stringify, process } from './tf_idf.utils/stringify.js'
+
 function calculateTF(term, document) {
   var words = document.split(' ')
   var termCount = words.reduce((acc, word) => {
@@ -52,36 +54,6 @@ function calculateCosineSimilarity(document1, document2, documents) {
   return dotProduct / (magnitude1 * magnitude2)
 }
 
-function processString(input_object) {
-  const title_text = input_object.name
-  const description_text = input_object.description.slice(0, 100)
-  const full_text = title_text + ' ' + description_text
-  // Remove HTML tags
-  const withoutHtmlTags = full_text.replace(/<[^>]*>/g, '')
-
-  // Remove punctuation symbols and make lowercase
-  const punctuationRegex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g
-
-  let withoutPunctuation = withoutHtmlTags.replace(punctuationRegex, '')
-  let lowercaseString = withoutPunctuation.toLowerCase()
-  const withoutPunctuationAndLowercase = lowercaseString
-
-  // Split the string into words
-  const words = withoutPunctuationAndLowercase.split(/\s+/)
-
-  // Remove the last letter from each word and filter out words shorter than 2 characters
-  const processedWords = words
-    .map((word) => word.slice(0, -1))
-    .filter((word) => word.length >= 2)
-
-  // Join the words back into a string
-
-  const result = processedWords.join(' ')
-
-  //   input_object.description = result;
-  return result
-}
-
 function getItemObjects(objectArr, documentIndexes, allSimiliarities) {
   let combined = []
   for (let i = 0; i < allSimiliarities.length; i++) {
@@ -105,13 +77,11 @@ function getItemObjects(objectArr, documentIndexes, allSimiliarities) {
 }
 
 function similarities(documents, product) {
-  let processedDocuments = documents
-    .slice(0, 250)
-    .map((doc) => processString(doc))
+  let processedDocuments = documents.slice(0, 250).map((doc) => stringify(doc))
 
   let documentIndexes = documents.map((doc) => doc._id)
 
-  let currDoc = processString(product)
+  let currDoc = stringify(product)
 
   let similarityList = processedDocuments.map((doc) =>
     calculateCosineSimilarity(currDoc, doc, processedDocuments),

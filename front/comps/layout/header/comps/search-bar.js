@@ -1,17 +1,38 @@
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
 import s from './search-bar.module.scss'
 import hs from '../header.module.scss'
 import { SearchRounded } from '@mui/icons-material'
 import useDoOnKey from '#root/hooks/useDoOnKey.js'
 
 const SearchBar = () => {
-  const [searchText, setSearchText] = useState('')
-
-  const handleSearch = () => {
-    // console.log(`searching...${searchText}`);
-  }
-
   useDoOnKey('Escape', () => document.getElementById('search_bar_input').blur())
+
+  const [searchText, setSearchText] = useState('')
+  const [searchWorker, setSearchWorker] = useState(null)
+
+  useEffect(() => {
+    let worker = new Worker('/workers/search.worker.js', {
+      type: 'module',
+    })
+    setSearchWorker(worker)
+
+    return () => {
+      if (worker) {
+        worker.terminate()
+      }
+    }
+  }, [])
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    if (searchWorker) {
+      searchWorker.postMessage({ query: searchText })
+      searchWorker.onmessage = (event) => {
+        console.log('Search results:', event.data)
+      }
+    }
+  }
 
   return (
     <form
