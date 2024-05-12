@@ -43,6 +43,7 @@ const Breadcrumbs = ({ category }) => {
           </li>
 
           {allCategories &&
+            category &&
             category.path?.split(',').map((pathPart, index, pathParts) => {
               const clickedCategoryIndex = index + 1
               const clickedCategoryPath = pathParts

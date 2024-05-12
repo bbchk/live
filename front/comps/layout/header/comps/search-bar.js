@@ -5,14 +5,13 @@ import hs from '../header.module.scss'
 import { SearchRounded } from '@mui/icons-material'
 import useDoOnKey from '#root/hooks/useDoOnKey.js'
 import { startLoading } from 'store/slices/global_comps/global_comps.slice'
-import {
-  setSearchRes,
-  removeSearchRes,
-} from '#root/store/slices/search.slice.js'
+// import {
+//   setSearchRes,
+//   removeSearchRes,
+// } from '#root/store/slices/search.slice.js'
 import { useDispatch } from 'react-redux'
 import { slugify } from '@bbuukk/slugtrans/slugify'
 import { transliterate } from '@bbuukk/slugtrans/transliterate'
-import axios from 'axios'
 
 const SearchBar = () => {
   const router = useRouter()
@@ -29,7 +28,7 @@ const SearchBar = () => {
     dispatch(startLoading())
 
     const query = slugify(transliterate(searchText))
-    console.log('🚀 ~ query:', query)
+
     router.push(`/products/search=${query}/page=1`)
     // router.push(`/products/dlya-kotiv/page=1`)
 

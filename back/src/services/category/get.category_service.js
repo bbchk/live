@@ -82,6 +82,7 @@ export const getSubcategories = async (
     .find({
       path: new RegExp(parentCategory.path, 'i'),
     })
+    .sort({ order: 1 })
     .select('name order path imagePath')
     .exec()
 

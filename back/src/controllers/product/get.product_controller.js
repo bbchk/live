@@ -31,8 +31,8 @@ export const byIds = asyncErrorHandler(async (req, res, next) => {
 })
 
 export const byQuery = asyncErrorHandler(async (req, res, next) => {
-  const { query } = req.params
-  const result = await products.getProductsByQuery(query, filtersStr)
+  const { query, filtersStr } = req.params
+  const result = await products.getByQuery(query, filtersStr)
 
   res.status(200).json(result)
 })
@@ -41,7 +41,7 @@ export const byCategoryAndFilters = asyncErrorHandler(
   async (req, res, next) => {
     let { slugCategoryPath, filtersStr } = req.params
 
-    const result = await products.getProductsByCategoryAndFilters(
+    const result = await products.getByCategoryAndFilters(
       slugCategoryPath,
       filtersStr,
     )

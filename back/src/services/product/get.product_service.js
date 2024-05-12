@@ -10,6 +10,7 @@ import { slugify, unslugify } from '@bbuukk/slugtrans/slugify'
 import { transliterate, untransliterate } from '@bbuukk/slugtrans/transliterate'
 import { sanitize, processForSE } from '@bbuukk/slugtrans/process'
 import processAndGatherData from '#src/services/product/utils/get/process_and_gather_data.util.js'
+import * as categoryService from '#src/services/category/get.category_service.js'
 
 import { FOR_LISTING_PAGE } from '#src/services/product/utils/get/constants.js'
 
@@ -63,18 +64,17 @@ export async function getByQuery(query, filtersStr) {
   query = untransliterate(unslugify(query))
   query = processForSE(sanitize(query))
 
-  let dbQuery = await Product.find({
+  console.log('🚀 ~ query:', query)
+  let dbQuery = Product.find({
     $text: { $search: query },
   }).select(FOR_LISTING_PAGE)
 
   const data = await processAndGatherData(dbQuery, filtersStr)
+
   return data
 }
 
-export async function getProductsByCategoryAndFilters(
-  slugCategoryPath,
-  filtersStr,
-) {
+export async function getByCategoryAndFilters(slugCategoryPath, filtersStr) {
   const activeCategory = await getCategoryBySlugPath(slugCategoryPath)
 
   const subcategories = await getSubcategories(activeCategory)
@@ -86,5 +86,11 @@ export async function getProductsByCategoryAndFilters(
 
   const data = await processAndGatherData(dbQuery, filtersStr)
 
-  return { ...data, activeCategory, directSubcategories: subcategories }
+  const ONE_LEVEL_NESTED_DEEP = 1
+  const directSubcategories = await categoryService.getSubcategories(
+    activeCategory,
+    ONE_LEVEL_NESTED_DEEP,
+  )
+
+  return { ...data, activeCategory, directSubcategories }
 }

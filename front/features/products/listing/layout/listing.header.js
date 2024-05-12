@@ -6,7 +6,7 @@ const ListingHeader = ({ category }) => {
     <>
       <div className={`${s.listing_header}`}>
         <Breadcrumbs category={category} />
-        <h2 className={`${s.category_label}`}>{category.name}</h2>
+        <h2 className={`${s.category_label}`}>{category?.name}</h2>
       </div>
     </>
   )

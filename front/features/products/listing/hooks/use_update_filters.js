@@ -20,6 +20,7 @@ export const useUpdateFilters = () => {
 
   useEffect(() => {
     let newFiltersStr = genFiltersStr(filters)
+    console.log('🚀 ~ newFiltersStr:', newFiltersStr)
 
     if (
       Object.keys(filters).length != 0 &&
@@ -28,5 +29,6 @@ export const useUpdateFilters = () => {
       const filtersStrPageDefault = newFiltersStr.replace(/page=\d+/, 'page=1')
       router.push(`/products/${categoryPath}/${filtersStrPageDefault}`)
     }
-  }, [filters, genFiltersStr, categoryPath, router])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters])
 }

@@ -7,16 +7,24 @@ import { useUpdateFilters } from 'features/products/listing/hooks/use_update_fil
 import { useDispatchInitialFilters } from 'features/products/listing/hooks/use_dispatch_initial_filters.js'
 import { usePageValidation } from 'features/products/listing/hooks/use_page_validation'
 
-import ListingHeader from 'features/products/listing/comps/listing_header'
 import SubcategoriesGallery from 'features/products/listing/comps/subcategories/gallery'
 import ProductListingBody from 'features/products/listing/comps/product_listing_body'
+import { useRouter } from 'next/router'
+import ListingHeader from '#root/features/products/listing/layout/listing.header.js'
 
 const Listing = ({ data }) => {
+  const router = useRouter()
+  const { categoryPath, filtersStr } = router.query
+
   const {
     activeCategory: category,
     directSubcategories: subcategories,
     numPages,
   } = data
+
+  const searchBy = categoryPath.includes('search=')
+    ? categoryPath.split('search=')[1]
+    : category.path
 
   useStopLoading()
   usePageValidation(numPages)
@@ -28,8 +36,8 @@ const Listing = ({ data }) => {
   return (
     <>
       <Head>
-        <title>{`Живий світ | ${category.path}`}</title>
-        <meta name='description' content={`Живий Світ | ${category.path}`} />
+        <title>{`Живий світ | ${searchBy}`}</title>
+        <meta name='description' content={`Живий Світ | ${searchBy}`} />
       </Head>
 
       <>
@@ -51,38 +59,31 @@ export default Listing
 export async function getServerSideProps(context) {
   const { categoryPath, filtersStr } = context.params
 
-  // const isBySearch = slugCategoryPath.includes('search=')
-  //   console.log('🚀 ~ isBySearch:', isBySearch)
-  // if (isBySearch) {
-  //   const query = slugCategoryPath.split('search=')[1]
-  //   console.log('🚀 ~ query:', query)
-  //   result = await products.getProductsByQuery(query)
-  //   console.log('🚀 ~ result:', result)
-  // } else {
-
-  const endpoints = {
-    products: `/products/by-category-path/${categoryPath}/filtered-by/${filtersStr}`,
-    activeCategory: `/categories/category/by-path/${categoryPath}`,
-    directSubcategories: `/categories/subcategories/by-parent-category-path/${categoryPath}`,
-    filters: `/products/filters/${categoryPath}/${filtersStr}`,
-  }
+  const isBySearch = categoryPath.includes('search=')
 
   try {
-    const data = await fetchData(endpoints.products)
-    // const activeCategory = await fetchData(endpoints.activeCategory)
-    // const directSubcategories = await fetchData(endpoints.directSubcategories)
-    // const filtersMap = await fetchData(endpoints.filters)
+    const method = isBySearch ? 'by-query' : 'by-category-path'
+    const searchBy = isBySearch
+      ? categoryPath.split('search=')[1]
+      : categoryPath
+    const url = `/products/${method}/${searchBy}/filtered-by/${filtersStr}`
 
+    // /products/by-query/dlya-kotiv/filtered-by/page=1
+
+    const data = await fetchData(url)
     const filtersMap = []
 
-    const page = filtersStr.match(/page=(\d+)/)[1] || 1
+    // const page = filtersStr.match(/page=(\d+)/)[1] || 1
+    const FIRST_PAGE = 1
     const HALF_AN_HOUR = 1800
     return {
       props: {
         data: {
           ...data,
           filtersMap,
-          page: page,
+          // page: page,
+          // page: filtersStr.match(/page=(\d+)/)[1] || FIRST_PAGE,
+          page: filtersStr.match(/page=(\d+)/)[1],
         },
         revalidate: HALF_AN_HOUR,
       },
