@@ -30,6 +30,10 @@
         display: none;
       }
 
+      li.active {
+        display: flex;
+      }
+
       li::before {
         color: $color-blue-dasl !important;
         content: '↫' !important;

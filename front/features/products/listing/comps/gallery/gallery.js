@@ -61,7 +61,9 @@ const ProductGallery = ({
               <AutoSizer disableHeight>
                 {({ width }) => {
                   let columnCount = Math.floor(width / MIN_COLUMN_WIDTH)
-                  columnCount < MIN_COLUMNS ? MIN_COLUMNS : columnCount
+                  columnCount =
+                    columnCount < MIN_COLUMNS ? MIN_COLUMNS : columnCount
+
                   setColumnsNumber(columnCount)
 
                   return (
