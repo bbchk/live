@@ -11,6 +11,7 @@ import {
   Grid,
 } from 'react-virtualized'
 import { useWishList } from '#root/hooks/useWishList.js'
+import { useState } from 'react'
 
 const MIN_COLUMNS = 2 // Minimum number of columns
 const MIN_COLUMN_WIDTH = 250 // Minimum width for a column
@@ -21,7 +22,8 @@ const ProductGallery = ({
 }) => {
   const [_, like] = useWishList()
   const { wishList, status } = useSelector((state) => state.wishList)
-  console.log('🚀 ~ wishList:', wishList)
+
+  const [columnsNumber, setColumnsNumber] = useState(4)
 
   const cellRenderer = ({ columnIndex, rowIndex, key, style, columnCount }) => {
     const index = rowIndex * columnCount + columnIndex
@@ -40,7 +42,12 @@ const ProductGallery = ({
   }
 
   return (
-    <div className={`${s.g}`}>
+    <div
+      className={`${s.g}`}
+      style={{
+        '--children-number': Math.ceil(products.length / columnsNumber),
+      }}
+    >
       <InfiniteLoader
         isRowLoaded={({ index }) => !!products[index]}
         loadMoreRows={({ startIndex, stopIndex }) => {
@@ -54,8 +61,8 @@ const ProductGallery = ({
               <AutoSizer disableHeight>
                 {({ width }) => {
                   let columnCount = Math.floor(width / MIN_COLUMN_WIDTH)
-                  columnCount =
-                    columnCount < MIN_COLUMNS ? MIN_COLUMNS : columnCount
+                  columnCount < MIN_COLUMNS ? MIN_COLUMNS : columnCount
+                  setColumnsNumber(columnCount)
 
                   return (
                     <Grid

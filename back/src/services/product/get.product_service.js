@@ -28,7 +28,6 @@ export const getKeywordsByCategory = async (catId) => {
   const activeCategory = await getCategoryById(catId)
 
   const subcategories = await getSubcategories(activeCategory)
-  console.log('🚀 ~ subcategoriesIds:', subcategories)
 
   const subcategoriesIds = subcategories.map((c) => c._id)
 
@@ -64,7 +63,6 @@ export async function getByQuery(query, filtersStr) {
   query = untransliterate(unslugify(query))
   query = processForSE(sanitize(query))
 
-  console.log('🚀 ~ query:', query)
   let dbQuery = Product.find({
     $text: { $search: query },
   }).select(FOR_LISTING_PAGE)

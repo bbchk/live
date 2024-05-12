@@ -3,6 +3,11 @@
 
 .g {
   box-shadow: 0 0 0 0.05rem $color-wh-lightsilv;
-  border-radius: 0 0 0.5rem 0.5rem;
+  border-radius: 0 0.5rem 0.5rem 0.5rem;
   overflow: hidden;
+
+  // color: var(--children-number);
+  // padding: var(--children-number);
+  min-height: calc(var(--children-number) * 400px);
+  // min-height: 800px;
 }

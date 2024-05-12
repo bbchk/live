@@ -20,7 +20,6 @@ export const useUpdateFilters = () => {
 
   useEffect(() => {
     let newFiltersStr = genFiltersStr(filters)
-    console.log('🚀 ~ newFiltersStr:', newFiltersStr)
 
     if (
       Object.keys(filters).length != 0 &&

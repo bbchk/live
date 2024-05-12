@@ -14,7 +14,7 @@ import ListingHeader from '#root/features/products/listing/layout/listing.header
 
 const Listing = ({ data }) => {
   const router = useRouter()
-  const { categoryPath, filtersStr } = router.query
+  const { categoryPath } = router.query
 
   const {
     activeCategory: category,

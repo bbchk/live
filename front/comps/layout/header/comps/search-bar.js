@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, use } from 'react'
 import s from './search-bar.module.scss'
 import hs from '../header.module.scss'
 import { SearchRounded } from '@mui/icons-material'
@@ -10,13 +10,23 @@ import { startLoading } from 'store/slices/global_comps/global_comps.slice'
 //   removeSearchRes,
 // } from '#root/store/slices/search.slice.js'
 import { useDispatch } from 'react-redux'
-import { slugify } from '@bbuukk/slugtrans/slugify'
-import { transliterate } from '@bbuukk/slugtrans/transliterate'
+import { slugify, unslugify } from '@bbuukk/slugtrans/slugify'
+import { transliterate, untransliterate } from '@bbuukk/slugtrans/transliterate'
 
 const SearchBar = () => {
   const router = useRouter()
+  const { categoryPath } = router.query
   const dispatch = useDispatch()
   useDoOnKey('Escape', () => document.getElementById('search_bar_input').blur())
+
+  useEffect(() => {
+    const isSearchPage = categoryPath.includes('search=')
+    if (isSearchPage) {
+      const slugQuery = categoryPath.split('search=')[1]
+      const query = untransliterate(unslugify(slugQuery))
+      setSearchText(query)
+    }
+  }, [])
 
   const [searchText, setSearchText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -26,23 +36,8 @@ const SearchBar = () => {
     e.preventDefault()
     // setIsLoading(true)
     dispatch(startLoading())
-
     const query = slugify(transliterate(searchText))
-
     router.push(`/products/search=${query}/page=1`)
-    // router.push(`/products/dlya-kotiv/page=1`)
-
-    // try {
-    // const response = await axios.get(`products/search/${query}`)
-    // const products = response.data
-    // console.log('🚀 ~ products:', products)
-    // dispatch(setSearchRes(products))
-    // router.push(`/products/search/${searchText}`)
-    // } catch (e) {
-    //   console.log('🚀 ~ e:', e.response)
-    // setError(e.response.data.message)
-    // }
-    // setIsLoading(false)
   }
 
   return (
