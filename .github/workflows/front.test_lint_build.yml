@@ -98,13 +98,10 @@ jobs:
           npm run dev &
         working-directory: back
 
-      - name: echo node_env
-        if: matrix.action == 'build'
-        run: echo  $NODE_ENV
-
       - name: Build front-end
         if: matrix.action == 'build'
         run: |
           npm ci --include=dev
           echo  $NODE_ENV
           npm run build
+          # NODE_ENV=production npm run build
