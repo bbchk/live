@@ -1,6 +1,7 @@
 import { LocationOnRounded } from '@mui/icons-material'
 
 const Contacts = () => {
+  // <address aria-label='Локація магазину на гугл мапі'>
   return (
     <address>
       <h2>

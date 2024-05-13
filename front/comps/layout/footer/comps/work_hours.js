@@ -12,7 +12,7 @@ const WorkHours = () => {
         <dt>Понеділок - Неділя</dt>
         <dd>
           <time dateTime='08:00'>з 8:00</time>
-          <time dateTime='18:00'> до 18:00</time>
+          <time dateTime='18:00'>до 18:00</time>
         </dd>
       </dl>
     </section>
