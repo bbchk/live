@@ -85,7 +85,7 @@ jobs:
       - name: Lint and Test
         if: matrix.action == 'lint-test'
         env:
-          NODE_ENV: development
+          NODE_ENV: test
         run: |
           npm ci --include=dev
           npm run lint
@@ -101,5 +101,6 @@ jobs:
       - name: Build front-end
         if: matrix.action == 'build'
         run: |
+          echo  ${{ vars.NODE_ENV }}
           npm ci --include=dev
           npm run build
