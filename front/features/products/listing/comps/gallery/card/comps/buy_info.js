@@ -9,7 +9,10 @@ const BuyInfo = ({ product }) => {
         {product.price} <span>₴</span>
       </p>
 
-      <button className={`${s.add_to_cart_button}`}>
+      <button
+        className={`${s.add_to_cart_button}`}
+        aria-label='Додати до кошику покупок'
+      >
         <AddShoppingCartRounded />
       </button>
     </section>

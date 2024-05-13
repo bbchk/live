@@ -13,7 +13,7 @@ const Logo = () => {
       <Link className={`${s.logo} ${hs.logo} ${pacifico.className}`} href='/'>
         <Image
           src={'/assets/logo.svg'}
-          alt='Logo of the site'
+          alt='Логотип'
           width={50}
           height={50}
           priority

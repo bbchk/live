@@ -68,6 +68,7 @@ const AuthPopover = () => {
               setShowPopover(false)
               dispatch(toggle(SIGN_IN_MODAL))
             }}
+            aria-label='Відкрити вікно авторизації'
           >
             <p>Увійти</p>
           </button>
@@ -75,6 +76,7 @@ const AuthPopover = () => {
           <p>
             <span>Не зареєстровані? </span>
             <Link
+              aria-label='Відкрити вікно реєстрації'
               href='/'
               onClick={() => {
                 setShowPopover(false)
@@ -112,6 +114,7 @@ const AuthPopover = () => {
             className={`${s.popover_button}`}
             onClick={handleShow}
             onMouseLeave={handleHide}
+            aria-label={'Увійти або зареєструватись'}
           >
             <AccountCircleRounded
               className={`${s.profile_icon}`}

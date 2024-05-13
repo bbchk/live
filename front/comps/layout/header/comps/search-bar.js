@@ -25,6 +25,8 @@ const SearchBar = () => {
       const slugQuery = categoryPath.split('search=')[1]
       const query = untransliterate(unslugify(slugQuery))
       setSearchText(query)
+    } else {
+      setSearchText('')
     }
   }, [categoryPath])
 
@@ -50,8 +52,8 @@ const SearchBar = () => {
         id='search_bar_input'
         className={` ${s.search_field}`}
         type='search'
-        placeholder='шукати...'
-        aria-label='Search'
+        placeholder='я хочу знайти...'
+        aria-label='Пошукова стрічка'
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         disabled={isLoading}

@@ -3,7 +3,7 @@ import { MapRounded } from '@mui/icons-material'
 
 const Location = () => {
   return (
-    <address className={`${s.location}`}>
+    <div className={`${s.location}`}>
       <h2>
         <MapRounded />
         <span>Мапа</span>
@@ -17,7 +17,7 @@ const Location = () => {
         loading='lazy'
         referrerPolicy='no-referrer-when-downgrade'
       />
-    </address>
+    </div>
   )
 }
 

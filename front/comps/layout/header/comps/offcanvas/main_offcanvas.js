@@ -50,6 +50,7 @@ export const OffcanvasToggler = () => {
       <button
         onClick={() => dispatch(toggle(MAIN_OFFCANVAS))}
         aria-label='Меню'
+        aria-description='Відкрити бокову панель меню'
       >
         <MenuRounded fontSize='large' />
       </button>

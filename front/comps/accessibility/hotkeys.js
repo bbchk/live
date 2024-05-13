@@ -1,5 +1,6 @@
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { useDispatch } from 'react-redux'
 import { toggle as toggleGlobalComponent } from 'store/slices/global_comps/global_comps.slice'
@@ -77,11 +78,23 @@ const CustomHotkeys = () => {
   // ctrl + b: Bookmark a product
   // ctrl + shift + b: View bookmarked produc
 
+  useState()
+  const [text, setText] = useState('')
+  function handleFocus(event) {
+    setText(
+      'Доступні гарячі клавіші. Щоб переглянути їх, натисніть комбінацію клавіш shift+? або просто натисніть клавішу Enter зараз.',
+    )
+  }
+
   return (
-    <div
-      tabIndex={0}
-      aria-label='Доступні гарячі клавіші, щоб переглянути їх натисніть комбінацію клавіш shift+?'
-    />
+    <button
+      className={`sr_only visible_on_focus`}
+      onClick={() => toggle(HOTKEYS_MODAL)}
+      onFocus={handleFocus}
+      aria-live='assertive'
+    >
+      {text}
+    </button>
   )
 }
 

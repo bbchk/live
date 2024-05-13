@@ -36,7 +36,7 @@ const Breadcrumbs = ({ category }) => {
       >
         <ol className='breadcrumb'>
           <li className={`breadcrumb-item ${category ? '' : s.home_active}`}>
-            <Link href='/'>
+            <Link href='/' aria-label='Повернутись до головної сторінки'>
               <CottageRounded />
               Головна
             </Link>
@@ -63,6 +63,7 @@ const Breadcrumbs = ({ category }) => {
                   key={pathPart}
                 >
                   <Link
+                    aria-label={`Повернутись до сторінки категорії ${clickedCategoryPath}`}
                     href={`/products/${categoryPathSlug}/page=1`}
                     onClick={handleNavigate}
                   >

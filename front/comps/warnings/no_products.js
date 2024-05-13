@@ -18,21 +18,13 @@ const NoProductYet = () => {
 
   return (
     <article className={`${s.no_products} `}>
-      <figure>
-        {/* <Image
-          src={'/assets/empty_shelf.svg'}
-          alt='product image'
-          width={150}
-          height={150}
-          quality={100}
-          priority
-        /> */}
+      <figure tabIndex={0}>
         <SearchOffRounded />
         <figcaption>
           <span>Нічого не знайдено 😔</span>
         </figcaption>
       </figure>
-      <p className={`${s.appeal}`}>
+      <p className={`${s.appeal}`} tabIndex={0}>
         Ми постійно оновлюємо наш асортимент, тому, будь ласка, поверніться
         пізніше та спробуйте ще раз 🥺
       </p>

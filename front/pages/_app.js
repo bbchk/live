@@ -75,7 +75,9 @@ export default function App({
     <>
       <Head>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <title> Живий світ: Магазин зоотоварів і товарів для дому </title>
+        <title aria-label='Тестуємо'>
+          Живий світ: Магазин зоотоварів і товарів для дому
+        </title>
         <meta
           name='description'
           content='Живий Світ: Магазин найкращих товарів для вашого дому, домашніх улюбленців та рослин'

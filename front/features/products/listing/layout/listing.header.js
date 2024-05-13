@@ -22,7 +22,9 @@ const ListingHeader = ({ category }) => {
     <>
       <div className={`${s.listing_header}`}>
         <Breadcrumbs category={category} />
-        <h2 className={`${s.label}`}>{label}</h2>
+        <h2 className={`${s.label}`} tabIndex={0}>
+          {label}
+        </h2>
       </div>
     </>
   )

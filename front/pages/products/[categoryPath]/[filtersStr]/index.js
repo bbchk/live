@@ -12,6 +12,12 @@ import ProductListingBody from 'features/products/listing/comps/product_listing_
 import { useRouter } from 'next/router'
 import ListingHeader from '#root/features/products/listing/layout/listing.header.js'
 
+import { unslugify } from '@bbuukk/slugtrans/slugify'
+import { untransliterate } from '@bbuukk/slugtrans/transliterate'
+
+//todo order filters
+//todo navigate to main content if search is active and user is tabbing
+
 const Listing = ({ data }) => {
   const router = useRouter()
   const { categoryPath } = router.query
@@ -23,8 +29,8 @@ const Listing = ({ data }) => {
   } = data
 
   const searchBy = categoryPath.includes('search=')
-    ? categoryPath.split('search=')[1]
-    : category.path
+    ? `Результати пошуку "${untransliterate(unslugify(categoryPath.split('search=')[1]))}"`
+    : `Товари у категорії "${category.path}"`
 
   useStopLoading()
   usePageValidation(numPages)
@@ -36,7 +42,7 @@ const Listing = ({ data }) => {
   return (
     <>
       <Head>
-        <title>{`Живий світ | ${searchBy}`}</title>
+        <title>{`${searchBy} у магазині Живий світ`}</title>
         <meta name='description' content={`Живий Світ | ${searchBy}`} />
       </Head>
 
@@ -69,8 +75,6 @@ export async function getServerSideProps(context) {
     const url = `/products/${method}/${searchBy}/filtered-by/${filtersStr}`
 
     const data = await fetchData(url)
-    console.log('🚀 ~ data:', data.filtersMap)
-    // i    const filtersMap = []
 
     const FIRST_PAGE = 1
     const HALF_AN_HOUR = 1800

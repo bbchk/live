@@ -34,6 +34,7 @@ const ButtonGroup = () => {
             <IconButton
               href={'/user/personal_data'}
               tooltipText={'Персональний кабінет'}
+              ariaDescribedby='Перейти до персонального кабінету'
             >
               <Image
                 src={session.user.image}
@@ -52,12 +53,14 @@ const ButtonGroup = () => {
             <IconButton
               href={'/user/orders_list'}
               tooltipText={'Список замовлень'}
+              ariaDescribedby='Перейти до списку замовлень в особистому кабінеті'
             >
               <ChecklistRtlRounded />
             </IconButton>
             <IconButton
               href={'/user/wish_list'}
               tooltipText={'Список бажаного'}
+              ariaDescribedby='Перейти до списку бажаного в особистому кабінеті'
             >
               <FavoriteBorderRounded />
             </IconButton>
@@ -66,6 +69,7 @@ const ButtonGroup = () => {
 
         <IconButton
           tooltipText={'Кошик покупок'}
+          ariaDescribedby='Відкрити вікно кошику'
           onClick={() => dispatch(toggle(CART_MODAL))}
         >
           <ShoppingCartRounded />

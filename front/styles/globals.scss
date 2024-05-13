@@ -120,11 +120,35 @@ $carouosel-transition: transform $carousel-transition-duration ease-out;
   border-width: 0;
 }
 
-body.user-is-tabbing button:focus,
-body.user-is-tabbing a:focus,
-body.user-is-tabbing input:focus {
-  border: none;
-  outline: none;
-  box-shadow: 0 0 0 2px #719ece;
-  // border-radius: 5px;
+.sr_only {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+body.user-is-tabbing {
+  button:focus,
+  a:focus,
+  input:focus {
+    border: none;
+    outline: none;
+    box-shadow: 0 0 0 2px #719ece;
+  }
+
+  .sr_only.visible_on_focus:focus {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    padding: 1rem;
+    background-color: $color-blue-dasl;
+    color: white;
+    border-radius: 0.5rem;
+  }
 }
