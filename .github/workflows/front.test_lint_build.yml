@@ -98,6 +98,9 @@ jobs:
           npm run dev &
         working-directory: back
 
+      - name: echo node_env
+        run: echo  ${{ env.NODE_ENV }}
+
       - name: Build front-end
         if: matrix.action == 'build'
         run: |
