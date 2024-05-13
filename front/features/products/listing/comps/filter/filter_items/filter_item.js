@@ -3,7 +3,7 @@ import s from './filter_item.module.scss'
 import CheckBox from 'comps/input_fields/checkbox'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { transliterate } from '@bbuukk/slugtrans/transliterate'
 import { slugify } from '@bbuukk/slugtrans/slugify'
 import { setFilter, deleteFilter } from 'store/slices/filters.slice'
@@ -50,6 +50,8 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
     }
   }
 
+  const id = useId()
+
   return (
     <section className={`${s.filter_item}`}>
       {Array.from(options).map((option) => {
@@ -60,7 +62,7 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
         return (
           <div key={option} className={`${s.checkbox}`}>
             <CheckBox
-              id={option}
+              id={`${id}-${option}`}
               label={option}
               checked={isChecked}
               handleChange={handleChange}

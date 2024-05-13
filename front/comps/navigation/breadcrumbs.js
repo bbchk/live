@@ -63,7 +63,7 @@ const Breadcrumbs = ({ category }) => {
                   key={pathPart}
                 >
                   <Link
-                    aria-label={`Повернутись до сторінки категорії ${clickedCategoryPath}`}
+                    aria-label={`${isActive ? 'Поточна категорія ' : `Повернутись до сторінки категорії ${clickedCategoryPath}`}  `}
                     href={`/products/${categoryPathSlug}/page=1`}
                     onClick={handleNavigate}
                   >

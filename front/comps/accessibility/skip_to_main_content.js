@@ -1,6 +1,10 @@
 const SkipToMainContent = ({ mainContentId }) => {
   return (
-    <a href={`#${mainContentId}`} className='sr_only visible_on_focus'>
+    <a
+      href={`#${mainContentId}`}
+      className='sr_only visible_on_focus'
+      // aria-label='Перейти до основного контенту'
+    >
       Перейти до основного контенту
     </a>
   )

@@ -35,8 +35,13 @@ const ProductGallery = ({
     product.like = like
 
     return (
-      <div key={key} style={style}>
-        <ListingProductCard product={product} priority={index < columnCount} />
+      <div role='row'>
+        <div key={key} style={style} role='gridcell'>
+          <ListingProductCard
+            product={product}
+            priority={index < columnCount}
+          />
+        </div>
       </div>
     )
   }

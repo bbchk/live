@@ -14,6 +14,7 @@ import { startLoading } from 'store/slices/global_comps/global_comps.slice'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 
+const FIRST_PAGE = 1
 //todo refactoring
 function ProductsPagination({ numPages, activePageId }) {
   const dispatch = useDispatch()
@@ -31,23 +32,41 @@ function ProductsPagination({ numPages, activePageId }) {
 
   const isActive = (pageId) => pageId == activePageId
 
-  const PaginationItem = ({ pageId, onClick, children }) => {
+  const PaginationItem = ({
+    pageId,
+    onClick,
+    children,
+    disabled = false,
+    ariaLabel = null,
+  }) => {
     return (
-      <Link
-        href={getPath(pageId)}
-        onClick={(event) => {
-          if (isActive(pageId) || pageId == undefined) {
-            event.preventDefault()
-          } else {
-            if (onClick) onClick()
-            dispatch(startLoading())
+      <li className={`${s.item}`}>
+        <Link
+          className={`${isActive(pageId) ? s.active : ''} ${
+            disabled ? s.disabled : ''
+          }`}
+          aria-label={
+            ariaLabel
+              ? ariaLabel
+              : isActive(pageId)
+                ? 'Поточна сторінка'
+                : `Перейти на сторінку номер ${pageId}`
           }
-        }}
-      >
-        <li className={`${s.item} ${isActive(pageId) ? s.active : ''}`}>
+          aria-disabled={disabled}
+          disabled={disabled}
+          href={getPath(pageId)}
+          onClick={(event) => {
+            if (isActive(pageId) || pageId == undefined) {
+              event.preventDefault()
+            } else {
+              if (onClick) onClick()
+              dispatch(startLoading())
+            }
+          }}
+        >
           {children}
-        </li>
-      </Link>
+        </Link>
+      </li>
     )
   }
 
@@ -99,31 +118,49 @@ function ProductsPagination({ numPages, activePageId }) {
       {numPages > 1 && (
         <nav aria-label='pagination'>
           <ul className={`${s.pagination}`}>
-            <ul className={`${s.controls} ${isActive(1) ? s.disabled : ''}`}>
-              <PaginationItem pageId={1}>
-                <FontAwesomeIcon icon={faAnglesLeft} />
-              </PaginationItem>
-              <PaginationItem pageId={Math.max(1, Number(activePageId) - 1)}>
-                <FontAwesomeIcon icon={faAngleLeft} />
-              </PaginationItem>
-            </ul>
+            <li>
+              <ul className={`${s.controls}`}>
+                <PaginationItem
+                  pageId={1}
+                  ariaLabel='Перейти на найпершу сторінку'
+                  disabled={isActive(FIRST_PAGE)}
+                >
+                  <FontAwesomeIcon icon={faAnglesLeft} />
+                </PaginationItem>
+                <PaginationItem
+                  pageId={Math.max(1, Number(activePageId) - 1)}
+                  ariaLabel='Перейти на попередню сторінку'
+                  disabled={isActive(FIRST_PAGE)}
+                >
+                  <FontAwesomeIcon icon={faAngleLeft} />
+                </PaginationItem>
+              </ul>
+            </li>
 
-            <ul className={`${s.pages}`}>{pageItems}</ul>
+            <li>
+              <ul className={`${s.pages}`}>{pageItems}</ul>
+            </li>
             <li className={`${s.pages}`}>
               Сторінка {activePageId} з {numPages}
             </li>
-            <ul
-              className={`${s.controls} ${
-                isActive(numPages) ? s.disabled : ''
-              }`}
-            >
-              <PaginationItem pageId={Math.max(1, Number(activePageId) + 1)}>
-                <FontAwesomeIcon icon={faAngleRight} />
-              </PaginationItem>
-              <PaginationItem pageId={numPages}>
-                <FontAwesomeIcon icon={faAnglesRight} />
-              </PaginationItem>
-            </ul>
+            <li>
+              <ul className={`${s.controls}`}>
+                <PaginationItem
+                  pageId={Math.max(1, Number(activePageId) + 1)}
+                  ariaLabel='Перейти на наступну сторінку'
+                  disabled={isActive(numPages)}
+                >
+                  <FontAwesomeIcon icon={faAngleRight} />
+                </PaginationItem>
+                <PaginationItem
+                  pageId={numPages}
+                  ariaLabel='Перейти на останню сторінку'
+                  disabled={isActive(numPages)}
+                >
+                  <FontAwesomeIcon icon={faAnglesRight} />
+                </PaginationItem>
+              </ul>
+            </li>
           </ul>
         </nav>
       )}

@@ -7,7 +7,7 @@ const StarRating = ({ rating }) => {
   const id = useId()
 
   return (
-    <div className={`${s.stars}`}>
+    <div className={`${s.stars}`} role='group'>
       {[1, 2, 3, 4, 5].map((star, index) => {
         const diff = star - rating
         let starValue = diff < 0 ? 1 : 1 - diff

@@ -85,7 +85,7 @@ jobs:
       - name: Lint and Test
         if: matrix.action == 'lint-test'
         env:
-          NODE_ENV: test
+          NODE_ENV: development
         run: |
           npm ci --include=dev
           npm run lint

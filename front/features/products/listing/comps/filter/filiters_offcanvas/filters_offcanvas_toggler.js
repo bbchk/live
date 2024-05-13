@@ -1,5 +1,6 @@
 import s from './filters_offcanvas_toggler.module.scss'
 import { useDispatch } from 'react-redux'
+import { FilterAltRounded } from '@mui/icons-material'
 
 import { toggle } from 'store/slices/global_comps/global_comps.slice'
 import { GLOBAL_COMPS } from 'store/slices/global_comps/global_comps.slice'
@@ -10,12 +11,12 @@ const FiltersOffcanvasToggler = ({ id }) => {
 
   return (
     <button
-      className={`${s.filters_offcanvas_toggler} button_primary`}
+      className={` button_primary ${s.filters_offcanvas_toggler}`}
       type='button'
       onClick={() => dispatch(toggle(FILTER_OFFCANVAS))}
     >
       <p>Фільтри</p>
-      <i className='bi bi-funnel' />
+      <FilterAltRounded />
     </button>
   )
 }

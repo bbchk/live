@@ -6,10 +6,11 @@ import s from './gallery.module.scss'
 
 const SubcategoriesGallery = ({ subcategories }) => {
   return (
-    <div>
+    <nav>
       {subcategories && (
-        <nav className={`${s.gallery} row g-3`}>
+        <ul className={`${s.gallery} row g-3`}>
           {subcategories
+
             .sort((a, b) => a.order - b.order)
             .map((category) => {
               return (
@@ -18,9 +19,9 @@ const SubcategoriesGallery = ({ subcategories }) => {
                 </li>
               )
             })}
-        </nav>
+        </ul>
       )}
-    </div>
+    </nav>
   )
 }
 

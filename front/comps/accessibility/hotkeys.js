@@ -77,7 +77,7 @@ const CustomHotkeys = () => {
   // ctrl + shift + b: View bookmarked produc
 
   useState()
-  const [text, setText] = useState('')
+  const [text, setText] = useState('_')
   function handleFocus(event) {
     setText(
       'Доступні гарячі клавіші. Щоб переглянути їх, натисніть комбінацію клавіш shift + Знак запитання або просто натисніть клавішу Enter зараз.',
@@ -90,6 +90,7 @@ const CustomHotkeys = () => {
       onClick={() => toggle(HOTKEYS_MODAL)}
       onFocus={handleFocus}
       aria-live='assertive'
+      aria-label={text}
     >
       {text}
     </button>
