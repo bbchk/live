@@ -79,21 +79,21 @@ describe('GET /products', () => {
     expect(products).toBeInstanceOf(Array)
   })
 
-//   it('should successfully get products by slugified query and with filterStr', async () => {
-//     const filtersStr = 'page=1'
+  it.skip('should successfully get products by slugified query and with filterStr', async () => {
+    const filtersStr = 'page=1'
 
-//     const query = 'для котів'
-//     const slug = slugify(transliterate(query))
+    const query = 'для котів'
+    const slug = slugify(transliterate(query))
 
-//     // dlya-kotiv
-//     const { statusCode, body, type } = await supertest(app).get(
-//       `/products/by-query/${slug}/filtered-by/${filtersStr}`,
-//     )
-//     console.log(body)
+    // dlya-kotiv
+    const { statusCode, body, type } = await supertest(app).get(
+      `/products/by-query/${slug}/filtered-by/${filtersStr}`,
+    )
+    console.log(body)
 
-//     expect(statusCode).toBe(200)
-//     expect(type).toBe('application/json')
-//     expect(body.products).toBeInstanceOf(Array)
-//     expect(body.products.length).toBeGreaterThan(0)
-//   })
-// })
+    expect(statusCode).toBe(200)
+    expect(type).toBe('application/json')
+    expect(body.products).toBeInstanceOf(Array)
+    expect(body.products.length).toBeGreaterThan(0)
+  })
+})
