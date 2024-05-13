@@ -103,5 +103,5 @@ jobs:
         run: |
           npm ci --include=dev
           echo  $NODE_ENV
-          npm run build
-          # NODE_ENV=production npm run build
+          # npm run build
+          NODE_ENV=production npm run build
