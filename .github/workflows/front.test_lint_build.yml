@@ -100,11 +100,10 @@ jobs:
 
       - name: echo node_env
         if: matrix.action == 'build'
-        run: echo  ${{ env.NODE_ENV }}
+        run: echo  $NODE_ENV
 
       - name: Build front-end
         if: matrix.action == 'build'
         run: |
-          echo  ${{ vars.NODE_ENV }}
           npm ci --include=dev
           npm run build
