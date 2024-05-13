@@ -2,7 +2,6 @@ import { useDispatch } from 'react-redux'
 import s from './card.module.scss'
 
 import Link from 'next/link'
-import Image from 'next/image'
 
 import { slugify } from '@bbuukk/slugtrans/slugify'
 import { transliterate } from '@bbuukk/slugtrans/transliterate'
@@ -17,21 +16,34 @@ const Card = ({ category, subcategories }) => {
     return `/products/${slugify(transliterate(path))}/page=1`
   }
 
-  function handleClick() {
+  function handleClick(e) {
     dispatch(startLoading())
   }
+
+  function handleMoreCategoriesClick(e) {
+    e.preventDefault()
+    // e.target.focus({ preventScroll: true })
+  }
+
+  const subcategoriesWithElepsis = [
+    ...subcategories,
+    {
+      path: category.path,
+      name: 'Інші категорії...',
+    },
+  ]
 
   return (
     <div className={`${s.cat_card}`}>
       <Link
         href={categoryPathSlug(category.path)}
-        onClick={handleClick}
-        // aria-label={`Navigate to ${category.name}`}
+        onClick={() => handleClick()}
+        aria-label={`${category.name} основна категорія`}
       >
         <ImageFallback
           src={category.imagePath}
           fallbackSrc={'/assets/goods_placeholder.svg'}
-          alt='основна категорія'
+          alt={`Основна категорія ${category.name}`}
           width={300}
           height={150}
           sizes='(max-width: 600px) 50vw, (max-width: 768px) 20vw, (max-width: 1000px) 25vw, (max-width: 1200px) 20vw, 15vw'
@@ -40,17 +52,36 @@ const Card = ({ category, subcategories }) => {
         <h2>{category.name}</h2>
       </Link>
 
-      <ul className={`${s.subcat_list}`}>
-        {subcategories.map(({ _id, path, name }) => {
-          return (
-            <li key={_id}>
-              <Link href={categoryPathSlug(path)} onClick={handleClick}>
-                {name}
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
+      <button
+        className={`${s.go_to_subcats}`}
+        onClick={(e) => {
+          console.log('clicked', e)
+        }}
+        aria-label={`Переглянути підкатегорії ${category.name}`}
+      >
+        <ul
+          className={`${s.subcat_list}`}
+          aria-label={`Підкатегорії ${category.name}`}
+        >
+          {subcategoriesWithElepsis.map(({ _id, path, name }) => {
+            return (
+              <li key={_id}>
+                <Link
+                  href={categoryPathSlug(path)}
+                  onClick={handleClick}
+                  aria-label={
+                    path === category.path
+                      ? `Переглянути більше підкатегорій ${category.name}`
+                      : `${name} підкатегорія`
+                  }
+                >
+                  {name}
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </button>
     </div>
   )
 }

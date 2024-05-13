@@ -45,20 +45,24 @@ $radius: 0.7rem;
     }
   }
 
-  .subcat_list {
-    margin-top: 0.5rem;
-    color: $color-green-palebud;
-    list-style-type: disc;
+  button.go_to_subcats {
+    text-align: start;
+    .subcat_list {
+      margin-top: 0.5rem;
+      color: $color-green-palebud;
+      list-style-type: disc;
 
-    li {
-      a {
-        border-radius: 5px;
-      }
-
-      &:hover {
-        color: $color-blue-dasl;
+      li {
         a {
-          text-decoration: underline;
+          margin-left: 0.5rem;
+          border-radius: 5px;
+        }
+
+        &:hover {
+          color: $color-blue-dasl;
+          a {
+            text-decoration: underline;
+          }
         }
       }
     }
