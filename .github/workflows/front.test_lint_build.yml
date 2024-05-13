@@ -99,6 +99,7 @@ jobs:
         working-directory: back
 
       - name: echo node_env
+        if: matrix.action == 'build'
         run: echo  ${{ env.NODE_ENV }}
 
       - name: Build front-end
