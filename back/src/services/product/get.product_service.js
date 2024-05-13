@@ -63,11 +63,11 @@ export async function getByQuery(query, filtersStr) {
   query = untransliterate(unslugify(query))
   query = processForSE(sanitize(query))
 
-  let dbQuery = Product.find({
+  let productsQuery = Product.find({
     $text: { $search: query },
   }).select(FOR_LISTING_PAGE)
 
-  const data = await processAndGatherData(dbQuery, filtersStr)
+  const data = await processAndGatherData(productsQuery, filtersStr)
 
   return data
 }
@@ -82,7 +82,7 @@ export async function getByCategoryAndFilters(slugCategoryPath, filtersStr) {
     category: { $in: subcategoriesIds },
   }).select(FOR_LISTING_PAGE)
 
-  const data = await processAndGatherData(dbQuery, filtersStr)
+  const data = await processAndGatherData(dbQuery, filtersStr, activeCategory)
 
   const ONE_LEVEL_NESTED_DEEP = 1
   const directSubcategories = await categoryService.getSubcategories(

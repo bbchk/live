@@ -68,22 +68,18 @@ export async function getServerSideProps(context) {
       : categoryPath
     const url = `/products/${method}/${searchBy}/filtered-by/${filtersStr}`
 
-    // /products/by-query/dlya-kotiv/filtered-by/page=1
-
     const data = await fetchData(url)
-    const filtersMap = []
+    console.log('🚀 ~ data:', data.filtersMap)
+    // i    const filtersMap = []
 
-    // const page = filtersStr.match(/page=(\d+)/)[1] || 1
     const FIRST_PAGE = 1
     const HALF_AN_HOUR = 1800
     return {
       props: {
         data: {
           ...data,
-          filtersMap,
-          // page: page,
-          // page: filtersStr.match(/page=(\d+)/)[1] || FIRST_PAGE,
-          page: filtersStr.match(/page=(\d+)/)[1],
+          // filtersMap,
+          page: filtersStr.match(/page=(\d+)/)[1] || FIRST_PAGE,
         },
         revalidate: HALF_AN_HOUR,
       },

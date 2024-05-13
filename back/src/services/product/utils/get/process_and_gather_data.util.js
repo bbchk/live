@@ -1,3 +1,4 @@
+import Product from '#src/models/product.model.js'
 import { FILTERS } from '#src/services/product/utils/get/constants.js'
 const { PRICE, PAGE } = FILTERS
 
@@ -10,26 +11,38 @@ import {
   filterByPrice,
 } from '#src/services/product/utils/get/filters/apply/apply_filters.util.js'
 import { getNumPages } from '#src/services/product/utils/get/products/misc/get_num_pages.js'
+import createFilters from '#src/services/product/utils/get/filters/create/create_filters.js'
 
-async function processAndGatherData(dbQuery, filtersStr) {
-  let filters = getMapFromFilterStr(filtersStr)
+async function processAndGatherData(
+  productsQuery,
+  filtersStr,
+  activeCategory = null,
+) {
+  let filteredBy = getMapFromFilterStr(filtersStr)
 
-  dbQuery = filterBy(dbQuery, filters)
+  const filtersMap = await createFilters(
+    productsQuery,
+    filteredBy,
+    activeCategory,
+  )
 
-  let products = await dbQuery.exec()
+  productsQuery = filterBy(productsQuery, filteredBy)
+
+  let products = await productsQuery.exec()
 
   const minMaxPrice = getMinMaxPrice(products)
 
-  const priceFilter = filters.get(PRICE)
+  const priceFilter = filteredBy.get(PRICE)
   if (priceFilter) products = filterByPrice(products, priceFilter)
 
   const productsCount = products.length
   const numPages = getNumPages(productsCount)
 
-  const pageFilter = filters.get(PAGE)
+  const pageFilter = filteredBy.get(PAGE)
   if (pageFilter) products = filterByPage(products, pageFilter)
 
-  return { products, productsCount, numPages, minMaxPrice }
+  return { products, filtersMap, productsCount, numPages, minMaxPrice }
+  // return { products, productsCount, numPages, minMaxPrice }
 }
 
 export default processAndGatherData

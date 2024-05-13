@@ -1,27 +1,15 @@
 import Product from '#src/models/product.model.js'
-import {
-  getCategoryBySlugPath,
-  getSubcategories,
-} from '../../../../../category/get.category_service.js'
 
 import {
-  getMapFromFilterStr,
   getFiltersMap,
   intersectMaps,
-} from '../utils/filters_map.util.js'
+} from '#src/services/product/utils/get/filters/create/filters_map.util.js'
 import { unslugifyFilter } from '#src/services/product/utils/get/filters/transform/unslugify_filter.util.js'
 
 //todo refactor, use switch
 
-export const getFiltersS = async (slugCategoryPath, filtersStr) => {
-  // const activeCategory = await getCategoryBySlugPath(slugCategoryPath)
-  // const subcategories = await getSubcategories(activeCategory)
-  // const activeCategoriesIds = subcategories.map((c) => c._id)
-  query, filters
-
-  let filters = getMapFromFilterStr(filtersStr)
-
-  async function getAllFilterMaps(filters) {
+const createFilters = async (query, filters, activeCategory) => {
+  async function getAllFilterMaps(query, filters) {
     const allFilterMaps = []
 
     for (let [slugKey, slugOptions] of filters) {
@@ -34,9 +22,9 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
         slugOptions,
       })
 
-      let characteristicsQuery = Product.find({
-        category: { $in: activeCategoriesIds },
-      }).select('characteristics')
+      let characteristicsQuery = Product.find(query.getQuery()).select(
+        'characteristics',
+      )
 
       let filteredCharacteristics = []
 
@@ -63,9 +51,7 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
       if (slugKey !== 'tsina') {
         const allFilterValues = await Product.distinct(
           `characteristics.${key}`,
-          {
-            category: { $in: activeCategoriesIds },
-          },
+          query.getQuery(),
         )
 
         filterMap.set(key, allFilterValues)
@@ -80,19 +66,31 @@ export const getFiltersS = async (slugCategoryPath, filtersStr) => {
   let filtersMap = []
   const ONLY_PAGE_FILTER = 1
   if (filters.size > ONLY_PAGE_FILTER) {
-    let allFilterMaps = await getAllFilterMaps(filters)
+    let allFilterMaps = await getAllFilterMaps(query, filters)
     filtersMap = intersectMaps(...allFilterMaps)
   } else {
-    let allCategoryProducts = await Product.find({
-      category: { $in: activeCategoriesIds },
-    })
+    let allProducts = await Product.find(query.getQuery())
       .select('characteristics')
       .sort({ createdAt: -1 })
       .exec()
 
-    filtersMap = getFiltersMap(allCategoryProducts, activeCategory)
+    //todo leaving search with only handful of generic filters, refactor later
+    if (!activeCategory) {
+      const genericCategory = {
+        filters: [
+          'Бренд',
+          'Країна реєстрації бренду',
+          'Країна-виробник товару',
+        ],
+      }
+      activeCategory = genericCategory
+    }
+
+    filtersMap = getFiltersMap(allProducts, activeCategory)
   }
   filtersMap = Array.from(filtersMap.entries())
 
   return filtersMap
 }
+
+export default createFilters

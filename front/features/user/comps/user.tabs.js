@@ -20,7 +20,8 @@ import { signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useDispatch } from 'react-redux'
 import { toggle } from 'store/slices/global_comps/global_comps.slice'
-import { MAIN_OFFCANVAS } from 'store/slices/global_comps/global_comps.slice'
+import { GLOBAL_COMPS } from 'store/slices/global_comps/global_comps.slice'
+const { MAIN_OFFCANVAS } = GLOBAL_COMPS
 
 const UserListTabs = () => {
   const dispatch = useDispatch()
