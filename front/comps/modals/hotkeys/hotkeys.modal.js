@@ -59,13 +59,19 @@ const HotkeysModal = () => {
           <menu className={`${s.hotkeys_group} ${s.navigation}`}>
             <HotkeyItem
               dscrpt={'Перейти на домашню сторінку'}
-              hk={['g', 'h']}
+              hk={['ctrl', 'alt', 'h']}
             />
-            <HotkeyItem dscrpt={'Відкрити кошик покупок'} hk={['shift', 'c']} />
-            <HotkeyItem dscrpt={'Відкрити бокове меню'} hk={['shift', 'o']} />
+            <HotkeyItem
+              dscrpt={'Відкрити кошик покупок'}
+              hk={['ctrl', 'alt', 'c']}
+            />
+            <HotkeyItem
+              dscrpt={'Відкрити бокове меню'}
+              hk={['ctrl', 'alt', 'd']}
+            />
           </menu>
           <menu className={`${s.hotkeys_group} ${s.focus}`}>
-            <HotkeyItem dscrpt={'Фокусуватись на пошуку'} hk={['s']} />
+            <HotkeyItem dscrpt={'Фокусуватись на пошуку'} hk={['/']} />
             <HotkeyItem
               dscrpt={'Фокусуватись на основному вмісті'}
               hk={['ctrl', 'm']}
@@ -75,25 +81,31 @@ const HotkeysModal = () => {
           <menu className={`${s.hotkeys_group} ${s.user} ${s.auth}`}>
             <HotkeyItem
               dscrpt={'Перейти до особистого кабінету'}
-              hk={['g', 'p']}
+              hk={['ctrl', 'alt', 'u']}
             />
 
-            <HotkeyItem dscrpt={'Перейти до списку бажаного'} hk={['g', 'w']} />
-            <HotkeyItem dscrpt={'Перейти до моїх замовлень'} hk={['g', 'o']} />
+            <HotkeyItem
+              dscrpt={'Перейти до списку бажаного'}
+              hk={['ctrl', 'alt', 'w']}
+            />
+            <HotkeyItem
+              dscrpt={'Перейти до моїх замовлень'}
+              hk={['ctrl', 'alt', 'o']}
+            />
             <HotkeyItem
               dscrpt={'Вийти з облікового запису'}
-              hk={['alt', 'shift', 'q']}
+              hk={['ctrl', 'alt', 'q']}
             />
           </menu>
           <menu className={`${s.hotkeys_group} ${s.user} ${s.not_auth}`}>
             <>
               <HotkeyItem
                 dscrpt={'Зареєструвати обліковий запис'}
-                hk={['alt', 'shift', 'u']}
+                hk={['ctrl', 'alt', 'r']}
               />
               <HotkeyItem
                 dscrpt={'Увійти в обліковий запис'}
-                hk={['alt', 'shift', 'i']}
+                hk={['ctrl', 'alt', 'l']}
               />
             </>
           </menu>

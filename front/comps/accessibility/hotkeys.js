@@ -42,26 +42,24 @@ const CustomHotkeys = () => {
   useHotkeys('shift+?, shift+.', () => toggle(HOTKEYS_MODAL), [dispatch])
 
   //navigation
-  useHotkeys('g+h, п+р', () => navigateTo('/'))
-  useHotkeys('g+u, п+г', () => navigateTo('/user/personal_data'))
-  useHotkeys('g+w, п+ц', () => navigateTo('/user/wish_list'))
-  useHotkeys('g+o, п+о', () => navigateTo('/user/orders_list'))
+  useHotkeys('ctrl+alt+h, ctrl+alt+р', () => navigateTo('/'))
+  useHotkeys('ctrl+alt+u, ctrl+alt+г', () => navigateTo('/user/personal_data'))
+  useHotkeys('ctrl+alt+w, ctrl+alt+ц', () => navigateTo('/user/wish_list'))
+  useHotkeys('ctrl+alt+o, ctrl+alt+щ', () => navigateTo('/user/orders_list'))
 
-  useHotkeys('shift+c, shift+с', () => toggle(CART_MODAL), [dispatch])
-  useHotkeys('alt+shift+i, alt+shift+ш', () => toggle(SIGN_IN_MODAL), [
-    dispatch,
-  ])
-  useHotkeys('alt+shift+u, alt+shift+г', () => toggle(SIGN_UP_MODAL), [
-    dispatch,
-  ])
-  useHotkeys('shift+o, shift+щ', () => toggle(MAIN_OFFCANVAS), [dispatch])
+  useHotkeys('сtrl+alt+c, сtrl+alt+с', () => toggle(CART_MODAL), [dispatch])
+  useHotkeys('ctrl+alt+l, alt+shift+д', () => toggle(SIGN_IN_MODAL), [dispatch])
+  useHotkeys('ctrl+alt+r, alt+shift+к', () => toggle(SIGN_UP_MODAL), [dispatch])
+  useHotkeys('ctrl+alt+d, ctrl+alt+в', () => toggle(MAIN_OFFCANVAS), [dispatch])
   // da
   //focus management
-  useHotkeys('/, s', () => focusOn('search_bar_input'))
+  useHotkeys('/', () => focusOn('search_bar_input'))
   useHotkeys('ctrl+m, сtrl+ь', () => focusOn('main_content'))
 
   //user
-  useHotkeys('alt+shift+q', () => signOut({ callbackUrl: '/' }), [dispatch])
+  useHotkeys('ctrl+alt+q, ctrl+alt+й', () => signOut({ callbackUrl: '/' }), [
+    dispatch,
+  ])
 
   //todo for landing page
   // Shopping Cart Shortcuts: These can help users manage their shopping cart.
@@ -82,7 +80,7 @@ const CustomHotkeys = () => {
   const [text, setText] = useState('')
   function handleFocus(event) {
     setText(
-      'Доступні гарячі клавіші. Щоб переглянути їх, натисніть комбінацію клавіш shift+? або просто натисніть клавішу Enter зараз.',
+      'Доступні гарячі клавіші. Щоб переглянути їх, натисніть комбінацію клавіш shift + Знак запитання або просто натисніть клавішу Enter зараз.',
     )
   }
 

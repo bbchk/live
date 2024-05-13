@@ -10,8 +10,8 @@ import { startLoading } from 'store/slices/global_comps/global_comps.slice.js'
 import ImageFallback from 'comps/image/fallback_image.js'
 import { useState } from 'react'
 
+const LAST_CATEGORY_IDX = 4
 const Card = ({ category, subcategories }) => {
-  const LAST_CATEGORY_IDX = 4
   const dispatch = useDispatch()
   const [tabToSubcats, setTabToSubcats] = useState(false)
 
