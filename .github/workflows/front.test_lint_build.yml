@@ -100,8 +100,8 @@ jobs:
 
       - name: Build front-end
         if: matrix.action == 'build'
+        env:
+          NODE_ENV: production
         run: |
-          npm ci --include=dev
-          echo  $NODE_ENV
-          # npm run build
-          NODE_ENV=production npm run build
+          npm ci --include=dev          
+          npm run build
