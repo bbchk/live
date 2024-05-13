@@ -106,4 +106,5 @@ jobs:
         if: matrix.action == 'build'
         run: |
           npm ci --include=dev
+          echo  $NODE_ENV
           npm run build
