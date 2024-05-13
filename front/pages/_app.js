@@ -64,8 +64,7 @@ if (process.env.NODE_ENV === 'production') {
 /* eslint-enable */
 
 import SkipToMainContent from 'comps/accessibility/skip_to_main_content'
-import CustomHotkeys from 'comps/accessibility/hotkeys'
-import useLocalStorage from '#root/hooks/useLocalStorage.js'
+import CustomHotkeys from 'comps/accessibility/hotkeys' //not all users will need this, optimize
 
 export default function App({
   Component,
