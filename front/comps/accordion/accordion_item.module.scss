@@ -9,4 +9,8 @@
       font-size: 1.2rem;
     }
   }
+
+  &:last-child .header {
+    border-bottom: none;
+  }
 }
