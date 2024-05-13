@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   back-end-testing-linting-starting:
-    uses: bbuukk/live/.github/workflows/back.test_lint_start.yml@main
+    uses: bbuukk/live/.github/workflows/back.test_lint_start.yml@dev
     with:
       node-version: 20
       working-directory: back
@@ -24,7 +24,7 @@ jobs:
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
   front-end-testing-linting-building:
-    uses: bbuukk/live/.github/workflows/front.test_lint_build.yml@main
+    uses: bbuukk/live/.github/workflows/front.test_lint_build.yml@dev
     with:
       node-version: 20
       working-directory: front
