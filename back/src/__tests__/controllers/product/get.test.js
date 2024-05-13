@@ -79,18 +79,19 @@ describe('GET /products', () => {
     expect(products).toBeInstanceOf(Array)
   })
 
-  it('should successfully get resulting filters map by slugified category path and with filterStr', async () => {
-    const randCategory = randomCategory()
+  it('should successfully get products by slugified query and with filterStr', async () => {
+    const filtersStr = 'page=1'
 
-    const filtersStr = 'page=1;tsina=1,100'
-    const categoryPath = slugify(transliterate(randCategory.path))
+    const query = 'для котів'
+    const slug = slugify(transliterate(query))
 
     const { statusCode, body, type } = await supertest(app).get(
-      `/products/filters/${categoryPath}/${filtersStr}`,
+      `/products/by-query/${slug}/filtered-by/${filtersStr}`,
     )
 
     expect(statusCode).toBe(200)
     expect(type).toBe('application/json')
-    expect(body).toBeInstanceOf(Array)
+    expect(body.products).toBeInstanceOf(Array)
+    expect(body.products.length).toBeGreaterThan(0)
   })
 })

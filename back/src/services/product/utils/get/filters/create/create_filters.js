@@ -8,7 +8,16 @@ import { unslugifyFilter } from '#src/services/product/utils/get/filters/transfo
 
 //todo refactor, use switch
 
+const GENERIC_CATEGORY = {
+  filters: ['Бренд', 'Країна реєстрації бренду', 'Країна-виробник товару'],
+}
+
 const createFilters = async (query, filters, activeCategory) => {
+  //todo leaving search with only handful of generic filters, refactor later
+  if (!activeCategory) {
+    activeCategory = GENERIC_CATEGORY
+  }
+
   async function getAllFilterMaps(query, filters) {
     const allFilterMaps = []
 
@@ -73,18 +82,6 @@ const createFilters = async (query, filters, activeCategory) => {
       .select('characteristics')
       .sort({ createdAt: -1 })
       .exec()
-
-    //todo leaving search with only handful of generic filters, refactor later
-    if (!activeCategory) {
-      const genericCategory = {
-        filters: [
-          'Бренд',
-          'Країна реєстрації бренду',
-          'Країна-виробник товару',
-        ],
-      }
-      activeCategory = genericCategory
-    }
 
     filtersMap = getFiltersMap(allProducts, activeCategory)
   }

@@ -1,4 +1,5 @@
 function getFiltersMap(products, activeCategory) {
+  console.log('🚀 ~ activeCategory:', activeCategory)
   let filtersMap = new Map()
 
   for (const pd of products) {
