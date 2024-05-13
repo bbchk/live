@@ -101,7 +101,7 @@ jobs:
       - name: Build front-end
         if: matrix.action == 'build'
         env:
-          NODE_ENV: production
+          NODE_ENV: production # the build process is always considered a production build in next.js
         run: |
           npm ci --include=dev          
           npm run build

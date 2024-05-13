@@ -14,6 +14,7 @@ const Logo = () => {
         <Image
           src={'/assets/logo.svg'}
           alt='Логотип'
+          aria-label='Перейти на головну сторінку'
           width={50}
           height={50}
           priority
