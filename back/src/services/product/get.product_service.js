@@ -6,8 +6,8 @@ import {
   getCategoryById,
   getCategoryBySlugPath,
 } from '#src/services/category/get.category_service.js'
-import { slugify, unslugify } from '@bbuukk/slugtrans/slugify'
-import { transliterate, untransliterate } from '@bbuukk/slugtrans/transliterate'
+import { unslugify } from '@bbuukk/slugtrans/slugify'
+import { untransliterate } from '@bbuukk/slugtrans/transliterate'
 import { sanitize, processForSE } from '@bbuukk/slugtrans/process'
 import processAndGatherData from '#src/services/product/utils/get/process_and_gather_data.util.js'
 import * as categoryService from '#src/services/category/get.category_service.js'

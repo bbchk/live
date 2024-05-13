@@ -1,4 +1,3 @@
-import Product from '#src/models/product.model.js'
 import { FILTERS } from '#src/services/product/utils/get/constants.js'
 const { PRICE, PAGE } = FILTERS
 
