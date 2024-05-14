@@ -16,7 +16,11 @@ const RecsCarousel = () => {
       type: 'module',
     })
 
-    recsWorker.postMessage({ id: productId })
+    recsWorker.postMessage({
+      id: productId,
+      backEndUrl: process.env.NEXT_PUBLIC_BACKEND_URL,
+    })
+
     recsWorker.onmessage = (event) => {
       if (!event.data.error) {
         setRecs(event.data)

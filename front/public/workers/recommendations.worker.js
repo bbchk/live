@@ -1,4 +1,5 @@
-import { stringify, process } from './tf_idf.utils/stringify.js'
+import { fetchData } from './utils/misc.js'
+import { stringify, process } from './utils/stringify.js'
 
 function calculateTF(term, document) {
   var words = document.split(' ')
@@ -74,17 +75,23 @@ function similarities(documents, product) {
 }
 
 self.onmessage = async (event) => {
-  const { id } = event.data
+  const { id, backEndUrl } = event.data
+  // console.log('🚀 ~ backEndUrl:', backEndUrl)
 
   try {
-    const productQuery = await fetch(
-      `http://localhost:4000/products/product/by-id/${id}`,
+    const activeProduct = await fetchData(
+      `${backEndUrl}/products/product/by-id/${id}`,
     )
-    const product = await productQuery.json()
+    const { category, _id, keywords } = activeProduct
+    const activeProdKws = { _id, keywords }
 
-    const allProductQuery = await fetch(`http://localhost:4000/products`)
-    const products = await allProductQuery.json()
+    // // todo send two categories or more
+    const allProdKwsInCat = await fetchData(
+      `${backEndUrl}/products/keywords/by-cat-id/${category[0]._id}`,
+    )
 
+    console.log('🚀 ~ allProdKwsInCat:', allProdKwsInCat)
+    console.log('🚀 ~ activeProdKws:', activeProdKws)
     const similaritiesRes = similarities(products, product)
 
     self.postMessage(similaritiesRes)

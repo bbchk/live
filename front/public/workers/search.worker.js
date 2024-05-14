@@ -1,4 +1,4 @@
-import { stringify, process } from './tf_idf.utils/stringify.js'
+import { stringify, process } from './utils/stringify.js'
 
 function calculateTF(term, document) {
   var words = document.split(' ')
