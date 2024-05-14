@@ -13,9 +13,14 @@ const GENERIC_CATEGORY = {
 }
 
 const createFilters = async (query, filters, activeCategory) => {
-  //todo leaving search with only handful of generic filters, refactor later
   if (!activeCategory) {
+    //todo leaving search with only handful of generic filters, refactor later
     activeCategory = GENERIC_CATEGORY
+  } else {
+    //todo create unique filters for every category
+    if (activeCategory.filters.length === 0) {
+      activeCategory = GENERIC_CATEGORY
+    }
   }
 
   async function getAllFilterMaps(query, filters) {
