@@ -53,7 +53,7 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
   const id = useId()
 
   return (
-    <section className={`${s.filter_item}`}>
+    <section className={`${s.filter_item}`} tabIndex={-1}>
       {Array.from(options).map((option) => {
         const isChecked = filters[slugFilterLabel]?.includes(
           slugify(transliterate(option)),
