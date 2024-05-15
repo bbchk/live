@@ -34,7 +34,7 @@ export const getDirectSubcategoriesByPath = asyncErrorHandler(
     if (!parentCategory)
       return next(new _Error(`Category with path ${slugPath} not found.`, 404))
 
-    const ONE_LEVEL_NESTED_DEEP = 0
+    const ONE_LEVEL_NESTED_DEEP = 1
     const categories = await categoryService.getSubcategories(
       parentCategory,
       ONE_LEVEL_NESTED_DEEP,

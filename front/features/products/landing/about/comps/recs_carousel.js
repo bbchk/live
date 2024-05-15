@@ -1,8 +1,10 @@
+import axios from 'axios'
 import s from './recs_carousel.module.scss'
 import ListingProductCard from 'features/products/listing/comps/gallery/card/listing_card'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 
+//do we need web worker for this?
 const RecsCarousel = () => {
   const router = useRouter()
   const { productId } = router.query
@@ -10,15 +12,9 @@ const RecsCarousel = () => {
   const [recs, setRecs] = useState([])
 
   useEffect(() => {
-    // const numCores = navigator.hardwareConcurrency || 4
-    // console.log(`Number of cores: ${numCores}`)
-
     let recsWorker = new Worker('/workers/recommendations.worker.js', {
       type: 'module',
     })
-    // let recsWorker = new Worker('/workers/search.worker.js', {
-    //   type: 'module',
-    // })
 
     recsWorker.postMessage({
       id: productId,
@@ -26,9 +22,16 @@ const RecsCarousel = () => {
     })
 
     recsWorker.onmessage = (event) => {
-      if (!event.data.error) {
-        setRecs(event.data)
+      const handleData = async (data) => {
+        if (!data.error) {
+          const ids = data.join(',')
+          const recommendations = await axios.get(`/products/by-ids?ids=${ids}`)
+
+          setRecs(recommendations.data)
+        }
       }
+
+      handleData(event.data)
     }
 
     return () => {

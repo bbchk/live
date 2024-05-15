@@ -68,43 +68,6 @@ export const getCategoryBySlugPath = async (slugCategoryPath) => {
   })
 }
 
-// export const getSubcategories = async (
-//   parentCategory,
-//   requiredNestingLevel,
-// ) => {
-//   //todo validate requiredNestingLevel value
-
-//   if (parentCategory == null) {
-//     throw new _Error('Parent category with such path is not found', 404)
-//   }
-
-//   const allSubcategories = await category
-//     .find({
-//       path: new RegExp(parentCategory.path, 'i'),
-//     })
-//     .sort({ order: 1 })
-//     .select('name order path imagePath')
-//     .exec()
-
-//   const parentCatNestLevel = parentCategory.path.split(',').length
-
-//   if (requiredNestingLevel) {
-//     function isAtRequiredNestingLevel(c) {
-//       const nestLevel = c.path.split(',').length
-//       return nestLevel === parentCatNestLevel + requiredNestingLevel
-//     }
-
-//     const subcategoriesExactLevelDeep = allSubcategories.filter(
-//       (category) =>
-//         category.name !== parentCategory.name &&
-//         isAtRequiredNestingLevel(category),
-//     )
-//     return subcategoriesExactLevelDeep
-//   }
-
-//   return allSubcategories
-// }
-
 export const getSubcategories = async (
   parentCategory,
   requiredNestingLevel,
@@ -112,63 +75,56 @@ export const getSubcategories = async (
   //todo validate requiredNestingLevel value
 
   if (parentCategory == null) {
-    throw new _Error('Parent category with such path is not found', 404)
+    throw new Error('Parent category with such path is not found')
   }
 
-  const parentCatNestLevel = parentCategory.path.split(',').length
-  const requiredCatNestLevel = parentCatNestLevel + requiredNestingLevel
-
-  let query = category.find({
-    path: new RegExp(`^${parentCategory.path}`, 'i'),
-  })
-
-  if (requiredNestingLevel) {
-    query = query
-      .where('path')
-      .regex(new RegExp(`^([^,]*,){${requiredCatNestLevel}}[^,]*$`))
-  }
-
-  const subcategories = await query
+  const allSubcategories = await category
+    .find({
+      path: new RegExp(parentCategory.path, 'i'),
+    })
     .sort({ order: 1 })
     .select('name order path imagePath')
     .exec()
 
-  return subcategories.filter(
-    (category) => category.name !== parentCategory.name,
-  )
+  const parentCatNestLevel = parentCategory.path.split(',').length
+
+  if (requiredNestingLevel) {
+    function isAtRequiredNestingLevel(c) {
+      const nestLevel = c.path.split(',').length
+      return nestLevel === parentCatNestLevel + requiredNestingLevel
+    }
+
+    const subcategoriesExactLevelDeep = allSubcategories.filter(
+      (category) =>
+        category.name !== parentCategory.name &&
+        isAtRequiredNestingLevel(category),
+    )
+    return subcategoriesExactLevelDeep
+  }
+
+  return allSubcategories
 }
 
-// export const getCategoriesNestedAt = async (id, level) => {
-//   //todo validate requiredNestingLevel value
+export const getCategoryHierarchy = async (path) => {
+  const line = []
+  const pathArr = path.split(',')
+  let pathAcc = ''
 
-//   const cat = await getCategoryById(id)
+  for (let i = 0; i < pathArr.length; i++) {
+    // Add comma only if it's not the first iteration
+    if (i !== 0) {
+      pathAcc += ','
+    }
+    pathAcc += pathArr[i]
 
-//   // if (cat == null) {
-//   //   throw new _Error('todo', 404)
-//   // }
+    let cat = await category.findOne({
+      path: new RegExp(`^${pathAcc}$`, 'i'),
+    })
+    if (cat == null) {
+      throw new _Error('Категорія з таким шляхом не існуєІ', 404)
+    }
+    line.push(cat)
+  }
 
-//   const catPathParts = cat.path.split(',')
-//   const catLevel = catPathParts.length
-
-//   // level
-//   const path = catPathParts.slice(0, -1).join(',')
-
-//   const requiredCatNestLevel = catLevel + level
-
-//   let query = category.find({
-//     path: new RegExp(`^${path}`, 'i'),
-//   })
-
-//   if (level) {
-//     query = query
-//       .where('path')
-//       .regex(new RegExp(`^([^,]*,){${requiredCatNestLevel}}[^,]*$`))
-//   }
-
-//   const subcategories = await query
-//     .sort({ order: 1 })
-//     .select('name order path imagePath')
-//     .exec()
-
-//   return subcategories.filter((c) => c.name !== cat.name)
-// }
+  return line
+}

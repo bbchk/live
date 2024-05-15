@@ -5,6 +5,7 @@ import {
   getSubcategories,
   getCategoryById,
   getCategoryBySlugPath,
+  getCategoryHierarchy,
 } from '#src/services/category/get.category_service.js'
 import { unslugify } from '@bbuukk/slugtrans/slugify'
 import { untransliterate } from '@bbuukk/slugtrans/transliterate'
@@ -26,17 +27,21 @@ export const getProducts = async () => {
 
 export const getKeywordsByCategory = async (catId) => {
   const activeCategory = await getCategoryById(catId)
-  console.log('🚀 ~ activeCategory:', activeCategory)
 
-  const subcategories = await getSubcategories(activeCategory)
+  const catHierarchy = await getCategoryHierarchy(activeCategory.path)
+  const oneLevelUpCategory = catHierarchy.at(-2)
+
+  let subcategories = await getSubcategories(oneLevelUpCategory)
 
   const subcategoriesIds = subcategories.map((c) => c._id)
 
-  return await Product.find({
+  const upkeywords = await Product.find({
     category: { $in: subcategoriesIds },
   })
     .select('keywords')
     .exec()
+
+  return upkeywords
 }
 
 export const getProductById = async (id) => {

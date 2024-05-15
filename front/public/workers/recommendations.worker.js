@@ -1,5 +1,4 @@
 import { fetchData } from './utils/misc.js'
-import { stringify, process } from './utils/stringify.js'
 
 function calculateTF(term, product) {
   const { keywords } = product
@@ -12,8 +11,6 @@ function calculateTF(term, product) {
 
 // Function to calculate inverse document frequency (IDF)
 function calculateIDF(term, documents) {
-  console.log('🚀 ~ term:', term)
-
   var docsWithTerm = documents.filter(({ _, keywords }) => {
     return keywords.includes(term.toLowerCase())
   })
@@ -84,19 +81,16 @@ self.onmessage = async (event) => {
     const activeProdKws = { _id, keywords }
 
     //todo get parant and current category, prioritize current category
-
     // // todo send two categories or more
     const allProdKwsInCat = await fetchData(
       `${backEndUrl}/products/keywords/by-cat-id/${category[0]._id}`,
     )
 
-    const similaritiesRes = similaritiesOf(allProdKwsInCat, activeProdKws)
-    similaritiesRes.forEach((p) => delete p.keywords)
+    const similaritiesRes = similaritiesOf(allProdKwsInCat, activeProdKws).map(
+      (p) => p._id,
+    )
 
-    // console.log('🚀 ~ similaritiesRes:', similaritiesRes)
-
-    self.postMessage(similaritiesRes, [similaritiesRes])
-    console.log(similaritiesRes)
+    self.postMessage(similaritiesRes)
   } catch (error) {
     console.log(error)
     self.postMessage({ error: error.message })
