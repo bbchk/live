@@ -6,11 +6,14 @@ import * as wishList from 'store/slices/wish_list.slice'
 import { getSession, useSession } from 'next-auth/react'
 import useLocalStorage from './useLocalStorage'
 
+//todo when login in on catalog page, new likes are not saved
 export const useWishList = () => {
   const dispatch = useDispatch()
   const { wishList: wshl, status } = useSelector((state) => state.wishList)
 
   const [localStWishList, setValue] = useLocalStorage('wish_list', [])
+
+  const isSet = useRef(false)
 
   useEffect(() => {
     ;(async () =>
@@ -21,7 +24,13 @@ export const useWishList = () => {
         we need to set new state to user.wishList
         as cleanup function does not work on page reload
         */
-        ;(async () => await set(localStWishList))()
+        // console.log('already')
+
+        if (!isSet.current) {
+          console.log('set')
+          ;(async () => await set(localStWishList))()
+        }
+        isSet.current = true
       }))()
   }, [])
 
@@ -32,7 +41,6 @@ export const useWishList = () => {
   wshlRef.current = wshl
   useEffect(() => {
     return () => {
-      console.log(wshlRef.current)
       ;(async () => await set(wshlRef.current))()
     }
   }, [])
@@ -48,13 +56,17 @@ export const useWishList = () => {
     }
   }, [])
 
-  async function like() {
-    if (!wshl.includes(this._id)) {
-      dispatch(wishList.add(this._id))
-    } else {
-      dispatch(wishList.remove(this._id))
-    }
-  }
+  //toggle like
+  const like = useCallback(
+    async function () {
+      if (!wshl.includes(this._id)) {
+        dispatch(wishList.add(this._id))
+      } else {
+        dispatch(wishList.remove(this._id))
+      }
+    },
+    [dispatch, wshl],
+  )
 
   return [wshl, like]
 }

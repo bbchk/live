@@ -23,13 +23,37 @@ export const set = async (userId, wishListToSync) => {
   return user.wishList
 }
 
+// import User from '#src/models/user.model.js'
+
 // export const sync = async (userId, wishListToSync) => {
-//   let user = await User.findById(userId)
-//   const currentWishList = user.wishList.map((id) => id.toString())
+//   //todo validate
 
-//   // Filter out the items in user.wishList that are not present in wishListToSync
-//   user.wishList = currentWishList.filter((id) => wishListToSync.includes(id))
+//   const currentWishList = (await User.findById(userId)).wishList.map((id) =>
+//     id.toString(),
+//   )
+//   const newWishList = [...new Set([...currentWishList, ...wishListToSync])]
 
-//   await user.save()
+//   console.log('sync')
+
+//   const user = await User.findOneAndUpdate(
+//     { _id: userId },
+//     { wishList: newWishList },
+//     { new: true }, // This option ensures that the updated document is returned
+//   )
+
+//   return user.wishList
+// }
+
+// export const set = async (userId, wishListToSync) => {
+//   //todo validate
+
+//   console.log('set')
+
+//   const user = await User.findOneAndUpdate(
+//     { _id: userId },
+//     { wishList: wishListToSync },
+//     { new: true }, // This option ensures that the updated document is returned
+//   )
+
 //   return user.wishList
 // }
