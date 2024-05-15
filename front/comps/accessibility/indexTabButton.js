@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { CustomTooltip } from 'comps/accessibility/tooltip'
 
 // import s from './todo.module.scss'
 
 const TabIndexButton = ({ children, ...props }) => {
   const ref = useRef()
   const [isTabbable, setIsTabbable] = useState(true)
+  const [isFocused, setIsFocused] = useState(true)
 
   useEffect(() => {
     toggleTabbability(true)
@@ -29,6 +31,7 @@ const TabIndexButton = ({ children, ...props }) => {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       if (document.activeElement === ref.current) {
+        setIsFocused(false)
         toggleTabbability()
       }
     }
@@ -38,27 +41,42 @@ const TabIndexButton = ({ children, ...props }) => {
     }
   }
 
+  const handleFocus = (event) => {
+    if (document.activeElement === ref.current) {
+      setIsFocused(true)
+    }
+  }
+
   const handleBlur = (event) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
       setIsTabbable(true)
       toggleTabbability(true)
       ref.current.focus()
+      setIsFocused(false)
     }
   }
 
   return (
-    <div
-      //   className={`${s.focus_in}`}
-      ref={ref}
-      tabIndex={0}
-      role='button'
-      onKeyDown={handleKeyDown}
-      onClick={handleKeyDown}
-      onBlur={handleBlur}
-      {...props}
+    <CustomTooltip
+      tooltipText={'Натисніть Enter для того, щоб перейти до фільтру'}
+      placement='bottom'
+      onTabOnly={true}
+      open={isFocused}
     >
-      {children}
-    </div>
+      <div
+        //   className={`${s.focus_in}`}
+        ref={ref}
+        tabIndex={0}
+        role='button'
+        onKeyDown={handleKeyDown}
+        onClick={handleKeyDown}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        {...props}
+      >
+        {children}
+      </div>
+    </CustomTooltip>
   )
 }
 

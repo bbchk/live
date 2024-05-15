@@ -15,7 +15,7 @@ const Selected = ({ productsCount }) => {
     <>
       {activeFilters && isActiveFilters && (
         <div className={`${s.selected}`}>
-          <p>Обрано {productsCount} товарів</p>
+          <p tabIndex={0}>Обрано {productsCount} товарів</p>
           <button
             className={`${s.cancel_all_btn} button_danger_secondary`}
             onClick={() => {
@@ -23,6 +23,7 @@ const Selected = ({ productsCount }) => {
               dispatch(deleteAllFilters())
               router.push(`/products/${router.query.categoryPath}/page=1`)
             }}
+            aria-label='Скасувати всі фільтри товарів'
           >
             Скасувати
           </button>

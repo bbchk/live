@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setFilter, deleteFilter } from 'store/slices/filters.slice'
 import { transliterate } from '@bbuukk/slugtrans/transliterate'
 import { slugify } from '@bbuukk/slugtrans/slugify'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { startLoading } from 'store/slices/global_comps/global_comps.slice.js'
 
 //todo add funcitonality
 const SortGroup = () => {
   const dispatch = useDispatch()
+  const ref = useRef()
   const { filters } = useSelector((state) => state.filters)
 
   const slugFilterLabel = slugify(transliterate('сортування'))
@@ -27,6 +28,7 @@ const SortGroup = () => {
   return (
     <search className={`${s.filters}`}>
       <select
+        ref={ref}
         aria-label='Сортувати товари за:'
         className={`form-select ${s.select}`}
         onChange={handleChange}
