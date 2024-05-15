@@ -8,7 +8,7 @@ import { transliterate } from '@bbuukk/slugtrans/transliterate'
 
 import { startLoading } from 'store/slices/global_comps/global_comps.slice.js'
 import ImageFallback from 'comps/image/fallback_image.js'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 
 const LAST_CATEGORY_IDX = 4
 const Card = ({ category, subcategories }) => {
@@ -23,16 +23,13 @@ const Card = ({ category, subcategories }) => {
     dispatch(startLoading())
   }
 
-  function handleMoreCategoriesClick(e) {
-    e.preventDefault()
-    // e.target.focus({ preventScroll: true })
-  }
-
+  const id = useId()
   const subcategoriesWithElepsis = [
     ...subcategories,
     {
       path: category.path,
       name: 'Інші категорії...',
+      _id: `${id}-more`,
     },
   ]
 

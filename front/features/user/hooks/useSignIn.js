@@ -19,6 +19,7 @@ function useSignIn() {
 
     if (res.ok) {
       await sync(wshl) //?what if we sign in on page, until unmount and not synced??
+
       setStatus('success')
     } else {
       console.log(res)
@@ -33,3 +34,5 @@ function useSignIn() {
 }
 
 export default useSignIn
+
+//todo useOnLogOut -> crear up cart and wishList

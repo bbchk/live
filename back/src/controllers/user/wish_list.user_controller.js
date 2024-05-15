@@ -10,3 +10,12 @@ export const sync = asyncErrorHandler(async (req, res, next) => {
 
   res.status(200).json(syncedWishList)
 })
+
+export const set = asyncErrorHandler(async (req, res, next) => {
+  const { userId } = req.params
+  const wishListToSync = req.body
+
+  const syncedWishList = await wishList.set(userId, wishListToSync)
+
+  res.status(200).json(syncedWishList)
+})

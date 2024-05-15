@@ -28,5 +28,6 @@ router.post('/cart/:userId/add/:productId', addCartItem)
 router.delete('/cart/:userId/delete/:productId', deleteCartItem)
 
 router.patch('/wish-list/:userId/sync', wishList.sync)
+router.put('/wish-list/:userId/set', wishList.set)
 
 export { router as userRoutes }

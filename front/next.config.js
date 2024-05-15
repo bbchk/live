@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
+  // reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     domains: ['storage.googleapis.com'],
     remotePatterns: [

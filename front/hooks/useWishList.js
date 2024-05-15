@@ -18,10 +18,9 @@ export const useWishList = () => {
       await getSession().then((session) => {
         if (status === 'idle') {
           if (session) {
-            console.log('🚀 ~ session:', session)
+            console.log(session.user.wishList)
             dispatch(wishList.set(session.user.wishList))
           } else {
-            console.log('🚀 ~ localStWishList:', localStWishList)
             dispatch(wishList.set(localStWishList))
           }
         }
@@ -31,12 +30,9 @@ export const useWishList = () => {
   const sync = useSyncWishList()
 
   //sync with localStorage and db on unmount
-
-  //todo sends [] on dismount
   const wshlRef = useRef(wshl)
-  wshlRef.current = wshl // having up to date wishList in ref
+  wshlRef.current = wshl
   useEffect(() => {
-    // todo if we have a wishList in session and it is different from local storage we need to sync it on component mount
     return () => {
       console.log(wshlRef.current)
       ;(async () => await sync(wshlRef.current))()
