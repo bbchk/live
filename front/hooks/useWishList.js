@@ -25,10 +25,8 @@ export const useWishList = () => {
         we need to set new state to user.wishList
         as cleanup function does not work on page reload
         */
-        // console.log('already')
 
         if (!isSet.current) {
-          console.log('set')
           ;(async () => await set(localStWishList))()
         }
         isSet.current = true
@@ -46,7 +44,7 @@ export const useWishList = () => {
     }
   }, [])
 
-  //save to localStorage if user reloads page or closes page
+  //save to localStorage if user reloads or closes page
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       setValue(wshlRef.current)
