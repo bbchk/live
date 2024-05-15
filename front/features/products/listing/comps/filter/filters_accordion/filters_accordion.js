@@ -53,12 +53,6 @@ const FiltersAccordion = ({ filters, minMaxPrice: minMax, show = true }) => {
                   filterLabel={filterLabel}
                   options={options}
                   idx={idx + 1}
-                  // tabIndex={tabToSubcats ? 0 : -1}
-                  //               onBlur={() => {
-                  //   if (idx == LAST_CATEGORY_IDX) {
-                  //     setTabToSubcats(false)
-                  //   }
-                  // }}
                 />
               </AccordionItem>
             </TabIndexButton>

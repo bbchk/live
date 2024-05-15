@@ -11,17 +11,26 @@ const CheckBox = ({ id, label, checked, handleChange }) => {
     setIsChecked(checked)
   }, [checked])
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      toggleCheck(!isChecked)
+    }
+  }
+
+  const toggleCheck = () => {
+    dispatch(startLoading())
+    handleChange(!isChecked, label)
+    setIsChecked(!isChecked)
+  }
+
   return (
     <label htmlFor={id} className={`form-check ${s.form_check}`}>
       <input
         className={`form-check-input ${isChecked ? s.active : ''}`}
         type='checkbox'
         checked={isChecked}
-        onChange={(e) => {
-          dispatch(startLoading())
-          handleChange(e.target.checked, label)
-          setIsChecked(e.target.checked)
-        }}
+        onChange={toggleCheck}
+        onKeyDown={handleKeyDown}
         id={id}
       />
       <span className='form-check-label'>{label}</span>

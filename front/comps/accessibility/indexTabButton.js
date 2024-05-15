@@ -1,22 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-// import s from './filters_accordion.module.scss'
+// import s from './todo.module.scss'
 
 const TabIndexButton = ({ children, ...props }) => {
   const ref = useRef()
   const [isTabbable, setIsTabbable] = useState(true)
 
   useEffect(() => {
-    setIsTabbable(!isTabbable)
-    toggleTabbability()
+    toggleTabbability(true)
   }, [])
 
-  const toggleTabbability = () => {
+  const toggleTabbability = (tabbable = !isTabbable) => {
     if (ref.current) {
+      setIsTabbable(tabbable)
+
       const tabbableElements = ref.current.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       )
-      if (isTabbable) {
+
+      if (tabbable) {
         tabbableElements.forEach((el) => el.setAttribute('tabindex', '-1'))
       } else {
         tabbableElements.forEach((el) => el.setAttribute('tabindex', '0'))
@@ -27,13 +29,19 @@ const TabIndexButton = ({ children, ...props }) => {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       if (document.activeElement === ref.current) {
-        setIsTabbable(!isTabbable)
         toggleTabbability()
       }
     }
     if (event.key === 'Escape') {
-      setIsTabbable(false)
-      toggleTabbability()
+      toggleTabbability(true)
+      ref.current.focus()
+    }
+  }
+
+  const handleBlur = (event) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setIsTabbable(true)
+      toggleTabbability(true)
       ref.current.focus()
     }
   }
@@ -46,6 +54,7 @@ const TabIndexButton = ({ children, ...props }) => {
       role='button'
       onKeyDown={handleKeyDown}
       onClick={handleKeyDown}
+      onBlur={handleBlur}
       {...props}
     >
       {children}
