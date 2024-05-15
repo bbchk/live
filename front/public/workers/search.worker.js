@@ -93,22 +93,21 @@ function similarities(documents, product) {
 }
 
 self.onmessage = async (event) => {
-  const { query } = event.data
+  const { id } = event.data
 
   try {
-    // const productQuery = await fetch(
-    //   `http://localhost:4000/products/product/by-id/${id}`,
-    // )
-    // const product = await productQuery.json()
-
-    // const allProductQuery = await fetch(`http://localhost:4000/products`)
-    // const products = await allProductQuery.json()
-
-    // const similaritiesRes = similarities(products, product)
-
-    self.postMessage(
-      `Search results for "${query}": ${process(query).split(' ')}`,
+    const productQuery = await fetch(
+      `http://localhost:4000/products/product/by-id/${id}`,
     )
+    const product = await productQuery.json()
+
+    const allProductQuery = await fetch(`http://localhost:4000/products`)
+    const products = await allProductQuery.json()
+
+    const similaritiesRes = similarities(products, product)
+    console.log('🚀 ~ similaritiesRes:', similaritiesRes)
+
+    self.postMessage(similaritiesRes)
   } catch (error) {
     self.postMessage({ error: error.message })
   }

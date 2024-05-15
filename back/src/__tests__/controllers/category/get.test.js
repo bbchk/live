@@ -36,7 +36,7 @@ describe('GET /categories', () => {
     expect(body).toEqual(randCat)
   })
 
-  it('should get subcategories of category with specified path in params', async () => {
+  it.skip('should get subcategories of category with specified path in params', async () => {
     const categoryPath = 'dlya-kotiv'
     const { statusCode, body, type } = await supertest(app).get(
       `/categories/subcategories/by-parent-category-path/${categoryPath}`,

@@ -10,6 +10,7 @@ import {
   getRootCategories,
   getCategoryByPath,
   getDirectSubcategoriesByPath,
+  // getNestedCategories,
 } from '#src/controllers/category/get.category_controller.js'
 
 import cacheFor from '#src/middleware/cache.js'
@@ -24,6 +25,8 @@ chRouter.get(
   '/subcategories/by-parent-category-path/:path',
   getDirectSubcategoriesByPath,
 )
+
+// chRouter.get('/by-id/:id/nested/on-nest-level/:nestLevel', getNestedCategories)
 
 const TEN_MINUTES = 600
 router.use(cacheFor(TEN_MINUTES), chRouter)

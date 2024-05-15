@@ -11,13 +11,13 @@ export const getCategories = async () => {
 
 export const getCategoryById = async (id) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    throw _Error('Category id is not valid', 404)
+    throw new _Error('Category id is not valid', 404)
   }
 
   const result = await category.findById(id).exec()
 
   if (!result) {
-    throw _Error('No such category', 404)
+    throw new _Error('No such category', 404)
   }
 
   return result
@@ -68,6 +68,43 @@ export const getCategoryBySlugPath = async (slugCategoryPath) => {
   })
 }
 
+// export const getSubcategories = async (
+//   parentCategory,
+//   requiredNestingLevel,
+// ) => {
+//   //todo validate requiredNestingLevel value
+
+//   if (parentCategory == null) {
+//     throw new _Error('Parent category with such path is not found', 404)
+//   }
+
+//   const allSubcategories = await category
+//     .find({
+//       path: new RegExp(parentCategory.path, 'i'),
+//     })
+//     .sort({ order: 1 })
+//     .select('name order path imagePath')
+//     .exec()
+
+//   const parentCatNestLevel = parentCategory.path.split(',').length
+
+//   if (requiredNestingLevel) {
+//     function isAtRequiredNestingLevel(c) {
+//       const nestLevel = c.path.split(',').length
+//       return nestLevel === parentCatNestLevel + requiredNestingLevel
+//     }
+
+//     const subcategoriesExactLevelDeep = allSubcategories.filter(
+//       (category) =>
+//         category.name !== parentCategory.name &&
+//         isAtRequiredNestingLevel(category),
+//     )
+//     return subcategoriesExactLevelDeep
+//   }
+
+//   return allSubcategories
+// }
+
 export const getSubcategories = async (
   parentCategory,
   requiredNestingLevel,
@@ -75,32 +112,63 @@ export const getSubcategories = async (
   //todo validate requiredNestingLevel value
 
   if (parentCategory == null) {
-    throw new Error('Parent category with such path is not found')
+    throw new _Error('Parent category with such path is not found', 404)
   }
 
-  const allSubcategories = await category
-    .find({
-      path: new RegExp(parentCategory.path, 'i'),
-    })
+  const parentCatNestLevel = parentCategory.path.split(',').length
+  const requiredCatNestLevel = parentCatNestLevel + requiredNestingLevel
+
+  let query = category.find({
+    path: new RegExp(`^${parentCategory.path}`, 'i'),
+  })
+
+  if (requiredNestingLevel) {
+    query = query
+      .where('path')
+      .regex(new RegExp(`^([^,]*,){${requiredCatNestLevel}}[^,]*$`))
+  }
+
+  const subcategories = await query
     .sort({ order: 1 })
     .select('name order path imagePath')
     .exec()
 
-  const parentCatNestLevel = parentCategory.path.split(',').length
-
-  if (requiredNestingLevel) {
-    function isAtRequiredNestingLevel(c) {
-      const nestLevel = c.path.split(',').length
-      return nestLevel === parentCatNestLevel + requiredNestingLevel
-    }
-
-    const subcategoriesExactLevelDeep = allSubcategories.filter(
-      (category) =>
-        category.name !== parentCategory.name &&
-        isAtRequiredNestingLevel(category),
-    )
-    return subcategoriesExactLevelDeep
-  }
-
-  return allSubcategories
+  return subcategories.filter(
+    (category) => category.name !== parentCategory.name,
+  )
 }
+
+// export const getCategoriesNestedAt = async (id, level) => {
+//   //todo validate requiredNestingLevel value
+
+//   const cat = await getCategoryById(id)
+
+//   // if (cat == null) {
+//   //   throw new _Error('todo', 404)
+//   // }
+
+//   const catPathParts = cat.path.split(',')
+//   const catLevel = catPathParts.length
+
+//   // level
+//   const path = catPathParts.slice(0, -1).join(',')
+
+//   const requiredCatNestLevel = catLevel + level
+
+//   let query = category.find({
+//     path: new RegExp(`^${path}`, 'i'),
+//   })
+
+//   if (level) {
+//     query = query
+//       .where('path')
+//       .regex(new RegExp(`^([^,]*,){${requiredCatNestLevel}}[^,]*$`))
+//   }
+
+//   const subcategories = await query
+//     .sort({ order: 1 })
+//     .select('name order path imagePath')
+//     .exec()
+
+//   return subcategories.filter((c) => c.name !== cat.name)
+// }

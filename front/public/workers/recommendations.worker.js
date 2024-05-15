@@ -1,18 +1,21 @@
 import { fetchData } from './utils/misc.js'
 import { stringify, process } from './utils/stringify.js'
 
-function calculateTF(term, document) {
-  var words = document.split(' ')
-  var termCount = words.reduce((acc, word) => {
-    return word.toLowerCase() === term.toLowerCase() ? acc + 1 : acc
+function calculateTF(term, product) {
+  const { keywords } = product
+
+  var termCount = keywords.reduce((acc, kw) => {
+    return kw.toLowerCase() === term.toLowerCase() ? acc + 1 : acc
   }, 0)
-  return termCount / words.length
+  return termCount / keywords.length
 }
 
 // Function to calculate inverse document frequency (IDF)
 function calculateIDF(term, documents) {
-  var docsWithTerm = documents.filter((document) => {
-    return document.toLowerCase().split(' ').includes(term.toLowerCase())
+  console.log('🚀 ~ term:', term)
+
+  var docsWithTerm = documents.filter(({ _, keywords }) => {
+    return keywords.includes(term.toLowerCase())
   })
   return Math.log(documents.length / (docsWithTerm.length + 1))
 }
@@ -26,7 +29,10 @@ function calculateTFIDF(term, document, documents) {
 
 // Function to calculate cosine similarity between two documents
 function calculateCosineSimilarity(document1, document2, documents) {
-  var terms = new Set([...document1.split(' '), ...document2.split(' ')])
+  const activeKw = document1.keywords
+  const pKw = document2.keywords
+
+  var terms = new Set([...activeKw, ...pKw])
   var vector1 = Array.from(terms).map((term) =>
     calculateTFIDF(term, document1, documents),
   )
@@ -55,28 +61,20 @@ function calculateCosineSimilarity(document1, document2, documents) {
   return dotProduct / (magnitude1 * magnitude2)
 }
 
-function similarities(documents, product) {
-  let processedDocuments = documents.slice(0, 250).map((doc) => stringify(doc))
-  console.log('🚀 ~ processedDocuments:', processedDocuments)
+function similaritiesOf(allProdKws, activeProdKws) {
+  let allProdKwsIndexes = allProdKws.map((p) => p._id)
 
-  let documentIndexes = documents.map((doc) => doc._id)
-
-  let currDoc = stringify(product)
-  console.log('🚀 ~ currDoc:', currDoc)
-
-  let similarityList = processedDocuments.map((doc) =>
-    calculateCosineSimilarity(currDoc, doc, processedDocuments),
+  let similarityList = allProdKws.map((p) =>
+    calculateCosineSimilarity(activeProdKws, p, allProdKws),
   )
-  console.log('🚀 ~ similarityList:', similarityList)
 
-  let res = getItemObjects(documents, documentIndexes, similarityList)
+  let res = getItemObjects(allProdKws, allProdKwsIndexes, similarityList)
 
   return res
 }
 
 self.onmessage = async (event) => {
   const { id, backEndUrl } = event.data
-  // console.log('🚀 ~ backEndUrl:', backEndUrl)
 
   try {
     const activeProduct = await fetchData(
@@ -85,16 +83,20 @@ self.onmessage = async (event) => {
     const { category, _id, keywords } = activeProduct
     const activeProdKws = { _id, keywords }
 
+    //todo get parant and current category, prioritize current category
+
     // // todo send two categories or more
     const allProdKwsInCat = await fetchData(
       `${backEndUrl}/products/keywords/by-cat-id/${category[0]._id}`,
     )
 
-    console.log('🚀 ~ allProdKwsInCat:', allProdKwsInCat)
-    console.log('🚀 ~ activeProdKws:', activeProdKws)
-    const similaritiesRes = similarities(products, product)
+    const similaritiesRes = similaritiesOf(allProdKwsInCat, activeProdKws)
+    similaritiesRes.forEach((p) => delete p.keywords)
 
-    self.postMessage(similaritiesRes)
+    // console.log('🚀 ~ similaritiesRes:', similaritiesRes)
+
+    self.postMessage(similaritiesRes, [similaritiesRes])
+    console.log(similaritiesRes)
   } catch (error) {
     console.log(error)
     self.postMessage({ error: error.message })

@@ -12,9 +12,13 @@ const RecsCarousel = () => {
   useEffect(() => {
     // const numCores = navigator.hardwareConcurrency || 4
     // console.log(`Number of cores: ${numCores}`)
+
     let recsWorker = new Worker('/workers/recommendations.worker.js', {
       type: 'module',
     })
+    // let recsWorker = new Worker('/workers/search.worker.js', {
+    //   type: 'module',
+    // })
 
     recsWorker.postMessage({
       id: productId,

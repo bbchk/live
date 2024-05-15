@@ -26,6 +26,7 @@ export const getProducts = async () => {
 
 export const getKeywordsByCategory = async (catId) => {
   const activeCategory = await getCategoryById(catId)
+  console.log('🚀 ~ activeCategory:', activeCategory)
 
   const subcategories = await getSubcategories(activeCategory)
 
