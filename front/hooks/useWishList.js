@@ -12,27 +12,22 @@ export const useWishList = () => {
 
   const [localStWishList, setValue] = useLocalStorage('wish_list', [])
 
-  // set global state of wish list if not set yet
   useEffect(() => {
     ;(async () =>
       await getSession().then((session) => {
-        ;(async () => await set(localStWishList))() //when user reload page we need to set
-
-        // if (status === 'idle') {
-        //   if (session) {
-        //     dispatch(wishList.set(session.user.wishList))
-        //   } else {
-        //     dispatch(wishList.set(localStWishList))
-        //   }
-        // }
+        /* 
+        when user reload page
+        if user has change wishList
+        we need to set new state to user.wishList
+        as cleanup function does not work on page reload
+        */
+        ;(async () => await set(localStWishList))()
       }))()
   }, [])
 
-  //check if localStorage !== session.user.wishList, then set from local storage
-
   const [_, set] = useSyncWishList()
 
-  //sync with localStorage and db on unmount
+  //sync with localStorage and db on component unmount
   const wshlRef = useRef(wshl)
   wshlRef.current = wshl
   useEffect(() => {
@@ -42,6 +37,7 @@ export const useWishList = () => {
     }
   }, [])
 
+  //save to localStorage if user reloads page or closes page
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       setValue(wshlRef.current)
