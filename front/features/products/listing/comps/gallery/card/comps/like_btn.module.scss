@@ -19,7 +19,20 @@
     @include icon_on_hover;
   }
 
-  &.liked {
-    color: $color-red-spink;
+  svg.not_liked,
+  svg.liked {
+    animation: pulse 0.25s ease-in-out;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 }

@@ -1,5 +1,3 @@
-import useLocalStorage from '#root/hooks/useLocalStorage.js'
-import { useDispatch, useSelector } from 'react-redux'
 import ListingProductCard from './card/listing_card'
 
 import s from './gallery.module.scss'
@@ -20,8 +18,7 @@ const ProductGallery = ({
   activeProducts: products,
   activeCategory: category,
 }) => {
-  const [_, like] = useWishList()
-  const { wishList, status } = useSelector((state) => state.wishList)
+  const [wshl, like] = useWishList()
 
   const [columnsNumber, setColumnsNumber] = useState(4)
 
@@ -31,7 +28,7 @@ const ProductGallery = ({
 
     if (!product) return null
 
-    product.isLiked = wishList.includes(product._id)
+    product.isLiked = wshl.includes(product._id)
     product.like = like
 
     return (

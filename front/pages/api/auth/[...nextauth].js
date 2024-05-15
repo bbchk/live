@@ -66,7 +66,6 @@ const credentialsProvider = CredentialsProvider({
         { headers: { 'Content-type': 'application/json' } },
       )
       let user = response.data
-      console.log('🚀 ~ response:', response)
 
       if (response.status === 200) {
         return user

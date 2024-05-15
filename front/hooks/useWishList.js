@@ -6,6 +6,7 @@ import * as wishList from 'store/slices/wish_list.slice'
 import { getSession, useSession } from 'next-auth/react'
 import useLocalStorage from './useLocalStorage'
 
+//todo
 //todo when login in on catalog page, new likes are not saved
 export const useWishList = () => {
   const dispatch = useDispatch()

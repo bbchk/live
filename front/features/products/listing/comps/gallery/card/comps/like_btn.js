@@ -10,10 +10,11 @@ const LikeButton = ({ product }) => {
       aria-label='Додати до списку бажаних товарів'
     >
       {product.isLiked ? (
-        <FavoriteRounded className={`bi bi-heart-fill ${s.liked}`} />
+        <FavoriteRounded className={s.liked} />
       ) : (
-        <FavoriteBorderRounded />
+        <FavoriteBorderRounded className={s.not_liked} />
       )}
+      <div class={`${s.heart} ${product.isLiked ? s.liked : ''}`}></div>
     </button>
   )
 }

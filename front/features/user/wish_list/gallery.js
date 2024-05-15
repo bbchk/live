@@ -1,52 +1,34 @@
 import { useEffect, useState } from 'react'
 import s from './gallery.module.scss'
-import ProductCard from 'features/products/listing/comps/gallery/card'
+import ProductCard from 'features/products/listing/comps/gallery/card/listing_card.js'
 import axios from 'axios'
+import { useWishList } from '#root/hooks/useWishList.js'
+import useFetchLikedProducts from './use_fetch_wish_list.hook.js'
 
-const Data = () => {
-  //todo save likedProducts to localStorage
-  const [likedProducts, setLikedProducts] = useState('')
-
-  useEffect(() => {
-    if (user) {
-      const fetchLikedProducts = async () => {
-        const token = user.token
-
-        //todo test
-        try {
-          const res = await axios.get(
-            `/products/by-ids?ids=${user.likedProducts}`,
-          )
-
-          setLikedProducts(res.data)
-        } catch (error) {
-          // console.error(error);
-        }
-      }
-      fetchLikedProducts()
-    }
-  }, [user])
+//create loading component to handle loading of liked products
+const WishListGallery = () => {
+  const [wshl, like] = useWishList()
+  const likedProducts = useFetchLikedProducts(wshl)
 
   return (
     <>
       {likedProducts && (
-        <div className='container row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 gx-3 gy-4'>
-          {activeFilters &&
-            likedProducts.map((product) => {
-              return (
-                <div key={product._id} className='col'>
-                  <ProductCard
-                    product={product}
-                    like={() => {}}
-                    isLiked={true}
-                  />
-                </div>
-              )
-            })}
+        <div
+          className={`container row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4 ${s.gallery} `}
+        >
+          {likedProducts.map((product) => {
+            product.isLiked = wshl.includes(product._id)
+            product.like = like
+            return (
+              <div key={product._id} className={`col ${s.col}`}>
+                <ProductCard product={product} priority={true} />
+              </div>
+            )
+          })}
         </div>
       )}
     </>
   )
 }
 
-export default Data
+export default WishListGallery

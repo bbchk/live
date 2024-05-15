@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import TabsLayout from 'comps/layout/tabs/tabs.layout'
 import Tabs from 'features/user/comps/user.tabs'
+import Gallery from 'features/user/wish_list/gallery'
 
 const WishList = () => {
   return (
@@ -13,10 +14,7 @@ const WishList = () => {
         />
       </Head>
 
-      <TabsLayout
-        Tabs={Tabs}
-        Content={() => <div className='w-100 h-100 bg-primary' />}
-      />
+      <TabsLayout Tabs={Tabs} Content={Gallery} />
     </>
   )
 }
