@@ -16,18 +16,21 @@ export const useWishList = () => {
   useEffect(() => {
     ;(async () =>
       await getSession().then((session) => {
-        if (status === 'idle') {
-          if (session) {
-            console.log(session.user.wishList)
-            dispatch(wishList.set(session.user.wishList))
-          } else {
-            dispatch(wishList.set(localStWishList))
-          }
-        }
+        ;(async () => await set(localStWishList))() //when user reload page we need to set
+
+        // if (status === 'idle') {
+        //   if (session) {
+        //     dispatch(wishList.set(session.user.wishList))
+        //   } else {
+        //     dispatch(wishList.set(localStWishList))
+        //   }
+        // }
       }))()
   }, [])
 
-  const sync = useSyncWishList()
+  //check if localStorage !== session.user.wishList, then set from local storage
+
+  const [_, set] = useSyncWishList()
 
   //sync with localStorage and db on unmount
   const wshlRef = useRef(wshl)
@@ -35,7 +38,7 @@ export const useWishList = () => {
   useEffect(() => {
     return () => {
       console.log(wshlRef.current)
-      ;(async () => await sync(wshlRef.current))()
+      ;(async () => await set(wshlRef.current))()
     }
   }, [])
 

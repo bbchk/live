@@ -1,11 +1,11 @@
 import { signIn as nextAuthSignIn } from 'next-auth/react'
 import useSyncWishList from 'hooks/use_sync_wish_list'
-import useLocalStorage from '../../../hooks/useLocalStorage'
+import useLocalStorage from 'hooks/useLocalStorage'
 import { useState } from 'react'
 
 function useSignIn() {
-  const sync = useSyncWishList()
-  const [wshl, _] = useLocalStorage('wish_list', [])
+  const [sync, _] = useSyncWishList()
+  const [wshl, __] = useLocalStorage('wish_list', [])
   const [error, setError] = useState(null)
   const [status, setStatus] = useState('idle')
 
