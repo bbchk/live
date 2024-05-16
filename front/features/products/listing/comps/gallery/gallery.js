@@ -76,6 +76,7 @@ const ProductGallery = ({
                       columnCount={columnCount}
                       rowCount={rowCount}
                       mode='cells'
+                      c
                     >
                       {({ onSectionRendered, scrollToColumn, scrollToRow }) => (
                         <Grid
