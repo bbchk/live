@@ -50,7 +50,7 @@ const ProductGallery = ({
             window.scrollBy(0, 400)
           }
           const el = document.getElementById(`product-card-${index + 1}`)
-          el.focus()
+          if (el) el.focus()
         }
       }
     }
@@ -79,6 +79,7 @@ const ProductGallery = ({
 
   return (
     <div
+      id='main_content'
       className={`${s.g}`}
       style={{
         '--children-number': Math.ceil(products.length / columnsNumber),

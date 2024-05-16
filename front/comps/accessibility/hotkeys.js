@@ -17,6 +17,8 @@ const {
   // WRITE_REVIEW_MODAL,
 } = GLOBAL_COMPS
 
+import useFocusOn from 'hooks/use_focus_on'
+
 const CustomHotkeys = () => {
   const router = useRouter()
   const dispatch = useDispatch()
@@ -29,13 +31,7 @@ const CustomHotkeys = () => {
     router.push(path)
   }
 
-  function focusOn(id) {
-    const element = document.getElementById(id)
-    if (element) {
-      element.focus()
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+  const focusOn = useFocusOn()
 
   //second hotkey is for ukrainian keyboard layout
   //general
