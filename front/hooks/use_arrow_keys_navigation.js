@@ -1,29 +1,24 @@
+// import useFocusOn from 'hooks/use_focus_on'
+//   const focusOn() = useFocusOn()
+
 import { useCallback } from 'react'
 
 function useArrowKeyNavigation() {
-  return useCallback((e) => {
-    let nextElement
-    switch (e.key) {
-      case 'ArrowDown':
-        e.preventDefault()
-        nextElement = e.target.parentElement.nextSibling?.firstChild
-        break
-      case 'ArrowUp':
-        e.preventDefault()
-        nextElement = e.target.parentElement.previousSibling?.firstChild
-        break
-      case 'Home':
-        e.preventDefault()
-        nextElement = e.target.parentElement.parentElement.firstChild.firstChild
-        break
-      case 'End':
-        e.preventDefault()
-        nextElement = e.target.parentElement.parentElement.lastChild.firstChild
-        break
-      default:
-        break
+  return useCallback((e, targets = {}) => {
+    // Set default targets
+    const defaultTargets = {
+      ArrowDown: document.body.firstChild,
+      ArrowUp: document.body.lastChild,
+      Home: document.body.firstChild,
+      End: document.body.lastChild,
+      ...targets, // overwrite defaults with provided targets
     }
-    nextElement?.focus()
+
+    const nextElement = defaultTargets[e.key]
+    if (nextElement) {
+      e.preventDefault()
+      nextElement.focus()
+    }
   }, []) // no dependencies, so the function is only created once
 }
 

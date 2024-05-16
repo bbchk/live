@@ -15,7 +15,6 @@ import {
 import { useWishList } from '#root/hooks/useWishList.js'
 import { useState } from 'react'
 import TabIndexButton from 'comps/accessibility/indexTabButton.js'
-import useScrollTo from '#root/hooks/use_scroll_to.js'
 
 const MIN_COLUMNS = 2 // Minimum number of columns
 const MIN_COLUMN_WIDTH = 250 // Minimum width for a column
