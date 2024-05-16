@@ -62,7 +62,7 @@ const Card = ({ category, subcategories }) => {
                   onClick={() => handleClick()}
                   aria-label={
                     path === category.path
-                      ? `Переглянути більше підкатегорій ${category.name}`
+                      ? `Переclглянути більше підкатегорій ${category.name}`
                       : `${name} підкатегорія`
                   }
                 >

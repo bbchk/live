@@ -135,7 +135,10 @@ body.user-is-tabbing {
   a:focus,
   input:focus,
   select:focus,
-  div:focus {
+  div:focus,
+  nav:focus,
+  article:focus,
+  section:focus {
     @include focus_on_tab;
   }
 
