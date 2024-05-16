@@ -7,9 +7,10 @@ import {
   InfiniteLoader,
   WindowScroller,
   Grid,
+  ArrowKeyStepper,
 } from 'react-virtualized'
 import { useWishList } from '#root/hooks/useWishList.js'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import useScrollTo from '#root/hooks/use_scroll_to.js'
 
 const MIN_COLUMNS = 2 // Minimum number of columns
@@ -22,7 +23,6 @@ const ProductGallery = ({
   const [wshl, like] = useWishList()
 
   const [columnsNumber, setColumnsNumber] = useState(4)
-  const scrollTo = useScrollTo()
 
   const cellRenderer = ({ columnIndex, rowIndex, key, style, columnCount }) => {
     const index = rowIndex * columnCount + columnIndex
@@ -33,13 +33,8 @@ const ProductGallery = ({
     product.isLiked = wshl.includes(product._id)
     product.like = like
 
-    // const isLastCellInRow = columnIndex === columnCount - 1
-
     return (
-      <div
-        role='row'
-        // tabIndex={1}
-      >
+      <div role='row'>
         <div key={key} style={style} role='gridcell'>
           <ListingProductCard
             product={product}
@@ -56,9 +51,6 @@ const ProductGallery = ({
       style={{
         '--children-number': Math.ceil(products.length / columnsNumber),
       }}
-      tabIndex={0}
-      aria-label='Галерея товарів'
-      // onKeyDown={(e) => scrollTo(e)}
     >
       <InfiniteLoader
         isRowLoaded={({ index }) => !!products[index]}
@@ -77,32 +69,57 @@ const ProductGallery = ({
                     columnCount < MIN_COLUMNS ? MIN_COLUMNS : columnCount
 
                   setColumnsNumber(columnCount)
+                  const rowCount = Math.ceil(products.length / columnsNumber)
 
                   return (
-                    <Grid
-                      autoHeight
-                      cellRenderer={({ columnIndex, rowIndex, key, style }) =>
-                        cellRenderer({
-                          columnIndex,
-                          rowIndex,
-                          key,
-                          style,
-                          columnCount,
-                        })
-                      }
+                    <ArrowKeyStepper
                       columnCount={columnCount}
-                      columnWidth={width / columnCount}
-                      height={height}
-                      isScrolling={isScrolling}
-                      onScroll={onChildScroll}
-                      overscanColumnCount={0}
-                      overscanRowCount={0}
-                      rowCount={Math.ceil(products.length / columnCount)}
-                      rowHeight={400}
-                      scrollTop={scrollTop}
-                      // scrollToIndex={4}
-                      width={width}
-                    />
+                      rowCount={rowCount}
+                      mode='cells'
+                    >
+                      {({ onSectionRendered, scrollToColumn, scrollToRow }) => (
+                        <Grid
+                          autoHeight
+                          cellRenderer={({
+                            columnIndex,
+                            rowIndex,
+                            key,
+                            style,
+                          }) =>
+                            cellRenderer({
+                              columnIndex,
+                              rowIndex,
+                              key,
+                              style,
+                              columnCount,
+                            })
+                          }
+                          columnCount={columnCount}
+                          columnWidth={width / columnCount}
+                          height={height}
+                          isScrolling={isScrolling}
+                          onScroll={onChildScroll}
+                          overscanColumnCount={0}
+                          overscanRowCount={rowCount}
+                          rowCount={rowCount}
+                          rowHeight={400}
+                          scrollTop={scrollTop}
+                          width={width}
+                          scrollToColumn={scrollToColumn}
+                          scrollToRow={scrollToRow}
+                          onSectionRendered={({
+                            columnStartIndex,
+                            rowStartIndex,
+                          }) => {
+                            onSectionRendered({
+                              columnStartIndex,
+                              rowStartIndex,
+                            }) // call the original function
+                            // update scrollToColumn and scrollToRow based on the new section
+                          }}
+                        />
+                      )}
+                    </ArrowKeyStepper>
                   )
                 }}
               </AutoSizer>
