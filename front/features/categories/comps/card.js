@@ -8,12 +8,12 @@ import { transliterate } from '@bbuukk/slugtrans/transliterate'
 
 import { startLoading } from 'store/slices/global_comps/global_comps.slice.js'
 import ImageFallback from 'comps/image/fallback_image.js'
-import { useId, useState } from 'react'
+import { useId } from 'react'
+import TabIndexButton from 'comps/accessibility/indexTabButton.js'
 
 const LAST_CATEGORY_IDX = 4
 const Card = ({ category, subcategories }) => {
   const dispatch = useDispatch()
-  const [tabToSubcats, setTabToSubcats] = useState(false)
 
   const categoryPathSlug = (path) => {
     return `/products/${slugify(transliterate(path))}/page=1`
@@ -52,30 +52,14 @@ const Card = ({ category, subcategories }) => {
         <h2>{category.name}</h2>
       </Link>
 
-      <button
-        className={`${s.go_to_subcats}`}
-        onClick={(e) => {
-          console.log('clicked', e)
-          setTabToSubcats(true)
-        }}
-        aria-label={`Переглянути підкатегорії ${category.name}`}
-      >
-        <ul
-          className={`${s.subcat_list}`}
-          aria-label={`Підкатегорії ${category.name}`}
-        >
-          {subcategoriesWithElepsis.map(({ _id, path, name }, idx) => {
+      <TabIndexButton aria-label={`Переглянути підкатегорії ${category.name}`}>
+        <ul className={`${s.subcat_list}`}>
+          {subcategoriesWithElepsis.map(({ _id, path, name }) => {
             return (
               <li key={_id}>
                 <Link
-                  tabIndex={tabToSubcats ? 0 : -1}
                   href={categoryPathSlug(path)}
                   onClick={() => handleClick()}
-                  onBlur={() => {
-                    if (idx == LAST_CATEGORY_IDX) {
-                      setTabToSubcats(false)
-                    }
-                  }}
                   aria-label={
                     path === category.path
                       ? `Переглянути більше підкатегорій ${category.name}`
@@ -88,7 +72,7 @@ const Card = ({ category, subcategories }) => {
             )
           })}
         </ul>
-      </button>
+      </TabIndexButton>
     </div>
   )
 }

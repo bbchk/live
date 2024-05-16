@@ -11,7 +11,7 @@ const BuyInfo = ({ product }) => {
 
       <button
         className={`${s.add_to_cart_button}`}
-        aria-label='Додати до кошику покупок'
+        aria-label='Додати товар до кошику покупок'
       >
         <AddShoppingCartRounded />
       </button>

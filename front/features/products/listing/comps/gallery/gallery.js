@@ -32,22 +32,33 @@ const ProductGallery = ({
 
     const product = products[index]
 
-    if (!product) return null
+    if (!product) {
+      // window.scrollBy(0, 400)
+      return (
+        // <TabIndexButton
+        //   aria-label={`Перейти до`}
+        //   aria-description={`Натисніть Enter, що перейти до`}
+        //   role='gridcell'
+        //   style={style}
+        //   id={`product-card`}
+        //   tabIndex={0}
+        //   className={s.skeleton}
+        // />
+        null
+      )
+    }
 
     product.isLiked = wshl.includes(product._id)
     product.like = like
 
     const isLast = columnIndex === columnCount - 1
+    const isFirst = columnIndex === 0
 
     function handleBlur(e) {
       e.preventDefault()
       if (window) {
         if (e.key === 'Tab' && e.keyCode === 9) {
-          if (e.shiftKey) {
-            window.scrollBy(0, -400)
-          } else {
-            window.scrollBy(0, 400)
-          }
+          window.scrollBy(0, 400)
           const el = document.getElementById(`product-card-${index + 1}`)
           if (el) el.focus()
         }
@@ -60,24 +71,24 @@ const ProductGallery = ({
         key={key}
         onKeyDown={isLast ? (e) => handleBlur(e) : undefined}
       >
-        <TabIndexButton
-          aria-label={`Перейти до ${product.name}`}
-          aria-description={`Натисніть Enter, що перейти до ${product.name}`}
-          role='gridcell'
-          style={style}
-          id={`product-card-${index}`}
-        >
-          <ListingProductCard
-            product={product}
-            priority={index < columnCount}
-          />
-        </TabIndexButton>
+        <div role='gridcell'>
+          <TabIndexButton
+            aria-label={`${product.name} за ціною ${product.price} взаємодіяти з`}
+            style={style}
+            id={`product-card-${index}`}
+          >
+            <ListingProductCard
+              product={product}
+              priority={index < columnCount}
+            />
+          </TabIndexButton>
+        </div>
       </div>
     )
   }
 
   return (
-    <div
+    <main
       id='main_content'
       className={`${s.g}`}
       style={{
@@ -104,12 +115,6 @@ const ProductGallery = ({
                   const rowCount = Math.ceil(products.length / columnsNumber)
 
                   return (
-                    // <ArrowKeyStepper
-                    //   columnCount={columnCount}
-                    //   rowCount={rowCount}
-                    //   // mode='cells'
-                    // >
-                    //   {({ onSectionRendered, scrollToColumn, scrollToRow }) => (
                     <Grid
                       autoHeight
                       cellRenderer={({ columnIndex, rowIndex, key, style }) =>
@@ -132,12 +137,7 @@ const ProductGallery = ({
                       rowHeight={400}
                       scrollTop={scrollTop}
                       width={width}
-                      // scrollToColumn={scrollToColumn}
-                      // scrollToRow={scrollToRow}
-                      // onSectionRendered={onSectionRendered}
                     />
-                    //       )}
-                    //     </ArrowKeyStepper>
                   )
                 }}
               </AutoSizer>
@@ -145,7 +145,7 @@ const ProductGallery = ({
           </WindowScroller>
         )}
       </InfiniteLoader>
-    </div>
+    </main>
   )
 }
 

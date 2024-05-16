@@ -17,12 +17,12 @@ const ListingProductCard = ({ product, ...props }) => {
   const { priority } = props
   return (
     <article className={`${s.card} `}>
-      <LikeButton product={product} />
       <ProductFigure
         product={product}
         productUrl={productUrl}
         priority={priority}
       />
+      <LikeButton product={product} />
       <ProductRating product={product} productUrl={productUrl} />
       <BuyInfo product={product} />
     </article>

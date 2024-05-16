@@ -13,6 +13,7 @@ const ProductRating = ({ product, productUrl }) => {
   return (
     <section className={` ${lcs.rating}`}>
       <Link
+        aria-label='Перейти до оцінок та відгуків товару'
         className={`${s.rating}`}
         href={productUrl('characteristics')}
         onClick={() => dispatch(startLoading())}

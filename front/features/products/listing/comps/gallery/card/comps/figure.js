@@ -16,6 +16,7 @@ const ProductFigure = ({ product, productUrl, priority }) => {
       className={`${lcs.figure}`}
       href={productUrl('about')}
       onClick={() => dispatch(startLoading())}
+      aria-label='Перейти до сторінки товару'
     >
       <figure className={`${s.figure} `}>
         <ImageFallback
@@ -24,7 +25,7 @@ const ProductFigure = ({ product, productUrl, priority }) => {
             product.images && product.images[0]
           }
           fallbackSrc={'/assets/goods_placeholder.svg'}
-          alt='product image'
+          alt='товар'
           quality={80}
           width={250}
           height={250}

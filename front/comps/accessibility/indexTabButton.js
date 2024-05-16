@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 
 import s from './index_tab_button.module.scss'
-import useScrollTo from '#root/hooks/use_scroll_to.js'
+// import useScrollTo from '#root/hooks/use_scroll_to.js'
 
 const TabIndexButton = ({ children, ...props }) => {
   const ref = useRef()
   const [isTabbable, setIsTabbable] = useState(true)
-  const scrollTo = useScrollTo()
+  // const scrollTo = useScrollTo()
 
   useEffect(() => {
     toggleTabbability(true)
