@@ -66,6 +66,8 @@ if (process.env.NODE_ENV === 'production') {
 import SkipToMainContent from 'comps/accessibility/skip_to_main_content'
 import CustomHotkeys from 'comps/accessibility/hotkeys' //not all users will need this, optimize
 
+import useOnUserTabbing from 'hooks/use_is_user_tabbing'
+
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
@@ -104,18 +106,11 @@ export default function App({
 const Body = ({ children }) => {
   const { loading } = useSelector((state) => state.modals)
 
-  useEffect(() => {
-    function handleTabUsersStyling(e) {
-      if (e.key === 'Tab' && e.keyCode === 9) {
-        document.body.classList.add('user-is-tabbing')
-        window.removeEventListener('keydown', handleTabUsersStyling)
-      }
+  useOnUserTabbing(() => {
+    if (typeof document !== 'undefined') {
+      document.body.classList.add('user-is-tabbing')
     }
-
-    if (window) {
-      window.addEventListener('keydown', handleTabUsersStyling)
-    }
-  }, [])
+  })
 
   useEffect(() => {
     window.scrollTo({

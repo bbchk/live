@@ -15,8 +15,10 @@
 
   color: $color-green-yellow-bright;
 
-  &:hover {
+  &:hover,
+  &:focus {
     @include icon_on_hover;
+    animation: pulse 0.25s ease-in-out;
   }
 
   svg.not_liked,

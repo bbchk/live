@@ -133,10 +133,10 @@ $carouosel-transition: transform $carousel-transition-duration ease-out;
 body.user-is-tabbing {
   button:focus,
   a:focus,
-  input:focus {
-    border: none;
-    outline: none;
-    box-shadow: 0 0 0 2px #719ece;
+  input:focus,
+  select:focus,
+  div:focus {
+    @include focus_on_tab;
   }
 
   .sr_only.visible_on_focus:focus {

@@ -1,17 +1,15 @@
-import React, { useState, useId, useRef } from 'react'
+import React, { useState } from 'react'
 import PriceSlider from '../filter_items/price-slider'
 import FilterChecks from '../filter_items/filter_item'
 import s from './filters_accordion.module.scss'
 import Accordion from 'comps/accordion/accordion'
 import AccordionItem from 'comps/accordion/accordion_item'
-import TabIndexButton from '#root/comps/accessibility/indexTabButton.js'
+import TabIndexButton from 'comps/accessibility/indexTabButton.js'
 
 //   //todo sometimes it changes filterValues when another one is chosen
 //   //todo fix all remaining english options in filters
 //   //todo why filters render in wrong order, brand got to be first
 //   //todo price does not refresh on categoryPath change
-
-//todo make tabIndexButton load only if user is actually tabbing
 
 const FiltersAccordion = ({ filters, minMaxPrice: minMax, show = true }) => {
   const fiilterAccordionId = 'filtersAccordion'
@@ -24,15 +22,8 @@ const FiltersAccordion = ({ filters, minMaxPrice: minMax, show = true }) => {
         flush
         alwaysOpen
       >
-        <TabIndexButton
-          aria-label='Фільтрувати за ціною'
-          aria-description='Перейти до фільтра'
-        >
-          <AccordionItem
-            eventKey={`${fiilterAccordionId}-${0}`}
-            label='Ціна'
-            // aria-label={`Фільтрувати за ціною`}
-          >
+        <TabIndexButton aria-label={`Перейти до опцій фільтра ціна`}>
+          <AccordionItem eventKey={`${fiilterAccordionId}-${0}`} label='Ціна'>
             <PriceSlider minMax={minMax} />
           </AccordionItem>
         </TabIndexButton>
@@ -41,13 +32,12 @@ const FiltersAccordion = ({ filters, minMaxPrice: minMax, show = true }) => {
           return (
             <TabIndexButton
               key={filterLabel}
-              aria-label='Фільтрувати за ціною'
-              aria-description='Перейти до фільтра'
+              aria-label={`Перейти до опцій фільтра ${filterLabel}`}
             >
               <AccordionItem
                 eventKey={`${fiilterAccordionId}-${idx + 1}`}
                 label={filterLabel}
-                show={show}
+                open={idx < 4}
               >
                 <FilterChecks
                   filterLabel={filterLabel}

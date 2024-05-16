@@ -14,7 +14,6 @@ const LikeButton = ({ product }) => {
       ) : (
         <FavoriteBorderRounded className={s.not_liked} />
       )}
-      <div class={`${s.heart} ${product.isLiked ? s.liked : ''}`}></div>
     </button>
   )
 }

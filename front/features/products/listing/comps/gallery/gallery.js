@@ -9,7 +9,8 @@ import {
   Grid,
 } from 'react-virtualized'
 import { useWishList } from '#root/hooks/useWishList.js'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import useScrollTo from '#root/hooks/use_scroll_to.js'
 
 const MIN_COLUMNS = 2 // Minimum number of columns
 const MIN_COLUMN_WIDTH = 250 // Minimum width for a column
@@ -21,6 +22,7 @@ const ProductGallery = ({
   const [wshl, like] = useWishList()
 
   const [columnsNumber, setColumnsNumber] = useState(4)
+  const scrollTo = useScrollTo()
 
   const cellRenderer = ({ columnIndex, rowIndex, key, style, columnCount }) => {
     const index = rowIndex * columnCount + columnIndex
@@ -31,8 +33,13 @@ const ProductGallery = ({
     product.isLiked = wshl.includes(product._id)
     product.like = like
 
+    // const isLastCellInRow = columnIndex === columnCount - 1
+
     return (
-      <div role='row'>
+      <div
+        role='row'
+        // tabIndex={1}
+      >
         <div key={key} style={style} role='gridcell'>
           <ListingProductCard
             product={product}
@@ -49,6 +56,9 @@ const ProductGallery = ({
       style={{
         '--children-number': Math.ceil(products.length / columnsNumber),
       }}
+      tabIndex={0}
+      aria-label='Галерея товарів'
+      // onKeyDown={(e) => scrollTo(e)}
     >
       <InfiniteLoader
         isRowLoaded={({ index }) => !!products[index]}
@@ -90,6 +100,7 @@ const ProductGallery = ({
                       rowCount={Math.ceil(products.length / columnCount)}
                       rowHeight={400}
                       scrollTop={scrollTop}
+                      // scrollToIndex={4}
                       width={width}
                     />
                   )

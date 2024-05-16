@@ -1,6 +1,5 @@
 import { Tooltip, OverlayTrigger } from 'react-bootstrap'
 import s from './tooltip.module.scss'
-import { useState } from 'react'
 
 export const CustomTooltip = ({
   children,

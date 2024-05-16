@@ -53,24 +53,24 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
   const id = useId()
 
   return (
-    <section className={`${s.filter_item}`} tabIndex={-1}>
+    <ul className={`${s.filter_item}`} tabIndex={-1}>
       {Array.from(options).map((option) => {
         const isChecked = filters[slugFilterLabel]?.includes(
           slugify(transliterate(option)),
         )
 
         return (
-          <div key={option} className={`${s.checkbox}`}>
+          <li key={option} className={`${s.checkbox}`}>
             <CheckBox
               id={`${id}-${option}`}
               label={option}
               checked={isChecked}
               handleChange={handleChange}
             />
-          </div>
+          </li>
         )
       })}
-    </section>
+    </ul>
   )
 }
 

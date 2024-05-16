@@ -1,0 +1,10 @@
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+
+.focus_in_btn {
+  &:focus {
+    @include focus_on_tab;
+    // box-shadow: 0 0 0 1rem $color-wh-lightsilv;
+  }
+  //   z-index: 1000;
+}

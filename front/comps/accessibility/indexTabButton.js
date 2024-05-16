@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { CustomTooltip } from 'comps/accessibility/tooltip'
 
-// import s from './todo.module.scss'
+import s from './index_tab_button.module.scss'
+import useScrollTo from '#root/hooks/use_scroll_to.js'
 
 const TabIndexButton = ({ children, ...props }) => {
   const ref = useRef()
   const [isTabbable, setIsTabbable] = useState(true)
-  const [isFocused, setIsFocused] = useState(true)
+  const scrollTo = useScrollTo()
 
   useEffect(() => {
     toggleTabbability(true)
@@ -31,19 +31,24 @@ const TabIndexButton = ({ children, ...props }) => {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       if (document.activeElement === ref.current) {
-        setIsFocused(false)
         toggleTabbability()
       }
     }
+
+    // if (event.key === 'Tab' || event.ctrlKey) {
+    //   if (document.activeElement === ref.current) {
+    //     // scrollTo(event)
+    //   }
+    // }
+
+    // if (event.key === 'Tab' && event.ctrlKey) {
+    //   // Ctrl + Tab was pressed
+    //   scrollTo(event)
+    // }
+
     if (event.key === 'Escape') {
       toggleTabbability(true)
       ref.current.focus()
-    }
-  }
-
-  const handleFocus = (event) => {
-    if (document.activeElement === ref.current) {
-      setIsFocused(true)
     }
   }
 
@@ -52,31 +57,22 @@ const TabIndexButton = ({ children, ...props }) => {
       setIsTabbable(true)
       toggleTabbability(true)
       ref.current.focus()
-      setIsFocused(false)
     }
   }
 
   return (
-    <CustomTooltip
-      tooltipText={'Натисніть Enter для того, щоб перейти до фільтру'}
-      placement='bottom'
-      onTabOnly={true}
-      open={isFocused}
+    <div
+      className={`${s.focus_in_btn}`}
+      ref={ref}
+      tabIndex={0}
+      role='button'
+      onKeyDown={handleKeyDown}
+      onClick={handleKeyDown}
+      onBlur={handleBlur}
+      {...props}
     >
-      <div
-        //   className={`${s.focus_in}`}
-        ref={ref}
-        tabIndex={0}
-        role='button'
-        onKeyDown={handleKeyDown}
-        onClick={handleKeyDown}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        {...props}
-      >
-        {children}
-      </div>
-    </CustomTooltip>
+      {children}
+    </div>
   )
 }
 

@@ -55,21 +55,6 @@
   color: rgba($color, $opacity);
 }
 
-// @mixin btn_on_click() {
-//   &:active {
-//     background-color: white;
-//     outline: none !important;
-//   }
-
-//   &:focus {
-//     outline: none !important;
-//     background-color: white;
-//   }
-// }
-
-// @mixin icon() {
-// }
-
 @mixin icon_on_hover() {
   background-color: rgba($color-blue-dasl, 0.1);
 }
@@ -81,4 +66,10 @@
   line-height: $line_height; /* adjust this as needed */
   max-height: $line_height * $number_of_lines; /* height is line-height times the number of lines */
   overflow: hidden;
+}
+
+@mixin focus_on_tab {
+  border: none;
+  outline: none;
+  box-shadow: 0 0 0 2px #719ece;
 }

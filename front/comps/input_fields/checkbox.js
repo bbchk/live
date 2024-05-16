@@ -39,3 +39,44 @@ const CheckBox = ({ id, label, checked, handleChange }) => {
 }
 
 export default CheckBox
+
+// const CheckBox = ({ id, label, checked, handleChange }) => {
+//   const handleKeyDown = (e) => {
+//     let nextElement
+//     switch (e.key) {
+//       case 'ArrowDown':
+//         e.preventDefault()
+//         nextElement = e.target.parentElement.nextSibling?.firstChild
+//         break
+//       case 'ArrowUp':
+//         e.preventDefault()
+//         nextElement = e.target.parentElement.previousSibling?.firstChild
+//         break
+//       case 'Home':
+//         e.preventDefault()
+//         nextElement = e.target.parentElement.parentElement.firstChild.firstChild
+//         break
+//       case 'End':
+//         e.preventDefault()
+//         nextElement = e.target.parentElement.parentElement.lastChild.firstChild
+//         break
+//       default:
+//         break
+//     }
+//     nextElement?.focus()
+//   }
+
+//   return (
+//     <label htmlFor={id} className={`form-check ${s.form_check}`}>
+//       <input
+//         className={`form-check-input ${isChecked ? s.active : ''}`}
+//         type='checkbox'
+//         checked={isChecked}
+//         onChange={toggleCheck}
+//         onKeyDown={handleKeyDown}
+//         id={id}
+//       />
+//       <span className='form-check-label'>{label}</span>
+//     </label>
+//   )
+// }

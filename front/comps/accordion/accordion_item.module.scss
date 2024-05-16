@@ -2,20 +2,44 @@
 
 .item {
   border: none;
+
+  margin-bottom: 5px;
+
   .header {
-    button {
+    border: none;
+    background-color: white;
+
+    button.toggler {
+      width: 100%;
+
+      border-radius: 1px;
       border-bottom: 1px solid rgba($color-blue-dasl, 0.1);
+
       color: $color-blue-dasl;
+      text-align: left;
       font-size: 1.2rem;
 
       transition: border 0.25s;
       &:focus {
         border-bottom: 1px solid $color-blue-dasl;
       }
-    }
-  }
 
-  &:last-child .header {
-    border-bottom: none;
+      svg {
+        float: right;
+        transition: transform 0.25s;
+      }
+
+      &.open {
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+
+      &.closed {
+        svg {
+          transform: rotate(0deg);
+        }
+      }
+    }
   }
 }
