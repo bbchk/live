@@ -65,7 +65,7 @@ const TabIndexButton = ({ children, ...props }) => {
       className={`${s.focus_in_btn}`}
       ref={ref}
       tabIndex={0}
-      role='button'
+      role={props.role || 'button'}
       onKeyDown={handleKeyDown}
       onClick={handleKeyDown}
       onBlur={handleBlur}

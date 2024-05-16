@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   // reactStrictMode: true,
-  reactStrictMode: process.env.NODE_ENV !== 'production' ? true : false,
+  // reactStrictMode: process.env.NODE_ENV !== 'production' ? true : false,
+  reactStrictMode: false,
   images: {
     domains: ['storage.googleapis.com'],
     remotePatterns: [

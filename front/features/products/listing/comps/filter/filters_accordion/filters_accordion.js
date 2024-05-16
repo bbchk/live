@@ -23,7 +23,7 @@ const FiltersAccordion = ({ filters, minMaxPrice: minMax, show = true }) => {
         alwaysOpen
       >
         <TabIndexButton aria-label={`Перейти до опцій фільтра ціна`}>
-          <AccordionItem eventKey={`${fiilterAccordionId}-${0}`} label='Ціна'>
+          <AccordionItem label='Ціна'>
             <PriceSlider minMax={minMax} />
           </AccordionItem>
         </TabIndexButton>
@@ -34,11 +34,7 @@ const FiltersAccordion = ({ filters, minMaxPrice: minMax, show = true }) => {
               key={filterLabel}
               aria-label={`Перейти до опцій фільтра ${filterLabel}`}
             >
-              <AccordionItem
-                eventKey={`${fiilterAccordionId}-${idx + 1}`}
-                label={filterLabel}
-                open={idx < 4}
-              >
+              <AccordionItem label={filterLabel} open={idx < 4}>
                 <FilterChecks
                   filterLabel={filterLabel}
                   options={options}
