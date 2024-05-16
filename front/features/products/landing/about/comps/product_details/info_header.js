@@ -4,12 +4,7 @@ import StarRating from 'comps/rating/star_rating'
 import Link from 'next/link'
 
 const MainInfoHeader = ({
-  product: {
-    name,
-    reviews = ['good', 'bad', 'good', 'bad', 'good', 'bad'],
-    starRating = 3.7,
-    code = '000000',
-  },
+  product: { name, reviews = [], starRating = 0, code = '000000' },
 }) => {
   const router = useRouter()
   const productPathNoActiveTab = router.asPath.split('/').slice(0, -1).join('/')
@@ -22,7 +17,7 @@ const MainInfoHeader = ({
   }
 
   return (
-    <header className={`${s.header}`}>
+    <header className={`${s.header}`} id='main_content'>
       <h2>{name}</h2>
       <div className={`${s.sub_header}`}>
         <div className={`${s.rating}`}>

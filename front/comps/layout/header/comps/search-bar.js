@@ -5,10 +5,6 @@ import hs from '../header.module.scss'
 import { SearchRounded } from '@mui/icons-material'
 import useDoOnKey from '#root/hooks/useDoOnKey.js'
 import { startLoading } from 'store/slices/global_comps/global_comps.slice'
-// import {
-//   setSearchRes,
-//   removeSearchRes,
-// } from '#root/store/slices/search.slice.js'
 import { useDispatch } from 'react-redux'
 import { slugify, unslugify } from '@bbuukk/slugtrans/slugify'
 import { transliterate, untransliterate } from '@bbuukk/slugtrans/transliterate'
@@ -36,7 +32,7 @@ const SearchBar = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault()
-    // setIsLoading(true)
+
     dispatch(startLoading())
     const query = slugify(transliterate(searchText))
     router.push(`/products/search=${query}/page=1`)

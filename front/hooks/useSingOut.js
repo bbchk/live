@@ -21,3 +21,5 @@
 
 //   return { signOut }
 // }
+
+//todo when log out wishlist purge from localStorage and cart

@@ -1,20 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useRef } from 'react'
 
-import { useCallback, useEffect, useRef } from 'react'
-import useSyncWishList from './use_sync_wish_list'
-import * as wishList from 'store/slices/wish_list.slice'
-import { getSession, useSession } from 'next-auth/react'
+// import todo from './use_sync_cart'
+import * as crtSlice from 'store/slices/cart.slice'
+
 import useLocalStorage from './useLocalStorage'
 
 //todo
 //todo when login in on catalog page, new likes are not saved
-export const useWishList = () => {
-  const dispatch = useDispatch()
-  const { wishList: wshl, status } = useSelector((state) => state.wishList)
 
-  const [localStWishList, setValue] = useLocalStorage('wish_list', [])
+export const useCart = () => {
+  const dispatch = useDispatch()
+  const { cart, __ } = useSelector((state) => state.cart)
+
+  const [localCart, setValue] = useLocalStorage('cart', [])
 
   const isSet = useRef(false)
+
+  const [_, set] = useManageCart()
 
   useEffect(() => {
     ;async () => {
@@ -26,27 +29,25 @@ export const useWishList = () => {
         */
 
       if (!isSet.current) {
-        ;(async () => await set(localStWishList))()
+        ;(async () => await set(localCart))()
       }
       isSet.current = true
     }
   }, [])
 
-  const [_, set] = useSyncWishList()
-
   //sync with localStorage and db on component unmount
-  const wshlRef = useRef(wshl)
-  wshlRef.current = wshl
+  const cartRef = useRef(cart)
+  cartRef.current = cart
   useEffect(() => {
     return () => {
-      ;(async () => await set(wshlRef.current))()
+      ;(async () => await set(cartRef.current))()
     }
   }, [])
 
   //save to localStorage if user reloads or closes page
   useEffect(() => {
     const handleBeforeUnload = (event) => {
-      setValue(wshlRef.current)
+      setValue(cartRef.current)
     }
     window.addEventListener('beforeunload', handleBeforeUnload)
     return () => {
@@ -54,17 +55,18 @@ export const useWishList = () => {
     }
   }, [])
 
-  //toggle like
-  const like = useCallback(
-    async function () {
-      if (!wshl.includes(this._id)) {
-        dispatch(wishList.add(this._id))
-      } else {
-        dispatch(wishList.remove(this._id))
-      }
-    },
-    [dispatch, wshl],
-  )
+  //actions
+  async function add() {
+    dispatch(crtSlice.add(this))
+  }
 
-  return [wshl, like]
+  async function remove() {
+    dispatch(crtSlice.removeOne(this))
+  }
+
+  async function removeAll() {
+    dispatch(crtSlice.removeAll(this))
+  }
+
+  return [cart, add, remove, removeAll]
 }

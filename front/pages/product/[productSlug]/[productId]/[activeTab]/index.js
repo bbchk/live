@@ -2,46 +2,30 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { stripHtmlTags } from 'utils/stripHtmlTags'
 import axios from 'axios'
-import { Suspense, lazy } from 'react'
+import LandingHeader from '#root/features/products/landing/mutual/layout/landing_header.js'
 
-import LandingHeader from 'features/products/landing/mutual/layout/landing_header'
+import dynamic from 'next/dynamic'
 
-const LandingProductAboutPage = lazy(
+const LandingProductAboutPage = dynamic(
   () => import('features/products/landing/about/landing_product_about'),
 )
-const Characteristics = lazy(
+const Characteristics = dynamic(
   () => import('features/products/landing/characteristics/index'),
 )
-const LandingProductReviewsPage = lazy(
+const LandingProductReviewsPage = dynamic(
   () => import('features/products/landing/reviews/reviews_page'),
 )
 
 import { useStopLoading } from 'hooks/useStopLoading'
 
-//todo make fallback page for suspense
-//todo fix we take first category available on product, but it can be not the category user was in
+// // todo make fallback page for suspense
+// // todo fix we take first category available on product, but it can be not the category user was in
+
 const Landing = ({ product }) => {
   const router = useRouter()
   const { activeTab } = router.query
 
   useStopLoading()
-
-  //todo delete
-  product.reviews = [
-    {
-      id: 1,
-      starRating: 2.4,
-      cons: 'Немає',
-      pros: 'Відмінний телефон',
-      comment:
-        '0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?',
-      date: '01.01.2021',
-      author: 'Бучок Богдан',
-      likes: 5,
-      dislikes: 10,
-      subreviews: ['Blah blah blah', 'Blah blah blah', 'Blah blah blah'],
-    },
-  ]
 
   return (
     <>
@@ -57,16 +41,11 @@ const Landing = ({ product }) => {
 
       <LandingHeader category={product.category[0]} activeTab={activeTab} />
 
-      <Suspense fallback={<div>Loading...</div>}>
-        {activeTab == 'about' && <LandingProductAboutPage product={product} />}
-        {activeTab == 'characteristics' && (
-          <Characteristics product={product} />
-        )}
-
-        {activeTab == 'reviews' && (
-          <LandingProductReviewsPage product={product} />
-        )}
-      </Suspense>
+      {activeTab == 'about' && <LandingProductAboutPage product={product} />}
+      {activeTab == 'characteristics' && <Characteristics product={product} />}
+      {activeTab == 'reviews' && (
+        <LandingProductReviewsPage product={product} />
+      )}
     </>
   )
 }
@@ -92,3 +71,20 @@ export async function getServerSideProps({ params }) {
     },
   }
 }
+
+// //todo delete
+// product.reviews = [
+//   {
+//     id: 1,
+//     starRating: 2.4,
+//     cons: 'Немає',
+//     pros: 'Відмінний телефон',
+//     comment:
+//       '0 годин роботи в інтернеті через Wi-Fi або перегляду відео». У мене вистачає ну максимум годин на 5 просмотру відео. Я розумію що 5 годин це і є «до 10 годин», але я не розумію у чому справа. Може треба повернути його, обміняти?',
+//     date: '01.01.2021',
+//     author: 'Бучок Богдан',
+//     likes: 5,
+//     dislikes: 10,
+//     subreviews: ['Blah blah blah', 'Blah blah blah', 'Blah blah blah'],
+//   },
+// ]

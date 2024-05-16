@@ -35,6 +35,18 @@ const WriteReviewModal = lazy(
 )
 const HotkeysModal = lazy(() => import('comps/modals/hotkeys/hotkeys.modal'))
 
+// import dynamic from 'next/dynamic'
+
+// const LandingProductAboutPage = dynamic(
+//   () => import('features/products/landing/about/landing_product_about'),
+// )
+// const Characteristics = dynamic(
+//   () => import('features/products/landing/characteristics/index'),
+// )
+// const LandingProductReviewsPage = dynamic(
+//   () => import('features/products/landing/reviews/reviews_page'),
+// )
+
 import { LoadingOverlay } from 'comps/loading/overlay'
 import Header from 'comps/layout/header/header'
 const Footer = lazy(() => import('comps/layout/footer/footer'))

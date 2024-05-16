@@ -1,24 +1,24 @@
 import { getSession, useSession } from 'next-auth/react'
 import useLocalStorage from './useLocalStorage'
-import * as wishListSlice from 'store/slices/wish_list.slice'
+import * as crtSlice from 'store/slices/wish_list.slice'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 
 const ACTIONS = {
-  syncWishList: 'sync',
-  setWishList: 'set',
+  syncCart: 'sync',
+  setCart: 'set',
 }
-const { syncWishList, setWishList } = ACTIONS
+const { syncCart, setCart } = ACTIONS
 
 //? pass init value
-function useSyncWishList() {
+function useManageCart() {
   const dispatch = useDispatch()
-  const [_, setValue] = useLocalStorage('wish_list', [])
+  const [_, setValue] = useLocalStorage('cart', [])
   const { update } = useSession()
 
   //on onmount we use global state
-  async function handle(wishList, action) {
-    let resultWishList = wishList
+  async function handle(cart, action) {
+    let resultCart = cart
 
     const session = await getSession()
     if (session) {
@@ -27,45 +27,45 @@ function useSyncWishList() {
       }
 
       const isWishListDifferent =
-        JSON.stringify(session.user.wishList) !== JSON.stringify(wishList)
-      const isWishListEmpty = wishList.length === 0
+        JSON.stringify(session.user.cart) !== JSON.stringify(cart)
+      const isWishListEmpty = cart.length === 0
 
       if (isWishListDifferent && !isWishListEmpty) {
-        let method = action === syncWishList ? 'patch' : 'put'
+        let method = action === syncCart ? 'patch' : 'put'
 
         console.log('in')
         const response = await axios({
           method: method,
-          url: `/user/wish-list/${session.user.id}/${action}`,
-          data: wishList,
+          url: `/user/cart/${session.user.id}/${action}`,
+          data: cart,
           headers: authHeader,
         })
-        resultWishList = response.data
+        resultCart = response.data
 
         await update({
           ...session,
           user: {
             ...session?.user,
-            wishList: resultWishList,
+            cart: resultCart,
           },
         })
       }
     }
-    setValue(resultWishList)
-    dispatch(wishListSlice.set(resultWishList))
+    setValue(resultCart)
+    dispatch(crtSlice.set(resultCart))
   }
 
-  async function sync(wishList) {
+  async function sync(cart) {
     try {
-      handle(wishList, syncWishList)
+      handle(cart, syncCart)
     } catch (e) {
       //todo
     }
   }
 
-  async function set(wishList) {
+  async function set(cart) {
     try {
-      handle(wishList, setWishList)
+      handle(cart, setCart)
     } catch (e) {
       //todo
     }
@@ -74,4 +74,4 @@ function useSyncWishList() {
   return [sync, set]
 }
 
-export default useSyncWishList
+export default useManageCart

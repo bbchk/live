@@ -1,6 +1,6 @@
 import s from './info_body.module.scss'
 import { useSession } from 'next-auth/react'
-import { useCart } from 'hooks/useCart'
+// import { useCart } from 'hooks/useCart'
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -29,9 +29,9 @@ const InfoBody = ({ product }) => {
     code = '000000',
   } = product
 
-  const { add } = useCart()
+  // const { add } = useCart()
   function handleBuy(product) {
-    add(product)
+    // add(product)
   }
 
   return (
@@ -58,6 +58,7 @@ const InfoBody = ({ product }) => {
         <FavoriteBorderRounded className='icon_button_on_hover' />
       </button>
 
+      {/* todo */}
       <button
         className={`${s.comment_btn} icon_button_primary`}
         onClick={() => {

@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import s from './cart_item.module.scss'
-import { useState } from 'react'
-import QuantityInput from './quantity_input'
-import { useCart } from 'hooks/useCart'
+// import { useState } from 'react'
+// import QuantityInput from './quantity_input'
+// import { useCart } from 'hooks/useCart'
 
 //changin quantity should change the quantity in the cart
 //remove functionality
 const CartItem = ({ product, quantity }) => {
   // const [quantity, setQuantity] = useState(initq);
-  const { removeAll } = useCart()
+  // const { removeAll } = useCart()
   return (
     <div className={`${s.cart_item}`}>
       <div>
@@ -31,7 +31,7 @@ const CartItem = ({ product, quantity }) => {
       </div>
       <div>
         <div className={` ${s.quantity_input}`}>
-          <QuantityInput product={product} quantity={quantity} />
+          {/* <QuantityInput product={product} quantity={quantity} /> */}
         </div>
         <p className={`price ${s.price}`}>
           {product.price * quantity}
