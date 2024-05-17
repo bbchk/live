@@ -1,23 +1,22 @@
 import s from './quantity_input.module.scss'
-import { useCart } from 'hooks/useCart'
+import { AddRounded, RemoveRounded } from '@mui/icons-material'
 
-const QuantityInput = ({ product, quantity }) => {
-  const { add, remove } = useCart()
-
-  function handleBuy(product) {
-    add(product)
-  }
+const QuantityInput = ({ product, actions }) => {
+  const [add, remove] = actions
 
   return (
     <div className={`${s.quantity_input}`}>
-      <button disabled={quantity === 1} onClick={() => remove(product._id)}>
-        <i className='bi bi-dash-lg' />
+      <button
+        disabled={product.quantity === 1}
+        onClick={() => remove.call(product)}
+      >
+        <RemoveRounded />
       </button>
 
-      <input type='text' value={quantity} readOnly disabled />
+      <input type='text' value={product.quantity} readOnly disabled />
 
-      <button onClick={() => add(product)}>
-        <i className='bi bi-plus-lg' />
+      <button onClick={() => add.call(product)}>
+        <AddRounded />
       </button>
     </div>
   )

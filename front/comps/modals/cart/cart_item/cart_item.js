@@ -1,14 +1,12 @@
 import Image from 'next/image'
 import s from './cart_item.module.scss'
-// import { useState } from 'react'
-// import QuantityInput from './quantity_input'
-// import { useCart } from 'hooks/useCart'
 
-//changin quantity should change the quantity in the cart
-//remove functionality
-const CartItem = ({ product, quantity }) => {
-  // const [quantity, setQuantity] = useState(initq);
-  // const { removeAll } = useCart()
+import { DeleteOutlineRounded } from '@mui/icons-material'
+
+import QuantityInput from './quantity_input'
+
+const CartItem = ({ product, actions }) => {
+  const [, , removeAll] = actions
   return (
     <div className={`${s.cart_item}`}>
       <div>
@@ -21,20 +19,19 @@ const CartItem = ({ product, quantity }) => {
         />
         <p>{product.name}</p>
         <button
-          disabled
           onClick={() => {
-            // console.log("remove");
+            removeAll.call(product)
           }}
         >
-          <i className='bi bi-trash' />
+          <DeleteOutlineRounded />
         </button>
       </div>
       <div>
         <div className={` ${s.quantity_input}`}>
-          {/* <QuantityInput product={product} quantity={quantity} /> */}
+          <QuantityInput product={product} actions={actions} />
         </div>
         <p className={`price ${s.price}`}>
-          {product.price * quantity}
+          {product.price * product.quantity}
           <span>₴</span>
         </p>
       </div>

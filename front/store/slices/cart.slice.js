@@ -22,12 +22,12 @@ export const cartSlice = createSlice({
     },
     removeOne: (state, action) => {
       const product = state.cart.find((item) => item._id === action.payload._id)
-      if (product) {
+      if (product && product.quantity > 1) {
         product.quantity--
       }
     },
     removeAll: (state, action) => {
-      state.cart = state.cart.filter((id) => id !== action.payload)
+      state.cart = state.cart.filter((item) => item._id !== action.payload._id)
     },
   },
 })
