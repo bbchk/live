@@ -1,6 +1,9 @@
 import s from './buy_info.module.scss'
 import lcs from '../listing_card.module.scss'
-import { AddShoppingCartRounded } from '@mui/icons-material'
+import {
+  AddShoppingCartRounded,
+  ShoppingCartRounded,
+} from '@mui/icons-material'
 
 const BuyInfo = ({ product }) => {
   return (
@@ -12,8 +15,13 @@ const BuyInfo = ({ product }) => {
       <button
         className={`${s.add_to_cart_button}`}
         aria-label='Додати товар до кошику покупок'
+        onClick={() => product.add()}
       >
-        <AddShoppingCartRounded />
+        {product.inCart ? (
+          <ShoppingCartRounded className={s.in_cart} />
+        ) : (
+          <AddShoppingCartRounded className={s.not_in_cart} />
+        )}
       </button>
     </section>
   )

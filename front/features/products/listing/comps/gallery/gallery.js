@@ -15,6 +15,7 @@ import {
 import { useWishList } from '#root/hooks/useWishList.js'
 import { useState } from 'react'
 import TabIndexButton from 'comps/accessibility/indexTabButton.js'
+import { useCart } from '#root/hooks/use_cart.js'
 
 const MIN_COLUMNS = 2 // Minimum number of columns
 const MIN_COLUMN_WIDTH = 250 // Minimum width for a column
@@ -24,6 +25,7 @@ const ProductGallery = ({
   activeCategory: category,
 }) => {
   const [wshl, like] = useWishList()
+  // const [cart, add] = useCart()
 
   const [columnsNumber, setColumnsNumber] = useState(4)
 
@@ -50,6 +52,9 @@ const ProductGallery = ({
 
     product.isLiked = wshl.includes(product._id)
     product.like = like
+
+    // product.inCart = cart.some((p) => p._id === product._id)
+    // product.add = add
 
     const isLast = columnIndex === columnCount - 1
     const isFirst = columnIndex === 0

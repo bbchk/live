@@ -21,22 +21,10 @@ export const cartSlice = createSlice({
       }
     },
     removeOne: (state, action) => {
-      const index = state.cart.indexOf(action.payload)
-      if (index !== -1) {
-        state.cart.splice(index, 1)
+      const product = state.cart.find((item) => item._id === action.payload._id)
+      if (product) {
+        product.quantity--
       }
-
-      //   const existingItemIndex = state.user.cart.findIndex(
-      //     (item) => item.product._id === action.payload,
-      //   )
-
-      //   if (existingItemIndex >= 0) {
-      //     if (state.user.cart[existingItemIndex].quantity > 1) {
-      //       state.user.cart[existingItemIndex].quantity -= 1
-      //     } else {
-      //       state.user.cart.splice(existingItemIndex, 1)
-      //     }
-      //   }
     },
     removeAll: (state, action) => {
       state.cart = state.cart.filter((id) => id !== action.payload)

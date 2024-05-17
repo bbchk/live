@@ -33,7 +33,6 @@ function useSyncWishList() {
       if (isWishListDifferent && !isWishListEmpty) {
         let method = action === syncWishList ? 'patch' : 'put'
 
-        console.log('in')
         const response = await axios({
           method: method,
           url: `/user/wish-list/${session.user.id}/${action}`,

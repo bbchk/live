@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useCallback, useEffect, useRef } from 'react'
 import useSyncWishList from './use_sync_wish_list'
 import * as wishList from 'store/slices/wish_list.slice'
-import { getSession, useSession } from 'next-auth/react'
+
 import useLocalStorage from './useLocalStorage'
 
 //todo
@@ -14,10 +14,12 @@ export const useWishList = () => {
 
   const [localStWishList, setValue] = useLocalStorage('wish_list', [])
 
+  const [_, set] = useSyncWishList()
+
   const isSet = useRef(false)
 
   useEffect(() => {
-    ;async () => {
+    ;(async () => {
       /* 
         when user reload page
         if user has change wishList
@@ -29,10 +31,8 @@ export const useWishList = () => {
         ;(async () => await set(localStWishList))()
       }
       isSet.current = true
-    }
+    })()
   }, [])
-
-  const [_, set] = useSyncWishList()
 
   //sync with localStorage and db on component unmount
   const wshlRef = useRef(wshl)

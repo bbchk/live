@@ -1,31 +1,30 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 // import todo from './use_sync_cart'
 import * as crtSlice from 'store/slices/cart.slice'
 
 import useLocalStorage from './useLocalStorage'
+import useManageCart from './use_manage_cart'
 
 //todo
 //todo when login in on catalog page, new likes are not saved
 
 export const useCart = () => {
   const dispatch = useDispatch()
-  const { cart, __ } = useSelector((state) => state.cart)
+  const { cart } = useSelector((state) => state.cart)
 
   const [localCart, setValue] = useLocalStorage('cart', [])
 
   const isSet = useRef(false)
 
-  const [_, set] = useManageCart()
-
   useEffect(() => {
     ;async () => {
       /* 
         when user reload page
-        if user has change wishList
-        we need to set new state to user.wishList
-        as cleanup function does not work on page reload
+        if user has changed cart
+        we need to set new state to user.cart
+        as cleanup function of useEffect does not work on page reload
         */
 
       if (!isSet.current) {
@@ -34,6 +33,8 @@ export const useCart = () => {
       isSet.current = true
     }
   }, [])
+
+  const [_, set] = useManageCart()
 
   //sync with localStorage and db on component unmount
   const cartRef = useRef(cart)
@@ -56,17 +57,26 @@ export const useCart = () => {
   }, [])
 
   //actions
-  async function add() {
-    dispatch(crtSlice.add(this))
-  }
+  const add = useCallback(
+    async function () {
+      dispatch(crtSlice.add(this))
+    },
+    [dispatch],
+  )
 
-  async function remove() {
-    dispatch(crtSlice.removeOne(this))
-  }
+  const remove = useCallback(
+    async function () {
+      dispatch(crtSlice.removeOne(this))
+    },
+    [dispatch],
+  )
 
-  async function removeAll() {
-    dispatch(crtSlice.removeAll(this))
-  }
+  const removeAll = useCallback(
+    async function () {
+      dispatch(crtSlice.removeAll(this))
+    },
+    [dispatch],
+  )
 
   return [cart, add, remove, removeAll]
 }

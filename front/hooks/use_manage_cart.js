@@ -26,21 +26,20 @@ function useManageCart() {
         Authorization: `Bearer ${session.user.token}`,
       }
 
-      const isWishListDifferent =
+      const isCartDiff =
         JSON.stringify(session.user.cart) !== JSON.stringify(cart)
-      const isWishListEmpty = cart.length === 0
+      const isCartEmpty = cart.length === 0
 
-      if (isWishListDifferent && !isWishListEmpty) {
+      if (isCartDiff && !isCartEmpty) {
         let method = action === syncCart ? 'patch' : 'put'
 
-        console.log('in')
-        const response = await axios({
-          method: method,
-          url: `/user/cart/${session.user.id}/${action}`,
-          data: cart,
-          headers: authHeader,
-        })
-        resultCart = response.data
+        // const response = await axios({
+        //   method: method,
+        //   url: `/user/cart/${session.user.id}/${action}`,
+        //   data: cart,
+        //   headers: authHeader,
+        // })
+        // resultCart = response.data
 
         await update({
           ...session,
@@ -51,6 +50,7 @@ function useManageCart() {
         })
       }
     }
+
     setValue(resultCart)
     dispatch(crtSlice.set(resultCart))
   }
