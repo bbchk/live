@@ -1,5 +1,5 @@
 import { getSession, useSession } from 'next-auth/react'
-import useLocalStorage from './useLocalStorage'
+import useLocalStorage from 'hooks/useLocalStorage'
 import * as wishListSlice from 'store/slices/wish_list.slice'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
@@ -50,6 +50,7 @@ function useSyncWishList() {
         })
       }
     }
+
     setValue(resultWishList)
     dispatch(wishListSlice.set(resultWishList))
   }

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import useSyncWishList from './use_sync_wish_list'
 import * as wishList from 'store/slices/wish_list.slice'
 
-import useLocalStorage from './useLocalStorage'
+import useLocalStorage from 'hooks/useLocalStorage'
 
 //todo
 //todo when login in on catalog page, new likes are not saved
@@ -28,6 +28,7 @@ export const useWishList = () => {
         */
 
       if (!isSet.current) {
+        console.log('🚀 ~ localStWishList:', localStWishList)
         ;(async () => await set(localStWishList))()
       }
       isSet.current = true

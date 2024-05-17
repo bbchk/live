@@ -25,7 +25,7 @@ const ProductGallery = ({
   activeCategory: category,
 }) => {
   const [wshl, like] = useWishList()
-  // const [cart, add] = useCart()
+  const [cart, add] = useCart()
 
   const [columnsNumber, setColumnsNumber] = useState(4)
 
@@ -53,8 +53,8 @@ const ProductGallery = ({
     product.isLiked = wshl.includes(product._id)
     product.like = like
 
-    // product.inCart = cart.some((p) => p._id === product._id)
-    // product.add = add
+    product.inCart = cart.some((p) => p._id === product._id)
+    product.add = add
 
     const isLast = columnIndex === columnCount - 1
     const isFirst = columnIndex === 0

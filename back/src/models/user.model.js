@@ -69,6 +69,10 @@ userSchema.statics.signIn = async function (email, password) {
   }
 
   const user = await this.findOne({ email })
+    .populate('cart.product', 'name price images starRating left')
+    .exec()
+
+  // const user = await this.findOne({ email }).populate('cart.product._id', 'field1 field2 field3').exec()
 
   if (!user) {
     throw new _Error('Користувача з такою поштою не знайдено', 404)

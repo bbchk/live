@@ -1,35 +1,20 @@
-import * as cartService from '#src/services/user/cart.service.js'
+import * as cart from '#src/services/user/cart.service.js'
 import { asyncErrorHandler } from '#src/utils/async_error_handler.js'
 
-export const addCartItem = asyncErrorHandler(async (req, res, next) => {
-  const { userId, productId } = req.params
-
-  await cartService.addCartItem(userId, productId)
-  res.status(200).json({
-    message: `Product ${productId} added to the cart successfully.`,
-  })
-})
-
-export const deleteCartItem = asyncErrorHandler(async (req, res, next) => {
-  const { userId, productId } = req.params
-
-  await cartService.deleteCartItem(userId, productId)
-  res.status(200).json({
-    message: `Quantity of product ${productId} decreased by one.`,
-  })
-})
-
-export const syncCart = asyncErrorHandler(async (req, res, next) => {
+export const sync = asyncErrorHandler(async (req, res, next) => {
   const { userId } = req.params
-  const localStorageCartOptimized = req.body
+  const cartToSync = req.body
 
-  const userCart = await cartService.syncCart(userId, localStorageCartOptimized)
-  res.status(200).json(userCart)
+  const syncedCart = await cart.sync(userId, cartToSync)
+
+  res.status(200).json(syncedCart)
 })
 
-export const getCart = asyncErrorHandler(async (req, res, next) => {
+export const set = asyncErrorHandler(async (req, res, next) => {
   const { userId } = req.params
+  const cartToSet = req.body
 
-  const userCart = await cartService.getCart(userId)
-  res.status(200).json(userCart)
+  const resCart = await cart.set(userId, cartToSet)
+
+  res.status(200).json(resCart)
 })

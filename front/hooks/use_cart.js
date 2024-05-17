@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef } from 'react'
 // import todo from './use_sync_cart'
 import * as crtSlice from 'store/slices/cart.slice'
 
-import useLocalStorage from './useLocalStorage'
+import useLocalStorage from 'hooks/useLocalStorage'
 import useManageCart from './use_manage_cart'
 
 //todo
@@ -19,7 +19,7 @@ export const useCart = () => {
   const isSet = useRef(false)
 
   useEffect(() => {
-    ;async () => {
+    ;(async () => {
       /* 
         when user reload page
         if user has changed cart
@@ -31,7 +31,7 @@ export const useCart = () => {
         ;(async () => await set(localCart))()
       }
       isSet.current = true
-    }
+    })()
   }, [])
 
   const [_, set] = useManageCart()

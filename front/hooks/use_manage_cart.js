@@ -1,6 +1,6 @@
 import { getSession, useSession } from 'next-auth/react'
-import useLocalStorage from './useLocalStorage'
-import * as crtSlice from 'store/slices/wish_list.slice'
+import useLocalStorage from 'hooks/useLocalStorage'
+import * as crtSlice from 'store/slices/cart.slice'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 
@@ -33,13 +33,24 @@ function useManageCart() {
       if (isCartDiff && !isCartEmpty) {
         let method = action === syncCart ? 'patch' : 'put'
 
-        // const response = await axios({
-        //   method: method,
-        //   url: `/user/cart/${session.user.id}/${action}`,
-        //   data: cart,
-        //   headers: authHeader,
-        // })
-        // resultCart = response.data
+        console.log(session)
+        console.log(cart)
+
+        const minifiedCart = cart.map((p) => {
+          return {
+            _id: p._id,
+            quantity: p.quantity,
+          }
+        })
+        console.log('🚀 ~ minifiedCart:', minifiedCart)
+
+        const response = await axios({
+          method: method,
+          url: `/user/cart/${session.user.id}/${action}`,
+          data: minifiedCart,
+          headers: authHeader,
+        })
+        resultCart = response.data
 
         await update({
           ...session,

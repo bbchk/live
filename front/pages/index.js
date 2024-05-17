@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react'
 const Home = ({ rootCategories }) => {
   const { data: session, status } = useSession()
   const user = session?.user
+  console.log('🚀 ~ user:', user.cart)
 
   useStopLoading()
 

@@ -3,7 +3,6 @@ import { asyncErrorHandler } from '#src/utils/async_error_handler.js'
 
 export const sync = asyncErrorHandler(async (req, res, next) => {
   const { userId } = req.params
-
   const wishListToSync = req.body
 
   const syncedWishList = await wishList.sync(userId, wishListToSync)
@@ -13,9 +12,9 @@ export const sync = asyncErrorHandler(async (req, res, next) => {
 
 export const set = asyncErrorHandler(async (req, res, next) => {
   const { userId } = req.params
-  const wishListToSync = req.body
+  const wishListToSet = req.body
 
-  const syncedWishList = await wishList.set(userId, wishListToSync)
+  const resCart = await wishList.set(userId, wishListToSet)
 
-  res.status(200).json(syncedWishList)
+  res.status(200).json(resCart)
 })
