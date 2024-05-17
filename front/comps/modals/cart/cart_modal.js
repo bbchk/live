@@ -6,7 +6,7 @@ import {
   toggle,
   GLOBAL_COMPS,
 } from 'store/slices/global_comps/global_comps.slice'
-const { CART_MODAL } = GLOBAL_COMPS
+const { CART_MODAL, SIGN_IN_MODAL } = GLOBAL_COMPS
 
 import { balsamiqSans } from 'pages/_app'
 
@@ -34,7 +34,10 @@ const CartModal = () => {
   const { items, totalCost } = cart
 
   async function handleBuy() {
-    // if (!session) return //todo close cart and show sign in
+    if (!session) {
+      dispatch(toggle(CART_MODAL))
+      dispatch(toggle(SIGN_IN_MODAL))
+    }
 
     const authHeader = {
       Authorization: `Bearer ${session.user.token}`,

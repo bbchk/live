@@ -20,7 +20,7 @@ const ProductRating = ({ product: { starRating, reviews }, productUrl }) => {
       >
         <StarRating rating={starRating} />
         <ChatRounded className={`${s.chat_icon}`} />
-        <p>{10}</p>
+        {/* <p>{reviews.length}</p> */}
       </Link>
     </section>
   )
