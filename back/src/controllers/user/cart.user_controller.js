@@ -18,3 +18,11 @@ export const set = asyncErrorHandler(async (req, res, next) => {
 
   res.status(200).json(resCart)
 })
+
+export const checkout = asyncErrorHandler(async (req, res, next) => {
+  const { userId } = req.params
+
+  const status = await cart.checkout(userId)
+
+  res.status(200).json(resCart)
+})

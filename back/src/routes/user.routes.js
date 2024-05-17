@@ -16,6 +16,7 @@ router.patch('/personal-info/:userId', user.update)
 
 router.patch('/cart/:userId/sync', cart.sync)
 router.put('/cart/:userId/set', cart.set)
+router.post('/cart/:userId/checkout', cart.checkout)
 
 router.patch('/wish-list/:userId/sync', wishList.sync)
 router.put('/wish-list/:userId/set', wishList.set)
