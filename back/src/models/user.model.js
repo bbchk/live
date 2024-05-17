@@ -68,7 +68,7 @@ userSchema.statics.signIn = async function (email, password) {
     throw new _Error('Пошта чи пароль не можу бути відсутніми', 400)
   }
 
-  const user = await this.findOne({ email })
+  let user = await this.findOne({ email })
     .populate('cart.product', 'name price images starRating left')
     .exec()
 

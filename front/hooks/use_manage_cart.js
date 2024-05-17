@@ -22,15 +22,16 @@ function useManageCart() {
 
     const session = await getSession()
     if (session) {
+      console.log(session)
       const authHeader = {
         Authorization: `Bearer ${session.user.token}`,
       }
 
       const isCartDiff =
         JSON.stringify(session.user.cart) !== JSON.stringify(cart)
-      const isCartEmpty = cart.length === 0
+      const isLocalCartEmpty = cart.length === 0
 
-      if (isCartDiff && !isCartEmpty) {
+      if (isCartDiff && !isLocalCartEmpty) {
         let method = action === syncCart ? 'patch' : 'put'
 
         console.log(session)
@@ -38,7 +39,7 @@ function useManageCart() {
 
         const minifiedCart = cart.map((p) => {
           return {
-            _id: p._id,
+            product: p._id,
             quantity: p.quantity,
           }
         })
@@ -52,6 +53,11 @@ function useManageCart() {
         })
         resultCart = response.data
 
+        resultCart = resultCart.map(({ product, quantity }) => {
+          return { ...product, quantity }
+        })
+        console.log('🚀 ~ resultCart:', resultCart)
+
         await update({
           ...session,
           user: {
@@ -59,6 +65,13 @@ function useManageCart() {
             cart: resultCart,
           },
         })
+      }
+
+      const isSessionCartEmpty = session.user.cart.length === 0
+      console.log('🚀 ~ isSessionCartEmpty:', isSessionCartEmpty)
+      if (!isSessionCartEmpty && isLocalCartEmpty) {
+        resultCart = session.user.cart
+        console.log('🚀 ~ resultCart:', resultCart)
       }
     }
 

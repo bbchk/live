@@ -8,16 +8,13 @@ export const sync = async (userId, cartToSync) => {
 
   let user = await User.findById(userId)
 
-  const uniqueCartItemsToAdd = cartToSync
-    .filter(
-      (productToSync) =>
-        user.cart.findIndex(
-          (p) => p.product._id.toString() === productToSync._id,
-        ) === -1,
-    )
-    .map((p) => {
-      return { product: p }
-    })
+  //todo if duplicate found, add quantity
+  const uniqueCartItemsToAdd = cartToSync.filter(
+    (productToSync) =>
+      user.cart.findIndex(
+        (item) => item.product.toString() === productToSync.product,
+      ) === -1,
+  )
 
   console.log(user.cart)
   console.log(uniqueCartItemsToAdd)
@@ -25,7 +22,11 @@ export const sync = async (userId, cartToSync) => {
   user.cart = [...user.cart, ...uniqueCartItemsToAdd]
 
   await user.save()
-  user = await User.findById(userId).populate('cart.product._id')
+  user = await User.findById(userId)
+    .populate('cart.product', 'name price images starRating left')
+    .exec()
+  console.log('🚀 ~ user:', user)
+
   return user.cart
 }
 
@@ -37,6 +38,11 @@ export const set = async (userId, cartToSet) => {
   user.cart = cartToSet
 
   await user.save()
-  user = await User.findById(userId).populate('cart.product._id')
+  user = await User.findById(userId)
+    .populate('cart.product', 'name price images starRating left')
+    .exec()
+
+  console.log('🚀 ~ user:', user)
+
   return user.cart
 }

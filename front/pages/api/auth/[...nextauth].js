@@ -67,6 +67,15 @@ const credentialsProvider = CredentialsProvider({
       )
       let user = response.data
 
+      user = {
+        ...user,
+        cart: user.cart.map(({ product, quantity }) => {
+          return { ...product, quantity }
+        }),
+      }
+      // console.log('🚀 ~ user:', user)
+      // console.log('🚀 ~ user:', user.cart)
+
       if (response.status === 200) {
         return user
       } else {
