@@ -15,11 +15,10 @@ const productSchema = new Schema(
       },
     ],
     price: {
-      type: Number,
+      type: Types.Decimal128,
       required: false,
-      // type: Types.Decimal128,
-      // get: (v) => parseFloat(v.toString()),
-      // set: (v) => Types.Decimal128.fromString(v.toString()),
+      get: (v) => parseFloat(v.toString()),
+      set: (v) => Types.Decimal128.fromString(v.toString()),
     },
     characteristics: {
       type: Map,
@@ -52,8 +51,8 @@ const productSchema = new Schema(
   { timestamps: false },
 )
 
-// productSchema.set('toObject', { getters: true })
-// productSchema.set('toJSON', { getters: true })
+productSchema.set('toObject', { getters: true })
+productSchema.set('toJSON', { getters: true })
 
 productSchema.index({ keywords: 'text' })
 

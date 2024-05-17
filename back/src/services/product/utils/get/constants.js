@@ -1,5 +1,5 @@
 const PRODUCTS_BY_PAGE = 50
-const FOR_LISTING_PAGE = 'name price images characteristics'
+const FOR_LISTING_PAGE = 'name price images characteristics left starRating'
 
 const FILTERS = {
   PRICE: 'tsina',

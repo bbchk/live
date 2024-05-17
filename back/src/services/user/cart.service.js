@@ -54,7 +54,6 @@ export const checkout = async (userId) => {
     .exec()
 
   const cart = user.cart
-  console.log('🚀 ~ cart:', cart)
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],

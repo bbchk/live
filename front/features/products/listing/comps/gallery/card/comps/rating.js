@@ -9,7 +9,7 @@ import { startLoading } from 'store/slices/global_comps/global_comps.slice'
 import { ChatRounded } from '@mui/icons-material'
 
 //use rating from product
-const ProductRating = ({ product, productUrl }) => {
+const ProductRating = ({ product: { starRating, reviews }, productUrl }) => {
   return (
     <section className={` ${lcs.rating}`}>
       <Link
@@ -18,7 +18,7 @@ const ProductRating = ({ product, productUrl }) => {
         href={productUrl('characteristics')}
         onClick={() => dispatch(startLoading())}
       >
-        <StarRating rating={2.5} />
+        <StarRating rating={starRating} />
         <ChatRounded className={`${s.chat_icon}`} />
         <p>{10}</p>
       </Link>

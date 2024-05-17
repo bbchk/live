@@ -1,7 +1,7 @@
 import Product from '#src/models/product.model.js'
 import _Error from '#src/utils/error.js'
 import { mongoose } from 'mongoose'
-const Decimal128 = mongoose.Types.Decimal128
+
 import {
   getSubcategories,
   getCategoryById,
@@ -19,17 +19,13 @@ import { FOR_LISTING_PAGE } from '#src/services/product/utils/get/constants.js'
 export const getProducts = async () => {
   const products = await Product.find({})
     .sort({ createdAt: -1 })
-    .select('description name brand price images characteristics')
+    .select(
+      'description name brand price images characteristics left starRating',
+    )
     .populate('category')
     .exec()
 
   return products
-  // const cursor = Product.find({}).cursor()
-  // for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
-  //   const price = parseFloat(doc.price.toString()) + 0.0001 // Add a small decimal value
-  //   doc.price = Decimal128.fromString(price.toFixed(4)) // Convert to Decimal128
-  //   await doc.save()
-  // }
 }
 
 export const getKeywordsByCategory = async (catId) => {

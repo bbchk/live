@@ -41,7 +41,6 @@ async function processAndGatherData(
   if (pageFilter) products = filterByPage(products, pageFilter)
 
   return { products, filtersMap, productsCount, numPages, minMaxPrice }
-  // return { products, productsCount, numPages, minMaxPrice }
 }
 
 export default processAndGatherData

@@ -45,18 +45,7 @@ function filterByPrice(products, filter) {
 }
 
 function filterByPage(products, filter) {
-  // const productsCount = products.length
-  // const numPages = productsCount / PRODUCTS_BY_PAGE
-
   const pageId = filter[0]
-  // const isLastPage = numPages < pageId
-
-  // if (isLastPage) {
-  //   return products.slice(
-  //     PRODUCTS_BY_PAGE * (pageId - 1),
-  //     PRODUCTS_BY_PAGE * pageId + (productsCount % PRODUCTS_BY_PAGE),
-  //   )
-  // }
 
   return products.slice(
     PRODUCTS_BY_PAGE * (pageId - 1),
