@@ -27,19 +27,7 @@ const CartModal = () => {
   const [cart, add, remove, removeAll] = useCart()
   const { items, totalCost } = cart
 
-  // const [totalCost, setTotalCost] = useState(0)
-  // const [cartItems, setCartItems] = useState(null)
-
-  // useEffect(() => {
-  //   if (cart) {
-  //     setCartItems(cart)
-  //     const totalCost = cart.reduce(
-  //       (acc, item) => acc + item.price * item.quantity,
-  //       0,
-  //     )
-  //     setTotalCost(totalCost)
-  //   }
-  // }, [cart])
+  function handleBuy() {}
 
   return (
     <Modal
