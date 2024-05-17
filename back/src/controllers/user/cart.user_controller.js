@@ -22,7 +22,7 @@ export const set = asyncErrorHandler(async (req, res, next) => {
 export const checkout = asyncErrorHandler(async (req, res, next) => {
   const { userId } = req.params
 
-  const status = await cart.checkout(userId)
+  const session = await cart.checkout(userId)
 
-  res.status(200).json(resCart)
+  return res.status(200).json({ url: session.url })
 })

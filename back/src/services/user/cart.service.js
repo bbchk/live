@@ -1,4 +1,6 @@
 import User from '#src/models/user.model.js'
+import Stripe from 'stripe'
+const stripe = new Stripe(process.env.SECRET_KEY)
 
 export const sync = async (userId, cartToSync) => {
   //todo validate
@@ -48,39 +50,30 @@ export const checkout = async (userId) => {
   //todo validate
 
   let user = await User.findById(userId)
+    .populate('cart.product', 'name price images starRating left')
+    .exec()
 
-  // user.cart
+  const cart = user.cart
+  console.log('🚀 ~ cart:', cart)
 
-  const storeItems = new Map([
-    [1, { price: 20000, name: 'Item 1' }],
-    [2, { price: 10000, name: 'Item 2' }],
-  ])
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     mode: 'payment',
-    line_items: req.body.items.map((item) => {
-      const storeItem = storeItems.get(item.id)
+    line_items: cart.map(({ product, quantity }) => {
       return {
         price_data: {
           currency: 'uah',
           product_data: {
-            name: storeItem.name,
+            name: product.name,
           },
-          unit_amount: storeItem.price,
+          unit_amount: product.price * 100,
         },
-        quantity: item.quantity,
+        quantity: quantity,
       }
     }),
-    success_url: `${process.env.SERVER_URL}/success.html`,
-    cancel_url: `${process.env.SERVER_URL}/cancel.html`,
+    success_url: `${process.env.FRONT_DOMAIN}/payment/success`,
+    cancel_url: `${process.env.FRONT_DOMAIN}/payment/cancel`,
   })
-  res.json({ url: session.url })
 
-  // await user.save()
-  // user = await User.findById(userId)
-  //   .populate('cart.product', 'name price images starRating left')
-  //   .exec()
-
-  // return user.cart
-  return null
+  return session
 }

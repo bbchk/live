@@ -6,7 +6,11 @@ import { useSession } from 'next-auth/react'
 
 const Home = ({ rootCategories }) => {
   const { data: session, status } = useSession()
+
   const user = session?.user
+
+  // const token = user?.token
+  // console.log('🚀 ~ token:', token)
 
   useStopLoading()
 

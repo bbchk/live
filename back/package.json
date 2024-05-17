@@ -38,6 +38,7 @@
     "nodemon": "^3.0.1",
     "nookies": "^2.5.2",
     "punycode": "^2.3.1",
+    "stripe": "^15.7.0",
     "validator": "^13.11.0",
     "winston": "^3.13.0",
     "winston-express": "^0.1.1",

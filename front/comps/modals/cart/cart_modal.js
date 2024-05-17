@@ -17,17 +17,41 @@ import Image from 'next/image'
 
 import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap'
 import { useCart } from '#root/hooks/use_cart.js'
+import { useSession } from 'next-auth/react'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 
 const CartModal = () => {
+  const router = useRouter()
   const dispatch = useDispatch()
   const { cartModalOpen } = useSelector((state) => state.modals)
+
+  const { data: session } = useSession()
 
   useTabTrap(cartModalOpen, 'cartModal')
 
   const [cart, add, remove, removeAll] = useCart()
   const { items, totalCost } = cart
 
-  function handleBuy() {}
+  async function handleBuy() {
+    // if (!session) return //todo close cart and show sign in
+
+    const authHeader = {
+      Authorization: `Bearer ${session.user.token}`,
+    }
+
+    try {
+      const response = await axios({
+        method: 'post',
+        url: `/user/cart/${session.user.id}/checkout`,
+        headers: authHeader,
+      })
+
+      router.push(response.data.url)
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   return (
     <Modal

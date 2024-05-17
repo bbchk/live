@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 
 //todo make certain fields required true
 const productSchema = new Schema(
@@ -15,7 +15,7 @@ const productSchema = new Schema(
       },
     ],
     price: {
-      type: Number,
+      type: Types.Decimal128,
       required: false,
     },
     characteristics: {
