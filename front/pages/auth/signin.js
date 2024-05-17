@@ -16,7 +16,7 @@ const SignIn = () => {
     if (session) {
       router.push('/user/personal_data')
     }
-  }, [session])
+  }, [router, session])
 
   const [modal, setModal] = useState(true)
 

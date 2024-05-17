@@ -89,7 +89,6 @@ describe('GET /products', () => {
     const { statusCode, body, type } = await supertest(app).get(
       `/products/by-query/${slug}/filtered-by/${filtersStr}`,
     )
-    console.log(body)
 
     expect(statusCode).toBe(200)
     expect(type).toBe('application/json')
