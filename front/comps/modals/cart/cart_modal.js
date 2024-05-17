@@ -25,22 +25,21 @@ const CartModal = () => {
   useTabTrap(cartModalOpen, 'cartModal')
 
   const [cart, add, remove, removeAll] = useCart()
+  const { items, totalCost } = cart
 
-  const [totalCost, setTotalCost] = useState(0)
-  const [cartItems, setCartItems] = useState(null)
+  // const [totalCost, setTotalCost] = useState(0)
+  // const [cartItems, setCartItems] = useState(null)
 
-  useEffect(() => {
-    if (cart) {
-      setCartItems(cart)
-      const totalCost = cart.reduce(
-        (acc, item) => acc + item.price * item.quantity,
-        0,
-      )
-      setTotalCost(totalCost)
-    }
-  }, [cart])
-
-  const handleBuy = async (e, value) => {}
+  // useEffect(() => {
+  //   if (cart) {
+  //     setCartItems(cart)
+  //     const totalCost = cart.reduce(
+  //       (acc, item) => acc + item.price * item.quantity,
+  //       0,
+  //     )
+  //     setTotalCost(totalCost)
+  //   }
+  // }, [cart])
 
   return (
     <Modal
@@ -56,7 +55,7 @@ const CartModal = () => {
         <h3>Кошик покупок</h3>
       </Modal.Header>
       <Modal.Body className={`${s.modal_body}`}>
-        {cartItems?.length === 0 ? (
+        {items?.length === 0 ? (
           <div className={`${s.empty_cart}`}>
             <Image
               src='/assets/empty_cart.svg'
@@ -68,7 +67,7 @@ const CartModal = () => {
           </div>
         ) : (
           <>
-            {cartItems?.map((product) => {
+            {items?.map((product) => {
               return (
                 <CartItem
                   key={product._id}

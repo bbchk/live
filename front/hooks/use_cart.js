@@ -12,7 +12,8 @@ import useManageCart from './use_manage_cart'
 
 export const useCart = () => {
   const dispatch = useDispatch()
-  const { cart } = useSelector((state) => state.cart)
+  const { cart: items, totalCost } = useSelector((state) => state.cart)
+
   const { cartModalOpen } = useSelector((state) => state.modals)
 
   const [localCart, setValue] = useLocalStorage('cart', [])
@@ -38,8 +39,8 @@ export const useCart = () => {
   const [_, set] = useManageCart()
 
   //sync with localStorage and db on component unmount
-  const cartRef = useRef(cart)
-  cartRef.current = cart
+  const cartRef = useRef(items)
+  cartRef.current = items
   useEffect(() => {
     //? what if user closed the tab and not navigated away?
     return () => {
@@ -82,5 +83,5 @@ export const useCart = () => {
     [dispatch],
   )
 
-  return [cart, add, remove, removeAll]
+  return [{ items, totalCost }, add, remove, removeAll]
 }

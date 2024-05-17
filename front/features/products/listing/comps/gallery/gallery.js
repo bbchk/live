@@ -53,7 +53,7 @@ const ProductGallery = ({
     product.isLiked = wshl.includes(product._id)
     product.like = like
 
-    product.inCart = cart.some((p) => p._id === product._id)
+    product.inCart = cart.items.some((p) => p._id === product._id)
     product.add = add
 
     const isLast = columnIndex === columnCount - 1
