@@ -22,7 +22,6 @@ function useManageCart() {
 
     const session = await getSession()
     if (session) {
-      console.log(session)
       const authHeader = {
         Authorization: `Bearer ${session.user.token}`,
       }
@@ -34,16 +33,12 @@ function useManageCart() {
       if (isCartDiff && !isLocalCartEmpty) {
         let method = action === syncCart ? 'patch' : 'put'
 
-        console.log(session)
-        console.log(cart)
-
         const minifiedCart = cart.map((p) => {
           return {
             product: p._id,
             quantity: p.quantity,
           }
         })
-        console.log('🚀 ~ minifiedCart:', minifiedCart)
 
         const response = await axios({
           method: method,
@@ -56,7 +51,6 @@ function useManageCart() {
         resultCart = resultCart.map(({ product, quantity }) => {
           return { ...product, quantity }
         })
-        console.log('🚀 ~ resultCart:', resultCart)
 
         await update({
           ...session,
@@ -68,10 +62,9 @@ function useManageCart() {
       }
 
       const isSessionCartEmpty = session.user.cart.length === 0
-      console.log('🚀 ~ isSessionCartEmpty:', isSessionCartEmpty)
+
       if (!isSessionCartEmpty && isLocalCartEmpty) {
         resultCart = session.user.cart
-        console.log('🚀 ~ resultCart:', resultCart)
       }
     }
 
