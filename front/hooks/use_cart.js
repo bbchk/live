@@ -40,6 +40,7 @@ export const useCart = () => {
   const cartRef = useRef(cart)
   cartRef.current = cart
   useEffect(() => {
+    //todo do it on sign and signUP modals open
     return () => {
       ;(async () => await set(cartRef.current))()
     }

@@ -6,15 +6,20 @@ export const sync = async (userId, cartToSync) => {
 
   let user = await User.findById(userId)
 
-  //todo if duplicate found, add quantity
-  const uniqueCartItemsToAdd = cartToSync.filter(
-    (productToSync) =>
-      user.cart.findIndex(
-        (item) => item.product.toString() === productToSync.product,
-      ) === -1,
-  )
+  for (let productToSync of cartToSync) {
+    // Find the product in the user's cart
+    let cartItem = user.cart.find(
+      (item) => item.product.toString() === productToSync.product,
+    )
 
-  user.cart = [...user.cart, ...uniqueCartItemsToAdd]
+    if (cartItem) {
+      // If the product is found, increase the quantity
+      cartItem.quantity += productToSync.quantity
+    } else {
+      // If the product is not found, add it to the cart
+      user.cart.push(productToSync)
+    }
+  }
 
   await user.save()
   user = await User.findById(userId)

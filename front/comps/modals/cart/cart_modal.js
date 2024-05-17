@@ -16,25 +16,22 @@ import CartItem from './cart_item/cart_item'
 import Image from 'next/image'
 
 import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap'
+import { useCart } from '#root/hooks/use_cart.js'
 
 const CartModal = () => {
   const dispatch = useDispatch()
   const { cartModalOpen } = useSelector((state) => state.modals)
-  const { user } = useSelector((state) => state.user)
-
-  const [cartItems, setCartItems] = useState([])
-  const [totalCost, setTotalCost] = useState(0)
-
-  const cart = useMemo(() => user?.cart, [user?.cart])
 
   useTabTrap(cartModalOpen, 'cartModal')
 
-  //todo set cart items and total cost to localStorage on signOut
+  const [cart, add] = useCart()
+
+  const [totalCost, setTotalCost] = useState(0)
+
   useEffect(() => {
     if (cart) {
-      setCartItems(cart)
       const totalCost = cart.reduce(
-        (acc, item) => acc + item.product.price * item.quantity,
+        (acc, item) => acc + item.price * item.quantity,
         0,
       )
       setTotalCost(totalCost)
@@ -57,7 +54,7 @@ const CartModal = () => {
         <h3>Кошик покупок</h3>
       </Modal.Header>
       <Modal.Body className={`${s.modal_body}`}>
-        {cartItems.length === 0 ? (
+        {cart.length === 0 ? (
           <div className={`${s.empty_cart}`}>
             <Image
               src='/assets/empty_cart.svg'
@@ -69,15 +66,16 @@ const CartModal = () => {
           </div>
         ) : (
           <>
-            {cartItems.map(({ product, quantity }) => {
-              return (
-                <CartItem
-                  key={product._id}
-                  product={product}
-                  quantity={quantity}
-                />
-              )
-            })}
+            {cart &&
+              cart.map((product) => {
+                return (
+                  <CartItem
+                    key={product._id}
+                    product={product}
+                    quantity={product.quantity}
+                  />
+                )
+              })}
 
             <footer>
               <p className={`${s.total_cost} price`}>

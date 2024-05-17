@@ -28,7 +28,6 @@ export const useWishList = () => {
         */
 
       if (!isSet.current) {
-        console.log('🚀 ~ localStWishList:', localStWishList)
         ;(async () => await set(localStWishList))()
       }
       isSet.current = true
@@ -39,6 +38,7 @@ export const useWishList = () => {
   const wshlRef = useRef(wshl)
   wshlRef.current = wshl
   useEffect(() => {
+    //todo do it on sign and signUP modals open
     return () => {
       ;(async () => await set(wshlRef.current))()
     }
