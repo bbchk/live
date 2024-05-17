@@ -13,8 +13,11 @@ export const cartSlice = createSlice({
       state.status = 'succeeded'
     },
     add: (state, action) => {
+      console.log(action.payload)
       const product = state.cart.find((item) => item._id === action.payload._id)
+      console.log('🚀 ~ product:', product)
       if (product) {
+        console.log('🚀 ~ product:', product)
         product.quantity++
       } else {
         state.cart.push({ ...action.payload, quantity: 1 })

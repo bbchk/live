@@ -13,6 +13,7 @@ import useManageCart from './use_manage_cart'
 export const useCart = () => {
   const dispatch = useDispatch()
   const { cart } = useSelector((state) => state.cart)
+  const { cartModalOpen } = useSelector((state) => state.modals)
 
   const [localCart, setValue] = useLocalStorage('cart', [])
 
@@ -40,11 +41,13 @@ export const useCart = () => {
   const cartRef = useRef(cart)
   cartRef.current = cart
   useEffect(() => {
-    //? todo do it on sign and signUP modals open
+    //? what if user closed the tab and not navigated away?
     return () => {
-      ;(async () => await set(cartRef.current))()
+      if (cartModalOpen === false) {
+        ;(async () => await set(cartRef.current))()
+      }
     }
-  }, [])
+  }, [cartModalOpen])
 
   //save to localStorage if user reloads or closes page
   useEffect(() => {
