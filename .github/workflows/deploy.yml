@@ -91,3 +91,29 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_FRONT_PROJECT_ID }}
           vercel-args: '--prod'
           vercel-dir: 'front'
+  lighthouse_audit:
+    runs-on: ubuntu-latest
+    needs: [front-end-deploy]
+    environment: PROD
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Lighthouse
+        run: npm install -g lighthouse
+
+      - name: Run Lighthouse
+        run: |
+          URLS="https://zhyvyisvit.shop/ https://zhyvyisvit.shop/products/dlya-kotiv/page=1 https://zhyvyisvit.shop/product/-napovniuvahch-khvostyk-3--6l-sylikahelmz-dribnyyu-iz-zelenymy-hranulamy/65b2606f213addb487b8ab13/about https://zhyvyisvit.shop/products/search=dlya-kotiv/page=1" # Add all your URLs here
+          for URL in $URLS; do
+            lighthouse $URL --output json --output-path=./lighthouse-results.json
+            # You can also add --quiet --chrome-flags="--headless" if you don't want to see the Chrome output
+          done
+
+      - name: Archive Lighthouse results
+        uses: actions/upload-artifact@v3
+        with:
+          name: lighthouse-results
+          path: ./lighthouse-results.json
