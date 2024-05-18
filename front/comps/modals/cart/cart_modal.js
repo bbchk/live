@@ -1,25 +1,28 @@
-import { Modal } from 'react-bootstrap'
 import s from './cart_modal.module.scss'
+import ms from 'comps/modals/modal.module.scss'
 
-import { useDispatch, useSelector } from 'react-redux'
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   toggle,
   GLOBAL_COMPS,
 } from 'store/slices/global_comps/global_comps.slice'
 const { CART_MODAL, SIGN_IN_MODAL } = GLOBAL_COMPS
 
-import { balsamiqSans } from 'pages/_app'
-
-import { useEffect, useMemo, useRef, useState } from 'react'
-
 import CartItem from './cart_item/cart_item'
 import Image from 'next/image'
 
-import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap'
 import { useCart } from '#root/hooks/use_cart.js'
 import { useSession } from 'next-auth/react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { balsamiqSans } from '#root/pages/_app.js'
 
 const CartModal = () => {
   const router = useRouter()
@@ -27,8 +30,6 @@ const CartModal = () => {
   const { cartModalOpen } = useSelector((state) => state.modals)
 
   const { data: session } = useSession()
-
-  useTabTrap(cartModalOpen, 'cartModal')
 
   const [cart, add, remove, removeAll] = useCart()
   const { items, totalCost } = cart
@@ -56,22 +57,23 @@ const CartModal = () => {
     }
   }
 
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
+
   return (
-    <Modal
-      id='cartModal'
-      show={cartModalOpen}
-      onHide={() => dispatch(toggle(CART_MODAL))}
-      centered
-      fullscreen='lg-down'
-      size='xl'
-      className={`${s.modal} ${balsamiqSans.className}`}
+    <Dialog
+      open={cartModalOpen}
+      onClose={() => dispatch(toggle(CART_MODAL))}
+      fullWidth
+      maxWidth='lg'
+      fullScreen={fullScreen}
     >
-      <Modal.Header closeButton={true} className={`${s.modal_header}`}>
-        <h3>Кошик покупок</h3>
-      </Modal.Header>
-      <Modal.Body className={`${s.modal_body}`}>
+      <DialogTitle className={`${ms.header} ${balsamiqSans.className}`}>
+        Кошик покупок
+      </DialogTitle>
+      <DialogContent className={`${s.body}`}>
         {items?.length === 0 ? (
-          <div className={`${s.empty_cart}`}>
+          <div>
             <Image
               src='/assets/empty_cart.svg'
               alt='Empty cart'
@@ -82,15 +84,13 @@ const CartModal = () => {
           </div>
         ) : (
           <>
-            {items?.map((product) => {
-              return (
-                <CartItem
-                  key={product._id}
-                  product={product}
-                  actions={[add, remove, removeAll]}
-                />
-              )
-            })}
+            {items?.map((product) => (
+              <CartItem
+                key={product._id}
+                product={product}
+                actions={[add, remove, removeAll]}
+              />
+            ))}
 
             <footer>
               <p className={`${s.total_cost} price`}>
@@ -121,8 +121,8 @@ const CartModal = () => {
             </footer>
           </>
         )}
-      </Modal.Body>
-    </Modal>
+      </DialogContent>
+    </Dialog>
   )
 }
 
