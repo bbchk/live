@@ -1,8 +1,8 @@
 import s from './delete_account.module.scss'
-import card_s from './../card.module.scss'
-import { Card } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+import cs from './../card.module.scss'
 
+import { useDispatch } from 'react-redux'
+import { Card, CardHeader, CardContent, Button } from '@mui/material'
 import { DeleteOutlineRounded } from '@mui/icons-material'
 
 import {
@@ -10,17 +10,18 @@ import {
   GLOBAL_COMPS,
 } from 'store/slices/global_comps/global_comps.slice'
 const { DELETE_ACCOUNT_MODAL } = GLOBAL_COMPS
+import { balsamiqSans } from '#root/pages/_app.js'
 
 const DeleteAccount = () => {
   const dispatch = useDispatch()
 
   return (
-    <Card className={`${card_s.card}`}>
-      <Card.Header className={`${card_s.header} ${s.header}`}>
+    <Card className={`${s.card} ${cs.card} `}>
+      <header className={`${s.header} ${cs.header} ${balsamiqSans.className}`}>
         <DeleteOutlineRounded />
-        <h5>Видалити акаунт</h5>
-      </Card.Header>
-      <Card.Body className={`${card_s.body} ${s.body}`}>
+        <span>Видалити обліковий запис</span>
+      </header>
+      <CardContent className={`${s.body} ${cs.body}`}>
         <p>
           Якщо ви видалите свій обліковий запис, повернути його назад неможливо.
           Будь ласка, будьте впевненими.
@@ -35,7 +36,7 @@ const DeleteAccount = () => {
         >
           Видалити акаунт
         </button>
-      </Card.Body>
+      </CardContent>
     </Card>
   )
 }

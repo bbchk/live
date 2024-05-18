@@ -1,28 +1,21 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
-@import 'node_modules/rfs/sass.sass';
 
 .card {
   color: $color-blue-dasl;
-  border: 0 !important;
+  box-shadow: none;
 
   .header {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+    width: 100%;
 
     border-bottom: 2px solid rgba($color-blue-dasl, 0.1);
 
-    background-color: white;
-
-    > * {
-      line-height: 0;
-      padding-bottom: 0.3rem;
-    }
-
+    $font-size: 1.5rem;
+    font-size: $font-size;
     svg {
-      width: 1.8rem;
-      height: 1.8rem;
+      margin-right: 0.5rem;
+      width: $font-size;
+      height: $font-size;
     }
   }
 
