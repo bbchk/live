@@ -53,8 +53,9 @@ import SkipToMainContent from 'comps/accessibility/skip_to_main_content'
 const CustomHotkeys = dynamic(() => import('comps/accessibility/hotkeys'))
 
 import Header from 'comps/layout/header/header'
-
 const Footer = dynamic(() => import('comps/layout/footer/footer'))
+
+// import ErrorBoundary from 'utils/error_boundary'
 
 import { Balsamiq_Sans } from 'next/font/google'
 import { Pacifico } from 'next/font/google'
@@ -128,6 +129,7 @@ const Body = ({ children }) => {
     <>
       <CustomHotkeys />
       <SkipToMainContent mainContentId={'main_content'} />
+      {/* <ErrorBoundary> */}
       <Header />
       <div
         className={`${balsamiqSans.className}`}
@@ -138,6 +140,7 @@ const Body = ({ children }) => {
         <Modals />
         {children}
       </div>
+      {/* </ErrorBoundary> */}
       <Footer />
     </>
   )
