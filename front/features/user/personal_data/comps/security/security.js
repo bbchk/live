@@ -1,6 +1,6 @@
 import s from './security.module.scss'
-import card_s from './../card.module.scss'
-import { Card } from 'react-bootstrap'
+
+import Card from '../card'
 
 import { LockRounded } from '@mui/icons-material'
 
@@ -15,28 +15,32 @@ import { signOut } from 'next-auth/react'
 
 const Security = () => {
   const dispatch = useDispatch()
-  return (
-    <Card className={`${card_s.card}`}>
-      <Card.Header className={`${card_s.header}`}>
-        <LockRounded />
-        <h5>Безпека</h5>
-      </Card.Header>
-      <Card.Body className={`${card_s.body} ${s.security}`}>
-        <button onClick={() => dispatch(toggle(CHANGE_PASSWORD_MODAL))}>
-          Змінити пароль?
-        </button>
-        <button
-          onClick={() => {
-            signOut({ callbackUrl: '/' }).then(() => {
-              window.location.href = '/'
-            })
-          }}
-        >
-          Вийти з акаунту
-        </button>
-      </Card.Body>
-    </Card>
+
+  const Header = () => (
+    <div className={` ${s.header}`}>
+      <LockRounded />
+      <span>Безпека</span>
+    </div>
   )
+
+  const Body = () => (
+    <div className={` ${s.body}`}>
+      <button onClick={() => dispatch(toggle(CHANGE_PASSWORD_MODAL))}>
+        Змінити пароль?
+      </button>
+      <button
+        onClick={() => {
+          signOut({ callbackUrl: '/' }).then(() => {
+            window.location.href = '/'
+          })
+        }}
+      >
+        Вийти з акаунту
+      </button>
+    </div>
+  )
+
+  return <Card Header={Header} Body={Body} />
 }
 
 export default Security

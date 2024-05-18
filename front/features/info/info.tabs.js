@@ -13,7 +13,6 @@ import { ItemLink } from 'comps/list/list.js'
 
 const UserListTabs = () => {
   return (
-    // <List className={`${s.tabs}`}>
     <List>
       <ItemLink text='Про нас' href='/info/about_us'>
         <InfoRounded />

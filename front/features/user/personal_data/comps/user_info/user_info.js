@@ -1,25 +1,28 @@
 import ProfileImage from './comps/profile_image'
 import UserInfoForm from './comps/user_info_form'
-import Card from 'react-bootstrap/Card'
+
 import s from './user_info.module.scss'
-import card_s from './../card.module.scss'
+
 import { AccountCircleRounded } from '@mui/icons-material'
 
+import Card from '../card'
+
 const UserInfo = () => {
-  return (
-    <>
-      <Card className={`${card_s.card}`}>
-        <Card.Header className={`${card_s.header}`}>
-          <AccountCircleRounded />
-          <h4>Персональні дані</h4>
-        </Card.Header>
-        <Card.Body className={`${card_s.body} ${s.body}`}>
-          <ProfileImage />
-          <UserInfoForm />
-        </Card.Body>
-      </Card>
-    </>
+  const Header = () => (
+    <div className={` ${s.header}`}>
+      <AccountCircleRounded />
+      <span>Персональні дані</span>
+    </div>
   )
+
+  const Body = () => (
+    <div className={` ${s.body}`}>
+      <ProfileImage />
+      <UserInfoForm />
+    </div>
+  )
+
+  return <Card Header={Header} Body={Body} />
 }
 
 export default UserInfo

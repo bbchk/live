@@ -1,7 +1,7 @@
 @use './styles/variables' as *;
 @use './styles/mixins' as *;
 
-.security {
+.body {
   display: flex;
   align-items: flex-start;
   flex-flow: column nowrap;
