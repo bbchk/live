@@ -1,16 +1,54 @@
-import FiltersAccordion from 'features/products/listing/comps/filter/filters_accordion/filters_accordion'
-
-import ProductGallery from 'features/products/listing/comps/gallery/gallery.js'
-import ProductsPagination from 'features/products/listing/comps/gallery/pagination/pagination.js'
-import SortGroup from 'features/products/listing/comps/filter/sort-group.js'
-import FiltersOffcanvasToggler from 'features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas_toggler'
-
 import s from './listing.body.module.scss'
 
-import FiltersOffcanvas from 'features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas.js'
-import Selected from 'features/products/listing/comps/filter/selected.js'
-import NoProductYet from '#root/comps/warnings/no_products.js'
+import { useMediaQuery, ThemeProvider } from '@mui/material'
 import { useSelector } from 'react-redux'
+
+import dynamic from 'next/dynamic'
+
+import LoadingSpinner from '#root/comps/loading/spinner.js'
+
+const NoProductYet = dynamic(() => import('comps/warnings/no_products.js'), {
+  loading: () => <LoadingSpinner />,
+  ssr: false,
+})
+
+const FiltersAccordion = dynamic(
+  () =>
+    import(
+      'features/products/listing/comps/filter/filters_accordion/filters_accordion'
+    ),
+  { loading: () => <LoadingSpinner /> },
+)
+
+const FiltersOffcanvas = dynamic(
+  () =>
+    import(
+      'features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas.js'
+    ),
+  { loading: () => <LoadingSpinner /> },
+)
+
+const ProductsPagination = dynamic(
+  () =>
+    import('features/products/listing/comps/gallery/pagination/pagination.js'),
+  { ssr: false },
+)
+
+const Selected = dynamic(
+  () => import('features/products/listing/comps/filter/selected.js'),
+  { ssr: false },
+)
+
+const FiltersOffcanvasToggler = dynamic(
+  () =>
+    import(
+      'features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas_toggler'
+    ),
+  { ssr: true },
+)
+
+import SortGroup from 'features/products/listing/comps/filter/sort-group.js'
+import ProductGallery from 'features/products/listing/comps/gallery/gallery.js'
 
 const ProductListingBody = ({
   data: {
@@ -23,6 +61,7 @@ const ProductListingBody = ({
     page,
   },
 }) => {
+  const isSmallViewport = useMediaQuery('(max-width:1100px)') // Adjust the value as needed
   //todo lazy load
   const { filterOffcanvasOpen } = useSelector((state) => state.modals)
 
@@ -39,9 +78,11 @@ const ProductListingBody = ({
           )}
 
           <div className={`${s.body}`}>
-            <div className={`${s.filters_offcanvas_toggler}`}>
-              <FiltersOffcanvasToggler />
-            </div>
+            {isSmallViewport && (
+              <div className={`${s.filters_offcanvas_toggler}`}>
+                <FiltersOffcanvasToggler />
+              </div>
+            )}
             <div className={`${s.selected}`}>
               <Selected productsCount={productsCount} />
             </div>
@@ -49,12 +90,14 @@ const ProductListingBody = ({
               <SortGroup />
             </div>
             <div className={`${s.filters_decor_line}`}></div>
-            <div className={`${s.filters}`}>
-              <FiltersAccordion
-                filters={filtersMap}
-                minMaxPrice={minMaxPrice}
-              />
-            </div>
+            {!isSmallViewport && (
+              <div className={`${s.filters}`}>
+                <FiltersAccordion
+                  filters={filtersMap}
+                  minMaxPrice={minMaxPrice}
+                />
+              </div>
+            )}
 
             <div className={`${s.gallery}`}>
               <div className={`${s.products}`}>
@@ -68,7 +111,7 @@ const ProductListingBody = ({
           </div>
         </>
       ) : (
-        <div className={`${s.no_prodcuts}`}>
+        <div className={`${s.no_products}`}>
           <NoProductYet />
         </div>
       )}

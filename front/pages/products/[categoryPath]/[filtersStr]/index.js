@@ -1,16 +1,25 @@
-import axios from 'axios'
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 
+import LoadingSpinner from '#root/comps/loading/spinner.js'
+
+import axios from 'axios'
+
+import { useRouter } from 'next/router'
 import { useStopLoading } from 'hooks/useStopLoading'
-
 import { useUpdateFilters } from 'features/products/listing/hooks/use_update_filters'
 import { useDispatchInitialFilters } from 'features/products/listing/hooks/use_dispatch_initial_filters.js'
 import { usePageValidation } from 'features/products/listing/hooks/use_page_validation'
 
-import SubcategoriesGallery from 'features/products/listing/comps/subcategories/gallery'
-import ProductListingBody from 'features/products/listing/layout/listing.body.js'
+const SubcategoriesGallery = dynamic(
+  () => import('features/products/listing/comps/subcategories/gallery.js'),
+  {
+    loading: () => <LoadingSpinner />,
+    ssr: false,
+  },
+)
 
-import { useRouter } from 'next/router'
+import ProductListingBody from 'features/products/listing/layout/listing.body.js'
 import ListingHeader from '#root/features/products/listing/layout/listing.header.js'
 
 import { unslugify } from '@bbuukk/slugtrans/slugify'

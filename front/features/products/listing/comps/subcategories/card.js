@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import s from './card.module.scss'
@@ -23,7 +22,7 @@ const SubcategoryCard = ({ category }) => {
         height={150}
         sizes='(max-width: 768px) 25vw,(max-width: 1200px) 151vw, 10vw'
         alt='підкатегорія'
-        priority
+        // priority
       />
       <div>
         <p> {name}</p>
