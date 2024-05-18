@@ -1,36 +1,34 @@
-import { useSignUp } from 'features/user/hooks/useSignUp'
+// import { useSignUp } from 'features/user/hooks/useSignUp'
 
 import { useState } from 'react'
 
 import s from './sign_up_form_by_credentials.module.scss'
-import modal_s from '../modal.module.scss'
+
 import Link from 'next/link'
 import InputField from 'comps/input_fields/input_field'
 import PasswordInputField from 'comps/input_fields/password_input_field'
 
+//todo fix register functionality
 const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
   const [firstName, setFirstName] = useState('')
   const [secondName, setSecondName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { signUp, isLoading, error } = useSignUp()
+  // const { signUp, isLoading, error } = useSignUp()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     //todo put cart as well
     const localStorageCartJson = JSON.parse(localStorage.getItem('cart'))
-    await signUp(firstName, secondName, email, password, localStorageCartJson)
+    // await signUp(firstName, secondName, email, password, localStorageCartJson)
     if (!error) {
       toggleModal()
     }
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={`${s.by_credentials} ${modal_s.left}`}
-    >
+    <form onSubmit={handleSubmit} className={`${s.by_credentials} `}>
       <div className={`${s.input_group}`}>
         <InputField
           type='text'
@@ -82,7 +80,11 @@ const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
         {` `}та <Link href='/terms-of-usage'>угодою користувача</Link>
       </div>
 
-      <button disabled={isLoading} type='submit' className='button_primary '>
+      <button
+        // disabled={isLoading}
+        type='submit'
+        className='button_primary '
+      >
         Зареєструватись
       </button>
       {/* signIn('credentials', { redirect: false, password: 'password' }) */}
@@ -97,7 +99,6 @@ const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
       >
         Я вже зареєстрований
       </Link>
-      {error ? <div className={`${s.error}`}>{error}</div> : <></>}
     </form>
   )
 }

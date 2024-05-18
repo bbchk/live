@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import s from './sign_in_form_by_credentials.module.scss'
-import modal_s from '../modal.module.scss'
+
 import Link from 'next/link'
 import InputField from 'comps/input_fields/input_field'
 import PasswordInputField from 'comps/input_fields/password_input_field'
@@ -28,10 +28,7 @@ const SignInFormByCredentials = ({ toggleModal, toggleSignUpModal }) => {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={`${s.by_credentials} ${modal_s.left}`}
-    >
+    <form onSubmit={handleSubmit} className={`${s.by_credentials}`}>
       {error && <Alert text={error} severity={'error'} />}
       {status === 'success' && (
         <Alert text={'Ви успішно авторизовані!'} severity={'success'} />

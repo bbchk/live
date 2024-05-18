@@ -1,9 +1,5 @@
-import { useState } from 'react'
-import { Modal } from 'react-bootstrap'
+import ms from '#root/comps/modals/auth/modal.module.scss'
 
-import s from './sign_up_modal.module.scss'
-import modal_s from '../modal.module.scss'
-import Link from 'next/link'
 import SignFormByServices from '../sign_form_by_services'
 import VerticalSplitter from '../vertical_splitter'
 import SignUpForm from './sign_up_form_by_credentials'
@@ -18,9 +14,16 @@ const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS
 
 import { useSession } from 'next-auth/react'
 
-//todo input validation
 import CustomAlert from 'comps/warnings/alert'
-import useTabTrap from '#root/comps/accessibility/hooks/useTabbingTrap.js'
+
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
+import { balsamiqSans } from '#root/pages/_app.js'
 
 const SignUpModal = () => {
   const dispatch = useDispatch()
@@ -29,36 +32,40 @@ const SignUpModal = () => {
   const toggle = () => dispatch(tg(SIGN_UP_MODAL))
   const toggleAlternative = () => dispatch(tg(SIGN_IN_MODAL))
 
-  useTabTrap(signUpModalOpen, 'signUpModal')
-
   const { data: session } = useSession()
   if (session) {
     return <CustomAlert text={'Ви уже авторизовані 😌'} />
   }
 
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
+
   return (
-    <>
-      <Modal
-        id='signUpModal'
-        show={signUpModalOpen}
-        onHide={toggle}
-        fullscreen='md-down'
-        centered
-        className={`${modal_s.modal}`}
-      >
-        <Modal.Header className='modal_header_title_center' closeButton={true}>
-          <h3 className={`${modal_s.heading}`}>Реєстрація</h3>
-        </Modal.Header>
-        <Modal.Body className={`${modal_s.modal_body}`}>
+    <Dialog
+      open={signUpModalOpen}
+      onClose={toggle}
+      fullWidth
+      maxWidth='md'
+      fullScreen={fullScreen}
+    >
+      <DialogTitle className={`${ms.header} ${balsamiqSans.className}`}>
+        Реєстрація
+      </DialogTitle>
+      <DialogContent className={`${ms.body} ${balsamiqSans.className}`}>
+        <div className={ms.left}>
           <SignUpForm
             toggleModal={toggle}
             toggleSignInModal={toggleAlternative}
           />
+        </div>
+        <div className={ms.vertical_splitter}>
           <VerticalSplitter />
+        </div>
+        <div className={ms.right}>
           <SignFormByServices />
-        </Modal.Body>
-      </Modal>
-    </>
+        </div>
+      </DialogContent>
+    </Dialog>
   )
 }
 

@@ -52,27 +52,27 @@ html {
   pointer-events: none;
 }
 
-.modal-header {
-  padding: 0.9em 1.5em !important;
-  margin-bottom: 1em !important;
+// .modal-header {
+//   padding: 0.9em 1.5em !important;
+//   margin-bottom: 1em !important;
 
-  button {
-    border-radius: none;
-    @include icon_on_hover;
-  }
-}
+//   button {
+//     border-radius: none;
+//     @include icon_on_hover;
+//   }
+// }
 
-.modal_header_title_center {
-  display: flex !important;
-  justify-content: center !important;
+// .modal_header_title_center {
+//   display: flex !important;
+//   justify-content: center !important;
 
-  position: relative;
+//   position: relative;
 
-  button {
-    position: absolute;
-    right: 1.5em;
-  }
-}
+//   button {
+//     position: absolute;
+//     right: 1.5em;
+//   }
+// }
 
 input[disabled] {
   background-color: rgba($color-blue-dasl, 0.1);
