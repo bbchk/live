@@ -72,7 +72,7 @@ export async function getServerSideProps({ params }) {
   }
 }
 
-// //todo delete
+//todo delete
 // product.reviews = [
 //   {
 //     id: 1,

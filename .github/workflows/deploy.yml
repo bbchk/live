@@ -77,7 +77,6 @@ jobs:
         with:
           node-version: 20
 
-      # todo test
       - name: Wait for back-end to fully deploy
         run: sleep 60
 
@@ -104,6 +103,9 @@ jobs:
       - name: Install Lighthouse
         run: npm install -g lighthouse
 
+      - name: Wait for front-end to fully deploy
+        run: sleep 60
+
       - name: Run Lighthouse
         run: |
           URLS="https://zhyvyisvit.shop/ https://zhyvyisvit.shop/products/dlya-kotiv/page=1 https://zhyvyisvit.shop/product/-napovniuvahch-khvostyk-3--6l-sylikahelmz-dribnyyu-iz-zelenymy-hranulamy/65b2606f213addb487b8ab13/about https://zhyvyisvit.shop/products/search=dlya-kotiv/page=1" # Add all your URLs here
@@ -117,3 +119,35 @@ jobs:
         with:
           name: lighthouse-results
           path: ./lighthouse-results.json
+  jmeter_test:
+    runs-on: ubuntu-latest
+    needs: [front-end-deploy]
+    environment: PROD
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Install JMeter
+        run: |
+          wget https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.4.3.tgz
+          tar -xzf apache-jmeter-5.4.3.tgz
+          rm apache-jmeter-5.4.3.tgz
+
+      - name: Wait for front-end to fully deploy
+        run: sleep 60
+
+      - name: Run JMeter Tests
+        run: |
+          URLS="https://zhyvyisvit.shop/ https://zhyvyisvit.shop/products/dlya-kotiv/page=1 https://zhyvyisvit.shop/product/-napovniuvahch-khvostyk-3--6l-sylikahelmz-dribnyyu-iz-zelenymy-hranulamy/65b2606f213addb487b8ab13/about https://zhyvyisvit.shop/products/search=dlya-kotiv/page=1" # Add all your URLs here
+          for URL in $URLS; do
+            ./apache-jmeter-5.4.3/bin/jmeter -n -t your_test_plan.jmx -Jsite=$URL -l ./jmeter-results.jtl
+          done
+
+      - name: Archive JMeter results
+        uses: actions/upload-artifact@v3
+        with:
+          name: jmeter-results
+          path: ./jmeter-results.jtl
