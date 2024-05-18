@@ -6,6 +6,7 @@ import LoadingSpinner from '#root/comps/loading/spinner.js'
 import axios from 'axios'
 
 import { useRouter } from 'next/router'
+
 import { useStopLoading } from 'hooks/useStopLoading'
 import { useUpdateFilters } from 'features/products/listing/hooks/use_update_filters'
 import { useDispatchInitialFilters } from 'features/products/listing/hooks/use_dispatch_initial_filters.js'
@@ -25,12 +26,8 @@ import ListingHeader from '#root/features/products/listing/layout/listing.header
 import { unslugify } from '@bbuukk/slugtrans/slugify'
 import { untransliterate } from '@bbuukk/slugtrans/transliterate'
 
-//todo order filters
-//todo navigate to main content if search is active and user is tabbing
-
 const Listing = ({ data }) => {
-  const router = useRouter()
-  const { categoryPath } = router.query
+  const categoryPath = useRouter().query.categoryPath
 
   const {
     activeCategory: category,
@@ -38,16 +35,15 @@ const Listing = ({ data }) => {
     numPages,
   } = data
 
-  const searchBy = categoryPath.includes('search=')
-    ? `Результати пошуку "${untransliterate(unslugify(categoryPath.split('search=')[1]))}"`
-    : `Товари у категорії "${category.path}"`
-
   useStopLoading()
   usePageValidation(numPages)
 
   useDispatchInitialFilters()
-
   useUpdateFilters()
+
+  const searchBy = categoryPath.includes('search=')
+    ? `Результати пошуку "${untransliterate(unslugify(categoryPath.split('search=')[1]))}"`
+    : `Товари у категорії "${category.path}"`
 
   return (
     <>
@@ -82,7 +78,8 @@ export async function getServerSideProps(context) {
       : categoryPath
     const url = `/products/${method}/${searchBy}/filtered-by/${filtersStr}`
 
-    const data = await fetchData(url)
+    const res = await axios.get(url)
+    const data = res.data
 
     const FIRST_PAGE = 1
     const HALF_AN_HOUR = 1800
@@ -90,7 +87,6 @@ export async function getServerSideProps(context) {
       props: {
         data: {
           ...data,
-          // filtersMap,
           page: filtersStr.match(/page=(\d+)/)[1] || FIRST_PAGE,
         },
         revalidate: HALF_AN_HOUR,
@@ -99,9 +95,4 @@ export async function getServerSideProps(context) {
   } catch (e) {
     return { notFound: true }
   }
-}
-
-async function fetchData(url) {
-  const response = await axios.get(url)
-  return response.data
 }
