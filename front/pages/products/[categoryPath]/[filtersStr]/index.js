@@ -8,7 +8,8 @@ import { useDispatchInitialFilters } from 'features/products/listing/hooks/use_d
 import { usePageValidation } from 'features/products/listing/hooks/use_page_validation'
 
 import SubcategoriesGallery from 'features/products/listing/comps/subcategories/gallery'
-import ProductListingBody from 'features/products/listing/comps/product_listing_body'
+import ProductListingBody from 'features/products/listing/layout/listing.body.js'
+
 import { useRouter } from 'next/router'
 import ListingHeader from '#root/features/products/listing/layout/listing.header.js'
 

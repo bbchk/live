@@ -20,42 +20,40 @@ import { useSelector } from 'react-redux'
 
 import { SessionProvider } from 'next-auth/react'
 
-const LoadingOverlay = dynamic(() => import('comps/loading/overlay'))
+import LoadingOverlay from 'comps/loading/overlay'
 
-const lazyLoadwithFallback = (importStatement) =>
+const lazyload = (importStatement) =>
   dynamic(importStatement, { loading: () => <LoadingOverlay loading={true} /> })
 
-const ChangePasswordModal = lazyLoadwithFallback(
+const MainOffcanvas = lazyload(
+  () => import('comps/modals/main_offcanvas/main_offcanvas.js'),
+)
+
+const ChangePasswordModal = lazyload(
   () => import('comps/modals/change_password/change_password_modal'),
 )
-const SignInModal = lazyLoadwithFallback(
+const SignInModal = lazyload(
   () => import('comps/modals/auth/sign_in_modal/sign_in_modal'),
 )
-
-const SignUpModal = lazyLoadwithFallback(
+const SignUpModal = lazyload(
   () => import('comps/modals/auth/sign_up_modal/sign_up_modal'),
 )
-const DeleteAccountModal = lazyLoadwithFallback(
+const DeleteAccountModal = lazyload(
   () => import('comps/modals/delete_account/delete_account_modal.js'),
 )
-const CartModal = lazyLoadwithFallback(
-  () => import('comps/modals/cart/cart_modal'),
-)
-const WriteReviewModal = lazyLoadwithFallback(
+const CartModal = lazyload(() => import('comps/modals/cart/cart_modal'))
+const WriteReviewModal = lazyload(
   () => import('comps/modals/reviews/write_review_modal'),
 )
-const HotkeysModal = lazyLoadwithFallback(
+const HotkeysModal = lazyload(
   () => import('comps/modals/hotkeys/hotkeys.modal'),
-)
-
-const MainOffcanvas = lazyLoadwithFallback(
-  () => import('comps/modals/main_offcanvas/main_offcanvas.js'),
 )
 
 import SkipToMainContent from 'comps/accessibility/skip_to_main_content'
 const CustomHotkeys = dynamic(() => import('comps/accessibility/hotkeys'))
 
 import Header from 'comps/layout/header/header'
+
 const Footer = dynamic(() => import('comps/layout/footer/footer'))
 
 import { Balsamiq_Sans } from 'next/font/google'

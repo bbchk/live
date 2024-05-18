@@ -1,7 +1,5 @@
 import s from './tabs.layout.module.scss'
 
-// import { balsamiqSans } from '#root/pages/_app.js'
-
 const TabsLayout = ({ Tabs, Content }) => {
   return (
     <div className={`${s.layout}`}>
