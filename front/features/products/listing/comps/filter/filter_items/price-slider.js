@@ -88,6 +88,7 @@ const PriceSlider = ({ minMax }) => {
           value={minMaxPrice[0]}
           onChange={handleInputChange(0)}
           className={`form-control ${s.input} ${s.left}`}
+          aria-label='Ліва межа ціни'
           type='number'
         />
         <span>—</span>
@@ -96,11 +97,13 @@ const PriceSlider = ({ minMax }) => {
           value={minMaxPrice[1]}
           onChange={handleInputChange(1)}
           className={`form-control ${s.input} ${s.right}`}
+          aria-label='Права межа ціни'
           type='number'
         />
         <button
           onClick={handleConfirm}
           className={`button_primary ${s.ok_btn}`}
+          aria-label='Фільтрувати за ціною'
           disabled={submitDisabled}
         >
           Ok
@@ -116,6 +119,9 @@ const PriceSlider = ({ minMax }) => {
           onChange={handleChange}
           className={s.slider}
           disableSwap
+          getAriaLabel={(index) =>
+            index === 0 ? 'Ліва межа ціни' : 'Права межа ціни'
+          }
         />
       </div>
     </div>

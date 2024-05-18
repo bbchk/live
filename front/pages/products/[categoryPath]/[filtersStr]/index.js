@@ -16,7 +16,6 @@ const SubcategoriesGallery = dynamic(
   () => import('features/products/listing/comps/subcategories/gallery.js'),
   {
     loading: () => <LoadingSpinner />,
-    ssr: false,
   },
 )
 
