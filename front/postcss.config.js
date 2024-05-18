@@ -23,8 +23,6 @@ module.exports = {
           './comps/**/*.{js,jsx,ts,tsx}',
           './features/**/*.{js,jsx,ts,tsx}',
           './styles/**/*.{scss,css}',
-          './node_modules/react-bootstrap/**/*.{js,jsx,ts,tsx}',
-          './node_modules/react-bootstrap/**/*.{scss,css}',
           './node_modules/@mui/**/*.{js,jsx,ts,tsx}',
         ],
         safelist: {
