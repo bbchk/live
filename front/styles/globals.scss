@@ -52,28 +52,6 @@ html {
   pointer-events: none;
 }
 
-// .modal-header {
-//   padding: 0.9em 1.5em !important;
-//   margin-bottom: 1em !important;
-
-//   button {
-//     border-radius: none;
-//     @include icon_on_hover;
-//   }
-// }
-
-// .modal_header_title_center {
-//   display: flex !important;
-//   justify-content: center !important;
-
-//   position: relative;
-
-//   button {
-//     position: absolute;
-//     right: 1.5em;
-//   }
-// }
-
 input[disabled] {
   background-color: rgba($color-blue-dasl, 0.1);
   font-weight: bold;
@@ -150,7 +128,9 @@ body.user-is-tabbing {
   nav:focus,
   article:focus,
   section:focus {
-    @include focus_on_tab;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 0 2px #719ece inset;
   }
 
   .sr_only.visible_on_focus:focus {

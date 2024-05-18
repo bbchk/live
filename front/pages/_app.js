@@ -40,6 +40,12 @@ const HotkeysModal = lazyLoadwithFallback(
   () => import('comps/modals/hotkeys/hotkeys.modal'),
 )
 
+const MainOffcanvas = lazyLoadwithFallback(
+  () => import('comps/modals/main_offcanvas/main_offcanvas.js'),
+)
+
+// import MainOffcanvas from 'comps/modals/main_offcanvas/main_offcanvas.js'
+
 import Header from 'comps/layout/header/header'
 const Footer = dynamic(() => import('comps/layout/footer/footer'))
 
@@ -52,16 +58,18 @@ import { useSelector } from 'react-redux'
 
 import { Balsamiq_Sans } from 'next/font/google'
 import { Pacifico } from 'next/font/google'
-import { MainOffcanvas } from '#root/comps/layout/header/comps/offcanvas/main_offcanvas.js'
-
 const balsamiqSans = Balsamiq_Sans({
   weight: '400',
   subsets: ['latin'],
+  display: 'swap',
+  adjustFontFallback: false,
   fallback: ['Arial', 'sans-serif'],
 })
 const pacifico = Pacifico({
   weight: '400',
   subsets: ['latin'],
+  display: 'swap',
+  adjustFontFallback: false,
   fallback: ['Arial', 'sans-serif'],
 })
 export { balsamiqSans, pacifico }
@@ -131,7 +139,7 @@ const Body = ({ children }) => {
         style={{ 'min-height': '100vh' }}
       >
         <LoadingOverlay loading={loading} />
-        <MainOffcanvas />
+
         <Modals />
         {children}
       </div>
@@ -149,10 +157,12 @@ function Modals() {
     cartModalOpen,
     writeReviewModalOpen,
     hotkeysModalOpen,
+    mainOffcanvasOpen,
   } = useSelector((state) => state.modals)
 
   return (
     <>
+      {mainOffcanvasOpen && <MainOffcanvas />}
       {deleteAccountModalOpen && <DeleteAccountModal />}
       {changePasswordModalOpen && <ChangePasswordModal />}
       {signInModalOpen && <SignInModal />}

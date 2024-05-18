@@ -1,6 +1,3 @@
-import s from './main_offcanvas.module.scss'
-import hs from '../../header.module.scss'
-
 import MainOffcanvasHeader from './comps/main.offcanv_header'
 import MainOffcanvasBody from './comps/main.offcanv_body'
 
@@ -13,13 +10,8 @@ import {
 const { MAIN_OFFCANVAS } = GLOBAL_COMPS
 
 import { SwipeableDrawer, Box, Divider } from '@mui/material'
-import {
-  MenuRounded,
-  Home as HomeIcon,
-  AccountCircle as AccountCircleIcon,
-} from '@mui/icons-material'
 
-export const MainOffcanvas = () => {
+const MainOffcanvas = () => {
   const dispatch = useDispatch()
   const { mainOffcanvasOpen } = useSelector((state) => state.modals)
 
@@ -43,17 +35,4 @@ export const MainOffcanvas = () => {
   )
 }
 
-export const OffcanvasToggler = () => {
-  const dispatch = useDispatch()
-  return (
-    <div className={`${s.offcanvas_toggler} ${hs.offcanvas_toggler}`}>
-      <button
-        onClick={() => dispatch(toggle(MAIN_OFFCANVAS))}
-        aria-label='Меню'
-        aria-description='Відкрити бокову панель меню'
-      >
-        <MenuRounded fontSize='large' />
-      </button>
-    </div>
-  )
-}
+export default MainOffcanvas

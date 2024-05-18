@@ -7,14 +7,14 @@
   box-shadow: none;
 
   .summary {
-    border-bottom: 1px solid rgba($color-blue-dasl, 0.1);
+    // border-bottom: 1px solid rgba($color-blue-dasl, 0.1);
 
-    color: $color-blue-dasl;
-    font-size: 1.2rem;
+    // color: $color-blue-dasl;
+    // font-size: 1.2rem;
 
-    transition: border 0.25s;
+    // transition: border 0.25s;
     &:focus {
-      border-bottom: 1px solid $color-blue-dasl;
+      // border-bottom: 1px solid $color-blue-dasl;
     }
   }
 }

@@ -67,9 +67,3 @@
   max-height: $line_height * $number_of_lines; /* height is line-height times the number of lines */
   overflow: hidden;
 }
-
-@mixin focus_on_tab {
-  border: none;
-  outline: none;
-  box-shadow: 0 0 0 2px #719ece;
-}
