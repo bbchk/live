@@ -52,22 +52,12 @@ html {
   pointer-events: none;
 }
 
-input[disabled] {
-  background-color: rgba($color-blue-dasl, 0.1);
-  font-weight: bold;
-}
-
-.accordion-item {
-  h2 {
-    button {
-      background-color: transparent !important;
-      box-shadow: none !important;
-    }
-  }
-}
-
 input {
   appearance: none;
+  &[disabled] {
+    background-color: rgba($color-blue-dasl, 0.1);
+    font-weight: bold;
+  }
 }
 
 .landing_header {

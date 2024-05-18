@@ -1,17 +1,25 @@
 import 'styles/globals.scss'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import '@mui/material/styles'
+
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
+
+import { useEffect } from 'react'
+import useOnUserTabbing from 'hooks/use_is_user_tabbing'
 
 import axios from 'axios'
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import '@mui/material/styles'
+import { enableMapSet } from 'immer'
+enableMapSet()
+
+import { Provider } from 'react-redux'
+import { store } from 'store/store'
+import { useSelector } from 'react-redux'
 
 import { SessionProvider } from 'next-auth/react'
 
-import { useEffect } from 'react'
-
-import dynamic from 'next/dynamic'
 const LoadingOverlay = dynamic(() => import('comps/loading/overlay'))
 
 const lazyLoadwithFallback = (importStatement) =>
@@ -44,17 +52,11 @@ const MainOffcanvas = lazyLoadwithFallback(
   () => import('comps/modals/main_offcanvas/main_offcanvas.js'),
 )
 
-// import MainOffcanvas from 'comps/modals/main_offcanvas/main_offcanvas.js'
+import SkipToMainContent from 'comps/accessibility/skip_to_main_content'
+const CustomHotkeys = dynamic(() => import('comps/accessibility/hotkeys'))
 
 import Header from 'comps/layout/header/header'
 const Footer = dynamic(() => import('comps/layout/footer/footer'))
-
-import { enableMapSet } from 'immer'
-enableMapSet()
-
-import { Provider } from 'react-redux'
-import { store } from 'store/store'
-import { useSelector } from 'react-redux'
 
 import { Balsamiq_Sans } from 'next/font/google'
 import { Pacifico } from 'next/font/google'
@@ -81,11 +83,6 @@ if (process.env.NODE_ENV === 'production') {
   console.error = function () {}
 }
 /* eslint-enable */
-
-import SkipToMainContent from 'comps/accessibility/skip_to_main_content'
-const CustomHotkeys = dynamic(() => import('comps/accessibility/hotkeys'))
-
-import useOnUserTabbing from 'hooks/use_is_user_tabbing'
 
 export default function App({
   Component,
