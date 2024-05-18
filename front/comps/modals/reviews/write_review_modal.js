@@ -1,12 +1,20 @@
-import { Modal } from 'react-bootstrap'
 import s from './write_review_modal.module.scss'
+import ms from 'comps/modals/modal.module.scss'
 
 import WriteReviewForm from 'features/products/landing/mutual/write_review_form/write_review_form'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { balsamiqSans } from '#root/pages/_app.js'
-import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap.js'
+
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
+
 import {
   toggle,
   GLOBAL_COMPS,
@@ -18,25 +26,24 @@ const WriteReviewModal = () => {
   const dispatch = useDispatch()
   const { writeReviewModalOpen } = useSelector((state) => state.modals)
 
-  useTabTrap(writeReviewModalOpen, 'writeReviewModal')
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
-    <Modal
-      id='writeReviewModal'
-      show={writeReviewModalOpen}
-      onHide={() => dispatch(toggle(WRITE_REVIEW_MODAL))}
-      centered
-      size='lg'
-      fullscreen='md-down'
-      className={`${s.modal} ${balsamiqSans.className}`}
+    <Dialog
+      open={writeReviewModalOpen}
+      onClose={() => dispatch(toggle(WRITE_REVIEW_MODAL))}
+      fullWidth
+      maxWidth='lg'
+      fullScreen={fullScreen}
     >
-      <Modal.Header closeButton={true} className='modal_header_title_center'>
-        <h3>Написати відгук</h3>
-      </Modal.Header>
-      <Modal.Body className={`${s.body}`}>
+      <DialogTitle className={`${ms.header} ${balsamiqSans.className}`}>
+        Написати відгук
+      </DialogTitle>
+      <DialogContent className={`${s.body} ${balsamiqSans.className}`}>
         <WriteReviewForm />
-      </Modal.Body>
-    </Modal>
+      </DialogContent>
+    </Dialog>
   )
 }
 

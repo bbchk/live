@@ -71,7 +71,7 @@ const CartModal = () => {
       <DialogTitle className={`${ms.header} ${balsamiqSans.className}`}>
         Кошик покупок
       </DialogTitle>
-      <DialogContent className={`${s.body}`}>
+      <DialogContent className={`${s.body} ${balsamiqSans.className}`}>
         {items?.length === 0 ? (
           <div>
             <Image

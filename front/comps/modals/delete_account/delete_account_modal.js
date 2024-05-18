@@ -1,5 +1,5 @@
-import { Modal } from 'react-bootstrap'
 import s from './delete_account_modal.module.scss'
+import ms from 'comps/modals/modal.module.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -9,7 +9,15 @@ import {
 const { DELETE_ACCOUNT_MODAL } = GLOBAL_COMPS
 
 import { balsamiqSans } from 'pages/_app'
-import useTabTrap from 'comps/accessibility/hooks/useTabbingTrap.js'
+
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
 
 const DeleteAccountModal = () => {
   const dispatch = useDispatch()
@@ -22,20 +30,21 @@ const DeleteAccountModal = () => {
 
   const toggleModal = () => dispatch(toggle(DELETE_ACCOUNT_MODAL))
 
-  useTabTrap(deleteAccountModalOpen, 'deleteAccountModal')
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
-    <Modal
-      id='deleteAccountModal'
-      show={deleteAccountModalOpen}
-      onHide={toggleModal}
-      centered
-      className={`${s.modal} ${balsamiqSans.className}`}
+    <Dialog
+      open={deleteAccountModalOpen}
+      onClose={() => dispatch(toggle(DELETE_ACCOUNT_MODAL))}
+      fullWidth
+      maxWidth='sm'
+      fullScreen={fullScreen}
     >
-      <Modal.Header closeButton={true} className='modal_header_title_center'>
-        <h3>Видалити акаунт ?</h3>
-      </Modal.Header>
-      <Modal.Body className={`${s.modal_body}`}>
+      <DialogTitle className={`${ms.header} ${balsamiqSans.className}`}>
+        Видалити акаунт ?
+      </DialogTitle>
+      <DialogContent className={`${s.body} ${balsamiqSans.className}`}>
         <menu className={`${s.button_group}`}>
           <li>
             <button className='button_primary' onClick={toggleModal}>
@@ -54,8 +63,8 @@ const DeleteAccountModal = () => {
             </button>
           </li>
         </menu>
-      </Modal.Body>
-    </Modal>
+      </DialogContent>
+    </Dialog>
   )
 }
 

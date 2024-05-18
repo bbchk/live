@@ -78,18 +78,20 @@ const AuthPopover = () => {
           Увійти
         </button>
 
-        <span>Не зареєстровані? </span>
-        <Link
-          aria-label='Відкрити вікно реєстрації'
-          href='/'
-          onClick={() => {
-            setOpen(false)
-            dispatch(toggle(SIGN_UP_MODAL))
-          }}
-          className={`${s.sign_up_link} icon-link link_secondary`}
-        >
-          Зареєструватись
-        </Link>
+        <div className={`${s.not_signed_up}`}>
+          <span>Не зареєстровані? </span>
+          <Link
+            aria-label='Відкрити вікно реєстрації'
+            href='/'
+            onClick={() => {
+              setOpen(false)
+              dispatch(toggle(SIGN_UP_MODAL))
+            }}
+            className={`${s.sign_up_link} icon-link link_secondary`}
+          >
+            Зареєструватись
+          </Link>
+        </div>
       </Popover>
     </li>
   )
