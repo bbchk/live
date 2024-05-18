@@ -1,45 +1,20 @@
 @use './styles/variables' as *;
 
-.item {
+.accordion {
   border: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
 
-  margin-bottom: 5px;
+  .summary {
+    border-bottom: 1px solid rgba($color-blue-dasl, 0.1);
 
-  .header {
-    border: none;
-    background-color: white;
+    color: $color-blue-dasl;
+    font-size: 1.2rem;
 
-    button.toggler {
-      width: 100%;
-
-      border-radius: 1px;
-      border-bottom: 1px solid rgba($color-blue-dasl, 0.1);
-
-      color: $color-blue-dasl;
-      text-align: left;
-      font-size: 1.2rem;
-
-      transition: border 0.25s;
-      &:focus {
-        border-bottom: 1px solid $color-blue-dasl;
-      }
-
-      svg {
-        float: right;
-        transition: transform 0.25s;
-      }
-
-      &.open {
-        svg {
-          transform: rotate(180deg);
-        }
-      }
-
-      &.closed {
-        svg {
-          transform: rotate(0deg);
-        }
-      }
+    transition: border 0.25s;
+    &:focus {
+      border-bottom: 1px solid $color-blue-dasl;
     }
   }
 }

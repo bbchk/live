@@ -2,53 +2,33 @@
 @use './styles/mixins' as *;
 @import 'node_modules/rfs/sass.sass';
 
-.auth_popover {
-  box-shadow: 0 0 4px 3px rgba($color-blue-dasl, 0.2);
-  --bs-popover-border-color: transparent !important;
-
-  background-color: white;
-
-  .unsigned_popover {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    gap: 0.5rem;
-
-    .sign_up {
-      @include link;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    p {
-      white-space: nowrap;
-      margin-bottom: 0;
-    }
-
-    .sign_in_button {
-      font-size: 1.5rem;
-    }
-  }
-}
-
-.overlay_trigger {
+.account_nav_btn {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  .profile_icon {
-    color: $color-blue-dasl;
-
-    cursor: pointer;
-  }
-
   .popover_button {
     display: flex;
     border-radius: 100%;
+
+    svg {
+      color: $color-blue-dasl;
+
+      cursor: pointer;
+    }
   }
 
   @media only screen and (max-width: 600px) {
     display: none;
+  }
+}
+
+.popover {
+  box-shadow: 0 0 4px 3px rgba($color-blue-dasl, 0.2);
+  padding: 1rem;
+  border-radius: 10px;
+
+  .sign_in_button {
+    font-size: 1.5rem;
   }
 }

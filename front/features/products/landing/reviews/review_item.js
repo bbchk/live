@@ -1,11 +1,9 @@
 import s from './review_item.module.scss'
 import StarRating from 'comps/rating/star_rating'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faEllipsisVertical,
-  faArrowTurnUp,
-} from '@fortawesome/free-solid-svg-icons'
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp'
+import ThumbDownIcon from '@mui/icons-material/ThumbDown'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import ReplyIcon from '@mui/icons-material/Reply'
 
 const ReviewItem = ({ review }) => {
   const {
@@ -44,20 +42,20 @@ const ReviewItem = ({ review }) => {
 
       <footer className={`${s.footer}`}>
         <button className={`${s.subreply_btn}`} disabled>
-          <FontAwesomeIcon icon={faArrowTurnUp} transform={{ rotate: 90 }} />
+          <ReplyIcon style={{ transform: 'rotate(90deg)' }} />
           <p>Відповісти</p>
         </button>
         <div className={`${s.controls}`}>
           <button className={`${s.like_btn}`}>
-            <FontAwesomeIcon icon={faThumbsUp} />
+            <ThumbUpIcon />
           </button>
           <p>{likes}</p>
           <button className={`${s.dislike_btn}`}>
-            <FontAwesomeIcon icon={faThumbsDown} transform={{ flipX: true }} />
+            <ThumbDownIcon style={{ transform: 'scaleX(-1)' }} />
           </button>
           <p>{dislikes}</p>
           <button disabled className={`${s.options_btn}`}>
-            <FontAwesomeIcon icon={faEllipsisVertical} />
+            <MoreVertIcon />
           </button>
         </div>
       </footer>

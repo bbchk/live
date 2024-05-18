@@ -6,10 +6,21 @@
 @import './comps/buttons.scss';
 @import './comps/links.scss';
 @import './comps/list.scss';
-@import './comps/tooltips.scss';
 
 html {
   body {
+    // //todo
+    // @media (prefers-color-scheme: dark) {
+    //   // background-color: $color-blue-dasl;
+    //   // color: white;
+    // }
+
+    // //todo
+    // @media (prefers-color-scheme: light) {
+    //   // background-color: magenta;
+    //   // color: white;
+    // }
+
     p,
     h1,
     h2 {

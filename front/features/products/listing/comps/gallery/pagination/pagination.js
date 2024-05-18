@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import {  } from "@fortawesome/free-regular-svg-icons";
+
 import {
-  faAnglesLeft,
-  faAnglesRight,
-  faAngleLeft,
-  faAngleRight,
-} from '@fortawesome/free-solid-svg-icons'
+  KeyboardArrowLeftRounded,
+  KeyboardArrowRightRounded,
+  KeyboardDoubleArrowLeftRounded,
+  KeyboardDoubleArrowRightRounded,
+} from '@mui/icons-material'
+
 import Link from 'next/link'
 
 import s from './pagination.module.scss'
@@ -125,14 +125,14 @@ function ProductsPagination({ numPages, activePageId }) {
                   ariaLabel='Перейти на найпершу сторінку'
                   disabled={isActive(FIRST_PAGE)}
                 >
-                  <FontAwesomeIcon icon={faAnglesLeft} />
+                  <KeyboardDoubleArrowLeftRounded />
                 </PaginationItem>
                 <PaginationItem
                   pageId={Math.max(1, Number(activePageId) - 1)}
                   ariaLabel='Перейти на попередню сторінку'
                   disabled={isActive(FIRST_PAGE)}
                 >
-                  <FontAwesomeIcon icon={faAngleLeft} />
+                  <KeyboardArrowLeftRounded />
                 </PaginationItem>
               </ul>
             </li>
@@ -150,14 +150,14 @@ function ProductsPagination({ numPages, activePageId }) {
                   ariaLabel='Перейти на наступну сторінку'
                   disabled={isActive(numPages)}
                 >
-                  <FontAwesomeIcon icon={faAngleRight} />
+                  <KeyboardArrowRightRounded />
                 </PaginationItem>
                 <PaginationItem
                   pageId={numPages}
                   ariaLabel='Перейти на останню сторінку'
                   disabled={isActive(numPages)}
                 >
-                  <FontAwesomeIcon icon={faAnglesRight} />
+                  <KeyboardDoubleArrowRightRounded />
                 </PaginationItem>
               </ul>
             </li>

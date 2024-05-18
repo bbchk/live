@@ -1,5 +1,4 @@
-import { Tooltip, OverlayTrigger } from 'react-bootstrap'
-import s from './tooltip.module.scss'
+import Tooltip from '@mui/material/Tooltip'
 
 export const CustomTooltip = ({
   children,
@@ -11,21 +10,16 @@ export const CustomTooltip = ({
   open,
 }) => {
   return (
-    <OverlayTrigger
+    <Tooltip
+      title={tooltipText}
       placement={placement}
-      delay={{ show: show, hide: hide }}
-      overlay={(props) => renderTooltip({ ...props, tooltipText, onTabOnly })}
-      show={open}
+      open={open}
+      enterDelay={show}
+      leaveDelay={hide}
+      className={`cstooltip`}
+      disableHoverListener={onTabOnly}
     >
       {children}
-    </OverlayTrigger>
-  )
-}
-
-function renderTooltip({ tooltipText, onTabOnly, ...props }) {
-  return (
-    <Tooltip {...props} className={`tooltip ${onTabOnly ? 'on_tab_only' : ''}`}>
-      {tooltipText}
     </Tooltip>
   )
 }

@@ -1,35 +1,35 @@
 import s from './accordion_item.module.scss'
 
-import { useState } from 'react'
+import { useId } from 'react'
 
-import { Accordion as A } from 'react-bootstrap'
-import Card from 'react-bootstrap/Card'
-import { KeyboardArrowUpRounded } from '@mui/icons-material'
+import {
+  Accordion as MuiAccordion,
+  AccordionSummary,
+  AccordionDetails,
+} from '@mui/material'
+import { ExpandMore } from '@mui/icons-material'
 
-const AccordionItem = ({ label, children, open = true }) => {
-  const [isOpen, setIsOpen] = useState(open)
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen)
-  }
+const AccordionItem = ({ label, children, expanded = true }) => {
+  const id = useId()
 
   return (
-    <Card className={`${s.item}`}>
-      <Card.Header className={`${s.header}`}>
-        <button
-          className={`${s.toggler} ${isOpen ? s.open : s.closed}`}
-          onClick={handleToggle}
-          aria-expanded={isOpen}
-          aria-label={isOpen ? 'Закрити' : 'Відкрити'}
+    <>
+      <MuiAccordion
+        defaultExpanded={expanded}
+        slotProps={{ transition: { unmountOnExit: true } }}
+        className={s.accordion} // Add class to MuiAccordion
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
+          aria-controls={`panel-header-${id}`}
+          id={`panel-header-${id}`}
+          className={s.summary} // Add class to AccordionSummary
         >
           {label}
-          <KeyboardArrowUpRounded />
-        </button>
-      </Card.Header>
-      <A.Collapse in={isOpen}>
-        <Card.Body>{children}</Card.Body>
-      </A.Collapse>
-    </Card>
+        </AccordionSummary>
+        <AccordionDetails className={s.details}>{children}</AccordionDetails>
+      </MuiAccordion>
+    </>
   )
 }
 

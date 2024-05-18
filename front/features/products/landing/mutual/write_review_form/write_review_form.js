@@ -3,14 +3,9 @@ import TextArea from 'comps/input_fields/textarea.js'
 import s from './write_review_form.module.scss'
 import { useEffect, useRef, useState } from 'react'
 import Rate from 'comps/rating/rate'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImage } from '@fortawesome/free-regular-svg-icons'
-import { faRotateRight, faTrashCan } from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
-import { balsamiqSans } from '#root/pages/_app.js'
-import Link from 'next/link'
+
 import WriteReviewFormFooter from './comps/write_review_form_footer'
-import FileInput from 'comps/input_fields/file_input'
+
 import ImageLoad from 'comps/image/image_load'
 
 import { useDispatch, useSelector } from 'react-redux'

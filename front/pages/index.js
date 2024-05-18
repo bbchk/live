@@ -4,6 +4,12 @@ import axios from 'axios'
 import { useStopLoading } from 'hooks/useStopLoading'
 // import { useSession } from 'next-auth/react'
 
+// import dynamic from 'next/dynamic'
+// const LoadingOverlay = dynamic(() => import('comps/loading/overlay'))
+
+// const lazyLoadwithFallback = (importStatement) =>
+//   dynamic(importStatement, { loading: () => <LoadingOverlay loading={true} /> })
+
 const Home = ({ rootCategories }) => {
   // const { data: session } = useSession()
   // const user = session?.user

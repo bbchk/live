@@ -1,9 +1,12 @@
 import s from './reviews.module.scss'
 import ps from '../landing_product_about.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
+
 import ReviewItem from '../../reviews/review_item'
+import {
+  KeyboardArrowUpRounded,
+  ModeRounded,
+  KeyboardArrowDownRounded,
+} from '@mui/icons-material'
 
 import Link from 'next/link'
 
@@ -52,7 +55,7 @@ const Reviews = ({ product }) => {
                 className={`${s.write_review_btn} button_primary`}
               >
                 <p>Написати відгук</p>
-                <FontAwesomeIcon icon={faPen} />
+                <ModeRounded />
               </button>
             </>
           ) : (
@@ -60,7 +63,7 @@ const Reviews = ({ product }) => {
               <h2>Відгуків ще немає</h2>
               <p className={`${s.appeal}`}>
                 Напишіть першим, що ви думаєте про товар
-                <FontAwesomeIcon icon={faArrowDown} />
+                <KeyboardArrowDownRounded />
               </p>
             </>
           )}
@@ -81,7 +84,7 @@ const Reviews = ({ product }) => {
           {amountOfReviews > 0 && (
             <Link href='#' onClick={handleNavigation}>
               <p>Подивитись усі відгуки на товар</p>
-              <FontAwesomeIcon icon={faArrowRight} />
+              <KeyboardArrowUpRounded />
             </Link>
           )}
         </footer>

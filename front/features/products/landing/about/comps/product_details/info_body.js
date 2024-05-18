@@ -2,11 +2,6 @@ import s from './info_body.module.scss'
 import { useSession } from 'next-auth/react'
 // import { useCart } from 'hooks/useCart'
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faHeart } from "@fortawesome/free-regular-svg-icons";
-// import { faMessage } from "@fortawesome/free-regular-svg-icons";
-// import { useRouter } from "next/router";
-
 import {
   AddShoppingCartRounded,
   FavoriteBorderRounded,
@@ -33,30 +28,6 @@ const InfoBody = ({ product }) => {
   function handleBuy(product) {
     // add(product)
   }
-
-  // function myFunction() {
-  //   fetch('http://localhost:4000/create-checkout-session', {
-  //   //fetch('/create-checkout-session', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       items: [
-  //         { id: 1, quantity: 3 },
-  //         { id: 2, quantity: 1 }
-  //       ]
-  //     })
-  //   }).then(res => {
-  //     if (res.ok) return res.json()
-  //     return res.json().then(json => Promise.reject(json))
-  //   }).then(({ url }) => {
-  //     //console.log(url)
-  //     window.location = url
-  //   }).catch(e => {
-  //     console.error(e.error)
-  //   })
-  // }
 
   return (
     <div className={`${s.buy_area}`}>

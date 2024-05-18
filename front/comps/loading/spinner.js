@@ -1,9 +1,9 @@
 import CircularProgress from '@mui/material/CircularProgress'
-import s from './overlay.module.scss'
+import s from './spinner.module.scss'
 
-const LoadingOverlay = ({ loading }) => {
+const LoadingSpinner = ({ status }) => {
   return (
-    <div className={`${s.overlay} ${loading ? s.show : ''} `}>
+    <div className={`${s.loading_overlay}`}>
       <CircularProgress
         className={s.spinner}
         size={40}
@@ -14,4 +14,4 @@ const LoadingOverlay = ({ loading }) => {
   )
 }
 
-export default LoadingOverlay
+export default LoadingSpinner

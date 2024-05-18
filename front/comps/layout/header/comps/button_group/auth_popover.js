@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Popover from 'react-bootstrap/Popover'
+import Popover from '@mui/material/Popover'
 import { useDispatch } from 'react-redux'
 
 import {
@@ -15,114 +14,83 @@ import { balsamiqSans } from 'pages/_app'
 import s from './auth_popover.module.scss'
 
 import { AccountCircleRounded } from '@mui/icons-material'
-import useDoOnKey from 'hooks/useDoOnKey'
 
 const AuthPopover = () => {
-  const isHoveredRef = useRef(false)
+  const anchorRef = useRef(null)
   const lastFocusedElement = useRef(null)
   const signInButton = useRef(null)
 
   const dispatch = useDispatch()
 
-  const [showPopover, setShowPopover] = useState(false)
+  const [open, setOpen] = useState(false)
 
-  const handleHide = () => {
-    setTimeout(() => {
-      if (!isHoveredRef.current) {
-        lastFocusedElement.current && lastFocusedElement.current.focus()
-        setShowPopover(false)
-      }
-    }, 100)
-  }
-
-  const handleShow = () => {
+  const handleOpen = () => {
     lastFocusedElement.current = document.activeElement
-    setShowPopover(true)
+    setOpen(true)
     setTimeout(() => {
       signInButton.current &&
         signInButton.current.focus({ preventScroll: true })
     }, 0)
   }
 
-  useDoOnKey('Escape', handleHide)
-
-  const unsignedPopover = (
-    <Popover
-      id='authPopover'
-      className={`${s.auth_popover}`}
-      onMouseEnter={() => {
-        isHoveredRef.current = true
-        handleShow()
-      }}
-      onMouseLeave={() => {
-        isHoveredRef.current = false
-        handleHide()
-      }}
-    >
-      <Popover.Body onMouseLeave={handleHide}>
-        <div className={`${s.unsigned_popover} ${balsamiqSans.className}`}>
-          <button
-            ref={signInButton}
-            className={` ${s.sign_in_button} button_submit`}
-            onClick={() => {
-              setShowPopover(false)
-              dispatch(toggle(SIGN_IN_MODAL))
-            }}
-            aria-label='Відкрити вікно авторизації'
-          >
-            <p>Увійти</p>
-          </button>
-
-          <p>
-            <span>Не зареєстровані? </span>
-            <Link
-              aria-label='Відкрити вікно реєстрації'
-              href='/'
-              onClick={() => {
-                setShowPopover(false)
-                dispatch(toggle(SIGN_UP_MODAL))
-              }}
-              className={`${s.sign_up} icon-link`}
-            >
-              Зареєструватись
-            </Link>
-            <div
-              className='visually_hidden'
-              tabIndex={0}
-              onFocus={(e) => {
-                e.preventDefault()
-                handleHide()
-              }}
-            />
-          </p>
-        </div>
-      </Popover.Body>
-    </Popover>
-  )
+  const handleClose = () => {
+    setOpen(false)
+    lastFocusedElement.current && lastFocusedElement.current.focus()
+  }
 
   return (
-    <li className={`${s.overlay_trigger}`} aria-label={'Персональний кабінет'}>
-      <div aria-label='Увійти або зареєструватись'>
-        <OverlayTrigger
-          trigger={['hover', 'focus']}
-          placement='bottom'
-          overlay={unsignedPopover}
-          rootClose
-          show={showPopover}
+    <li className={`${s.account_nav_btn}`} aria-label={'Персональний кабінет'}>
+      <button
+        ref={anchorRef}
+        className={`${s.popover_button}`}
+        onClick={handleOpen}
+        aria-label={'Увійти або зареєструватись'}
+      >
+        <AccountCircleRounded
+          className={`${s.profile_icon}`}
+          onMouseEnter={handleOpen}
+        />
+      </button>
+      <Popover
+        className={`${s.popover} ${balsamiqSans.className}`}
+        open={open}
+        anchorEl={anchorRef.current}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        classes={{ paper: s.popover }}
+      >
+        <button
+          ref={signInButton}
+          className={` ${s.sign_in_button} button_submit primary_button`}
+          onClick={() => {
+            setOpen(false)
+            dispatch(toggle(SIGN_IN_MODAL))
+          }}
+          aria-label='Відкрити вікно авторизації'
         >
-          <button
-            className={`${s.popover_button}`}
-            onClick={handleShow}
-            onMouseLeave={handleHide}
-            aria-label={'Увійти або зареєструватись'}
-          >
-            <AccountCircleRounded
-              className={`${s.profile_icon}`}
-              onMouseEnter={handleShow}
-            />
-          </button>
-        </OverlayTrigger>
-      </div>
+          Увійти
+        </button>
+
+        <span>Не зареєстровані? </span>
+        <Link
+          aria-label='Відкрити вікно реєстрації'
+          href='/'
+          onClick={() => {
+            setOpen(false)
+            dispatch(toggle(SIGN_UP_MODAL))
+          }}
+          className={`${s.sign_up_link} icon-link link_secondary`}
+        >
+          Зареєструватись
+        </Link>
+      </Popover>
     </li>
   )
 }

@@ -4,53 +4,44 @@ import Head from 'next/head'
 import axios from 'axios'
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL
 
-// Import the styles manually to prevent a Font Awesome icon server-side rendering bug
-import '@fortawesome/fontawesome-svg-core/styles.css'
-// Prevent fontawesome from adding its CSS since we did it manually above
-import { config } from '@fortawesome/fontawesome-svg-core'
-config.autoAddCss = false
-
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@mui/material/styles'
 
 import { SessionProvider } from 'next-auth/react'
 
-import { Suspense, lazy, useEffect } from 'react'
+import { useEffect } from 'react'
 
-const ChangePasswordModal = lazy(
+import dynamic from 'next/dynamic'
+const LoadingOverlay = dynamic(() => import('comps/loading/overlay'))
+
+const lazyLoadwithFallback = (importStatement) =>
+  dynamic(importStatement, { loading: () => <LoadingOverlay loading={true} /> })
+
+const ChangePasswordModal = lazyLoadwithFallback(
   () => import('comps/modals/change_password/change_password_modal'),
 )
-const SignInModal = lazy(
+const SignInModal = lazyLoadwithFallback(
   () => import('comps/modals/auth/sign_in_modal/sign_in_modal'),
 )
-const SignUpModal = lazy(
+
+const SignUpModal = lazyLoadwithFallback(
   () => import('comps/modals/auth/sign_up_modal/sign_up_modal'),
 )
-const DeleteAccountModal = lazy(
+const DeleteAccountModal = lazyLoadwithFallback(
   () => import('comps/modals/delete_account/delete_account_modal.js'),
 )
-const CartModal = lazy(() => import('comps/modals/cart/cart_modal'))
-const WriteReviewModal = lazy(
+const CartModal = lazyLoadwithFallback(
+  () => import('comps/modals/cart/cart_modal'),
+)
+const WriteReviewModal = lazyLoadwithFallback(
   () => import('comps/modals/reviews/write_review_modal'),
 )
-const HotkeysModal = lazy(() => import('comps/modals/hotkeys/hotkeys.modal'))
+const HotkeysModal = lazyLoadwithFallback(
+  () => import('comps/modals/hotkeys/hotkeys.modal'),
+)
 
-// import dynamic from 'next/dynamic'
-
-// const LandingProductAboutPage = dynamic(
-//   () => import('features/products/landing/about/landing_product_about'),
-// )
-// const Characteristics = dynamic(
-//   () => import('features/products/landing/characteristics/index'),
-// )
-// const LandingProductReviewsPage = dynamic(
-//   () => import('features/products/landing/reviews/reviews_page'),
-// )
-
-import { LoadingOverlay } from 'comps/loading/overlay'
 import Header from 'comps/layout/header/header'
-const Footer = lazy(() => import('comps/layout/footer/footer'))
-// import Footer from 'comps/layout/footer/footer'
+const Footer = dynamic(() => import('comps/layout/footer/footer'))
 
 import { enableMapSet } from 'immer'
 enableMapSet()
@@ -63,8 +54,16 @@ import { Balsamiq_Sans } from 'next/font/google'
 import { Pacifico } from 'next/font/google'
 import { MainOffcanvas } from '#root/comps/layout/header/comps/offcanvas/main_offcanvas.js'
 
-const balsamiqSans = Balsamiq_Sans({ weight: '400', subsets: ['latin'] })
-const pacifico = Pacifico({ weight: '400', subsets: ['latin'] })
+const balsamiqSans = Balsamiq_Sans({
+  weight: '400',
+  subsets: ['latin'],
+  fallback: ['Arial', 'sans-serif'],
+})
+const pacifico = Pacifico({
+  weight: '400',
+  subsets: ['latin'],
+  fallback: ['Arial', 'sans-serif'],
+})
 export { balsamiqSans, pacifico }
 
 /* eslint-disable */
@@ -76,7 +75,7 @@ if (process.env.NODE_ENV === 'production') {
 /* eslint-enable */
 
 import SkipToMainContent from 'comps/accessibility/skip_to_main_content'
-import CustomHotkeys from 'comps/accessibility/hotkeys' //not all users will need this, optimize
+const CustomHotkeys = dynamic(() => import('comps/accessibility/hotkeys'))
 
 import useOnUserTabbing from 'hooks/use_is_user_tabbing'
 
@@ -97,16 +96,9 @@ export default function App({
 
       <SessionProvider session={session}>
         <Provider store={store}>
-          <CustomHotkeys />
-          <SkipToMainContent mainContentId={'main_content'} />
-          <Header />
           <Body>
             <Component {...pageProps} />
           </Body>
-
-          <Suspense fallback={<div>Loading...</div>}>
-            <Footer />
-          </Suspense>
         </Provider>
       </SessionProvider>
     </>
@@ -130,15 +122,21 @@ const Body = ({ children }) => {
   }, [])
 
   return (
-    <div
-      className={`${balsamiqSans.className}`}
-      style={{ 'min-height': '100vh' }}
-    >
-      <LoadingOverlay loading={loading} />
-      <MainOffcanvas />
-      <Modals />
-      {children}
-    </div>
+    <>
+      <CustomHotkeys />
+      <SkipToMainContent mainContentId={'main_content'} />
+      <Header />
+      <div
+        className={`${balsamiqSans.className}`}
+        style={{ 'min-height': '100vh' }}
+      >
+        <LoadingOverlay loading={loading} />
+        <MainOffcanvas />
+        <Modals />
+        {children}
+      </div>
+      <Footer />
+    </>
   )
 }
 
@@ -154,7 +152,7 @@ function Modals() {
   } = useSelector((state) => state.modals)
 
   return (
-    <Suspense fallback={<LoadingOverlay loading={true} />}>
+    <>
       {deleteAccountModalOpen && <DeleteAccountModal />}
       {changePasswordModalOpen && <ChangePasswordModal />}
       {signInModalOpen && <SignInModal />}
@@ -162,6 +160,6 @@ function Modals() {
       {writeReviewModalOpen && <WriteReviewModal />}
       {cartModalOpen && <CartModal />}
       {hotkeysModalOpen && <HotkeysModal />}
-    </Suspense>
+    </>
   )
 }

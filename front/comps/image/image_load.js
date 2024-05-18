@@ -1,11 +1,8 @@
 import s from './image_load.module.scss'
-import { useEffect, useRef, useState } from 'react'
-import Rate from 'comps/rating/rate'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImage } from '@fortawesome/free-regular-svg-icons'
-import { faRotateRight, faTrashCan } from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
+import { useRef } from 'react'
 
+import { Image as ImageIcon, RotateRight, Delete } from '@mui/icons-material'
+import Image from 'next/image'
 import FileInput from 'comps/input_fields/file_input'
 
 const ImageLoad = ({ selectedImages, setSelectedImages }) => {
@@ -56,7 +53,7 @@ const ImageLoad = ({ selectedImages, setSelectedImages }) => {
   return (
     <div className={`${s.file_input_container}`}>
       <div className={`${s.appeal}`}>
-        <FontAwesomeIcon icon={faImage} />
+        <ImageIcon />
         <div className={`${s.text}`}>
           <p>Додайте фото</p>
           <p>
@@ -87,7 +84,7 @@ const ImageLoad = ({ selectedImages, setSelectedImages }) => {
               <menu className={`${s.controls}`}>
                 <li>
                   <button type='button' onClick={() => handleDelete(index)}>
-                    <FontAwesomeIcon icon={faTrashCan} />
+                    <RotateRight />
                   </button>
                 </li>
                 <li>
@@ -96,7 +93,7 @@ const ImageLoad = ({ selectedImages, setSelectedImages }) => {
                     disabled
                     onClick={() => handleRotate(index)}
                   >
-                    <FontAwesomeIcon icon={faRotateRight} />
+                    <Delete />
                   </button>
                 </li>
               </menu>
