@@ -5,7 +5,7 @@ import '@mui/material/styles'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import useOnUserTabbing from 'hooks/use_is_user_tabbing'
 
 import axios from 'axios'

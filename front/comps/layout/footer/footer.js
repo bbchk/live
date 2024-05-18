@@ -1,13 +1,31 @@
 import s from './footer.module.scss'
+
+import dynamic from 'next/dynamic'
+import React, { useRef } from 'react'
+
+import useObserver from '#root/hooks/useObserver.js'
+
+import { balsamiqSans } from 'pages/_app'
+
 import AboutUs from './comps/about_us'
 import WorkHours from './comps/work_hours'
 import Contacts from './comps/contacts'
-import Location from './comps/location'
-import { balsamiqSans } from 'pages/_app'
+
+import LoadingSpinner from '#root/comps/loading/spinner.js'
+const Location = dynamic(() => import('./comps/location'), {
+  loading: () => <LoadingSpinner />,
+  ssr: false,
+})
 
 const Footer = () => {
+  const footerRef = useRef()
+  const isVisible = useObserver(footerRef)
+
   return (
-    <footer className={` ${s.footer} ${balsamiqSans.className}`}>
+    <footer
+      ref={footerRef}
+      className={` ${s.footer} ${balsamiqSans.className}`}
+    >
       <div className={`${s.decor_line}`} />
       <div className={`row ${s.row}`}>
         <section
@@ -39,7 +57,7 @@ const Footer = () => {
           tabIndex={0}
           aria-label='Локація магазину на мапі'
         >
-          <Location />
+          {isVisible && <Location />}
         </address>
       </div>
     </footer>

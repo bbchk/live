@@ -143,7 +143,7 @@ jobs:
         run: |
           URLS="https://zhyvyisvit.shop/ https://zhyvyisvit.shop/products/dlya-kotiv/page=1 https://zhyvyisvit.shop/product/-napovniuvahch-khvostyk-3--6l-sylikahelmz-dribnyyu-iz-zelenymy-hranulamy/65b2606f213addb487b8ab13/about https://zhyvyisvit.shop/products/search=dlya-kotiv/page=1" # Add all your URLs here
           for URL in $URLS; do
-            ./apache-jmeter-5.4.3/bin/jmeter -n -t your_test_plan.jmx -Jsite=$URL -l ./jmeter-results.jtl
+            ./apache-jmeter-5.4.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jsite=$URL -l ./jmeter-results.jtl
           done
 
       - name: Archive JMeter results
