@@ -11,7 +11,6 @@ import ImageFallback from 'comps/image/fallback_image.js'
 import { useId } from 'react'
 import TabIndexButton from 'comps/accessibility/indexTabButton.js'
 
-const LAST_CATEGORY_IDX = 4
 const Card = ({ category, subcategories }) => {
   const dispatch = useDispatch()
 

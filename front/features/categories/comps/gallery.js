@@ -8,7 +8,7 @@ const Gallery = ({ rootCategories }) => {
         <h2>Категорії</h2>
       </div>
       <div
-        className={` container row row-cols-sm-12 row-cols-lg-3 row-cols-xxl-4 ${s.body} mt-1 mx-auto g-5`}
+        className={`container row row-cols-sm-12 row-cols-lg-3 row-cols-xxl-4 ${s.body} mt-1 mx-auto g-5`}
       >
         {rootCategories.map((category) => {
           return (
