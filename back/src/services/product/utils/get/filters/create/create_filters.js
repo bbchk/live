@@ -85,7 +85,9 @@ const createFilters = async (query, filters, activeCategory) => {
 
     filtersMap = getFiltersMap(allProducts, activeCategory)
   }
+
   filtersMap = Array.from(filtersMap.entries())
+  filtersMap = filtersMap.sort()
 
   return filtersMap
 }
