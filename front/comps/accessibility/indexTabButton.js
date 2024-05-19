@@ -8,9 +8,9 @@ const TabIndexButton = ({ children, ...props }) => {
 
   useEffect(() => {
     toggleTabbability(false)
-  }, [])
+  }, [children])
 
-  const toggleTabbability = (tabbable = !isTabbable) => {
+  const toggleTabbability = (tabbable) => {
     if (ref.current) {
       setIsTabbable(tabbable)
 
@@ -18,7 +18,7 @@ const TabIndexButton = ({ children, ...props }) => {
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       )
 
-      if (tabbable) {
+      if (!tabbable) {
         tabbableElements.forEach((el) => el.setAttribute('tabindex', '-1'))
       } else {
         tabbableElements.forEach((el) => el.setAttribute('tabindex', '0'))
@@ -29,20 +29,19 @@ const TabIndexButton = ({ children, ...props }) => {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       if (document.activeElement === ref.current) {
-        toggleTabbability()
+        toggleTabbability(!isTabbable)
       }
     }
 
     if (event.key === 'Escape') {
-      toggleTabbability(true)
+      toggleTabbability(false)
       ref.current.focus()
     }
   }
 
   const handleBlur = (event) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
-      setIsTabbable(true)
-      toggleTabbability(true)
+      toggleTabbability(false)
       ref.current.focus()
     }
   }
@@ -55,7 +54,6 @@ const TabIndexButton = ({ children, ...props }) => {
       role={props.role || 'button'}
       onKeyDown={handleKeyDown}
       onClick={handleKeyDown}
-      // onFocus={() => toggleTabbability(true)}
       onBlur={handleBlur}
       {...props}
     >
