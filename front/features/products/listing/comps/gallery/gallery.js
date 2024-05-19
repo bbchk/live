@@ -17,6 +17,8 @@ import { useState } from 'react'
 import TabIndexButton from 'comps/accessibility/indexTabButton.js'
 import { useCart } from '#root/hooks/use_cart.js'
 
+import LoadingSpinner from '#root/comps/loading/spinner.js'
+
 const MIN_COLUMNS = 2 // Minimum number of columns
 const MIN_COLUMN_WIDTH = 250 // Minimum width for a column
 
@@ -44,11 +46,10 @@ const ProductGallery = ({
         <div role='row' key={key}>
           <div role='gridcell'>
             <TabIndexButton
-              // aria-label={`${product.name} за ціною ${product.price} взаємодіяти з`}
-              style={style}
-              // id={`product-card-${index}`}
+              aria-label={`Товар завантажується. Зачекайте будь ласка`}
+              style={{ ...style }}
             >
-              <div className='h-100 w-100 bg-dark'></div>
+              <LoadingSpinner />
             </TabIndexButton>
           </div>
         </div>
