@@ -1,0 +1,27 @@
+name: MongoDB Backup
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run every day at midnight
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install MongoDB tools
+        run: |
+          sudo apt-get install -y mongodb-org-tools
+
+      - name: Run mongodump
+        run: |
+          mongodump --uri="${{ secrets.MONGODB_URI }}" --out=dump
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: mongodb-backup
+          path: dump/
