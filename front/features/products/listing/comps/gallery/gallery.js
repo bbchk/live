@@ -29,25 +29,35 @@ const ProductGallery = ({
 
   const [columnsNumber, setColumnsNumber] = useState(4)
 
-  const cellRenderer = ({ columnIndex, rowIndex, key, style, columnCount }) => {
+  const cellRenderer = ({
+    isVisible,
+    columnIndex,
+    rowIndex,
+    key,
+    style,
+    columnCount,
+  }) => {
     const index = rowIndex * columnCount + columnIndex
 
-    const product = products[index]
-
-    if (!product) {
-      // window.scrollBy(0, 400)
+    if (!isVisible) {
       return (
-        // <TabIndexButton
-        //   aria-label={`Перейти до`}
-        //   aria-description={`Натисніть Enter, що перейти до`}
-        //   role='gridcell'
-        //   style={style}
-        //   id={`product-card`}
-        //   tabIndex={0}
-        //   className={s.skeleton}
-        // />
-        null
+        <div role='row' key={key}>
+          <div role='gridcell'>
+            <TabIndexButton
+              // aria-label={`${product.name} за ціною ${product.price} взаємодіяти з`}
+              style={style}
+              // id={`product-card-${index}`}
+            >
+              <div className='h-100 w-100 bg-dark'></div>
+            </TabIndexButton>
+          </div>
+        </div>
       )
+    }
+
+    const product = products[index]
+    if (!product) {
+      return null
     }
 
     product.isLiked = wshl.includes(product._id)
@@ -56,26 +66,8 @@ const ProductGallery = ({
     product.inCart = cart.items.some((p) => p._id === product._id)
     product.add = add
 
-    const isLast = columnIndex === columnCount - 1
-    const isFirst = columnIndex === 0
-
-    function handleBlur(e) {
-      e.preventDefault()
-      if (window) {
-        if (e.key === 'Tab' && e.keyCode === 9) {
-          window.scrollBy(0, 400)
-          const el = document.getElementById(`product-card-${index + 1}`)
-          if (el) el.focus()
-        }
-      }
-    }
-
     return (
-      <div
-        role='row'
-        key={key}
-        onKeyDown={isLast ? (e) => handleBlur(e) : undefined}
-      >
+      <div role='row' key={key}>
         <div role='gridcell'>
           <TabIndexButton
             aria-label={`${product.name} за ціною ${product.price} взаємодіяти з`}
@@ -122,22 +114,29 @@ const ProductGallery = ({
                   return (
                     <Grid
                       autoHeight
-                      cellRenderer={({ columnIndex, rowIndex, key, style }) =>
-                        cellRenderer({
+                      cellRenderer={({
+                        isVisible,
+                        columnIndex,
+                        rowIndex,
+                        key,
+                        style,
+                      }) => {
+                        return cellRenderer({
+                          isVisible,
                           columnIndex,
                           rowIndex,
                           key,
                           style,
                           columnCount,
                         })
-                      }
+                      }}
                       columnCount={columnCount}
                       columnWidth={width / columnCount}
                       height={height}
                       isScrolling={isScrolling}
                       onScroll={onChildScroll}
                       overscanColumnCount={0}
-                      overscanRowCount={0}
+                      overscanRowCount={1}
                       rowCount={rowCount}
                       rowHeight={400}
                       scrollTop={scrollTop}

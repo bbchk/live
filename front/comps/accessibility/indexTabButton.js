@@ -1,15 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
 
 import s from './index_tab_button.module.scss'
-// import useScrollTo from '#root/hooks/use_scroll_to.js'
 
 const TabIndexButton = ({ children, ...props }) => {
   const ref = useRef()
-  const [isTabbable, setIsTabbable] = useState(true)
-  // const scrollTo = useScrollTo()
+  const [isTabbable, setIsTabbable] = useState(false)
 
   useEffect(() => {
-    toggleTabbability(true)
+    toggleTabbability(false)
   }, [])
 
   const toggleTabbability = (tabbable = !isTabbable) => {
@@ -35,17 +33,6 @@ const TabIndexButton = ({ children, ...props }) => {
       }
     }
 
-    // if (event.key === 'Tab' || event.ctrlKey) {
-    //   if (document.activeElement === ref.current) {
-    //     // scrollTo(event)
-    //   }
-    // }
-
-    // if (event.key === 'Tab' && event.ctrlKey) {
-    //   // Ctrl + Tab was pressed
-    //   scrollTo(event)
-    // }
-
     if (event.key === 'Escape') {
       toggleTabbability(true)
       ref.current.focus()
@@ -68,6 +55,7 @@ const TabIndexButton = ({ children, ...props }) => {
       role={props.role || 'button'}
       onKeyDown={handleKeyDown}
       onClick={handleKeyDown}
+      // onFocus={() => toggleTabbability(true)}
       onBlur={handleBlur}
       {...props}
     >
