@@ -1,8 +1,10 @@
-name: MongoDB Backup
+name: Database Backup
 
 on:
   schedule:
     - cron: '0 0 * * *' # Run every day at midnight
+  push:
+    branches: [main]
 
 jobs:
   backup:
