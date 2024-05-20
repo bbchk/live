@@ -7,7 +7,6 @@ const TabIndexButton = ({ children, ...props }) => {
   const [isTabbable, setIsTabbable] = useState(false)
 
   useEffect(() => {
-    console.log('🚀 ~ children:', children)
     toggleTabbability(false)
   }, [children])
 

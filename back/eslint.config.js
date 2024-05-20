@@ -18,6 +18,9 @@ export default [
         sourceType: 'module',
       },
     },
+    plugins: {
+      prettier: prettier,
+    },
 
     rules: {
       ...js.configs.recommended.rules,
@@ -29,9 +32,6 @@ export default [
       'linebreak-style': [2, 'unix'],
       quotes: [2, 'single', { avoidEscape: true }],
       'prettier/prettier': 2,
-    },
-    plugins: {
-      prettier: prettier,
     },
   },
 ]

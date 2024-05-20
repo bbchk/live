@@ -7,9 +7,6 @@ import {
   InfiniteLoader,
   WindowScroller,
   Grid,
-  ArrowKeyStepper,
-  CellMeasurer,
-  CellMeasurerCache,
 } from 'react-virtualized'
 
 import { useWishList } from '#root/hooks/useWishList.js'

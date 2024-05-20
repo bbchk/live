@@ -1,6 +1,3 @@
-// import useFocusOn from 'hooks/use_focus_on'
-//   const focusOn() = useFocusOn()
-
 import { useCallback } from 'react'
 
 function useArrowKeyNavigation() {
@@ -11,7 +8,7 @@ function useArrowKeyNavigation() {
       ArrowUp: document.body.lastChild,
       Home: document.body.firstChild,
       End: document.body.lastChild,
-      ...targets, // overwrite defaults with provided targets
+      ...targets,
     }
 
     const nextElement = defaultTargets[e.key]
@@ -19,7 +16,7 @@ function useArrowKeyNavigation() {
       e.preventDefault()
       nextElement.focus()
     }
-  }, []) // no dependencies, so the function is only created once
+  }, [])
 }
 
 export default useArrowKeyNavigation

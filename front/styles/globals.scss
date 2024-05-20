@@ -136,4 +136,13 @@ body.user-is-tabbing {
     color: white;
     border-radius: 0.5rem;
   }
+
+  a {
+    text-decoration: underline;
+    color: darken($color: $color-blue-defrance, $amount: 20%);
+
+    &:visited {
+      color: darken($color: $color-purp-iris, $amount: 20%);
+    }
+  }
 }

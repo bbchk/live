@@ -22,7 +22,7 @@ const ListingHeader = ({ category }) => {
     <>
       <div className={`${s.listing_header}`}>
         <Breadcrumbs category={category} />
-        <h2 className={`${s.label}`}>{label}</h2>
+        <h1 className={`${s.label}`}>{label}</h1>
       </div>
     </>
   )

@@ -19,7 +19,7 @@ const Logo = () => {
           height={50}
           priority
         />
-        <p>Живий світ</p>
+        <span>Живий світ</span>
       </Link>
     </>
   )

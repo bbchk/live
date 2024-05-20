@@ -1,5 +1,3 @@
-// todo configure postcss.config.js
-
 module.exports = {
   plugins: [
     'postcss-flexbugs-fixes',
@@ -26,20 +24,9 @@ module.exports = {
           './node_modules/@mui/**/*.{js,jsx,ts,tsx}',
         ],
         safelist: {
-          standard: ['html', 'body', 'btn'],
-          deep: [
-            /^col/,
-            /^navbar/,
-            /^nav/,
-            /^modal/,
-            /^btn/,
-            /^accordion/,
-            /^accordion/,
-          ],
+          standard: ['html', 'body'],
         },
         defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
-        // whitelist: require('purgecss-with-wordpress').whitelist, // Whitelist all classes
-        // whitelistPatterns: require('purgecss-with-wordpress').whitelistPatterns, // Whitelist based on patterns
       },
     ],
   ],
