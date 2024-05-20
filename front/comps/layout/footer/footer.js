@@ -44,19 +44,15 @@ const Footer = () => {
           <WorkHours />
         </section>
 
-        <address
+        <section
           className={`col-sm-12 col-md-6 col-xl-3 `}
           tabIndex={0}
           aria-label='Знаходимось за адресою місто Калинівка, вулиця Незалежності, 47б'
         >
           <Contacts />
-        </address>
+        </section>
 
-        <address
-          className={`col-sm-12 col-md-6 col-xl-2`}
-          tabIndex={0}
-          aria-label='Локація магазину на мапі'
-        >
+        <address className={`col-sm-12 col-md-6 col-xl-2`}>
           {isVisible && <Location />}
         </address>
       </div>

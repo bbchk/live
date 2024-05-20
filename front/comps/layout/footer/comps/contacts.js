@@ -6,9 +6,11 @@ const Contacts = () => {
     <>
       <h2>
         <LocationOnRounded />
-        <span>Адреса</span>
+        <span id='store-address'>Адреса</span>
       </h2>
-      <p className='text-center'>м. Калинівка, вул. Незалежності, 47б</p>
+      <address className='text-center' aria-labelledby='store-address'>
+        м. Калинівка, вул. Незалежності, 47б
+      </address>
     </>
   )
 }
