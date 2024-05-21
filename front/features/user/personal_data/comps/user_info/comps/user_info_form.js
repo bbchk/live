@@ -17,7 +17,7 @@ const UserInfoForm = () => {
   const [hasBeenBeingModified, setHasBeenBeingModified] = useState(false)
 
   const [userInfo, setUserInfo] = useState({
-    firstName: session?.user.firstName,
+    firstName: '',
     secondName: '',
     email: '',
   })
