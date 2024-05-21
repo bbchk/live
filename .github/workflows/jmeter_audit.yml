@@ -31,9 +31,9 @@ jobs:
           URL_PATHS="/,/products/dlya-kotiv/page=1,product/-fitopasta-animall-vetline-malt-dlya-vyvedennya-shersti-u-kishok---100-h/65b2606f213addb487b8ab22/about,/products/search=dlya-kotiv/page=1"
           IFS=',' read -ra ADDR <<< "$URL_PATHS"
           for URL_PATH in "${ADDR[@]}"; do
-              DIRNAME=$(echo $URL_PATH | tr '/' '_')
-              mkdir -p "./results/$DIRNAME"
-              ./apache-jmeter-5.6.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jdomain=$DOMAIN -Jpath=$URL_PATH -l "./results/$DIRNAME/jmeter-results.jtl" -e -o "./results/$DIRNAME/res"
+              SLUG_PATH=$(echo $URL_PATH | tr '/' '_')
+              mkdir -p "./results/$SLUG_PATH"
+              ./apache-jmeter-5.6.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jdomain=$DOMAIN -Jpath=$URL_PATH -l "./results/$SLUG_PATH/$SLUG_PATH-results.jtl" -e -o "./results/$SLUG_PATH/res"
           done
 
       - name: Archive JMeter results
