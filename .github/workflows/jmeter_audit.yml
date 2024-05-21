@@ -7,7 +7,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-procgress: true
+  cancel-in-progress: true
 
 jobs:
   jmeter_audit:
