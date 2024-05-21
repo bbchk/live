@@ -147,7 +147,7 @@ jobs:
             # Create a directory for each URL
             DIRNAME=$(echo $URL | tr '/' '_') # Replace '/' with '_' to avoid directory traversal
             mkdir -p "./results/$DIRNAME"
-            ./apache-jmeter-5.6.3/bin/jmeter -n -t ../jmeter/test_plan.jmx -Jsite=$URL -l "./results/$DIRNAME/jmeter-results.jtl" -e -o "./results/$DIRNAME/res"
+            ./apache-jmeter-5.6.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jsite=$URL -l "./results/$DIRNAME/jmeter-results.jtl" -e -o "./results/$DIRNAME/res"
           done
 
       - name: Archive JMeter results
