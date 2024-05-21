@@ -141,13 +141,13 @@ jobs:
 
       - name: Run JMeter Tests
         run: |
-          URLS="zhyvyisvit.shop,zhyvyisvit.shop/products/dlya-kotiv/page=1,zhyvyisvit.shop/product/-napovniuvahch-khvostyk-3--6l-sylikahelmz-dribnyyu-iz-zelenymy-hranulamy/65b2606f213addb487b8ab13/about,zhyvyisvit.shop/products/search=dlya-kotiv/page=1" # Add all your URLs here
-          IFS=',' read -ra ADDR <<< "$URLS"
-          for URL in "${ADDR[@]}"; do
-            # Create a directory for each URL
-            DIRNAME=$(echo $URL | tr '/' '_') # Replace '/' with '_' to avoid directory traversal
-            mkdir -p "./results/$DIRNAME"
-            ./apache-jmeter-5.6.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jsite=$URL -l "./results/$DIRNAME/jmeter-results.jtl" -e -o "./results/$DIRNAME/res"
+          DOMAIN="zhyvyisvit.shop"
+          URL_PATHS="/,/products/dlya-kotiv/page=1,product/-fitopasta-animall-vetline-malt-dlya-vyvedennya-shersti-u-kishok---100-h/65b2606f213addb487b8cab22/about,/products/search=dlya-kotiv/page=1"
+          IFS=',' read -ra ADDR <<< "$URL_PATHS"
+          for URL_PATH in "${ADDR[@]}"; do
+              SLUG_PATH=$(echo $URL_PATH | tr '/' '_')
+              mkdir -p "./results/$SLUG_PATH"
+              ./apache-jmeter-5.6.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jdomain=$DOMAIN -Jpath=$URL_PATH -l "./results/$SLUG_PATH/$SLUG_PATH-results.jtl" -e -o "./results/$SLUG_PATH/res"
           done
 
       - name: Archive JMeter results
@@ -155,4 +155,4 @@ jobs:
         with:
           name: jmeter-results
           path: ./results/
-# ./apache-jmeter-5.6.3/bin/jmeter -n -t ./test_plan.jmx -Jsite=zhyvyisvit.shop -l ./jmeter-results.jtl -e -o ./res
+# ./apache-jmeter-5.6.3/bin/jmeter -n -t ./test_plan.jmx -Jdomain=zhyvyisvit.shop -Jpath=/ -l "./results/results.jtl"

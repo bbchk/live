@@ -16,10 +16,10 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">10</stringProp>
+          <stringProp name="LoopController.loops">${__P(loops,)}</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1000</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">500</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(threads,)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${__P(ramptime,)}</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
@@ -43,7 +43,12 @@
           <stringProp name="HTTPSampler.connect_timeout">3000</stringProp>
           <stringProp name="HTTPSampler.response_timeout">5000</stringProp>
         </HTTPSamplerProxy>
-        <hashTree/>      
+        <hashTree/> 
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+            <stringProp name="ConstantTimer.delay">3000</stringProp>
+            <stringProp name="RandomTimer.range">1000</stringProp>
+          </GaussianRandomTimer>
+        <hashTree/>     
         <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Log Listener" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
@@ -122,3 +127,47 @@
     </hashTree>
   </hashTree>
 </jmeterTestPlan>
+
+<!-- 
+
+scenarios:
+  - name: scenario1
+    loops: 10
+    threads: 100
+    ramptime: 10
+  - name: scenario2
+    loops: 20
+    threads: 200
+    ramptime: 20
+  - name: scenario3
+    loops: 30
+    threads: 300
+    ramptime: 30
+  - name: scenario4
+    loops: 40
+    threads: 400
+    ramptime: 40
+  - name: scenario5
+    loops: 50
+    threads: 500
+    ramptime: 50
+
+
+- name: Run JMeter Tests
+  run: |
+    DOMAIN="zhyvyisvit.shop"
+    URL_PATHS="/,/products/dlya-kotiv/page=1,product/-fitopasta-animall-vetline-malt-dlya-vyvedennya-shersti-u-kishok---100-h/65b2606f213addb487b8cab22/about,/products/search=dlya-kotiv/page=1"
+    IFS=',' read -ra ADDR <<< "$URL_PATHS"
+    for URL_PATH in "${ADDR[@]}"; do
+        SLUG_PATH=$(echo $URL_PATH | tr '/' '_')
+        mkdir -p "./results/$SLUG_PATH"
+        for SCENARIO in "${scenarios[@]}"; do
+            ./apache-jmeter-5.6.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jdomain=$DOMAIN -Jpath=$URL_PATH -Jloops=${SCENARIO.loops} -Jthreads=${SCENARIO.threads} -Jramptime=${SCENARIO.ramptime} -l "./results/$SLUG_PATH/${SCENARIO.name}-results.jtl" -e -o "./results/$SLUG_PATH/${SCENARIO.name}-res"
+        done
+    done
+
+- name: Archive JMeter results
+  uses: actions/upload-artifact@v3
+  with:
+    name: jmeter-results
+    path: ./results/ -->
