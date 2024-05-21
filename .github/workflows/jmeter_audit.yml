@@ -25,17 +25,15 @@ jobs:
           tar -xzf apache-jmeter-5.6.3.tgz
           rm apache-jmeter-5.6.3.tgz
 
-      - name: Wait for front-end to fully deploy
-        run: sleep 60
-
       - name: Run JMeter Tests
         run: |
-          URLS="zhyvyisvit.shop,zhyvyisvit.shop/products/dlya-kotiv/page=1,zhyvyisvit.shop/product/-napovniuvahch-khvostyk-3--6l-sylikahelmz-dribnyyu-iz-zelenymy-hranulamy/65b2606f213addb487b8ab13/about,zhyvyisvit.shop/products/search=dlya-kotiv/page=1"
-          IFS=',' read -ra ADDR <<< "$URLS"
-          for URL in "${ADDR[@]}"; do
-              DIRNAME=$(echo $URL | tr '/' '_')
+          DOMAIN="zhyvyisvit.shop"
+          PATHS="/,/products/dlya-kotiv/page=1,/product/-napovniuvahch-khvostyk-3--6l-sylikahelmz-dribnyyu-iz-zelenymy-hranulamy/65b2606f213addb487b8ab13/about,/products/search=dlya-kotiv/page=1"
+          IFS=',' read -ra ADDR <<< "$PATHS"
+          for PATH in "${ADDR[@]}"; do
+              DIRNAME=$(echo $PATH | tr '/' '_')
               mkdir -p "./results/$DIRNAME"
-              ./apache-jmeter-5.6.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jsite=$URL -l "./results/$DIRNAME/jmeter-results.jtl" -e -o "./results/$DIRNAME/res"
+              ./apache-jmeter-5.6.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jdomain=$DOMAIN -Jpath=$PATH -l "./results/$DIRNAME/jmeter-results.jtl" -e -o "./results/$DIRNAME/res"
           done
 
       - name: Archive JMeter results
