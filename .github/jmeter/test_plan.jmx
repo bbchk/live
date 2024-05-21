@@ -18,7 +18,7 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">100</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1000</stringProp>
         <stringProp name="ThreadGroup.ramp_time">25</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
@@ -43,9 +43,7 @@
           <stringProp name="HTTPSampler.connect_timeout">3000</stringProp>
           <stringProp name="HTTPSampler.response_timeout">5000</stringProp>
         </HTTPSamplerProxy>
-        <hashTree/>
-      <!-- </hashTree> -->
-      <!-- <hashTree> -->
+        <hashTree/>      
         <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Log Listener" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
@@ -82,9 +80,7 @@
           </objProp>
           <stringProp name="filename">log.jtl</stringProp>
         </ResultCollector>
-        <hashTree/>
-      <!-- </hashTree> -->
-      <!-- <hashTree> -->
+        <hashTree/>      
         <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
