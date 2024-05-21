@@ -25,6 +25,9 @@ jobs:
           tar -xzf apache-jmeter-5.6.3.tgz
           rm apache-jmeter-5.6.3.tgz
 
+      - name: Set execute permissions for the script
+        run: chmod +x ./.github/jmeter/loading_test.sh
+
       - name: Run JMeter Tests
         run: ./.github/jmeter/loading_test.sh
 

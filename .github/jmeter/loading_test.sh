@@ -24,7 +24,8 @@ for scenario in "${!scenarios[@]}"; do
     for URL_PATH in "${ADDR[@]}"; do
         echo "Running $scenario for $URL_PATH"
         SLUG_PATH=$(echo $URL_PATH | tr '/' '_')
-        mkdir -p "./results/$SLUG_PATH"
-        ./apache-jmeter-5.6.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jdomain=$DOMAIN -Jpath=$URL_PATH -l "./results/$SLUG_PATH/$SLUG_PATH-results.jtl" -e -o "./results/$SLUG_PATH/res" -Jloops=${PARAMS[0]} -Jthreads=${PARAMS[1]} -Jramptime=${PARAMS[2]}
+        SCENARIO_PATH=$(echo $scenario | tr ' ' '_')
+        mkdir -p "./results/$SCENARIO_PATH/$SLUG_PATH"
+        ./apache-jmeter-5.6.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jdomain=$DOMAIN -Jpath=$URL_PATH -l "./results/$SCENARIO_PATH/$SLUG_PATH/$SLUG_PATH-results.jtl" -e -o "./results/$SCENARIO_PATH/$SLUG_PATH/res" -Jloops=${PARAMS[0]} -Jthreads=${PARAMS[1]} -Jramptime=${PARAMS[2]}
     done
 done
