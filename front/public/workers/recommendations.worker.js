@@ -75,7 +75,7 @@ self.onmessage = async (event) => {
 
   try {
     const activeProduct = await fetchData(
-      `${backEndUrl}/products/product/by-id/${id}`,
+      `${backEndUrl}products/product/by-id/${id}`,
     )
     const { category, _id, keywords } = activeProduct
     const activeProdKws = { _id, keywords }
@@ -83,7 +83,7 @@ self.onmessage = async (event) => {
     //todo get parant and current category, prioritize current category
     // // todo send two categories or more
     const allProdKwsInCat = await fetchData(
-      `${backEndUrl}/products/keywords/by-cat-id/${category[0]._id}`,
+      `${backEndUrl}products/keywords/by-cat-id/${category[0]._id}`,
     )
 
     const similaritiesRes = similaritiesOf(allProdKwsInCat, activeProdKws).map(
