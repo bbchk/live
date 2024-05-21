@@ -141,14 +141,18 @@ jobs:
 
       - name: Run JMeter Tests
         run: |
-          URLS="https://zhyvyisvit.shop/,https://zhyvyisvit.shop/products/dlya-kotiv/page=1,https://zhyvyisvit.shop/product/-napovniuvahch-khvostyk-3--6l-sylikahelmz-dribnyyu-iz-zelenymy-hranulamy/65b2606f213addb487b8ab13/about,https://zhyvyisvit.shop/products/search=dlya-kotiv/page=1" # Add all your URLs here
+          URLS="zhyvyisvit.shop,zhyvyisvit.shop/products/dlya-kotiv/page=1,zhyvyisvit.shop/product/-napovniuvahch-khvostyk-3--6l-sylikahelmz-dribnyyu-iz-zelenymy-hranulamy/65b2606f213addb487b8ab13/about,zhyvyisvit.shop/products/search=dlya-kotiv/page=1" # Add all your URLs here
           IFS=',' read -ra ADDR <<< "$URLS"
           for URL in "${ADDR[@]}"; do
-            ./apache-jmeter-5.6.3/bin/jmeter -n -t ./.github/jmeter/test_plan.jmx -Jsite=$URL -l ./jmeter-results.jtl
+            # Create a directory for each URL
+            DIRNAME=$(echo $URL | tr '/' '_') # Replace '/' with '_' to avoid directory traversal
+            mkdir -p "./results/$DIRNAME"
+            ./apache-jmeter-5.6.3/bin/jmeter -n -t ../jmeter/test_plan.jmx -Jsite=$URL -l "./results/$DIRNAME/jmeter-results.jtl" -e -o "./results/$DIRNAME/res"
           done
 
       - name: Archive JMeter results
         uses: actions/upload-artifact@v3
         with:
           name: jmeter-results
-          path: ./jmeter-results.jtl
+          path: ./results/
+# ./apache-jmeter-5.6.3/bin/jmeter -n -t ./test_plan.jmx -Jsite=zhyvyisvit.shop -l ./jmeter-results.jtl -e -o ./res
