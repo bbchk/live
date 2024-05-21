@@ -1,9 +1,7 @@
 name: JMeter Audit
 
 on:
-  push:
-    branches: [dev]
-  workflow_dispatch: # todo delete in real production
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -24,7 +22,7 @@ jobs:
           wget https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz
           tar -xzf apache-jmeter-5.6.3.tgz
           rm apache-jmeter-5.6.3.tgz
-          echo "./apache-jmeter-5.6.3/bin" >> $GITHUB_PATH
+          echo "./apache-jmeter-5.6.3/bin" >> $GITHUB_PATHc
 
       - name: Run JMeter Tests
         run: |
