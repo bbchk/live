@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Perfomance testing scenarios
-# loops threads ramptime
 declare -A scenarios
+# loops threads ramptime
 scenarios=(
-    ["LoadTesting"]="150 25 5" # loops threads ramptime
+    ["LoadTesting"]="150 25 5"
     ["StressTesting"]="250 50 5"
     ["SpikeTesting"]="250 1 0"
-    ["EnduranceTesting"]="250 25 60"
+    ["EnduranceTesting"]="150 50 100"
     ["ScalabilityTesting"]="500 50 5"
 )
 
