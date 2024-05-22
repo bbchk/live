@@ -26,7 +26,7 @@ for scenario in "${!scenarios[@]}"; do
     echo PARAMS: loops: ${PARAMS[0]},threads: ${PARAMS[1]}, ramptime: ${PARAMS[2]}
     for URL_PATH in "${ADDR[@]}"; do
         echo "Running $scenario for '$URL_PATH' path"
-        о
+
         SLUG_PATH=$(echo $URL_PATH | tr '/' '_')
         SCENARIO_PATH=$(echo $scenario | tr ' ' '_')
 
