@@ -72,7 +72,6 @@ function similaritiesOf(allProdKws, activeProdKws) {
 
 self.onmessage = async (event) => {
   const { id, backEndUrl } = event.data
-  console.log('🚀 ~ backEndUrl:', backEndUrl)
 
   try {
     const activeProduct = await fetchData(
