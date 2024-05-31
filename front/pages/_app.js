@@ -62,16 +62,14 @@ import { Pacifico } from 'next/font/google'
 const balsamiqSans = Balsamiq_Sans({
   weight: '400',
   subsets: ['latin'],
-  display: 'swap',
   adjustFontFallback: false,
-  fallback: ['Arial', 'sans-serif'],
+  // fallback: ['Arial', 'sans-serif'],
 })
 const pacifico = Pacifico({
   weight: '400',
   subsets: ['latin'],
-  display: 'swap',
   adjustFontFallback: false,
-  fallback: ['Arial', 'sans-serif'],
+  // fallback: ['Arial', 'sans-serif'],
 })
 export { balsamiqSans, pacifico }
 

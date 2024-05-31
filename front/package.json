@@ -33,6 +33,7 @@
     "@fullhuman/postcss-purgecss": "^6.0.0",
     "@mui/icons-material": "^5.15.16",
     "@mui/material": "^5.15.0",
+    "@next/bundle-analyzer": "^14.2.3",
     "@reduxjs/toolkit": "^2.0.1",
     "@stripe/stripe-js": "^3.4.0",
     "axios": "^1.6.3",
