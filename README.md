@@ -27,8 +27,7 @@
 1. **Product Listings**:
    - **Browsing**: Browse a curated list of 1100 products, each having its specific description, characteristics.
    - **Search**: Search products by its keywords
-   - **Filtering**: Filter products by unique characteristics of products
-   - **Filtering**: Filter products by unique characteristics of products
+   - **Filtering**: Filter products by unique characteristics of products   
 
 2. **User Interaction**:
    - **Authentication**: Sign in using credentials, Google or other services.
