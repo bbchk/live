@@ -12,39 +12,41 @@
 </h3>
 
 <!-- add link to website -->
+   
+<br>
+<h2 >Demo</h2>
+
+<!-- [![Watch the video](https://img.youtube.com/vi/)](https://www.youtube.com/embed/<VIDEO_ID>) -->
+
+![Live World Welcome GIF](.github/images/live_world_welcome_demo_old.gif)
+
 
 <br>
 <h2>Features</h2>
 
 1. **Product Listings**:
-
-   - Browse a curated list of products.
-   - Filter products by price, brand, and release date.
-
-2. **User Interaction**:
-   - **Authentication**: Sign in using credentials, Google or other services.
-   - **Wish List**: Like products to add them to your wish list.
-   - **Reviews**: Write reviews for specific products.
-
-<br>
-<h2 >Demo</h2>
-<p>Loading...</p>
-
-![Live World Welcome GIF](.github/images/live_world_welcome_demo_old.gif)
-
-<!--
-<br>
-<h2>Upcoming Features</h2>
-
-1. **Product Listings**:
-   - Browse a curated list of products.
-   - Filter products by price, brand, and release date.
+   - **Browsing**: Browse a curated list of 1100 products, each having its specific description, characteristics.
+   - **Search**: Search products by its keywords
+   - **Filtering**: Filter products by unique characteristics of products
+   - **Filtering**: Filter products by unique characteristics of products
 
 2. **User Interaction**:
    - **Authentication**: Sign in using credentials, Google or other services.
    - **Wish List**: Like products to add them to your wish list.
-   - **Reviews**: Write reviews for specific products.
--->
+   - **Cart**: Add products to shopping cart to purchase them later
+   - **Reviews**: Leave reviews for specific products.
+
+<h3>Upcoming Features</h2>
+
+  - **Purchasing**: ability to make a real transfer of money for products using payment processor
+  - **Security updates**: to make sure app is fully secure to implement purchasing
+  - **Playwright, module testing**: to make sure app is realiable
+
+
+<h2>Motivation</h2>
+As a bachelor graduate from the <a href="https://www.ukma.edu.ua/eng/">National University of "Kyiv-Mohyla Academy"</a> in Kyiv, Ukraine, I had the opportunity to channel passion for creating software into my graduate work. This project is a testament to my academic journey and the skills I've acquired along the way.
+<br><br>
+For those interested in delving deeper into the details of this project, I invite you to explore the text part of my work. It is written in Ukrainian. You can access it via the following <a href="https://docs.google.com/document/d/10jEfeoX3Pf5aoHtpTMkvRQZyCPpZi1aN/edit?usp=sharing&ouid=115259788176037092559&rtpof=true&sd=true">document link.</a> 
 
 <h2>Tech Stack</h2>
 
