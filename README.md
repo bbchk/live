@@ -20,7 +20,7 @@ https://github.com/bbuukk/live/assets/84084493/a05ac5c5-993d-41ea-a3b5-7b4646a98
 <h2>Features 🚀</h2>
 
 1. **Product Listings**:
-   - **Browsing**: Browse a curated list of 1100 products, each having its specific description, characteristics.
+   - **Browsing**: Browse a curated list of 1100 products, each having its specific description and characteristics.
    - **Search**: Search products by its keywords
    - **Filtering**: Filter products by unique characteristics of products   
 
