@@ -76,7 +76,7 @@ For those interested in delving deeper into the details of this project, I invit
 <h2>Front-end design</h2>
 
 <table align="center">
-  <tr><th colspan=5><h3>Overview of design of main pages</h3>
+  <tr><th colspan=5><h3>Overview of initial design of main pages</h3>
 </th></tr>
   <tr>
     <th>Main page</th>
