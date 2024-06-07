@@ -10,8 +10,6 @@
   <br>
 <span align="center">Pet Care and Household Goods E-Commerce Platform</span>
 </h3>
-
-<!-- add link to website -->
    
 <br>
 <h2 >Demo</h2>
@@ -97,40 +95,6 @@ For those interested in delving deeper into the details of this project, I invit
 <div align="center">
 <h3><pre>~~~    Click on cat's paw below to open figma design project     ~~~</pre></h3>
 <a href='https://www.figma.com/file/Qb3fKAMJmdfCwmsXd3jcSD/Live-world?type=design&node-id=0%3A1&mode=design&t=qYGwGJ9NwCYA879K-1'><img width="20%" src='https://media0.giphy.com/media/Sv9lsehLQ6QLbObc6A/giphy.gif?cid=6c09b952yao356fh0sfkcasxya4l5vpfnpexzybik3ssmewz&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s'></a>
-<!--<h3><pre>~~~~~~~~~~~~~~~~           to open figma design project           ~~~~~~~~~~~~~~~~</pre></h3>-->
 </div>
 
-<!--<h2>Helpful Links</h2>-->
 
-<!--
-
-
-    What your application does,
-    Why you used the technologies you used,
-    Some of the challenges you faced and features you hope to implement in the future.
-    What was your motivation?
-
-        I am builing it as my PET-project to start my career and also because it's a lot of fun.
-
-    Why did you build this project?
-
-        I just wanted to create something, that can hava practical application in the real world.
-        E-commerce webstite is exacty what is described by 'real'.
-
-    What problem does it solve?
-
-        It just gives clients real comfortability in shopping products they need.
-        They can search by input or by category, see detailed description of the product, price, etc.
-        Customers can order everything they need in the blick of an eye.
-
-    What did you learn?
-
-        I learned a lot making this website. When i just started i didn't even know html properly.
-        Now I have significant knowledge in MERN stack, using no-sql mongoDb, using node.js and express.js creating back-end server and using react for front-end.
-        I also have practiced a lot with bootstrap, sass and mui library.
-
-    What makes your project stand out?
-    If your project has a lot of features, consider adding a "Features" section and listing them here.
-
-    Cute looking site, but with functionality of a real shop
--->
