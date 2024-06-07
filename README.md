@@ -5,19 +5,19 @@
 
 <h1 align="center">
   <div >
-<span > <a href="https://zhyvyisvit.shop/">Live World</a> </span>
+<span > <a href="https://zhyvyisvit.shop/">Live World ☘️</a> </span>
   </div>
   <br>
-<span align="center">Pet Care and Household Goods E-Commerce Web-Application</span>
+<span align="center">🐶🪴 Pet Care and Household Goods E-Commerce Web-Application  </span>
 </h3>
    
 <br>
-<h2 >Demo</h2>
+<h2 >Demo ✨</h2>
 
 https://github.com/bbuukk/live/assets/84084493/a05ac5c5-993d-41ea-a3b5-7b4646a98a41
 
 <br>
-<h2>Features</h2>
+<h2>Features 🚀</h2>
 
 1. **Product Listings**:
    - **Browsing**: Browse a curated list of 1100 products, each having its specific description, characteristics.
@@ -37,12 +37,12 @@ https://github.com/bbuukk/live/assets/84084493/a05ac5c5-993d-41ea-a3b5-7b4646a98
   - **Playwright, module testing**: to make sure app is realiable
 
 
-<h2>Motivation</h2>
+<h2>Motivation 😤</h2>
 As a bachelor graduate from the <a href="https://www.ukma.edu.ua/eng/">National University of "Kyiv-Mohyla Academy"</a> in Kyiv, Ukraine, I had the opportunity to channel passion for creating software into my graduate work. This project is a testament to my academic journey and the skills I've acquired along the way.
 <br><br>
 For those interested in delving deeper into the details of this project, I invite you to explore the text part of my work. It is written in Ukrainian. You can access it via the following <a href="https://docs.google.com/document/d/10jEfeoX3Pf5aoHtpTMkvRQZyCPpZi1aN/edit?usp=sharing&ouid=115259788176037092559&rtpof=true&sd=true">document link.</a> 
 
-<h2>Tech Stack</h2>
+<h2>Tech Stack 🏗️</h2>
 
 <table align="center">
   <tr>
@@ -71,7 +71,7 @@ For those interested in delving deeper into the details of this project, I invit
 </table>
 
 <br>
-<h2>Front-end design</h2>
+<h2>Front-end design 👨‍🎨</h2>
 
 <table align="center">
   <tr><th colspan=5><h3>Overview of initial design of main pages</h3>
