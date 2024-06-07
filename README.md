@@ -8,7 +8,7 @@
 <span > <a href="https://zhyvyisvit.shop/">Live World</a> </span>
   </div>
   <br>
-<span align="center">Pet Care and Household Goods E-Commerce Platform</span>
+<span align="center">Pet Care and Household Goods E-Commerce Web-Application</span>
 </h3>
    
 <br>
