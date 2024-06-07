@@ -16,10 +16,7 @@
 <br>
 <h2 >Demo</h2>
 
-<!-- [![Watch the video](https://img.youtube.com/vi/)](https://www.youtube.com/embed/<VIDEO_ID>) -->
-
-![Live World Welcome GIF](.github/images/live_world_welcome_demo_old.gif)
-
+https://github.com/bbuukk/live/assets/84084493/a05ac5c5-993d-41ea-a3b5-7b4646a98a41
 
 <br>
 <h2>Features</h2>
