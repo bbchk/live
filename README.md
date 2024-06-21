@@ -6,7 +6,7 @@
 <h1 align="center">
   <div >
 <span > <a href="https://zhyvyisvit.shop/">Live World ☘️</a> </span>
-  </div>i
+  </div>
   <br>
 <span align="center">🐶🪴 Pet Care and Household Goods E-Commerce Web-Application  </span>
 </h3>
