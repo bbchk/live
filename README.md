@@ -1,12 +1,12 @@
 <!--HOW TO WRITE COOL README FILE TUTORIAL https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/-->
 <div align="center" style="display: flex; flex-direction: column;">
-  <a href='https://github.com/bbuukk/gra'><img src=".github/images/logo.svg" width="100"></a>
+  <a href='https://zhyvyisvit.shop/'><img src=".github/images/logo.svg" width="100"></a>
 </div>
 
 <h1 align="center">
   <div >
 <span > <a href="https://zhyvyisvit.shop/">Live World ☘️</a> </span>
-  </div>
+  </div>i
   <br>
 <span align="center">🐶🪴 Pet Care and Household Goods E-Commerce Web-Application  </span>
 </h3>
@@ -58,7 +58,7 @@ For those interested in delving deeper into the details of this project, I invit
   </tr>
   <tr>
     <td align="center"><a href='https://expressjs.com/'><img width="100%" src='https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB' align='middle'></a></td>
-    <td align="center"><a href='https://nextjs.org/'><img width="100%" src='https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white' align='middle'></a></td>
+    <td align="center"><a href='https://nextjs.org/'><img width="100%" src='https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white' kalign='middle'></a></td>
     <td align="center"><a href='https://mui.com/'><img width="100%" src='https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white' align='middle'></a></td>
         <td align="center"><a href='https://www.typescriptlang.org/'><img width="100%" src='https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white' align='middle'></a></td>
   </tr>
