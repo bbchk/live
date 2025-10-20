@@ -1,4 +1,9 @@
 <!--HOW TO WRITE COOL README FILE TUTORIAL https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/-->
+
+refactor liveworld as just react app without next.sj
+set back end on ocean as droplet?
+redesign footer
+
 <div align="center" style="display: flex; flex-direction: column;">
   <a href='https://zhyvyisvit.shop/'><img src=".github/images/logo.svg" width="100"></a>
 </div>
