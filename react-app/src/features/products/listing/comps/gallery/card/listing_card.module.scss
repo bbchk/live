@@ -1,0 +1,46 @@
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+
+//todo make better hover effect
+.card {
+  cursor: default;
+  display: flex;
+  flex-flow: column nowrap;
+
+  height: 100%;
+  width: 100%;
+
+  padding: 1rem;
+
+  position: relative;
+  top: 0;
+  left: 0;
+
+  box-shadow: 0 0 0 0.05rem $color-wh-lightsilv;
+  color: $color-blue-dasl;
+  overflow: hidden;
+  transition:
+    transform 0.25s,
+    box-shadow 0.2s 0.1s;
+
+  .figure {
+    flex: 0 0 75%;
+    max-height: 75%;
+  }
+
+  .buy_info {
+    flex: 1 1 20%;
+  }
+
+  .rating {
+    margin-top: 0.4rem;
+    flex: 0 1 5%;
+  }
+
+  &:hover {
+    .figure {
+      text-decoration: underline;
+      color: saturate($color: $color-blue-dasl, $amount: 40%);
+    }
+  }
+}

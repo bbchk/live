@@ -1,0 +1,9 @@
+@use 'styles/variables' as *;
+
+.input_container {
+  width: 100%;
+
+  input {
+    border: 0.09rem solid $color-wh-lightsilv;
+  }
+}

@@ -1,0 +1,7 @@
+@use './styles/variables' as *;
+
+button.filters_offcanvas_toggler {
+  color: $color-green-deepfir;
+
+  height: 100%;
+}

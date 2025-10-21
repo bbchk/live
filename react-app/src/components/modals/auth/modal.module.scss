@@ -1,0 +1,41 @@
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+
+.header {
+  color: $color-blue-dasl;
+  font-size: 1.5rem;
+}
+
+.body {
+  display: flex;
+  flex-flow: row nowrap;
+
+  color: $color-blue-dasl;
+
+  .left {
+    flex: 1 1 65%;
+  }
+
+  .right {
+    flex: 1 1 35%;
+  }
+
+  .vertical_splitter {
+    flex: 0 1 8%;
+  }
+
+  @media screen and (width < 662px) {
+    flex-flow: column nowrap;
+
+    .right {
+      flex: 0 1 min-content;
+      order: 1;
+    }
+    .vertical_splitter {
+      order: 2;
+    }
+    .left {
+      order: 3;
+    }
+  }
+}

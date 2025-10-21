@@ -1,0 +1,81 @@
+@use './styles/variables' as *;
+
+.review_item {
+  padding: 1rem;
+
+  border: 0.09rem solid $color-wh-lightsilv;
+
+  background-color: white;
+
+  border-radius: 5px;
+
+  .header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 0.5rem;
+
+    p:first-child {
+      font-weight: bold;
+    }
+
+    p:last-child {
+      opacity: 0.5;
+    }
+  }
+
+  .body {
+    p:first-of-type {
+      margin: 1rem 0;
+    }
+
+    span {
+      color: $color-blue-dasl;
+      font-weight: bold;
+    }
+
+    .comment {
+    }
+  }
+
+  .footer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    margin-top: 1rem;
+
+    $fcolor: $color-blue-defrance;
+    svg {
+      color: $fcolor;
+
+      width: 1.3rem;
+      height: 1.3rem;
+    }
+
+    .subreply_btn {
+      color: $fcolor;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .controls {
+      display: flex;
+      flex-flow: row nowrap;
+
+      align-items: center;
+      gap: 0.5rem;
+
+      .options_btn {
+        margin-left: 1rem;
+      }
+    }
+  }
+}

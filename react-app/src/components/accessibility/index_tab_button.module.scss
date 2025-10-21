@@ -1,0 +1,9 @@
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+
+.focus_in_btn {
+  cursor: default;
+
+  width: 100%;
+  height: 100%;
+}

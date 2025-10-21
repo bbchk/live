@@ -1,0 +1,145 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+@import './normalize.scss';
+@import './reset.scss';
+@import './comps/buttons.scss';
+@import './comps/links.scss';
+@import './comps/list.scss';
+
+// Google Fonts
+.balsamiq-sans {
+  font-family: 'Balsamiq Sans', Arial, sans-serif;
+}
+
+.pacifico {
+  font-family: 'Pacifico', Arial, sans-serif;
+}
+
+html {
+  body {
+    p,
+    h1,
+    h2 {
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-blue-dasl;
+    }
+
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  overscroll-behavior: none;
+}
+
+.disabled {
+  color: rgba($color-blue-dasl, 0.3);
+  pointer-events: none;
+}
+
+input {
+  appearance: none;
+  &[disabled] {
+    background-color: rgba($color-blue-dasl, 0.1);
+    font-weight: bold;
+  }
+}
+
+.landing_header {
+  padding: 1rem 3rem 2rem 3rem;
+
+  @media screen and (width < 992px) {
+    padding: 1rem 1rem 0 3rem;
+  }
+
+  @media screen and (width < 768px) {
+    padding: 1rem 2rem 0 1rem;
+  }
+}
+
+.price {
+  line-height: 1;
+
+  font-weight: bold;
+  color: $color-red-suncycl;
+
+  span {
+    font-weight: 100;
+    font-size: 0.5em;
+  }
+}
+
+$carousel-transition-duration: 0.6s;
+$carouosel-transition: transform $carousel-transition-duration ease-out;
+
+.visually_hidden {
+  position: absolute;
+  top: -500px;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr_only {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+body.user-is-tabbing {
+  button:focus,
+  a:focus,
+  input:focus,
+  select:focus,
+  div:focus,
+  nav:focus,
+  article:focus,
+  section:focus {
+    border: none;
+    outline: none;
+    box-shadow: 0 0 0 2px #719ece;
+  }
+
+  .sr_only.visible_on_focus:focus {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    padding: 1rem;
+    background-color: $color-blue-dasl;
+    color: white;
+    border-radius: 0.5rem;
+  }
+
+  a {
+    text-decoration: underline;
+    color: darken($color: $color-blue-defrance, $amount: 20%);
+
+    &:visited {
+      color: darken($color: $color-purp-iris, $amount: 20%);
+    }
+  }
+}

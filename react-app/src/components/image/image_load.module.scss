@@ -1,0 +1,84 @@
+@use './styles/variables' as *;
+
+.file_input_container {
+  width: 100%;
+  border: 0.09rem solid $color-wh-lightsilv;
+  border-radius: 5px;
+
+  .appeal {
+    display: flex;
+    flex-flow: row nowrap;
+
+    padding: 1rem;
+    padding-left: 0;
+
+    .text {
+      flex: 1 1 65%;
+      padding: 0 0.5rem;
+      color: $color-blue-dasl;
+      p:first-child {
+        font-size: 1.2rem;
+      }
+      p:last-child {
+        opacity: 0.7;
+        font-size: 0.9rem;
+      }
+    }
+
+    svg {
+      flex: 0 1 5%;
+      width: 3rem;
+      height: 3rem;
+
+      margin: 0 1rem;
+
+      color: $color-blue-dasl;
+      opacity: 0.3;
+    }
+  }
+
+  .loaded_images {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 0.5rem;
+
+    padding: 1rem;
+
+    .image_box {
+      display: flex;
+      flex-flow: column nowrap;
+
+      width: fit-content;
+      height: fit-content;
+
+      border: 0.09rem solid $color-wh-lightsilv;
+      border-radius: 5px;
+
+      img {
+        object-fit: cover;
+        border-bottom: 0.09rem solid $color-wh-lightsilv;
+      }
+
+      .controls {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+
+        padding: 0.5rem;
+
+        svg {
+          color: $color-wh-lightsilv;
+          height: 1.5rem;
+          width: 1.5rem;
+
+          transition: color 0.25s;
+          &:hover {
+            color: $color-blue-dasl;
+          }
+        }
+      }
+    }
+  }
+}

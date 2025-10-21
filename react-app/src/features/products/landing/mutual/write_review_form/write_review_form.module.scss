@@ -1,0 +1,8 @@
+@use './styles/variables' as *;
+
+.write_review_form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 1rem;
+}

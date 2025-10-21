@@ -1,0 +1,17 @@
+@use './styles/variables' as *;
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 3%;
+
+  .chat_icon {
+    width: 0.75em;
+    height: 0.75em;
+    fill: lighten($color-blue-defrance, 20);
+  }
+  p {
+    color: rgba($color-blue-dasl, 0.8);
+    font-size: 0.9em;
+  }
+}

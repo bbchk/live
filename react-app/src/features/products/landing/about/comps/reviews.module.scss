@@ -1,0 +1,91 @@
+@use './styles/variables' as *;
+
+.reviews {
+  .header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 2rem;
+
+    &:has(p.appeal) {
+      flex-flow: column nowrap;
+      align-items: flex-start;
+    }
+
+    h2 {
+      flex: 1 0 50%;
+      color: $color-blue-dasl;
+      span {
+        margin-left: 0.5rem;
+        font-weight: bold;
+        opacity: 0.3;
+      }
+    }
+
+    p.appeal {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: $color-blue-defrance;
+      opacity: 0.8;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-left: 0.5rem;
+      }
+    }
+
+    .write_review_btn {
+      flex: 1 0 30%;
+
+      height: fit-content;
+    }
+  }
+
+  .body {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+
+    .write_review_embedded {
+      padding: 1rem;
+      border: 0.09rem solid $color-wh-lightsilv;
+      border-radius: 5px;
+    }
+  }
+
+  .footer {
+    margin-top: 1rem;
+    a {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      gap: 0.5rem;
+
+      color: $color-blue-defrance;
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        color: saturate($color: $color-blue-defrance, $amount: 80%);
+      }
+    }
+  }
+
+  @media screen and (max-width: 662px) {
+    .header {
+      flex-flow: column nowrap;
+      align-items: flex-start;
+      gap: 1rem;
+
+      .write_review_btn {
+        flex: 0 1 30%;
+      }
+    }
+  }
+}

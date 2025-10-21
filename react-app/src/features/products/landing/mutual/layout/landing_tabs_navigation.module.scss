@@ -1,0 +1,51 @@
+@use './styles/mixins' as *;
+@use './styles/variables' as *;
+
+.navigation {
+  display: flex;
+  flex-flow: row nowrap;
+
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  .decor_line {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    z-index: -99;
+
+    //change color
+    border-bottom: 0.05rem solid $color-wh-lightsilv;
+  }
+
+  //change colors
+  .link_container {
+    .link {
+      color: $color-blue-dasl;
+
+      &:hover {
+        $color-on-hover: $color-green-bangl;
+        border-bottom: 0.1rem solid rgba($color-on-hover, 0.3);
+        color: rgba($color-on-hover, 1);
+      }
+    }
+
+    .active {
+      border-bottom: 0.1rem solid $color-blue-dasl;
+      font-weight: bold;
+    }
+  }
+
+  .link_container:first-of-type {
+    margin-left: 4rem;
+    @media screen and (width < 992px) {
+      margin-left: 2rem;
+    }
+
+    @media screen and (width < 768px) {
+      margin-left: 1rem;
+    }
+  }
+}

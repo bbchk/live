@@ -1,0 +1,33 @@
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
+
+  border-radius: 5px;
+
+  color: $color-blue-dasl;
+  font-size: 3rem;
+  font-weight: bold;
+  white-space: nowrap;
+
+  &:hover {
+    color: $color-blue-dasl;
+    // todo
+  }
+
+  @media only screen and (width < 1200px) {
+    span {
+      display: none;
+    }
+  }
+
+  @media only screen and (width < 300px) {
+    img {
+      display: none;
+    }
+  }
+}

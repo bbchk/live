@@ -1,0 +1,9 @@
+@use 'styles/variables' as *;
+
+.modal {
+  .body {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+}

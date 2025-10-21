@@ -1,0 +1,37 @@
+@use './styles/variables' as *;
+
+.alert {
+  width: 100%;
+
+  &.animated {
+    width: 100vw;
+    position: fixed;
+    top: -100px;
+    left: 0;
+    z-index: 9999;
+
+    opacity: 1;
+
+    animation: slideOut 4s forwards;
+
+    @keyframes slideOut {
+      0% {
+        top: -100px;
+        opacity: 0;
+      }
+      20% {
+        top: 0;
+        opacity: 1;
+      }
+      80% {
+        top: 0;
+        opacity: 1;
+      }
+      100% {
+        display: none;
+        top: -100px;
+        opacity: 0;
+      }
+    }
+  }
+}

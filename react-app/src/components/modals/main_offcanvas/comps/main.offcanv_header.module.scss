@@ -1,0 +1,13 @@
+@use './styles/variables' as *;
+
+.header {
+  background-color: $color-green-medbud;
+
+  box-shadow: 0 0 0.3rem rgba($color: $color-blue-dasl, $alpha: 0.5);
+
+  .shop_name {
+    margin-left: 1rem;
+    color: $color-blue-dasl;
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,53 @@
+@use './styles/variables' as *;
+
+.breadcrumbs {
+  ol {
+    margin: 0;
+
+    li {
+      $icon_size: 1rem;
+      line-height: $icon_size;
+
+      a {
+        border-radius: 2px;
+        color: rgba($color: $color-blue-dasl, $alpha: 0.9);
+
+        display: flex;
+
+        svg {
+          margin-right: 5px;
+          width: $icon_size;
+          height: $icon_size;
+        }
+      }
+
+      &.active {
+        font-weight: bold;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      li:not(:nth-last-child(2)) {
+        display: none;
+      }
+
+      li.home_active {
+        display: flex;
+      }
+
+      li::before {
+        color: $color-blue-dasl !important;
+        content: '↫' !important;
+      }
+
+      li a svg {
+        display: none;
+      }
+
+      li {
+        display: flex;
+        gap: 0.5rem;
+      }
+    }
+  }
+}

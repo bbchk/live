@@ -1,0 +1,21 @@
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+
+.recs {
+  margin-top: 2rem;
+
+  height: 25rem;
+
+  color: $color-blue-dasl;
+
+  .scroll_container {
+    padding: 1rem 0.5rem;
+
+    height: 90%;
+  }
+
+  .col {
+    width: 16rem;
+    padding: 0;
+  }
+}

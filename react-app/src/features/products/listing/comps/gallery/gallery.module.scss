@@ -1,0 +1,18 @@
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+
+.g {
+  box-shadow: 0 0 0 0.05rem $color-wh-lightsilv;
+  border-radius: 0 0.5rem 0.5rem 0.5rem;
+  overflow: hidden;
+
+  // color: var(--children-number);
+  // padding: var(--children-number);
+  min-height: calc(var(--children-number) * 400px);
+  // min-height: 800px;
+}
+
+.skeleton {
+  width: 100%;
+  height: 100%;
+}

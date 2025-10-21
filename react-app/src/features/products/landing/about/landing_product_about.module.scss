@@ -1,0 +1,93 @@
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+
+.landing_product_about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content 1fr;
+  row-gap: 1rem;
+
+  grid-template-areas:
+    'product_figure product_main_info'
+    'descriptionAndCharacteristics reviews'
+    'recs recs';
+
+  .product_figure {
+    grid-area: product_figure;
+  }
+  .product_main_info {
+    grid-area: product_main_info;
+  }
+
+  .reviews {
+    grid-area: reviews;
+  }
+
+  .descriptionAndCharacteristics {
+    grid-area: descriptionAndCharacteristics;
+  }
+
+  .recs {
+    grid-area: recs;
+  }
+
+  .descriptionAndCharacteristics,
+  .recs,
+  .reviews {
+    padding: 2rem;
+  }
+
+  .product_main_info {
+    margin-right: 4rem;
+  }
+
+  @media screen and (width < 1200px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'product_figure product_main_info'
+      'descriptionAndCharacteristics descriptionAndCharacteristics'
+      'reviews reviews'
+      'recs recs';
+
+    .descriptionAndCharacteristics {
+      width: 100vw;
+    }
+
+    .descriptionAndCharacteristics,
+    .reviews {
+      padding: 1rem;
+    }
+
+    .recs {
+      padding: 0 1rem;
+    }
+
+    .product_main_info {
+      margin-right: 1rem;
+    }
+  }
+
+  @media screen and (width < 768px) {
+    width: 100vw;
+
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'product_figure'
+      'product_main_info'
+      'descriptionAndCharacteristics'
+      'reviews'
+      'recs';
+
+    .product_figure,
+    .product_main_info,
+    .reviews,
+    .recs {
+      width: 100vw;
+    }
+
+    .descriptionAndCharacteristics,
+    .reviews {
+      padding: 0.5rem;
+    }
+  }
+}

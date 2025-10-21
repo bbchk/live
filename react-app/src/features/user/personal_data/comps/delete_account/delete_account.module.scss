@@ -1,0 +1,17 @@
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+
+.header {
+  color: $color-red-decapink;
+}
+
+.body {
+  p {
+    max-width: 60ch;
+  }
+  button {
+    margin-top: 1rem;
+    // @include button(white, $color-red-decapink);
+    width: fit-content;
+  }
+}

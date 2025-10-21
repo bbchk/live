@@ -1,0 +1,24 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.body {
+  color: $color-blue-dasl;
+
+  .button_group {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 20px;
+
+    list-style: none;
+
+    @media screen and (max-width: 662px) {
+      li:first-child {
+        order: 2;
+      }
+      li:last-child {
+        order: 1;
+      }
+    }
+  }
+}

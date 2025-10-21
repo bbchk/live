@@ -1,0 +1,12 @@
+@use './styles/variables' as *;
+
+.header {
+  color: $color-blue-dasl;
+  font-size: 1.5rem;
+
+  border-bottom: 1px solid $color-blue-dasl;
+
+  &.centered {
+    text-align: center;
+  }
+}

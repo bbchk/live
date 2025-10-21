@@ -1,0 +1,59 @@
+@use './styles/variables' as *;
+
+.search_bar {
+  display: flex;
+  justify-content: center;
+  height: 3rem;
+
+  .search_field {
+    flex: 0 1 90%;
+
+    width: 100%;
+
+    padding: 1rem;
+    border: 0;
+    border-radius: 1rem 0 0 1rem;
+
+    font-size: 1.5rem;
+
+    &::placeholder {
+      color: rgba($color-blue-indep, 100%);
+    }
+
+    transition: box-shadow 0.25s;
+
+    color: $color-blue-indep;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0.2rem 0.1rem rgba($color-blue-dasl, 0.4) inset;
+      color: black;
+    }
+
+    &[disabled] {
+      box-shadow: 0 0 0.2rem 0.1rem rgba($color-blue-dasl, 0.4) inset;
+      background-color: white;
+      font-weight: normal;
+    }
+  }
+
+  .search_button {
+    gap: 0.3rem;
+
+    flex: 0 0 10%;
+
+    border-radius: 0 1rem 1rem 0;
+    border: 0;
+
+    font-size: 1.5rem;
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+
+    @media only screen and (width < 992px) {
+      p {
+        display: none;
+      }
+    }
+  }
+}
