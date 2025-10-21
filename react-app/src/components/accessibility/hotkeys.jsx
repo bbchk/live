@@ -1,5 +1,5 @@
-import { signOut } from 'next-auth/react'
-import { useRouter } from 'next/router'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { useDispatch } from 'react-redux'

@@ -1,5 +1,5 @@
 import s from './info_body.module.scss'
-import { useSession } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 // import { useCart } from 'hooks/useCart'
 
 import {

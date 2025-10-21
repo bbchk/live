@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 import s from './landing_tabs_navigation.module.scss'
 
 import { slugify } from '@bbuukk/slugtrans/slugify'

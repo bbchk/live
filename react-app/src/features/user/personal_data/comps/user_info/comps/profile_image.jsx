@@ -1,6 +1,6 @@
 import s from './profile_image.module.scss'
 import ps from '../user_info.module.scss'
-import { useSession } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 import Image from 'next/image'
 
 const ProfileImage = () => {

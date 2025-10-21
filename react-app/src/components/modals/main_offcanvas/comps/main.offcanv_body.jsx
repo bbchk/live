@@ -20,7 +20,7 @@ import {
 } from '@mui/icons-material'
 import { balsamiqSans } from '#root/pages/_app.js'
 
-import { signOut, useSession } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 import { useDispatch } from 'react-redux'
 import Image from 'next/image'
 

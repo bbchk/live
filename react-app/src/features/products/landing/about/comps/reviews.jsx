@@ -18,7 +18,7 @@ import {
 } from 'store/slices/global_comps/global_comps.slice'
 const { WRITE_REVIEW_MODAL } = GLOBAL_COMPS
 import WriteReviewForm from '../../mutual/write_review_form/write_review_form'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Reviews = ({ product }) => {
   const { reviews = [] } = product

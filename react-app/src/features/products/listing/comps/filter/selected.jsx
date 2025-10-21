@@ -1,7 +1,7 @@
 import s from './selected.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteAllFilters } from 'store/slices/filters.slice'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { startLoading } from 'store/slices/global_comps/global_comps.slice.js'
 
 const Selected = ({ productsCount }) => {

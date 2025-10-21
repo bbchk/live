@@ -19,9 +19,9 @@ import CartItem from './cart_item/cart_item'
 import Image from 'next/image'
 
 import { useCart } from '#root/hooks/use_cart.js'
-import { useSession } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 import axios from 'axios'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { balsamiqSans } from '#root/pages/_app.js'
 
 const CartModal = () => {

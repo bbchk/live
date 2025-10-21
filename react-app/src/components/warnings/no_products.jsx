@@ -2,7 +2,7 @@ import Image from 'next/image'
 import s from './no_products.module.scss'
 import Link from 'next/link'
 import { useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { startLoading } from 'store/slices/global_comps/global_comps.slice'
 import { ArrowCircleLeftRounded, SearchOffRounded } from '@mui/icons-material'
 

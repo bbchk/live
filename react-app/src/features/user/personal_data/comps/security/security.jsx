@@ -11,7 +11,7 @@ import {
 } from 'store/slices/global_comps/global_comps.slice'
 const { CHANGE_PASSWORD_MODAL } = GLOBAL_COMPS
 
-import { signOut } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 
 const Security = () => {
   const dispatch = useDispatch()

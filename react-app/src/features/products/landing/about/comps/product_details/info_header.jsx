@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 import s from './info_header.module.scss'
 import StarRating from 'comps/rating/star_rating'
 import Link from 'next/link'

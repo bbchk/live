@@ -15,7 +15,7 @@ import s from './user.tabs.module.scss'
 
 import { ItemLink, ItemButton, ListHeading } from 'comps/list/list.js'
 
-import { signOut, useSession } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 
 import Image from 'next/image'
 import { useDispatch } from 'react-redux'

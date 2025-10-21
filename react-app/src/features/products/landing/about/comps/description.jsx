@@ -3,7 +3,7 @@ import s from './description.module.scss'
 
 //? todo is using these libraries safe in sake of xss(cross-site-scripting)?
 import parse from 'html-react-parser'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Description = ({ product }) => {
   const [expanded, setExpanded] = useState(false)

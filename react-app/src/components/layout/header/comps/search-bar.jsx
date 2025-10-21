@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect, use } from 'react'
 import s from './search-bar.module.scss'
 import hs from '../header.module.scss'

@@ -1,4 +1,4 @@
-import { getSession, useSession } from 'next-auth/react'
+import { getSession, useSession } from '../contexts/AuthContext'
 import useLocalStorage from 'hooks/useLocalStorage'
 import * as crtSlice from 'store/slices/cart.slice'
 import { useDispatch } from 'react-redux'

@@ -6,6 +6,7 @@ import { HelmetProvider } from 'react-helmet-async'
 
 import App from './App'
 import { store } from './store/store'
+import { AuthProvider } from './contexts/AuthContext'
 
 // Import global styles
 import 'styles/globals.scss'
@@ -32,9 +33,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
       <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <AuthProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </AuthProvider>
       </Provider>
     </HelmetProvider>
   </React.StrictMode>

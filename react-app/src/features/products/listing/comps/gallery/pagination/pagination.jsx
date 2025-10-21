@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import {
   KeyboardArrowLeftRounded,

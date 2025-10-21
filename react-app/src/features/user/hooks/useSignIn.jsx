@@ -1,4 +1,4 @@
-import { signIn as nextAuthSignIn } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 import useSyncWishList from 'hooks/use_sync_wish_list'
 import useManageCart from 'hooks/use_manage_cart'
 

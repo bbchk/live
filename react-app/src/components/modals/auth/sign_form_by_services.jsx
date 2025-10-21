@@ -1,6 +1,6 @@
 import s from './sign_form_by_services.module.scss'
 
-import { signIn } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 import Image from 'next/image'
 
 const SignFormByServices = () => {

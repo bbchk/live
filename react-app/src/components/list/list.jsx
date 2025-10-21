@@ -2,7 +2,7 @@ import { ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material'
 
 import s from './list.module.scss'
 import { balsamiqSans } from '#root/pages/_app.js'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Item = ({ text, component, onClick, href, children }) => {
   const router = useRouter()

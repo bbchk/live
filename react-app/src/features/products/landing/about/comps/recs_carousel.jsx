@@ -1,7 +1,7 @@
 import axios from 'axios'
 import s from './recs_carousel.module.scss'
 import ListingProductCard from 'features/products/listing/comps/gallery/card/listing_card'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 //do we need web worker for this?

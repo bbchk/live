@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export const usePageValidation = (numPages) => {
   const router = useRouter()

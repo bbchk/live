@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { setFilters } from 'store/slices/filters.slice'
 import { useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const getFilterMapFromStr = (filtersStr) => {
   let filters = {}

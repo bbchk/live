@@ -10,7 +10,7 @@ import {
   useTheme,
 } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { useSession } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 
 import SignInFormByCredentials from './sign_in_form_by_credentials'
 import SignFormByServices from '../sign_form_by_services'

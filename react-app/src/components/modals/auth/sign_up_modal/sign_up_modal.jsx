@@ -12,7 +12,7 @@ import {
 } from 'store/slices/global_comps/global_comps.slice'
 const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS
 
-import { useSession } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 
 import CustomAlert from 'comps/warnings/alert'
 

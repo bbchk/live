@@ -3,7 +3,7 @@ import React, { use, useEffect, useState } from 'react'
 import s from './price-slider.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFilter } from 'store/slices/filters.slice'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { startLoading } from 'store/slices/global_comps/global_comps.slice.js'
 
 //todo inconsistent currentMinMax, it changes on page refresh, when set on some points lower

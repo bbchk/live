@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useSession } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 import { useState } from 'react'
 
 const useUpdateUser = () => {

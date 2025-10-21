@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import s from './user_info_form.module.scss'
 import ps from '../user_info.module.scss'
-import { useSession } from 'next-auth/react'
+import { useSession, signIn, signOut } from '../../contexts/AuthContext'
 import InputField from 'comps/input_fields/input_field'
 import axios from 'axios'
 import Alert from 'comps/warnings/alert'

@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@mui/material'
 
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 

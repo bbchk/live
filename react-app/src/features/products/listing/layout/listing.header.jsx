@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import s from './listing.header.module.scss'
 import Breadcrumbs from 'comps/navigation/breadcrumbs'
-import { useRouter } from 'next/router'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { unslugify } from '@bbuukk/slugtrans/slugify'
 import { untransliterate } from '@bbuukk/slugtrans/transliterate'
 
